@@ -17,12 +17,12 @@ class PrintLayout extends React.PureComponent {
     this.state = {
       list: this.props.printList,
       title: this.props.title,
-      description: this.props.description,
-      didShowPrintModal: false
+      description: this.props.description
     };
   }
   componentDidMount() {
     this.loadShortList();
+    setTimeout(window.print, 2000);
   }
 
   componentDidUpdate(prevProps) {

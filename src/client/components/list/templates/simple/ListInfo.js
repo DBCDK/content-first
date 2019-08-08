@@ -44,29 +44,21 @@ export const ListInfo = ({list, isListOwner, profile, commentsListRef}) => {
         ) : (
           <div className="pb-4" />
         )}
-
-        {
-          <React.Fragment>
-            <div className="list-divider m-0" />
-            <div className="list-interactions d-flex flex-row-reverse justify-content-between">
-              <div>
-                {list._public && (
-                  <FollowButton disabled={isListOwner} _id={list._id} />
-                )}
-                <PrintButton _id={list._id} />
-              </div>
-
-              <div />
-
-              {list.social && list._public && (
-                <CommentCounter
-                  id={list._id}
-                  commentsListRef={commentsListRef}
-                />
+        <React.Fragment>
+          <div className="list-divider m-0" />
+          <div className="list-interactions d-flex flex-row-reverse justify-content-between">
+            <div style={{display: 'flex'}}>
+              {list._public && (
+                <FollowButton disabled={isListOwner} _id={list._id} />
               )}
+              <PrintButton _id={list._id} className="ml-sm-4" />
             </div>
-          </React.Fragment>
-        }
+            <div />
+            {list.social && (
+              <CommentCounter id={list._id} commentsListRef={commentsListRef} />
+            )}
+          </div>
+        </React.Fragment>
       </div>
     </div>
   );

@@ -1,11 +1,8 @@
 import React from 'react';
 import Button from '../../base/Button';
-import Icon from '../../base/Icon';
 import T from '../../base/T';
 
 const PrintButton = ({style, className, _id = 'huskeliste'}) => {
-  console.log('in PrintButton');
-
   return (
     <Button
       size="large"
