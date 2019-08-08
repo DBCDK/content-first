@@ -175,7 +175,6 @@ async function find(query, user = {}, role) {
     );
     return {data: objects};
   } catch (e) {
-    console.log(e);
     return parseException(e);
   }
 }

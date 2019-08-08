@@ -173,7 +173,6 @@ async function createUser(req, doCreateUser, isEditor) {
     })).data.length === 0
   ) {
     if (isEditor) {
-      console.log('hmm');
       const roles = (await request.post(config.storage.url).send({
         access_token: admin.token,
         find: {
