@@ -168,8 +168,8 @@ export class AddToListButton extends React.Component {
               multiple
                 ? 'booksAddedToList'
                 : status
-                  ? 'toastRemovedFrom'
-                  : 'toastAddedTo'
+                ? 'toastRemovedFrom'
+                : 'toastAddedTo'
             }
             vars={[elements.length, l.title]}
           />

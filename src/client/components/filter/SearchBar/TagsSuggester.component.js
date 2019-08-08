@@ -57,15 +57,17 @@ class TagsSuggester extends React.Component {
     const clientSuggestions = this.getClientSideSuggestions({value});
     let suggestions = [...clientSuggestions, ...response.body];
     /* performance optimization, updating the redux books state */
-    const books = suggestions.filter(s => s.type === 'TITLE').map(s => {
-      return {
-        book: {
-          title: s.title,
-          creator: s.authorName,
-          pid: s.pid
-        }
-      };
-    });
+    const books = suggestions
+      .filter(s => s.type === 'TITLE')
+      .map(s => {
+        return {
+          book: {
+            title: s.title,
+            creator: s.authorName,
+            pid: s.pid
+          }
+        };
+      });
     this.props.updateBooks(books);
     this.setState({suggestions: this.getCombinedSuggestions(suggestions)});
   };
