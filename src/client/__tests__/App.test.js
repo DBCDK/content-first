@@ -7,10 +7,7 @@ import renderer from 'react-test-renderer';
 jest.mock('../components/base/Belt/Slider.component', () => 'slider');
 jest.mock('../components/base/Belt/CreatorBelt.component', () => 'CreatorBelt');
 jest.mock('../components/base/Belt/TagsBelt.component', () => 'TagsBelt');
-jest.mock(
-  '../components/base/Belt/RecentListsBelt.container',
-  () => 'RecentListsBelt'
-);
+jest.mock('../components/base/Belt/ListsBelt.container', () => 'ListsBelt');
 jest.mock('../components/spots/Spots.container.js', () => 'SpotsContainer');
 jest.mock('../components/hero/Hero.component.js', () => 'Hero');
 jest.mock('../components/general/Footer/Footer.component.js', () => 'Footer');

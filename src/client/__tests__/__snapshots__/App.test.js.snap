@@ -901,7 +901,10 @@ exports[`renders without crashing 1`] = `
           type="belt"
         />
       </div>
-      <RecentListsBelt />
+      <ListsBelt
+        limit={50}
+        sort="created"
+      />
     </div>
   </div>
   <span />
