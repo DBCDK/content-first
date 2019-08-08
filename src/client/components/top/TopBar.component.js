@@ -50,17 +50,22 @@ class TopBarDropdown extends React.Component {
             </span>
           </Link>
         </li>
-        <li>
-          <Link
-            href="/redaktionen"
-            onClick={this.props.onClick}
-            data-cy="edit-start-page"
-          >
-            <span>
-              <T component="profile" name="editorialStaff" />
-            </span>
-          </Link>
-        </li>
+
+        {process.env.NODE_ENV === 'ci' ? ( // If production, the Editorial menu shall not be shown
+          ''
+        ) : (
+          <li>
+            <Link
+              href="/redaktionen"
+              onClick={this.props.onClick}
+              data-cy="edit-start-page"
+            >
+              <span>
+                <T component="profile" name="editorialStaff" />
+              </span>
+            </Link>
+          </li>
+        )}
 
         <li className="divider" />
         <li
