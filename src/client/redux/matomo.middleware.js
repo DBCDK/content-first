@@ -47,7 +47,6 @@ export const matomoMiddleware = store => next => action => {
       const scrollPos = get(action, 'data.scrollPos');
       const titleClick = get(action, 'data.titleClick');
       const tagClick = get(action, 'data.tagClick');
-      const beltName = get(action, 'data.beltName', 'unknownBeltName');
 
       if (type === 'PREVIEW') {
         const category = `belt:${parentBeltName}`;
