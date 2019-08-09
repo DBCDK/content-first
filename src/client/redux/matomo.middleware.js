@@ -27,12 +27,22 @@ export const matomoMiddleware = store => next => action => {
       const type = get(action, 'data.type');
       const pid = get(action, 'data.parent', 'unknown');
       let parentBeltName = get(action, 'data.beltName', 'unknown');
-      if (
-        typeof parentBeltName === 'string' &&
-        parentBeltName.startsWith('Fra bedste forslag til')
-      ) {
+
+      if (action.mount === 'frontpage-interactions-belt') {
         parentBeltName = 'personalRecommendations';
+      } else if (get(action, 'ctx.name')) {
+        parentBeltName = get(action, 'ctx.name');
+      } else if (get(action, 'data.beltName.minderLink[1]')) {
+        parentBeltName = `Minder om ${get(
+          action,
+          'data.beltName.minderLink[1]'
+        )}`;
+      } else if (get(action, 'data.beltName', 'unknown')) {
+        parentBeltName = get(action, 'data.beltName');
+      } else {
+        parentBeltName = 'unknown';
       }
+
       const rid = get(action, 'data.rid');
       const scrollPos = get(action, 'data.scrollPos');
       const titleClick = get(action, 'data.titleClick');
@@ -40,11 +50,7 @@ export const matomoMiddleware = store => next => action => {
       const beltName = get(action, 'data.beltName', 'unknownBeltName');
 
       if (type === 'PREVIEW') {
-        const category =
-          'belt:' +
-          (action.mount === 'frontpage-interactions-belt'
-            ? 'personalRecommendations'
-            : beltName);
+        const category = `belt:${parentBeltName}`;
         const a = 'beltExpandWork';
         const name = `pid:${pid}`;
         trackEvent(category, a, name);
@@ -53,22 +59,18 @@ export const matomoMiddleware = store => next => action => {
           rid: rid
         });
       } else if (type === 'SIMILAR') {
-        const category =
-          'belt:' +
-          (action.mount === 'frontpage-interactions-belt'
-            ? 'personalRecommendations'
-            : beltName);
+        const category = `belt:${parentBeltName}`;
         const a = 'beltMoreLikeThis';
         const name = `pid:${pid}`;
         trackEvent(category, a, name);
       } else if (scrollPos) {
-        const category = `belt:${parentBeltName}`;
+        let category = `belt:${parentBeltName}`;
         const a = 'beltSwipe';
         const name = 'position';
         const val = scrollPos;
         trackEvent(category, a, name, val);
       } else if (titleClick) {
-        const category = `belt:${titleClick}`;
+        const category = `belt:${parentBeltName}`;
         const a = 'beltTitleClick';
         trackEvent(category, a);
       } else if (tagClick) {

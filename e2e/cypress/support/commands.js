@@ -98,6 +98,22 @@ Cypress.Commands.add('visitWithOpenPlatformMocks', (url, mocks) => {
 });
 
 /**
+ * Visits an url with added matomo mocks
+ */
+Cypress.Commands.add('visitWithMatomoMocks', (url, matomo) => {
+  cy.visit(url, {
+    onBeforeLoad: window => {
+      window.__stubbed_matomo__ = {
+        initialize: matomo.initialize ? matomo.initialize : () => {},
+        setUserStatus: matomo.setUserStatus ? matomo.setUserStatus : () => {},
+        trackEvent: matomo.trackEvent ? matomo.trackEvent : () => {},
+        trackDataEvent: matomo.trackDataEvent ? matomo.trackDataEvent : () => {}
+      };
+    }
+  });
+});
+
+/**
  * Initializes object storage
  */
 Cypress.Commands.add('initStorage', userName => {
