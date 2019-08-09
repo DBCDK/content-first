@@ -4,7 +4,7 @@ import T from '../base/T';
 
 import './CreateBelt.css';
 
-import Banner from "../base/Banner";
+import Banner from '../base/Banner';
 
 export class CreateProfilePage extends React.Component {
   render() {
