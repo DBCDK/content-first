@@ -279,12 +279,12 @@ exports[`ShortList.container Clearing list 1`] = `
                 href="print/huskeliste"
                 iconLeft="print"
                 key="0"
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -309,12 +309,12 @@ exports[`ShortList.container Clearing list 1`] = `
                 iconLeft="delete"
                 key="1"
                 onClick={[Function]}
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -2144,12 +2144,12 @@ exports[`ShortList.container Order all books 1`] = `
                 href="print/huskeliste"
                 iconLeft="print"
                 key="0"
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -2174,12 +2174,12 @@ exports[`ShortList.container Order all books 1`] = `
                 iconLeft="delete"
                 key="1"
                 onClick={[Function]}
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -4008,12 +4008,12 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                 href="print/huskeliste"
                 iconLeft="print"
                 key="0"
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -4038,12 +4038,12 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                 iconLeft="delete"
                 key="1"
                 onClick={[Function]}
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -5872,12 +5872,12 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                 href="print/huskeliste"
                 iconLeft="print"
                 key="0"
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -5902,12 +5902,12 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                 iconLeft="delete"
                 key="1"
                 onClick={[Function]}
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -7736,12 +7736,12 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                 href="print/huskeliste"
                 iconLeft="print"
                 key="0"
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -7766,12 +7766,12 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                 iconLeft="delete"
                 key="1"
                 onClick={[Function]}
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -9600,12 +9600,12 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                 href="print/huskeliste"
                 iconLeft="print"
                 key="0"
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -9630,12 +9630,12 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                 iconLeft="delete"
                 key="1"
                 onClick={[Function]}
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -11464,12 +11464,12 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                 href="print/huskeliste"
                 iconLeft="print"
                 key="0"
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -11494,12 +11494,12 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                 iconLeft="delete"
                 key="1"
                 onClick={[Function]}
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -13328,12 +13328,12 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                 href="print/huskeliste"
                 iconLeft="print"
                 key="0"
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -13358,12 +13358,12 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                 iconLeft="delete"
                 key="1"
                 onClick={[Function]}
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -15193,12 +15193,12 @@ exports[`ShortList.container Remove element 1`] = `
                 href="print/huskeliste"
                 iconLeft="print"
                 key="0"
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -15223,12 +15223,12 @@ exports[`ShortList.container Remove element 1`] = `
                 iconLeft="delete"
                 key="1"
                 onClick={[Function]}
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -17057,12 +17057,12 @@ exports[`ShortList.container Short list contains elements 1`] = `
                 href="print/huskeliste"
                 iconLeft="print"
                 key="0"
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -17087,12 +17087,12 @@ exports[`ShortList.container Short list contains elements 1`] = `
                 iconLeft="delete"
                 key="1"
                 onClick={[Function]}
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -18814,12 +18814,12 @@ exports[`ShortList.container Short list is empty 1`] = `
                 href="print/huskeliste"
                 iconLeft="print"
                 key="0"
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -18844,12 +18844,12 @@ exports[`ShortList.container Short list is empty 1`] = `
                 iconLeft="delete"
                 key="1"
                 onClick={[Function]}
-                size="medium"
+                size="large"
                 type="quaternary"
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+                      btn Button Button__large Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}

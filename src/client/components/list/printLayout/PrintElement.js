@@ -7,6 +7,10 @@ import './PrintLayout.css';
 import withWork from '../../hoc/Work/withWork.hoc';
 
 export class PrintElement extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const {work} = this.props;
     if (!work || !work.book) {

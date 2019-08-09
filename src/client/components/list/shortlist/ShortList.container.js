@@ -195,7 +195,7 @@ export class ShortList extends React.Component {
               <Toolbar className="top-bar-upper-toolbar">
                 <Button
                   align="right"
-                  size="medium"
+                  size="large"
                   type="quaternary"
                   iconLeft="print"
                   className="bg-white pr-0"
@@ -205,7 +205,7 @@ export class ShortList extends React.Component {
                 </Button>
                 <Button
                   align="right"
-                  size="medium"
+                  size="large"
                   type="quaternary"
                   iconLeft="delete"
                   className="bg-white pr-0"

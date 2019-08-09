@@ -17,12 +17,12 @@ class PrintLayout extends React.PureComponent {
     this.state = {
       list: this.props.printList,
       title: this.props.title,
-      description: this.props.description
+      description: this.props.description,
+      didShowPrintModal: false
     };
   }
   componentDidMount() {
     this.loadShortList();
-    setTimeout(window.print, 2000);
   }
 
   componentDidUpdate(prevProps) {
@@ -66,7 +66,7 @@ class PrintLayout extends React.PureComponent {
     return (
       <div className="print-layout-container">
         <div className="print-layout-logo">
-          <img src="/img/general/LK-Logo.png" alt="logo" />
+          <img src="/img/general/LK-Logo.png" />
         </div>
         <div className="print-layout-container-listinfo">
           <Title Tag="h1" type="title4" variant="weight-normal ">

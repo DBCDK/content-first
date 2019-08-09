@@ -8,7 +8,6 @@ import Text from '../../../base/Text';
 import T from '../../../base/T';
 
 import FollowButton from '../../button/FollowButton';
-import PrintButton from '../../button/PrintButton';
 
 import Pulse from '../../../pulse/Pulse.component';
 import ProfileImage from '../../../general/ProfileImage.component';
@@ -113,23 +112,25 @@ export const ListInfo = ({
         ) : (
           <div className="pb-4" />
         )}
-        <React.Fragment>
-          <div className="list-divider m-0" />
-          <div className="list-interactions d-flex flex-row-reverse justify-content-between">
-            <div style={{display: 'flex'}}>
-              {list._public && (
+
+        {list._public && (
+          <React.Fragment>
+            <div className="list-divider m-0" />
+            <div className="list-interactions d-flex flex-row-reverse justify-content-between">
+              {list._public ? (
                 <FollowButton disabled={isListOwner} _id={list._id} />
+              ) : (
+                <div />
               )}
-              <PrintButton _id={list._id} className="ml-sm-4" />
+              {list.social && (
+                <CommentCounter
+                  id={list._id}
+                  commentsListRef={commentsListRef}
+                />
+              )}
             </div>
-
-            <div />
-
-            {list.social && (
-              <CommentCounter id={list._id} commentsListRef={commentsListRef} />
-            )}
-          </div>
-        </React.Fragment>
+          </React.Fragment>
+        )}
       </div>
     </div>
   );
