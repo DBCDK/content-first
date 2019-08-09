@@ -77,6 +77,7 @@ export class TagsBelt extends React.Component {
       <div
         id={`temp_${tags.map(v => v.id || v).join('')}`}
         className={'belt ' + this.props.className}
+        data-cy={`tagsbelt-${this.props.name}`}
       >
         <div className="mb-0 px-0 px-sm-3 px-lg-5 pt-5 d-flex position-relative">
           {editing ? (
@@ -99,7 +100,12 @@ export class TagsBelt extends React.Component {
                     const tag = filtersMapAll[t.id ? t.id : t];
                     const isLast = idx === tags.length - 1;
                     return (
-                      <Link key={tag.id} href="/find" params={{tags: tag.id}}>
+                      <Link
+                        key={tag.id}
+                        href="/find"
+                        params={{tags: tag.id}}
+                        data-cy={`tag-${tag.title}`}
+                      >
                         <Term
                           className={'my-1 ' + (isLast ? '' : 'mr-2')}
                           size="medium"
@@ -206,6 +212,7 @@ export class TagsBelt extends React.Component {
                               });
                             }
                           }}
+                          data-cy={`tag-${tag.title}`}
                         >
                           <Term
                             className={'my-1 ' + (isLast ? '' : 'mr-2')}

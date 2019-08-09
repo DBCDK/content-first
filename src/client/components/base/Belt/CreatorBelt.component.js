@@ -8,7 +8,10 @@ import Title from '../Title';
 export class CreatorBelt extends React.Component {
   render() {
     return (
-      <div className={'px-0 px-sm-3 px-lg-5 pt-5 ' + this.props.className}>
+      <div
+        className={'px-0 px-sm-3 px-lg-5 pt-5 ' + this.props.className}
+        data-cy="creator-belt"
+      >
         <Title
           Tag="h1"
           type="title4"

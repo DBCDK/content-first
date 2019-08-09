@@ -92,8 +92,14 @@ const withChildBelt = WrappedComponent => {
     mountedData: state.mounts[ownProps.mount] || defaultData
   });
   const mapDispatchToProps = (dispatch, ownProps) => ({
-    updateMount: data =>
-      dispatch({type: UPDATE_MOUNT, data, mount: ownProps.mount}),
+    updateMount: data => {
+      dispatch({
+        type: UPDATE_MOUNT,
+        data,
+        mount: ownProps.mount,
+        ctx: ownProps.belt
+      });
+    },
     scrollToComponent: id =>
       dispatch({
         type: SCROLL_TO_COMPONENT,

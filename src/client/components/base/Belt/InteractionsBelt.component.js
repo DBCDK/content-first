@@ -14,7 +14,11 @@ export class InteractionsBelt extends React.Component {
     }
 
     return (
-      <div className={this.props.className} style={this.props.style}>
+      <div
+        className={this.props.className}
+        style={this.props.style}
+        data-cy="interactions-belt"
+      >
         <Title
           Tag="h1"
           type="title4"

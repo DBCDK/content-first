@@ -122,6 +122,7 @@ class DesktopSlider extends React.Component {
                   this.swiper.slideNext();
                 }
               }}
+              data-cy="next-btn"
             />
           </div>
         )}
