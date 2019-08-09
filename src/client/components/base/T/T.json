@@ -300,6 +300,10 @@
         "da": "Min profil",
         "en": "My profile"
       },
+      "editorialStaff": {
+        "da": "Redaktionen",
+        "en": "Editorial staff"
+      },
       "createProfile": {
         "da": "Min profil",
         "en": "My profile"
@@ -804,7 +808,6 @@
         "da": "Fra søgesiden",
         "en": "From searchpage"
       },
-
       "forward": {
         "da": "flere",
         "en": "more"
@@ -1012,6 +1015,32 @@
       "exploreText": {
         "da": "Opdag en bog <strong>-</strong> <span> og lån den på biblioteket</span>",
         "en": "Discover a book - and loan it at the library"
+      }
+    },
+    "editStartPage": {
+      "editStartPage": {
+        "da": "Redaktion af startside",
+        "en": "Edit startpage"
+      },
+      "belt": {
+        "da": "Bånd",
+        "en": "Belt"
+      },
+      "order": {
+        "da": "Rækkefølge på startsiden",
+        "en": "Order on the startpage"
+      },
+      "title": {
+        "da": "Titel",
+        "en": "Title"
+      },
+      "createdBy": {
+        "da": "Oprettet af",
+        "en": "Created by"
+      },
+      "createNewBelt": {
+        "da": "Opret nyt bånd",
+        "en": "Create new belt"
       }
     }
   },

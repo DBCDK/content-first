@@ -51,6 +51,22 @@ class TopBarDropdown extends React.Component {
           </Link>
         </li>
 
+        {process.env.NODE_ENV === 'ci' ? ( // If production, the Editorial menu shall not be shown
+          ''
+        ) : (
+          <li>
+            <Link
+              href="/redaktionen"
+              onClick={this.props.onClick}
+              data-cy="edit-start-page"
+            >
+              <span>
+                <T component="profile" name="editorialStaff" />
+              </span>
+            </Link>
+          </li>
+        )}
+
         <li className="divider" />
         <li
           onClick={() => {
@@ -333,6 +349,7 @@ export class TopBar extends React.Component {
               <span
                 className="Topbar__navigation__btn widthCalc abort-closeDopdown d-none d-sm-flex"
                 onClick={() => this.toggleDropdown()}
+                data-cy="topbar-logged-in-btn"
               >
                 <ProfileImage
                   type="top"

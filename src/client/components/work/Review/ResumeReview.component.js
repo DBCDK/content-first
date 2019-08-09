@@ -40,12 +40,11 @@ export class ResumeReview extends React.Component {
             {date}
           </Text>
         </div>
-        {name !== false &&
-          name.trim() !== '' && (
-            <Text type="body" className="Review__block--lector mb1">
-              Af {name}
-            </Text>
-          )}
+        {name !== false && name.trim() !== '' && (
+          <Text type="body" className="Review__block--lector mb1">
+            Af {name}
+          </Text>
+        )}
         <Text type="body" className="Review__block--paragraph mb0">
           <em>
             <TruncateMarkup lines={3} ellipsis="...">

@@ -20,6 +20,7 @@ import Footer from './components/general/Footer/Footer.component';
 import Article from './components/article/Article.component';
 import Animate from './components/base/Animate';
 import CookieWarning from './components/general/CookieWarning/CookieWarning';
+import BeltEditor from './components/editor/BeltEditor.component';
 import PrintLayout from './components/list/printLayout/PrintLayout';
 import {OPEN_MODAL} from './redux/modal.reducer';
 
@@ -78,6 +79,8 @@ class App extends Component {
           size="50px"
         />
       );
+    } else if (pathSplit[1] === 'redaktionen') {
+      currentPage = <BeltEditor />;
     } else if (pathSplit[1] === 'styleguide') {
       currentPage = <Styleguide />;
       footer = false;
