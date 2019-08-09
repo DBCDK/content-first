@@ -1,0 +1,8 @@
+.CreateBelt .Banner__wrap {
+    background-color: var(--kobber) !important;
+}
+
+.CreateBelt .Banner__title h1 {
+    text-transform: uppercase;
+}
+
