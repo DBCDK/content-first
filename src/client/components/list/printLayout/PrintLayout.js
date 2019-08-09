@@ -66,7 +66,7 @@ class PrintLayout extends React.PureComponent {
     return (
       <div className="print-layout-container">
         <div className="print-layout-logo">
-          <img src="/img/general/LK-Logo.png" />
+          <img src="/img/general/LK-Logo.png" alt="logo" />
         </div>
         <div className="print-layout-container-listinfo">
           <Title Tag="h1" type="title4" variant="weight-normal ">
