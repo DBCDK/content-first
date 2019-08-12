@@ -6,3 +6,31 @@
     text-transform: uppercase;
 }
 
+.CreateBelt__container {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 672px;
+    margin-top: 1em;
+}
+
+.CreateBelt label.Input__label {
+    margin-top: 1em;
+    font-weight: bold;
+}
+
+.CreateBelt .Button {
+    font-size: inherit;
+}
+
+.CreateBelt .Toolbar__center {
+    justify-content: space-evenly;
+}
+
+.CreateBelt .Toolbar__left,
+.CreateBelt .Toolbar__right {
+    display: none;
+}
+
+.CreateBelt #cancel-button {
+    background-color: transparent;
+}

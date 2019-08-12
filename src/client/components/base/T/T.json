@@ -1034,6 +1034,10 @@
         "da": "Titel",
         "en": "Title"
       },
+      "description": {
+        "da": "Beskrivelse",
+        "en": "Description"
+      },
       "createdBy": {
         "da": "Oprettet af",
         "en": "Created by"
@@ -1041,6 +1045,42 @@
       "createNewBelt": {
         "da": "Opret nyt bånd",
         "en": "Create new belt"
+      },
+      "placeholderTitle": {
+        "da": "Skriv titel",
+        "en": "Type a title"
+      },
+      "placeholderDescription": {
+        "da": "Kort beskrivelse der inspirerer læseren",
+        "en": "Short description that inspires the reader"
+      },
+      "publishing": {
+        "da": "Publicering",
+        "en": "Publishing"
+      },
+      "dontShowBelt": {
+        "da": "Vis ikke båndet",
+        "en": "Don't show the belt"
+      },
+      "doShowBelt": {
+        "da": "Vis båndet på startsiden",
+        "en": "Show the belt on the start page"
+      },
+      "publishToday": {
+        "da": "Publiceres dags dato",
+        "en": "Will be published today"
+      },
+      "selectTags": {
+        "da": "Vælg de tags dit bånd skal bestå af",
+        "en": "Select the tags that constitutes your belt"
+      },
+      "placeholderSearchField": {
+        "da": "Søg på titel, forfatter, stemning...",
+        "en": "Search for title, author, mood..."
+      },
+      "createBelt": {
+        "da": "Opret bånd",
+        "en": "Create belt"
       }
     }
   },
