@@ -50,5 +50,5 @@
 }
 
 .CreateBelt .Text.disabled {
-    color: #a7a7a7;
+    color: var(--silver-chalice);
 }
