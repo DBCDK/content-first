@@ -34,3 +34,21 @@
 .CreateBelt #cancel-button {
     background-color: transparent;
 }
+
+.CreateBelt .Divider {
+    margin-top:1.5em;
+}
+
+.CreateBelt .CreateBelt__radioButton {
+    display: flex;
+    margin-top: 8px;
+}
+
+.CreateBelt .CreateBelt__radioButtonContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.CreateBelt .Text.disabled {
+    color: #a7a7a7;
+}

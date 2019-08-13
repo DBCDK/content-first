@@ -9,13 +9,16 @@ import Input from '../base/Input';
 import Divider from '../base/Divider';
 import Button from '../base/Button';
 import Toolbar from '../base/Toolbar';
+import Radio from '../base/Radio';
+import Text from '../base/Text';
 
 export class CreateBelt extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
-      description: ''
+      description: '',
+      enabled: false
     };
   }
 
@@ -27,10 +30,17 @@ export class CreateBelt extends React.Component {
     this.setState({description: event.target.value});
   };
 
+  handleEnabledChange = changeEvent => {
+    this.setState({
+      enabled: changeEvent.target.value === 'enabled'
+    });
+  };
+
   handleSubmit = () => {
     if (typeof this.props.onSubmit === 'function') {
       this.props.onSubmit(this.state);
     }
+    window.open('redaktionen', '_self');
   };
 
   checkDisabled = () => this.state.title.length === 0;
@@ -69,6 +79,35 @@ export class CreateBelt extends React.Component {
           >
             <T component="editStartPage" name="description" />
           </Input>
+          <Divider type="horizontal" variant="thin" />
+          <label className="Input__label">
+            <T component="editStartPage" name="publishing" />
+          </label>
+          <span className="CreateBelt__radioButtonContainer">
+            <label className="CreateBelt__radioButton">
+              <Radio
+                name="publishing-group"
+                value="disabled"
+                checked={!this.state.enabled}
+                onChange={this.handleEnabledChange}
+              />
+              <T component="editStartPage" name="dontShowBelt" />
+            </label>
+          </span>
+          <span className="CreateBelt__radioButtonContainer">
+            <label className="CreateBelt__radioButton">
+              <Radio
+                name="publishing-group"
+                value="enabled"
+                checked={this.state.enabled}
+                onChange={this.handleEnabledChange}
+              />
+              <T component="editStartPage" name="doShowBelt" />
+            </label>
+            <Text className={this.state.enabled ? '' : 'disabled'}>
+              <T component="editStartPage" name="publishToday" />
+            </Text>
+          </span>
           <Divider type="horizontal" variant="thin" />
         </div>
         <Toolbar>
