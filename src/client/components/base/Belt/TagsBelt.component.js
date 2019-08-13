@@ -226,11 +226,11 @@ export class TagsBelt extends React.Component {
                     })}
                   </div>
                 </div>
-                <div>
+                <div className="d-flex">
                   <Title
                     Tag="h3"
                     type="title5"
-                    className="mb-4 mt-2 ml-2 ml-sm-0 w-100 w-sm-auto d-block"
+                    className="mb-4 mt-2 ml-2 ml-sm-0 mr-2 w-100 w-sm-auto d-block "
                   >
                     {this.props.subtext || ''}
                   </Title>
