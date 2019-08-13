@@ -32,13 +32,15 @@ class FrontPage extends React.Component {
   renderBelts(belts) {
     return (
       <div>
-        {belts.filter(belt => belt.onFrontPage).map(belt => (
-          <TagsBelt
-            mount={'frontpage' + JSON.stringify(belt.tags)}
-            id={belt.key}
-            {...belt}
-          />
-        ))}
+        {belts
+          .filter(belt => belt.onFrontPage)
+          .map(belt => (
+            <TagsBelt
+              mount={'frontpage' + JSON.stringify(belt.tags)}
+              id={belt.key}
+              {...belt}
+            />
+          ))}
       </div>
     );
   }

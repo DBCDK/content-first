@@ -23,8 +23,8 @@ if (window.Cypress && window.__stubbed_matomo__) {
   trackDataEvent = window.__stubbed_matomo__.trackDataEvent;
 } else {
   /*
- * Initializes Matomo
- */
+   * Initializes Matomo
+   */
 
   initialize = history => {
     if (server && siteId && typeof window !== 'undefined') {
@@ -76,8 +76,8 @@ if (window.Cypress && window.__stubbed_matomo__) {
   };
 
   /*
- * The event will go into a dedicated matomo site
- */
+   * The event will go into a dedicated matomo site
+   */
   trackDataEvent = (action, data) => {
     if (matomoEnabled && dataSiteId) {
       dataEventQueue.push({action, data});
@@ -106,9 +106,9 @@ if (window.Cypress && window.__stubbed_matomo__) {
   };
 
   /*
- * Create history listener, used for single page application tracking
- * https://developer.matomo.org/guides/spa-tracking
- */
+   * Create history listener, used for single page application tracking
+   * https://developer.matomo.org/guides/spa-tracking
+   */
   const connectHistory = history => {
     history.listen(() => {
       const _paq = window._paq;
@@ -125,10 +125,10 @@ if (window.Cypress && window.__stubbed_matomo__) {
   };
 
   /*
- * Sets up a DOM observer which will make Matomo scan asynchronously
- * loaded content for external links etc.
- * https://developer.matomo.org/guides/spa-tracking#making-matomo-aware-of-new-content
- */
+   * Sets up a DOM observer which will make Matomo scan asynchronously
+   * loaded content for external links etc.
+   * https://developer.matomo.org/guides/spa-tracking#making-matomo-aware-of-new-content
+   */
   const observeDom = () => {
     const targetNode = document.getElementById('root');
     const observer = new MutationObserver(
