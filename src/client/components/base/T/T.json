@@ -226,6 +226,7 @@
       }
     },
     "work": {
+<<<<<<< HEAD
       "readerExpTitle": {
         "da": "Bogens læseoplevelse",
         "en": "Reader experience"
@@ -234,6 +235,12 @@
         "da": "Stemning",
         "en": "Mood"
       },
+=======
+      "readerExpTitle":{
+        "da": "Bruger læseoplevelse",
+        "en": "Reader experience"
+      },
+>>>>>>> shows priority tags if they exist. changed names of toggle button names when showing/hiding tags
       "moreLikeThis": {
         "da": "Mere som denne",
         "en": "More like this"

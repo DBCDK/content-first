@@ -18,7 +18,6 @@ import Link from '../../general/Link.component';
 import scroll from '../../../utils/scroll';
 import {withWork} from '../../hoc/Work';
 import ReviewList from '../Review/ReviewList.component';
-import ListsBelt from '../../base/Belt/ListsBelt.container';
 
 import {HISTORY_NEW_TAB} from '../../../redux/middleware';
 
@@ -60,12 +59,11 @@ class WorkPage extends React.Component {
     }
 
     // get collections including ereolen
-    const collection = this.props.filterCollection();
+    const collection = this.props.filterCollection(work);
     // get reviews from litteratursiden
-    const reviews = this.props.filterReviews();
+    const reviews = this.props.filterReviews(work);
     // sort tags by group
-    const tags = this.props.sortTags();
-    // const tags = this.props.sortTagsByAppeal();
+    const tags = this.props.sortTags(work);
 
     const stemningTags = tags.filter(e => e.title === 'stemning')[0];
     const priorityTagsArr = book.tags.filter(e => e.score > 1);
@@ -77,7 +75,7 @@ class WorkPage extends React.Component {
       });
     } else if (stemningTags) {
       tags.unshift({
-        title: T({component: 'work', name: 'readerExpTitle'}),
+        title: T({component: 'work', name: 'moodTag'}),
         data: stemningTags.data.slice(0, 6)
       });
     }
@@ -210,53 +208,53 @@ class WorkPage extends React.Component {
 
                   <div className="WorkPage__media">
                     {work.collectionHasLoaded &&
-                      !this.props.hasValidCollection() && (
-                        <Text type="body" className="mr1">
-                          <T
-                            component="work"
-                            name={
-                              this.props.newRelease()
-                                ? 'noValidCollectionYet'
-                                : 'noValidCollection'
-                            }
-                          />
-                        </Text>
-                      )}
-                    {work.collectionHasLoaded &&
-                      this.props.hasValidCollection() && (
-                        <OrderButton
-                          pid={book.pid}
-                          size="medium"
-                          type="quaternary"
-                          icon="chrome_reader_mode"
-                          label={T({component: 'general', name: 'book'})}
-                          className="mr1 mt1"
+                    !this.props.hasValidCollection() && (
+                      <Text type="body" className="mr1">
+                        <T
+                          component="work"
+                          name={
+                            this.props.newRelease()
+                              ? 'noValidCollectionYet'
+                              : 'noValidCollection'
+                          }
                         />
-                      )}
+                      </Text>
+                    )}
                     {work.collectionHasLoaded &&
-                      this.props.hasValidCollection() &&
-                      collection.map(col => {
-                        if (col.count === 1) {
-                          return (
-                            <Link
-                              key={col.url}
-                              href={col.url}
-                              type={HISTORY_NEW_TAB}
-                              meta={{materialType: col.type, pid: book.pid}}
+                    this.props.hasValidCollection() && (
+                      <OrderButton
+                        pid={book.pid}
+                        size="medium"
+                        type="quaternary"
+                        icon="chrome_reader_mode"
+                        label={T({component: 'general', name: 'book'})}
+                        className="mr1 mt1"
+                      />
+                    )}
+                    {work.collectionHasLoaded &&
+                    this.props.hasValidCollection() &&
+                    collection.map(col => {
+                      if (col.count === 1) {
+                        return (
+                          <Link
+                            key={col.url}
+                            href={col.url}
+                            type={HISTORY_NEW_TAB}
+                            meta={{materialType: col.type, pid: book.pid}}
+                          >
+                            <Button
+                              type="quaternary"
+                              size="medium"
+                              className="mr1 mt1"
                             >
-                              <Button
-                                type="quaternary"
-                                size="medium"
-                                className="mr1 mt1"
-                              >
-                                <Icon name={col.icon} />
-                                {col.type}
-                              </Button>
-                            </Link>
-                          );
-                        }
-                        return null;
-                      })}
+                              <Icon name={col.icon} />
+                              {col.type}
+                            </Button>
+                          </Link>
+                        );
+                      }
+                      return null;
+                    })}
                     {!work.collectionHasLoaded && (
                       <React.Fragment>
                         <a>
@@ -438,18 +436,6 @@ class WorkPage extends React.Component {
               className="mt-xl-5"
             />
           )}
-
-          <ListsBelt
-            pid={book.pid}
-            mount={'aggregation-lists-' + book.pid}
-            title={
-              <span>
-                <strong>Lister med</strong> {book.title}
-              </span>
-            }
-            sort="created"
-            limit={50}
-          />
         </div>
       </div>
     );
