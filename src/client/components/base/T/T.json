@@ -226,6 +226,10 @@
       }
     },
     "work": {
+      "readerExpTitle":{
+        "da": "Bruger læseoplevelse",
+        "en": "Reader experience"
+      },
       "moreLikeThis": {
         "da": "Mere som denne",
         "en": "More like this"
@@ -271,12 +275,12 @@
         "en": "From workpage"
       },
       "tagsCollapsibleShow": {
-        "da": "Se alle tags",
-        "en": "More tags"
+        "da": "Se hele læseoplevelsen",
+        "en": "Full reader experience"
       },
       "tagsCollapsibleHide": {
-        "da": "Se færre tags",
-        "en": "Less tags"
+        "da": "Vis mindre",
+        "en": "Show fewer tags"
       },
       "showMoreReviews": {
         "da": "Vis flere anmeldelser",

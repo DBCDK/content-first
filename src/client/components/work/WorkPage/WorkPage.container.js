@@ -64,6 +64,15 @@ class WorkPage extends React.Component {
     const reviews = this.props.filterReviews(work);
     // sort tags by group
     const tags = this.props.sortTags(work);
+
+    const priorityTagsArr = book.tags.filter(e => e.score > 1);
+    if (priorityTagsArr.length > 0) {
+      tags.unshift({
+        title: T({component: 'work', name: 'readerExpTitle'}),
+        data: priorityTagsArr
+      });
+    }
+
     // tags collapsable variables
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
@@ -319,7 +328,7 @@ class WorkPage extends React.Component {
                             type="body"
                             className="WorkPage__tagHeading mb0 mt0"
                           >
-                            {group.title + ':'}
+                            {group.title}
                           </Text>
                           {group.data.map(t => {
                             return (
