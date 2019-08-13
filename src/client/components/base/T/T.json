@@ -230,6 +230,10 @@
         "da": "Bogens læseoplevelse",
         "en": "Reader experience"
       },
+      "moodTag":{
+        "da": "Stemning",
+        "en": "Mood"
+      },
       "moreLikeThis": {
         "da": "Mere som denne",
         "en": "More like this"

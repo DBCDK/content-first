@@ -65,11 +65,19 @@ class WorkPage extends React.Component {
     // sort tags by group
     const tags = this.props.sortTags(work);
 
-    const priorityTagsArr = book.tags.filter(e => e.score > 1).slice(0, 6);
+    const stemningTags = tags.filter(e => e.title === "stemning")[0];
+    const priorityTagsArr = book.tags.filter(e => e.score > 1);
+
     if (priorityTagsArr.length > 0) {
       tags.unshift({
         title: T({component: 'work', name: 'readerExpTitle'}),
         data: priorityTagsArr
+      });
+    }
+    else if (stemningTags) {
+      tags.unshift({
+        title: T({component: 'work', name: 'moodTag'}),
+        data: stemningTags.data.slice(0, 6)
       });
     }
 
@@ -140,6 +148,7 @@ class WorkPage extends React.Component {
                     />
                   </BookCover>
                 </div>
+
                 <div className="WorkPage__info">
                   <Share
                     className="ssb-fb align-self-center"
@@ -152,15 +161,14 @@ class WorkPage extends React.Component {
                   <Title Tag="h3" type="title3" className="mt0">
                     {book.title}
                   </Title>
-
-                  <Title Tag="h2" type="title5" className="mt1">
-                    <Link
-                      href={'/find?tags=' + encodeURI(book.creator)}
-                      className="book-creator-name"
-                    >
+                  <Link
+                    href={'/find?tags=' + encodeURI(book.creator)}
+                    className="book-creator-name"
+                  >
+                    <Title Tag="h2" type="title5" className="mt1">
                       {book.creator}
-                    </Link>
-                  </Title>
+                    </Title>
+                  </Link>
 
                   <Text type="body" variant="weight-semibold" className="mt1">
                     {<TaxDescription text={tax_description} />}
@@ -201,53 +209,53 @@ class WorkPage extends React.Component {
 
                   <div className="WorkPage__media">
                     {work.collectionHasLoaded &&
-                      !this.props.hasValidCollection() && (
-                        <Text type="body" className="mr1">
-                          <T
-                            component="work"
-                            name={
-                              this.props.newRelease()
-                                ? 'noValidCollectionYet'
-                                : 'noValidCollection'
-                            }
-                          />
-                        </Text>
-                      )}
-                    {work.collectionHasLoaded &&
-                      this.props.hasValidCollection() && (
-                        <OrderButton
-                          pid={book.pid}
-                          size="medium"
-                          type="quaternary"
-                          icon="chrome_reader_mode"
-                          label={T({component: 'general', name: 'book'})}
-                          className="mr1 mt1"
+                    !this.props.hasValidCollection() && (
+                      <Text type="body" className="mr1">
+                        <T
+                          component="work"
+                          name={
+                            this.props.newRelease()
+                              ? 'noValidCollectionYet'
+                              : 'noValidCollection'
+                          }
                         />
-                      )}
+                      </Text>
+                    )}
                     {work.collectionHasLoaded &&
-                      this.props.hasValidCollection() &&
-                      collection.map(col => {
-                        if (col.count === 1) {
-                          return (
-                            <Link
-                              key={col.url}
-                              href={col.url}
-                              type={HISTORY_NEW_TAB}
-                              meta={{materialType: col.type, pid: book.pid}}
+                    this.props.hasValidCollection() && (
+                      <OrderButton
+                        pid={book.pid}
+                        size="medium"
+                        type="quaternary"
+                        icon="chrome_reader_mode"
+                        label={T({component: 'general', name: 'book'})}
+                        className="mr1 mt1"
+                      />
+                    )}
+                    {work.collectionHasLoaded &&
+                    this.props.hasValidCollection() &&
+                    collection.map(col => {
+                      if (col.count === 1) {
+                        return (
+                          <Link
+                            key={col.url}
+                            href={col.url}
+                            type={HISTORY_NEW_TAB}
+                            meta={{materialType: col.type, pid: book.pid}}
+                          >
+                            <Button
+                              type="quaternary"
+                              size="medium"
+                              className="mr1 mt1"
                             >
-                              <Button
-                                type="quaternary"
-                                size="medium"
-                                className="mr1 mt1"
-                              >
-                                <Icon name={col.icon} />
-                                {col.type}
-                              </Button>
-                            </Link>
-                          );
-                        }
-                        return null;
-                      })}
+                              <Icon name={col.icon} />
+                              {col.type}
+                            </Button>
+                          </Link>
+                        );
+                      }
+                      return null;
+                    })}
                     {!work.collectionHasLoaded && (
                       <React.Fragment>
                         <a>
@@ -347,6 +355,7 @@ class WorkPage extends React.Component {
                                 >
                                   {t.title}
                                 </Button>
+
                               </Link>
                             );
                           })}
@@ -354,6 +363,8 @@ class WorkPage extends React.Component {
                       );
                     })}
                   </div>
+
+                  {book.tags.length > 0 &&
                   <div className="row">
                     <div className="mt1 col-12">
                       <Button
@@ -380,9 +391,9 @@ class WorkPage extends React.Component {
                       </Button>
                     </div>
                   </div>
+                  }
                 </div>
               </div>
-
               <ReviewList
                 book={book}
                 reviews={reviews}
@@ -431,6 +442,7 @@ class WorkPage extends React.Component {
       </div>
     );
   }
+
   /* eslint-enable complexity */
 }
 
