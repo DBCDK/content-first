@@ -31,18 +31,22 @@
 
 .flex-container .material-icons.enabled {
   color: #81c793;
+  cursor: pointer;
 }
 
 .flex-container .material-icons.disabled {
   color: #f37362;
+  cursor: pointer;
 }
 
 .flex-container .material-icons.up-down {
   width: 22px;
+  cursor: pointer;
 }
 
 .flex-container .material-icons.remove {
   margin-left: 14px;
+  cursor: pointer;
 }
 
 .flex-container .Text {
