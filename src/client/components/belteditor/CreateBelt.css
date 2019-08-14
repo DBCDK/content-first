@@ -14,7 +14,7 @@
 }
 
 .CreateBelt label.Input__label {
-    margin-top: 1em;
+    margin-top: 1.2em;
     font-weight: bold;
 }
 
@@ -51,4 +51,18 @@
 
 .CreateBelt .Text.disabled {
     color: var(--silver-chalice);
+}
+
+.CreateBelt .filters {
+    margin-top: 16px;
+}
+
+.CreateBelt .filter-page-searchbar input {
+    height: 64px;
+}
+
+.CreateBelt .selected-filters-wrap #react-autowhatever-1 {
+    position: relative;
+    left: 0;
+    top: 0;
 }

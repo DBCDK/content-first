@@ -11,6 +11,9 @@ import Button from '../base/Button';
 import Toolbar from '../base/Toolbar';
 import Radio from '../base/Radio';
 import Text from '../base/Text';
+import SearchBar from '../filter/SearchBar/SearchBar.component';
+import FilterCards from '../filter/FilterCards/FilterCards.component';
+import Results from '../filter/FilterPage/Results.component';
 
 export class CreateBelt extends React.Component {
   constructor(props) {
@@ -109,7 +112,17 @@ export class CreateBelt extends React.Component {
             </Text>
           </span>
           <Divider type="horizontal" variant="thin" />
+          <label className="Input__label">
+            <T component="editStartPage" name="selectTags" />
+          </label>
+          <div className="filters row">
+            <div className="filter-page-searchbar">
+              <SearchBar />
+            </div>
+          </div>
         </div>
+        <FilterCards />
+        <Results />
         <Toolbar>
           <Button
             ref={this.cancelButton}
