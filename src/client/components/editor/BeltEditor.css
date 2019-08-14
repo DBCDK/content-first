@@ -15,7 +15,7 @@
 
 .flex-container .material-icons {
   color: var(--petroleum);
-  font-size: 16px;
+  font-size: 20px;
   width: 25px;
   text-align: center;
 }
@@ -38,7 +38,7 @@
 }
 
 .flex-container .material-icons.up-down {
-  width: 18px;
+  width: 22px;
 }
 
 .flex-container .material-icons.remove {
