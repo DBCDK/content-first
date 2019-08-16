@@ -226,8 +226,7 @@
       }
     },
     "work": {
-<<<<<<< HEAD
-      "readerExpTitle": {
+      "readerExpTitle":{
         "da": "Bogens læseoplevelse",
         "en": "Reader experience"
       },
@@ -235,12 +234,6 @@
         "da": "Stemning",
         "en": "Mood"
       },
-=======
-      "readerExpTitle":{
-        "da": "Bruger læseoplevelse",
-        "en": "Reader experience"
-      },
->>>>>>> shows priority tags if they exist. changed names of toggle button names when showing/hiding tags
       "moreLikeThis": {
         "da": "Mere som denne",
         "en": "More like this"
@@ -281,10 +274,6 @@
         "da": "Anmeldelser:",
         "en": "Reviews:"
       },
-       "noReviews": {
-        "da": "Vi har ikke nogen anmeldelser af bogen",
-        "en": "We do not have any reviews of this book"
-      },
       "bookmarkButtonOrigin": {
         "da": "Fra egen værkside",
         "en": "From workpage"
@@ -305,6 +294,14 @@
         "da": "Læs anmeldelsen",
         "en": "Read review"
       },
+      "mustLogIn": {
+        "da": "Du skal logge ind for at læse artikler i Infomedia",
+        "en": "You need to log in to be able to get access to articles in Infomedia"
+      },
+      "noInfomediaAccess": {
+        "da": "Dit bibliotek har ikke adgang til artiklen i Infomedia",
+        "en": "Your library does not have permission to access this Infomedia article"
+      },
       "noValidCollection": {
         "da": "Bogen kan desværre ikke lånes på biblioteket",
         "en": "Unfortunately, the book cannot be borrowed from the library"
@@ -312,43 +309,8 @@
       "noValidCollectionYet": {
         "da": "Bogen kan desværre ikke lånes på biblioteket endnu",
         "en": "Unfortunately, the book cannot be borrowed at the library yet"
-      },
-      "compare": {
-        "da": "vs.",
-        "en": "vs."
-      },
-      "appealsTitle": {
-        "da": "Læseoplevelse",
-        "en": "Reading experience"
-      },
-      "noAppeals": {
-        "da": "Der er ingen beskrivelse af læseoplevelsen endnu",
-        "en": "Unfortunately there is no reading experience yet"
-      },
-      "loansTitle": {
-        "da": "Udlån",
-        "en": "Loans"
-      },
-      "loans": {
-        "da": "<strong>%s</strong> Udlån",
-        "en": "<strong>%s</strong> Loans"
-      },
-      "loansCommon": {
-        "da": "<strong>%s</strong> har lånt begge bøger",
-        "en": "<strong>%s</strong> have borrowed both books"
-      },
-      "infoCommon": {
-        "da": "Fælles læseoplevelse",
-        "en": "Common experience"
-      },
-      "onlyCompared": {
-        "da": "Kun bogen %s",
-        "en": "Only the book %s"
-      },
-      "aboutLoans": {
-        "da": "Udlånstal er vejledende og opdateres ikke real-time",
-        "en": "Loans are indicative and are not updated in real time"
       }
+
     },
     "profile": {
       "profilePage": {
@@ -1089,14 +1051,6 @@
         "da": "Titel",
         "en": "Title"
       },
-      "beltTitle": {
-        "da": "Titel på bånd",
-        "en": "Title"
-      },
-      "description": {
-        "da": "Beskrivelse",
-        "en": "Description"
-      },
       "createdBy": {
         "da": "Oprettet af",
         "en": "Created by"
@@ -1104,38 +1058,6 @@
       "createNewBelt": {
         "da": "Opret nyt bånd",
         "en": "Create new belt"
-      },
-      "placeholderTitle": {
-        "da": "Skriv titel",
-        "en": "Type a title"
-      },
-      "placeholderDescription": {
-        "da": "Kort beskrivelse der inspirerer læseren",
-        "en": "Short description that inspires the reader"
-      },
-      "publishing": {
-        "da": "Publicering",
-        "en": "Publishing"
-      },
-      "dontShowBelt": {
-        "da": "Vis ikke båndet",
-        "en": "Don't show the belt"
-      },
-      "doShowBelt": {
-        "da": "Vis båndet på startsiden",
-        "en": "Show the belt on the start page"
-      },
-      "publishToday": {
-        "da": "Publiceres dags dato",
-        "en": "Will be published today"
-      },
-      "selectTags": {
-        "da": "Vælg de tags dit bånd skal bestå af",
-        "en": "Select the tags that constitutes your belt"
-      },
-      "createBelt": {
-        "da": "Opret bånd",
-        "en": "Create belt"
       }
     }
   },
