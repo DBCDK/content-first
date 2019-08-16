@@ -51,28 +51,6 @@ export class CreateBelt extends React.Component {
   checkDisabled = () => this.state.title.length === 0;
 
   render() {
-    console.log('================ CreateBelt Render', this);
-
-    const belt = {
-      key: 'Det var en mørk og stormfuld nat',
-      name: 'Det var en mørk og stormfuld nat',
-      subtext:
-        'Det er koldt, det stormer, hemmelighederne hober sig op, og du har svært ved at adskille virkelighed og mareridt.',
-      tags: [
-        {id: 4044, weight: 1},
-        {id: 4895, weight: 10},
-        {id: 5149, weight: 1},
-        {id: 5680, weight: 1},
-        {id: 5700, weight: 10},
-        {id: 5670, weight: 1},
-        {id: 5676, weight: 1}
-      ],
-      onFrontPage: true,
-      isLoading: false,
-      type: 'belt',
-      child: false
-    };
-
     const tags = this.props.tags
       .reduce((arr, tag) => {
         if (tag.type === 'TAG') {
