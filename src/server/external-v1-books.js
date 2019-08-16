@@ -32,6 +32,7 @@ const getWork = (
   identifierISBN,
   subjectDBCS,
   subjectDBCF,
+  spatialDBCS,
   spatialDBCF,
   temporalDBCP,
   coverUrlFull
@@ -41,6 +42,7 @@ const getWork = (
     [
       ...(subjectDBCS || []),
       ...(subjectDBCF || []),
+      ...(spatialDBCS || []),
       ...(spatialDBCF || []),
       ...(temporalDBCP || [])
     ]
@@ -92,6 +94,7 @@ const fetchWork = async pid => {
     identifierISBN,
     subjectDBCS,
     subjectDBCF,
+    spatialDBCS,
     spatialDBCF,
     temporalDBCP,
     coverUrlFull
@@ -108,6 +111,7 @@ const fetchWork = async pid => {
       'identifierISBN',
       'subjectDBCS',
       'subjectDBCF',
+      'spatialDBCS',
       'spatialDBCF',
       'temporalDBCP',
       'coverUrlFull'
@@ -128,6 +132,7 @@ const fetchWork = async pid => {
     identifierISBN,
     subjectDBCS,
     subjectDBCF,
+    spatialDBCS,
     spatialDBCF,
     temporalDBCP,
     coverUrlFull
