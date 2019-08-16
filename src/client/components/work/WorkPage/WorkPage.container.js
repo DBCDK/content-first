@@ -65,7 +65,7 @@ class WorkPage extends React.Component {
     // sort tags by group
     const tags = this.props.sortTags(work);
 
-    const priorityTagsArr = book.tags.filter(e => e.score > 1);
+    const priorityTagsArr = book.tags.filter(e => e.score > 1).slice(0, 6);
     if (priorityTagsArr.length > 0) {
       tags.unshift({
         title: T({component: 'work', name: 'readerExpTitle'}),
