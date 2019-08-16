@@ -143,14 +143,15 @@ class WorkPage extends React.Component {
                   <Title Tag="h3" type="title3" className="mt0">
                     {book.title}
                   </Title>
-                  <Link
-                    href={'/find?tags=' + encodeURI(book.creator)}
-                    className="book-creator-name"
-                  >
-                    <Title Tag="h2" type="title5" className="mt1">
+
+                  <Title Tag="h2" type="title5" className="mt1">
+                    <Link
+                      href={'/find?tags=' + encodeURI(book.creator)}
+                      className="book-creator-name"
+                    >
                       {book.creator}
-                    </Title>
-                  </Link>
+                    </Link>
+                  </Title>
 
                   <Text type="body" variant="weight-semibold" className="mt1">
                     {<TaxDescription text={tax_description} />}

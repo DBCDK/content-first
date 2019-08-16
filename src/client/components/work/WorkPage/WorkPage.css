@@ -20,6 +20,7 @@
 
 .WorkPage__work .WorkPage__info {
   position: relative;
+  width: 100%;
 }
 
 .WorkPage__work .WorkPage__info .Share {
