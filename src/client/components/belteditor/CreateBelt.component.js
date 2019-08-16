@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import T from '../base/T';
 
 import './CreateBelt.css';
@@ -14,7 +13,6 @@ import Text from '../base/Text';
 import SearchBar from '../filter/SearchBar/SearchBar.component';
 import FilterCards from '../filter/FilterCards/FilterCards.component';
 import TagsBelt from '../base/Belt/TagsBelt.component';
-import Results from '../filter/FilterPage/Results.component';
 import withTagsFromUrl from '../../components/hoc/AdressBar/withTagsFromUrl.hoc';
 
 export class CreateBelt extends React.Component {
@@ -45,7 +43,9 @@ export class CreateBelt extends React.Component {
     if (typeof this.props.onSubmit === 'function') {
       this.props.onSubmit(this.state);
     }
-    window.open('redaktionen', '_self');
+    const result = {...this.state, tags: this.props.tags.map(item => item.id)};
+    console.log('CreateBelt Result', result);
+    window.open('/redaktionen', '_self');
   };
 
   checkDisabled = () => this.state.title.length === 0;

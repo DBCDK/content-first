@@ -27,12 +27,6 @@ const defaultItems = [
   }
 ];
 
-const newItem = {
-  enabled: false,
-  title: 'Ny titel',
-  createdBy: 'Ny forfatter'
-};
-
 export class BeltEditor extends React.Component {
   constructor(props) {
     super(props);
@@ -167,11 +161,7 @@ export class BeltEditor extends React.Component {
     );
 
   createNewBelt = () => {
-    this.setState(state => {
-      const items = [Object.assign({}, newItem)].concat(state.items);
-      this.refs.sortableList.update(items);
-      return {items};
-    });
+    window.open('/redaktionen/opret', '_self');
   };
 
   render() {
