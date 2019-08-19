@@ -366,20 +366,6 @@ exports[`renders without crashing 1`] = `
             </span>
           </a>
         </li>
-        <li>
-          <a
-            className="list-card-nohover"
-            data-cy="edit-start-page"
-            href="/redaktionen"
-            onClick={[Function]}
-            style={Object {}}
-            target="_self"
-          >
-            <span>
-              Redaktionen
-            </span>
-          </a>
-        </li>
         <li
           className="divider"
         />
