@@ -29,11 +29,11 @@ exports[`CommentContainer Delete button 1`] = `
       className="comment-wrapper-context-menu"
     >
       <div
-        className="ContextMenu dropdown comment-wrapper-context-menu"
+        className="ContextMenu comment-wrapper-context-menu"
       >
         <div
           className="dropdown-toggle"
-          data-toggle="dropdown"
+          onClick={[Function]}
         >
           <Icon
             className="align-middle"
@@ -48,7 +48,7 @@ exports[`CommentContainer Delete button 1`] = `
           </Icon>
         </div>
         <div
-          className="dropdown-menu dropdown-menu-right"
+          className="dropdown dropdown-right"
         >
           <ContextMenuAction
             icon="edit"
@@ -257,11 +257,11 @@ exports[`CommentContainer Edit button 1`] = `
       className="comment-wrapper-context-menu"
     >
       <div
-        className="ContextMenu dropdown comment-wrapper-context-menu"
+        className="ContextMenu comment-wrapper-context-menu"
       >
         <div
           className="dropdown-toggle"
-          data-toggle="dropdown"
+          onClick={[Function]}
         >
           <Icon
             className="align-middle"
@@ -276,7 +276,7 @@ exports[`CommentContainer Edit button 1`] = `
           </Icon>
         </div>
         <div
-          className="dropdown-menu dropdown-menu-right"
+          className="dropdown dropdown-right"
         >
           <ContextMenuAction
             icon="edit"
@@ -485,11 +485,11 @@ exports[`CommentContainer Edit button 2`] = `
       className="comment-wrapper-context-menu"
     >
       <div
-        className="ContextMenu dropdown comment-wrapper-context-menu"
+        className="ContextMenu comment-wrapper-context-menu"
       >
         <div
           className="dropdown-toggle"
-          data-toggle="dropdown"
+          onClick={[Function]}
         >
           <Icon
             className="align-middle"
@@ -504,7 +504,7 @@ exports[`CommentContainer Edit button 2`] = `
           </Icon>
         </div>
         <div
-          className="dropdown-menu dropdown-menu-right"
+          className="dropdown dropdown-right"
         >
           <ContextMenuAction
             icon="edit"
@@ -802,7 +802,7 @@ exports[`CommentContainer Render edit form 1`] = `
   >
     <div
       className="dropdown-toggle"
-      data-toggle="dropdown"
+      onClick={[Function]}
     >
       <i
         className="material-icons material-icons-more_vert align-middle "
@@ -813,7 +813,7 @@ exports[`CommentContainer Render edit form 1`] = `
       
     </div>
     <div
-      className="dropdown-menu dropdown-menu-right"
+      className="dropdown dropdown-right"
     >
       <div
         className="dropdown-item"
@@ -955,7 +955,7 @@ exports[`CommentContainer Render save form 1`] = `
   >
     <div
       className="dropdown-toggle"
-      data-toggle="dropdown"
+      onClick={[Function]}
     >
       <i
         className="material-icons material-icons-more_vert align-middle "
@@ -966,7 +966,7 @@ exports[`CommentContainer Render save form 1`] = `
       
     </div>
     <div
-      className="dropdown-menu dropdown-menu-right"
+      className="dropdown dropdown-right"
     >
       <div
         className="dropdown-item"
@@ -1112,11 +1112,11 @@ exports[`CommentContainer Save button 1`] = `
       className="comment-wrapper-context-menu"
     >
       <div
-        className="ContextMenu dropdown comment-wrapper-context-menu"
+        className="ContextMenu comment-wrapper-context-menu"
       >
         <div
           className="dropdown-toggle"
-          data-toggle="dropdown"
+          onClick={[Function]}
         >
           <Icon
             className="align-middle"
@@ -1131,7 +1131,7 @@ exports[`CommentContainer Save button 1`] = `
           </Icon>
         </div>
         <div
-          className="dropdown-menu dropdown-menu-right"
+          className="dropdown dropdown-right"
         >
           <ContextMenuAction
             icon="edit"
