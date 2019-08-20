@@ -12,6 +12,8 @@ const defaultState = {
   changeMap: {},
   latestUsedId: false,
   expanded: false,
+  isFetching: false,
+  hasFetched: false,
   isFetchingOwned: false,
   hasFetchedOwned: false
 };
@@ -60,7 +62,8 @@ const listReducer = (state = defaultState, action) => {
         lists: {
           ...state.lists,
           [_id]: {...old, isLoading: true, isLoaded: false, _id}
-        }
+        },
+        isFetching: true
       });
     }
     case ADD_LIST: {
@@ -270,7 +273,7 @@ const listReducer = (state = defaultState, action) => {
       });
     }
     case LIST_LOAD_RESPONSE: {
-      if (!action.list || !action.list._id) {
+      if (!action.list) {
         throw new Error("'list' is missing from action");
       }
 
@@ -290,7 +293,9 @@ const listReducer = (state = defaultState, action) => {
       list.isLoaded = true;
 
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.list._id]: list}
+        lists: {...state.lists, [action.list._id]: list},
+        isFetching: false,
+        hasFetched: true
       });
     }
     case ADD_LIST_IMAGE: {

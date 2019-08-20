@@ -18,6 +18,7 @@ import Link from '../../general/Link.component';
 import scroll from '../../../utils/scroll';
 import {withWork} from '../../hoc/Work';
 import ReviewList from '../Review/ReviewList.component';
+import ListsBelt from '../../base/Belt/ListsBelt.container';
 
 import {HISTORY_NEW_TAB} from '../../../redux/middleware';
 
@@ -427,6 +428,17 @@ class WorkPage extends React.Component {
               className="mt-xl-5"
             />
           )}
+
+          <ListsBelt
+            pid={book.pid}
+            title={
+              <span>
+                <strong>Lister med</strong> {book.title}
+              </span>
+            }
+            sort="created"
+            limit={50}
+          />
         </div>
       </div>
     );

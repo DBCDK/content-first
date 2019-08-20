@@ -5,18 +5,11 @@ import Link from '../../general/Link.component';
 import toColor from '../../../utils/toColor';
 import Text from '../../base/Text';
 import Icon from '../../base/Icon';
-import SkeletonText from '../../base/Skeleton/Text';
-import SkeletonUser from '../../base/Skeleton/User';
 import Divider from '../../base/Divider';
 
 import './ListCard.css';
 
 class ListCard extends React.Component {
-  isSkeleton = () => {
-    const {skeleton, list} = this.props;
-    return !!(skeleton || !list || list.isLoading);
-  };
-
   hasOwner = () => {
     const list = this.props.list;
     return !!(list && list.owner && list.owner.name);
@@ -33,8 +26,9 @@ class ListCard extends React.Component {
       'list-card-brick-md',
       'list-card-brick-lg'
     ];
+
     return img ? (
-      <img alt="" src={'v1/image/' + img + '/250/200'} />
+      <img alt="" src={'/v1/image/' + img + '/250/200'} />
     ) : (
       <div
         className="list-card-coverTemplate"
@@ -64,24 +58,6 @@ class ListCard extends React.Component {
 
   render() {
     const {list, style, className = ''} = this.props;
-    const isSkeleton = this.isSkeleton();
-
-    // if no elements detected, show skeleton cards
-    if (isSkeleton) {
-      return (
-        <div className={'ListCard__skeleton p-0 mr-4 ' + className}>
-          <div className="ListCard__skeleton__cover" />
-          <div className="p-3">
-            <SkeletonText lines={3} color="#e9eaeb" />
-            <SkeletonUser
-              name={true}
-              pulse={false}
-              styles={{marginTop: '20px'}}
-            />
-          </div>
-        </div>
-      );
-    }
 
     return (
       <div className={'list-card mr-4 align-top ' + className} style={style}>
