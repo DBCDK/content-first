@@ -51,18 +51,18 @@ class TopBarDropdown extends React.Component {
           </Link>
         </li>
 
-        {/*The following menu item shall be enabled, whenever user roles have been implemented*/}
-        {/*<li>*/}
-        {/*  <Link*/}
-        {/*    href="/redaktionen"*/}
-        {/*    onClick={this.props.onClick}*/}
-        {/*    data-cy="edit-start-page"*/}
-        {/*  >*/}
-        {/*    <span>*/}
-        {/*      <T component="profile" name="editorialStaff" />*/}
-        {/*    </span>*/}
-        {/*  </Link>*/}
-        {/*</li>*/}
+        {/* The following menu item shall be enabled, whenever user roles have been implemented */}
+        {/* <li> */}
+        {/*  <Link */}
+        {/*    href="/redaktionen" */}
+        {/*    onClick={this.props.onClick} */}
+        {/*    data-cy="edit-start-page" */}
+        {/*  > */}
+        {/*    <span> */}
+        {/*      <T component="profile" name="editorialStaff" /> */}
+        {/*    </span> */}
+        {/*  </Link> */}
+        {/* </li> */}
 
         <li className="divider" />
         <li
