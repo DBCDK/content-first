@@ -2,7 +2,19 @@
 
 exports[`ShortList.container Clearing list 1`] = `
 <ShortList
-  clearList={[Function]}
+  clearList={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   orderList={
     Array [
       Object {
@@ -284,7 +296,7 @@ exports[`ShortList.container Clearing list 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -314,7 +326,7 @@ exports[`ShortList.container Clearing list 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -378,8 +390,60 @@ exports[`ShortList.container Clearing list 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -587,7 +651,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -607,7 +671,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -632,7 +696,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -737,7 +801,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -759,7 +823,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -786,7 +850,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -841,8 +905,60 @@ exports[`ShortList.container Clearing list 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -1050,7 +1166,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -1070,7 +1186,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -1095,7 +1211,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -1200,7 +1316,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -1222,7 +1338,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -1249,7 +1365,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -1304,8 +1420,60 @@ exports[`ShortList.container Clearing list 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -1513,7 +1681,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -1533,7 +1701,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -1558,7 +1726,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -1663,7 +1831,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -1685,7 +1853,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -1712,7 +1880,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -1837,7 +2005,7 @@ exports[`ShortList.container Clearing list 1`] = `
             >
               <button
                 className="btn ml-4
-                    btn Button Button__large Button__quaternary "
+      btn Button Button__large Button__quaternary "
                 data-cy=""
                 disabled={false}
                 onClick={[Function]}
@@ -1867,7 +2035,58 @@ exports[`ShortList.container Clearing list 1`] = `
 
 exports[`ShortList.container Order all books 1`] = `
 <ShortList
-  orderAll={[Function]}
+  orderAll={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Array [
+            Object {
+              "coverUrl": "https://some/cover/url/0",
+              "creator": "creator - 0",
+              "description": "some description - 0",
+              "first_edition_year": "first edition year - 0",
+              "language": "language - 0",
+              "pages": "pages - 0",
+              "pid": "pid - 0",
+              "taxonomy_description": "taxonomy description - 0",
+              "taxonomy_description_subjects": "taxonomy description subjects - 0",
+              "title": "some title - 0",
+            },
+            Object {
+              "coverUrl": "https://some/cover/url/1",
+              "creator": "creator - 1",
+              "description": "some description - 1",
+              "first_edition_year": "first edition year - 1",
+              "language": "language - 1",
+              "pages": "pages - 1",
+              "pid": "pid - 1",
+              "taxonomy_description": "taxonomy description - 1",
+              "taxonomy_description_subjects": "taxonomy description subjects - 1",
+              "title": "some title - 1",
+            },
+            Object {
+              "coverUrl": "https://some/cover/url/2",
+              "creator": "creator - 2",
+              "description": "some description - 2",
+              "first_edition_year": "first edition year - 2",
+              "language": "language - 2",
+              "pages": "pages - 2",
+              "pid": "pid - 2",
+              "taxonomy_description": "taxonomy description - 2",
+              "taxonomy_description_subjects": "taxonomy description subjects - 2",
+              "title": "some title - 2",
+            },
+          ],
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   orderList={
     Array [
       Object {
@@ -2149,7 +2368,7 @@ exports[`ShortList.container Order all books 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -2179,7 +2398,7 @@ exports[`ShortList.container Order all books 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -2243,8 +2462,60 @@ exports[`ShortList.container Order all books 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -2452,7 +2723,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -2472,7 +2743,7 @@ exports[`ShortList.container Order all books 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -2497,7 +2768,7 @@ exports[`ShortList.container Order all books 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -2602,7 +2873,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -2624,7 +2895,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -2651,7 +2922,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -2706,8 +2977,60 @@ exports[`ShortList.container Order all books 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -2915,7 +3238,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -2935,7 +3258,7 @@ exports[`ShortList.container Order all books 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -2960,7 +3283,7 @@ exports[`ShortList.container Order all books 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -3065,7 +3388,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -3087,7 +3410,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -3114,7 +3437,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -3169,8 +3492,60 @@ exports[`ShortList.container Order all books 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -3378,7 +3753,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -3398,7 +3773,7 @@ exports[`ShortList.container Order all books 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -3423,7 +3798,7 @@ exports[`ShortList.container Order all books 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -3528,7 +3903,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -3550,7 +3925,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -3577,7 +3952,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -3702,7 +4077,7 @@ exports[`ShortList.container Order all books 1`] = `
             >
               <button
                 className="btn ml-4
-                    btn Button Button__large Button__quaternary "
+      btn Button Button__large Button__quaternary "
                 data-cy=""
                 disabled={false}
                 onClick={[Function]}
@@ -4013,7 +4388,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -4043,7 +4418,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -4107,8 +4482,60 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -4316,7 +4743,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -4336,7 +4763,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -4361,7 +4788,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -4466,7 +4893,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -4488,7 +4915,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -4515,7 +4942,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -4570,8 +4997,60 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -4779,7 +5258,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -4799,7 +5278,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -4824,7 +5303,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -4929,7 +5408,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -4951,7 +5430,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -4978,7 +5457,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -5033,8 +5512,60 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -5242,7 +5773,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -5262,7 +5793,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -5287,7 +5818,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -5392,7 +5923,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -5414,7 +5945,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -5441,7 +5972,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -5566,7 +6097,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
             >
               <button
                 className="btn ml-4
-                    btn Button Button__large Button__quaternary "
+      btn Button Button__large Button__quaternary "
                 data-cy=""
                 disabled={false}
                 onClick={[Function]}
@@ -5877,7 +6408,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -5907,7 +6438,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -5971,8 +6502,60 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -6180,7 +6763,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -6200,7 +6783,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -6225,7 +6808,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -6330,7 +6913,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -6352,7 +6935,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -6379,7 +6962,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -6434,8 +7017,60 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -6643,7 +7278,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -6663,7 +7298,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -6688,7 +7323,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -6793,7 +7428,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -6815,7 +7450,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -6842,7 +7477,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -6897,8 +7532,60 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -7106,7 +7793,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -7126,7 +7813,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -7151,7 +7838,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -7256,7 +7943,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -7278,7 +7965,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -7305,7 +7992,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -7430,7 +8117,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
             >
               <button
                 className="btn ml-4
-                    btn Button Button__large Button__quaternary "
+      btn Button Button__large Button__quaternary "
                 data-cy=""
                 disabled={false}
                 onClick={[Function]}
@@ -7741,7 +8428,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -7771,7 +8458,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -7835,8 +8522,60 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -8044,7 +8783,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -8064,7 +8803,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -8089,7 +8828,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -8194,7 +8933,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -8216,7 +8955,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -8243,7 +8982,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -8298,8 +9037,60 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -8507,7 +9298,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -8527,7 +9318,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -8552,7 +9343,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -8657,7 +9448,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -8679,7 +9470,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -8706,7 +9497,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -8761,8 +9552,60 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -8970,7 +9813,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -8990,7 +9833,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -9015,7 +9858,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -9120,7 +9963,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -9142,7 +9985,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -9169,7 +10012,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -9294,7 +10137,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
             >
               <button
                 className="btn ml-4
-                    btn Button Button__large Button__quaternary "
+      btn Button Button__large Button__quaternary "
                 data-cy=""
                 disabled={false}
                 onClick={[Function]}
@@ -9605,7 +10448,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -9635,7 +10478,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -9699,8 +10542,60 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -9908,7 +10803,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -9928,7 +10823,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -9953,7 +10848,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -10058,7 +10953,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -10080,7 +10975,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -10107,7 +11002,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -10162,8 +11057,60 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -10371,7 +11318,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -10391,7 +11338,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -10416,7 +11363,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -10521,7 +11468,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -10543,7 +11490,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -10570,7 +11517,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -10625,8 +11572,60 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -10834,7 +11833,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -10854,7 +11853,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -10879,7 +11878,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -10984,7 +11983,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -11006,7 +12005,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -11033,7 +12032,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -11158,7 +12157,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
             >
               <button
                 className="btn ml-4
-                    btn Button Button__large Button__quaternary "
+      btn Button Button__large Button__quaternary "
                 data-cy=""
                 disabled={false}
                 onClick={[Function]}
@@ -11469,7 +12468,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -11499,7 +12498,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -11563,8 +12562,60 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -11772,7 +12823,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -11792,7 +12843,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -11817,7 +12868,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -11922,7 +12973,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -11944,7 +12995,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -11971,7 +13022,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -12026,8 +13077,60 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -12235,7 +13338,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -12255,7 +13358,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -12280,7 +13383,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -12385,7 +13488,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -12407,7 +13510,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -12434,7 +13537,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -12489,8 +13592,60 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -12698,7 +13853,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -12718,7 +13873,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -12743,7 +13898,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -12848,7 +14003,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -12870,7 +14025,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -12897,7 +14052,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -13022,7 +14177,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
             >
               <button
                 className="btn ml-4
-                    btn Button Button__large Button__quaternary "
+      btn Button Button__large Button__quaternary "
                 data-cy=""
                 disabled={false}
                 onClick={[Function]}
@@ -13333,7 +14488,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -13363,7 +14518,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -13427,8 +14582,60 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -13636,7 +14843,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -13656,7 +14863,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -13681,7 +14888,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -13786,7 +14993,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -13808,7 +15015,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -13835,7 +15042,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -13890,8 +15097,60 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -14099,7 +15358,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -14119,7 +15378,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -14144,7 +15403,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -14249,7 +15508,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -14271,7 +15530,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -14298,7 +15557,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -14353,8 +15612,60 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -14562,7 +15873,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -14582,7 +15893,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -14607,7 +15918,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -14712,7 +16023,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -14734,7 +16045,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -14761,7 +16072,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -14886,7 +16197,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
             >
               <button
                 className="btn ml-4
-                    btn Button Button__large Button__quaternary "
+      btn Button Button__large Button__quaternary "
                 data-cy=""
                 disabled={false}
                 onClick={[Function]}
@@ -14971,7 +16282,21 @@ exports[`ShortList.container Remove element 1`] = `
       },
     ]
   }
-  remove={[Function]}
+  remove={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "pid - 0",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   shortListState={
     Object {
       "elements": Array [
@@ -15198,7 +16523,7 @@ exports[`ShortList.container Remove element 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -15228,7 +16553,7 @@ exports[`ShortList.container Remove element 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -15292,8 +16617,60 @@ exports[`ShortList.container Remove element 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -15501,7 +16878,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -15521,7 +16898,7 @@ exports[`ShortList.container Remove element 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -15546,7 +16923,7 @@ exports[`ShortList.container Remove element 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -15651,7 +17028,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -15673,7 +17050,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -15700,7 +17077,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -15755,8 +17132,60 @@ exports[`ShortList.container Remove element 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -15964,7 +17393,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -15984,7 +17413,7 @@ exports[`ShortList.container Remove element 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -16009,7 +17438,7 @@ exports[`ShortList.container Remove element 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -16114,7 +17543,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -16136,7 +17565,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -16163,7 +17592,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -16218,8 +17647,60 @@ exports[`ShortList.container Remove element 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -16427,7 +17908,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -16447,7 +17928,7 @@ exports[`ShortList.container Remove element 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -16472,7 +17953,7 @@ exports[`ShortList.container Remove element 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -16577,7 +18058,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -16599,7 +18080,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -16626,7 +18107,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -16751,7 +18232,7 @@ exports[`ShortList.container Remove element 1`] = `
             >
               <button
                 className="btn ml-4
-                    btn Button Button__large Button__quaternary "
+      btn Button Button__large Button__quaternary "
                 data-cy=""
                 disabled={false}
                 onClick={[Function]}
@@ -17062,7 +18543,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -17092,7 +18573,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -17156,8 +18637,60 @@ exports[`ShortList.container Short list contains elements 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -17365,7 +18898,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -17385,7 +18918,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -17410,7 +18943,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -17515,7 +19048,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -17537,7 +19070,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -17564,7 +19097,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -17619,8 +19152,60 @@ exports[`ShortList.container Short list contains elements 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -17828,7 +19413,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -17848,7 +19433,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -17873,7 +19458,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -17978,7 +19563,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -18000,7 +19585,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -18027,7 +19612,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -18082,8 +19667,60 @@ exports[`ShortList.container Short list contains elements 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
-                      filterCollection={[Function]}
-                      hasValidCollection={[Function]}
+                      filterCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": Array [
+                                Object {
+                                  "count": 1,
+                                  "icon": "language",
+                                  "type": "Ebog",
+                                  "url": "https://this/url/ebog",
+                                },
+                                Object {
+                                  "count": 1,
+                                  "icon": "headset",
+                                  "type": "Lydbog",
+                                  "url": "https://this/url/lydbog",
+                                },
+                              ],
+                            },
+                          ],
+                        }
+                      }
+                      hasValidCollection={
+                        [MockFunction] {
+                          "calls": Array [
+                            Array [],
+                            Array [],
+                            Array [],
+                            Array [],
+                          ],
+                          "results": Array [
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                            Object {
+                              "type": "return",
+                              "value": true,
+                            },
+                          ],
+                        }
+                      }
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -18291,7 +19928,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -18311,7 +19948,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -18336,7 +19973,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                   >
                                     <button
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -18441,7 +20078,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     type="quaternary"
                                   >
                                     <mocked-order-button
-                                      onClick={[Function]}
+                                      onClick={[MockFunction]}
                                     >
                                       <T
                                         component="general"
@@ -18463,7 +20100,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -18490,7 +20127,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     <button
                                       align="right"
                                       className="ml-2
-                                          btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                                       data-cy=""
                                       disabled={false}
                                       onClick={[Function]}
@@ -18615,7 +20252,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
             >
               <button
                 className="btn ml-4
-                    btn Button Button__large Button__quaternary "
+      btn Button Button__large Button__quaternary "
                 data-cy=""
                 disabled={false}
                 onClick={[Function]}
@@ -18819,7 +20456,7 @@ exports[`ShortList.container Short list is empty 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}
@@ -18849,7 +20486,7 @@ exports[`ShortList.container Short list is empty 1`] = `
               >
                 <button
                   className="bg-white pr-0
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy=""
                   disabled={false}
                   onClick={[Function]}

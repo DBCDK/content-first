@@ -1,4 +1,5 @@
 import {taxonomy, getLeaves, getLeavesMap} from '../utils/taxonomy';
+
 const leavesMap = getLeavesMap();
 
 export const filters = {

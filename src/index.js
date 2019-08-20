@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+import 'react-app-polyfill/ie11';
 import smoothscroll from 'smoothscroll-polyfill';
 import './prototypes';
 

@@ -15,7 +15,6 @@ exports[`OrderModal render function renders initial request 1`] = `
       name="modalTitle"
     />
   }
-  onClose={undefined}
   onDone={[Function]}
 >
   <div>
@@ -301,13 +300,11 @@ exports[`OrderModal render function renders initial request 1`] = `
       <select
         className="form-control"
         id="pickupBranch"
-        onChange={undefined}
         style={
           Object {
             "width": "auto",
           }
         }
-        value={undefined}
       />
     </div>
   </div>
