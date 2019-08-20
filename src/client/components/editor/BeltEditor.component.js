@@ -74,7 +74,7 @@ export class BeltEditor extends React.Component {
       data-cy="reorder-list-element"
     >
       <div className="flex-container">
-        <i className="material-icons drag-indicator">{dragIcon}</i>
+        <i className="material-icons drag-indicator drag">{dragIcon}</i>
         {typeof visibility === 'string' ? (
           <i className="material-icons drag-indicator">{visibility}</i>
         ) : (

@@ -6,6 +6,7 @@ import {
 } from 'react-sortable-hoc';
 
 import './SortableList.css';
+import {isMobile} from 'react-device-detect';
 
 const SortableBlock = SortableContainer(({children}) => (
   <div data-cy="sortable-list-container">{children}</div>
@@ -80,8 +81,9 @@ export class SortableList extends React.Component {
   render() {
     const {items} = this.state;
     const SortableItem = SortableElement(this.listComponent);
+    const sortableProps = isMobile ? {pressDelay: 150} : {distance: 3};
     return (
-      <SortableBlock onSortEnd={this.onSortEnd} lockAxis="y" pressDelay={200}>
+      <SortableBlock onSortEnd={this.onSortEnd} lockAxis="y" {...sortableProps}>
         {items.map((value, index) => {
           value.index = index;
           return (

@@ -15,7 +15,7 @@
 
 .flex-container .material-icons {
   color: var(--petroleum);
-  font-size: 16px;
+  font-size: 20px;
   width: 25px;
   text-align: center;
 }
@@ -29,20 +29,28 @@
   text-shadow: -1px 0 1px white, 0 1px 1px white, 1px 0 1px white, 0 -1px 1px white, 0px 0px 4px #777777;
 }
 
+.flex-container .material-icons.drag {
+  cursor: grab;
+}
+
 .flex-container .material-icons.enabled {
   color: #81c793;
+  cursor: pointer;
 }
 
 .flex-container .material-icons.disabled {
   color: #f37362;
+  cursor: pointer;
 }
 
 .flex-container .material-icons.up-down {
-  width: 18px;
+  width: 22px;
+  cursor: pointer;
 }
 
 .flex-container .material-icons.remove {
   margin-left: 14px;
+  cursor: pointer;
 }
 
 .flex-container .Text {
@@ -52,6 +60,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: grab;
 }
 
 .list-title-row {
