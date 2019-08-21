@@ -126,6 +126,14 @@ class TagsSuggester extends React.Component {
     };
   }
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.hideKeyboardOnScroll.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.hideKeyboardOnScroll);
+  }
+
   hideKeyboardOnScroll() {
     const prevScrollPosiion = this.prevScrollPosiion || 0;
     const difference = window.pageYOffset - prevScrollPosiion;
