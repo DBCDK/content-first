@@ -63,6 +63,10 @@
     margin-top: 16px;
 }
 
+.CreateBelt .selected-filters-wrap #react-autowhatever-1 {
+    position: absolute;
+}
+
 .CreateBelt .selected-filters-wrap .material-icons-search {
     display: none!important;
 }
