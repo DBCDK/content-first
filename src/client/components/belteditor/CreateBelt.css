@@ -63,6 +63,10 @@
     margin-top: 16px;
 }
 
+.CreateBelt .selected-filters-wrap {
+    align-items: center;
+}
+
 .CreateBelt .selected-filters-wrap #react-autowhatever-1 {
     position: absolute;
 }
@@ -107,11 +111,12 @@
     }
 
     .CreateBelt .filter-page-searchbar {
+        flex-direction: row-reverse;
         height: 38px;
     }
 
-    .CreateBelt .filter-page-searchbar {
-        flex-direction: row-reverse;
+    .CreateBelt .filter-page-searchbar input {
+        height: 100%;
     }
 
     .CreateBelt .selected-filter {
@@ -122,4 +127,7 @@
         font-size: 12px;
     }
 
+    .CreateBelt .selected-filters-wrap #react-autowhatever-1 {
+        top: 40px;
+    }
 }
