@@ -431,6 +431,7 @@ class WorkPage extends React.Component {
 
           <ListsBelt
             pid={book.pid}
+            mount={'aggregation-lists-' + book.pid}
             title={
               <span>
                 <strong>Lister med</strong> {book.title}

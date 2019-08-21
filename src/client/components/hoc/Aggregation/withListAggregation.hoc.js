@@ -48,7 +48,8 @@ export const withListAggregation = WrappedComponent => {
       },
       500,
       {
-        trailing: true
+        trailing: true,
+        leading: true
       }
     );
 
@@ -76,12 +77,5 @@ export const withListAggregation = WrappedComponent => {
     };
   };
 
-  const mapDispatchToProps = () => {
-    return {};
-  };
-
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Wrapper);
+  return connect(mapStateToProps)(Wrapper);
 };

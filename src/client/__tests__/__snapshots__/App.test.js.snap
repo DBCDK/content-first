@@ -960,7 +960,17 @@ exports[`renders without crashing 1`] = `
       </div>
       <ListsBelt
         limit={50}
+        mount="frontpage-lists"
         sort="created"
+        title={
+          <span
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<strong>Nyeste</strong> brugerlister",
+              }
+            }
+          />
+        }
       />
     </div>
   </div>

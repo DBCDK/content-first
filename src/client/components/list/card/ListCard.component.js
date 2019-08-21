@@ -1,6 +1,8 @@
 import React from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 import ProfileImage from '../../general/ProfileImage.component';
+import SkeletonText from '../../base/Skeleton/Text';
+import SkeletonUser from '../../base/Skeleton/User';
 import Link from '../../general/Link.component';
 import toColor from '../../../utils/toColor';
 import Text from '../../base/Text';
@@ -57,7 +59,27 @@ class ListCard extends React.Component {
   }
 
   render() {
-    const {list, style, className = ''} = this.props;
+    const {list, cardRef, isVisible, style, className = ''} = this.props;
+
+    // if not visible, show skeletons
+    if (!isVisible) {
+      return (
+        <div
+          className={'ListCard__skeleton p-0 mr-4 ' + className}
+          ref={cardRef}
+        >
+          <div className="ListCard__skeleton__cover" />
+          <div className="p-3">
+            <SkeletonText lines={3} color="#e9eaeb" />
+            <SkeletonUser
+              name={true}
+              pulse={false}
+              styles={{marginTop: '20px'}}
+            />
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className={'list-card mr-4 align-top ' + className} style={style}>

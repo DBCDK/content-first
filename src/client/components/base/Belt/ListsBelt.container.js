@@ -1,8 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {get} from 'lodash';
 import withIsVisible from '../../hoc/Scroll/withIsVisible.hoc';
 import {withListAggregation} from '../../hoc/Aggregation';
 import ListCard from '../../list/card/ListCard.component';
+import {UPDATE_MOUNT} from '../../../redux/mounts.reducer';
 import Title from '../Title';
 import Slider from './Slider.component';
 
@@ -18,29 +20,34 @@ import Slider from './Slider.component';
  **/
 
 export class ListsBelt extends React.Component {
-  constructor() {
-    super();
-    this.state = {didSwipe: false};
+  shouldComponentUpdate(nextProps) {
+    return (
+      nextProps.lists.length !== this.props.lists.length ||
+      this.props.isVisible !== nextProps.isVisible ||
+      this.props.mountedData.scrollPos !== nextProps.mountedData.scrollPos
+    );
   }
 
+  getListsPerSlide = () => {
+    const containerWidth = get(this.refs, 'container.clientWidth', 800);
+    const workCardWidth = get(this.refs, 'workCard.clientWidth', 200);
+    const resultsPerRow = Math.floor(containerWidth / workCardWidth);
+    return resultsPerRow;
+  };
+
   render() {
-    const startIndex = 8;
-    const {didSwipe} = this.state;
-    const {
-      pid,
-      lists,
-      title = 'Title....',
-      isFetching,
-      hasFetched,
-      isVisible
-    } = this.props;
+    const {lists, title = 'Title....', isVisible, mountedData} = this.props;
+    const {didSwipe = false, scrollPos = 0} = mountedData;
 
     if (lists.length === 0) {
       return null;
     }
 
     return (
-      <div className="belt text-left">
+      <div
+        className="belt text-left"
+        ref={container => (this.refs = {...this.refs, container})}
+      >
         <Title
           Tag="h1"
           type="title4"
@@ -50,15 +57,24 @@ export class ListsBelt extends React.Component {
           {title}
         </Title>
         <Slider
-          onSwipe={index => {
-            if (index > 0 && !didSwipe) {
-              this.setState({didSwipe: true});
-            }
-          }}
+          initialScrollPos={scrollPos}
+          onSwipe={index =>
+            this.props.updateMount({didSwipe: true, scrollPos: index})
+          }
         >
           {lists.map((list, i) => {
-            const isSkeletonCard = i > startIndex - 1 && !didSwipe;
-            return <ListCard key={list._id} id={list._id} list={list} />;
+            return (
+              <ListCard
+                cardRef={card => (this.refs = {...this.refs, card})}
+                isVisible={
+                  didSwipe ||
+                  (isVisible && i < scrollPos + this.getListsPerSlide() * 2)
+                }
+                key={list._id}
+                id={list._id}
+                list={list}
+              />
+            );
           })}
         </Slider>
       </div>
@@ -66,10 +82,24 @@ export class ListsBelt extends React.Component {
   }
 }
 
-export const mapStateToProps = (state, ownProps) => ({
-  lists: state.listReducer.lists
+export const mapStateToProps = (state, ownProps) => {
+  return {
+    notInUse_lists: state.listReducer.lists,
+    mountedData: state.mounts[ownProps.mount] || {scrollPos: 0, didSwipe: false}
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  updateMount: data => {
+    dispatch({
+      type: UPDATE_MOUNT,
+      mount: ownProps.mount,
+      data
+    });
+  }
 });
 
-export default connect(mapStateToProps)(
-  withIsVisible(withListAggregation(ListsBelt))
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withIsVisible(withListAggregation(ListsBelt)));
