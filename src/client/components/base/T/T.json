@@ -1031,7 +1031,7 @@
         "en": "Order on the startpage"
       },
       "title": {
-        "da": "Titel",
+        "da": "Titel på bånd",
         "en": "Title"
       },
       "description": {
@@ -1073,10 +1073,6 @@
       "selectTags": {
         "da": "Vælg de tags dit bånd skal bestå af",
         "en": "Select the tags that constitutes your belt"
-      },
-      "placeholderSearchField": {
-        "da": "Søg på titel, forfatter, stemning...",
-        "en": "Search for title, author, mood..."
       },
       "createBelt": {
         "da": "Opret bånd",

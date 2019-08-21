@@ -14,6 +14,7 @@ import SearchBar from '../filter/SearchBar/SearchBar.component';
 import FilterCards from '../filter/FilterCards/FilterCards.component';
 import TagsBelt from '../base/Belt/TagsBelt.component';
 import withTagsFromUrl from '../../components/hoc/AdressBar/withTagsFromUrl.hoc';
+import Icon from '../base/Icon';
 
 export class CreateBelt extends React.Component {
   constructor(props) {
@@ -120,7 +121,11 @@ export class CreateBelt extends React.Component {
               />
               <T component="editStartPage" name="doShowBelt" />
             </label>
-            <Text className={this.state.enabled ? '' : 'disabled'}>
+            <Text
+              className={
+                'publish-today' + (this.state.enabled ? '' : ' disabled')
+              }
+            >
               <T component="editStartPage" name="publishToday" />
             </Text>
           </span>
@@ -130,6 +135,7 @@ export class CreateBelt extends React.Component {
           </label>
           <div className="filters row">
             <div className="filter-page-searchbar">
+              <Icon name="search" />
               <SearchBar />
             </div>
           </div>
