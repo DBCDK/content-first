@@ -43,6 +43,8 @@ export class ListsBelt extends React.Component {
       return null;
     }
 
+    const listsPerSlide = this.getListsPerSlide();
+
     return (
       <div
         className="belt text-left"
@@ -67,8 +69,7 @@ export class ListsBelt extends React.Component {
               <ListCard
                 cardRef={card => (this.refs = {...this.refs, card})}
                 isVisible={
-                  didSwipe ||
-                  (isVisible && i < scrollPos + this.getListsPerSlide() * 2)
+                  didSwipe || (isVisible && i < scrollPos + listsPerSlide * 2)
                 }
                 key={list._id}
                 id={list._id}
