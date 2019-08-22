@@ -2,11 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
 import Head from '../base/Head';
+import T from '../base/T';
 import Hero from '../hero/Hero.component';
-
-// with aggregation
 import ListsBelt from '../base/Belt/ListsBelt.container';
-
 import InteractionsBelt from '../base/Belt/InteractionsBelt.component';
 import TagsBelt from '../base/Belt/TagsBelt.component';
 import SpotsContainer from '../spots/Spots.container';
@@ -61,7 +59,16 @@ class FrontPage extends React.Component {
         {this.renderBelts(aBeltsMap.slice(0, 2))}
         <SpotsContainer />
         {this.renderBelts(aBeltsMap.slice(2, aBeltsMap.length))}
-        <ListsBelt sort="created" limit={50} />
+        <ListsBelt
+          title={T({
+            component: 'list',
+            name: 'recentListsTitle',
+            renderAsHtml: true
+          })}
+          mount={'frontpage-lists'}
+          sort="created"
+          limit={50}
+        />
       </div>
     );
   }
