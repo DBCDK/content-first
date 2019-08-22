@@ -69,7 +69,6 @@ class MultiRowContainer extends React.Component {
       get(this.refs, 'container.clientWidth', 1) /
         (get(this.refs, 'workCard.clientWidth', 1) + 30)
     );
-    console.log('resize, ', get(this.refs, 'workCard.clientWidth', 1));
     this.setState({resultsPerRow: Math.max(resultsPerRow, 1)});
   };
 
