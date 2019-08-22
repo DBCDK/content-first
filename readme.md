@@ -14,6 +14,16 @@ For development of the system, see [`src`](src/readme.md).
     $ npm run start
     $ npm run fetch-inject-metakompas (cf must be started)
     $ npm run init-storage (cf must be started)
+    
+### Users for development and Cypress testing
+Create normal user
+`http://localhost:3000/v1/test/create/otto`
+
+Create user and assign the editor role
+`http://localhost:3000/v1/test/create/didrik?editor=true`
+
+When multiple users are created, switch between them with
+`http://localhost:3000/v1/test/login/otto`
 
 ## Deployment
 
