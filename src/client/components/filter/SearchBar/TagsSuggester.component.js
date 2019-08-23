@@ -90,6 +90,11 @@ class TagsSuggester extends React.Component {
         }
         return true;
       })
+      .filter(
+        s =>
+          typeof this.props.filterByType !== 'undefined' &&
+          s.type === this.props.filterByType
+      )
       .map(s => {
         if (s.type === 'TITLE') {
           const retObj = groupedTitles[s.title][0];

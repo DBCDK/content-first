@@ -136,7 +136,7 @@ export class CreateBelt extends React.Component {
           <div className="filters row">
             <div className="filter-page-searchbar">
               <Icon name="search" />
-              <SearchBar scrollableSuggestions={true} />
+              <SearchBar scrollableSuggestions={true} filterByType="TAG" />
             </div>
           </div>
         </div>
