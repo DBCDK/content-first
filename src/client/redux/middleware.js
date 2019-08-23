@@ -74,8 +74,10 @@ export const historyMiddleware = history => store => next => action => {
     case HISTORY_PUSH:
       if (store.getState().routerReducer.path !== action.path) {
         const paramsString = action.params ? paramsToString(action.params) : '';
-        history.push(action.path + paramsString);
-        if (action.path !== '') {
+        if (action.path === '') {
+          history.push(window.location.pathname + paramsString);
+        } else {
+          history.push(action.path + paramsString);
           window.scrollTo(0, 0);
         }
       }
@@ -88,8 +90,10 @@ export const historyMiddleware = history => store => next => action => {
       break;
     case HISTORY_REPLACE: {
       const paramsString = action.params ? paramsToString(action.params) : '';
-      history.replace(action.path + paramsString);
-      if (action.path !== '') {
+      if (action.path === '') {
+        history.replace(window.location.pathname + paramsString);
+      } else {
+        history.replace(action.path + paramsString);
         window.scrollTo(0, 0);
       }
       break;

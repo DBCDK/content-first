@@ -109,7 +109,7 @@ const withTagsFromUrl = WrappedComponent => {
     updateUrl: tags => {
       dispatch({
         type: HISTORY_REPLACE,
-        path: window.location.pathname,
+        path: '',
         params:
           tags.length > 0
             ? {
