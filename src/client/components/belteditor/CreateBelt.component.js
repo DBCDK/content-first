@@ -107,6 +107,7 @@ export class CreateBelt extends React.Component {
                 value="disabled"
                 checked={!this.state.enabled}
                 onChange={this.handleEnabledChange}
+                data-cy="create-belt-disabled-radio-button"
               />
               <T component="editStartPage" name="dontShowBelt" />
             </label>
@@ -118,6 +119,7 @@ export class CreateBelt extends React.Component {
                 value="enabled"
                 checked={this.state.enabled}
                 onChange={this.handleEnabledChange}
+                data-cy="create-belt-enabled-radio-button"
               />
               <T component="editStartPage" name="doShowBelt" />
             </label>
@@ -125,6 +127,7 @@ export class CreateBelt extends React.Component {
               className={
                 'publish-today' + (this.state.enabled ? '' : ' disabled')
               }
+              data-cy="create-belt-publish-today"
             >
               <T component="editStartPage" name="publishToday" />
             </Text>
@@ -157,6 +160,7 @@ export class CreateBelt extends React.Component {
             type="quaternary"
             href="redaktionen"
             hrefSelf={true}
+            dataCy="create-belt-cancel-button"
           >
             <T component="general" name="cancel" />
           </Button>
@@ -167,6 +171,7 @@ export class CreateBelt extends React.Component {
             type="quaternary"
             onClick={this.handleSubmit}
             disabled={this.checkDisabled()}
+            dataCy="create-belt-ok-button"
           >
             <T component="editStartPage" name="createBelt" />
           </Button>

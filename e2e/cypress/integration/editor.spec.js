@@ -231,28 +231,48 @@ describe('Start Belt Editor test', function() {
 
   // ======================================================================================
 
-  it('Test create new row', function() {
+  it('Test click create new row button', function() {
     cy.visit('/redaktionen');
 
     clickCreateButton();
 
-    cy.get(
-      '.BeltEditor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]'
-    ).should('have.length', 4);
-    verifyTitleRow('Titel', 'Oprettet af');
-    verifyContentRow(1, false, 'Ny titel', 'Ny forfatter');
-    verifyContentRow(2, true, 'Norske superromaner', 'Bibliotekar Sarah');
-    verifyContentRow(
-      3,
-      true,
-      'Franske fristelser',
-      'Christian Ertmann-Christiansen'
-    );
-    verifyContentRow(
-      4,
-      false,
-      'Uhygge bag hjemmets fire vægge',
-      'Bibliotekar Sarah'
+    cy.url().should('include', '/redaktionen/opret');
+    cy.get('.CreateBelt div.Banner__title [data-cy=banner-title]').contains(
+      'Opret nyt bånd'
     );
   });
+
+  // ======================================================================================
+
+  it('Test create new belt page - test disabled Create button', function() {
+    const TitleText = 'Title';
+
+    cy.visit('/redaktionen/opret');
+
+    cy.get('[data-cy=create-belt-cancel-button]').should('be.enabled');
+    cy.get('[data-cy=create-belt-ok-button]').should('be.disabled');
+
+    cy.get('[data-cy=create-belt-title-input]').type(TitleText);
+
+    cy.get('[data-cy=create-belt-cancel-button]').should('be.enabled');
+    cy.get('[data-cy=create-belt-ok-button]').should('be.enabled');
+  });
+
+  // ======================================================================================
+
+  it('Test create new belt page - test disabled Publish Today text', function() {
+    cy.visit('/redaktionen/opret');
+
+    cy.get('[data-cy=create-belt-publish-today]').should(
+      'contain.class',
+      'disabled'
+    );
+    cy.get('[data-cy=create-belt-enabled-radio-button]').click();
+    cy.get('[data-cy=create-belt-publish-today]').should(
+      'not.contain.class',
+      'disabled'
+    );
+  });
+
+  // ======================================================================================
 });
