@@ -29,6 +29,30 @@
   padding-top: 50px;
 }
 
+.WorkCard .book-cover-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+}
+
+.WorkCard .BookmarkButton {
+  margin-bottom: 0.5rem;
+}
+
+.WorkCard .CompareButton {
+  transform: rotate(-25deg) scale(0);
+  transition-timing-function: ease-in;
+  transition-duration: 0.15s;
+}
+
+.WorkCard:hover .CompareButton {
+  transition-timing-function: ease-out;
+  transform: rotate(0deg) scale(1);
+}
+
 .WorkCard .taxonomy-description {
   font-size: 0.9rem;
   line-height: 1.4rem;

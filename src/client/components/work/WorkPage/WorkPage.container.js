@@ -60,19 +60,20 @@ class WorkPage extends React.Component {
     }
 
     // get collections including ereolen
-    const collection = this.props.filterCollection(work);
+    const collection = this.props.filterCollection();
     // get reviews from litteratursiden
-    const reviews = this.props.filterReviews(work);
+    const reviews = this.props.filterReviews();
     // sort tags by group
-    const tags = this.props.sortTags(work);
+    // const tags = this.props.sortTags();
+    const tags = this.props.sortTagsByAppeal();
 
-    const priorityTagsArr = book.tags.filter(e => e.score > 1).slice(0, 6);
-    if (priorityTagsArr.length > 0) {
-      tags.unshift({
-        title: T({component: 'work', name: 'readerExpTitle'}),
-        data: priorityTagsArr
-      });
-    }
+    // const priorityTagsArr = book.tags.filter(e => e.score > 1).slice(0, 6);
+    // if (priorityTagsArr.length > 0) {
+    //   tags.unshift({
+    //     title: T({component: 'work', name: 'readerExpTitle'}),
+    //     data: priorityTagsArr
+    //   });
+    // }
 
     // tags collapsable variables
     const tagsDomNode = document.getElementById('collapsable-tags');

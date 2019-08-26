@@ -4,6 +4,7 @@ import {get} from 'lodash';
 import {BOOKS_REQUEST} from '../../../redux/books.reducer';
 import {ORDER} from '../../../redux/order.reducer';
 import {getYear} from '../../../utils/dateTimeFormat';
+import sortByAppeal from '../../../utils/sortByAppeal';
 import {
   collectionHasValidContent,
   collectionContainsBook,
@@ -132,6 +133,20 @@ const withWork = (
       return this.props.dispatchOrder(this.props.work);
     };
 
+    /**
+     * Sort function which sort the common tag list into appeal categories.
+     * @param {object} work work with tags to sort.
+     * @returns {Array} Filtered reviews
+     */
+
+    sortTagsByAppeal = () => {
+      if (!get(this.props, 'work.book.tags')) {
+        return false;
+      }
+
+      return sortByAppeal(this.props.work.book.tags);
+    };
+
     fetch() {
       if (
         (this.props.isVisible || typeof this.props.isVisible === 'undefined') &&
@@ -145,13 +160,14 @@ const withWork = (
     render() {
       return (
         <WrappedComponent
+          order={this.order}
           newRelease={this.newRelease}
           hasValidCollection={this.collectionHasValidContent}
           collectionContainsBook={this.collectionContainsBook}
           filterCollection={this.filterCollection}
           filterReviews={this.filterReviews}
           sortTags={this.sortTags}
-          order={this.order}
+          sortTagsByAppeal={this.sortTagsByAppeal}
           {...this.props}
         />
       );

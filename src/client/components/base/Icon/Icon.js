@@ -6,6 +6,7 @@ import './Icon.css';
 
 const Icon = ({
   name,
+  hex = null,
   className = '',
   disabled = false,
   onClick = null,
@@ -14,7 +15,8 @@ const Icon = ({
   const classDisabled = disabled ? 'md-disabled' : '';
   return (
     <i
-      className={`material-icons material-icons-${name} ${className} ${classDisabled}`}
+      className={`material-icons material-icons-${hex ||
+        name} ${className} ${classDisabled}`}
       onClick={e => {
         if (!disabled && onClick) {
           onClick(e);
