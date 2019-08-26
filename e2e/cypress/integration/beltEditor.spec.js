@@ -285,4 +285,51 @@ describe('Start Belt Editor test', function() {
   });
 
   // ======================================================================================
+
+  it('Test create new belt page - test Title and Description texts', function() {
+    const TitleText = 'Title';
+    const DescriptionText = 'Description';
+
+    cy.visit('/redaktionen/opret');
+
+    cy.get('[data-cy=create-belt-title-input]').type(TitleText);
+    cy.get('[data-cy=create-belt-description-input]').type(DescriptionText);
+
+    cy.get('[data-cy=tagsbelt-' + TitleText + '] h1:first strong').should(
+      'have.text',
+      TitleText
+    );
+    cy.get('[data-cy=tagsbelt-' + TitleText + '] h3:first').should(
+      'have.text',
+      DescriptionText
+    );
+  });
+
+  // ======================================================================================
+
+  it('Test create new belt page - test Tag selection', function() {
+    cy.visit('/redaktionen/opret');
+
+    cy.get('[data-cy=univers]').click();
+    cy.get('[data-cy=realistisk]').click();
+    cy.get('[data-cy=filterDimmer]').click();
+
+    cy.get('.CreateBelt [data-cy=search-bar-input]').type('fanta');
+    cy.get('.CreateBelt [data-cy=suggestion-element')
+      .eq(3)
+      .click({force: true});
+    cy.get('.CreateBelt .selected-filters .selected-filter span span').should(
+      $p => {
+        expect($p.eq(0)).to.contain('realistisk');
+        expect($p.eq(1)).to.contain('fantasiverdener');
+      }
+    );
+    cy.get('[data-cy=tag-realistisk]').should('have.text', 'realistisk');
+    cy.get('[data-cy=tag-fantasiverdener]').should(
+      'have.text',
+      'fantasiverdener'
+    );
+  });
+
+  // ======================================================================================
 });
