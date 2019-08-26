@@ -12,18 +12,28 @@ describe('Start Belt Editor test', function() {
     ')';
 
   const verifyTitleRow = (title, creator) => {
-    cy.get('div.list-title-row').contains('p', title);
-    cy.get('div.list-title-row').contains('p', creator);
+    cy.get('.BeltEditor [data-cy=reorder-list-element] p')
+      .eq(0)
+      .should('have.text', title);
+    cy.get('.BeltEditor [data-cy=reorder-list-element] p')
+      .eq(1)
+      .should('have.text', creator);
   };
 
   const verifyContentRow = (number, enabled, title, creator) => {
     const selector = nthContentRow(number);
     const enabledDisabled = enabled ? 'enabled' : 'disabled';
     cy.get(selector)
-      .contains('i', 'fiber_manual_record')
-      .should('have.class', enabledDisabled);
-    cy.get(selector).contains('p', title);
-    cy.get(selector).contains('p', creator);
+      .find('div.flex-container i')
+      .should($i => {
+        expect($i.eq(1)).to.have.class(enabledDisabled);
+      });
+    cy.get(selector)
+      .find('div.flex-container p')
+      .should($p => {
+        expect($p.eq(0)).to.contain(title);
+        expect($p.eq(1)).to.contain(creator);
+      });
   };
 
   const clickEnableDisableButton = number => {
