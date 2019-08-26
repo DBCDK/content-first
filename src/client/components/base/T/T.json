@@ -270,6 +270,10 @@
         "da": "Anmeldelser:",
         "en": "Reviews:"
       },
+       "noReviews": {
+        "da": "Vi har ikke nogen anmeldelser af bogen",
+        "en": "We do not have any reviews of this book"
+      },
       "bookmarkButtonOrigin": {
         "da": "Fra egen værkside",
         "en": "From workpage"
