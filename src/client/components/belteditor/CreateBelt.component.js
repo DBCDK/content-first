@@ -81,7 +81,7 @@ export class CreateBelt extends React.Component {
             value={this.state.title}
             data-cy="create-belt-title-input"
           >
-            <T component="editStartPage" name="title" />
+            <T component="editStartPage" name="beltTitle" />
           </Input>
           <Input
             className="create-belt-description"

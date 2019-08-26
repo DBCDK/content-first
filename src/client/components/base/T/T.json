@@ -1031,6 +1031,10 @@
         "en": "Order on the startpage"
       },
       "title": {
+        "da": "Titel",
+        "en": "Title"
+      },
+      "beltTitle": {
         "da": "Titel på bånd",
         "en": "Title"
       },
