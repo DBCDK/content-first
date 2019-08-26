@@ -90,10 +90,10 @@ class TagsSuggester extends React.Component {
         }
         return true;
       })
-      .filter(
-        s =>
-          typeof this.props.filterByType !== 'undefined' &&
-          s.type === this.props.filterByType
+      .filter(s =>
+        typeof this.props.filterByType === 'undefined'
+          ? true
+          : s.type === this.props.filterByType
       )
       .map(s => {
         if (s.type === 'TITLE') {
