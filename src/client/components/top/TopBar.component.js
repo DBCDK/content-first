@@ -19,6 +19,7 @@ import Text from '../base/Text/';
 import T from '../base/T/';
 import './Topbar.css';
 import {FETCH_STATS} from '../../redux/stats.reducer';
+import {eventPath} from '../../utils/path';
 
 let searchPage = false;
 
@@ -87,10 +88,7 @@ export class TopBar extends React.Component {
   closeDropdown = event => {
     // Dont dubble close on 'dropdown' click
     let abortCloseDropdown = false;
-    const path =
-      event.path ||
-      (event.composedPath && event.composedPath()) ||
-      event.target.parentNode;
+    const path = eventPath(event);
 
     /* IE11 & Edge support (no forEach())*/
     for (var i = 0; i < path.length; i++) {
@@ -119,9 +117,7 @@ export class TopBar extends React.Component {
   }
 
   componentDidMount() {
-    if (this.Topbar) {
-      this.Topbar.addEventListener('mousedown', this.closeDropdown);
-    }
+    document.addEventListener('mousedown', this.closeDropdown);
     window.addEventListener('resize', this.onResize);
     this.calcWidth();
 
@@ -134,9 +130,7 @@ export class TopBar extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.Topbar) {
-      this.Topbar.removeEventListener('mousedown', this.closeDropdown);
-    }
+    document.removeEventListener('mousedown', this.closeDropdown);
     this.calcWidth();
     window.removeEventListener('resize', this.onResize);
   }
