@@ -1,3 +1,4 @@
+// https://stackoverflow.com/questions/39245488/event-path-undefined-with-firefox-and-vue-js
 export function eventPath(evt) {
   var path = (evt.composedPath && evt.composedPath()) || evt.path,
     target = evt.target;
