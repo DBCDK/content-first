@@ -8,6 +8,7 @@ import Text from '../base/Text';
 import Title from '../base/Title';
 import T from '../base/T';
 import Button from '../base/Button';
+import Link from '../general/Link.component';
 
 const defaultItems = [
   {
@@ -26,12 +27,6 @@ const defaultItems = [
     createdBy: 'Bibliotekar Sarah'
   }
 ];
-
-const newItem = {
-  enabled: false,
-  title: 'Ny titel',
-  createdBy: 'Ny forfatter'
-};
 
 export class BeltEditor extends React.Component {
   constructor(props) {
@@ -166,14 +161,6 @@ export class BeltEditor extends React.Component {
       value.children.createdBy
     );
 
-  createNewBelt = () => {
-    this.setState(state => {
-      const items = [Object.assign({}, newItem)].concat(state.items);
-      this.refs.sortableList.update(items);
-      return {items};
-    });
-  };
-
   render() {
     return (
       <div className="BeltEditor">
@@ -198,14 +185,15 @@ export class BeltEditor extends React.Component {
             onSortEnd={this.onSortEnd}
             ref="sortableList"
           />
-          <Button
-            type="quaternary"
-            size="medium"
-            onClick={this.createNewBelt}
-            dataCy="create-new-row-button"
-          >
-            <T component="editStartPage" name="createNewBelt" />
-          </Button>
+          <Link href="/redaktionen/opret">
+            <Button
+              type="quaternary"
+              size="medium"
+              dataCy="create-new-row-button"
+            >
+              <T component="editStartPage" name="createNewBelt" />
+            </Button>
+          </Link>
         </div>
       </div>
     );

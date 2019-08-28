@@ -192,14 +192,13 @@
   }
   .selected-filters-wrap .suggestion-list {
     transition-duration: 0.2s;
-    padding: 0.5rem;
+    margin: auto 0;
   }
 
   .selected-filters-wrap #react-autowhatever-1 {
     top: 145px;
     padding: 0.6rem;
     border: 0;
-    height: 100%;
   }
   .selected-filters-wrap #react-autowhatever-1 .suggestion-title {
     padding: 0.5rem 1rem 0.5rem 1rem;
