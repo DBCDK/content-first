@@ -52,15 +52,8 @@ export class CreateBelt extends React.Component {
   checkDisabled = () => this.state.title.length === 0;
 
   render() {
-    const tags = this.props.tags
-      .reduce((arr, tag) => {
-        if (tag.type === 'TAG') {
-          return [...arr, tag];
-        } else if (tag.type === 'TAG_RANGE') {
-          return [...arr, ...tag.inRange];
-        }
-        return arr;
-      }, [])
+    const tags = this.props
+      .flattenedTags()
       .map(tag => ({id: tag.id, weight: 1}));
 
     return (
