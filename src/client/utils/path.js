@@ -3,7 +3,7 @@ export function eventPath(evt) {
   var path = (evt.composedPath && evt.composedPath()) || evt.path,
     target = evt.target;
 
-  if (path != null) {
+  if (path !== null) {
     // Safari doesn't include Window, but it should.
     return path.indexOf(window) < 0 ? path.concat(window) : path;
   }
@@ -18,9 +18,8 @@ export function eventPath(evt) {
 
     if (!parentNode) {
       return memo;
-    } else {
-      return getParents(parentNode, memo.concat(parentNode));
     }
+    return getParents(parentNode, memo.concat(parentNode));
   }
 
   return [target].concat(getParents(target), window);
