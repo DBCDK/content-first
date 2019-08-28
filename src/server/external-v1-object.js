@@ -71,11 +71,7 @@ async function deleteObject(req, res) {
 async function aggregation(req, res) {
   send(res, await objectStore.aggregation(req.query, await getUser(req)));
 }
-async function roles(req, res) {
-  send(res, await objectStore.getRoles(await getUser(req)));
-}
 
-router.route('/roles').get(asyncMiddleware(roles));
 router.route('/aggregation').get(asyncMiddleware(aggregation));
 router.route('/find').get(asyncMiddleware(findObject));
 router.route('/:id').get(asyncMiddleware(getObject));

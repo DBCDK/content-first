@@ -132,14 +132,15 @@ async function getUserData(openplatformId, loggedInuser) {
   try {
     throwUnlessOpenplatformId({openplatformId});
 
-    let userData = (await objectStore.find(
+    const userData = (await objectStore.find(
       {type: 'USER_PROFILE', owner: openplatformId, public: true},
       loggedInuser
     )).data[0];
-    let shortlist = (await objectStore.find(
+    const shortlist = (await objectStore.find(
       {type: 'USER_SHORTLIST', owner: openplatformId},
       loggedInuser
     )).data[0];
+    const {data: roles} = await objectStore.getRoles(loggedInuser);
 
     if (!userData) {
       throw {
@@ -149,8 +150,9 @@ async function getUserData(openplatformId, loggedInuser) {
       };
     }
 
-    return _.omitBy({...userData, ...shortlist, ...{openplatformId}}, (v, k) =>
-      k.startsWith('_')
+    return _.omitBy(
+      {...userData, roles, ...shortlist, ...{openplatformId}},
+      (v, k) => k.startsWith('_')
     );
   } catch (error) {
     logger.log.error(error);
@@ -179,7 +181,7 @@ async function putUserData(newUserData, user) {
           _type: 'USER_PROFILE',
           _public: true
         },
-        ['openplatformToken', 'shortlist']
+        ['openplatformToken', 'shortlist', 'roles']
       ),
       user
     );
