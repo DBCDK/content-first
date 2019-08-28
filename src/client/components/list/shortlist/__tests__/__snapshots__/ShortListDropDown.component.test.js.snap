@@ -4,229 +4,228 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
 Array [
   <div
     className="undefined top-bar-dropdown-list"
-    data-cy={undefined}
     onClick={[Function]}
->
+  >
     <span
-        className="short-badge"
+      className="short-badge"
     >
-        (2)
+      (2)
     </span>
-</div>,
+  </div>,
   <div
     className="top-bar-dropdown-list--content text-left
          slide-out
         "
->
+  >
     <i
-        className="material-icons top-bar-dropdown-list--close-btn"
-        onClick={[Function]}
+      className="material-icons top-bar-dropdown-list--close-btn"
+      onClick={[Function]}
     >
-        clear
+      clear
     </i>
     <a
-        className="list-card-nohover"
-        data-cy=""
-        href="/huskeliste"
-        onClick={[Function]}
-        style={Object {}}
-        target="_self"
+      className="list-card-nohover"
+      data-cy=""
+      href="/huskeliste"
+      onClick={[Function]}
+      style={Object {}}
+      target="_self"
     >
-        <p
-            className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
-            style={
-                Object {
-                    "marginBottom": "10px",
-                  }
-            }
-        >
-            Huskeliste (2)
-        </p>
+      <p
+        className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
+        style={
+          Object {
+            "marginBottom": "10px",
+          }
+        }
+      >
+        Huskeliste (2)
+      </p>
     </a>
     <div
-        className="top-bar-dropdown-list--empty-text text-center d-none"
+      className="top-bar-dropdown-list--empty-text text-center d-none"
     />
     <div
-        className="top-bar-dropdown-list--elements"
+      className="top-bar-dropdown-list--elements"
     >
-        <span>
-            <div
-                className="top-bar-dropdown-list-element"
+      <span>
+        <div
+          className="top-bar-dropdown-list-element"
+        >
+          <div
+            className="top-bar-dropdown-list-element--cover-image"
+          >
+            <a
+              className="list-card-nohover"
+              data-cy=""
+              href="/værk/pid1"
+              onClick={[Function]}
+              style={Object {}}
+              target="_self"
             >
-                <div
-                    className="top-bar-dropdown-list-element--cover-image"
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid1",
+                    "taxonomy_description": "some description1",
+                    "title": "some title1",
+                  }
+                }
+                hideCoverText={true}
+              />
+            </a>
+          </div>
+          <div
+            className="top-bar-dropdown-list-element--text"
+          >
+            <div
+              className="top-bar-dropdown-list-element--header"
+            >
+              <a
+                className="list-card-nohover"
+                data-cy=""
+                href="/værk/pid1"
+                onClick={[Function]}
+                style={Object {}}
+                target="_self"
+              >
+                <react-truncate-markup
+                  lines={1}
                 >
-                    <a
-                        className="list-card-nohover"
-                        data-cy=""
-                        href="/værk/pid1"
-                        onClick={[Function]}
-                        style={Object {}}
-                        target="_self"
-                    >
-                        <BookCover
-                            book={
-                                Object {
-                                    "pid": "pid1",
-                                    "taxonomy_description": "some description1",
-                                    "title": "some title1",
-                                  }
-                            }
-                            hideCoverText={true}
-                        />
-                    </a>
-                </div>
-                <div
-                    className="top-bar-dropdown-list-element--text"
-                >
-                    <div
-                        className="top-bar-dropdown-list-element--header"
-                    >
-                        <a
-                            className="list-card-nohover"
-                            data-cy=""
-                            href="/værk/pid1"
-                            onClick={[Function]}
-                            style={Object {}}
-                            target="_self"
-                        >
-                            <react-truncate-markup
-                                lines={1}
-                            >
-                                <span
-                                    data-cy="shortlist-element-title"
-                                >
-                                    some title1
-                                </span>
-                            </react-truncate-markup>
-                        </a>
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--taxonomy-description"
-                    >
-                        some description1
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--origin"
-                    >
-                        Minder om noget1
-                    </div>
-                </div>
-                <i
-                    className="material-icons remove-btn"
-                    onClick={[Function]}
-                >
-                    clear
-                </i>
+                  <span
+                    data-cy="shortlist-element-title"
+                  >
+                    some title1
+                  </span>
+                </react-truncate-markup>
+              </a>
             </div>
             <div
-                className="top-bar-dropdown-list-element"
+              className="top-bar-dropdown-list-element--taxonomy-description"
             >
-                <div
-                    className="top-bar-dropdown-list-element--cover-image"
-                >
-                    <a
-                        className="list-card-nohover"
-                        data-cy=""
-                        href="/værk/pid2"
-                        onClick={[Function]}
-                        style={Object {}}
-                        target="_self"
-                    >
-                        <BookCover
-                            book={
-                                Object {
-                                    "pid": "pid2",
-                                    "taxonomy_description": "some description2",
-                                    "title": "some title2",
-                                  }
-                            }
-                            hideCoverText={true}
-                        />
-                    </a>
-                </div>
-                <div
-                    className="top-bar-dropdown-list-element--text"
-                >
-                    <div
-                        className="top-bar-dropdown-list-element--header"
-                    >
-                        <a
-                            className="list-card-nohover"
-                            data-cy=""
-                            href="/værk/pid2"
-                            onClick={[Function]}
-                            style={Object {}}
-                            target="_self"
-                        >
-                            <react-truncate-markup
-                                lines={1}
-                            >
-                                <span
-                                    data-cy="shortlist-element-title"
-                                >
-                                    some title2
-                                </span>
-                            </react-truncate-markup>
-                        </a>
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--taxonomy-description"
-                    >
-                        some description2
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--origin"
-                    >
-                        Minder om noget2
-                    </div>
-                </div>
-                <i
-                    className="material-icons remove-btn"
-                    onClick={[Function]}
-                >
-                    clear
-                </i>
+              some description1
             </div>
-        </span>
+            <div
+              className="top-bar-dropdown-list-element--origin"
+            >
+              Minder om noget1
+            </div>
+          </div>
+          <i
+            className="material-icons remove-btn"
+            onClick={[Function]}
+          >
+            clear
+          </i>
+        </div>
+        <div
+          className="top-bar-dropdown-list-element"
+        >
+          <div
+            className="top-bar-dropdown-list-element--cover-image"
+          >
+            <a
+              className="list-card-nohover"
+              data-cy=""
+              href="/værk/pid2"
+              onClick={[Function]}
+              style={Object {}}
+              target="_self"
+            >
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid2",
+                    "taxonomy_description": "some description2",
+                    "title": "some title2",
+                  }
+                }
+                hideCoverText={true}
+              />
+            </a>
+          </div>
+          <div
+            className="top-bar-dropdown-list-element--text"
+          >
+            <div
+              className="top-bar-dropdown-list-element--header"
+            >
+              <a
+                className="list-card-nohover"
+                data-cy=""
+                href="/værk/pid2"
+                onClick={[Function]}
+                style={Object {}}
+                target="_self"
+              >
+                <react-truncate-markup
+                  lines={1}
+                >
+                  <span
+                    data-cy="shortlist-element-title"
+                  >
+                    some title2
+                  </span>
+                </react-truncate-markup>
+              </a>
+            </div>
+            <div
+              className="top-bar-dropdown-list-element--taxonomy-description"
+            >
+              some description2
+            </div>
+            <div
+              className="top-bar-dropdown-list-element--origin"
+            >
+              Minder om noget2
+            </div>
+          </div>
+          <i
+            className="material-icons remove-btn"
+            onClick={[Function]}
+          >
+            clear
+          </i>
+        </div>
+      </span>
     </div>
     <div
-        className="top-bar-dropdown-list--footer"
+      className="top-bar-dropdown-list--footer"
     >
-        <div
-            onClick={[Function]}
+      <div
+        onClick={[Function]}
+      >
+        <button
+          className="
+      btn Button Button__medium Button__tertiary "
+          data-cy="shortlist-dropdown-visit-shortlist"
+          disabled={false}
         >
-            <button
-                className="
-                  btn Button Button__medium Button__tertiary "
-                data-cy="shortlist-dropdown-visit-shortlist"
-                disabled={false}
-            >
-                
-                <span>
-                    Gå til huskeliste
-                </span>
-                
-            </button>
-        </div>
-        <div
-            onClick={[Function]}
+          
+          <span>
+            Gå til huskeliste
+          </span>
+          
+        </button>
+      </div>
+      <div
+        onClick={[Function]}
+      >
+        <button
+          className="
+      btn Button Button__medium Button__tertiary "
+          data-cy=""
+          disabled={false}
         >
-            <button
-                className="
-                  btn Button Button__medium Button__tertiary "
-                data-cy=""
-                disabled={false}
-            >
-                
-                <span>
-                    Lån alle bøger
-                </span>
-                
-            </button>
-        </div>
+          
+          <span>
+            Lån alle bøger
+          </span>
+          
+        </button>
+      </div>
     </div>
-</div>,
+  </div>,
 ]
 `;
 
@@ -234,367 +233,366 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
 Array [
   <div
     className="undefined top-bar-dropdown-list"
-    data-cy={undefined}
     onClick={[Function]}
->
+  >
     <span
-        className="short-badge"
+      className="short-badge"
     >
-        (4)
+      (4)
     </span>
-</div>,
+  </div>,
   <div
     className="top-bar-dropdown-list--content text-left
          slide-out
         "
->
+  >
     <i
-        className="material-icons top-bar-dropdown-list--close-btn"
-        onClick={[Function]}
+      className="material-icons top-bar-dropdown-list--close-btn"
+      onClick={[Function]}
     >
-        clear
+      clear
     </i>
     <a
-        className="list-card-nohover"
-        data-cy=""
-        href="/huskeliste"
-        onClick={[Function]}
-        style={Object {}}
-        target="_self"
+      className="list-card-nohover"
+      data-cy=""
+      href="/huskeliste"
+      onClick={[Function]}
+      style={Object {}}
+      target="_self"
     >
-        <p
-            className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
-            style={
-                Object {
-                    "marginBottom": "10px",
-                  }
-            }
-        >
-            Huskeliste (4)
-        </p>
+      <p
+        className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
+        style={
+          Object {
+            "marginBottom": "10px",
+          }
+        }
+      >
+        Huskeliste (4)
+      </p>
     </a>
     <div
-        className="top-bar-dropdown-list--empty-text text-center d-none"
+      className="top-bar-dropdown-list--empty-text text-center d-none"
     />
     <div
-        className="top-bar-dropdown-list--elements"
+      className="top-bar-dropdown-list--elements"
     >
-        <span>
-            <div
-                className="top-bar-dropdown-list-element"
+      <span>
+        <div
+          className="top-bar-dropdown-list-element"
+        >
+          <div
+            className="top-bar-dropdown-list-element--cover-image"
+          >
+            <a
+              className="list-card-nohover"
+              data-cy=""
+              href="/værk/pid4"
+              onClick={[Function]}
+              style={Object {}}
+              target="_self"
             >
-                <div
-                    className="top-bar-dropdown-list-element--cover-image"
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid4",
+                    "taxonomy_description": "some description4",
+                    "title": "some title4",
+                  }
+                }
+                hideCoverText={true}
+              />
+            </a>
+          </div>
+          <div
+            className="top-bar-dropdown-list-element--text"
+          >
+            <div
+              className="top-bar-dropdown-list-element--header"
+            >
+              <a
+                className="list-card-nohover"
+                data-cy=""
+                href="/værk/pid4"
+                onClick={[Function]}
+                style={Object {}}
+                target="_self"
+              >
+                <react-truncate-markup
+                  lines={1}
                 >
-                    <a
-                        className="list-card-nohover"
-                        data-cy=""
-                        href="/værk/pid4"
-                        onClick={[Function]}
-                        style={Object {}}
-                        target="_self"
-                    >
-                        <BookCover
-                            book={
-                                Object {
-                                    "pid": "pid4",
-                                    "taxonomy_description": "some description4",
-                                    "title": "some title4",
-                                  }
-                            }
-                            hideCoverText={true}
-                        />
-                    </a>
-                </div>
-                <div
-                    className="top-bar-dropdown-list-element--text"
-                >
-                    <div
-                        className="top-bar-dropdown-list-element--header"
-                    >
-                        <a
-                            className="list-card-nohover"
-                            data-cy=""
-                            href="/værk/pid4"
-                            onClick={[Function]}
-                            style={Object {}}
-                            target="_self"
-                        >
-                            <react-truncate-markup
-                                lines={1}
-                            >
-                                <span
-                                    data-cy="shortlist-element-title"
-                                >
-                                    some title4
-                                </span>
-                            </react-truncate-markup>
-                        </a>
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--taxonomy-description"
-                    >
-                        some description4
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--origin"
-                    >
-                        Minder om noget4
-                    </div>
-                </div>
-                <i
-                    className="material-icons remove-btn"
-                    onClick={[Function]}
-                >
-                    clear
-                </i>
+                  <span
+                    data-cy="shortlist-element-title"
+                  >
+                    some title4
+                  </span>
+                </react-truncate-markup>
+              </a>
             </div>
             <div
-                className="top-bar-dropdown-list-element"
+              className="top-bar-dropdown-list-element--taxonomy-description"
             >
-                <div
-                    className="top-bar-dropdown-list-element--cover-image"
-                >
-                    <a
-                        className="list-card-nohover"
-                        data-cy=""
-                        href="/værk/pid3"
-                        onClick={[Function]}
-                        style={Object {}}
-                        target="_self"
-                    >
-                        <BookCover
-                            book={
-                                Object {
-                                    "pid": "pid3",
-                                    "taxonomy_description": "some description3",
-                                    "title": "some title3",
-                                  }
-                            }
-                            hideCoverText={true}
-                        />
-                    </a>
-                </div>
-                <div
-                    className="top-bar-dropdown-list-element--text"
-                >
-                    <div
-                        className="top-bar-dropdown-list-element--header"
-                    >
-                        <a
-                            className="list-card-nohover"
-                            data-cy=""
-                            href="/værk/pid3"
-                            onClick={[Function]}
-                            style={Object {}}
-                            target="_self"
-                        >
-                            <react-truncate-markup
-                                lines={1}
-                            >
-                                <span
-                                    data-cy="shortlist-element-title"
-                                >
-                                    some title3
-                                </span>
-                            </react-truncate-markup>
-                        </a>
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--taxonomy-description"
-                    >
-                        some description3
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--origin"
-                    >
-                        Minder om noget3
-                    </div>
-                </div>
-                <i
-                    className="material-icons remove-btn"
-                    onClick={[Function]}
-                >
-                    clear
-                </i>
+              some description4
             </div>
             <div
-                className="top-bar-dropdown-list-element"
+              className="top-bar-dropdown-list-element--origin"
             >
-                <div
-                    className="top-bar-dropdown-list-element--cover-image"
+              Minder om noget4
+            </div>
+          </div>
+          <i
+            className="material-icons remove-btn"
+            onClick={[Function]}
+          >
+            clear
+          </i>
+        </div>
+        <div
+          className="top-bar-dropdown-list-element"
+        >
+          <div
+            className="top-bar-dropdown-list-element--cover-image"
+          >
+            <a
+              className="list-card-nohover"
+              data-cy=""
+              href="/værk/pid3"
+              onClick={[Function]}
+              style={Object {}}
+              target="_self"
+            >
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid3",
+                    "taxonomy_description": "some description3",
+                    "title": "some title3",
+                  }
+                }
+                hideCoverText={true}
+              />
+            </a>
+          </div>
+          <div
+            className="top-bar-dropdown-list-element--text"
+          >
+            <div
+              className="top-bar-dropdown-list-element--header"
+            >
+              <a
+                className="list-card-nohover"
+                data-cy=""
+                href="/værk/pid3"
+                onClick={[Function]}
+                style={Object {}}
+                target="_self"
+              >
+                <react-truncate-markup
+                  lines={1}
                 >
-                    <a
-                        className="list-card-nohover"
-                        data-cy=""
-                        href="/værk/pid2"
-                        onClick={[Function]}
-                        style={Object {}}
-                        target="_self"
-                    >
-                        <BookCover
-                            book={
-                                Object {
-                                    "pid": "pid2",
-                                    "taxonomy_description": "some description2",
-                                    "title": "some title2",
-                                  }
-                            }
-                            hideCoverText={true}
-                        />
-                    </a>
-                </div>
-                <div
-                    className="top-bar-dropdown-list-element--text"
-                >
-                    <div
-                        className="top-bar-dropdown-list-element--header"
-                    >
-                        <a
-                            className="list-card-nohover"
-                            data-cy=""
-                            href="/værk/pid2"
-                            onClick={[Function]}
-                            style={Object {}}
-                            target="_self"
-                        >
-                            <react-truncate-markup
-                                lines={1}
-                            >
-                                <span
-                                    data-cy="shortlist-element-title"
-                                >
-                                    some title2
-                                </span>
-                            </react-truncate-markup>
-                        </a>
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--taxonomy-description"
-                    >
-                        some description2
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--origin"
-                    >
-                        Minder om noget2
-                    </div>
-                </div>
-                <i
-                    className="material-icons remove-btn"
-                    onClick={[Function]}
-                >
-                    clear
-                </i>
+                  <span
+                    data-cy="shortlist-element-title"
+                  >
+                    some title3
+                  </span>
+                </react-truncate-markup>
+              </a>
             </div>
             <div
-                className="top-bar-dropdown-list-element"
+              className="top-bar-dropdown-list-element--taxonomy-description"
             >
-                <div
-                    className="top-bar-dropdown-list-element--cover-image"
-                >
-                    <a
-                        className="list-card-nohover"
-                        data-cy=""
-                        href="/værk/pid1"
-                        onClick={[Function]}
-                        style={Object {}}
-                        target="_self"
-                    >
-                        <BookCover
-                            book={
-                                Object {
-                                    "pid": "pid1",
-                                    "taxonomy_description": "some description1",
-                                    "title": "some title1",
-                                  }
-                            }
-                            hideCoverText={true}
-                        />
-                    </a>
-                </div>
-                <div
-                    className="top-bar-dropdown-list-element--text"
-                >
-                    <div
-                        className="top-bar-dropdown-list-element--header"
-                    >
-                        <a
-                            className="list-card-nohover"
-                            data-cy=""
-                            href="/værk/pid1"
-                            onClick={[Function]}
-                            style={Object {}}
-                            target="_self"
-                        >
-                            <react-truncate-markup
-                                lines={1}
-                            >
-                                <span
-                                    data-cy="shortlist-element-title"
-                                >
-                                    some title1
-                                </span>
-                            </react-truncate-markup>
-                        </a>
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--taxonomy-description"
-                    >
-                        some description1
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--origin"
-                    >
-                        Minder om noget1
-                    </div>
-                </div>
-                <i
-                    className="material-icons remove-btn"
-                    onClick={[Function]}
-                >
-                    clear
-                </i>
+              some description3
             </div>
-        </span>
+            <div
+              className="top-bar-dropdown-list-element--origin"
+            >
+              Minder om noget3
+            </div>
+          </div>
+          <i
+            className="material-icons remove-btn"
+            onClick={[Function]}
+          >
+            clear
+          </i>
+        </div>
+        <div
+          className="top-bar-dropdown-list-element"
+        >
+          <div
+            className="top-bar-dropdown-list-element--cover-image"
+          >
+            <a
+              className="list-card-nohover"
+              data-cy=""
+              href="/værk/pid2"
+              onClick={[Function]}
+              style={Object {}}
+              target="_self"
+            >
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid2",
+                    "taxonomy_description": "some description2",
+                    "title": "some title2",
+                  }
+                }
+                hideCoverText={true}
+              />
+            </a>
+          </div>
+          <div
+            className="top-bar-dropdown-list-element--text"
+          >
+            <div
+              className="top-bar-dropdown-list-element--header"
+            >
+              <a
+                className="list-card-nohover"
+                data-cy=""
+                href="/værk/pid2"
+                onClick={[Function]}
+                style={Object {}}
+                target="_self"
+              >
+                <react-truncate-markup
+                  lines={1}
+                >
+                  <span
+                    data-cy="shortlist-element-title"
+                  >
+                    some title2
+                  </span>
+                </react-truncate-markup>
+              </a>
+            </div>
+            <div
+              className="top-bar-dropdown-list-element--taxonomy-description"
+            >
+              some description2
+            </div>
+            <div
+              className="top-bar-dropdown-list-element--origin"
+            >
+              Minder om noget2
+            </div>
+          </div>
+          <i
+            className="material-icons remove-btn"
+            onClick={[Function]}
+          >
+            clear
+          </i>
+        </div>
+        <div
+          className="top-bar-dropdown-list-element"
+        >
+          <div
+            className="top-bar-dropdown-list-element--cover-image"
+          >
+            <a
+              className="list-card-nohover"
+              data-cy=""
+              href="/værk/pid1"
+              onClick={[Function]}
+              style={Object {}}
+              target="_self"
+            >
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid1",
+                    "taxonomy_description": "some description1",
+                    "title": "some title1",
+                  }
+                }
+                hideCoverText={true}
+              />
+            </a>
+          </div>
+          <div
+            className="top-bar-dropdown-list-element--text"
+          >
+            <div
+              className="top-bar-dropdown-list-element--header"
+            >
+              <a
+                className="list-card-nohover"
+                data-cy=""
+                href="/værk/pid1"
+                onClick={[Function]}
+                style={Object {}}
+                target="_self"
+              >
+                <react-truncate-markup
+                  lines={1}
+                >
+                  <span
+                    data-cy="shortlist-element-title"
+                  >
+                    some title1
+                  </span>
+                </react-truncate-markup>
+              </a>
+            </div>
+            <div
+              className="top-bar-dropdown-list-element--taxonomy-description"
+            >
+              some description1
+            </div>
+            <div
+              className="top-bar-dropdown-list-element--origin"
+            >
+              Minder om noget1
+            </div>
+          </div>
+          <i
+            className="material-icons remove-btn"
+            onClick={[Function]}
+          >
+            clear
+          </i>
+        </div>
+      </span>
     </div>
     <div
-        className="top-bar-dropdown-list--footer"
+      className="top-bar-dropdown-list--footer"
     >
-        <div
-            onClick={[Function]}
+      <div
+        onClick={[Function]}
+      >
+        <button
+          className="
+      btn Button Button__medium Button__tertiary "
+          data-cy="shortlist-dropdown-visit-shortlist"
+          disabled={false}
         >
-            <button
-                className="
-                  btn Button Button__medium Button__tertiary "
-                data-cy="shortlist-dropdown-visit-shortlist"
-                disabled={false}
-            >
-                
-                <span>
-                    Gå til huskeliste
-                </span>
-                
-            </button>
-        </div>
-        <div
-            onClick={[Function]}
+          
+          <span>
+            Gå til huskeliste
+          </span>
+          
+        </button>
+      </div>
+      <div
+        onClick={[Function]}
+      >
+        <button
+          className="
+      btn Button Button__medium Button__tertiary "
+          data-cy=""
+          disabled={false}
         >
-            <button
-                className="
-                  btn Button Button__medium Button__tertiary "
-                data-cy=""
-                disabled={false}
-            >
-                
-                <span>
-                    Lån alle bøger
-                </span>
-                
-            </button>
-        </div>
+          
+          <span>
+            Lån alle bøger
+          </span>
+          
+        </button>
+      </div>
     </div>
-</div>,
+  </div>,
 ]
 `;
 
@@ -602,160 +600,159 @@ exports[`ShortListDropDown short list contains single element 1`] = `
 Array [
   <div
     className="undefined top-bar-dropdown-list"
-    data-cy={undefined}
     onClick={[Function]}
->
+  >
     <span
-        className="short-badge"
+      className="short-badge"
     >
-        (1)
+      (1)
     </span>
-</div>,
+  </div>,
   <div
     className="top-bar-dropdown-list--content text-left
          slide-out
         "
->
+  >
     <i
-        className="material-icons top-bar-dropdown-list--close-btn"
-        onClick={[Function]}
+      className="material-icons top-bar-dropdown-list--close-btn"
+      onClick={[Function]}
     >
-        clear
+      clear
     </i>
     <a
-        className="list-card-nohover"
-        data-cy=""
-        href="/huskeliste"
-        onClick={[Function]}
-        style={Object {}}
-        target="_self"
+      className="list-card-nohover"
+      data-cy=""
+      href="/huskeliste"
+      onClick={[Function]}
+      style={Object {}}
+      target="_self"
     >
-        <p
-            className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
-            style={
-                Object {
-                    "marginBottom": "10px",
-                  }
-            }
-        >
-            Huskeliste (1)
-        </p>
+      <p
+        className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
+        style={
+          Object {
+            "marginBottom": "10px",
+          }
+        }
+      >
+        Huskeliste (1)
+      </p>
     </a>
     <div
-        className="top-bar-dropdown-list--empty-text text-center d-none"
+      className="top-bar-dropdown-list--empty-text text-center d-none"
     />
     <div
-        className="top-bar-dropdown-list--elements"
+      className="top-bar-dropdown-list--elements"
     >
-        <span>
-            <div
-                className="top-bar-dropdown-list-element"
+      <span>
+        <div
+          className="top-bar-dropdown-list-element"
+        >
+          <div
+            className="top-bar-dropdown-list-element--cover-image"
+          >
+            <a
+              className="list-card-nohover"
+              data-cy=""
+              href="/værk/pid1"
+              onClick={[Function]}
+              style={Object {}}
+              target="_self"
             >
-                <div
-                    className="top-bar-dropdown-list-element--cover-image"
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid1",
+                    "taxonomy_description": "some description1",
+                    "title": "some title1",
+                  }
+                }
+                hideCoverText={true}
+              />
+            </a>
+          </div>
+          <div
+            className="top-bar-dropdown-list-element--text"
+          >
+            <div
+              className="top-bar-dropdown-list-element--header"
+            >
+              <a
+                className="list-card-nohover"
+                data-cy=""
+                href="/værk/pid1"
+                onClick={[Function]}
+                style={Object {}}
+                target="_self"
+              >
+                <react-truncate-markup
+                  lines={1}
                 >
-                    <a
-                        className="list-card-nohover"
-                        data-cy=""
-                        href="/værk/pid1"
-                        onClick={[Function]}
-                        style={Object {}}
-                        target="_self"
-                    >
-                        <BookCover
-                            book={
-                                Object {
-                                    "pid": "pid1",
-                                    "taxonomy_description": "some description1",
-                                    "title": "some title1",
-                                  }
-                            }
-                            hideCoverText={true}
-                        />
-                    </a>
-                </div>
-                <div
-                    className="top-bar-dropdown-list-element--text"
-                >
-                    <div
-                        className="top-bar-dropdown-list-element--header"
-                    >
-                        <a
-                            className="list-card-nohover"
-                            data-cy=""
-                            href="/værk/pid1"
-                            onClick={[Function]}
-                            style={Object {}}
-                            target="_self"
-                        >
-                            <react-truncate-markup
-                                lines={1}
-                            >
-                                <span
-                                    data-cy="shortlist-element-title"
-                                >
-                                    some title1
-                                </span>
-                            </react-truncate-markup>
-                        </a>
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--taxonomy-description"
-                    >
-                        some description1
-                    </div>
-                    <div
-                        className="top-bar-dropdown-list-element--origin"
-                    >
-                        Minder om noget1
-                    </div>
-                </div>
-                <i
-                    className="material-icons remove-btn"
-                    onClick={[Function]}
-                >
-                    clear
-                </i>
+                  <span
+                    data-cy="shortlist-element-title"
+                  >
+                    some title1
+                  </span>
+                </react-truncate-markup>
+              </a>
             </div>
-        </span>
+            <div
+              className="top-bar-dropdown-list-element--taxonomy-description"
+            >
+              some description1
+            </div>
+            <div
+              className="top-bar-dropdown-list-element--origin"
+            >
+              Minder om noget1
+            </div>
+          </div>
+          <i
+            className="material-icons remove-btn"
+            onClick={[Function]}
+          >
+            clear
+          </i>
+        </div>
+      </span>
     </div>
     <div
-        className="top-bar-dropdown-list--footer"
+      className="top-bar-dropdown-list--footer"
     >
-        <div
-            onClick={[Function]}
+      <div
+        onClick={[Function]}
+      >
+        <button
+          className="
+      btn Button Button__medium Button__tertiary "
+          data-cy="shortlist-dropdown-visit-shortlist"
+          disabled={false}
         >
-            <button
-                className="
-                  btn Button Button__medium Button__tertiary "
-                data-cy="shortlist-dropdown-visit-shortlist"
-                disabled={false}
-            >
-                
-                <span>
-                    Gå til huskeliste
-                </span>
-                
-            </button>
-        </div>
-        <div
-            onClick={[Function]}
+          
+          <span>
+            Gå til huskeliste
+          </span>
+          
+        </button>
+      </div>
+      <div
+        onClick={[Function]}
+      >
+        <button
+          className="
+      btn Button Button__medium Button__tertiary "
+          data-cy=""
+          disabled={false}
         >
-            <button
-                className="
-                  btn Button Button__medium Button__tertiary "
-                data-cy=""
-                disabled={false}
-            >
-                
-                <span>
-                    Lån alle bøger
-                </span>
-                
-            </button>
-        </div>
+          
+          <span>
+            Lån alle bøger
+          </span>
+          
+        </button>
+      </div>
     </div>
-</div>,
+  </div>,
 ]
 `;
 
@@ -763,77 +760,76 @@ exports[`ShortListDropDown short list is empty and merge modal is hidden 1`] = `
 Array [
   <div
     className="undefined top-bar-dropdown-list"
-    data-cy={undefined}
     onClick={[Function]}
->
+  >
     <span
-        className="short-badge"
+      className="short-badge"
     >
-        (0)
+      (0)
     </span>
-</div>,
+  </div>,
   <div
     className="top-bar-dropdown-list--content text-left
          slide-out
          empty-list"
->
+  >
     <i
-        className="material-icons top-bar-dropdown-list--close-btn"
-        onClick={[Function]}
+      className="material-icons top-bar-dropdown-list--close-btn"
+      onClick={[Function]}
     >
-        clear
+      clear
     </i>
     <p
-        className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
-        style={
-            Object {
-                "marginBottom": "10px",
-              }
+      className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
+      style={
+        Object {
+          "marginBottom": "10px",
         }
+      }
     >
-        Huskeliste (0)
+      Huskeliste (0)
     </p>
     <div
-        className="top-bar-dropdown-list--empty-text text-center "
+      className="top-bar-dropdown-list--empty-text text-center "
     >
-        Din huskeliste er tom
+      Din huskeliste er tom
     </div>
     <div
-        className="top-bar-dropdown-list--footer"
+      className="top-bar-dropdown-list--footer"
     >
-        <div
-            onClick={[Function]}
+      <div
+        onClick={[Function]}
+      >
+        <button
+          className="
+      btn Button Button__medium Button__tertiary "
+          data-cy="shortlist-dropdown-visit-shortlist"
+          disabled={true}
         >
-            <button
-                className="
-                  btn Button Button__medium Button__tertiary "
-                data-cy="shortlist-dropdown-visit-shortlist"
-                disabled={true}
-            >
-                
-                <span>
-                    Gå til huskeliste
-                </span>
-                
-            </button>
-        </div>
-        <div
-            onClick={[Function]}
+          
+          <span>
+            Gå til huskeliste
+          </span>
+          
+        </button>
+      </div>
+      <div
+        onClick={[Function]}
+      >
+        <button
+          className="
+      btn Button Button__medium Button__tertiary "
+          data-cy=""
+          disabled={true}
         >
-            <button
-                className="
-                  btn Button Button__medium Button__tertiary "
-                data-cy=""
-                disabled={true}
-            >
-                
-                <span>
-                    Lån alle bøger
-                </span>
-                
-            </button>
-        </div>
+          
+          <span>
+            Lån alle bøger
+          </span>
+          
+        </button>
+      </div>
     </div>
-</div>,
+  </div>,
 ]
 `;

@@ -101,6 +101,7 @@ class ReviewList extends React.Component {
       );
     });
   }
+
   render() {
     const work = this.props.work;
 
@@ -110,7 +111,11 @@ class ReviewList extends React.Component {
         }
       : {};
 
-    const reviewList = this.renderReviewList();
+    let reviewList = this.renderReviewList();
+
+    if (work.reviewsHasLoaded && reviewList[0].length === 0) {
+      reviewList = <T component="work" name="noReviews" />;
+    }
     return (
       <React.Fragment>
         <div

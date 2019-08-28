@@ -175,8 +175,8 @@ exports[`renders without crashing 1`] = `
         </div>
         <div
           className="top-bar-dropdown-list--content text-left
-                 slide-out
-                 empty-list"
+         slide-out
+         empty-list"
         >
           <i
             className="material-icons top-bar-dropdown-list--close-btn"
@@ -207,7 +207,7 @@ exports[`renders without crashing 1`] = `
             >
               <button
                 className="
-                    btn Button Button__medium Button__tertiary "
+      btn Button Button__medium Button__tertiary "
                 data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={true}
               >
@@ -223,7 +223,7 @@ exports[`renders without crashing 1`] = `
             >
               <button
                 className="
-                    btn Button Button__medium Button__tertiary "
+      btn Button Button__medium Button__tertiary "
                 data-cy=""
                 disabled={true}
               >
@@ -366,20 +366,6 @@ exports[`renders without crashing 1`] = `
             </span>
           </a>
         </li>
-        <li>
-          <a
-            className="list-card-nohover"
-            data-cy="edit-start-page"
-            href="/redaktionen"
-            onClick={[Function]}
-            style={Object {}}
-            target="_self"
-          >
-            <span>
-              Redaktionen
-            </span>
-          </a>
-        </li>
         <li
           className="divider"
         />
@@ -406,41 +392,29 @@ exports[`renders without crashing 1`] = `
       <div>
         <TagsBelt
           child={false}
-          id="Mennesket og Naturen"
+          id="Jeg elsker dig"
           isLoading={false}
-          mount="frontpage[{\\"id\\":5329,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5280,\\"weight\\":1},{\\"id\\":5277,\\"weight\\":1},{\\"id\\":2183,\\"weight\\":1},{\\"id\\":2278,\\"weight\\":1}]"
-          name="Mennesket og Naturen"
+          mount="frontpage[{\\"id\\":5660,\\"weight\\":10},{\\"id\\":189,\\"weight\\":10},{\\"id\\":5637,\\"weight\\":1},{\\"id\\":3431,\\"weight\\":10}]"
+          name="Jeg elsker dig"
           onFrontPage={true}
-          subtext="Menneskers identitet bliver sat i spil, når de forlader hverdagen og møder naturen."
+          subtext="Er der noget bedre end at læse en bog fuld af kærlighed i sommervarmen?"
           tags={
             Array [
               Object {
-                "id": 5329,
+                "id": 5660,
                 "weight": 10,
               },
               Object {
-                "id": 3510,
+                "id": 189,
                 "weight": 10,
               },
               Object {
-                "id": 5731,
+                "id": 5637,
                 "weight": 1,
               },
               Object {
-                "id": 5280,
-                "weight": 1,
-              },
-              Object {
-                "id": 5277,
-                "weight": 1,
-              },
-              Object {
-                "id": 2183,
-                "weight": 1,
-              },
-              Object {
-                "id": 2278,
-                "weight": 1,
+                "id": 3431,
+                "weight": 10,
               },
             ]
           }
@@ -448,40 +422,28 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="Hvad sker der bag hækken?"
+          id="Historiske romaner"
           isLoading={false}
-          mount="frontpage[{\\"id\\":2683,\\"weight\\":1},{\\"id\\":4907,\\"weight\\":10},{\\"id\\":5368,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5670,\\"weight\\":1},{\\"id\\":5676,\\"weight\\":1},{\\"id\\":5691,\\"weight\\":1}]"
-          name="Hvad sker der bag hækken?"
+          mount="frontpage[{\\"id\\":4901,\\"weight\\":10},{\\"id\\":5660,\\"weight\\":1},{\\"id\\":5658,\\"weight\\":1},{\\"id\\":189,\\"weight\\":1}]"
+          name="Historiske romaner"
           onFrontPage={true}
-          subtext="Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger."
+          subtext="Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær."
           tags={
             Array [
               Object {
-                "id": 2683,
-                "weight": 1,
-              },
-              Object {
-                "id": 4907,
+                "id": 4901,
                 "weight": 10,
               },
               Object {
-                "id": 5368,
-                "weight": 10,
-              },
-              Object {
-                "id": 5731,
+                "id": 5660,
                 "weight": 1,
               },
               Object {
-                "id": 5670,
+                "id": 5658,
                 "weight": 1,
               },
               Object {
-                "id": 5676,
-                "weight": 1,
-              },
-              Object {
-                "id": 5691,
+                "id": 189,
                 "weight": 1,
               },
             ]
@@ -491,6 +453,44 @@ exports[`renders without crashing 1`] = `
       </div>
       <SpotsContainer />
       <div>
+        <TagsBelt
+          child={false}
+          id="Fart over feltet"
+          isLoading={false}
+          mount="frontpage[{\\"id\\":5633,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5676,\\"weight\\":1},{\\"id\\":5672,\\"weight\\":1},{\\"id\\":5670,\\"weight\\":1},{\\"id\\":5674,\\"weight\\":1}]"
+          name="Fart over feltet"
+          onFrontPage={true}
+          subtext="Læser du for at lade dig rive med, er bøgerne her gode forslag til dig. "
+          tags={
+            Array [
+              Object {
+                "id": 5633,
+                "weight": 10,
+              },
+              Object {
+                "id": 5731,
+                "weight": 1,
+              },
+              Object {
+                "id": 5676,
+                "weight": 1,
+              },
+              Object {
+                "id": 5672,
+                "weight": 1,
+              },
+              Object {
+                "id": 5670,
+                "weight": 1,
+              },
+              Object {
+                "id": 5674,
+                "weight": 1,
+              },
+            ]
+          }
+          type="belt"
+        />
         <TagsBelt
           child={false}
           id="Livskloge bøger"
@@ -637,46 +637,24 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="Jeg elsker dig"
+          id="Hvad sker der bag hækken?"
           isLoading={false}
-          mount="frontpage[{\\"id\\":5660,\\"weight\\":10},{\\"id\\":189,\\"weight\\":10},{\\"id\\":5637,\\"weight\\":1},{\\"id\\":3431,\\"weight\\":10}]"
-          name="Jeg elsker dig"
+          mount="frontpage[{\\"id\\":2683,\\"weight\\":1},{\\"id\\":4907,\\"weight\\":10},{\\"id\\":5368,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5670,\\"weight\\":1},{\\"id\\":5676,\\"weight\\":1},{\\"id\\":5691,\\"weight\\":1}]"
+          name="Hvad sker der bag hækken?"
           onFrontPage={true}
-          subtext="Er der noget bedre end at læse en bog fuld af kærlighed i sommervarmen?"
+          subtext="Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger."
           tags={
             Array [
               Object {
-                "id": 5660,
-                "weight": 10,
-              },
-              Object {
-                "id": 189,
-                "weight": 10,
-              },
-              Object {
-                "id": 5637,
+                "id": 2683,
                 "weight": 1,
               },
               Object {
-                "id": 3431,
+                "id": 4907,
                 "weight": 10,
               },
-            ]
-          }
-          type="belt"
-        />
-        <TagsBelt
-          child={false}
-          id="Fart over feltet"
-          isLoading={false}
-          mount="frontpage[{\\"id\\":5633,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5676,\\"weight\\":1},{\\"id\\":5672,\\"weight\\":1},{\\"id\\":5670,\\"weight\\":1},{\\"id\\":5674,\\"weight\\":1}]"
-          name="Fart over feltet"
-          onFrontPage={true}
-          subtext="Læser du for at lade dig rive med, er bøgerne her gode forslag til dig. "
-          tags={
-            Array [
               Object {
-                "id": 5633,
+                "id": 5368,
                 "weight": 10,
               },
               Object {
@@ -684,19 +662,57 @@ exports[`renders without crashing 1`] = `
                 "weight": 1,
               },
               Object {
-                "id": 5676,
-                "weight": 1,
-              },
-              Object {
-                "id": 5672,
-                "weight": 1,
-              },
-              Object {
                 "id": 5670,
                 "weight": 1,
               },
               Object {
-                "id": 5674,
+                "id": 5676,
+                "weight": 1,
+              },
+              Object {
+                "id": 5691,
+                "weight": 1,
+              },
+            ]
+          }
+          type="belt"
+        />
+        <TagsBelt
+          child={false}
+          id="Mennesket og Naturen"
+          isLoading={false}
+          mount="frontpage[{\\"id\\":5329,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5280,\\"weight\\":1},{\\"id\\":5277,\\"weight\\":1},{\\"id\\":2183,\\"weight\\":1},{\\"id\\":2278,\\"weight\\":1}]"
+          name="Mennesket og Naturen"
+          onFrontPage={true}
+          subtext="Menneskers identitet bliver sat i spil, når de forlader hverdagen og møder naturen."
+          tags={
+            Array [
+              Object {
+                "id": 5329,
+                "weight": 10,
+              },
+              Object {
+                "id": 3510,
+                "weight": 10,
+              },
+              Object {
+                "id": 5731,
+                "weight": 1,
+              },
+              Object {
+                "id": 5280,
+                "weight": 1,
+              },
+              Object {
+                "id": 5277,
+                "weight": 1,
+              },
+              Object {
+                "id": 2183,
+                "weight": 1,
+              },
+              Object {
+                "id": 2278,
                 "weight": 1,
               },
             ]
@@ -927,40 +943,20 @@ exports[`renders without crashing 1`] = `
           }
           type="belt"
         />
-        <TagsBelt
-          child={false}
-          id="Historiske romaner"
-          isLoading={false}
-          mount="frontpage[{\\"id\\":4901,\\"weight\\":10},{\\"id\\":5660,\\"weight\\":1},{\\"id\\":5658,\\"weight\\":1},{\\"id\\":189,\\"weight\\":1}]"
-          name="Historiske romaner"
-          onFrontPage={true}
-          subtext="Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær."
-          tags={
-            Array [
-              Object {
-                "id": 4901,
-                "weight": 10,
-              },
-              Object {
-                "id": 5660,
-                "weight": 1,
-              },
-              Object {
-                "id": 5658,
-                "weight": 1,
-              },
-              Object {
-                "id": 189,
-                "weight": 1,
-              },
-            ]
-          }
-          type="belt"
-        />
       </div>
       <ListsBelt
         limit={50}
+        mount="frontpage-lists"
         sort="created"
+        title={
+          <span
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<strong>Nyeste</strong> brugerlister",
+              }
+            }
+          />
+        }
       />
     </div>
   </div>
@@ -997,7 +993,7 @@ exports[`renders without crashing 1`] = `
       >
         <button
           className="
-              btn Button Button__medium Button__primary Button__primary--bgcolor-petroleum--color-white"
+      btn Button Button__medium Button__primary Button__primary--bgcolor-petroleum--color-white"
           data-cy=""
           disabled={false}
           onClick={[Function]}
@@ -1019,7 +1015,7 @@ exports[`renders without crashing 1`] = `
   >
     <button
       className="Button__feedback
-          btn Button Button__medium Button__secondary "
+      btn Button Button__medium Button__secondary "
       data-cy=""
       disabled={false}
       onClick={[Function]}

@@ -2,7 +2,21 @@
 
 exports[`Image Upload render function Add image 1`] = `
 <CreateProfilePage
-  addImage={[Function]}
+  addImage={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
 >
   <div
     className="profile__edit-content"
@@ -156,7 +170,21 @@ exports[`Image Upload render function Add image 1`] = `
             <ProfileUploadImage
               activateSaveButton={[Function]}
               baseImage="/img/general/user-placeholder-thumbnail.svg"
-              onFile={[Function]}
+              onFile={
+                [MockFunction] {
+                  "calls": Array [
+                    Array [
+                      "data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+                    ],
+                  ],
+                  "results": Array [
+                    Object {
+                      "type": "return",
+                      "value": undefined,
+                    },
+                  ],
+                }
+              }
               thumbnailImageHover="/img/general/user-placeholder-thumbnail-hover.svg"
             >
               <div
@@ -337,7 +365,7 @@ exports[`Image Upload render function Add image 1`] = `
                       >
                         <button
                           className="
-                              btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                           data-cy="user-form-cancel"
                           disabled={false}
                           onClick={[Function]}
@@ -366,7 +394,7 @@ exports[`Image Upload render function Add image 1`] = `
                       >
                         <button
                           className="
-                              btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                           data-cy="user-form-submit"
                           disabled={false}
                         >
@@ -438,7 +466,6 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                   <input
                     accept="image/png, image/jpeg"
                     className="droppable-image-field--file-input"
-                    name={undefined}
                     onChange={[Function]}
                     type="file"
                   />
@@ -540,7 +567,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               >
                 <button
                   className="
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy="user-form-cancel"
                   disabled={false}
                   onClick={[Function]}
@@ -558,7 +585,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                 </button>
                 <button
                   className="
-                      btn Button Button__medium Button__quaternary "
+      btn Button Button__medium Button__quaternary "
                   data-cy="user-form-submit"
                   disabled={true}
                 >

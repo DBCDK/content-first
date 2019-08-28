@@ -18,6 +18,7 @@ import Link from '../../general/Link.component';
 import scroll from '../../../utils/scroll';
 import {withWork} from '../../hoc/Work';
 import ReviewList from '../Review/ReviewList.component';
+import ListsBelt from '../../base/Belt/ListsBelt.container';
 
 import {HISTORY_NEW_TAB} from '../../../redux/middleware';
 
@@ -64,6 +65,15 @@ class WorkPage extends React.Component {
     const reviews = this.props.filterReviews(work);
     // sort tags by group
     const tags = this.props.sortTags(work);
+
+    const priorityTagsArr = book.tags.filter(e => e.score > 1).slice(0, 6);
+    if (priorityTagsArr.length > 0) {
+      tags.unshift({
+        title: T({component: 'work', name: 'readerExpTitle'}),
+        data: priorityTagsArr
+      });
+    }
+
     // tags collapsable variables
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
@@ -143,14 +153,15 @@ class WorkPage extends React.Component {
                   <Title Tag="h3" type="title3" className="mt0">
                     {book.title}
                   </Title>
-                  <Link
-                    href={'/find?tags=' + encodeURI(book.creator)}
-                    className="book-creator-name"
-                  >
-                    <Title Tag="h2" type="title5" className="mt1">
+
+                  <Title Tag="h2" type="title5" className="mt1">
+                    <Link
+                      href={'/find?tags=' + encodeURI(book.creator)}
+                      className="book-creator-name"
+                    >
                       {book.creator}
-                    </Title>
-                  </Link>
+                    </Link>
+                  </Title>
 
                   <Text type="body" variant="weight-semibold" className="mt1">
                     {<TaxDescription text={tax_description} />}
@@ -319,7 +330,7 @@ class WorkPage extends React.Component {
                             type="body"
                             className="WorkPage__tagHeading mb0 mt0"
                           >
-                            {group.title + ':'}
+                            {group.title}
                           </Text>
                           {group.data.map(t => {
                             return (
@@ -417,6 +428,18 @@ class WorkPage extends React.Component {
               className="mt-xl-5"
             />
           )}
+
+          <ListsBelt
+            pid={book.pid}
+            mount={'aggregation-lists-' + book.pid}
+            title={
+              <span>
+                <strong>Lister med</strong> {book.title}
+              </span>
+            }
+            sort="created"
+            limit={50}
+          />
         </div>
       </div>
     );

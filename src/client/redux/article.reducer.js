@@ -1,6 +1,7 @@
 /* eslint import/no-webpack-loader-syntax: off */
 import About from '!raw-loader!../components/article/pages/about.md';
 import NotFound from '!raw-loader!../components/article/pages/404.md';
+import LoginError from '!raw-loader!../components/article/pages/loginError.md';
 
 const defaultState = {
   articles: {
@@ -22,8 +23,18 @@ const defaultState = {
       },
       src: About
     },
-    '/404': {
+    '/loginfejl': {
       id: 2,
+      name: 'loginfejl',
+      meta: {
+        title: 'Kompasset blev forvirret',
+        canonical: '/loginfejl',
+        robots: 'noindex'
+      },
+      src: LoginError
+    },
+    '/404': {
+      id: 3,
       name: '404',
       meta: {
         title: '404 - Siden blev ikke fundet',

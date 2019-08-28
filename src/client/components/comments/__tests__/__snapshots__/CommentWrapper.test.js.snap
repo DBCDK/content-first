@@ -13,7 +13,7 @@ exports[`CommentContainer Delete button 1`] = `
       },
     }
   }
-  deleteComment={[Function]}
+  deleteComment={[MockFunction]}
   user={
     Object {
       "name": "Benny Cosmos",
@@ -799,8 +799,6 @@ exports[`CommentContainer Render edit form 1`] = `
   
   <div
     className="ContextMenu comment-wrapper-context-menu"
-    data-cy={undefined}
-    style={undefined}
   >
     <div
       className="dropdown-toggle"
@@ -954,8 +952,6 @@ exports[`CommentContainer Render save form 1`] = `
   </div>
   <div
     className="ContextMenu comment-wrapper-context-menu"
-    data-cy={undefined}
-    style={undefined}
   >
     <div
       className="dropdown-toggle"
@@ -1099,8 +1095,8 @@ exports[`CommentContainer Save button 1`] = `
       },
     }
   }
-  editComment={[Function]}
-  toggleEdit={[Function]}
+  editComment={[MockFunction]}
+  toggleEdit={[MockFunction]}
   user={
     Object {
       "name": "Benny Cosmos",

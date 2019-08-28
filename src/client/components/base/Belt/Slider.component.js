@@ -79,6 +79,7 @@ class DesktopSlider extends React.Component {
       isEnd: this.swiper.isEnd,
       index: this.swiper.realIndex
     });
+
     if (this.props.onSwipe) {
       this.props.onSwipe(
         this.swiper.isEnd
@@ -87,6 +88,7 @@ class DesktopSlider extends React.Component {
       );
     }
   };
+
   componentDidUpdate(prevProps) {
     if (prevProps.children !== this.props.children) {
       if (this.swiper) {

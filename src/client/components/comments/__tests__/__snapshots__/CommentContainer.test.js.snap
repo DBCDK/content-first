@@ -36,7 +36,6 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
         >
           <div
             className="Skeleton__user__wrap Skeleton__pulse__active"
-            style={undefined}
           >
             <span
               className="Skeleton__user "
@@ -79,9 +78,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
           }
         >
           <textarea
-            autoFocus={undefined}
             className="comment-textarea border-0 pl-3"
-            disabled={undefined}
             name="list-description"
             onChange={[Function]}
             placeholder="Din kommentar ..."
@@ -138,7 +135,6 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
         >
           <div
             className="Skeleton__user__wrap Skeleton__pulse__active"
-            style={undefined}
           >
             <span
               className="Skeleton__user "
@@ -181,9 +177,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
           }
         >
           <textarea
-            autoFocus={undefined}
             className="comment-textarea border-0 pl-3"
-            disabled={undefined}
             name="list-description"
             onChange={[Function]}
             placeholder="Din kommentar ..."
@@ -291,7 +285,21 @@ exports[`CommentContainer Component renders all comments 1`] = `
       },
     ]
   }
-  fetchComments={[Function]}
+  fetchComments={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "some_id",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   id="some_id"
   user={
     Object {
@@ -629,7 +637,6 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
         >
           <div
             className="Skeleton__user__wrap Skeleton__pulse__active"
-            style={undefined}
           >
             <span
               className="Skeleton__user "
@@ -672,9 +679,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
           }
         >
           <textarea
-            autoFocus={undefined}
             className="comment-textarea border-0 pl-3"
-            disabled={undefined}
             name="list-description"
             onChange={[Function]}
             placeholder="Din kommentar ..."
@@ -708,7 +713,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
               Object {
                 "_id": "comment",
                 "comment": "This is a comment with ❤️ and links.com 
-               and line breaks",
+ and line breaks",
                 "user": Object {
                   "name": "Benny Cosmos",
                 },
@@ -750,7 +755,21 @@ exports[`CommentContainer Component renders error 1`] = `
       "error": "some error occures",
     }
   }
-  fetchComments={[Function]}
+  fetchComments={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "some_id",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   id="some_id"
   user={
     Object {
@@ -1017,7 +1036,21 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
       },
     ]
   }
-  fetchComments={[Function]}
+  fetchComments={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "some_id",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   id="some_id"
   user={
     Object {
@@ -1295,7 +1328,21 @@ exports[`CommentContainer Toggle all comments 1`] = `
       },
     ]
   }
-  fetchComments={[Function]}
+  fetchComments={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "some_id",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   id="some_id"
   user={
     Object {
@@ -1586,7 +1633,21 @@ exports[`CommentContainer Toggle all comments 2`] = `
       },
     ]
   }
-  fetchComments={[Function]}
+  fetchComments={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "some_id",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   id="some_id"
   user={
     Object {

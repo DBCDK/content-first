@@ -15,7 +15,7 @@ const cache = new NodeCache({stdTTL: 60 * 60 * 4}); // Time to live is 4 hours
 const {
   subjectsToTaxonomyDescription,
   fromTitle
-} = require('../client/utils/taxonomy');
+} = require('../client/utils/booksTaxonomy');
 const {fetchAnonymousToken} = require('./smaug');
 
 /* eslint-disable complexity */
@@ -24,6 +24,7 @@ const getWork = (
   pid,
   dcTitle,
   creator,
+  creatorAut,
   abstract,
   extent,
   dcLanguage,
@@ -31,6 +32,7 @@ const getWork = (
   identifierISBN,
   subjectDBCS,
   subjectDBCF,
+  spatialDBCS,
   spatialDBCF,
   temporalDBCP,
   coverUrlFull
@@ -40,6 +42,7 @@ const getWork = (
     [
       ...(subjectDBCS || []),
       ...(subjectDBCF || []),
+      ...(spatialDBCS || []),
       ...(spatialDBCF || []),
       ...(temporalDBCP || [])
     ]
@@ -51,7 +54,8 @@ const getWork = (
     book: {
       pid,
       title: (dcTitle && dcTitle[0]) || '',
-      creator: (creator && creator[0]) || '',
+      creator: (creatorAut && creatorAut[0]) || (creator && creator[0]) || '',
+      creatorAut: (creatorAut && creatorAut[0]) || '',
       description: (abstract && abstract[0]) || '',
       identifierISBN: identifierISBN || '',
       pages: (extent && extent[0] && parseInt(extent[0], 10)) || '',
@@ -82,6 +86,7 @@ const fetchWork = async pid => {
   const {
     dcTitle,
     creator,
+    creatorAut,
     abstract,
     extent,
     dcLanguage,
@@ -89,6 +94,7 @@ const fetchWork = async pid => {
     identifierISBN,
     subjectDBCS,
     subjectDBCF,
+    spatialDBCS,
     spatialDBCF,
     temporalDBCP,
     coverUrlFull
@@ -97,6 +103,7 @@ const fetchWork = async pid => {
     fields: [
       'dcTitle',
       'creator',
+      'creatorAut',
       'abstract',
       'extent',
       'dcLanguage',
@@ -104,6 +111,7 @@ const fetchWork = async pid => {
       'identifierISBN',
       'subjectDBCS',
       'subjectDBCF',
+      'spatialDBCS',
       'spatialDBCF',
       'temporalDBCP',
       'coverUrlFull'
@@ -116,6 +124,7 @@ const fetchWork = async pid => {
     pid,
     dcTitle,
     creator,
+    creatorAut,
     abstract,
     extent,
     dcLanguage,
@@ -123,6 +132,7 @@ const fetchWork = async pid => {
     identifierISBN,
     subjectDBCS,
     subjectDBCF,
+    spatialDBCS,
     spatialDBCF,
     temporalDBCP,
     coverUrlFull

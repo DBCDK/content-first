@@ -19,7 +19,6 @@ const Row = withIsVisible(
       <div
         data-cy={'container-row'}
         className="d-flex justify-content-around justify-content-md-between px-0 px-sm-3 px-lg-5 pt-5 "
-        ref={container => (this.refs = {...this.refs, container})}
       >
         {pids.map((pid, idx) => (
           <WorkCard

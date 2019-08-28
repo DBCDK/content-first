@@ -4,10 +4,9 @@ import {Parallax, Background} from 'react-parallax';
 import Button from '../../base/Button';
 import Link from '../../general/Link.component';
 
-import {getLeavesMap, tagsToUrlParams} from '../../../utils/taxonomy';
-
 import '../Hero.css';
 import './InteractionSlide.css';
+import {getLeavesMap, tagsToUrlParams} from '../../../utils/taxonomy';
 
 const leavesMap = getLeavesMap();
 

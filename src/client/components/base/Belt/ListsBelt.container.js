@@ -1,75 +1,106 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {get} from 'lodash';
 import withIsVisible from '../../hoc/Scroll/withIsVisible.hoc';
 import {withListAggregation} from '../../hoc/Aggregation';
 import ListCard from '../../list/card/ListCard.component';
+import {UPDATE_MOUNT} from '../../../redux/mounts.reducer';
 import Title from '../Title';
-import T from '../T';
 import Slider from './Slider.component';
-
-const skeletonCards = [];
-for (let i = 0; i < 20; i++) {
-  skeletonCards.push(
-    <ListCard skeleton={true} style={{width: '250px'}} key={i} list={{id: i}} />
-  );
-}
 
 /**
  *
- * withListAggregationHoc
+ * ListsBelt
  *
  * @param {string} sort 'num_items' (default) | 'num_follows' | 'num_comments' | '_created' | '_modified'
- * @param {string} pid
- * @return {Array} - returns array of data aggregated lists.
+ * @param {string} title - belt title
+ * @param {int} limit - limit results
+ * @param {string} pid - lists containing specific pid
+ * @return {Component}
  **/
 
 export class ListsBelt extends React.Component {
-  constructor() {
-    super();
-    this.state = {didSwipe: false};
+  shouldComponentUpdate(nextProps) {
+    return (
+      nextProps.lists.length !== this.props.lists.length ||
+      this.props.isVisible !== nextProps.isVisible ||
+      this.props.mountedData.scrollPos !== nextProps.mountedData.scrollPos
+    );
   }
 
+  getListsPerSlide = () => {
+    const containerWidth = get(this.refs, 'container.clientWidth', 800);
+    const workCardWidth = get(this.refs, 'workCard.clientWidth', 200);
+    const resultsPerRow = Math.floor(containerWidth / workCardWidth);
+    return resultsPerRow;
+  };
+
   render() {
-    const startIndex = 8;
-    const {didSwipe} = this.state;
-    const {lists, isVisible} = this.props;
-    const isSkeletonBelt = !isVisible || lists.length === 0;
+    const {lists, title = 'Title....', isVisible, mountedData} = this.props;
+    const {didSwipe = false, scrollPos = 0} = mountedData;
+
+    if (lists.length === 0) {
+      return null;
+    }
+
+    const listsPerSlide = this.getListsPerSlide();
 
     return (
-      <div className="belt text-left">
+      <div
+        className="belt text-left"
+        ref={container => (this.refs = {...this.refs, container})}
+      >
         <Title
           Tag="h1"
           type="title4"
           variant="transform-uppercase"
           className="mb-3 mb-md-0 px-2 px-sm-3 px-lg-5 pb-0 pb-sm-3 pt-5"
         >
-          <T component="list" name="recentListsTitle" renderAsHtml={true} />
+          {title}
         </Title>
-        {isSkeletonBelt ? (
-          <Slider>{skeletonCards}</Slider>
-        ) : (
-          <Slider
-            onSwipe={index => {
-              if (index > 0 && !didSwipe) {
-                this.setState({didSwipe: true});
-              }
-            }}
-          >
-            {lists.map((list, i) => {
-              const isSkeletonCard = i > startIndex - 1 && !didSwipe;
-              return (
-                <ListCard
-                  key={list._id}
-                  skeleton={isSkeletonCard}
-                  id={list._id}
-                  list={list}
-                />
-              );
-            })}
-          </Slider>
-        )}
+        <Slider
+          initialScrollPos={scrollPos}
+          onSwipe={index =>
+            this.props.updateMount({didSwipe: true, scrollPos: index})
+          }
+        >
+          {lists.map((list, i) => {
+            return (
+              <ListCard
+                cardRef={card => (this.refs = {...this.refs, card})}
+                isVisible={
+                  didSwipe || (isVisible && i < scrollPos + listsPerSlide * 2)
+                }
+                key={list._id}
+                id={list._id}
+                list={list}
+              />
+            );
+          })}
+        </Slider>
       </div>
     );
   }
 }
 
-export default withListAggregation(withIsVisible(ListsBelt));
+export const mapStateToProps = (state, ownProps) => {
+  return {
+    notInUse_lists: state.listReducer.lists,
+    mountedData: state.mounts[ownProps.mount] || {scrollPos: 0, didSwipe: false}
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  updateMount: data => {
+    dispatch({
+      type: UPDATE_MOUNT,
+      mount: ownProps.mount,
+      data
+    });
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withListAggregation(withIsVisible(ListsBelt)));

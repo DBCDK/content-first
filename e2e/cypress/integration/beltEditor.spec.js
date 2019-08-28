@@ -76,7 +76,7 @@ describe('Start Belt Editor test', function() {
 
   // ======================================================================================
 
-  it('Test Top Bar menu -> Logged in -> Do enter "Start Belt Editor" page', function() {
+  it.skip('Test Top Bar menu -> Logged in -> Do enter "Start Belt Editor" page', function() {
     cy.visit('/');
     cy.get('[data-cy=topbar-logged-in-btn]').click();
     cy.get('[data-cy=edit-start-page] span').click();

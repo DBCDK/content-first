@@ -39,13 +39,6 @@ const getFromTitleMap = (t = taxonomy) => {
   });
   return res;
 };
-let fromTitleMap;
-const fromTitle = title => {
-  if (!fromTitleMap) {
-    fromTitleMap = getFromTitleMap();
-  }
-  return fromTitleMap[title.toLowerCase()];
-};
 
 const isRange = tagId => Array.isArray(tagId) && tagId.length === 2;
 const isFullRange = (tagId, fullRange) =>
@@ -104,45 +97,11 @@ const getSelectedRange = (tagId, selectedRange, fullRange) => {
 const tagsToUrlParams = tags =>
   tags.map(id => (isRange(id) ? id.join(':') : id)).join(',');
 
-const upperCaseFirst = str => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-const subjectsToTaxonomyDescription = subjects => {
-  if (!subjects) {
-    return '';
-  }
-  subjects = subjects.slice(0, 6);
-  switch (subjects.length) {
-    case 1:
-      return `${upperCaseFirst(subjects[0])}`;
-    case 2:
-      return `${upperCaseFirst(subjects[0])} og ${subjects[1]}`;
-    case 3:
-      return `${upperCaseFirst(subjects[0])}, ${subjects[1]} og ${subjects[2]}`;
-    case 4:
-      return `${upperCaseFirst(subjects[0])} og ${
-        subjects[1]
-      }\n${upperCaseFirst(subjects[2])} og ${subjects[3]}`;
-    case 5:
-      return `${upperCaseFirst(subjects[0])}, ${subjects[1]} og ${
-        subjects[2]
-      }\n${upperCaseFirst(subjects[3])} og ${subjects[4]}`;
-    case 6:
-      return `${upperCaseFirst(subjects[0])}, ${subjects[1]} og ${
-        subjects[2]
-      }\n${upperCaseFirst(subjects[3])}, ${subjects[4]} og ${subjects[5]}`;
-    case 0:
-    default:
-      return '';
-  }
-};
-
-module.exports = {
+export {
   taxonomy,
   getLeaves,
   getLeavesMap,
   getFromTitleMap,
-  fromTitle,
   isRange,
   isFullRange,
   isSameRange,
@@ -151,6 +110,5 @@ module.exports = {
   getDistances,
   getQueryType,
   getSelectedRange,
-  tagsToUrlParams,
-  subjectsToTaxonomyDescription
+  tagsToUrlParams
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {debounce} from 'lodash';
 
 import {loadListAggragation} from '../../../utils/requester';
 
@@ -8,7 +9,8 @@ import {loadListAggragation} from '../../../utils/requester';
  * withListAggregationHoc
  *
  * @param {string} sort 'num_items' (default) | 'num_follows' | 'num_comments' | '_created' | '_modified'
- * @param {string} pid
+ * @param {int} limit - limit results
+ * @param {string} pid - lists containing specific pid
  * @return {Array} - returns array of data aggregated lists.
  **/
 
@@ -23,26 +25,40 @@ export const withListAggregation = WrappedComponent => {
       this.loadLists();
     }
 
+    componentDidUpdate() {
+      this.loadLists();
+    }
+
     /**
      * LoadLists
      **/
 
-    loadLists = async () => {
-      const {type, sort, limit, pid} = this.props;
+    loadLists = debounce(
+      async () => {
+        const {type, sort, limit, pid} = this.props;
 
-      try {
-        const lists = await loadListAggragation(type, sort, limit, pid);
-        this.setState({lists});
-      } catch (e) {
-        // error handle
+        try {
+          const lists = await loadListAggragation(type, sort, limit, pid);
+          if (lists.length !== this.state.lists.length) {
+            this.setState({lists});
+          }
+        } catch (e) {
+          // error handle
+        }
+      },
+      500,
+      {
+        trailing: true,
+        leading: true
       }
-    };
+    );
 
     render() {
       const {lists} = this.state;
       if (!lists) {
         return null;
       }
+
       return <WrappedComponent {...this.props} lists={this.state.lists} />;
     }
   };
@@ -55,16 +71,11 @@ export const withListAggregation = WrappedComponent => {
     return {
       type,
       sort,
-      pid
+      pid,
+      isFetching: state.listReducer.isFetching,
+      hasFetched: state.listReducer.hasFetched
     };
   };
 
-  const mapDispatchToProps = () => {
-    return {};
-  };
-
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Wrapper);
+  return connect(mapStateToProps)(Wrapper);
 };
