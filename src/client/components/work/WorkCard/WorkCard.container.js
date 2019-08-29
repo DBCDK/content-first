@@ -12,7 +12,11 @@ import './WorkCard.css';
 
 export const SkeletonWorkCard = props => {
   return (
-    <div ref={props.cardRef || null} className={'WorkCard ' + props.className}>
+    <div
+      ref={props.cardRef || null}
+      className={'WorkCard ' + props.className}
+      data-hj-ignore-attributes
+    >
       <BookCover book={{book: {}}} />
       <div
         className="skelet-taxonomy-description d-xs-none d-sm-block"
@@ -74,6 +78,7 @@ class WorkCard extends React.Component {
         ref={this.props.cardRef || null}
         className={`WorkCard ${highlight} ${this.props.className}`}
         data-cy={this.props['data-cy'] || 'workcard'}
+        data-hj-ignore-attributes
       >
         <div style={{height: '100%'}} onClick={this.onWorkClick}>
           <BookCover

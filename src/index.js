@@ -26,6 +26,7 @@ import {interactionMiddleware} from './client/redux/interaction.middleware';
 import {beltsMiddleware} from './client/redux/belts.middleware';
 import {statsMiddleware} from './client/redux/stats.middleware';
 import {matomoMiddleware} from './client/redux/matomo.middleware';
+import {hotjarMiddleware} from './client/redux/hotjar.middleware';
 import openplatform from 'openplatform';
 
 // for window.scroll() back compatibility
@@ -46,7 +47,8 @@ const store = createStore([
   interactionMiddleware,
   beltsMiddleware,
   statsMiddleware,
-  matomoMiddleware
+  matomoMiddleware,
+  hotjarMiddleware
 ]);
 ReactDOM.render(
   <Provider store={store}>
