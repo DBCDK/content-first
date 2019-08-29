@@ -314,21 +314,18 @@ describe('Start Belt Editor test', function() {
     cy.get('[data-cy=realistisk]').click();
     cy.get('[data-cy=filterDimmer]').click();
 
-    cy.get('.CreateBelt [data-cy=search-bar-input]').type('fanta');
-    cy.get('.CreateBelt [data-cy=suggestion-element]')
-      .eq(3)
-      .click({force: true});
+    cy.get('.CreateBelt [data-cy=search-bar-input]').type('v');
+    cy.get('.CreateBelt li.react-autosuggest__suggestion:first').click({
+      force: true
+    });
     cy.get('.CreateBelt .selected-filters .selected-filter span span').should(
       $p => {
         expect($p.eq(0)).to.contain('realistisk');
-        expect($p.eq(1)).to.contain('fantasiverdener');
+        expect($p.eq(1)).to.contain('vaccination');
       }
     );
     cy.get('[data-cy=tag-realistisk]').should('have.text', 'realistisk');
-    cy.get('[data-cy=tag-fantasiverdener]').should(
-      'have.text',
-      'fantasiverdener'
-    );
+    cy.get('[data-cy=tag-vaccination]').should('have.text', 'vaccination');
   });
 
   // ======================================================================================
