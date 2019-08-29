@@ -90,7 +90,10 @@ class WorkCard extends React.Component {
                 dataCy="bookmarkBtn"
                 size="default"
               />
-              <CompareButton />
+              <CompareButton
+                main={this.props.origin.parent}
+                pids={[this.props.origin.parent, this.props.pid]}
+              />
             </div>
           </BookCover>
 

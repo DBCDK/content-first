@@ -12,26 +12,25 @@ import Text from '../base/Text';
 import Icon from '../base/Icon';
 import {withList} from '../hoc/List';
 import withWork from '../hoc/Work/withWork.hoc';
+import CompareBooks from '../work/CompareBooks/CompareBooks.component';
 
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 
 export class CompareBooksModal extends React.Component {
   render() {
-    const {close} = this.props;
+    const {close, context} = this.props;
 
     return (
       <Modal
         header="SAMMENLIGNING"
         onClose={close}
-        onDone={() => {
-          close();
-        }}
+        onDone={() => close()}
         doneText="Gem ændringer"
         hideConfirm={true}
         hideCancel={true}
         className="reorder-list-modal-window"
       >
-        hej
+        <CompareBooks {...context} />
       </Modal>
     );
   }
@@ -44,4 +43,8 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withWork(CompareBooksModal));
+)(
+  withWork(CompareBooksModal, {
+    includeTags: true
+  })
+);

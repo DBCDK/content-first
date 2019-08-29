@@ -48,9 +48,14 @@
   transition-duration: 0.15s;
 }
 
-.WorkCard:hover .CompareButton {
+.WorkCard:hover .CompareButton,
+.WorkCard .CompareButton.active {
   transition-timing-function: ease-out;
   transform: rotate(0deg) scale(1);
+}
+
+.WorkCard .CompareButton.active {
+  background-color: var(--lys-fersken);
 }
 
 .WorkCard .taxonomy-description {

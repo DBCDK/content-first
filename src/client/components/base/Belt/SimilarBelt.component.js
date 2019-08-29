@@ -22,7 +22,11 @@ const Slider = withWork(({work, ...props}) => (
     onWorkClick={(wrk, bName, rid) =>
       props.openWorkPreview(wrk, `Minder om ${work.book.title}`, rid)
     }
-    origin={{type: 'minderOm', minderLink: [props.pid, work.book.title]}}
+    origin={{
+      type: 'minderOm',
+      parent: props.pid,
+      minderLink: [props.pid, work.book.title]
+    }}
   />
 ));
 const WorksTitle = ({pids, className}) => (

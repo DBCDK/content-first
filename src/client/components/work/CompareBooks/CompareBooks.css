@@ -1,0 +1,75 @@
+.CompareBooks {
+  /*  */
+}
+
+.CompareBooks .Cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.CompareBooks .Cards .Card {
+  display: flex;
+  align-items: center;
+  background-color: var(--concrete);
+  height: 64px;
+  padding: 16px;
+}
+
+.CompareBooks .Cards .Card img {
+  width: 32px;
+}
+
+.CompareBooks .Cards .Card p {
+  padding-left: 16px;
+}
+
+.CompareBooks .Cards .Card_vs {
+  min-width: 64px;
+  text-align: center;
+  align-self: center;
+  color: red;
+  order: 0;
+}
+
+.CompareBooks .Compare .Compare_title {
+  padding: 16px 0 8px 0;
+}
+
+.Compare .Compare_informations {
+  background-color: var(--concrete);
+  padding: 8px 16px 8px 16px;
+}
+
+.Compare_informations .Info {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.Info .Info_color {
+  width: 40px;
+  height: 16px;
+  margin-right: 8px;
+  background-color: var(--porcelain);
+}
+
+.Info.Info_main .Info_color {
+  background-color: var(--pistache);
+}
+
+.Compare_appeals {
+  background-color: var(--concrete);
+  padding: 0px 16px 8px 16px;
+}
+
+.Compare_appeals-title {
+  padding: 8px 0 8px 0;
+}
+
+.Compare_Tag {
+  margin-right: 8px;
+}
+
+.Compare_Tag.Compare_match {
+  background-color: var(--pistache);
+}
