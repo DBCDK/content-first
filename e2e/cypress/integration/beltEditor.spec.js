@@ -315,7 +315,7 @@ describe('Start Belt Editor test', function() {
     cy.get('[data-cy=filterDimmer]').click();
 
     cy.get('.CreateBelt [data-cy=search-bar-input]').type('fanta');
-    cy.get('.CreateBelt [data-cy=suggestion-element')
+    cy.get('.CreateBelt [data-cy=suggestion-element]')
       .eq(3)
       .click({force: true});
     cy.get('.CreateBelt .selected-filters .selected-filter span span').should(
