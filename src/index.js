@@ -1,4 +1,6 @@
 import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+import 'resize-observer-polyfill/dist/ResizeObserver.global';
 import smoothscroll from 'smoothscroll-polyfill';
 import './prototypes';
 
