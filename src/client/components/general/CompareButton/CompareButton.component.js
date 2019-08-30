@@ -2,8 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import Icon from '../../base/Icon';
-import Button from '../../base/Button';
-import T from '../../base/T';
 
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 
@@ -54,10 +52,10 @@ export class CompareButton extends React.PureComponent {
 
 const mapStateToProps = state => {
   return {
-    compareIsOpen: state.modalReducer['compare'].open
+    compareIsOpen: state.modalReducer.compare.open
   };
 };
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = dispatch => ({
   openModal: (modal, context) => {
     dispatch({
       type: OPEN_MODAL,

@@ -12,10 +12,7 @@ import Link from '../../general/Link.component';
 
 import withWork from '../../hoc/Work/withWork.hoc';
 
-import {
-  WORK_RECOMMEND_REQUEST,
-  createWorkRecommendedPids
-} from '../../../redux/recommend';
+import {WORK_RECOMMEND_REQUEST} from '../../../redux/recommend';
 
 import './CompareBooks.css';
 
@@ -60,14 +57,7 @@ export class CompareBooks extends React.Component {
   }
 
   render() {
-    const {
-      main,
-      pids,
-      works,
-      details,
-      intersectTags,
-      sortTagsByAppeal
-    } = this.props;
+    const {main, works, details, intersectTags, sortTagsByAppeal} = this.props;
 
     if (!works) {
       return null;
@@ -109,7 +99,7 @@ export class CompareBooks extends React.Component {
             <T component="work" name="appealsTitle" />
           </Text>
           <div className="Compare_informations">
-            {works.map((work, i) => {
+            {works.map(work => {
               return (
                 <Info
                   key={`info-${work.book.pid}`}

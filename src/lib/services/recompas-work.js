@@ -38,8 +38,6 @@ class RecompasWork {
   }
 
   async getRecommendations(query) {
-    console.log('####### query', query);
-
     try {
       const result = await request
         .post(this.config.recompass.url.work)

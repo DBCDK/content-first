@@ -1,17 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isMobile} from 'react-device-detect';
-import {
-  SortableContainer,
-  SortableElement,
-  arrayMove
-} from 'react-sortable-hoc';
-
 import Modal from './Modal/Modal.component';
-import Text from '../base/Text';
-import Icon from '../base/Icon';
-import {withList} from '../hoc/List';
-import withWork from '../hoc/Work/withWork.hoc';
 import CompareBooks from '../work/CompareBooks/CompareBooks.component';
 
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
@@ -35,7 +24,7 @@ export class CompareBooksModal extends React.Component {
     );
   }
 }
-const mapStateToProps = (state, ownProps) => ({});
+const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
   close: () => dispatch({type: CLOSE_MODAL, modal: 'compare'})
 });
@@ -43,4 +32,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withWork(CompareBooksModal));
+)(CompareBooksModal);
