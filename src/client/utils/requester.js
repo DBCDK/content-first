@@ -13,11 +13,9 @@ import {OPEN_MODAL} from '../redux/modal.reducer';
 import {getLeavesMap} from './taxonomy';
 import {get} from 'lodash';
 
-
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
 const SHORT_LIST_VERSION = 1;
-
 
 /**
  * fetchTags
@@ -160,13 +158,15 @@ export const fetchStats = async () => {
  */
 export const fetchReviews = (pids, store) => {
   const books = store.getState().booksReducer.books;
-  const authenticatedToken = get(store.getState(), 'userReducer.openplatformToken');
-  console.log("token", authenticatedToken)
+  const authenticatedToken = get(
+    store.getState(),
+    'userReducer.openplatformToken'
+  );
+  console.log('token', authenticatedToken);
   const booksToBeFetched = pids.map(pid => books[pid]);
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
   return Promise.all(
     booksToBeFetched.map(async ref => {
-
       try {
         const result = await openplatform.work({
           pids: ref.book.reviews.data,
@@ -183,13 +183,14 @@ export const fetchReviews = (pids, store) => {
 
         if (authenticatedToken) {
           const pidsInRef = ref.book.reviews.data;
-          const reviewsFromPids = await Promise.all(pidsInRef.map(pid => {
-
-            return openplatform.infomedia({
-              pid: pid,
-              access_token: authenticatedToken
-            });
-          }));
+          const reviewsFromPids = await Promise.all(
+            pidsInRef.map(pid => {
+              return openplatform.infomedia({
+                pid: pid,
+                access_token: authenticatedToken
+              });
+            })
+          );
 
           result.forEach((e, index) => {
             e.infomedia = reviewsFromPids[index];
@@ -277,7 +278,7 @@ export const fetchCollection = (pids, store) => {
  * @param cb
  */
 export const fetchUser = (dispatch, cb) => {
-  request.get('/v1/user').end(function (error, res) {
+  request.get('/v1/user').end(function(error, res) {
     if (error || res.body.errors) {
       dispatch({type: ON_USER_DETAILS_ERROR});
     } else {
@@ -457,7 +458,7 @@ export const saveShortList = (elements, isLoggedIn) => {
     request
       .put('/v1/shortlist')
       .send(payload)
-      .end(function (error) {
+      .end(function(error) {
         if (error) {
           console.log('error persisting shortlist', error); // eslint-disable-line
         }
