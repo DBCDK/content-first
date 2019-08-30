@@ -5,10 +5,13 @@ import {ON_LOGOUT_RESPONSE} from '../redux/user.reducer';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
 import {getLeavesMap} from './taxonomy';
+import {get} from 'lodash';
+
 
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
 const SHORT_LIST_VERSION = 1;
+
 
 /**
  * fetchTags
@@ -153,6 +156,10 @@ export const fetchStats = async () => {
  */
 export const fetchReviews = (pids, store) => {
   const books = store.getState().booksReducer.books;
+  const authenticatedToken = get(
+    store.getState(),
+    'userReducer.openplatformToken'
+  );
   const booksToBeFetched = pids.map(pid => books[pid]);
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
   return Promise.all(
@@ -171,6 +178,25 @@ export const fetchReviews = (pids, store) => {
           access_token: await fetchAnonymousToken()
         });
 
+        if (authenticatedToken) {
+          const pidsInRef = ref.book.reviews.data;
+
+          const reviewsFromPids = await Promise.all(
+            pidsInRef.map(async pid => {
+              try {
+                return await openplatform.infomedia({
+                  pid: pid,
+                  access_token: authenticatedToken
+                });
+              } catch (e) {
+                return {statusCode: e.statusCode};
+              }
+            })
+          );
+          result.forEach((e, index) => {
+            e.infomedia = reviewsFromPids[index];
+          });
+        }
         return {
           book: {
             pid: ref.book.pid,
@@ -248,6 +274,31 @@ export const fetchCollection = (pids, store) => {
 };
 
 /**
+
+ * fetchUser
+ * @param dispatch
+ * @param cb
+ */
+export const fetchUser = (dispatch, cb) => {
+  request.get('/v1/user').end(function (error, res) {
+    if (error || res.body.errors) {
+      dispatch({type: ON_USER_DETAILS_ERROR});
+    } else {
+      const user = res.body.data;
+      dispatch({type: ON_USER_DETAILS_RESPONSE, user});
+      if (!user.acceptedTerms) {
+        dispatch({
+          type: OPEN_MODAL,
+          modal: 'profile'
+        });
+      }
+    }
+    cb();
+  });
+};
+
+/**
+
  * addImage
  * @param imageData
  * @returns {Promise<any>}
@@ -410,7 +461,7 @@ export const saveShortList = (elements, isLoggedIn) => {
     request
       .put('/v1/shortlist')
       .send(payload)
-      .end(function(error) {
+      .end(function (error) {
         if (error) {
           console.log('error persisting shortlist', error); // eslint-disable-line
         }

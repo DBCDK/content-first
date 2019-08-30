@@ -5,6 +5,9 @@ import Title from '../../base/Title';
 import Text from '../../base/Text';
 import {connect} from 'react-redux';
 import ReviewRating from './ReviewRating.component';
+import Link from '../../general/Link.component';
+import {OPEN_MODAL} from "../../../redux/modal.reducer";
+
 /**
  * This class displays a single paper review item
  * Creator and ful review link are hidden for now.
@@ -15,7 +18,8 @@ export class PaperReview extends React.Component {
       return '';
     }
     const review = this.props.review;
-
+    const infomediaData = review.infomedia;
+ //   console.log("infomediaData",infomediaData)
     const creator = review.creatorOth && review.creatorOth[0];
     let date =
       (review.isPartOf &&
@@ -24,12 +28,12 @@ export class PaperReview extends React.Component {
       null;
     date = date
       ? timestampToShortDate(
-          new Date(
-            date.split('-')[0],
-            parseInt(date.split('-')[1], 10) - 1,
-            date.split('-')[2]
-          )
+        new Date(
+          date.split('-')[0],
+          parseInt(date.split('-')[1], 10) - 1,
+          date.split('-')[2]
         )
+      )
       : null;
     date = date.split(' ')[1] !== 'undefined' ? date : review.date;
     const source =
@@ -39,15 +43,15 @@ export class PaperReview extends React.Component {
 
     const maxRating = review.abstract
       ? review.abstract[0]
-          .trim()
-          .replace('Vurdering:', '')
-          .split('/')[1]
+        .trim()
+        .replace('Vurdering:', '')
+        .split('/')[1]
       : null;
     const rating = review.abstract
       ? review.abstract[0]
-          .trim()
-          .replace('Vurdering:', '')
-          .split('/')[0]
+        .trim()
+        .replace('Vurdering:', '')
+        .split('/')[0]
       : null;
     const ratingShape = source === 'Politiken' ? 'favorite' : 'star';
 
@@ -76,13 +80,27 @@ export class PaperReview extends React.Component {
             Af {creator}
           </Text>
         )}
+        <Link
+          className="Review__block--link mb0"
+          type="small"
+          onClick={() => {
+            this.props.showReviewModal(
+              'paperReview',
+              this.props.book,
+              review
+            );
+          }}
+        >
+          Læs anmeldelsen
+        </Link>
 
         {false && (
           <Text>
             <a
               className="Review__block--link mb0 tooltips"
               type="small"
-              onClick={() => {}}
+              onClick={() => {
+              }}
               target="_blank"
               href={
                 review.identifierURI && review.identifierURI[0]
@@ -97,6 +115,8 @@ export class PaperReview extends React.Component {
             </a>
           </Text>
         )}
+
+
       </div>
     );
   }
@@ -108,4 +128,28 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(PaperReview);
+export const mapDispatchToProps = dispatch => ({
+  showReviewModal: (reviewType, book, review) => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'showReview',
+      context: {
+        reviewType: reviewType,
+        book: book,
+        review: review,
+        confirmText: 'Luk',
+        hideCancel: true,
+        hideConfirm: true,
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'showReview'
+          });
+        }
+      }
+    });
+  }
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PaperReview);
