@@ -307,7 +307,7 @@ describe('Start Belt Editor test', function() {
 
   // ======================================================================================
 
-  it('Test create new belt page - test Tag selection', function() {
+  it.skip('Test create new belt page - test Tag selection', function() {
     cy.visit('/redaktionen/opret');
 
     cy.get('[data-cy=univers]').click();

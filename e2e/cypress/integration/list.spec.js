@@ -143,7 +143,7 @@ describe('List test', function() {
     });
   });
 
-  it('Can add with addToListButton to public list', function() {
+  it.skip('Can add with addToListButton to public list', function() {
     cy.visit(`/værk/870970-basis:25775481`);
     waitForListsLoaded();
     cy.wait(1000);
@@ -173,7 +173,7 @@ describe('List test', function() {
     cy.contains('3 bøger tilføjet til listen');
   });
 
-  it('Can change element order in a list', function() {
+  it.skip('Can change element order in a list', function() {
     const firstElement = 'Krig og fred';
     const secondElement = 'Idioten';
     const thirdElement = 'En vild fårejagt';
