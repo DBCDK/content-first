@@ -66,11 +66,18 @@ class WorkPage extends React.Component {
     // sort tags by group
     const tags = this.props.sortTags(work);
 
-    const priorityTagsArr = book.tags.filter(e => e.score > 1).slice(0, 6);
+    const stemningTags = tags.filter(e => e.title === 'stemning')[0];
+    const priorityTagsArr = book.tags.filter(e => e.score > 1);
+
     if (priorityTagsArr.length > 0) {
       tags.unshift({
         title: T({component: 'work', name: 'readerExpTitle'}),
         data: priorityTagsArr
+      });
+    } else if (stemningTags) {
+      tags.unshift({
+        title: T({component: 'work', name: 'readerExpTitle'}),
+        data: stemningTags.data.slice(0, 6)
       });
     }
 
@@ -141,6 +148,7 @@ class WorkPage extends React.Component {
                     />
                   </BookCover>
                 </div>
+
                 <div className="WorkPage__info">
                   <Share
                     className="ssb-fb align-self-center"
@@ -153,15 +161,14 @@ class WorkPage extends React.Component {
                   <Title Tag="h3" type="title3" className="mt0">
                     {book.title}
                   </Title>
-
-                  <Title Tag="h2" type="title5" className="mt1">
-                    <Link
-                      href={'/find?tags=' + encodeURI(book.creator)}
-                      className="book-creator-name"
-                    >
+                  <Link
+                    href={'/find?tags=' + encodeURI(book.creator)}
+                    className="book-creator-name"
+                  >
+                    <Title Tag="h2" type="title5" className="mt1">
                       {book.creator}
-                    </Link>
-                  </Title>
+                    </Title>
+                  </Link>
 
                   <Text type="body" variant="weight-semibold" className="mt1">
                     {<TaxDescription text={tax_description} />}
@@ -355,35 +362,37 @@ class WorkPage extends React.Component {
                       );
                     })}
                   </div>
-                  <div className="row">
-                    <div className="mt1 col-12">
-                      <Button
-                        size="medium"
-                        type="tertiary"
-                        className="underline"
-                        dataCy="tags-collaps-toggle"
-                        onClick={() => {
-                          trackEvent('tags', 'seeAllTags', book.title);
-                          this.setState({
-                            tagsCollapsed: !this.state.tagsCollapsed,
-                            transition: true
-                          });
-                        }}
-                      >
-                        <T
-                          component="work"
-                          name={
-                            this.state.tagsCollapsed
-                              ? 'tagsCollapsibleShow'
-                              : 'tagsCollapsibleHide'
-                          }
-                        />
-                      </Button>
+
+                  {book.tags.length > 0 && (
+                    <div className="row">
+                      <div className="mt1 col-12">
+                        <Button
+                          size="medium"
+                          type="tertiary"
+                          className="underline"
+                          dataCy="tags-collaps-toggle"
+                          onClick={() => {
+                            trackEvent('tags', 'seeAllTags', book.title);
+                            this.setState({
+                              tagsCollapsed: !this.state.tagsCollapsed,
+                              transition: true
+                            });
+                          }}
+                        >
+                          <T
+                            component="work"
+                            name={
+                              this.state.tagsCollapsed
+                                ? 'tagsCollapsibleShow'
+                                : 'tagsCollapsibleHide'
+                            }
+                          />
+                        </Button>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
-
               <ReviewList
                 book={book}
                 reviews={reviews}
@@ -444,6 +453,7 @@ class WorkPage extends React.Component {
       </div>
     );
   }
+
   /* eslint-enable complexity */
 }
 
