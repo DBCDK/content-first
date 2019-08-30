@@ -55,7 +55,13 @@ class ReviewList extends React.Component {
         }
         const hasRating = reviewList.abstract; // show only reviews with rating
         paperReviews.push(
-          hasRating && <PaperReview review={reviewList} key={outerKey}  book={this.props.book}/>
+          hasRating && (
+            <PaperReview
+              review={reviewList}
+              key={outerKey}
+              book={this.props.book}
+            />
+          )
         );
         return null;
       });

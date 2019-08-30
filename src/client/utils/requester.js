@@ -7,11 +7,9 @@ import unique from './unique';
 import {getLeavesMap} from './taxonomy';
 import {get} from 'lodash';
 
-
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
 const SHORT_LIST_VERSION = 1;
-
 
 /**
  * fetchTags
@@ -280,7 +278,7 @@ export const fetchCollection = (pids, store) => {
  * @param cb
  */
 export const fetchUser = (dispatch, cb) => {
-  request.get('/v1/user').end(function (error, res) {
+  request.get('/v1/user').end(function(error, res) {
     if (error || res.body.errors) {
       dispatch({type: ON_USER_DETAILS_ERROR});
     } else {
@@ -461,7 +459,7 @@ export const saveShortList = (elements, isLoggedIn) => {
     request
       .put('/v1/shortlist')
       .send(payload)
-      .end(function (error) {
+      .end(function(error) {
         if (error) {
           console.log('error persisting shortlist', error); // eslint-disable-line
         }
