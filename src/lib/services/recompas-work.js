@@ -37,11 +37,13 @@ class RecompasWork {
     return this.errorLog;
   }
 
-  async getRecommendations({likes, dislikes, limit}) {
+  async getRecommendations(query) {
+    console.log('####### query', query);
+
     try {
       const result = await request
         .post(this.config.recompass.url.work)
-        .send({likes, dislikes, limit});
+        .send(query);
       return result.body;
     } catch (e) {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';

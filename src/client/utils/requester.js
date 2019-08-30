@@ -122,8 +122,6 @@ export const fetchBooksTags = async (pids = []) => {
   pids = unique(pids);
   const tags = await fetchTags(pids);
 
-  console.log('tags', tags);
-
   let books = pids.map(pid => {
     return {
       book: {

@@ -11,7 +11,7 @@
 }
 
 .CompareButton:hover {
-  background-color: var(--lys-fersken);
+  background-color: var(--korn);
 }
 
 .CompareButton i {

@@ -226,7 +226,7 @@
       }
     },
     "work": {
-      "readerExpTitle":{
+      "readerExpTitle": {
         "da": "Bogens læseoplevelse",
         "en": "Reader experience"
       },
@@ -297,6 +297,38 @@
       "noValidCollectionYet": {
         "da": "Bogen kan desværre ikke lånes på biblioteket endnu",
         "en": "Unfortunately, the book cannot be borrowed at the library yet"
+      },
+      "compare": {
+        "da": "vs.",
+        "en": "vs."
+      },
+      "appealsTitle": {
+        "da": "Læseoplevelse",
+        "en": "Reading experience"
+      },
+      "noAppeals": {
+        "da": "Der er ingen beskrivelse af læseoplevelsen endnu",
+        "en": "Unfortunately there is no reading experience yet"
+      },
+      "loansTitle": {
+        "da": "Udlån",
+        "en": "Loans"
+      },
+      "loans": {
+        "da": "%s udlån",
+        "en": "%s loans"
+      },
+      "loansCommon": {
+        "da": "%s har lånt begge bøger",
+        "en": "%s have borrowed both books"
+      },
+      "infoCommon": {
+        "da": "Fælles læseoplevelse",
+        "en": "Common experience"
+      },
+      "onlyCompared": {
+        "da": "Kun bogen %s",
+        "en": "Only the book %s"
       }
     },
     "profile": {

@@ -43,8 +43,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(
-  withWork(CompareBooksModal, {
-    includeTags: true
-  })
-);
+)(withWork(CompareBooksModal));

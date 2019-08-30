@@ -198,10 +198,7 @@ const withWork = (
     // Multiple
     let works = null;
     if (ownProps.pids) {
-      works = ownProps.pids.map(pid => {
-        console.log('[pid]', pid, state.booksReducer.books[pid]);
-        return state.booksReducer.books[pid];
-      });
+      works = ownProps.pids.map(pid => state.booksReducer.books[pid]);
     }
 
     return {

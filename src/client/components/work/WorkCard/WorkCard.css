@@ -55,7 +55,7 @@
 }
 
 .WorkCard .CompareButton.active {
-  background-color: var(--lys-fersken);
+  background-color: var(--korn);
 }
 
 .WorkCard .taxonomy-description {

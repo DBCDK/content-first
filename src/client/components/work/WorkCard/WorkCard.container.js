@@ -92,7 +92,7 @@ class WorkCard extends React.Component {
               />
               <CompareButton
                 main={this.props.origin.parent}
-                pids={[this.props.origin.parent, this.props.pid]}
+                pid={this.props.pid}
               />
             </div>
           </BookCover>

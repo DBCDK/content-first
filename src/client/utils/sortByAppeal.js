@@ -31,8 +31,6 @@ const appeals = {
 export default function sortByAppeal(tags) {
   let groups = {};
 
-  console.log('sortByAppeal() => tags', tags);
-
   if (tags) {
     Object.keys(appeals).forEach(appeal => {
       const subjects = appeals[appeal];
