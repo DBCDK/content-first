@@ -75,7 +75,7 @@ class WorkPage extends React.Component {
       });
     } else if (stemningTags) {
       tags.unshift({
-        title: T({component: 'work', name: 'moodTag'}),
+        title: T({component: 'work', name: 'readerExpTitle'}),
         data: stemningTags.data.slice(0, 6)
       });
     }
