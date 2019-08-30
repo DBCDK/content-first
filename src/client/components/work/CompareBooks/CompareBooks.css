@@ -2,6 +2,12 @@
   width: 750px;
 }
 
+@media only screen and (max-width: 750px) {
+  .reorder-list-modal-window {
+    width: 100%;
+  }
+}
+
 .CompareBooks {
   /*  */
 }
@@ -24,6 +30,11 @@
 .CompareBooks .Cards .Card span {
   width: 100%;
   padding: 0 16px 0 16px;
+}
+
+.CompareBooks .Cards .Card span p {
+  width: 100%;
+  padding: 0 16px 0 0;
 }
 
 .CompareBooks .Cards .Card img {
