@@ -39,6 +39,10 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
     "autolinker": "^1.6.2",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
