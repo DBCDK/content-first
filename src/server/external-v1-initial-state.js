@@ -1,9 +1,13 @@
+/* eslint-disable no-undefined */
+
 'use strict';
 
 import listReducer, {LISTS_EXPAND} from '../client/redux/list.reducer';
 import userReducer, {
   ON_USER_DETAILS_RESPONSE
 } from '../client/redux/user.reducer';
+import StorageClient from '../shared/server-side-storage.client';
+import ListRequester from '../shared/list.requester';
 
 const {getUser, getUserData} = require('server/user');
 const objectStore = require('server/objectStore');
@@ -11,7 +15,14 @@ const objectStore = require('server/objectStore');
 const express = require('express');
 const router = express.Router({mergeParams: true});
 
+/**
+ *
+ * @param {*} req
+ */
 async function initState(req) {
+  const storageClient = new StorageClient({user: getUser(req), objectStore});
+  const listRequester = new ListRequester({storageClient});
+
   let listState = listReducer(undefined, {});
   let userState = userReducer(undefined, {});
 
@@ -25,23 +36,7 @@ async function initState(req) {
         tempname: req.user.special.name
       }
     });
-    const lists = (await objectStore.find(
-      {type: 'list', owner: req.user.openplatformId},
-      await getUser(req)
-    )).data;
-    await Promise.all(
-      lists.map(async list => {
-        list.tmpEntries = (await objectStore.find(
-          {
-            type: 'list-entry',
-            key: list._id,
-            owner: list._public ? undefined : req.user.openplatformId
-          },
-          await getUser(req)
-        )).data;
-      })
-    );
-
+    const lists = await listRequester.fetchOwnedLists(req.user.openplatformId);
     listState = listReducer(listState, {type: LISTS_EXPAND, lists});
   }
   return {
@@ -50,7 +45,7 @@ async function initState(req) {
   };
 }
 
-router.route('/').get(async (req, res, next) => {
+router.route('/').get(async (req, res) => {
   try {
     const data = await initState(req);
     res.json({data});

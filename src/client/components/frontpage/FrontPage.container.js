@@ -5,10 +5,10 @@ import Head from '../base/Head';
 import T from '../base/T';
 import Hero from '../hero/Hero.component';
 import ListsBelt from '../base/Belt/ListsBelt.container';
-import InteractionsBelt from '../base/Belt/InteractionsBelt.component';
 import TagsBelt from '../base/Belt/TagsBelt.component';
 import SpotsContainer from '../spots/Spots.container';
 import {HISTORY_REPLACE} from '../../redux/middleware';
+import DidReadBelt from '../base/Belt/DidReadBelt.component';
 
 class FrontPage extends React.Component {
   componentDidMount() {
@@ -52,13 +52,8 @@ class FrontPage extends React.Component {
       <div className="frontpage">
         <Head />
         <Hero />
-        <InteractionsBelt
-          mount={'frontpage-interactions-belt'}
-          key={'frontpage-interactions-belt'}
-        />
+        <DidReadBelt mount={'frontpage-because-you-read-belt-1'} />
         {this.renderBelts(aBeltsMap.slice(0, 2))}
-        <SpotsContainer />
-        {this.renderBelts(aBeltsMap.slice(2, aBeltsMap.length))}
         <ListsBelt
           title={T({
             component: 'list',
@@ -69,6 +64,10 @@ class FrontPage extends React.Component {
           sort="created"
           limit={50}
         />
+        <DidReadBelt mount={'frontpage-because-you-read-belt-2'} />
+        <SpotsContainer />
+        {this.renderBelts(aBeltsMap.slice(2, aBeltsMap.length))}
+        <DidReadBelt mount={'frontpage-because-you-read-belt-3'} />
       </div>
     );
   }

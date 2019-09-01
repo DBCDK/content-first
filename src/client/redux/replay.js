@@ -42,11 +42,7 @@ const replaceExisting = {
 
 // Actions which will trigger dispatch of actions in replay queue
 const replayBeginWhen = {
-  ON_USER_DETAILS_ERROR: state => {
-    // return false if user dont have an account
-    return state.routerReducer.path === REPLAY_PATH;
-  },
-  ON_USER_DETAILS_RESPONSE: state => {
+  ON_LOCATION_CHANGE: state => {
     // return false if user dont have an account
     return state.routerReducer.path === REPLAY_PATH;
   }

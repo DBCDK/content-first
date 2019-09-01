@@ -48,7 +48,8 @@ class WorkCard extends React.Component {
   shouldComponentUpdate(nextProps) {
     return (
       nextProps.highlight !== this.props.highlight ||
-      nextProps.work !== this.props.work
+      nextProps.work !== this.props.work ||
+      nextProps.isVisible !== this.props.isVisible
     );
   }
 
@@ -59,7 +60,11 @@ class WorkCard extends React.Component {
   };
 
   render() {
-    if (!this.props.work || !this.props.work.detailsHasLoaded) {
+    if (
+      !this.props.work ||
+      !this.props.work.detailsHasLoaded ||
+      !this.props.isVisible
+    ) {
       return <SkeletonWorkCard {...this.props} />;
     }
     // check if more-like-this button is disabled (default: false)

@@ -34,7 +34,7 @@ class App extends Component {
     this.state = {didShowCookieModal: false};
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.userDetailsRequest();
   }
 

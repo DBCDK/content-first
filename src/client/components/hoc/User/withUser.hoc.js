@@ -17,12 +17,18 @@ const withUser = WrappedComponent => {
       }
     }
     render() {
-      return <WrappedComponent {...this.props} />;
+      return (
+        <WrappedComponent
+          {...this.props}
+          user={this.props.givenUser || this.props.user}
+        />
+      );
     }
   };
 
   const mapStateToProps = (state, ownProps) => ({
-    user: state.users[ownProps.id]
+    user: state.users[ownProps.id],
+    givenUser: ownProps.user
   });
   const mapDispatchToProps = (dispatch, ownProps) => {
     return {

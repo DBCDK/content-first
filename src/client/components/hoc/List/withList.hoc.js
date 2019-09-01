@@ -6,7 +6,6 @@ import T from '../../base/T';
 import Link from '../../general/Link.component';
 
 import {
-  LIST_LOAD_REQUEST,
   LIST_LOAD_RESPONSE,
   UPDATE_LIST_DATA,
   STORE_LIST,
@@ -15,11 +14,15 @@ import {
   REMOVE_LIST_ERROR,
   getListByIdSelector,
   LIST_TOGGLE_ELEMENT,
-  ADD_ELEMENT_TO_LIST
+  ADD_ELEMENT_TO_LIST,
+  LISTS_EXPAND
 } from '../../../redux/list.reducer';
 
 import {deleteObject} from '../../../utils/requester';
-import {saveList, loadList} from '../../../utils/requestLists';
+import StorageClient from '../../../../shared/client-side-storage.client';
+import ListRequester from '../../../../shared/list.requester';
+
+const listRequester = new ListRequester({storageClient: new StorageClient()});
 
 const getListById = getListByIdSelector();
 
@@ -69,9 +72,9 @@ export const withList = WrappedComponent => {
 
       if (!listLoaded && id) {
         try {
-          await loadList(id);
-          // TODO onLoadList should not be handled by middleware
-          onLoadList();
+          const list = await listRequester.fetchList(id);
+
+          onLoadList(list);
         } catch (e) {
           onLoadListError(id, e);
         }
@@ -85,7 +88,7 @@ export const withList = WrappedComponent => {
       // Props
       const {openplatformId, onStoreList} = this.props;
       try {
-        await saveList(list, openplatformId);
+        await listRequester.saveList(list, openplatformId);
         // Flag stored - prevent auto-deleting list on componentWillUnmount()
         this.stored = true;
         // Dispatch reducer action
@@ -231,8 +234,8 @@ export const withList = WrappedComponent => {
     const _id = ownProps.id || ownProps._id;
 
     return {
-      onLoadList: () => {
-        dispatch({type: LIST_LOAD_REQUEST, _id});
+      onLoadList: list => {
+        dispatch({type: LISTS_EXPAND, lists: [list]});
       },
       onLoadListError: (id, e) =>
         dispatch({
