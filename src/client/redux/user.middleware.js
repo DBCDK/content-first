@@ -42,7 +42,9 @@ export const userMiddleware = store => next => action => {
       next(action);
       store.dispatch({type: SHORTLIST_LOAD_REQUEST});
 
-      if (!get(store.getState(), 'userReducer.acceptedTerms')) {
+      const {isLoggedIn, acceptedTerms} = store.getState().userReducer;
+
+      if (isLoggedIn && !acceptedTerms) {
         store.dispatch({
           type: OPEN_MODAL,
           modal: 'profile'
