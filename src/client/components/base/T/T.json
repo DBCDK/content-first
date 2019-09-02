@@ -315,12 +315,12 @@
         "en": "Loans"
       },
       "loans": {
-        "da": "%s udlån",
-        "en": "%s loans"
+        "da": "<strong>%s</strong> Udlån",
+        "en": "<strong>%s</strong> Loans"
       },
       "loansCommon": {
-        "da": "%s har lånt begge bøger",
-        "en": "%s have borrowed both books"
+        "da": "<strong>%s</strong> har lånt begge bøger",
+        "en": "<strong>%s</strong> have borrowed both books"
       },
       "infoCommon": {
         "da": "Fælles læseoplevelse",
@@ -329,6 +329,10 @@
       "onlyCompared": {
         "da": "Kun bogen %s",
         "en": "Only the book %s"
+      },
+      "aboutLoans": {
+        "da": "Udlånstal er vejledende og opdateres ikke real-time",
+        "en": "Loans are indicative and are not updated in real time"
       }
     },
     "profile": {

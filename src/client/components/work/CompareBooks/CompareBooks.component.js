@@ -168,6 +168,7 @@ export class CompareBooks extends React.Component {
                     key={`card-${work.book.pid}`}
                     title={T({
                       component: 'work',
+                      renderAsHtml: true,
                       name: 'loans',
                       vars: [JSON.stringify(details[work.book.pid].loans)]
                     })}
@@ -183,6 +184,7 @@ export class CompareBooks extends React.Component {
                   <T
                     component="work"
                     name="loansCommon"
+                    renderAsHtml={true}
                     vars={[
                       JSON.stringify(
                         details[comparedWork.book.pid]['common-loans']
@@ -192,6 +194,11 @@ export class CompareBooks extends React.Component {
                 </Text>
               </div>
             </div>
+          </div>
+          <div className="Compare_loans_indicator">
+            <Text type="small">
+              <T component="work" name="aboutLoans" />
+            </Text>
           </div>
         </div>
       </div>

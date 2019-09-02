@@ -1,27 +1,30 @@
 const defaultState = {
   belts: {
+    'Det smukke, smukke sprog': {
+      key: 'Det smukke, smukke sprog',
+      name: 'Det smukke, smukke sprog',
+      subtext: 'Bøger til dig, der bliver glad af smukke sætninger.',
+      tags: [
+        {id: 5615, weight: 10},
+        {id: 5614, weight: 1},
+        {id: 153, weight: 1},
+        {id: 5612, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
     'Historiske romaner': {
       key: 'Historiske romaner',
       name: 'Historiske romaner',
       subtext:
         'Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær.',
       tags: [
-        {
-          id: 4901,
-          weight: 10
-        },
-        {
-          id: 5660,
-          weight: 1
-        },
-        {
-          id: 5658,
-          weight: 1
-        },
-        {
-          id: 189,
-          weight: 1
-        }
+        {id: 4901, weight: 10},
+        {id: 5660, weight: 1},
+        {id: 5658, weight: 1},
+        {id: 189, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -34,34 +37,13 @@ const defaultState = {
       subtext:
         'Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger.',
       tags: [
-        {
-          id: 2683,
-          weight: 1
-        },
-        {
-          id: 4907,
-          weight: 10
-        },
-        {
-          id: 5368,
-          weight: 10
-        },
-        {
-          id: 5731,
-          weight: 1
-        },
-        {
-          id: 5670,
-          weight: 1
-        },
-        {
-          id: 5676,
-          weight: 1
-        },
-        {
-          id: 5691,
-          weight: 1
-        }
+        {id: 2683, weight: 1},
+        {id: 4907, weight: 10},
+        {id: 5368, weight: 10},
+        {id: 5731, weight: 1},
+        {id: 5670, weight: 1},
+        {id: 5676, weight: 1},
+        {id: 5691, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -74,30 +56,12 @@ const defaultState = {
       subtext:
         'Læser du for at lade dig rive med, er bøgerne her gode forslag til dig. ',
       tags: [
-        {
-          id: 5633,
-          weight: 10
-        },
-        {
-          id: 5731,
-          weight: 1
-        },
-        {
-          id: 5676,
-          weight: 1
-        },
-        {
-          id: 5672,
-          weight: 1
-        },
-        {
-          id: 5670,
-          weight: 1
-        },
-        {
-          id: 5674,
-          weight: 1
-        }
+        {id: 5633, weight: 10},
+        {id: 5731, weight: 1},
+        {id: 5676, weight: 1},
+        {id: 5672, weight: 1},
+        {id: 5670, weight: 1},
+        {id: 5674, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -109,18 +73,9 @@ const defaultState = {
       name: 'Livskloge bøger',
       subtext: 'Få et frisk perspektiv på tilværelsen gennem livskloge øjne. ',
       tags: [
-        {
-          id: 3279,
-          weight: 10
-        },
-        {
-          id: 3510,
-          weight: 1
-        },
-        {
-          id: 5721,
-          weight: 1
-        }
+        {id: 3279, weight: 10},
+        {id: 3510, weight: 1},
+        {id: 5721, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -132,30 +87,12 @@ const defaultState = {
       name: 'Billeder fra provinsen',
       subtext: 'Mød det usædvanlige og det almindelige Danmark.',
       tags: [
-        {
-          id: 5465,
-          weight: 10
-        },
-        {
-          id: 3998,
-          weight: 10
-        },
-        {
-          id: 5371,
-          weight: 10
-        },
-        {
-          id: 1672,
-          weight: 1
-        },
-        {
-          id: 5721,
-          weight: 1
-        },
-        {
-          id: 5178,
-          weight: 1
-        }
+        {id: 5465, weight: 10},
+        {id: 3998, weight: 10},
+        {id: 5371, weight: 10},
+        {id: 1672, weight: 1},
+        {id: 5721, weight: 1},
+        {id: 5178, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -168,30 +105,12 @@ const defaultState = {
       subtext:
         'Når du har lyst til at tænke over livet - også det svære og sårbare.',
       tags: [
-        {
-          id: 4466,
-          weight: 10
-        },
-        {
-          id: 5731,
-          weight: 1
-        },
-        {
-          id: 3510,
-          weight: 1
-        },
-        {
-          id: 5626,
-          weight: 1
-        },
-        {
-          id: 5683,
-          weight: 1
-        },
-        {
-          id: 5630,
-          weight: 1
-        }
+        {id: 4466, weight: 10},
+        {id: 5731, weight: 1},
+        {id: 3510, weight: 1},
+        {id: 5626, weight: 1},
+        {id: 5683, weight: 1},
+        {id: 5630, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -203,34 +122,13 @@ const defaultState = {
       name: 'De hoppede ud af bogen',
       subtext: 'Karakterer du ikke lige glemmer.',
       tags: [
-        {
-          id: 5731,
-          weight: 1
-        },
-        {
-          id: 5735,
-          weight: 1
-        },
-        {
-          id: 3510,
-          weight: 10
-        },
-        {
-          id: 5624,
-          weight: 1
-        },
-        {
-          id: 5721,
-          weight: 10
-        },
-        {
-          id: 5717,
-          weight: 10
-        },
-        {
-          id: 5722,
-          weight: 1
-        }
+        {id: 5731, weight: 1},
+        {id: 5735, weight: 1},
+        {id: 3510, weight: 10},
+        {id: 5624, weight: 1},
+        {id: 5721, weight: 10},
+        {id: 5717, weight: 10},
+        {id: 5722, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -243,22 +141,10 @@ const defaultState = {
       subtext:
         'Er der noget bedre end at læse en bog fuld af kærlighed i sommervarmen?',
       tags: [
-        {
-          id: 5660,
-          weight: 10
-        },
-        {
-          id: 189,
-          weight: 10
-        },
-        {
-          id: 5637,
-          weight: 1
-        },
-        {
-          id: 3431,
-          weight: 10
-        }
+        {id: 5660, weight: 10},
+        {id: 189, weight: 10},
+        {id: 5637, weight: 1},
+        {id: 3431, weight: 10}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -271,34 +157,13 @@ const defaultState = {
       subtext:
         'Menneskers identitet bliver sat i spil, når de forlader hverdagen og møder naturen.',
       tags: [
-        {
-          id: 5329,
-          weight: 10
-        },
-        {
-          id: 3510,
-          weight: 10
-        },
-        {
-          id: 5731,
-          weight: 1
-        },
-        {
-          id: 5280,
-          weight: 1
-        },
-        {
-          id: 5277,
-          weight: 1
-        },
-        {
-          id: 2183,
-          weight: 1
-        },
-        {
-          id: 2278,
-          weight: 1
-        }
+        {id: 5329, weight: 10},
+        {id: 3510, weight: 10},
+        {id: 5731, weight: 1},
+        {id: 5280, weight: 1},
+        {id: 5277, weight: 1},
+        {id: 2183, weight: 1},
+        {id: 2278, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -311,34 +176,13 @@ const defaultState = {
       subtext:
         'Hjemme er ikke altid bedst. Når det ubehagelige og utænkelige folder sig ud inden for hjemmets 4 vægge.',
       tags: [
-        {
-          id: 1672,
-          weight: 10
-        },
-        {
-          id: 5731,
-          weight: 10
-        },
-        {
-          id: 5699,
-          weight: 1
-        },
-        {
-          id: 5721,
-          weight: 1
-        },
-        {
-          id: 5696,
-          weight: 1
-        },
-        {
-          id: 5680,
-          weight: 1
-        },
-        {
-          id: 5691,
-          weight: 10
-        }
+        {id: 1672, weight: 10},
+        {id: 5731, weight: 10},
+        {id: 5699, weight: 1},
+        {id: 5721, weight: 1},
+        {id: 5696, weight: 1},
+        {id: 5680, weight: 1},
+        {id: 5691, weight: 10}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -351,22 +195,10 @@ const defaultState = {
       subtext:
         'Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.',
       tags: [
-        {
-          id: 4995,
-          weight: 10
-        },
-        {
-          id: 4927,
-          weight: 1
-        },
-        {
-          id: 5714,
-          weight: 1
-        },
-        {
-          id: 5713,
-          weight: 1
-        }
+        {id: 4995, weight: 10},
+        {id: 4927, weight: 1},
+        {id: 5714, weight: 1},
+        {id: 5713, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -379,26 +211,11 @@ const defaultState = {
       subtext:
         'Skarpsindige betragtninger og satiriske vrid på samfundsordnen. Historier der ikke altid lander blidt.',
       tags: [
-        {
-          id: 2683,
-          weight: 10
-        },
-        {
-          id: 5614,
-          weight: 10
-        },
-        {
-          id: 5624,
-          weight: 1
-        },
-        {
-          id: 5652,
-          weight: 1
-        },
-        {
-          id: 5717,
-          weight: 1
-        }
+        {id: 2683, weight: 10},
+        {id: 5614, weight: 10},
+        {id: 5624, weight: 1},
+        {id: 5652, weight: 1},
+        {id: 5717, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -411,26 +228,11 @@ const defaultState = {
       subtext:
         'Hent teen, tænd stearinlyset og så op med fødderne og på med plaiden.',
       tags: [
-        {
-          id: 5637,
-          weight: 10
-        },
-        {
-          id: 5654,
-          weight: 1
-        },
-        {
-          id: 5636,
-          weight: 1
-        },
-        {
-          id: 5731,
-          weight: 1
-        },
-        {
-          id: 5611,
-          weight: 10
-        }
+        {id: 5637, weight: 10},
+        {id: 5654, weight: 1},
+        {id: 5636, weight: 1},
+        {id: 5731, weight: 1},
+        {id: 5611, weight: 10}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -443,34 +245,13 @@ const defaultState = {
       subtext:
         'De store eventyr og udfordringer venter i en anden verden, hvor magiske kræfter og overnaturlige væsner prøver hinanden af.',
       tags: [
-        {
-          id: 6131,
-          weight: 10
-        },
-        {
-          id: 5726,
-          weight: 1
-        },
-        {
-          id: 5730,
-          weight: 1
-        },
-        {
-          id: 5704,
-          weight: 1
-        },
-        {
-          id: 5705,
-          weight: 1
-        },
-        {
-          id: 5707,
-          weight: 10
-        },
-        {
-          id: 5708,
-          weight: 1
-        }
+        {id: 6131, weight: 10},
+        {id: 5726, weight: 1},
+        {id: 5730, weight: 1},
+        {id: 5704, weight: 1},
+        {id: 5705, weight: 1},
+        {id: 5707, weight: 10},
+        {id: 5708, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -483,34 +264,13 @@ const defaultState = {
       subtext:
         'Det er koldt, det stormer, hemmelighederne hober sig op, og du har svært ved at adskille virkelighed og mareridt.',
       tags: [
-        {
-          id: 4044,
-          weight: 1
-        },
-        {
-          id: 4895,
-          weight: 10
-        },
-        {
-          id: 5149,
-          weight: 1
-        },
-        {
-          id: 5680,
-          weight: 1
-        },
-        {
-          id: 5700,
-          weight: 10
-        },
-        {
-          id: 5670,
-          weight: 1
-        },
-        {
-          id: 5676,
-          weight: 1
-        }
+        {id: 4044, weight: 1},
+        {id: 4895, weight: 10},
+        {id: 5149, weight: 1},
+        {id: 5680, weight: 1},
+        {id: 5700, weight: 10},
+        {id: 5670, weight: 1},
+        {id: 5676, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,

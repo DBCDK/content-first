@@ -6,10 +6,30 @@
   .reorder-list-modal-window {
     width: 100%;
   }
+
+  .CompareBooks .Cards .Card {
+    overflow: hidden;
+  }
+
+  .Compare_loans .Cards .Card p span {
+    flex-direction: column;
+    text-align: center;
+    padding: 0;
+  }
+
+  .Compare_loans .Cards .Card_loan p span {
+    flex-direction: column;
+    text-align: center !important;
+    padding: 0;
+  }
+
+  .CompareBooks .Cards .Card p span strong {
+    margin: 0;
+  }
 }
 
 .CompareBooks {
-  /*  */
+  padding-top: 8px;
 }
 
 .CompareBooks .Cards {
@@ -25,6 +45,7 @@
   background-color: var(--concrete);
   height: 64px;
   padding: 16px;
+  border-radius: 4px;
 }
 
 .CompareBooks .Cards .Card span {
@@ -35,6 +56,26 @@
 .CompareBooks .Cards .Card span p {
   width: 100%;
   padding: 0 16px 0 0;
+}
+
+.Compare_loans .Cards .Card span p {
+  padding: 0;
+}
+
+.CompareBooks .Cards .Card span p span {
+  display: flex;
+  justify-content: center;
+}
+
+.CompareBooks .Cards .Card strong,
+.CompareBooks .Cards .Card_loan strong {
+  font-size: 18px;
+  vertical-align: middle;
+  margin-right: 16px;
+}
+
+.CompareBooks .Cards .Card_loan strong {
+  margin: 0 16px 0 8px;
 }
 
 .CompareBooks .Cards .Card img {
@@ -50,8 +91,21 @@
   order: 0;
 }
 
-.Card_loan {
+.CompareBooks .Cards .Card_loan {
+  width: calc(100% / 3);
+  display: flex;
+  align-items: center;
   padding: 8px;
+  height: 64px;
+  border: 1px solid black;
+  margin: 0 16px 0 16px;
+}
+
+.CompareBooks .Cards .Card_loan p span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
 }
 
 .CompareBooks .Compare .Compare_title {
@@ -106,6 +160,10 @@
   background-color: var(--pistache);
 }
 
+.Compare_loans .Cards .Card {
+  width: calc(100% / 3);
+}
+
 .Compare_loans .Cards .Card img {
   max-width: 16px;
   min-width: 16px;
@@ -113,4 +171,8 @@
 
 .Compare_appeals .Compare_noTags {
   padding: 16px 0 16px 0;
+}
+
+.Compare_loans_indicator {
+  padding-top: 8px;
 }
