@@ -87,6 +87,12 @@ export class DidReadBelt extends React.Component {
     if (!pid) {
       return null;
     }
+
+    // do not recommend stuff already read
+    const dislikes = this.props
+      .getSystemLists()
+      .didRead.list.map(item => item.pid);
+
     return (
       <div
         className={this.props.className}
@@ -94,7 +100,7 @@ export class DidReadBelt extends React.Component {
         data-cy="did-read-belt"
       >
         <WorksTitle {...this.props} pid={pid} />
-        <Slider {...this.props} likes={[pid]} pid={pid} />
+        <Slider {...this.props} likes={[pid]} pid={pid} dislikes={dislikes} />
       </div>
     );
   }
