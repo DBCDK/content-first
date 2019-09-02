@@ -38,7 +38,7 @@ async function openplatformLogin(state) {
 
 export const userMiddleware = store => next => action => {
   switch (action.type) {
-    case ON_USER_DETAILS_REQUEST:
+    case ON_USER_DETAILS_REQUEST: {
       next(action);
       store.dispatch({type: SHORTLIST_LOAD_REQUEST});
 
@@ -76,6 +76,7 @@ export const userMiddleware = store => next => action => {
           });
         }
       })();
+    }
     case SAVE_USER_PROFILE:
       next(action);
       store.dispatch({
