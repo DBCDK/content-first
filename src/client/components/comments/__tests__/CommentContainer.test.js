@@ -5,6 +5,7 @@ import {mount} from 'enzyme';
 
 jest.mock('react-textarea-autosize', () => 'textarea');
 jest.mock('../CommentWrapper.component.js', () => 'comment');
+jest.mock('../../general/ProfileImage.component', () => 'Profileimage');
 
 function generateComments(count) {
   const comments = [];

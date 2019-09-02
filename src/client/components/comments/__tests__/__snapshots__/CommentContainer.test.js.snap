@@ -19,38 +19,14 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
         }
       }
     >
-      <div
-        className="profile-card d-flex flex-column "
-      >
-        <span
-          className="profile-image text-center small round align-self-center"
-          style={
-            Object {
-              "flexShrink": 0,
-              "height": "40px",
-              "lineHeight": "inherit",
-              "marginRight": "15px",
-              "width": "40px",
-            }
+      <Profileimage
+        size="40"
+        style={
+          Object {
+            "marginRight": "15px",
           }
-        >
-          <div
-            className="Skeleton__user__wrap Skeleton__pulse__active"
-          >
-            <span
-              className="Skeleton__user "
-            >
-              <img
-                alt=""
-                className="d-none"
-                onLoad={[Function]}
-                src="/v1/image/image_id/40/40"
-              />
-            </span>
-          </div>
-        </span>
-        
-      </div>
+        }
+      />
       <div
         className="d-flex flex-wrap align-items-center w-100 "
         onBlur={[Function]}
@@ -118,38 +94,14 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
         }
       }
     >
-      <div
-        className="profile-card d-flex flex-column "
-      >
-        <span
-          className="profile-image text-center small round align-self-center"
-          style={
-            Object {
-              "flexShrink": 0,
-              "height": "40px",
-              "lineHeight": "inherit",
-              "marginRight": "15px",
-              "width": "40px",
-            }
+      <Profileimage
+        size="40"
+        style={
+          Object {
+            "marginRight": "15px",
           }
-        >
-          <div
-            className="Skeleton__user__wrap Skeleton__pulse__active"
-          >
-            <span
-              className="Skeleton__user "
-            >
-              <img
-                alt=""
-                className="d-none"
-                onLoad={[Function]}
-                src="/v1/image/image_id/40/40"
-              />
-            </span>
-          </div>
-        </span>
-        
-      </div>
+        }
+      />
       <div
         className="d-flex flex-wrap align-items-center w-100 "
         onBlur={[Function]}
@@ -337,55 +289,14 @@ exports[`CommentContainer Component renders all comments 1`] = `
             }
           }
         >
-          <ProfileImage
+          <Profileimage
             size="40"
             style={
               Object {
                 "marginRight": "15px",
               }
             }
-            user={
-              Object {
-                "image": "image_id",
-              }
-            }
-          >
-            <div
-              className="profile-card d-flex flex-column "
-            >
-              <span
-                className="profile-image text-center small round align-self-center"
-                style={
-                  Object {
-                    "flexShrink": 0,
-                    "height": "40px",
-                    "lineHeight": "inherit",
-                    "marginRight": "15px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <User
-                  pulse={true}
-                >
-                  <div
-                    className="Skeleton__user__wrap Skeleton__pulse__active"
-                  >
-                    <span
-                      className="Skeleton__user "
-                    >
-                      <img
-                        alt=""
-                        className="d-none"
-                        onLoad={[Function]}
-                        src="/v1/image/image_id/40/40"
-                      />
-                    </span>
-                  </div>
-                </User>
-              </span>
-            </div>
-          </ProfileImage>
+          />
           <div
             className="d-flex flex-wrap align-items-center w-100 "
             onBlur={[Function]}
@@ -620,38 +531,14 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
         }
       }
     >
-      <div
-        className="profile-card d-flex flex-column "
-      >
-        <span
-          className="profile-image text-center small round align-self-center"
-          style={
-            Object {
-              "flexShrink": 0,
-              "height": "40px",
-              "lineHeight": "inherit",
-              "marginRight": "15px",
-              "width": "40px",
-            }
+      <Profileimage
+        size="40"
+        style={
+          Object {
+            "marginRight": "15px",
           }
-        >
-          <div
-            className="Skeleton__user__wrap Skeleton__pulse__active"
-          >
-            <span
-              className="Skeleton__user "
-            >
-              <img
-                alt=""
-                className="d-none"
-                onLoad={[Function]}
-                src="/v1/image/image_id/40/40"
-              />
-            </span>
-          </div>
-        </span>
-        
-      </div>
+        }
+      />
       <div
         className="d-flex flex-wrap align-items-center w-100 "
         onBlur={[Function]}
@@ -812,55 +699,14 @@ exports[`CommentContainer Component renders error 1`] = `
             }
           }
         >
-          <ProfileImage
+          <Profileimage
             size="40"
             style={
               Object {
                 "marginRight": "15px",
               }
             }
-            user={
-              Object {
-                "image": "image_id",
-              }
-            }
-          >
-            <div
-              className="profile-card d-flex flex-column "
-            >
-              <span
-                className="profile-image text-center small round align-self-center"
-                style={
-                  Object {
-                    "flexShrink": 0,
-                    "height": "40px",
-                    "lineHeight": "inherit",
-                    "marginRight": "15px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <User
-                  pulse={true}
-                >
-                  <div
-                    className="Skeleton__user__wrap Skeleton__pulse__active"
-                  >
-                    <span
-                      className="Skeleton__user "
-                    >
-                      <img
-                        alt=""
-                        className="d-none"
-                        onLoad={[Function]}
-                        src="/v1/image/image_id/40/40"
-                      />
-                    </span>
-                  </div>
-                </User>
-              </span>
-            </div>
-          </ProfileImage>
+          />
           <div
             className="d-flex flex-wrap align-items-center w-100 has-error"
             onBlur={[Function]}
@@ -1088,55 +934,14 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             }
           }
         >
-          <ProfileImage
+          <Profileimage
             size="40"
             style={
               Object {
                 "marginRight": "15px",
               }
             }
-            user={
-              Object {
-                "image": "image_id",
-              }
-            }
-          >
-            <div
-              className="profile-card d-flex flex-column "
-            >
-              <span
-                className="profile-image text-center small round align-self-center"
-                style={
-                  Object {
-                    "flexShrink": 0,
-                    "height": "40px",
-                    "lineHeight": "inherit",
-                    "marginRight": "15px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <User
-                  pulse={true}
-                >
-                  <div
-                    className="Skeleton__user__wrap Skeleton__pulse__active"
-                  >
-                    <span
-                      className="Skeleton__user "
-                    >
-                      <img
-                        alt=""
-                        className="d-none"
-                        onLoad={[Function]}
-                        src="/v1/image/image_id/40/40"
-                      />
-                    </span>
-                  </div>
-                </User>
-              </span>
-            </div>
-          </ProfileImage>
+          />
           <div
             className="d-flex flex-wrap align-items-center w-100 "
             onBlur={[Function]}
@@ -1380,55 +1185,14 @@ exports[`CommentContainer Toggle all comments 1`] = `
             }
           }
         >
-          <ProfileImage
+          <Profileimage
             size="40"
             style={
               Object {
                 "marginRight": "15px",
               }
             }
-            user={
-              Object {
-                "image": "image_id",
-              }
-            }
-          >
-            <div
-              className="profile-card d-flex flex-column "
-            >
-              <span
-                className="profile-image text-center small round align-self-center"
-                style={
-                  Object {
-                    "flexShrink": 0,
-                    "height": "40px",
-                    "lineHeight": "inherit",
-                    "marginRight": "15px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <User
-                  pulse={true}
-                >
-                  <div
-                    className="Skeleton__user__wrap Skeleton__pulse__active"
-                  >
-                    <span
-                      className="Skeleton__user "
-                    >
-                      <img
-                        alt=""
-                        className="d-none"
-                        onLoad={[Function]}
-                        src="/v1/image/image_id/40/40"
-                      />
-                    </span>
-                  </div>
-                </User>
-              </span>
-            </div>
-          </ProfileImage>
+          />
           <div
             className="d-flex flex-wrap align-items-center w-100 "
             onBlur={[Function]}
@@ -1685,55 +1449,14 @@ exports[`CommentContainer Toggle all comments 2`] = `
             }
           }
         >
-          <ProfileImage
+          <Profileimage
             size="40"
             style={
               Object {
                 "marginRight": "15px",
               }
             }
-            user={
-              Object {
-                "image": "image_id",
-              }
-            }
-          >
-            <div
-              className="profile-card d-flex flex-column "
-            >
-              <span
-                className="profile-image text-center small round align-self-center"
-                style={
-                  Object {
-                    "flexShrink": 0,
-                    "height": "40px",
-                    "lineHeight": "inherit",
-                    "marginRight": "15px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <User
-                  pulse={true}
-                >
-                  <div
-                    className="Skeleton__user__wrap Skeleton__pulse__active"
-                  >
-                    <span
-                      className="Skeleton__user "
-                    >
-                      <img
-                        alt=""
-                        className="d-none"
-                        onLoad={[Function]}
-                        src="/v1/image/image_id/40/40"
-                      />
-                    </span>
-                  </div>
-                </User>
-              </span>
-            </div>
-          </ProfileImage>
+          />
           <div
             className="d-flex flex-wrap align-items-center w-100 "
             onBlur={[Function]}

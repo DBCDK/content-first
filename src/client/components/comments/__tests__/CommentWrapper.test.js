@@ -5,6 +5,7 @@ import {mount} from 'enzyme';
 const CREATED_TIME_STAMP = 1000;
 
 jest.mock('react-textarea-autosize', () => 'textarea');
+jest.mock('../../general/ProfileImage.component', () => 'ProfileImage');
 
 function generateComments({key = 'test', saving, error} = {}) {
   const comment = {
