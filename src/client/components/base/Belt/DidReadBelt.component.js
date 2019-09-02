@@ -1,5 +1,6 @@
 import React from 'react';
 import {get} from 'lodash';
+import moment from 'moment';
 import {withChildBelt} from '../../hoc/Belt';
 import withWork from '../../hoc/Work/withWork.hoc';
 import WorkSlider from './WorkSlider.component';
@@ -7,6 +8,7 @@ import Title from '../Title';
 import {withPidsToPids} from '../../hoc/Recommender';
 import {withLists} from '../../hoc/List';
 import {withIsVisible} from '../../hoc/Scroll';
+import toColor from '../../../utils/toColor';
 
 // shared between all did read belts
 const picked = {};
@@ -61,10 +63,6 @@ export class DidReadBelt extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    delete picked[this.props.mountedData.pid];
-  }
-
   /*
    * We select pid from didRead list randomly,
    * and we do not select a pid that has
@@ -75,8 +73,9 @@ export class DidReadBelt extends React.Component {
       .getSystemLists()
       .didRead.list.map(item => item.pid)
       .filter(pid => !picked[pid]);
-    const idx = Math.floor(Math.random() * didRead.length);
-    const pid = didRead[idx];
+
+    // Pick from list randomly (current date is used as seed)
+    const pid = toColor(moment().format('YYYY-MM-DD'), didRead);
 
     // share with other DidRead belts that this pid is selected
     picked[pid] = pid;
