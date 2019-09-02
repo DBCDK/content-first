@@ -24,6 +24,7 @@ import {RECEIVE_USER} from './users';
 import {SHORTLIST_LOAD_REQUEST} from './shortlist.reducer';
 import openplatform from 'openplatform';
 import {HISTORY_PUSH_FORCE_REFRESH} from './router.reducer';
+import {OPEN_MODAL} from './modal.reducer';
 
 async function openplatformLogin(state) {
   if (!openplatform.connected()) {
@@ -41,6 +42,12 @@ export const userMiddleware = store => next => action => {
       next(action);
       store.dispatch({type: SHORTLIST_LOAD_REQUEST});
 
+      if (!get(store.getState(), 'userReducer.acceptedTerms')) {
+        store.dispatch({
+          type: OPEN_MODAL,
+          modal: 'profile'
+        });
+      }
       return (async () => {
         try {
           const openplatformToken =

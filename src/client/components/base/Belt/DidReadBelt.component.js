@@ -36,7 +36,7 @@ const Slider = withWork(
         onWorkClick={(wrk, bName, rid) =>
           props.openWorkPreview(wrk, title, rid)
         }
-        origin={`Fra '${title}'`}
+        origin={title}
       />
     );
   })
@@ -92,10 +92,10 @@ export class DidReadBelt extends React.Component {
       <div
         className={this.props.className}
         style={this.props.style}
-        data-cy="interactions-belt"
+        data-cy="did-read-belt"
       >
         <WorksTitle {...this.props} pid={pid} />
-        <Slider {...this.props} likes={[pid]} />
+        <Slider {...this.props} likes={[pid]} pid={pid} />
       </div>
     );
   }
