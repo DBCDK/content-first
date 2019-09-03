@@ -12,6 +12,9 @@ import {
 } from './order.reducer';
 import {fetchAnonymousToken} from '../utils/requester';
 
+import StorageClient from '../../shared/client-side-storage.client';
+const storageClient = new StorageClient();
+
 async function openplatformLogin(state) {
   if (!openplatform.connected()) {
     const token = state.userReducer.openplatformToken;
@@ -124,6 +127,7 @@ export const orderMiddleware = store => next => action => {
             pids,
             pickUpBranch: action.branch
           });
+          storageClient.put({_type: 'ORDER', pid: action.pid});
           store.dispatch({
             type: ORDER_SUCCESS,
             pid: action.pid

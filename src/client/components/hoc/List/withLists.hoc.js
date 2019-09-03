@@ -7,7 +7,7 @@ export const withLists = WrappedComponent => {
       const result = {
         didRead: {list: []},
         willRead: {list: []},
-        shortlist: this.props.shortlist
+        shortlist: this.props.shortlist || []
       };
       if (!this.props.lists) {
         return result;

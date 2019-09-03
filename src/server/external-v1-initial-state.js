@@ -6,6 +6,10 @@ import listReducer, {LISTS_EXPAND} from '../client/redux/list.reducer';
 import userReducer, {
   ON_USER_DETAILS_RESPONSE
 } from '../client/redux/user.reducer';
+import interactionReducer, {
+  FETCH_INTERACTIONS_SUCCESS
+} from '../client/redux/interaction.reducer';
+import orderReducer, {PREVIOUSLY_ORDERED} from '../client/redux/order.reducer';
 import StorageClient from '../shared/server-side-storage.client';
 import ListRequester from '../shared/list.requester';
 
@@ -25,6 +29,8 @@ async function initState(req) {
 
   let listState = listReducer(undefined, {});
   let userState = userReducer(undefined, {});
+  let interactionState = interactionReducer(undefined, {});
+  let orderState = orderReducer(undefined, {});
 
   if (req.user) {
     userState = userReducer(userState, {
@@ -38,10 +44,34 @@ async function initState(req) {
     });
     const lists = await listRequester.fetchOwnedLists(req.user.openplatformId);
     listState = listReducer(listState, {type: LISTS_EXPAND, lists});
+
+    const interactions = (await storageClient.find({
+      type: 'INTERACTION',
+      owner: req.user.openplatformId,
+      limit: 20
+    })).data;
+    interactionState = interactionReducer(interactionState, {
+      type: FETCH_INTERACTIONS_SUCCESS,
+      interactions
+    });
+
+    const orders = (await storageClient.find({
+      type: 'ORDER',
+      owner: req.user.openplatformId,
+      limit: 20
+    })).data;
+    orders.forEach(order => {
+      orderState = orderReducer(orderState, {
+        type: PREVIOUSLY_ORDERED,
+        pid: order.pid
+      });
+    });
   }
   return {
     userReducer: userState,
-    listReducer: listState
+    listReducer: listState,
+    interactionReducer: interactionState,
+    orderReducer: orderState
   };
 }
 

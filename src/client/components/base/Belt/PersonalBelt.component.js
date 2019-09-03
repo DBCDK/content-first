@@ -8,6 +8,8 @@ import Title from '../Title';
 import {withPidsToPids} from '../../hoc/Recommender';
 import {withLists} from '../../hoc/List';
 import {withIsVisible} from '../../hoc/Scroll';
+import {withInteractions} from '../../hoc/Interaction';
+import {withOrders} from '../../hoc/Order';
 import toColor from '../../../utils/toColor';
 
 // shared between all did read belts
@@ -76,40 +78,51 @@ export class PersonalBelt extends React.Component {
     const willRead = systemLists.willRead.list
       .map(item => item.pid)
       .filter(pid => !picked[pid]);
+    const orders = Object.keys(this.props.orders).filter(pid => !picked[pid]);
 
     const onOtherLists = customLists.reduce((arr, list) => {
-      return [...arr, ...list.list.map(entry => entry.pid)];
+      return [
+        ...arr,
+        ...list.list.map(entry => entry.pid).filter(pid => !picked[pid])
+      ];
     }, []);
-    const lists = [];
+    const visited = this.props.interactions
+      .filter(
+        interaction =>
+          (interaction.interaction === 'NEW_LOCATION' ||
+            interaction.interaction === 'PREVIEW') &&
+          interaction.pid &&
+          !picked[interaction.pid]
+      )
+      .map(interaction => interaction.pid);
+
+    let list;
+    let titlePrefix;
 
     if (didRead.length > 0) {
-      lists.push({
-        titlePrefix: 'Fordi du har læst',
-        list: didRead
-      });
+      titlePrefix = 'Fordi du har læst';
+      list = didRead;
+    } else if (willRead.length > 0) {
+      titlePrefix = 'Fordi du vil læse';
+      list = willRead;
+    } else if (orders.length > 0) {
+      titlePrefix = 'Fordi du har lånt';
+      list = orders;
+    } else if (shortlist.length > 0) {
+      titlePrefix = 'Fordi du har husket';
+      list = shortlist;
+    } else if (onOtherLists.length > 0) {
+      titlePrefix = 'Fordi du har gemt';
+      list = onOtherLists;
+    } else if (visited.length > 0) {
+      titlePrefix = 'Fordi du kiggede på';
+      list = visited;
     }
-    if (willRead.length > 0) {
-      lists.push({titlePrefix: 'Fordi du vil læse', list: willRead});
-    }
-    if (shortlist.length > 0) {
-      lists.push({
-        titlePrefix: 'Fordi du har husket',
-        list: shortlist
-      });
-    }
-    if (onOtherLists.length > 0) {
-      lists.push({
-        titlePrefix: 'Fordi du har gemt',
-        list: onOtherLists
-      });
-    }
-    if (lists.length === 0) {
+
+    if (!list) {
       // nothing to use as basis for recommendations
       return;
     }
-
-    // Pick a list randomly (current date is used as seed)
-    const {list, titlePrefix} = lists[0];
 
     // Pick from list randomly (current date is used as seed)
     const seed = `${this.props.mount}-${moment().format('YYYY-MM-DD')}`;
@@ -149,4 +162,6 @@ export class PersonalBelt extends React.Component {
     );
   }
 }
-export default withChildBelt(withIsVisible(withLists(PersonalBelt)));
+export default withChildBelt(
+  withIsVisible(withLists(withInteractions(withOrders(PersonalBelt))))
+);
