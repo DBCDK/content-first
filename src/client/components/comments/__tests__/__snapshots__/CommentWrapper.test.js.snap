@@ -123,6 +123,7 @@ exports[`CommentContainer Delete button 1`] = `
           className="comment d-flex"
         >
           <ProfileImage
+            id="1234"
             size="40"
             style={
               Object {
@@ -130,64 +131,7 @@ exports[`CommentContainer Delete button 1`] = `
                 "marginTop": "10px",
               }
             }
-            user={
-              Object {
-                "name": "Benny Cosmos",
-                "openplatformId": "1234",
-              }
-            }
-          >
-            <div
-              className="profile-card d-flex flex-column "
-            >
-              <span
-                className="profile-image text-center small round align-self-center"
-                style={
-                  Object {
-                    "flexShrink": 0,
-                    "height": "40px",
-                    "lineHeight": "74px",
-                    "marginRight": "15px",
-                    "marginTop": "10px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <Icon
-                  name="face"
-                  style={
-                    Object {
-                      "backgroundColor": "#e9eaeb",
-                      "borderRadius": "50%",
-                      "display": "block",
-                      "fontSize": "26px",
-                      "height": "40px",
-                      "lineHeight": "40px",
-                      "width": "40px",
-                    }
-                  }
-                >
-                  <i
-                    className="material-icons material-icons-face  "
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "backgroundColor": "#e9eaeb",
-                        "borderRadius": "50%",
-                        "display": "block",
-                        "fontSize": "26px",
-                        "height": "40px",
-                        "lineHeight": "40px",
-                        "width": "40px",
-                      }
-                    }
-                  >
-                    face
-                  </i>
-                </Icon>
-              </span>
-            </div>
-          </ProfileImage>
+          />
           <div
             className="d-flex flex-column w-100"
           >
@@ -351,6 +295,7 @@ exports[`CommentContainer Edit button 1`] = `
           className="comment d-flex"
         >
           <ProfileImage
+            id="1234"
             size="40"
             style={
               Object {
@@ -358,64 +303,7 @@ exports[`CommentContainer Edit button 1`] = `
                 "marginTop": "10px",
               }
             }
-            user={
-              Object {
-                "name": "Benny Cosmos",
-                "openplatformId": "1234",
-              }
-            }
-          >
-            <div
-              className="profile-card d-flex flex-column "
-            >
-              <span
-                className="profile-image text-center small round align-self-center"
-                style={
-                  Object {
-                    "flexShrink": 0,
-                    "height": "40px",
-                    "lineHeight": "74px",
-                    "marginRight": "15px",
-                    "marginTop": "10px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <Icon
-                  name="face"
-                  style={
-                    Object {
-                      "backgroundColor": "#e9eaeb",
-                      "borderRadius": "50%",
-                      "display": "block",
-                      "fontSize": "26px",
-                      "height": "40px",
-                      "lineHeight": "40px",
-                      "width": "40px",
-                    }
-                  }
-                >
-                  <i
-                    className="material-icons material-icons-face  "
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "backgroundColor": "#e9eaeb",
-                        "borderRadius": "50%",
-                        "display": "block",
-                        "fontSize": "26px",
-                        "height": "40px",
-                        "lineHeight": "40px",
-                        "width": "40px",
-                      }
-                    }
-                  >
-                    face
-                  </i>
-                </Icon>
-              </span>
-            </div>
-          </ProfileImage>
+          />
           <div
             className="d-flex flex-column w-100"
           >
@@ -600,69 +488,14 @@ exports[`CommentContainer Edit button 2`] = `
             }
           >
             <ProfileImage
+              id="1234"
               size="40"
               style={
                 Object {
                   "marginRight": "15px",
                 }
               }
-              user={
-                Object {
-                  "name": "Benny Cosmos",
-                  "openplatformId": "1234",
-                }
-              }
-            >
-              <div
-                className="profile-card d-flex flex-column "
-              >
-                <span
-                  className="profile-image text-center small round align-self-center"
-                  style={
-                    Object {
-                      "flexShrink": 0,
-                      "height": "40px",
-                      "lineHeight": "74px",
-                      "marginRight": "15px",
-                      "width": "40px",
-                    }
-                  }
-                >
-                  <Icon
-                    name="face"
-                    style={
-                      Object {
-                        "backgroundColor": "#e9eaeb",
-                        "borderRadius": "50%",
-                        "display": "block",
-                        "fontSize": "26px",
-                        "height": "40px",
-                        "lineHeight": "40px",
-                        "width": "40px",
-                      }
-                    }
-                  >
-                    <i
-                      className="material-icons material-icons-face  "
-                      onClick={[Function]}
-                      style={
-                        Object {
-                          "backgroundColor": "#e9eaeb",
-                          "borderRadius": "50%",
-                          "display": "block",
-                          "fontSize": "26px",
-                          "height": "40px",
-                          "lineHeight": "40px",
-                          "width": "40px",
-                        }
-                      }
-                    >
-                      face
-                    </i>
-                  </Icon>
-                </span>
-              </div>
-            </ProfileImage>
+            />
             <div
               className="d-flex flex-wrap align-items-center w-100 "
               onBlur={[Function]}
@@ -727,42 +560,16 @@ exports[`CommentContainer Render comment 1`] = `
       <div
         className="comment d-flex"
       >
-        <div
-          className="profile-card d-flex flex-column "
-        >
-          <span
-            className="profile-image text-center small round align-self-center"
-            style={
-              Object {
-                "flexShrink": 0,
-                "height": "40px",
-                "lineHeight": "74px",
-                "marginRight": "15px",
-                "marginTop": "10px",
-                "width": "40px",
-              }
+        <ProfileImage
+          id="1234"
+          size="40"
+          style={
+            Object {
+              "marginRight": "15px",
+              "marginTop": "10px",
             }
-          >
-            <i
-              className="material-icons material-icons-face  "
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundColor": "#e9eaeb",
-                  "borderRadius": "50%",
-                  "display": "block",
-                  "fontSize": "26px",
-                  "height": "40px",
-                  "lineHeight": "40px",
-                  "width": "40px",
-                }
-              }
-            >
-              face
-            </i>
-          </span>
-          
-        </div>
+          }
+        />
         <div
           className="d-flex flex-column w-100"
         >
@@ -864,42 +671,16 @@ exports[`CommentContainer Render edit form 1`] = `
       <div
         className="comment d-flex"
       >
-        <div
-          className="profile-card d-flex flex-column "
-        >
-          <span
-            className="profile-image text-center small round align-self-center"
-            style={
-              Object {
-                "flexShrink": 0,
-                "height": "40px",
-                "lineHeight": "74px",
-                "marginRight": "15px",
-                "marginTop": "10px",
-                "width": "40px",
-              }
+        <ProfileImage
+          id="1234"
+          size="40"
+          style={
+            Object {
+              "marginRight": "15px",
+              "marginTop": "10px",
             }
-          >
-            <i
-              className="material-icons material-icons-face  "
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundColor": "#e9eaeb",
-                  "borderRadius": "50%",
-                  "display": "block",
-                  "fontSize": "26px",
-                  "height": "40px",
-                  "lineHeight": "40px",
-                  "width": "40px",
-                }
-              }
-            >
-              face
-            </i>
-          </span>
-          
-        </div>
+          }
+        />
         <div
           className="d-flex flex-column w-100"
         >
@@ -1017,42 +798,16 @@ exports[`CommentContainer Render save form 1`] = `
       <div
         className="comment d-flex"
       >
-        <div
-          className="profile-card d-flex flex-column "
-        >
-          <span
-            className="profile-image text-center small round align-self-center"
-            style={
-              Object {
-                "flexShrink": 0,
-                "height": "40px",
-                "lineHeight": "74px",
-                "marginRight": "15px",
-                "marginTop": "10px",
-                "width": "40px",
-              }
+        <ProfileImage
+          id="1234"
+          size="40"
+          style={
+            Object {
+              "marginRight": "15px",
+              "marginTop": "10px",
             }
-          >
-            <i
-              className="material-icons material-icons-face  "
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundColor": "#e9eaeb",
-                  "borderRadius": "50%",
-                  "display": "block",
-                  "fontSize": "26px",
-                  "height": "40px",
-                  "lineHeight": "40px",
-                  "width": "40px",
-                }
-              }
-            >
-              face
-            </i>
-          </span>
-          
-        </div>
+          }
+        />
         <div
           className="d-flex flex-column w-100"
         >
@@ -1206,6 +961,7 @@ exports[`CommentContainer Save button 1`] = `
           className="comment d-flex"
         >
           <ProfileImage
+            id="1234"
             size="40"
             style={
               Object {
@@ -1213,64 +969,7 @@ exports[`CommentContainer Save button 1`] = `
                 "marginTop": "10px",
               }
             }
-            user={
-              Object {
-                "name": "Benny Cosmos",
-                "openplatformId": "1234",
-              }
-            }
-          >
-            <div
-              className="profile-card d-flex flex-column "
-            >
-              <span
-                className="profile-image text-center small round align-self-center"
-                style={
-                  Object {
-                    "flexShrink": 0,
-                    "height": "40px",
-                    "lineHeight": "74px",
-                    "marginRight": "15px",
-                    "marginTop": "10px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <Icon
-                  name="face"
-                  style={
-                    Object {
-                      "backgroundColor": "#e9eaeb",
-                      "borderRadius": "50%",
-                      "display": "block",
-                      "fontSize": "26px",
-                      "height": "40px",
-                      "lineHeight": "40px",
-                      "width": "40px",
-                    }
-                  }
-                >
-                  <i
-                    className="material-icons material-icons-face  "
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "backgroundColor": "#e9eaeb",
-                        "borderRadius": "50%",
-                        "display": "block",
-                        "fontSize": "26px",
-                        "height": "40px",
-                        "lineHeight": "40px",
-                        "width": "40px",
-                      }
-                    }
-                  >
-                    face
-                  </i>
-                </Icon>
-              </span>
-            </div>
-          </ProfileImage>
+          />
           <div
             className="d-flex flex-column w-100"
           >

@@ -1,5 +1,6 @@
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from './shortlist.reducer';
 import {ON_LOCATION_CHANGE} from './router.reducer';
+import {UPDATE_MOUNT} from './mounts.reducer';
 import {LIST_TOGGLE_ELEMENT} from './list.reducer';
 import {ORDER} from './order.reducer';
 import request from 'superagent';
@@ -10,6 +11,7 @@ import {
   FETCH_INTERACTIONS_ERROR,
   FETCH_INTERACTIONS_SUCCESS
 } from './interaction.reducer';
+import {get} from 'lodash';
 
 let isNotChecked = (list, pid) => {
   return !list.find(element => element.pid === pid);
@@ -122,6 +124,19 @@ export const interactionMiddleware = store => next => action => {
           type: INTERACTION,
           pid: action.element.book.pid,
           interaction: 'LIST_TOGGLE_ELEMENT'
+        });
+      }
+      return next(action);
+    }
+
+    case UPDATE_MOUNT: {
+      const type = get(action, 'data.type');
+      const pid = get(action, 'data.parent', 'unknown');
+      if (type === 'PREVIEW') {
+        store.dispatch({
+          type: INTERACTION,
+          pid,
+          interaction: 'PREVIEW'
         });
       }
       return next(action);

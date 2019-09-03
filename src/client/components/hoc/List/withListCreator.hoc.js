@@ -4,7 +4,10 @@ import {connect} from 'react-redux';
 import T from '../../base/T';
 
 import {ADD_LIST, CUSTOM_LIST} from '../../../redux/list.reducer';
-import {saveList} from '../../../utils/requestLists';
+import StorageClient from '../../../../shared/client-side-storage.client';
+import ListRequester from '../../../../shared/list.requester';
+
+const listRequester = new ListRequester({storageClient: new StorageClient()});
 
 /**
  *
@@ -40,7 +43,7 @@ export const withListCreator = WrappedComponent => {
       const {openplatformId, works, onCreateList} = this.props;
 
       try {
-        const list = await saveList(
+        const list = await listRequester.saveList(
           {
             type: CUSTOM_LIST,
             _public: false,

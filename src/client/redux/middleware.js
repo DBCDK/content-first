@@ -23,28 +23,22 @@ import {
   SHORTLIST_APPROVE_MERGE,
   SHORTLIST_CLEAR
 } from './shortlist.reducer';
-import {REQUEST_USER} from './users';
 import {
   ADD_LIST,
-  REMOVE_LIST,
   STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
-  FOLLOWED_LISTS_REQUEST,
-  OWNED_LISTS_REQUEST,
-  // OWNED_LISTS_RESPONSE,
   LIST_TOGGLE_ELEMENT,
   ADD_LIST_IMAGE,
   ADD_LIST_IMAGE_SUCCESS,
   ADD_LIST_IMAGE_ERROR,
   ADD_ELEMENT_TO_LIST,
-  getListByIdSelector
+  getListByIdSelector,
+  LISTS_EXPAND
 } from './list.reducer';
-import {
-  saveList,
-  loadList
-  // loadLists
-} from '../utils/requestLists';
+import ListRequester from '../../shared/list.requester';
+import StorageClient from '../../shared/client-side-storage.client';
+const listRequester = new ListRequester({storageClient: new StorageClient()});
 
 const getListById = getListByIdSelector();
 
@@ -245,38 +239,12 @@ export const listMiddleware = store => next => async action => {
         throw new Error(`list with _id ${action._id} not found`);
       }
       if (store.getState().userReducer.isLoggedIn) {
-        const updatedList = await saveList(list, openplatformId);
+        const updatedList = await listRequester.saveList(list, openplatformId);
         store.dispatch({
           type: ADD_LIST,
           list: updatedList
         });
       }
-      return next(action);
-    }
-    case ADD_LIST: {
-      // if (!action.list._id) {
-      //   const {openplatformId} = store.getState().userReducer;
-      //   action.list = await saveList(action.list, openplatformId);
-      //   if (action.afterSave) {
-      //     action.afterSave(action.list);
-      //   }
-      // }
-      // // if (!action.list.owner) {
-      // //   action.list.owner = store.getState().userReducer.openplatformId;
-      // // }
-      return next(action);
-    }
-    case REMOVE_LIST: {
-      // const _id = action._id;
-      //
-      // (async () => {
-      //   try {
-      //     await deleteObject({_id});
-      //     store.dispatch({type: REMOVE_LIST_SUCCESS, _id});
-      //   } catch (error) {
-      //     store.dispatch({type: REMOVE_LIST_ERROR, error, _id});
-      //   }
-      // })();
       return next(action);
     }
 
@@ -290,77 +258,14 @@ export const listMiddleware = store => next => async action => {
     case LIST_LOAD_REQUEST: {
       const res = next(action);
       try {
-        const list = await loadList(action._id, store);
-
-        store.dispatch({
-          type: LIST_LOAD_RESPONSE,
-          list
-        });
-
-        const pids = [];
-        list.list.forEach(book => {
-          pids.push(book.pid);
-        });
-
-        store.dispatch({type: BOOKS_REQUEST, pids});
-        store.dispatch({type: REQUEST_USER, id: list._owner});
-        list.list.forEach(element => {
-          store.dispatch({type: REQUEST_USER, id: element._owner});
-        });
+        const list = await listRequester.fetchList(action._id);
+        store.dispatch({type: LISTS_EXPAND, lists: [list]});
       } catch (error) {
         store.dispatch({
           type: LIST_LOAD_RESPONSE,
           list: {_id: action._id || 'unknown', error}
         });
       }
-      return res;
-    }
-    case FOLLOWED_LISTS_REQUEST: {
-      const res = next(action);
-      // const listIds = Object.values(store.getState().followReducer)
-      //   .filter(follow => follow.cat === 'list')
-      //   .map(f => f.id);
-      // const lists = store.getState().listReducer.lists;
-      // listIds
-      //   .filter(_id => !lists[_id])
-      //   .forEach(_id => store.dispatch({type: LIST_LOAD_REQUEST, _id}));
-
-      return res;
-    }
-    case OWNED_LISTS_REQUEST: {
-      const res = next(action);
-      // const {openplatformId} = store.getState().userReducer;
-      // const lists = await loadLists({openplatformId});
-      //
-      // const allLists = [...lists];
-      // allLists.forEach(list => {
-      //   store.dispatch({
-      //     type: LIST_LOAD_RESPONSE,
-      //     list
-      //   });
-      // });
-      //
-      // let pids = [];
-      // allLists.forEach(list => {
-      //   list.list.forEach(book => {
-      //     pids.push(book.pid);
-      //   });
-      // });
-      //
-      // store.dispatch({type: BOOKS_REQUEST, pids});
-      //
-      // for (const list of [...lists]) {
-      //   store.dispatch({type: REQUEST_USER, id: list._owner});
-      //   list.list.forEach(element => {
-      //     store.dispatch({type: REQUEST_USER, id: element._owner});
-      //   });
-      // }
-      //
-      // store.dispatch({type: FOLLOWED_LISTS_REQUEST});
-      // store.dispatch({
-      //   type: OWNED_LISTS_RESPONSE
-      // });
-
       return res;
     }
     case ADD_LIST_IMAGE:

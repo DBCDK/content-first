@@ -43,7 +43,7 @@ const withPidsToPids = WrappedComponent => {
         this.fetched !== this.props.likes
       ) {
         this.fetched = this.props.likes;
-        this.props.fetchRecommendations(this.props.likes);
+        this.props.fetchRecommendations(this.props.likes, this.props.dislikes);
       }
     }
 

@@ -3,6 +3,7 @@ import Icon from '../base/Icon';
 import SkeletonUser from '../base/Skeleton/User';
 import Text from '../base/Text';
 import TruncateMarkup from 'react-truncate-markup';
+import {withUser} from '../hoc/User';
 
 /*
 
@@ -97,4 +98,4 @@ class ProfileImage extends React.Component {
   }
 }
 
-export default ProfileImage;
+export default withUser(ProfileImage);

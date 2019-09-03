@@ -11,6 +11,7 @@ export const ORDER_DONE = 'ORDER_DONE';
 export const ORDER_SUCCESS = 'ORDER_SUCCESS';
 export const ORDER_FAILURE = 'ORDER_FAILURE';
 export const PICKUP_BRANCHES = 'PICKUP_BRANCHES';
+export const PREVIOUSLY_ORDERED = 'PREVIOUSLY_ORDERED';
 
 const orderReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -90,6 +91,18 @@ const orderReducer = (state = defaultState, action) => {
         pickupBranches: action.branches.filter(
           branch => branch.pickupAllowed !== '0'
         )
+      };
+
+    case PREVIOUSLY_ORDERED:
+      return {
+        ...state,
+        orders: {
+          ...state.orders,
+          [action.pid]: {
+            ...state.orders[action.pid],
+            orderState: 'previously_ordered'
+          }
+        }
       };
 
     default:
