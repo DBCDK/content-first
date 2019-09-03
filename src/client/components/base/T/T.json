@@ -294,6 +294,14 @@
         "da": "Læs anmeldelsen",
         "en": "Read review"
       },
+      "mustLogIn": {
+        "da": "Du skal logge ind for at læs artikler i Infomedia",
+        "en": "You need to log in to be able to get access to articles in Infomedia"
+      },
+      "noInfomediaAccess": {
+        "da": "Dit bibliotek har ikke adgang til artiklen i Infomedia",
+        "en": "Your library does not have permission to access this Infomedia article"
+      },
       "noValidCollection": {
         "da": "Bogen kan desværre ikke lånes på biblioteket",
         "en": "Unfortunately, the book cannot be borrowed from the library"
@@ -302,6 +310,7 @@
         "da": "Bogen kan desværre ikke lånes på biblioteket endnu",
         "en": "Unfortunately, the book cannot be borrowed at the library yet"
       }
+
     },
     "profile": {
       "profilePage": {
