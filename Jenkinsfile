@@ -90,7 +90,8 @@ pipeline {
                     docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} down -v
                     docker rmi $IMAGE
                 """
-        }
+                junit 'e2e/reports/*.xml'
+        }  
         failure {
             script {
                 if ("${env.BRANCH_NAME}" == 'master') {
