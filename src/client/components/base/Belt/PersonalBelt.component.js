@@ -44,8 +44,8 @@ const Slider = withWork(
   })
 );
 /*
- * The DidReadBelt shows recommendations based on a
- * randomly selected book from the didRead system list.
+ * The PersonalBelt shows recommendations based on a
+ * randomly selected book from system list.
  *
  * It will not be shown if
  *  - no books are in the didRead list
@@ -53,10 +53,10 @@ const Slider = withWork(
  *    in other didRead belts
  *
  * usage:
- * <DidReadBelt mount="some-unique-key" />
+ * <PersonalBelt mount="some-unique-key" />
  *
  */
-export class DidReadBelt extends React.Component {
+export class PersonalBelt extends React.Component {
   componentDidMount() {
     if (!this.props.mountedData.pid) {
       this.selectDidReadPid();
@@ -105,4 +105,4 @@ export class DidReadBelt extends React.Component {
     );
   }
 }
-export default withChildBelt(withIsVisible(withLists(DidReadBelt)));
+export default withChildBelt(withIsVisible(withLists(PersonalBelt)));

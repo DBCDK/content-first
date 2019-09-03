@@ -8,7 +8,7 @@ import ListsBelt from '../base/Belt/ListsBelt.container';
 import TagsBelt from '../base/Belt/TagsBelt.component';
 import SpotsContainer from '../spots/Spots.container';
 import {HISTORY_REPLACE} from '../../redux/middleware';
-import DidReadBelt from '../base/Belt/DidReadBelt.component';
+import PersonalBelt from '../base/Belt/PersonalBelt.component';
 
 class FrontPage extends React.Component {
   componentDidMount() {
@@ -52,7 +52,7 @@ class FrontPage extends React.Component {
       <div className="frontpage">
         <Head />
         <Hero />
-        <DidReadBelt mount={'frontpage-because-you-read-belt-1'} />
+        <PersonalBelt mount={'frontpage-because-you-read-belt-1'} />
         {this.renderBelts(aBeltsMap.slice(0, 2))}
         <ListsBelt
           title={T({
@@ -64,10 +64,10 @@ class FrontPage extends React.Component {
           sort="created"
           limit={50}
         />
-        <DidReadBelt mount={'frontpage-because-you-read-belt-2'} />
+        <PersonalBelt mount={'frontpage-because-you-read-belt-2'} />
         <SpotsContainer />
         {this.renderBelts(aBeltsMap.slice(2, aBeltsMap.length))}
-        <DidReadBelt mount={'frontpage-because-you-read-belt-3'} />
+        <PersonalBelt mount={'frontpage-because-you-read-belt-3'} />
       </div>
     );
   }
