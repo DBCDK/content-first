@@ -307,7 +307,7 @@ describe('Start Belt Editor test', function() {
 
   // ======================================================================================
 
-  it.skip('Test create new belt page - test Tag selection', function() {
+  it('Test create new belt page - test Tag selection', function() {
     cy.visit('/redaktionen/opret');
 
     cy.get('[data-cy=univers]').click();
@@ -315,6 +315,8 @@ describe('Start Belt Editor test', function() {
     cy.get('[data-cy=filterDimmer]').click();
 
     cy.get('.CreateBelt [data-cy=search-bar-input]').type('v');
+    cy.wait(200);
+    cy.get('.CreateBelt [data-cy=search-bar-input]').type('a');
     cy.get('.CreateBelt li.react-autosuggest__suggestion:first').click({
       force: true
     });
