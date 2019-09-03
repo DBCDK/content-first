@@ -14,11 +14,10 @@ export function Role(props) {
     if (typeof requiredRoles === 'string') {
       return getUserRoles().includes(requiredRoles);
     } else if (Array.isArray(requiredRoles)) {
-      for (let role in getUserRoles()) {
-        if (requiredRoles.includes(role)) {
-          return true;
-        }
-      }
+      const foundRole = getUserRoles().find(role =>
+        requiredRoles.includes(role)
+      );
+      return typeof foundRole !== 'undefined';
     }
     return false;
   };
