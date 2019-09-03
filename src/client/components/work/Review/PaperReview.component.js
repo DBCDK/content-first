@@ -5,22 +5,47 @@ import Title from '../../base/Title';
 import Text from '../../base/Text';
 import {connect} from 'react-redux';
 import ReviewRating from './ReviewRating.component';
-import Link from '../../general/Link.component';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
+import T from '../../base/T';
 
 /**
  * This class displays a single paper review item
  * Creator and ful review link are hidden for now.
  */
 export class PaperReview extends React.Component {
+  showReview = () => {
+    if (this.allowAccess()) {
+      return '';
+    }
+    return ' closed-review';
+  };
+  allowAccess = () => {
+    // if logged in and has permission
+    const hasPermission = true;
+    return hasPermission;
+  };
+  mouseOutFunc = () => {
+    this.setState({mouseOverActive: false});
+  };
+  mouseOverFunc = () => {
+    this.setState({mouseOverActive: true});
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      mouseOverActive: false
+    };
+  }
+
   render() {
     if (this.props.review === false) {
       return '';
     }
     const review = this.props.review;
     const infomediaData = review.infomedia;
-    //   console.log("infomediaData",infomediaData)
     const creator = review.creatorOth && review.creatorOth[0];
+
     let date =
       (review.isPartOf &&
         review.isPartOf[0].split(',')[1] &&
@@ -36,6 +61,7 @@ export class PaperReview extends React.Component {
         )
       : null;
     date = date.split(' ')[1] !== 'undefined' ? date : review.date;
+
     const source =
       review.isPartOf &&
       review.isPartOf[0].split(',')[0] &&
@@ -47,19 +73,71 @@ export class PaperReview extends React.Component {
           .replace('Vurdering:', '')
           .split('/')[1]
       : null;
+
     const rating = review.abstract
       ? review.abstract[0]
           .trim()
           .replace('Vurdering:', '')
           .split('/')[0]
       : null;
+
     const ratingShape = source === 'Politiken' ? 'favorite' : 'star';
 
+    let hasLink = false;
+    if (infomediaData) {
+      hasLink = infomediaData.length > 0;
+    }
+
+    let reviewLink;
+    if (this.allowAccess() && hasLink) {
+      reviewLink = (
+        <Text type="body" className="d-flex Review__block--lector mb-1">
+          <a
+            type="small"
+            onClick={() => {
+              this.props.showReviewModal(
+                'paperReview',
+                this.props.book,
+                review
+              );
+            }}
+          >
+            <T component="work" name={'readReview'} />
+          </a>
+        </Text>
+      );
+    } else {
+      reviewLink = (
+        <div>
+          <div
+            type="body"
+            className="Desktop-review-info d-flex Review__block--lector mb-1"
+          >
+            <a type="small" onMouseOver={this.mouseOverFunc}>
+              <T component="work" name={'readReview'} />
+            </a>
+          </div>
+          <div
+            type="body"
+            className="Mobile-review-info d-flex Review__block--lector mb-1"
+          >
+            <a type="small" onClick={this.mouseOverFunc}>
+              <T component="work" name={'readReview'} /> XXX
+            </a>
+          </div>
+        </div>
+      );
+    }
+
     return (
-      <div className={'Review__container mr-4 mb-3'}>
+      <div className={'Review__container mr-4 mb-3' + this.showReview()}>
         <div className="Review__block--top">
           <div className="Review__block--title mb-0 d-flex">
-            <Title Tag="h6" type="title6" className="mb-0 mr-2">
+            <Title
+              Tag="h6"
+              type="title6"
+              className={'mb-0 mr-2' + this.showReview()}
+            >
               {source}
             </Title>
             <ReviewRating
@@ -70,45 +148,50 @@ export class PaperReview extends React.Component {
           </div>
 
           {date && (
-            <Text type="small" className="due-txt mb-0">
+            <Text type="small" className={'due-txt mb-0' + this.showReview()}>
               {date}
             </Text>
           )}
         </div>
         {creator && creator.trim() !== '' && (
-          <Text type="body" className="Review__block--lector mb-1">
+          <Text
+            type="body"
+            className={'Review__block--lector mb-1' + this.showReview()}
+          >
             Af {creator}
           </Text>
         )}
-        <Link
-          className="Review__block--link mb0"
-          type="small"
-          onClick={() => {
-            this.props.showReviewModal('paperReview', this.props.book, review);
-          }}
-        >
-          Læs anmeldelsen
-        </Link>
 
-        {false && (
-          <Text>
-            <a
-              className="Review__block--link mb0 tooltips"
-              type="small"
-              onClick={() => {}}
-              target="_blank"
-              href={
-                review.identifierURI && review.identifierURI[0]
-                  ? review.identifierURI[0]
-                  : null
-              }
+        {reviewLink}
+
+        {this.state.mouseOverActive && !this.props.isLoggedIn && (
+          <React.Fragment>
+            <div
+              className="review-info"
+              onClick={this.mouseOutFunc}
+              onMouseOut={this.mouseOutFunc}
+              id="popup"
             >
-              Læs anmeldelsen
-              <span>
-                Dit biblliotek har ikke adgang til artiklen i Infomedia
-              </span>
-            </a>
-          </Text>
+              <div className="review-info-text tooltips">
+                <T component="work" name={'mustLogIn'} />
+              </div>
+            </div>
+          </React.Fragment>
+        )}
+
+        {this.state.mouseOverActive && !this.allowAccess() && (
+          <React.Fragment>
+            <div
+              className="review-info-mobile"
+              onClick={this.mouseOutFunc}
+              onMouseOut={this.mouseOutFunc}
+              id="popup"
+            >
+              <div className="review-info-text tooltips">
+                <T component="work" name={'noInfomediaAccess'} />
+              </div>
+            </div>
+          </React.Fragment>
         )}
       </div>
     );
