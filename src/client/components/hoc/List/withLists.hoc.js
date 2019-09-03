@@ -4,7 +4,11 @@ import {connect} from 'react-redux';
 export const withLists = WrappedComponent => {
   const Wrapper = class extends React.Component {
     getSystemLists = () => {
-      const result = {didRead: {list: []}, willRead: {list: []}};
+      const result = {
+        didRead: {list: []},
+        willRead: {list: []},
+        shortlist: this.props.shortlist
+      };
       if (!this.props.lists) {
         return result;
       }
@@ -20,12 +24,18 @@ export const withLists = WrappedComponent => {
         });
       return result;
     };
+    getCustomLists = () => {
+      return Object.values(this.props.lists).filter(
+        list => list.type === 'CUSTOM_LIST'
+      );
+    };
 
     render() {
       return (
         <WrappedComponent
           {...this.props}
           getSystemLists={this.getSystemLists}
+          getCustomLists={this.getCustomLists}
         />
       );
     }
@@ -33,7 +43,8 @@ export const withLists = WrappedComponent => {
 
   const mapStateToProps = state => {
     return {
-      lists: state.listReducer.lists || []
+      lists: state.listReducer.lists || [],
+      shortlist: state.userReducer.shortlist
     };
   };
 

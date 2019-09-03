@@ -13,21 +13,21 @@ import toColor from '../../../utils/toColor';
 // shared between all did read belts
 const picked = {};
 
-const WorksTitle = withWork(({work}) => (
+const WorksTitle = withWork(({work, titlePrefix}) => (
   <Title
     Tag="h1"
     type="title4"
     variant="transform-uppercase"
     className={`mb-3 mb-0 px-0 px-sm-3 px-lg-5 pt-5`}
   >
-    <strong>Fordi du har læst</strong>
+    <strong>{titlePrefix}</strong>
     <span className="ml-2">{get(work, 'book.title')}</span>
   </Title>
 ));
 
 const Slider = withWork(
   withPidsToPids(props => {
-    const title = `Fordi du har læst ${get(props, 'work.book.title')}`;
+    const title = `${props.titlePrefix} ${get(props, 'work.book.title')}`;
     return (
       <WorkSlider
         {...props}
@@ -45,12 +45,8 @@ const Slider = withWork(
 );
 /*
  * The PersonalBelt shows recommendations based on a
- * randomly selected book from system list.
- *
- * It will not be shown if
- *  - no books are in the didRead list
- *  - books in the didRead list are already used
- *    in other didRead belts
+ * randomly selected book from system list, custom lists
+ * and interactions.
  *
  * usage:
  * <PersonalBelt mount="some-unique-key" />
@@ -64,26 +60,68 @@ export class PersonalBelt extends React.Component {
   }
 
   /*
-   * We select pid from didRead list randomly,
+   * We select pid randomly,
    * and we do not select a pid that has
-   * already been selected by another didRead belt
+   * already been selected by another personal belt
    */
   selectDidReadPid() {
-    const didRead = this.props
-      .getSystemLists()
-      .didRead.list.map(item => item.pid)
+    const customLists = this.props.getCustomLists();
+    const systemLists = this.props.getSystemLists();
+    const shortlist = systemLists.shortlist
+      .map(item => item.pid)
+      .filter(pid => !picked[pid]);
+    const didRead = systemLists.didRead.list
+      .map(item => item.pid)
+      .filter(pid => !picked[pid]);
+    const willRead = systemLists.willRead.list
+      .map(item => item.pid)
       .filter(pid => !picked[pid]);
 
-    // Pick from list randomly (current date is used as seed)
-    const pid = toColor(moment().format('YYYY-MM-DD'), didRead);
+    const onOtherLists = customLists.reduce((arr, list) => {
+      return [...arr, ...list.list.map(entry => entry.pid)];
+    }, []);
+    const lists = [];
 
-    // share with other DidRead belts that this pid is selected
+    if (didRead.length > 0) {
+      lists.push({
+        titlePrefix: 'Fordi du har læst',
+        list: didRead
+      });
+    }
+    if (willRead.length > 0) {
+      lists.push({titlePrefix: 'Fordi du vil læse', list: willRead});
+    }
+    if (shortlist.length > 0) {
+      lists.push({
+        titlePrefix: 'Fordi du har husket',
+        list: shortlist
+      });
+    }
+    if (onOtherLists.length > 0) {
+      lists.push({
+        titlePrefix: 'Fordi du har gemt',
+        list: onOtherLists
+      });
+    }
+    if (lists.length === 0) {
+      // nothing to use as basis for recommendations
+      return;
+    }
+
+    // Pick a list randomly (current date is used as seed)
+    const {list, titlePrefix} = lists[0];
+
+    // Pick from list randomly (current date is used as seed)
+    const seed = `${this.props.mount}-${moment().format('YYYY-MM-DD')}`;
+    const pid = toColor(seed, list);
+
+    // share with other Personal belts that this pid is selected
     picked[pid] = pid;
 
-    this.props.updateMount({pid});
+    this.props.updateMount({pid, titlePrefix});
   }
   render() {
-    const pid = this.props.mountedData.pid;
+    const {pid, titlePrefix} = this.props.mountedData;
     if (!pid) {
       return null;
     }
@@ -99,8 +137,14 @@ export class PersonalBelt extends React.Component {
         style={this.props.style}
         data-cy="did-read-belt"
       >
-        <WorksTitle {...this.props} pid={pid} />
-        <Slider {...this.props} likes={[pid]} pid={pid} dislikes={dislikes} />
+        <WorksTitle {...this.props} pid={pid} titlePrefix={titlePrefix} />
+        <Slider
+          {...this.props}
+          likes={[pid]}
+          pid={pid}
+          dislikes={dislikes}
+          titlePrefix={titlePrefix}
+        />
       </div>
     );
   }
