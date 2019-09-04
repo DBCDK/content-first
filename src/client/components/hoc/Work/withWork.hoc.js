@@ -4,6 +4,8 @@ import {get} from 'lodash';
 import {BOOKS_REQUEST} from '../../../redux/books.reducer';
 import {ORDER} from '../../../redux/order.reducer';
 import {getYear} from '../../../utils/dateTimeFormat';
+import sortByAppeal from '../../../utils/sortByAppeal';
+import intersectTags from '../../../utils/intersectTags';
 import {
   collectionHasValidContent,
   collectionContainsBook,
@@ -132,26 +134,54 @@ const withWork = (
       return this.props.dispatchOrder(this.props.work);
     };
 
+    /**
+     * Sort function which sort the common tag list into appeal categories.
+     * @param {object} work work with tags to sort.
+     * @returns {Array} Filtered reviews
+     */
+
+    sortTagsByAppeal = (work = this.props.work) => {
+      if (!work && !work.book.tags) {
+        return false;
+      }
+
+      return sortByAppeal(work.book.tags);
+    };
+
+    intersectTags = () => {
+      if (!this.props.works) {
+        return false;
+      }
+      return intersectTags(this.props.works);
+    };
+
     fetch() {
+      const {isVisible, fetchWork, pid, pids} = this.props;
+
       if (
-        (this.props.isVisible || typeof this.props.isVisible === 'undefined') &&
-        this.fetched !== this.props.pid
+        ((isVisible || typeof isVisible === 'undefined') &&
+          this.fetched !== pid) ||
+        this.fetched !== pids
       ) {
-        this.fetched = this.props.pid;
-        this.props.fetchWork(this.props.pid);
+        const pidsToSelect = pids ? pids : [pid];
+        this.fetched = pids ? pids : pid;
+
+        fetchWork(pidsToSelect);
       }
     }
 
     render() {
       return (
         <WrappedComponent
+          order={this.order}
           newRelease={this.newRelease}
           hasValidCollection={this.collectionHasValidContent}
           collectionContainsBook={this.collectionContainsBook}
           filterCollection={this.filterCollection}
           filterReviews={this.filterReviews}
           sortTags={this.sortTags}
-          order={this.order}
+          sortTagsByAppeal={this.sortTagsByAppeal}
+          intersectTags={this.intersectTags}
           {...this.props}
         />
       );
@@ -159,8 +189,21 @@ const withWork = (
   };
 
   const mapStateToProps = (state, ownProps) => {
+    // Single
+    let work = null;
+    if (ownProps.pid) {
+      work = state.booksReducer.books[ownProps.pid];
+    }
+
+    // Multiple
+    let works = null;
+    if (ownProps.pids) {
+      works = ownProps.pids.map(pid => state.booksReducer.books[pid]);
+    }
+
     return {
-      work: state.booksReducer.books[ownProps.pid],
+      work,
+      works,
       orderState:
         (state.orderReducer.orders[ownProps.pid] &&
           state.orderReducer.orders[ownProps.pid].orderState) ||
@@ -169,10 +212,10 @@ const withWork = (
   };
   const mapDispatchToProps = dispatch => {
     return {
-      fetchWork: pid =>
+      fetchWork: pids =>
         dispatch({
           type: BOOKS_REQUEST,
-          pids: [pid],
+          pids,
           includeTags,
           includeReviews,
           includeCollection

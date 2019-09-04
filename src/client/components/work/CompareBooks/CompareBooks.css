@@ -1,0 +1,178 @@
+.reorder-list-modal-window {
+  width: 750px;
+}
+
+@media only screen and (max-width: 750px) {
+  .reorder-list-modal-window {
+    width: 100%;
+  }
+
+  .CompareBooks .Cards .Card {
+    overflow: hidden;
+  }
+
+  .Compare_loans .Cards .Card p span {
+    flex-direction: column;
+    text-align: center;
+    padding: 0;
+  }
+
+  .Compare_loans .Cards .Card_loan p span {
+    flex-direction: column;
+    text-align: center !important;
+    padding: 0;
+  }
+
+  .CompareBooks .Cards .Card p span strong {
+    margin: 0;
+  }
+}
+
+.CompareBooks {
+  padding-top: 8px;
+}
+
+.CompareBooks .Cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.CompareBooks .Cards .Card {
+  width: calc(50% - 32px);
+  display: flex;
+  align-items: center;
+  background-color: var(--concrete);
+  height: 64px;
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.CompareBooks .Cards .Card span {
+  width: 100%;
+  padding: 0 16px 0 16px;
+}
+
+.CompareBooks .Cards .Card span p {
+  width: 100%;
+  padding: 0 16px 0 0;
+}
+
+.Compare_loans .Cards .Card span p {
+  padding: 0;
+}
+
+.CompareBooks .Cards .Card span p span {
+  display: flex;
+  justify-content: center;
+}
+
+.CompareBooks .Cards .Card strong,
+.CompareBooks .Cards .Card_loan strong {
+  font-size: 18px;
+  vertical-align: middle;
+  margin-right: 16px;
+}
+
+.CompareBooks .Cards .Card_loan strong {
+  margin: 0 16px 0 8px;
+}
+
+.CompareBooks .Cards .Card img {
+  max-width: 32px;
+  min-width: 32px;
+}
+
+.CompareBooks .Cards .Card_vs,
+.CompareBooks .Cards .Card_loan {
+  min-width: 64px;
+  text-align: center;
+  align-self: center;
+  order: 0;
+}
+
+.CompareBooks .Cards .Card_loan {
+  width: calc(100% / 3);
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  height: 64px;
+  border: 1px solid black;
+  margin: 0 16px 0 16px;
+}
+
+.CompareBooks .Cards .Card_loan p span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.CompareBooks .Compare .Compare_title {
+  padding: 16px 0 8px 0;
+}
+
+.Compare .Compare_informations {
+  background-color: var(--concrete);
+  padding: 8px 16px 8px 16px;
+}
+
+.Compare_informations .Info {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.Info .Info_color {
+  width: 40px;
+  height: 16px;
+  margin-right: 8px;
+  background-color: var(--porcelain);
+}
+
+.Info.Info_main .Info_color {
+  background-color: var(--pistache);
+}
+
+.Compare_appeals {
+  padding: 0px 16px 8px 16px;
+  background-color: var(--concrete);
+}
+
+.Compare_appeals .Compare_tag {
+  display: inline-block;
+  margin: 0 8px 8px 0;
+}
+
+.Compare_appeals .Compare_tag button {
+  margin: 0;
+}
+
+.Compare_appeals-title {
+  padding: 8px 0 8px 0;
+}
+
+.Compare_Tag {
+  margin-right: 8px;
+}
+
+.Compare_Tag.Compare_match {
+  background-color: var(--pistache);
+}
+
+.Compare_loans .Cards .Card {
+  width: calc(100% / 3);
+}
+
+.Compare_loans .Cards .Card img {
+  max-width: 16px;
+  min-width: 16px;
+}
+
+.Compare_appeals .Compare_noTags {
+  padding: 16px 0 16px 0;
+}
+
+.Compare_loans_indicator {
+  padding-top: 8px;
+}

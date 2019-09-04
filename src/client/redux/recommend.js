@@ -52,6 +52,7 @@ const recommendReducer = (state = defaultState, action) => {
           [key([...(action.tags || []), ...(action.creators || [])])]: {
             isLoading: false,
             pids: action.pids || [],
+            details: [],
             rid: action.rid,
             error: action.error
           }
@@ -75,6 +76,7 @@ const recommendReducer = (state = defaultState, action) => {
           [key(action.likes)]: {
             isLoading: false,
             pids: action.pids || [],
+            details: action.debug || [],
             rid: action.rid,
             error: action.error
           }
@@ -350,11 +352,20 @@ export const recommendMiddleware = store => next => action => {
           try {
             const body = await fetchRecommendations(action);
             const pids = body.response.map(w => w.pid);
+
+            let debug = {};
+            // include "debug" info from recommender
+            body.response.forEach(w => (debug[w.pid] = w.debug));
+
+            // include the main work's "debug" info
+            debug = {...body.responseHeader.debug, ...debug};
+
             const rid = body.rid;
             store.dispatch({
               ...action,
               type: WORK_RECOMMEND_RESPONSE,
               pids,
+              debug,
               rid
             });
           } catch (error) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import BookCover from '../../general/BookCover/BookCover.component';
 import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
+import CompareButton from '../../general/CompareButton/CompareButton.component';
 import TaxDescription from '../TaxDescription.component';
 import Text from '../../base/Text';
 import Title from '../../base/Title';
@@ -89,22 +90,21 @@ class WorkCard extends React.Component {
           <BookCover
             book={this.props.skeleton ? {book: {}} : this.props.work.book}
           >
-            <BookmarkButton
-              className="icon-large"
-              origin={this.props.origin}
-              work={this.props.work}
-              rid={this.props.rid}
-              layout="circle"
-              style={{
-                position: 'absolute',
-                right: 0,
-                top: 0,
-                width: '40px',
-                height: '40px'
-              }}
-              dataCy="bookmarkBtn"
-              size="default"
-            />
+            <div className="book-cover-content">
+              <BookmarkButton
+                className="icon-large"
+                origin={this.props.origin}
+                work={this.props.work}
+                rid={this.props.rid}
+                layout="circle"
+                dataCy="bookmarkBtn"
+                size="default"
+              />
+              <CompareButton
+                main={this.props.origin.parent}
+                pid={this.props.pid}
+              />
+            </div>
           </BookCover>
 
           <Text className="mt-2 d-xs-none d-sm-block">

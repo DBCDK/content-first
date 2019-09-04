@@ -38,6 +38,11 @@ const defaultState = {
     open: false,
     context: null,
     callback: null
+  },
+  compare: {
+    open: false,
+    context: null,
+    callback: null
   }
 };
 

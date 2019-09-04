@@ -23,6 +23,7 @@ Object {
 
 exports[`recommendReducer response 1`] = `
 Object {
+  "details": Array [],
   "error": undefined,
   "isLoading": false,
   "pids": Array [

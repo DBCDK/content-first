@@ -73,7 +73,7 @@ const T = ({component, name, vars, renderAsHtml = false}) => {
 
   // Render Html in text
   if (renderAsHtml) {
-    return <span dangerouslySetInnerHTML={{__html: text}} />;
+    return <span dangerouslySetInnerHTML={{__html: result}} />;
   }
 
   return result;

@@ -60,11 +60,12 @@ class WorkPage extends React.Component {
     }
 
     // get collections including ereolen
-    const collection = this.props.filterCollection(work);
+    const collection = this.props.filterCollection();
     // get reviews from litteratursiden
-    const reviews = this.props.filterReviews(work);
+    const reviews = this.props.filterReviews();
     // sort tags by group
-    const tags = this.props.sortTags(work);
+    const tags = this.props.sortTags();
+    // const tags = this.props.sortTagsByAppeal();
 
     const stemningTags = tags.filter(e => e.title === 'stemning')[0];
     const priorityTagsArr = book.tags.filter(e => e.score > 1);

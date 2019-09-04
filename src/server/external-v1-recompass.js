@@ -54,6 +54,7 @@ router
                 creators: creators,
                 maxresults: parseInt(maxresults, 10)
               });
+
               result.rid = uuidGenerator.v1();
               matomo.trackDataEvent(
                 'recommend',
@@ -74,9 +75,14 @@ router
             //
             // Recompas recommend based on pids
             //
-            const {likes = [], dislikes = [], limit = 50} = req.query;
+            const {
+              likes = [],
+              dislikes = [],
+              limit = 50,
+              debug = true
+            } = req.query;
             const link = `${req.baseUrl}?likes=${likes ||
-              ''}&dislikes=${dislikes || ''}&limit=${limit}`;
+              ''}&dislikes=${dislikes || ''}&limit=${limit}&debug=${debug}`;
 
             if (!likes || likes.length === 0) {
               return next({
@@ -92,8 +98,10 @@ router
               const result = await recompasWork.getRecommendations({
                 likes: JSON.parse(likes),
                 dislikes: JSON.parse(dislikes),
-                limit: Number(limit)
+                limit: Number(limit),
+                debug
               });
+
               result.rid = uuidGenerator.v1();
               matomo.trackDataEvent(
                 'recommend',

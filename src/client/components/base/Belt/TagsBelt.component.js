@@ -253,6 +253,7 @@ export class TagsBelt extends React.Component {
 
         <WorkSlider
           {...this.props}
+          className="TagsBelt"
           pids={this.props.recommendations}
           onMoreLikeThisClick={(wrk, bName, rid) =>
             this.props.openSimilarBelt(
