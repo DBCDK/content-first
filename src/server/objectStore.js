@@ -11,6 +11,10 @@ let aggregationUrl;
 let typeId;
 let validated = false;
 
+function trimEpoch(timestamp) {
+  return Number(timestamp.toString().slice(0, 10));
+}
+
 const fetchAnonymousToken = !config.server.isProduction
   ? () => ({
       access_token: 'anon_token'
@@ -54,7 +58,7 @@ async function validateObjectStore() {
   }
 }
 
-async function getUser(req) {
+function getUser(req) {
   if (req.isAuthenticated()) {
     const user = req.user;
     if (user.expires < Date.now() / 1000) {
@@ -67,6 +71,21 @@ async function getUser(req) {
 }
 
 const toStorageObject = object => {
+  // handle created/modified - this should be handled in the serviceprovider...
+  if (!object._id) {
+    object._created = Math.round(Date.now() / 1000);
+    object._modified = object._created;
+  } else {
+    object._modified = Math.round(Date.now() / 1000);
+
+    // Just in case the client has set it to a 13 digit epoch
+    if (!object._created) {
+      object._created = Math.round(Date.now() / 1000);
+    } else {
+      object._created = trimEpoch(object._created);
+    }
+  }
+
   const copy = {};
 
   Object.entries(object).forEach(([key, value]) => {
@@ -82,6 +101,7 @@ const toStorageObject = object => {
   });
   copy.cf_key = copy.cf_key || '';
   copy._type = typeId; // the special content-first object type
+
   return copy;
 };
 const fromStorageObject = storageObject => {

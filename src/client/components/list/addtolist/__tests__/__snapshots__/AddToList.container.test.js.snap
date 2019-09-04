@@ -22,7 +22,7 @@ exports[`AddToList render when allowAdd is true 1`] = `
   <div
     className="d-flex flex-row pt-2"
   >
-    <ProfileImage
+    <Connect(Wrapper)
       size="40"
     />
     <Connect(BookSearchSuggester)
@@ -81,7 +81,7 @@ exports[`AddToList show add and cancel buttons when selected book is not in list
   <div
     className="d-flex flex-row pt-2"
   >
-    <ProfileImage
+    <Connect(Wrapper)
       size="40"
     />
     <Connect(BookSearchSuggester)
@@ -140,7 +140,7 @@ exports[`AddToList show error msg when selected books is already in list 1`] = `
   <div
     className="d-flex flex-row pt-2"
   >
-    <ProfileImage
+    <Connect(Wrapper)
       size="40"
     />
     <Connect(BookSearchSuggester)

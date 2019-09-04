@@ -27,6 +27,9 @@ export default class WorkSlider extends React.Component {
     return resultsPerRow;
   };
   render() {
+    if (this.props.isVisible === false) {
+      return <div style={{height: 442}}></div>;
+    }
     const {pids = []} = this.props;
     const worksPerSlide = this.getWorksPerSlide();
     const {didSwipe = false, scrollPos = 0} = this.props.mountedData;
@@ -72,7 +75,10 @@ export default class WorkSlider extends React.Component {
                     enableHover={true}
                     hoverClass={this.props.bgClass}
                     highlight={this.props.selected === pid}
-                    isVisible={idx < scrollPos + worksPerSlide * 2}
+                    isVisible={
+                      this.props.isVisible &&
+                      idx < scrollPos + worksPerSlide * 2
+                    }
                     pid={pid}
                     rid={this.props.rid}
                     key={pid}

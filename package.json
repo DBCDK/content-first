@@ -39,6 +39,10 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
     "autolinker": "^1.6.2",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
@@ -83,6 +87,7 @@
     "react-visibility-sensor": "^4.1.3",
     "redux": "^3.7.2",
     "reselect": "^3.0.1",
+    "resize-observer-polyfill": "^1.5.1",
     "sharp": "^0.22.1",
     "small-uuid": "^1.0.1",
     "smoothscroll-polyfill": "^0.4.3",

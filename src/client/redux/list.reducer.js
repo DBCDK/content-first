@@ -1,4 +1,4 @@
-import {uniqBy} from 'lodash';
+import {uniqBy, differenceBy} from 'lodash';
 import {createSelector} from 'reselect';
 
 export const SYSTEM_LIST = 'SYSTEM_LIST';
@@ -41,9 +41,62 @@ export const ADD_LIST_IMAGE_ERROR = 'ADD_LIST_IMAGE_ERROR';
 
 export const ON_USERLISTS_EXPAND = 'ON_USERLISTS_EXPAND';
 export const ON_USERLISTS_COLLAPSE = 'ON_USERLISTS_COLLAPSE';
+export const LISTS_EXPAND = 'LISTS_EXPAND';
 // eslint-disable-next-line
 const listReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case LISTS_EXPAND: {
+      let {lists} = action;
+      lists = lists.map(list => {
+        const entryMap = Array.isArray(list.tmpEntries)
+          ? list.tmpEntries.reduce((map, element) => {
+              map[element._id] = element;
+              return map;
+            }, {})
+          : {};
+        list.list = Array.isArray(list.list) ? list.list : [];
+
+        list.list = list.list.map(element => {
+          return {...element, ...entryMap[element._id]};
+        });
+
+        // Add rest of elements to end of list which are not in original list.list
+        const rest = differenceBy(list.tmpEntries, list.list, '_id');
+        rest.sort((o1, o2) => o1._created - o2._created);
+        list.list = list.list.concat(rest);
+
+        // Remove elements which have been removed by other users
+        // and hence might still be referenced in original list.list
+        list.deleted = list.deleted || {};
+        list.list = list.list
+          .filter(element => element.pid && element._id)
+          .filter(element => !list.deleted[element._id]);
+
+        // We don't want to keep books which have been stored at element
+        // These are handled in the redux books now
+        list.list.forEach(el => {
+          delete el.book;
+        });
+
+        list.isLoading = false;
+        list.hasLoaded = true;
+
+        delete list.tmpEntries;
+
+        return list;
+      });
+
+      const nextLists = {...state.lists};
+      lists.forEach(list => {
+        nextLists[list._id] = list;
+      });
+      return {
+        ...state,
+        lists: nextLists,
+        isFetchingOwned: false,
+        hasFetchedOwned: true
+      };
+    }
     case OWNED_LISTS_REQUEST: {
       return Object.assign({}, state, {
         isFetchingOwned: true

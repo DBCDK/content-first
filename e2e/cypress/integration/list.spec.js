@@ -194,17 +194,23 @@ describe('List test', function() {
       cy.get('[data-cy=listview-add-element-input]')
         .clear()
         .type(firstElement);
-      cy.get('[data-cy=listview-add-element-input]').type('{enter}');
+      cy.get(`[data-cy="suggestion-row-${firstElement}"]`)
+        .first()
+        .click();
 
       cy.get('[data-cy=listview-add-element-input]')
         .clear()
         .type(secondElement);
-      cy.get('[data-cy=listview-add-element-input]').type('{enter}');
+      cy.get(`[data-cy="suggestion-row-${secondElement}"]`)
+        .first()
+        .click();
 
       cy.get('[data-cy=listview-add-element-input]')
         .clear()
         .type(thirdElement);
-      cy.get('[data-cy=listview-add-element-input]').type('{enter}');
+      cy.get(`[data-cy="suggestion-row-${thirdElement}"]`)
+        .first()
+        .click();
 
       //Change elements order
       cy.get('[data-cy=context-menu-list]')

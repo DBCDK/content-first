@@ -111,7 +111,7 @@ export class CommentWrapper extends React.Component {
             ) : (
               <div className="comment d-flex">
                 <ProfileImage
-                  user={user}
+                  id={user.openplatformId}
                   style={{marginRight: '15px', marginTop: '10px'}}
                   size="40"
                 />

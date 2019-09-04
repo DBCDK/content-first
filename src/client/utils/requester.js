@@ -1,15 +1,9 @@
 import openplatform from 'openplatform';
 import request from 'superagent';
 import {BOOKS_RESPONSE} from '../redux/books.reducer';
-import {
-  ON_USER_DETAILS_RESPONSE,
-  ON_LOGOUT_RESPONSE,
-  ON_USER_DETAILS_ERROR
-} from '../redux/user.reducer';
-
+import {ON_LOGOUT_RESPONSE} from '../redux/user.reducer';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
-import {OPEN_MODAL} from '../redux/modal.reducer';
 import {getLeavesMap} from './taxonomy';
 
 const taxonomyMap = getLeavesMap();
@@ -250,29 +244,6 @@ export const fetchCollection = (pids, store) => {
     })
   ).then(result => {
     return result;
-  });
-};
-
-/**
- * fetchUser
- * @param dispatch
- * @param cb
- */
-export const fetchUser = (dispatch, cb) => {
-  request.get('/v1/user').end(function(error, res) {
-    if (error || res.body.errors) {
-      dispatch({type: ON_USER_DETAILS_ERROR});
-    } else {
-      const user = res.body.data;
-      dispatch({type: ON_USER_DETAILS_RESPONSE, user});
-      if (!user.acceptedTerms) {
-        dispatch({
-          type: OPEN_MODAL,
-          modal: 'profile'
-        });
-      }
-    }
-    cb();
   });
 };
 

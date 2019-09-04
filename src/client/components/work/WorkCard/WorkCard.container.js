@@ -13,7 +13,11 @@ import './WorkCard.css';
 
 export const SkeletonWorkCard = props => {
   return (
-    <div ref={props.cardRef || null} className={'WorkCard ' + props.className}>
+    <div
+      ref={props.cardRef || null}
+      className={'WorkCard ' + props.className}
+      data-hj-ignore-attributes
+    >
       <BookCover book={{book: {}}} />
       <div
         className="skelet-taxonomy-description d-xs-none d-sm-block"
@@ -45,7 +49,8 @@ class WorkCard extends React.Component {
   shouldComponentUpdate(nextProps) {
     return (
       nextProps.highlight !== this.props.highlight ||
-      nextProps.work !== this.props.work
+      nextProps.work !== this.props.work ||
+      nextProps.isVisible !== this.props.isVisible
     );
   }
 
@@ -56,7 +61,11 @@ class WorkCard extends React.Component {
   };
 
   render() {
-    if (!this.props.work || !this.props.work.detailsHasLoaded) {
+    if (
+      !this.props.work ||
+      !this.props.work.detailsHasLoaded ||
+      !this.props.isVisible
+    ) {
       return <SkeletonWorkCard {...this.props} />;
     }
     // check if more-like-this button is disabled (default: false)
@@ -75,6 +84,7 @@ class WorkCard extends React.Component {
         ref={this.props.cardRef || null}
         className={`WorkCard ${highlight} ${this.props.className}`}
         data-cy={this.props['data-cy'] || 'workcard'}
+        data-hj-ignore-attributes
       >
         <div style={{height: '100%'}} onClick={this.onWorkClick}>
           <BookCover

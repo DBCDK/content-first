@@ -16,6 +16,7 @@ const Button = ({
   dataCy,
   'data-cy': dataCyHyphen,
   href,
+  hrefSelf,
   onClick,
   ...props
 }) => {
@@ -36,7 +37,9 @@ const Button = ({
 
   var onClickValue = {};
   if (typeof href !== 'undefined') {
-    onClickValue = {onClick: () => window.open(href)};
+    onClickValue = hrefSelf
+      ? {onClick: () => window.open(href, '_self')}
+      : {onClick: () => window.open(href)};
   } else if (typeof onClick !== 'undefined') {
     onClickValue = {onClick: onClick};
   }

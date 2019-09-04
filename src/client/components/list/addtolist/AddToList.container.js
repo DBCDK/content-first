@@ -37,7 +37,7 @@ export class AddToList extends React.Component {
     const {
       list,
       allowAdd,
-      profile,
+      profileId,
       className,
       style,
       suggesterRef
@@ -74,7 +74,7 @@ export class AddToList extends React.Component {
         </Title>
 
         <div className="d-flex flex-row pt-2">
-          <ProfileImage user={profile} size={'40'} />
+          <ProfileImage id={profileId} size={'40'} />
           <BookSearchSuggester
             suggesterRef={suggesterRef}
             className="ml-3 mr-5"
@@ -109,7 +109,7 @@ export class AddToList extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     openplatformId: state.userReducer.openplatformId,
-    profile: state.users[state.userReducer.openplatformId],
+    profileId: state.userReducer.openplatformId,
     allowAdd:
       ownProps.list.open ||
       ownProps.list._owner === state.userReducer.openplatformId,

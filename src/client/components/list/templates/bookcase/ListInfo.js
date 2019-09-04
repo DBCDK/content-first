@@ -14,12 +14,10 @@ import Pulse from '../../../pulse/Pulse.component';
 import ProfileImage from '../../../general/ProfileImage.component';
 import CommentCounter from '../../../comments/CommentCounter.component';
 import {percentageObjToPixel} from '../../../../utils/converter.js';
-import {getUser} from '../../../../redux/users';
 
 export const ListInfo = ({
   list,
   isListOwner,
-  profile,
   infoRef,
   sticky,
   expanded,
@@ -96,7 +94,7 @@ export const ListInfo = ({
           className="list-owner d-flex justify-content-between"
           style={{right: 0, top: 0}}
         >
-          <ProfileImage user={profile} size={'40'} namePosition="right" />
+          <ProfileImage id={list._owner} size={'40'} namePosition="right" />
           <Share
             className="align-self-center"
             href={'https://laesekompas.dk/lister/' + list._id}
@@ -135,12 +133,6 @@ export const ListInfo = ({
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    profile: getUser(state, {id: ownProps.list._owner})
-  };
-};
-
 export const mapDispatchToProps = dispatch => ({
   confirmShareModal: _id => {
     dispatch({
@@ -177,6 +169,6 @@ export const mapDispatchToProps = dispatch => ({
   }
 });
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(ListInfo);

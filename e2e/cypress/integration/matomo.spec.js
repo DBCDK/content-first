@@ -100,7 +100,26 @@ describe('Matomo test', function() {
     );
   });
 
-  it('Can track personal belt events without leaking username', function() {
+  it('Can track did read belt events', function() {
+    cy.initStorage();
+    cy.createUser('someuser');
+    // make interaction such that personal recommendations belt appears
+    cy.visit('/værk/870970-basis:27206344');
+    cy.get('[data-cy="add-to-list-btn"]').click();
+    cy.get('[data-cy="add-to-list-btn"]')
+      .contains('Har læst')
+      .click();
+    cy.visit('/');
+
+    testBelt(
+      '/',
+      '[data-cy="did-read-belt"]',
+      'belt:Fordi du har læst Skyggen'
+    );
+  });
+
+  /* This test should be deleted when */
+  it.skip('Can track personal belt events without leaking username', function() {
     cy.initStorage();
     cy.createUser('someuser');
     // make interaction such that personal recommendations belt appears

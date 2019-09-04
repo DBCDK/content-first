@@ -389,6 +389,16 @@ exports[`renders without crashing 1`] = `
       className="frontpage"
     >
       <Hero />
+      <react-visibility-sensor
+        offset={
+          Object {
+            "bottom": -1000,
+            "top": -1000,
+          }
+        }
+        onChange={[Function]}
+        partialVisibility={true}
+      />
       <div>
         <TagsBelt
           child={false}
@@ -451,6 +461,30 @@ exports[`renders without crashing 1`] = `
           type="belt"
         />
       </div>
+      <ListsBelt
+        limit={50}
+        mount="frontpage-lists"
+        sort="created"
+        title={
+          <span
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<strong>Nyeste</strong> brugerlister",
+              }
+            }
+          />
+        }
+      />
+      <react-visibility-sensor
+        offset={
+          Object {
+            "bottom": -1000,
+            "top": -1000,
+          }
+        }
+        onChange={[Function]}
+        partialVisibility={true}
+      />
       <SpotsContainer />
       <div>
         <TagsBelt
@@ -974,19 +1008,15 @@ exports[`renders without crashing 1`] = `
           type="belt"
         />
       </div>
-      <ListsBelt
-        limit={50}
-        mount="frontpage-lists"
-        sort="created"
-        title={
-          <span
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "<strong>Nyeste</strong> brugerlister",
-              }
-            }
-          />
+      <react-visibility-sensor
+        offset={
+          Object {
+            "bottom": -1000,
+            "top": -1000,
+          }
         }
+        onChange={[Function]}
+        partialVisibility={true}
       />
     </div>
   </div>

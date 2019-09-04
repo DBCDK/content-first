@@ -41,7 +41,11 @@ export default class CommentInput extends React.Component {
         }}
       >
         {!hideProfile && (
-          <ProfileImage user={user} style={{marginRight: '15px'}} size="40" />
+          <ProfileImage
+            id={user.openplatformId}
+            style={{marginRight: '15px'}}
+            size="40"
+          />
         )}
         <div
           className={`d-flex flex-wrap align-items-center w-100 ${

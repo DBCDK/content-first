@@ -72,7 +72,7 @@ class FilterCard extends React.Component {
           <div
             onClick={e => this.props.onCardClick(e)}
             className="FilterCard__cover"
-            style={{backgroundImage: `url(${filter.image})`}}
+            style={{backgroundImage: `url(/${filter.image})`}}
           >
             <Icon
               name="close"

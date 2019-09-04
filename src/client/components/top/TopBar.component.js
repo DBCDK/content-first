@@ -18,7 +18,7 @@ import Title from '../base/Title/';
 import Text from '../base/Text/';
 import T from '../base/T/';
 import './Topbar.css';
-import {FETCH_STATS} from '../../redux/stats.reducer';
+import {eventPath} from '../../utils/path';
 
 let searchPage = false;
 
@@ -87,10 +87,7 @@ export class TopBar extends React.Component {
   closeDropdown = event => {
     // Dont dubble close on 'dropdown' click
     let abortCloseDropdown = false;
-    const path =
-      event.path ||
-      (event.composedPath && event.composedPath()) ||
-      event.target.parentNode;
+    const path = eventPath(event);
 
     /* IE11 & Edge support (no forEach())*/
     for (var i = 0; i < path.length; i++) {
@@ -119,24 +116,19 @@ export class TopBar extends React.Component {
   }
 
   componentDidMount() {
-    if (this.Topbar) {
-      this.Topbar.addEventListener('mousedown', this.closeDropdown);
-    }
+    document.addEventListener('mousedown', this.closeDropdown);
     window.addEventListener('resize', this.onResize);
     this.calcWidth();
 
     searchPage = this.props.router.path === '/find' ? true : false;
     this.setState({searchExpanded: searchPage});
-    this.props.fetchStats();
 
     const tagsInField = window.location.href.split('=')[1];
     this.setState({showCancel: tagsInField});
   }
 
   componentWillUnmount() {
-    if (this.Topbar) {
-      this.Topbar.removeEventListener('mousedown', this.closeDropdown);
-    }
+    document.removeEventListener('mousedown', this.closeDropdown);
     this.calcWidth();
     window.removeEventListener('resize', this.onResize);
   }
@@ -458,8 +450,7 @@ const mapStateToProps = state => {
   return {
     shortListState: state.shortListReducer,
     listsState: state.listReducer,
-    router: state.routerReducer,
-    stats: state.stats
+    router: state.routerReducer
   };
 };
 export const mapDispatchToProps = dispatch => ({
@@ -467,7 +458,6 @@ export const mapDispatchToProps = dispatch => ({
   logout: () => dispatch({type: ON_LOGOUT_REQUEST}),
   onUserListsClose: () => dispatch({type: ON_USERLISTS_COLLAPSE}),
   onShortlistClose: () => dispatch({type: ON_SHORTLIST_COLLAPSE}),
-  fetchStats: () => dispatch({type: FETCH_STATS}),
   betaModal: () => {
     dispatch({
       type: OPEN_MODAL,

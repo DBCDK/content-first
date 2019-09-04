@@ -34,6 +34,13 @@ jest.mock(
     virtual: true
   }
 );
+jest.mock(
+  '!raw-loader!../components/article/pages/loginError.md',
+  () => 'loginError.md',
+  {
+    virtual: true
+  }
+);
 
 jest.mock(
   './client/components/general/BookCover/BookCover.component',

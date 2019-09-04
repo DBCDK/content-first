@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {updateList, storeList} from '../../../../redux/list.reducer';
-import {getUser} from '../../../../redux/users';
 import ProfileImage from '../../../general/ProfileImage.component';
 import CommentCounter from '../../../comments/CommentCounter.component';
 import T from '../../../base/T';
@@ -10,7 +9,7 @@ import Text from '../../../base/Text';
 import FollowButton from '../../button/FollowButton';
 import PrintButton from '../../button/PrintButton';
 
-export const ListInfo = ({list, isListOwner, profile, commentsListRef}) => {
+export const ListInfo = ({list, isListOwner, commentsListRef}) => {
   return (
     <div className="lys-graa position-relative">
       {list.image && (
@@ -25,7 +24,7 @@ export const ListInfo = ({list, isListOwner, profile, commentsListRef}) => {
 
       <div className="list-info pl-3 pr-3">
         <div className="list-owner d-flex justify-content-between align-items-start">
-          <ProfileImage user={profile} size={'40'} namePosition="right" />
+          <ProfileImage id={list._owner} size={'40'} namePosition="right" />
           <Share
             className="align-self-center"
             href={'https://laesekompas.dk/lister/' + list._id}
@@ -64,11 +63,6 @@ export const ListInfo = ({list, isListOwner, profile, commentsListRef}) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    profile: getUser(state, {id: ownProps.list._owner})
-  };
-};
 export const mapDispatchToProps = dispatch => ({
   confirmShareModal: _id => {
     dispatch({
@@ -105,6 +99,6 @@ export const mapDispatchToProps = dispatch => ({
   }
 });
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(ListInfo);

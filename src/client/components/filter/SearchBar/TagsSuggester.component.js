@@ -90,6 +90,11 @@ class TagsSuggester extends React.Component {
         }
         return true;
       })
+      .filter(s =>
+        typeof this.props.filterByType === 'undefined'
+          ? true
+          : s.type === this.props.filterByType
+      )
       .map(s => {
         if (s.type === 'TITLE') {
           const retObj = groupedTitles[s.title][0];
@@ -115,14 +120,14 @@ class TagsSuggester extends React.Component {
     this.props.onChange({target: {value: ''}});
   };
   toggleInputvisibility = status => {
-    this.setState({inputVisibel: status});
+    this.setState({inputVisible: status});
   };
 
   constructor(props) {
     super(props);
     this.state = {
       suggestions: [],
-      inputVisibel: false
+      inputVisible: false
     };
   }
 
@@ -135,21 +140,22 @@ class TagsSuggester extends React.Component {
   }
 
   hideKeyboardOnScroll() {
-    const prevScrollPosiion = this.prevScrollPosiion || 0;
+    const prevScrollPosiion = this.prevScrollPosition || 0;
     const difference = window.pageYOffset - prevScrollPosiion;
     if (
-      this.sarchBar &&
-      this.sarchBar.input &&
+      !this.props.scrollableSuggestions &&
+      this.searchBar &&
+      this.searchBar.input &&
       (difference > 1 || difference < -1)
     ) {
-      this.sarchBar.input.blur();
-      this.prevScrollPosiion = window.pageYOffset;
+      this.searchBar.input.blur();
+      this.prevScrollPosition = window.pageYOffset;
     }
   }
 
   handleKeyPress(e) {
-    if (e.key === 'Enter' && this.sarchBar && this.sarchBar.input) {
-      this.sarchBar.input.blur();
+    if (e.key === 'Enter' && this.searchBar && this.searchBar.input) {
+      this.searchBar.input.blur();
     }
   }
 
@@ -230,7 +236,7 @@ class TagsSuggester extends React.Component {
             focusInputOnSuggestionClick={true}
             inputProps={inputProps}
             highlightFirstSuggestion={true}
-            ref={c => (this.sarchBar = c)}
+            ref={c => (this.searchBar = c)}
           />
         </div>
         {!tagsInField && (

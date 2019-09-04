@@ -162,6 +162,8 @@ class SearchBar extends React.Component {
           <TagsSuggester
             tags={this.props.tags}
             filters={this.props.filters}
+            scrollableSuggestions={this.props.scrollableSuggestions}
+            filterByType={this.props.filterByType}
             value={this.state.query}
             onKeyDown={this.handleOnKeyDown}
             onFocus={() => {

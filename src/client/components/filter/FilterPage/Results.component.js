@@ -73,14 +73,7 @@ class Results extends React.Component {
     const multiPids = this.props.getMultiPids();
 
     let allPids = [...singlePid, ...multiPids];
-    const tags = this.props.tags.reduce((arr, tag) => {
-      if (tag.type === 'TAG') {
-        return [...arr, tag];
-      } else if (tag.type === 'TAG_RANGE') {
-        return [...arr, ...tag.inRange];
-      }
-      return arr;
-    }, []);
+    const tags = this.props.flattenedTags();
     const creators = this.props.tags
       .filter(t => t.type === 'QUERY')
       .map(q => q.query);

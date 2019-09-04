@@ -83,6 +83,15 @@ const withTagsFromUrl = WrappedComponent => {
         );
       return multiPids;
     };
+    flattenedTags = () =>
+      this.props.tags.reduce((arr, tag) => {
+        if (tag.type === 'TAG') {
+          return [...arr, tag];
+        } else if (tag.type === 'TAG_RANGE') {
+          return [...arr, ...tag.inRange];
+        }
+        return arr;
+      }, []);
     render() {
       return (
         <WrappedComponent
@@ -92,6 +101,7 @@ const withTagsFromUrl = WrappedComponent => {
           removeTag={this.removeTag}
           addTag={this.addTag}
           getMultiPids={this.getMultiPids}
+          flattenedTags={this.flattenedTags}
         />
       );
     }
@@ -109,7 +119,7 @@ const withTagsFromUrl = WrappedComponent => {
     updateUrl: tags => {
       dispatch({
         type: HISTORY_REPLACE,
-        path: '/find',
+        path: '',
         params:
           tags.length > 0
             ? {

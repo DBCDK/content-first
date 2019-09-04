@@ -5,7 +5,7 @@ import reducer from './root.reducer';
 import {historyMiddleware} from './middleware';
 import {ON_LOCATION_CHANGE} from './router.reducer';
 
-export default middleware => {
+export default (middleware, initialState) => {
   const history = createBrowserHistory();
   const providedMiddleware = middleware ? middleware : [];
   middleware = [...providedMiddleware, historyMiddleware(history)];
@@ -14,6 +14,7 @@ export default middleware => {
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(
     reducer,
+    initialState,
     composeEnhancers(applyMiddleware(...middleware))
   );
 

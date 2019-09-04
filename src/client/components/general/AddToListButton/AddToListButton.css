@@ -15,6 +15,7 @@
   align-items: center;
 }
 .multiple-works-button-container .AddToListButton {
+  width: auto;
   width: fit-content;
 }
 .AddToListButton:hover {

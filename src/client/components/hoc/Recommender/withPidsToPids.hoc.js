@@ -24,7 +24,7 @@ import {
  *
  * // the recommendations may be lazy-loaded using the isVisible prop.
  * // if isVisible=false, recommendations are not downloaded until isVisible=true
- * <GreatRecommendations tags={['870970-basis:123456']} isVisible={false}/>
+ * <GreatRecommendations likes={['870970-basis:123456']} isVisible={false}/>
  */
 const withPidsToPids = WrappedComponent => {
   const Wrapped = class extends React.Component {
@@ -38,10 +38,12 @@ const withPidsToPids = WrappedComponent => {
     fetch() {
       if (
         (this.props.isVisible || typeof this.props.isVisible === 'undefined') &&
+        this.props.likes &&
+        this.props.likes.length > 0 &&
         this.fetched !== this.props.likes
       ) {
         this.fetched = this.props.likes;
-        this.props.fetchRecommendations(this.props.likes);
+        this.props.fetchRecommendations(this.props.likes, this.props.dislikes);
       }
     }
 

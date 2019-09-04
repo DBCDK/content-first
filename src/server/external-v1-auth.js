@@ -12,7 +12,7 @@ router.get(
   '/callback',
   passport.authenticate('profile', {
     successRedirect: '/replay',
-    failureRedirect: '/error'
+    failureRedirect: '/loginfejl'
   })
 );
 
