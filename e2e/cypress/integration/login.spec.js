@@ -22,7 +22,7 @@ describe('Login test', function() {
   it('Can edit a profile', function() {
     const userName = 'testUser' + Math.floor(Math.random() * 1000);
     const userNameEdited = userName + 'edited';
-    cy.createUser(userName, '1');
+    cy.createUser(userName);
     cy.visit('/profil/rediger');
     cy.get('[data-cy=user-form-name]')
       .clear()
@@ -36,7 +36,7 @@ describe('Login test', function() {
   it('Can undo edit of profile', function() {
     const userName = 'testUser' + Math.floor(Math.random() * 1000);
     const userNameEdited = userName + 'edited';
-    cy.createUser(userName, '1');
+    cy.createUser(userName);
     cy.visit('/profil/rediger');
     cy.get('[data-cy=user-form-name]')
       .clear()
