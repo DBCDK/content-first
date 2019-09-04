@@ -13,12 +13,11 @@ import T from '../../base/T';
  * Creator and ful review link are hidden for now.
  */
 export class PaperReview extends React.Component {
-
-  mouseOutFunc = () => {
-    this.setState({mouseOverActive: false});
-  };
   mouseOverFunc = () => {
     this.setState({mouseOverActive: true});
+  };
+  mouseOutFunc = () => {
+    this.setState({mouseOverActive: false});
   };
 
   constructor(props) {
@@ -29,7 +28,6 @@ export class PaperReview extends React.Component {
   }
 
   render() {
-
     if (this.props.review === false) {
       return '';
     }
@@ -42,8 +40,8 @@ export class PaperReview extends React.Component {
     let permission = true;
 
     if (infomediaData) {
-      permission = (infomediaData.statusCode !== 403);
-      hasLink = (infomediaData.length > 0 || !permission);
+      permission = infomediaData.statusCode !== 403;
+      hasLink = infomediaData.length > 0 || !permission;
     }
 
     const creator = review.creatorOth && review.creatorOth[0];
@@ -55,12 +53,12 @@ export class PaperReview extends React.Component {
       null;
     date = date
       ? timestampToShortDate(
-        new Date(
-          date.split('-')[0],
-          parseInt(date.split('-')[1], 10) - 1,
-          date.split('-')[2]
+          new Date(
+            date.split('-')[0],
+            parseInt(date.split('-')[1], 10) - 1,
+            date.split('-')[2]
+          )
         )
-      )
       : null;
     date = date.split(' ')[1] !== 'undefined' ? date : review.date;
 
@@ -71,20 +69,19 @@ export class PaperReview extends React.Component {
 
     const maxRating = review.abstract
       ? review.abstract[0]
-        .trim()
-        .replace('Vurdering:', '')
-        .split('/')[1]
+          .trim()
+          .replace('Vurdering:', '')
+          .split('/')[1]
       : null;
 
     const rating = review.abstract
       ? review.abstract[0]
-        .trim()
-        .replace('Vurdering:', '')
-        .split('/')[0]
+          .trim()
+          .replace('Vurdering:', '')
+          .split('/')[0]
       : null;
 
     const ratingShape = source === 'Politiken' ? 'favorite' : 'star';
-
 
     function showReview() {
       if (allowAccess() === 'fullAccess') {
@@ -98,15 +95,15 @@ export class PaperReview extends React.Component {
         if (permission) {
           return 'fullAccess';
         }
-        return 'needPermission';
+        return 'noInfomediaAccess';
       }
-      return 'needLogin';
+      return 'mustLogIn';
     }
 
     let reviewLink;
 
     if (hasLink) {
-      if (allowAccess() === "fullAccess") {
+      if (allowAccess() === 'fullAccess') {
         reviewLink = (
           <Text type="body" className="d-flex Review__block--lector mb-1">
             <a
@@ -150,11 +147,7 @@ export class PaperReview extends React.Component {
       <div className={'Review__container mr-4 mb-3' + showReview()}>
         <div className="Review__block--top">
           <div className="Review__block--title mb-0 d-flex">
-            <Title
-              Tag="h6"
-              type="title6"
-              className={'mb-0 mr-2'}
-            >
+            <Title Tag="h6" type="title6" className={'mb-0 mr-2'}>
               {source}
             </Title>
             <ReviewRating
@@ -171,17 +164,14 @@ export class PaperReview extends React.Component {
           )}
         </div>
         {creator && creator.trim() !== '' && (
-          <Text
-            type="body"
-            className={'Review__block--lector mb-1'}
-          >
+          <Text type="body" className={'Review__block--lector mb-1'}>
             Af {creator}
           </Text>
         )}
 
         {reviewLink}
 
-        {this.state.mouseOverActive && (allowAccess() === 'needLogin') && (
+        {this.state.mouseOverActive && (
           <React.Fragment>
             <div
               className="review-info"
@@ -190,22 +180,7 @@ export class PaperReview extends React.Component {
               id="popup"
             >
               <div className="review-info-text tooltips">
-                <T component="work" name={'mustLogIn'} />
-              </div>
-            </div>
-          </React.Fragment>
-        )}
-
-        {this.state.mouseOverActive && (allowAccess() === 'needPermission') && (
-          <React.Fragment>
-            <div
-              className="review-info-mobile"
-              onClick={this.mouseOutFunc}
-              onMouseOut={this.mouseOutFunc}
-              id="popup"
-            >
-              <div className="review-info-text tooltips">
-                <T component="work" name={'noInfomediaAccess'} />
+                <T component="work" name={allowAccess()} />
               </div>
             </div>
           </React.Fragment>

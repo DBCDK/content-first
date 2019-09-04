@@ -181,7 +181,6 @@ export const fetchReviews = (pids, store) => {
         });
 
         if (authenticatedToken) {
-
           const pidsInRef = ref.book.reviews.data;
 
           const reviewsFromPids = await Promise.all(
@@ -191,9 +190,8 @@ export const fetchReviews = (pids, store) => {
                   pid: pid,
                   access_token: authenticatedToken
                 });
-              }
-              catch (e) {
-                return {statusCode: e.statusCode}
+              } catch (e) {
+                return {statusCode: e.statusCode};
               }
             })
           );
@@ -225,7 +223,6 @@ export const fetchReviews = (pids, store) => {
   ).then(result => {
     return result;
   });
-
 };
 
 /**
@@ -284,7 +281,7 @@ export const fetchCollection = (pids, store) => {
  * @param cb
  */
 export const fetchUser = (dispatch, cb) => {
-  request.get('/v1/user').end(function (error, res) {
+  request.get('/v1/user').end(function(error, res) {
     if (error || res.body.errors) {
       dispatch({type: ON_USER_DETAILS_ERROR});
     } else {
@@ -464,7 +461,7 @@ export const saveShortList = (elements, isLoggedIn) => {
     request
       .put('/v1/shortlist')
       .send(payload)
-      .end(function (error) {
+      .end(function(error) {
         if (error) {
           console.log('error persisting shortlist', error); // eslint-disable-line
         }
