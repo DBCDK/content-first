@@ -8,10 +8,30 @@ import Text from '../../base/Text';
  * This class displays a single full review item
  */
 export default class FullTextReview extends React.Component {
+  showFullPaperReview = rev => {
+    if (rev.infomedia[0]) {
+      const text = rev.infomedia[0].html;
+      return (
+        <div className="Review__scroll-container">
+          <div className="Review__inner-scroll">
+            <div className="Review__container mr-4 mb-5">
+              <div dangerouslySetInnerHTML={{__html: text}} />
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
+
   render() {
     if (this.props.review === false) {
       return '';
     }
+
+    if (this.props.reviewType === 'paperReview') {
+      return this.showFullPaperReview(this.props.review);
+    }
+
     const review = this.props.review;
     const author = this.props.book.creator || '';
     const title = this.props.book.title || '';
