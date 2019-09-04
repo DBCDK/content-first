@@ -162,7 +162,6 @@ export const fetchReviews = (pids, store) => {
     store.getState(),
     'userReducer.openplatformToken'
   );
-  console.log('token', authenticatedToken);
   const booksToBeFetched = pids.map(pid => books[pid]);
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
   return Promise.all(
@@ -182,16 +181,22 @@ export const fetchReviews = (pids, store) => {
         });
 
         if (authenticatedToken) {
+
           const pidsInRef = ref.book.reviews.data;
+
           const reviewsFromPids = await Promise.all(
-            pidsInRef.map(pid => {
-              return openplatform.infomedia({
-                pid: pid,
-                access_token: authenticatedToken
-              });
+            pidsInRef.map(async pid => {
+              try {
+                return await openplatform.infomedia({
+                  pid: pid,
+                  access_token: authenticatedToken
+                });
+              }
+              catch (e) {
+                return {statusCode: e.statusCode}
+              }
             })
           );
-
           result.forEach((e, index) => {
             e.infomedia = reviewsFromPids[index];
           });
@@ -220,6 +225,7 @@ export const fetchReviews = (pids, store) => {
   ).then(result => {
     return result;
   });
+
 };
 
 /**
@@ -278,7 +284,7 @@ export const fetchCollection = (pids, store) => {
  * @param cb
  */
 export const fetchUser = (dispatch, cb) => {
-  request.get('/v1/user').end(function(error, res) {
+  request.get('/v1/user').end(function (error, res) {
     if (error || res.body.errors) {
       dispatch({type: ON_USER_DETAILS_ERROR});
     } else {
@@ -458,7 +464,7 @@ export const saveShortList = (elements, isLoggedIn) => {
     request
       .put('/v1/shortlist')
       .send(payload)
-      .end(function(error) {
+      .end(function (error) {
         if (error) {
           console.log('error persisting shortlist', error); // eslint-disable-line
         }

@@ -13,17 +13,7 @@ import T from '../../base/T';
  * Creator and ful review link are hidden for now.
  */
 export class PaperReview extends React.Component {
-  showReview = () => {
-    if (this.allowAccess()) {
-      return '';
-    }
-    return ' closed-review';
-  };
-  allowAccess = () => {
-    // if logged in and has permission
-    const hasPermission = true;
-    return hasPermission;
-  };
+
   mouseOutFunc = () => {
     this.setState({mouseOverActive: false});
   };
@@ -39,11 +29,23 @@ export class PaperReview extends React.Component {
   }
 
   render() {
+
     if (this.props.review === false) {
       return '';
     }
+
     const review = this.props.review;
     const infomediaData = review.infomedia;
+
+    const loggedIn = this.props.isLoggedIn;
+    let hasLink = true;
+    let permission = true;
+
+    if (infomediaData) {
+      permission = (infomediaData.statusCode !== 403);
+      hasLink = (infomediaData.length > 0 || !permission);
+    }
+
     const creator = review.creatorOth && review.creatorOth[0];
 
     let date =
@@ -53,12 +55,12 @@ export class PaperReview extends React.Component {
       null;
     date = date
       ? timestampToShortDate(
-          new Date(
-            date.split('-')[0],
-            parseInt(date.split('-')[1], 10) - 1,
-            date.split('-')[2]
-          )
+        new Date(
+          date.split('-')[0],
+          parseInt(date.split('-')[1], 10) - 1,
+          date.split('-')[2]
         )
+      )
       : null;
     date = date.split(' ')[1] !== 'undefined' ? date : review.date;
 
@@ -69,74 +71,89 @@ export class PaperReview extends React.Component {
 
     const maxRating = review.abstract
       ? review.abstract[0]
-          .trim()
-          .replace('Vurdering:', '')
-          .split('/')[1]
+        .trim()
+        .replace('Vurdering:', '')
+        .split('/')[1]
       : null;
 
     const rating = review.abstract
       ? review.abstract[0]
-          .trim()
-          .replace('Vurdering:', '')
-          .split('/')[0]
+        .trim()
+        .replace('Vurdering:', '')
+        .split('/')[0]
       : null;
 
     const ratingShape = source === 'Politiken' ? 'favorite' : 'star';
 
-    let hasLink = false;
-    if (infomediaData) {
-      hasLink = infomediaData.length > 0;
+
+    function showReview() {
+      if (allowAccess() === 'fullAccess') {
+        return '';
+      }
+      return ' closed-review';
+    }
+
+    function allowAccess() {
+      if (loggedIn) {
+        if (permission) {
+          return 'fullAccess';
+        }
+        return 'needPermission';
+      }
+      return 'needLogin';
     }
 
     let reviewLink;
-    if (this.allowAccess() && hasLink) {
-      reviewLink = (
-        <Text type="body" className="d-flex Review__block--lector mb-1">
-          <a
-            type="small"
-            onClick={() => {
-              this.props.showReviewModal(
-                'paperReview',
-                this.props.book,
-                review
-              );
-            }}
-          >
-            <T component="work" name={'readReview'} />
-          </a>
-        </Text>
-      );
-    } else {
-      reviewLink = (
-        <div>
-          <div
-            type="body"
-            className="Desktop-review-info d-flex Review__block--lector mb-1"
-          >
-            <a type="small" onMouseOver={this.mouseOverFunc}>
+
+    if (hasLink) {
+      if (allowAccess() === "fullAccess") {
+        reviewLink = (
+          <Text type="body" className="d-flex Review__block--lector mb-1">
+            <a
+              type="small"
+              onClick={() => {
+                this.props.showReviewModal(
+                  'paperReview',
+                  this.props.book,
+                  review
+                );
+              }}
+            >
               <T component="work" name={'readReview'} />
             </a>
+          </Text>
+        );
+      } else {
+        reviewLink = (
+          <div>
+            <div
+              type="body"
+              className="Desktop-review-info d-flex Review__block--lector mb-1"
+            >
+              <a type="small" onMouseOver={this.mouseOverFunc}>
+                <T component="work" name={'readReview'} />
+              </a>
+            </div>
+            <div
+              type="body"
+              className="Mobile-review-info d-flex Review__block--lector mb-1"
+            >
+              <a type="small" onClick={this.mouseOverFunc}>
+                <T component="work" name={'readReview'} />
+              </a>
+            </div>
           </div>
-          <div
-            type="body"
-            className="Mobile-review-info d-flex Review__block--lector mb-1"
-          >
-            <a type="small" onClick={this.mouseOverFunc}>
-              <T component="work" name={'readReview'} /> XXX
-            </a>
-          </div>
-        </div>
-      );
+        );
+      }
     }
-
     return (
-      <div className={'Review__container mr-4 mb-3' + this.showReview()}>
+      <div className={'Review__container mr-4 mb-3' + showReview()}>
         <div className="Review__block--top">
           <div className="Review__block--title mb-0 d-flex">
             <Title
               Tag="h6"
               type="title6"
-              className={'mb-0 mr-2' + this.showReview()}
+              className={'mb-0 mr-2'}
             >
               {source}
             </Title>
@@ -148,7 +165,7 @@ export class PaperReview extends React.Component {
           </div>
 
           {date && (
-            <Text type="small" className={'due-txt mb-0' + this.showReview()}>
+            <Text type="small" className={'due-txt mb-0'}>
               {date}
             </Text>
           )}
@@ -156,7 +173,7 @@ export class PaperReview extends React.Component {
         {creator && creator.trim() !== '' && (
           <Text
             type="body"
-            className={'Review__block--lector mb-1' + this.showReview()}
+            className={'Review__block--lector mb-1'}
           >
             Af {creator}
           </Text>
@@ -164,7 +181,7 @@ export class PaperReview extends React.Component {
 
         {reviewLink}
 
-        {this.state.mouseOverActive && !this.props.isLoggedIn && (
+        {this.state.mouseOverActive && (allowAccess() === 'needLogin') && (
           <React.Fragment>
             <div
               className="review-info"
@@ -179,7 +196,7 @@ export class PaperReview extends React.Component {
           </React.Fragment>
         )}
 
-        {this.state.mouseOverActive && !this.allowAccess() && (
+        {this.state.mouseOverActive && (allowAccess() === 'needPermission') && (
           <React.Fragment>
             <div
               className="review-info-mobile"

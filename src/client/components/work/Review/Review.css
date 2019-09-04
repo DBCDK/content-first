@@ -38,13 +38,13 @@
 
 .infomedia_DateLine {
     font-size: 14px;
-    color: blue;
+    color: var(--malibu);
     text-align: right;
 }
 
 .infomedia_paper {
     font-size: 14px;
-    color: blue;
+    color: var(--malibu);
     text-align: right;
 }
 
