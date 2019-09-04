@@ -91,6 +91,7 @@ pipeline {
                     docker rmi $IMAGE
                 """
                 junit 'e2e/reports/*.xml'
+                archiveArtifacts 'e2e/cypress/screenshots/*, e2e/cypress/videos/*'
         }  
         failure {
             script {

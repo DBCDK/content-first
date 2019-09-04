@@ -3,10 +3,9 @@
   "chromeWebSecurity": false,
   "defaultCommandTimeout": 20000,
   "execTimeout": 20000,
-  "video": false,
+  "video": true,
   "reporter": "junit",
   "reporterOptions": {
-    "mochaFile": "/app/e2e/reports/test-result-[hash].xml",
-    "toConsole": true
+    "mochaFile": "/app/e2e/reports/test-result-[hash].xml"
   }
 }
