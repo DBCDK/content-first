@@ -90,6 +90,53 @@ class WorkCard extends React.Component {
           <BookCover
             book={this.props.skeleton ? {book: {}} : this.props.work.book}
           >
+            {this.props.enableHover && (
+              <React.Fragment>
+                <div className="hover-details-fade d-xs-none d-sm-block" />
+                <div
+                  className={`hover-details d-xs-none d-sm-block`}
+                  onClick={this.onWorkClick}
+                >
+                  <Title
+                    className="m-0"
+                    Tag="h1"
+                    type="title6"
+                    data-cy={'workcard-title'}
+                  >
+                    {this.props.work.book.title}
+                  </Title>
+                  <Title
+                    Tag="h2"
+                    type="title6"
+                    variant="weight-normal"
+                    className="mb-1"
+                  >
+                    {this.props.work.book.creator}
+                  </Title>
+                  {hideMoreLikeThis ? (
+                    <hr className="w-100" />
+                  ) : (
+                    <RemindsOf
+                      onClick={e => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        this.props.onMoreLikeThisClick(
+                          this.props.work,
+                          this.props.origin,
+                          this.props.rid
+                        );
+                      }}
+                      data-cy="WC-more-like-this"
+                    />
+                  )}
+
+                  <div className="expand-more-wrapper text-center">
+                    <Icon name="&#xe5cf;" className="md-large" />
+                  </div>
+                </div>
+              </React.Fragment>
+            )}
+
             <div className="book-cover-content">
               <BookmarkButton
                 className="icon-large"
@@ -110,60 +157,6 @@ class WorkCard extends React.Component {
           <Text className="mt-2 d-xs-none d-sm-block">
             {<TaxDescription text={tax_description} />}
           </Text>
-
-          {this.props.enableHover && (
-            <div
-              className={`hover-details d-xs-none d-sm-block`}
-              style={{
-                position: 'absolute',
-                left: 0,
-                bottom: 0,
-                height: '100%',
-                width: '100%',
-                paddingTop: '80%'
-              }}
-              onClick={this.onWorkClick}
-            >
-              <Title
-                className="m-0"
-                Tag="h1"
-                type="title6"
-                data-cy={'workcard-title'}
-              >
-                {this.props.work.book.title}
-              </Title>
-              <Title
-                Tag="h2"
-                type="title6"
-                variant="weight-normal"
-                className="mb-1"
-              >
-                {this.props.work.book.creator}
-              </Title>
-              {hideMoreLikeThis ? (
-                <hr className="w-100" />
-              ) : (
-                <RemindsOf
-                  onClick={e => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    this.props.onMoreLikeThisClick(
-                      this.props.work,
-                      this.props.origin,
-                      this.props.rid
-                    );
-                  }}
-                  data-cy="WC-more-like-this"
-                />
-              )}
-              <Text className="mt-2">
-                {<TaxDescription text={tax_description} />}
-              </Text>
-              <div className="expand-more-wrapper text-center">
-                <Icon name="&#xe5cf;" className="md-large" />
-              </div>
-            </div>
-          )}
         </div>
         <div className="whiteLine" />
       </div>

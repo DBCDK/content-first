@@ -3,7 +3,7 @@
 }
 
 .similarBelt.childBelt .WorkCard .expand-more-wrapper {
-  bottom: -50px;
+  bottom: -165px;
 }
 
 .similarBelt.childBelt .WorkCard:first-child .whiteLine {
@@ -46,6 +46,6 @@
   background-color: #f8f8f8;
 }
 
-.similarBelt.lys-graa .WorkCard .hover-details {
-  background: linear-gradient(transparent, var(--lys-graa) 40%) !important;
+.similarBelt.lys-graa .WorkCard .hover-details-fade {
+  background: linear-gradient(transparent, var(--lys-graa) 60%) !important;
 }
