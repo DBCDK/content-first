@@ -49,9 +49,3 @@ services:
     environment:
       - CYPRESS_baseUrl=http://web:3000
     command: bash -c 'sleep 30; npm run cy'
-    networks:
-  default:
-    ipam:
-      config:
-        - subnet: 192.168.0.0/16
-
