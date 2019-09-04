@@ -341,7 +341,7 @@ describe('Start Belt Editor test', function() {
 
   // ======================================================================================
 
-  it.only('Test create new belt page - test Tag selection', function() {
+  it('Test create new belt page - test Tag selection', function() {
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen/opret');
 
