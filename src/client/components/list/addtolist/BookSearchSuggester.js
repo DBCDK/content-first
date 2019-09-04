@@ -30,7 +30,10 @@ const addEmphasisToString = (string, pattern) => {
 
 const renderSuggestion = (suggestion, suggestionString) => {
   return (
-    <div className="suggestion-row d-flex p-2">
+    <div
+      className="suggestion-row d-flex p-2"
+      data-cy={`suggestion-row-${suggestion.book.title}`}
+    >
       <BookCover book={suggestion.book} style={{width: 25}} />
       <div className="ml-3">
         <Text type="body" variant="weight-semibold" className="mb0">
