@@ -272,31 +272,6 @@ export const fetchCollection = (pids, store) => {
 };
 
 /**
-
- * fetchUser
- * @param dispatch
- * @param cb
- */
-export const fetchUser = (dispatch, cb) => {
-  request.get('/v1/user').end(function(error, res) {
-    if (error || res.body.errors) {
-      dispatch({type: ON_USER_DETAILS_ERROR});
-    } else {
-      const user = res.body.data;
-      dispatch({type: ON_USER_DETAILS_RESPONSE, user});
-      if (!user.acceptedTerms) {
-        dispatch({
-          type: OPEN_MODAL,
-          modal: 'profile'
-        });
-      }
-    }
-    cb();
-  });
-};
-
-/**
-
  * addImage
  * @param imageData
  * @returns {Promise<any>}
