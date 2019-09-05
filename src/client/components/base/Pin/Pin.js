@@ -8,6 +8,7 @@ import './Pin.css';
 const Pin = ({
   active = false,
   text = false,
+  icon = 'flag',
   className = '',
   onClick,
   isLoggedIn,
@@ -23,7 +24,7 @@ const Pin = ({
       onClick={isLoggedIn ? onClick : requireLogin}
       {...props}
     >
-      <Icon name="flag" />
+      <Icon name={icon} />
       {text && (
         <Text className="m-0 ml-2 align-self-center" type="small">
           {text}
