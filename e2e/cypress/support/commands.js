@@ -48,9 +48,13 @@ Cypress.Commands.add('clearClientStorage', () => {
 /**
  * Creates a new user and logs in
  */
-Cypress.Commands.add('createUser', userName => {
+Cypress.Commands.add('createUser', (userName, role) => {
   if (!userName) userName = 'user' + Math.floor(Math.random() * 1000);
-  cy.visit('/v1/test/create/' + userName);
+  if (role) {
+    cy.visit('/v1/test/create/' + userName + '?' + role + '=true');
+  } else {
+    cy.visit('/v1/test/create/' + userName);
+  }
 });
 
 /**

@@ -4,30 +4,27 @@ import {connect} from 'react-redux';
 export const ADMIN_ROLE = 'contentFirstAdmin';
 export const EDITOR_ROLE = 'contentFirstEditor';
 
-export function Role(props) {
-  const getUserRoles = () =>
-    Array.isArray(props.roles)
-      ? props.roles.map(element => element.machineName)
-      : [];
+export function Role({roles, requiredRoles, children, onAccessDenied}) {
+  const onAccessDeniedCode =
+    typeof onAccessDenied === 'undefined' ? false : onAccessDenied;
 
-  const isAccessAllowed = requiredRoles => {
-    if (typeof requiredRoles === 'string') {
-      return getUserRoles().includes(requiredRoles);
-    } else if (Array.isArray(requiredRoles)) {
-      for (let role in getUserRoles()) {
-        if (requiredRoles.includes(role)) {
-          return true;
-        }
-      }
+  const getUserRoles = () =>
+    Array.isArray(roles) ? roles.map(element => element.machineName) : [];
+
+  const isAccessAllowed = reqRoles => {
+    if (typeof reqRoles === 'string') {
+      return getUserRoles().includes(reqRoles);
+    } else if (Array.isArray(reqRoles)) {
+      const foundRole = getUserRoles().find(role => reqRoles.includes(role));
+      return typeof foundRole !== 'undefined';
     }
     return false;
   };
 
-  return (
-    <React.Fragment>
-      {isAccessAllowed(props.requiredRoles) ? props.children : false}
-    </React.Fragment>
-  );
+  if (isAccessAllowed(requiredRoles)) {
+    return <React.Fragment>{children}</React.Fragment>;
+  }
+  return onAccessDeniedCode;
 }
 
 const mapStateToProps = state => {

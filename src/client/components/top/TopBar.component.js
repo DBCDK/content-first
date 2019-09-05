@@ -19,6 +19,8 @@ import Text from '../base/Text/';
 import T from '../base/T/';
 import './Topbar.css';
 import {eventPath} from '../../utils/path';
+import {ADMIN_ROLE, EDITOR_ROLE} from '../roles/Role.component';
+import Role from '../roles/Role.component';
 
 let searchPage = false;
 
@@ -51,18 +53,19 @@ class TopBarDropdown extends React.Component {
           </Link>
         </li>
 
-        {/* The following menu item shall be enabled, whenever user roles have been implemented */}
-        {/* <li> */}
-        {/*  <Link */}
-        {/*    href="/redaktionen" */}
-        {/*    onClick={this.props.onClick} */}
-        {/*    data-cy="edit-start-page" */}
-        {/*  > */}
-        {/*    <span> */}
-        {/*      <T component="profile" name="editorialStaff" /> */}
-        {/*    </span> */}
-        {/*  </Link> */}
-        {/* </li> */}
+        <Role requiredRoles={[ADMIN_ROLE, EDITOR_ROLE]}>
+          <li>
+            <Link
+              href="/redaktionen"
+              onClick={this.props.onClick}
+              data-cy="edit-start-page"
+            >
+              <span>
+                <T component="profile" name="editorialStaff" />
+              </span>
+            </Link>
+          </li>
+        </Role>
 
         <li className="divider" />
         <li
