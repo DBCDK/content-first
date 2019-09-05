@@ -45,7 +45,6 @@ export class CreateBelt extends React.Component {
       this.props.onSubmit(this.state);
     }
     const result = {...this.state, tags: this.props.tags.map(item => item.id)};
-    console.log('CreateBelt Result', result);
     window.open('/redaktionen', '_self');
   };
 
