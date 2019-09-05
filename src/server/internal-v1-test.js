@@ -228,7 +228,8 @@ async function createUser(req, doCreateUser, isEditor) {
 
 const rootType = 'bf130fb7-8bd4-44fd-ad1d-43b6020ad102';
 
-let typeId, roleId;
+let typeId;
+
 const admin = {
   id: 'test_admin_id',
   token: 'test_admin_token'
@@ -277,7 +278,7 @@ router.route('/initStorage').get(
       )
     );
 
-    roleId = (await request.post(config.storage.url).send({
+    await request.post(config.storage.url).send({
       access_token: admin.token,
       put: {
         _type: rootType,
@@ -287,7 +288,7 @@ router.route('/initStorage').get(
         displayName: 'Læsekompasredaktør',
         description: 'Redaktør for læsekompas'
       }
-    })).body.data._id;
+    });
 
     typeId = (await request.post(config.storage.url).send({
       access_token: admin.token,
