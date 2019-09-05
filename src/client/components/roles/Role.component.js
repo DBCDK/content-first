@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 export const ADMIN_ROLE = 'contentFirstAdmin';
 export const EDITOR_ROLE = 'contentFirstEditor';
 
-export function Role({roles, requiredRoles, children, onAccessDenied}) {
+export function Role({roles, not, requiredRoles, children, onAccessDenied}) {
   const onAccessDeniedCode =
     typeof onAccessDenied === 'undefined' ? false : onAccessDenied;
 
@@ -21,7 +21,9 @@ export function Role({roles, requiredRoles, children, onAccessDenied}) {
     return false;
   };
 
-  if (isAccessAllowed(requiredRoles)) {
+  const considerNot = value => (not ? !value : value);
+
+  if (considerNot(isAccessAllowed(requiredRoles))) {
     return <React.Fragment>{children}</React.Fragment>;
   }
   return onAccessDeniedCode;
