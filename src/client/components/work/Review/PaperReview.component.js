@@ -7,26 +7,13 @@ import {connect} from 'react-redux';
 import ReviewRating from './ReviewRating.component';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import T from '../../base/T';
+import PopupLink from '../../base/PopupLink/PopupLink';
 
 /**
  * This class displays a single paper review item
  * Creator and ful review link are hidden for now.
  */
 export class PaperReview extends React.Component {
-  mouseOverFunc = () => {
-    this.setState({mouseOverActive: true});
-  };
-  mouseOutFunc = () => {
-    this.setState({mouseOverActive: false});
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      mouseOverActive: false
-    };
-  }
-
   render() {
     if (this.props.review === false) {
       return '';
@@ -83,13 +70,6 @@ export class PaperReview extends React.Component {
 
     const ratingShape = source === 'Politiken' ? 'favorite' : 'star';
 
-    function showReview() {
-      if (allowAccess() === 'fullAccess') {
-        return '';
-      }
-      return ' closed-review';
-    }
-
     function allowAccess() {
       if (loggedIn) {
         if (permission) {
@@ -103,48 +83,58 @@ export class PaperReview extends React.Component {
     let reviewLink;
 
     if (hasLink) {
-      if (allowAccess() === 'fullAccess') {
-        reviewLink = (
-          <Text type="body" className="d-flex Review__block--lector mb-1">
-            <a
-              type="small"
-              onClick={() => {
-                this.props.showReviewModal(
-                  'paperReview',
-                  this.props.book,
-                  review
-                );
-              }}
-            >
-              <T component="work" name={'readReview'} />
-            </a>
-          </Text>
-        );
-      } else {
-        reviewLink = (
-          <div>
-            <div
-              type="body"
-              className="Desktop-review-info d-flex Review__block--lector mb-1"
-            >
-              <a type="small" onMouseOver={this.mouseOverFunc}>
+      switch (allowAccess()) {
+        case 'fullAccess': {
+          reviewLink = (
+            <Text type="body" className="d-flex Review__block--lector mb-1">
+              <a
+                type="small"
+                onClick={() => {
+                  this.props.showReviewModal(
+                    'paperReview',
+                    this.props.book,
+                    review
+                  );
+                }}
+              >
                 <T component="work" name={'readReview'} />
               </a>
-            </div>
-            <div
-              type="body"
-              className="Mobile-review-info d-flex Review__block--lector mb-1"
-            >
-              <a type="small" onClick={this.mouseOverFunc}>
+            </Text>
+          );
+          break;
+        }
+        case 'noInfomediaAccess': {
+          reviewLink = (
+            <PopupLink
+              link={<T component="work" name={'readReview'} />}
+              info={<T component="work" name={'noInfomediaAccess'} />}
+            />
+          );
+          break;
+        }
+
+        case 'mustLogIn': {
+          reviewLink = (
+            <Text type="body" className="d-flex Review__block--lector mb-1">
+              <a
+                type="small"
+                onClick={() => {
+                  this.props.requireLogin();
+                }}
+              >
                 <T component="work" name={'readReview'} />
               </a>
-            </div>
-          </div>
-        );
+            </Text>
+          );
+          break;
+        }
+        default: {
+          break;
+        }
       }
     }
     return (
-      <div className={'Review__container mr-4 mb-3' + showReview()}>
+      <div className={'Review__container mr-4 mb-3 ' + allowAccess()}>
         <div className="Review__block--top">
           <div className="Review__block--title mb-0 d-flex">
             <Title Tag="h6" type="title6" className={'mb-0 mr-2'}>
@@ -170,21 +160,6 @@ export class PaperReview extends React.Component {
         )}
 
         {reviewLink}
-
-        {this.state.mouseOverActive && (
-          <React.Fragment>
-            <div
-              className="review-info"
-              onClick={this.mouseOutFunc}
-              onMouseOut={this.mouseOutFunc}
-              id="popup"
-            >
-              <div className="review-info-text tooltips">
-                <T component="work" name={allowAccess()} />
-              </div>
-            </div>
-          </React.Fragment>
-        )}
       </div>
     );
   }
@@ -214,6 +189,16 @@ export const mapDispatchToProps = dispatch => ({
             modal: 'showReview'
           });
         }
+      }
+    });
+  },
+  requireLogin: () => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'login',
+      context: {
+        title: <T component="login" name="loginButton" />,
+        reason: <T component="work" name="mustLogIn" />
       }
     });
   }
