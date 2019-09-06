@@ -16,6 +16,7 @@ const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
 
 const NonEditorRolePin = ({tags, isStored, removeBelt, storeBelt}) => (
   <Pin
+    icon="add"
     active={isStored}
     text={T({
       component: 'filter',
@@ -64,7 +65,10 @@ const NonEditorRolePin = ({tags, isStored, removeBelt, storeBelt}) => (
 );
 
 const EditorRolePin = ({tags}) => (
-  <Link href={`/redaktionen/opret/?tags=${tags.map(tag => tag.id).join()}`}>
+  <Link
+    href="/redaktionen/opret"
+    params={{tags: tags.map(tag => tag.id).join()}}
+  >
     <Pin
       icon="add"
       active={false}
