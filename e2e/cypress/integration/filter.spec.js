@@ -70,9 +70,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-
-    cy.wait(1000);
-
     cy.get('[data-cy=tag-realistisk]').should('have.text', 'realistisk');
   });
 
@@ -92,9 +89,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-
-    cy.wait(1000);
-
     cy.get('[data-cy=tag-jeg-fortæller]').should('have.text', 'jeg-fortæller');
   });
 
@@ -114,9 +108,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-
-    cy.wait(1000);
-
     cy.get('[data-cy=tag-slang]').should('have.text', 'slang');
   });
 
@@ -136,9 +127,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-
-    cy.wait(1000);
-
     cy.get('[data-cy=tag-bevidsthedsstrøm]').should(
       'have.text',
       'bevidsthedsstrøm'
@@ -161,9 +149,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-
-    cy.wait(1000);
-
     cy.get('[data-cy="tag-den 2. verdenskrig"]').should(
       'have.text',
       'den 2. verdenskrig'
@@ -198,8 +183,6 @@ describe('Filter page test', function() {
 
   it('Shows "More like this"-belt', function() {
     cy.visit('/find?tags=5634');
-    cy.wait(1000);
-
     cy.get('[data-cy=WC-more-like-this]')
       .first()
       .click();
