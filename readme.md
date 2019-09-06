@@ -54,6 +54,17 @@ Some json files need to be copied to [`src/data`](src/data) in order to build th
 Use the [exclude list](./tools/archive-excludes.txt) when the build server makes an archive file of the result of the build. Use like this:
 
     tar -X tools/archive-excludes.txt -cz -f $JOB_BASE_NAME-$BUILD_NUMBER.tar.gz .
+    
+## Role management in content-first
+Roles are managed through the ServiceProvider-Storage API
+
+- Fetch token for the content-first admin client
+- Fetch list of all roles:
+```curl -X POST "https://openplatform.dbc.dk/v3/storage" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"access_token\": \"ACCESS_TOKEN\", \"scan\": {\"_type\": \"bf130fb7-8bd4-44fd-ad1d-43b6020ad102\", \"index\": [\"_owner\",\"name\"], \"startsWith\": [\"cf-admin\", \"role\"], \"expand\": true}}"```
+
+- Find the uniqueId (culr-id) for the user you want to assign a role
+- assign role, use the "_id" from the previously fetched role-object:
+```curl -X POST "https://openplatform.dbc.dk/v3/storage" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"access_token\": \"ADMIN_ACCESS_TOKEN\", \"assign_role\": {\"userId\": \"USER_ID\", \"roleId\": \"ROLE_ID\"}}"```
 
 ## Environments
 
