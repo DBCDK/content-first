@@ -867,6 +867,10 @@
       "suggesterPlaceholder": {
         "da": "Søg på stemning, sted eller stil…",
         "en": "Search by mood, place, or style…"
+      },
+      "createAsNewBelt": {
+        "da": "Opret som nyt bånd",
+        "en": "Create as a new belt"
       }
     },
     "post": {
