@@ -15,9 +15,9 @@ describe('Filter page test', function() {
       .first()
       .click();
 
-    cy.wait(1000);
-
-    cy.get('[data-cy=tag-mystisk]').should('have.text', 'mystisk');
+    cy.get('[data-cy=tag-mystisk]')
+      .first()
+      .should('have.text', 'mystisk');
   });
 
   it('Should test "Tempo" filter', function() {
@@ -31,8 +31,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-
-    cy.wait(1000);
 
     cy.get('[data-cy=tag-hæsblæsende]').should('have.text', 'hæsblæsende');
   });
