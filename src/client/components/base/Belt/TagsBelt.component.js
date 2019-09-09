@@ -190,6 +190,7 @@ export class TagsBelt extends React.Component {
                   </Link>
                   {isOwner && (
                     <Pin
+                      icon="delete"
                       className="d-inline mr-4 mt-2"
                       active={true}
                       onClick={this.props.removeBelt}

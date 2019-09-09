@@ -10,60 +10,88 @@ import {withTagsToPids} from '../../hoc/Recommender';
 import CreatorBelt from '../../base/Belt/CreatorBelt.component';
 import MultiRowContainer from '../../base/Belt/MultiRowContainer';
 import {withStoreBelt} from '../../hoc/Belt';
+import Role from '../../roles/Role.component';
 
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
-const StoreBeltPin = withStoreBelt(
-  ({isStored, tags, storeBelt, removeBelt}) => {
-    return (
-      <Pin
-        active={isStored}
-        text={T({
-          component: 'filter',
-          name: isStored ? 'pinAdded' : 'pinAdd'
-        })}
-        notLoggedIncontext={{
-          title: <T component="filter" name="pinLoginModalTitle" />,
-          reason: <T component="filter" name="pinLoginModalDescription" />
-        }}
-        onClick={
-          isStored
-            ? removeBelt
-            : () => {
-                storeBelt({
-                  name: tags
-                    .slice(0, 3)
-                    .map(t => t.title)
-                    .join(', '),
-                  subtext: '',
-                  tags: tags.map(t => t.id),
-                  onFrontPage: true
-                });
-                toast(
-                  <ToastMessage
-                    type="success"
-                    icon="check_circle"
-                    lines={[
-                      <T
-                        key="label"
-                        component="filter"
-                        name="pinnedToFrontpageToast"
-                      />,
-                      <Link
-                        key="href"
-                        href={`/#temp_${tags.map(t => t.id).join('')}`}
-                      >
-                        <T component="filter" name="watchToastAction" />
-                      </Link>
-                    ]}
+
+const NonEditorRolePin = ({tags, isStored, removeBelt, storeBelt}) => (
+  <Pin
+    icon="add"
+    active={isStored}
+    text={T({
+      component: 'filter',
+      name: isStored ? 'pinAdded' : 'pinAdd'
+    })}
+    notLoggedIncontext={{
+      title: <T component="filter" name="pinLoginModalTitle" />,
+      reason: <T component="filter" name="pinLoginModalDescription" />
+    }}
+    onClick={
+      isStored
+        ? removeBelt
+        : () => {
+            storeBelt({
+              name: tags
+                .slice(0, 3)
+                .map(t => t.title)
+                .join(', '),
+              subtext: '',
+              tags: tags.map(t => t.id),
+              onFrontPage: true
+            });
+            toast(
+              <ToastMessage
+                type="success"
+                icon="check_circle"
+                lines={[
+                  <T
+                    key="label"
+                    component="filter"
+                    name="pinnedToFrontpageToast"
                   />,
-                  {pauseOnHover: true}
-                );
-              }
-        }
-      />
-    );
-  }
+                  <Link
+                    key="href"
+                    href={`/#temp_${tags.map(t => t.id).join('')}`}
+                  >
+                    <T component="filter" name="watchToastAction" />
+                  </Link>
+                ]}
+              />,
+              {pauseOnHover: true}
+            );
+          }
+    }
+  />
 );
+
+const EditorRolePin = ({tags}) => (
+  <Link
+    href="/redaktionen/opret"
+    params={{tags: tags.map(tag => tag.id).join()}}
+  >
+    <Pin
+      icon="add"
+      active={false}
+      text={T({
+        component: 'filter',
+        name: 'createAsNewBelt'
+      })}
+    />
+  </Link>
+);
+
+const StoreBeltPin = withStoreBelt(props => {
+  return (
+    <React.Fragment>
+      <Role not requiredRoles={['contentFirstAdmin', 'contentFirstEditor']}>
+        <NonEditorRolePin {...props} />
+      </Role>
+      <Role requiredRoles={['contentFirstAdmin', 'contentFirstEditor']}>
+        <EditorRolePin {...props} />
+      </Role>
+    </React.Fragment>
+  );
+});
 
 class Results extends React.Component {
   render() {
