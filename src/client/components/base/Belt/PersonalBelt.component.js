@@ -20,7 +20,7 @@ const WorksTitle = withWork(({work, titlePrefix}) => (
     Tag="h1"
     type="title4"
     variant="transform-uppercase"
-    className={`mb-3 mb-0 px-0 px-sm-3 px-lg-5 pt-5`}
+    className={`mb-3 mb-md-0 px-2 px-sm-3 px-lg-5 pb-0 pb-sm-3 pt-5`}
   >
     <strong>{titlePrefix}</strong>
     <span className="ml-2">{get(work, 'book.title')}</span>
