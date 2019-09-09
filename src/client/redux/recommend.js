@@ -259,7 +259,6 @@ const fetchRecommendations = async action => {
     query.maxresults = max;
     query.creators = creators;
   } else {
-
     const {likes = [], dislikes = [], limit = 50, tag_weight} = action;
 
     query.likes = JSON.stringify(likes);
