@@ -52,6 +52,10 @@ class WorkPage extends React.Component {
   /* eslint-disable complexity */
 
   render() {
+    let tag_weight;
+    if (document.location.href.split('?tag_weight')[1]) {
+      tag_weight = document.location.href.split('?tag_weight')[1].split('=')[1];
+    }
     const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
 
@@ -436,6 +440,7 @@ class WorkPage extends React.Component {
               likes={[book.pid]}
               style={{background: 'white'}}
               className="mt-xl-5"
+              tag_weight={tag_weight}
             />
           )}
 

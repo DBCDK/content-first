@@ -23,6 +23,7 @@ router
         return res.status(200).json(value);
       }
       const recommender = req.query.recommender;
+
       if (recommender) {
         switch (recommender) {
           case 'recompasTags': {
@@ -75,12 +76,26 @@ router
             //
             // Recompas recommend based on pids
             //
+
             const {
               likes = [],
               dislikes = [],
               limit = 50,
-              debug = true
+              debug = true,
+              tag_weight
             } = req.query;
+
+            let objToSend = {
+              likes: JSON.parse(likes),
+              dislikes: JSON.parse(dislikes),
+              limit: Number(limit),
+              debug
+            };
+
+            if (tag_weight) {
+              objToSend.tag_weight = Number(tag_weight);
+            }
+
             const link = `${req.baseUrl}?likes=${likes ||
               ''}&dislikes=${dislikes || ''}&limit=${limit}&debug=${debug}`;
 
@@ -95,12 +110,7 @@ router
             }
 
             try {
-              const result = await recompasWork.getRecommendations({
-                likes: JSON.parse(likes),
-                dislikes: JSON.parse(dislikes),
-                limit: Number(limit),
-                debug
-              });
+              const result = await recompasWork.getRecommendations(objToSend);
 
               result.rid = uuidGenerator.v1();
               matomo.trackDataEvent(
@@ -109,6 +119,7 @@ router
               );
               cache.set(req.originalUrl, result);
               logger.log.debug('recompasWork', {
+                req,
                 originalUrl: req.originalUrl,
                 result
               });
