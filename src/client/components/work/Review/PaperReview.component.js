@@ -23,12 +23,12 @@ export class PaperReview extends React.Component {
     const infomediaData = review.infomedia;
 
     const loggedIn = this.props.isLoggedIn;
-    let hasLink = true;
+    let showLink = true;
     let permission = true;
 
     if (infomediaData) {
       permission = infomediaData.statusCode !== 403;
-      hasLink = infomediaData.length > 0 || !permission;
+      showLink = infomediaData.length > 0 || !loggedIn;
     }
 
     const creator = review.creatorOth && review.creatorOth[0];
@@ -82,7 +82,7 @@ export class PaperReview extends React.Component {
 
     let reviewLink;
 
-    if (hasLink) {
+    if (showLink) {
       switch (allowAccess()) {
         case 'fullAccess': {
           reviewLink = (

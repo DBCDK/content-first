@@ -17,7 +17,14 @@ export default class PopupMessage extends React.Component {
   }
 
   render() {
-    const {info = '', link = ''} = this.props;
+    const {
+      info = '',
+      link = '',
+      styles = {
+        height: '71px',
+        width: '273px'
+      }
+    } = this.props;
 
     return (
       <div className="PopupMessage" id="popup">
@@ -29,7 +36,7 @@ export default class PopupMessage extends React.Component {
         </div>
 
         {this.state.showPopup && (
-          <div className="popup-info">
+          <div className="popup-info" style={styles}>
             <div className="popup-backdrop" onClick={this.mouseOutFunc} />
             <div className="popup-info-text" onMouseOut={this.mouseOutFunc}>
               {info}
