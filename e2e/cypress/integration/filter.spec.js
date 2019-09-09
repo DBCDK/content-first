@@ -138,7 +138,7 @@ describe('Filter page test', function() {
 
     cy.get('[data-cy=topbar-search-btn]').click();
     cy.get('[data-cy=handlingens-tid]').click();
-    cy.get('[data-cy="den 2. verdenskrig"]').click();
+    cy.get('[data-cy="antikken"]').click();
     cy.get('[data-cy=filterDimmer]').click();
     cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
@@ -149,10 +149,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-    cy.get('[data-cy="tag-den 2. verdenskrig"]').should(
-      'have.text',
-      'den 2. verdenskrig'
-    );
+    cy.get('[data-cy="tag-antikken"]').should('have.text', 'antikken');
   });
 
   it('Should give suggestions on author search', function() {
