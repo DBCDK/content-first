@@ -229,7 +229,7 @@ export const applyClientSideFilter = (work, tags) => {
 const fetchRecommendations = async action => {
   const recommender = action.tags ? 'recompasTags' : 'recompasWork';
   const query = {recommender};
-  console.log('action', action);
+
   let customTagsSelected = true;
   // let thresholdLevel = 0;  // Disabled until further investigated - see US1058
   if (action.tags) {
@@ -259,7 +259,6 @@ const fetchRecommendations = async action => {
     query.maxresults = max;
     query.creators = creators;
   } else {
-    /* ****************************** */
 
     const {likes = [], dislikes = [], limit = 50, tag_weight} = action;
 
@@ -268,7 +267,6 @@ const fetchRecommendations = async action => {
     query.limit = limit;
     query.tag_weight = tag_weight;
   }
-  console.log('query before', query);
 
   // recompas backend call
   const recompassResponse = (await request.get('/v1/recompass').query(query))
@@ -292,7 +290,6 @@ const fetchRecommendations = async action => {
     }
     recompassResponse.response = pids;
   }
-  console.log('recompassResponse after', recompassResponse);
   return recompassResponse;
 };
 

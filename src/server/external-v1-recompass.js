@@ -119,7 +119,6 @@ router
               );
               cache.set(req.originalUrl, result);
               logger.log.debug('recompasWork', {
-                req,
                 originalUrl: req.originalUrl,
                 result
               });
