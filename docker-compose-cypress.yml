@@ -29,7 +29,7 @@ services:
     depends_on:
       - database
       - storage
-    command: bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; sleep 10; node src/server/main.js'
+    command: bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; sleep 50; node src/server/main.js'
   injectmeta:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: '${IMAGE:-docker-ux.dbc.dk/content-first:latest}'
@@ -48,4 +48,4 @@ services:
       - injectmeta
     environment:
       - CYPRESS_baseUrl=http://web:3000
-    command: bash -c 'sleep 30; npm run cy'
+    command: bash -c 'sleep 90; npm run cy'
