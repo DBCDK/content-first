@@ -87,6 +87,7 @@ pipeline {
         always {
                sh """
                     echo Clean up
+                    mkdir -p logs
                     docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs database > logs/database-log.txt
                     docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs minismaug > logs/minismaug-log.txt
                     docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs storage > logs/storage-log.txt
