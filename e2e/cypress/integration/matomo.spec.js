@@ -104,7 +104,7 @@ describe('Matomo test', function() {
     cy.initStorage();
     cy.createUser('someuser');
     // make interaction such that personal recommendations belt appears
-    cy.visit('/værk/870970-basis:27206344');
+    cy.visit('/v%C3%A6rk/870970-basis:27206344');
     cy.get('[data-cy="add-to-list-btn"]').click();
     cy.get('[data-cy="add-to-list-btn"]')
       .contains('Har læst')

@@ -144,7 +144,7 @@ describe('List test', function() {
   });
 
   it('Can add with addToListButton to public list', function() {
-    cy.visit(`/værk/870970-basis:25775481`);
+    cy.visit(`/v%C3%A6rk/870970-basis:25775481`);
     waitForListsLoaded();
     cy.wait(1000);
     cy.get('[data-cy=add-to-list-btn]').click();
