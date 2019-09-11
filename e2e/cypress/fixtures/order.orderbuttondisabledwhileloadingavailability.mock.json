@@ -1,0 +1,443 @@
+{
+  "_work_{\"pids\":[\"870970-basis:54154313\"],\"fields\":[\"hasReview\",\"collection\"]}": {
+    "data": [
+      {
+        "hasReview": [
+          "870976-anmeld:31620813",
+          "870971-anmeld:37876852",
+          "870971-anmeld:37890820",
+          "870971-anmeld:37878588",
+          "870971-anmeld:37883115",
+          "870971-anmeld:37895636",
+          "870971-anmeld:37877549",
+          "870971-anmeld:37878545"
+        ],
+        "collection": [
+          "870970-basis:54154313",
+          "870970-basis:46081994",
+          "870970-basis:54154305",
+          "870970-basis:54924208",
+          "870970-basis:54924275",
+          "874310-katalog:DBB0418256"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:54924208\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (cd-mp3)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"874310-katalog:DBB0418256\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Punktskrift"
+        ],
+        "identifierURI": [
+          "https://nota.dk/biblioterecorded.dataogid/418256"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:46081994\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog stor skrift"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:54154305\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Ebog"
+        ],
+        "identifierURI": [
+          "https://ereolen.dk/ting/object/870970-basis:54154305"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:54924275\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (net)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:54154313\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870976-anmeld:31620813\",\"870971-anmeld:37876852\",\"870971-anmeld:37890820\",\"870971-anmeld:37878588\",\"870971-anmeld:37883115\",\"870971-anmeld:37895636\",\"870971-anmeld:37877549\",\"870971-anmeld:37878545\"],\"fields\":[\"identifierURI\",\"creatorOth\",\"isPartOf\",\"date\",\"fullTextReviews\",\"abstract\"]}": {
+    "data": [
+      {
+        "creatorOth": [
+          "Helle Winther Olsen"
+        ],
+        "date": [
+          "2018"
+        ],
+        "fullTextReviews": [
+          {
+            "reviewer": {
+              "firstname": "Helle",
+              "surname": "Winther Olsen"
+            },
+            "creationDate": "2018-05-11T00:00:00+02:00",
+            "review": {
+              "Kort om bogen": "Kort roman om en kvinde i krise, som bogstaveligt talt rejser ud for at stå ansigt til ansigt med sin indre frygt og vrede. Og møder den i skikkelse af en bjørn. En skæv og underholdende fortælling med genkendelig mening i galskaben for især kvindelige læsere af nutidige danske romaner",
+              "Beskrivelse": "Vibse, en kvinde i 50'erne, flygter hjemmefra op til ødegården i Sverige, dagen efter et skænderi med sin mand. Hun er netop blevet fyret fra sin gymnasielærerstilling pga. samarbejdsproblemer, datteren er flyttet til Jylland med kæresten, og Bent, hendes mand (som i virkeligheden hedder Lars, når hun ikke er irriteret på ham) er alt for forstående. Flov og rasende kører hun ud i vildnisset for at tænke sin livssituation igennem. En kraftig snestorm, manglen på mad og et omfattende strømsvigt byder på udfordringer og sætter selveste livet i perspektiv",
+              "Vurdering": "Guldager overrasker med denne skæve, skønne lille roman om en en kantet kvinde, som er kørt træt i sit ægteskab og sin karriere og har behov for at sætte det lidt på spidsen. Et fint portræt af denne kvinde i 50'erne, der skildres med skarp ømhed. Formen er kortfattet, sat i korte kapitelafsnit; nem at læse, men ikke så nem at glemme",
+              "Andre bøger om samme emne": "Vibse minder så meget om Susanne i Bådens navn, der også er et sted i sit liv og sit ægteskab, hvor alt skal tages op til revision. Kvinder i midtvejskrise kan man også læse om i Forandringer og På grænsen"
+            },
+            "note": "Materialevurdering oprindeligt udarbejdet til udgave fra 2018"
+          }
+        ]
+      },
+      {
+        "creatorOth": [
+          "Svend Skriver"
+        ],
+        "isPartOf": [
+          "Kristeligt dagblad, 2018-06-07"
+        ],
+        "date": [
+          "2018"
+        ],
+        "abstract": [
+          "Vurdering: 5/6"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Erik Svendsen"
+        ],
+        "isPartOf": [
+          "Jyllands-posten, 2018-06-17"
+        ],
+        "date": [
+          "2018"
+        ],
+        "abstract": [
+          "Vurdering: 4/6"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Klaus Rothstein"
+        ],
+        "isPartOf": [
+          "Weekendavisen, 2018-06-08"
+        ],
+        "date": [
+          "2018"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Katherine Diez"
+        ],
+        "isPartOf": [
+          "Berlingske tidende, 2018-06-09"
+        ],
+        "date": [
+          "2018"
+        ],
+        "abstract": [
+          "Vurdering: 4/6"
+        ]
+      },
+      {
+        "identifierURI": [
+          "http://litteratursiden.dk/node/83358"
+        ],
+        "creatorOth": [
+          "Line Hoffgaard"
+        ],
+        "isPartOf": [
+          "Litteratursiden.dk online, 2018-06-14"
+        ],
+        "date": [
+          "2018"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Mikkel Krause Frantzen"
+        ],
+        "isPartOf": [
+          "Politiken, 2018-06-07"
+        ],
+        "date": [
+          "2018"
+        ],
+        "abstract": [
+          "Vurdering: 4/6"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Thomas Thurah"
+        ],
+        "isPartOf": [
+          "Information, 2018-06-08"
+        ],
+        "date": [
+          "2018"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_user_{}": {
+    "data": {
+      "agency": "790900"
+    },
+    "timing": 0
+  },
+  "_libraries_{\"agencyIds\":[\"790900\"],\"fields\":[\"agencyName\"]}": {
+    "data": [
+      {
+        "agencyName": "DBC-Testbiblioteksvæsen"
+      },
+      {
+        "agencyName": "DBC-Testbiblioteksvæsen"
+      },
+      {
+        "agencyName": "DBC-Testbiblioteksvæsen"
+      }
+    ],
+    "timing": 0
+  },
+  "_libraries_{\"agencyIds\":[\"790900\"],\"fields\":[\"branchId\",\"branchName\",\"pickupAllowed\"]}": {
+    "data": [
+      {
+        "branchId": "790900",
+        "branchName": [
+          "DBCTestBibliotek",
+          "XXX (Data from BS)"
+        ],
+        "pickupAllowed": "1"
+      },
+      {
+        "branchId": "790902",
+        "branchName": [
+          "DBCtest_2"
+        ],
+        "pickupAllowed": "1"
+      },
+      {
+        "branchId": "790903",
+        "branchName": [
+          "DBC-bibilioteksekspressen"
+        ],
+        "pickupAllowed": "1"
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:54154313\"],\"fields\":[\"collectionDetails\"]}": {
+    "data": [
+      {
+        "collectionDetails": [
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Katrine Marie Guldager"
+            ],
+            "pid": [
+              "870970-basis:54154313"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Bjørnen"
+            ],
+            "titleFull": [
+              "Bjørnen : roman"
+            ],
+            "type": [
+              "Bog"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Katrine Marie Guldager"
+            ],
+            "pid": [
+              "870970-basis:46081994"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Bjørnen"
+            ],
+            "titleFull": [
+              "Bjørnen : roman"
+            ],
+            "type": [
+              "Bog stor skrift"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "online"
+            ],
+            "creator": [
+              "Katrine Marie Guldager"
+            ],
+            "pid": [
+              "870970-basis:54154305"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Bjørnen"
+            ],
+            "titleFull": [
+              "Bjørnen : roman"
+            ],
+            "type": [
+              "Ebog"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Katrine Marie Guldager"
+            ],
+            "pid": [
+              "870970-basis:54924208"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Bjørnen"
+            ],
+            "titleFull": [
+              "Bjørnen : roman"
+            ],
+            "type": [
+              "Lydbog (cd-mp3)"
+            ],
+            "workType": [
+              "audiobook"
+            ]
+          },
+          {
+            "accessType": [
+              "online"
+            ],
+            "creator": [
+              "Katrine Marie Guldager"
+            ],
+            "pid": [
+              "870970-basis:54924275"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Bjørnen"
+            ],
+            "titleFull": [
+              "Bjørnen : roman"
+            ],
+            "type": [
+              "Lydbog (net)"
+            ],
+            "workType": [
+              "audiobook"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Katrine Marie Guldager"
+            ],
+            "pid": [
+              "874310-katalog:DBB0418256"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Bjørnen"
+            ],
+            "titleFull": [
+              "Bjørnen : roman"
+            ],
+            "type": [
+              "Punktskrift"
+            ],
+            "workType": [
+              "book"
+            ]
+          }
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_availability_{\"pids\":[\"870970-basis:54154313\"]}": {
+    "data": [
+      {
+        "willLend": false,
+        "orderPossible": true,
+        "orderPossibleReason": "not_owned_ILL_loc"
+      }
+    ],
+    "timing": 5000
+  },
+  "_order_{\"pids\":[\"870970-basis:54154313\"],\"pickUpBranch\":\"790900\"}": {
+    "data": {
+      "status": "ok",
+      "orsId": "1034785015"
+    },
+    "timing": 0
+  }
+}

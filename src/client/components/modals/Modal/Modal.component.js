@@ -80,7 +80,7 @@ export default class Modal extends React.Component {
                     target="_blank"
                   >
                     <Button
-                      disabled={onError}
+                      disabled={doneDisabled || onError}
                       size="medium"
                       className={'mr-0' + (doneDisabled ? ' disabled' : '')}
                       type="quaternary"
