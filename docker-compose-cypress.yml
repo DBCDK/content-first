@@ -41,7 +41,7 @@ services:
     command: bash -c 'touch current.env; npm run fetch-inject-metakompas'
   e2e:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
-    image: docker.dbc.dk/cypress:10
+    image: docker.dbc.dk/cypress:latest
     volumes:
       - './e2e:/app/e2e'
     depends_on:
