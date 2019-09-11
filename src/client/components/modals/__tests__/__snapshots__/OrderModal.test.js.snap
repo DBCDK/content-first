@@ -3,6 +3,7 @@
 exports[`OrderModal render function renders initial request 1`] = `
 <Modal
   className="add-to-list--modal"
+  doneDisabled={true}
   doneText={
     <T
       component="order"
@@ -297,15 +298,23 @@ exports[`OrderModal render function renders initial request 1`] = `
       >
         Til afhentning på:
       </label>
-      <select
-        className="form-control"
-        id="pickupBranch"
-        style={
-          Object {
-            "width": "auto",
+      <div
+        className="d-flex align-items-center"
+      >
+        <select
+          className="form-control"
+          id="pickupBranch"
+          style={
+            Object {
+              "width": 150,
+            }
           }
-        }
-      />
+        />
+        <Spinner
+          className="ml-2"
+          size={24}
+        />
+      </div>
     </div>
   </div>
 </Modal>
