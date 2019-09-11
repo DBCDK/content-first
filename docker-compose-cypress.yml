@@ -21,7 +21,7 @@ services:
     depends_on:
       - database
       - minismaug
-    command: bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; sleep 10; node src/main.js'
+    command: bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; sleep 25; node src/main.js'
   web:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: '${IMAGE:-docker-ux.dbc.dk/content-first:latest}'
