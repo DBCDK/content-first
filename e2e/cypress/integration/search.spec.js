@@ -1,5 +1,5 @@
 describe('Search test', function() {
-  it.skip('Shows one suggestion when search word matches several titles', function() {
+  it('Shows one suggestion when search word matches several titles', function() {
     const searchWord = 'Min kam';
     cy.visit('/');
     cy.get('[data-cy=topbar-search-btn]').click();
@@ -11,9 +11,8 @@ describe('Search test', function() {
     cy.get('[data-cy=cat-name]')
       .contains('bog')
       .click();
-    cy.get('.WorkCard')
-      .not('.invisible')
-      .its('length')
-      .should('gt', 1);
+    cy.get('[data-cy=workcard-title]')
+      .first()
+      .should('have.text', 'Min kamp');
   });
 });

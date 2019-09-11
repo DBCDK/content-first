@@ -54,7 +54,7 @@ exports.logger = {
 };
 
 exports.login = {
-  url: process.env.LOGIN_URL || 'https://oauth.login.bib.dk',
+  url: process.env.LOGIN_URL || 'https://login.bib.dk',
   openplatformUrl:
     process.env.OPENPLATFORM_URL || 'https://openplatform.dbc.dk/v3'
 };

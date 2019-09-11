@@ -37,7 +37,7 @@ pipeline {
                     ansiColor("xterm") {
                         sh "echo Integrating..."
                         sh "docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} build"
-                        sh "IMAGE=${IMAGE} docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} run --rm e2e"
+                        sh "IMAGE=${IMAGE} docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} run e2e"
                     }
                 }
             }
@@ -87,10 +87,17 @@ pipeline {
         always {
                sh """
                     echo Clean up
+                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs database > logs/database-log.txt
+                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs minismaug > logs/minismaug-log.txt
+                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs storage > logs/storage-log.txt
+                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs web > logs/web-log.txt
+                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} logs injectmeta > logs/injectmeta-log.txt
                     docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} down -v
                     docker rmi $IMAGE
                 """
-        }
+                junit 'e2e/reports/*.xml'
+                archiveArtifacts 'e2e/cypress/screenshots/*, e2e/cypress/videos/*, logs/*'
+        }  
         failure {
             script {
                 if ("${env.BRANCH_NAME}" == 'master') {

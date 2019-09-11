@@ -41,7 +41,7 @@ class Database {
     const me = this;
     // Make a dummy query.
     return me.knex
-      .raw('select 1+1 as result')
+      .raw('select * from cookies limit 1')
       .then(() => {
         me.setOk();
         return me.isOk();

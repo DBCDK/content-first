@@ -1,4 +1,4 @@
-describe.skip('Filter page test', function() {
+describe('Filter page test', function() {
   it('Should test "Stemning" filter', function() {
     cy.visit('/');
     cy.get('[data-cy=topbar-search-btn]').click();
@@ -15,9 +15,9 @@ describe.skip('Filter page test', function() {
       .first()
       .click();
 
-    cy.wait(1000);
-
-    cy.get('[data-cy=tag-mystisk]').should('have.text', 'mystisk');
+    cy.get('[data-cy=tag-mystisk]')
+      .first()
+      .should('have.text', 'mystisk');
   });
 
   it('Should test "Tempo" filter', function() {
@@ -31,8 +31,6 @@ describe.skip('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-
-    cy.wait(1000);
 
     cy.get('[data-cy=tag-hæsblæsende]').should('have.text', 'hæsblæsende');
   });
@@ -72,9 +70,6 @@ describe.skip('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-
-    cy.wait(1000);
-
     cy.get('[data-cy=tag-realistisk]').should('have.text', 'realistisk');
   });
 
@@ -94,9 +89,6 @@ describe.skip('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-
-    cy.wait(1000);
-
     cy.get('[data-cy=tag-jeg-fortæller]').should('have.text', 'jeg-fortæller');
   });
 
@@ -116,9 +108,6 @@ describe.skip('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-
-    cy.wait(1000);
-
     cy.get('[data-cy=tag-slang]').should('have.text', 'slang');
   });
 
@@ -138,9 +127,6 @@ describe.skip('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-
-    cy.wait(1000);
-
     cy.get('[data-cy=tag-bevidsthedsstrøm]').should(
       'have.text',
       'bevidsthedsstrøm'
@@ -152,7 +138,7 @@ describe.skip('Filter page test', function() {
 
     cy.get('[data-cy=topbar-search-btn]').click();
     cy.get('[data-cy=handlingens-tid]').click();
-    cy.get('[data-cy="den 2. verdenskrig"]').click();
+    cy.get('[data-cy="antikken"]').click();
     cy.get('[data-cy=filterDimmer]').click();
     cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
@@ -163,13 +149,7 @@ describe.skip('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-
-    cy.wait(1000);
-
-    cy.get('[data-cy="tag-den 2. verdenskrig"]').should(
-      'have.text',
-      'den 2. verdenskrig'
-    );
+    cy.get('[data-cy="tag-antikken"]').should('have.text', 'antikken');
   });
 
   it('Should give suggestions on author search', function() {
@@ -200,8 +180,6 @@ describe.skip('Filter page test', function() {
 
   it('Shows "More like this"-belt', function() {
     cy.visit('/find?tags=5634');
-    cy.wait(1000);
-
     cy.get('[data-cy=WC-more-like-this]')
       .first()
       .click();

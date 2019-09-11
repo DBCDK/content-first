@@ -12,13 +12,11 @@ describe('Test shortlist', function() {
       .first()
       .within(() => {
         cy.get('[data-cy=bookmarkBtn]').click();
-      });
-    cy.get('[data-cy=workcard-title]')
-      .first()
+        return cy.get('[data-cy=workcard-title]');
+      })
       .invoke('text')
       .then(workTitle => {
         cy.get('[data-cy=topbar-shortlist]').click();
-
         cy.get('[data-cy=shortlist-element-title]')
           .invoke('text')
           .then(title => {
