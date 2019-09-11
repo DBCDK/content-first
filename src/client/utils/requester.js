@@ -5,6 +5,7 @@ import {ON_LOGOUT_RESPONSE} from '../redux/user.reducer';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
 import {getLeavesMap} from './taxonomy';
+import {get} from 'lodash';
 
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
@@ -153,6 +154,10 @@ export const fetchStats = async () => {
  */
 export const fetchReviews = (pids, store) => {
   const books = store.getState().booksReducer.books;
+  const authenticatedToken = get(
+    store.getState(),
+    'userReducer.openplatformToken'
+  );
   const booksToBeFetched = pids.map(pid => books[pid]);
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
   return Promise.all(
@@ -171,6 +176,25 @@ export const fetchReviews = (pids, store) => {
           access_token: await fetchAnonymousToken()
         });
 
+        if (authenticatedToken) {
+          const pidsInRef = ref.book.reviews.data;
+
+          const reviewsFromPids = await Promise.all(
+            pidsInRef.map(async pid => {
+              try {
+                return await openplatform.infomedia({
+                  pid: pid,
+                  access_token: authenticatedToken
+                });
+              } catch (e) {
+                return {statusCode: e.statusCode};
+              }
+            })
+          );
+          result.forEach((e, index) => {
+            e.infomedia = reviewsFromPids[index];
+          });
+        }
         return {
           book: {
             pid: ref.book.pid,
