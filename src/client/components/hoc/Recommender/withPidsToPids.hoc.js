@@ -43,7 +43,12 @@ const withPidsToPids = WrappedComponent => {
         this.fetched !== this.props.likes
       ) {
         this.fetched = this.props.likes;
-        this.props.fetchRecommendations(this.props.likes, this.props.dislikes);
+
+        this.props.fetchRecommendations(
+          this.props.likes,
+          this.props.dislikes,
+          this.props.tag_weight
+        );
       }
     }
 
@@ -68,13 +73,14 @@ const withPidsToPids = WrappedComponent => {
   };
 
   const mapDispatchToProps = dispatch => ({
-    fetchRecommendations: (likes, dislikes = []) => {
+    fetchRecommendations: (likes, dislikes = [], tag_weight) => {
       dispatch({
         type: WORK_RECOMMEND_REQUEST,
         fetchWorks: false,
         likes,
         dislikes,
-        limit: 50
+        limit: 50,
+        tag_weight
       });
     }
   });
