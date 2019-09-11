@@ -67,6 +67,10 @@
   font-weight: 600;
 }
 
+.Text__body--weight-bold {
+  font-weight: 700;
+}
+
 .Text__body--color-due {
   color: var(--due);
 }
@@ -120,6 +124,10 @@
 
 .Text__small--weight-semibold {
   font-weight: 600;
+}
+
+.Text__small--weight-bold {
+  font-weight: 700;
 }
 
 .Text__micro--color-petroleum {

@@ -27,6 +27,8 @@ import {OPEN_MODAL} from './redux/modal.reducer';
 
 import './style/App.css';
 import './style/index.css';
+import {ADMIN_ROLE, EDITOR_ROLE} from './components/roles/Role.component';
+import Role from './components/roles/Role.component';
 
 class App extends Component {
   constructor(props) {
@@ -82,9 +84,25 @@ class App extends Component {
       );
     } else if (pathSplit[1] === 'redaktionen') {
       if (pathSplit[2] === 'opret') {
-        currentPage = <CreateBelt />;
+        currentPage = (
+          <Role
+            requiredRoles={[ADMIN_ROLE, EDITOR_ROLE]}
+            onAccessDenied={
+              <Article path={`/${pathSplit[1]}/${pathSplit[2]}`} />
+            }
+          >
+            <CreateBelt />
+          </Role>
+        );
       } else {
-        currentPage = <BeltEditor />;
+        currentPage = (
+          <Role
+            requiredRoles={[ADMIN_ROLE, EDITOR_ROLE]}
+            onAccessDenied={<Article path={`/${pathSplit[1]}`} />}
+          >
+            <BeltEditor />
+          </Role>
+        );
       }
     } else if (pathSplit[1] === 'styleguide') {
       currentPage = <Styleguide />;

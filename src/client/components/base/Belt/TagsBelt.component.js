@@ -190,6 +190,7 @@ export class TagsBelt extends React.Component {
                   </Link>
                   {isOwner && (
                     <Pin
+                      icon="delete"
                       className="d-inline mr-4 mt-2"
                       active={true}
                       onClick={this.props.removeBelt}
@@ -253,6 +254,7 @@ export class TagsBelt extends React.Component {
 
         <WorkSlider
           {...this.props}
+          className="TagsBelt"
           pids={this.props.recommendations}
           onMoreLikeThisClick={(wrk, bName, rid) =>
             this.props.openSimilarBelt(

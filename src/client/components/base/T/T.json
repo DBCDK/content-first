@@ -226,7 +226,7 @@
       }
     },
     "work": {
-      "readerExpTitle":{
+      "readerExpTitle": {
         "da": "Bogens læseoplevelse",
         "en": "Reader experience"
       },
@@ -305,6 +305,42 @@
       "noValidCollectionYet": {
         "da": "Bogen kan desværre ikke lånes på biblioteket endnu",
         "en": "Unfortunately, the book cannot be borrowed at the library yet"
+      },
+      "compare": {
+        "da": "vs.",
+        "en": "vs."
+      },
+      "appealsTitle": {
+        "da": "Læseoplevelse",
+        "en": "Reading experience"
+      },
+      "noAppeals": {
+        "da": "Der er ingen beskrivelse af læseoplevelsen endnu",
+        "en": "Unfortunately there is no reading experience yet"
+      },
+      "loansTitle": {
+        "da": "Udlån",
+        "en": "Loans"
+      },
+      "loans": {
+        "da": "<strong>%s</strong> Udlån",
+        "en": "<strong>%s</strong> Loans"
+      },
+      "loansCommon": {
+        "da": "<strong>%s</strong> har lånt begge bøger",
+        "en": "<strong>%s</strong> have borrowed both books"
+      },
+      "infoCommon": {
+        "da": "Fælles læseoplevelse",
+        "en": "Common experience"
+      },
+      "onlyCompared": {
+        "da": "Kun bogen %s",
+        "en": "Only the book %s"
+      },
+      "aboutLoans": {
+        "da": "Udlånstal er vejledende og opdateres ikke real-time",
+        "en": "Loans are indicative and are not updated in real time"
       }
     },
     "profile": {
@@ -789,24 +825,24 @@
         "en": "No match found :("
       },
       "pinAdd": {
-        "da": "Gem på din forside",
-        "en": "Save to frontpage"
+        "da": "Tilføj til din forside",
+        "en": "Add to your frontpage"
       },
       "pinAdded": {
-        "da": "Gemt på din forside",
-        "en": "Saved to frontpage"
+        "da": "Tilføjet til din forside",
+        "en": "Added to your frontpage"
       },
       "pinnedToFrontpageToast": {
-        "da": "Søgningen er gemt på din forside",
-        "en": "Search pinned to frontpage"
+        "da": "Søgningen er tilføjet til din forside",
+        "en": "Search added to your frontpage"
       },
       "pinLoginModalTitle": {
-        "da": "Gem søgningen til forsiden",
-        "en": "Save search to frontpage"
+        "da": "Tilføj søgningen til din forside",
+        "en": "Add search to your frontpage"
       },
       "pinLoginModalDescription": {
-        "da": "Du skal logge ind for at kunne gemme din søgning til forsiden.",
-        "en": "You need to be signed in to pin your search to the frontpage"
+        "da": "Du skal logge ind for at kunne tilføje søgningen til forsiden.",
+        "en": "You need to be signed in to add the search to the frontpage"
       },
       "watchToastAction": {
         "da": "Se det her",
@@ -831,6 +867,10 @@
       "suggesterPlaceholder": {
         "da": "Søg på stemning, sted eller stil…",
         "en": "Search by mood, place, or style…"
+      },
+      "createAsNewBelt": {
+        "da": "Opret som nyt bånd",
+        "en": "Create as a new belt"
       }
     },
     "post": {

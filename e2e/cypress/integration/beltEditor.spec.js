@@ -3,7 +3,6 @@ describe('Start Belt Editor test', function() {
     cy.initStorage();
     cy.clearClientStorage();
     cy.clearCookies();
-    cy.createUser('User', '1'); // Create user and log in
   });
 
   const nthContentRow = n =>
@@ -62,21 +61,47 @@ describe('Start Belt Editor test', function() {
 
   // ======================================================================================
 
-  it('Test Top Bar menu -> Not logged in -> Do not enter "Start Belt Editor" page', function() {
-    // First log out (Overrule beforeEach method)
-    cy.initStorage();
-    cy.clearClientStorage();
-    cy.clearCookies();
-    cy.wait(1000);
-    // Then test
+  it('Test Top Bar menu -> Not logged in -> No access to the "Redaktionen" page', function() {
+    cy.visit('/redaktionen');
+    cy.get('div.Article__content h3').should('have.text', '404');
+  });
+
+  // ======================================================================================
+
+  it('Test Top Bar menu -> Not logged in -> No access to the "Opret nyt bælte" page', function() {
+    cy.visit('/redaktionen/opret');
+    cy.get('div.Article__content h3').should('have.text', '404');
+  });
+
+  // ======================================================================================
+
+  it('Test Top Bar menu -> Logged in as non editor -> Do not enter "Redaktionen" page', function() {
+    cy.createUser('User');
     cy.visit('/');
-    cy.get('[data-cy=topbar-login-btn]').click();
+    cy.get('[data-cy=topbar-logged-in-btn]').click();
     cy.get('[data-cy=edit-start-page] span').should('not.exist');
   });
 
   // ======================================================================================
 
-  it.skip('Test Top Bar menu -> Logged in -> Do enter "Start Belt Editor" page', function() {
+  it('Test Top Bar menu -> Logged in as non editor -> No access to the "Redaktionen" page', function() {
+    cy.createUser('User');
+    cy.visit('/redaktionen');
+    cy.get('div.Article__content h3').should('have.text', '404');
+  });
+
+  // ======================================================================================
+
+  it('Test Top Bar menu -> Logged in as non editor -> No access to the "Opret nyt bælte" page', function() {
+    cy.createUser('User');
+    cy.visit('/redaktionen/opret');
+    cy.get('div.Article__content h3').should('have.text', '404');
+  });
+
+  // ======================================================================================
+
+  it('Test Top Bar menu -> Logged in as editor -> Do enter "Redaktionen" page', function() {
+    cy.createUser('EditorUser', 'editor');
     cy.visit('/');
     cy.get('[data-cy=topbar-logged-in-btn]').click();
     cy.get('[data-cy=edit-start-page] span').click();
@@ -86,6 +111,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test Table contains three elements', function() {
+    cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
     cy.get(
       '.BeltEditor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]'
@@ -110,6 +136,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test Enable/Disable belt', function() {
+    cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
     clickEnableDisableButton(1);
@@ -148,6 +175,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test Sort with arrow keys - inrange', function() {
+    cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
     clickSortButton(1, 'down');
@@ -184,6 +212,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test Sort with arrow keys - out of range', function() {
+    cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
     clickSortButton(1, 'up');
@@ -222,6 +251,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test delete row', function() {
+    cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
     clickDeleteButton(2);
@@ -242,6 +272,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test click create new row button', function() {
+    cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
     clickCreateButton();
@@ -257,6 +288,7 @@ describe('Start Belt Editor test', function() {
   it('Test create new belt page - test disabled Create button', function() {
     const TitleText = 'Title';
 
+    cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen/opret');
 
     cy.get('[data-cy=create-belt-cancel-button]').should('be.enabled');
@@ -271,6 +303,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test create new belt page - test disabled Publish Today text', function() {
+    cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen/opret');
 
     cy.get('[data-cy=create-belt-publish-today]').should(
@@ -290,6 +323,7 @@ describe('Start Belt Editor test', function() {
     const TitleText = 'Title';
     const DescriptionText = 'Description';
 
+    cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen/opret');
 
     cy.get('[data-cy=create-belt-title-input]').type(TitleText);
@@ -308,6 +342,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test create new belt page - test Tag selection', function() {
+    cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen/opret');
 
     cy.get('[data-cy=univers]').click();

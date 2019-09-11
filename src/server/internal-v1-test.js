@@ -145,6 +145,28 @@ router.route('/cprlogin/:id/:over13').get(
   })
 );
 
+async function fetchAllRoles() {
+  return Promise.all(
+    (await request.post(config.storage.url).send({
+      access_token: admin.token,
+      find: {
+        _type: rootType,
+        _owner: admin.id,
+        name: 'role'
+      }
+    })).body.data.map(
+      async _id =>
+        (await request.post(config.storage.url).send({
+          access_token: admin.token,
+          get: {
+            _type: rootType,
+            _id
+          }
+        })).body.data
+    )
+  );
+}
+
 /**
  *
  * @param {String} id openplatform_id
@@ -173,23 +195,17 @@ async function createUser(req, doCreateUser, isEditor) {
     })).data.length === 0
   ) {
     if (isEditor) {
-      const roles = (await request.post(config.storage.url).send({
+      const editorRole = (await fetchAllRoles()).filter(
+        role => role.machineName === 'contentFirstEditor'
+      )[0];
+
+      await request.post(config.storage.url).send({
         access_token: admin.token,
-        find: {
-          _type: rootType,
-          _owner: admin.id,
-          name: 'role'
+        assign_role: {
+          userId: id,
+          roleId: editorRole._id
         }
-      })).body.data;
-      for (let i = 0; i < roles.length; i++) {
-        await request.post(config.storage.url).send({
-          access_token: admin.token,
-          assign_role: {
-            userId: id,
-            roleId: roles[i]
-          }
-        });
-      }
+      });
     }
     // create user in db if user dosn't exist
     await putUserData(
@@ -212,7 +228,8 @@ async function createUser(req, doCreateUser, isEditor) {
 
 const rootType = 'bf130fb7-8bd4-44fd-ad1d-43b6020ad102';
 
-let typeId, roleId;
+let typeId;
+
 const admin = {
   id: 'test_admin_id',
   token: 'test_admin_token'
@@ -249,7 +266,19 @@ router.route('/initStorage').get(
       )
       .send({user: {uniqueId: user2.id}, storage: null});
 
-    roleId = (await request.post(config.storage.url).send({
+    const roles = (await fetchAllRoles()).filter(
+      role => role.machineName === 'contentFirstEditor'
+    );
+    await Promise.all(
+      roles.map(role =>
+        request.post(config.storage.url).send({
+          access_token: admin.token,
+          delete: {_id: role._id}
+        })
+      )
+    );
+
+    await request.post(config.storage.url).send({
       access_token: admin.token,
       put: {
         _type: rootType,
@@ -259,7 +288,7 @@ router.route('/initStorage').get(
         displayName: 'Læsekompasredaktør',
         description: 'Redaktør for læsekompas'
       }
-    })).body.data._id;
+    });
 
     typeId = (await request.post(config.storage.url).send({
       access_token: admin.token,
@@ -313,10 +342,6 @@ router.route('/wipeStorage').get(
         await request.post(config.storage.url).send({
           access_token: admin.token,
           delete: {_id: typeId}
-        });
-        await request.post(config.storage.url).send({
-          access_token: admin.token,
-          delete: {_id: roleId}
         });
       }
     } catch (e) {

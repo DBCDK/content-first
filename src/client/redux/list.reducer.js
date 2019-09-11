@@ -54,6 +54,7 @@ const listReducer = (state = defaultState, action) => {
               return map;
             }, {})
           : {};
+        list.list = Array.isArray(list.list) ? list.list : [];
 
         list.list = list.list.map(element => {
           return {...element, ...entryMap[element._id]};

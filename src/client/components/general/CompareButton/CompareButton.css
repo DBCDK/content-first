@@ -1,0 +1,27 @@
+.CompareButton {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  box-shadow: -1px 1px 8px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  transition-duration: 0.15s;
+  justify-content: space-around;
+}
+
+@media only screen and (max-width: 576px) {
+  .CompareButton {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.CompareButton:hover {
+  background-color: var(--korn);
+}
+
+.CompareButton i {
+  align-self: center;
+}

@@ -6,6 +6,7 @@
   min-width: 215px;
   vertical-align: top;
   text-align: left;
+  cursor: pointer;
 }
 
 .WorkCard:last-child {
@@ -29,6 +30,35 @@
   padding-top: 50px;
 }
 
+.WorkCard .book-cover-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+}
+
+.WorkCard .BookmarkButton {
+  margin-bottom: 0.5rem;
+}
+
+.WorkCard .CompareButton {
+  transform: rotate(-25deg) scale(0);
+  transition-timing-function: ease-in;
+  transition-duration: 0.15s;
+}
+
+.WorkCard:hover .CompareButton,
+.WorkCard .CompareButton.active {
+  transition-timing-function: ease-out;
+  transform: rotate(0deg) scale(1);
+}
+
+.WorkCard .CompareButton.active {
+  background-color: var(--korn);
+}
+
 .WorkCard .taxonomy-description {
   font-size: 0.9rem;
   line-height: 1.4rem;
@@ -38,12 +68,15 @@
 }
 
 .WorkCard .hover-details {
+  text-align: left;
   opacity: 0;
   transition: all 0.25s;
-  background: linear-gradient(transparent, white 40%);
   cursor: pointer;
-  padding: 10px;
   z-index: 2;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 .WorkCard.highlight .hover-details {
   opacity: 1;
@@ -52,10 +85,28 @@
   opacity: 1;
 }
 
+.hover-details-fade {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(transparent, white 60%);
+  z-index: 1;
+}
+
+.WorkCard.highlight .hover-details-fade {
+  opacity: 1;
+}
+.WorkCard:hover .hover-details-fade {
+  opacity: 1;
+}
+
 .WorkCard .expand-more-wrapper {
   width: 100%;
   position: absolute;
-  bottom: 0;
+  bottom: -135px;
   left: 0;
 }
 

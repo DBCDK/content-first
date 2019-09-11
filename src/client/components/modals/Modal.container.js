@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import OrderModal from './OrderModal.container';
 import LoginModal from './LoginModal.component';
 import ProfileModal from './ProfileModal/ProfileModal.component';
@@ -8,7 +10,7 @@ import ListSettingsModal from './ListSettingsModal.container';
 import ReorderListModal from './ReorderListModal.container';
 import ListModal from './ListModal/ListModal.component';
 import ShowReviewModal from './ShowReviewModal.component';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import CompareBooksModal from './CompareBooksModal.component';
 
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 
@@ -93,6 +95,12 @@ class Modal extends React.Component {
     if (this.props.modalState.showReview.open) {
       modal = (
         <ShowReviewModal context={this.props.modalState.showReview.context} />
+      );
+    }
+
+    if (this.props.modalState.compare.open) {
+      modal = (
+        <CompareBooksModal context={this.props.modalState.compare.context} />
       );
     }
 

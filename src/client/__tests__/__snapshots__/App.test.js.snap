@@ -432,28 +432,28 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="Historiske romaner"
+          id="Det smukke, smukke sprog"
           isLoading={false}
-          mount="frontpage[{\\"id\\":4901,\\"weight\\":10},{\\"id\\":5660,\\"weight\\":1},{\\"id\\":5658,\\"weight\\":1},{\\"id\\":189,\\"weight\\":1}]"
-          name="Historiske romaner"
+          mount="frontpage[{\\"id\\":5615,\\"weight\\":10},{\\"id\\":5614,\\"weight\\":1},{\\"id\\":153,\\"weight\\":1},{\\"id\\":5612,\\"weight\\":1}]"
+          name="Det smukke, smukke sprog"
           onFrontPage={true}
-          subtext="Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær."
+          subtext="Bøger til dig, der bliver glad af smukke sætninger."
           tags={
             Array [
               Object {
-                "id": 4901,
+                "id": 5615,
                 "weight": 10,
               },
               Object {
-                "id": 5660,
+                "id": 5614,
                 "weight": 1,
               },
               Object {
-                "id": 5658,
+                "id": 153,
                 "weight": 1,
               },
               Object {
-                "id": 189,
+                "id": 5612,
                 "weight": 1,
               },
             ]
@@ -487,6 +487,48 @@ exports[`renders without crashing 1`] = `
       />
       <SpotsContainer />
       <div>
+        <TagsBelt
+          child={false}
+          id="Hvad sker der bag hækken?"
+          isLoading={false}
+          mount="frontpage[{\\"id\\":2683,\\"weight\\":1},{\\"id\\":4907,\\"weight\\":10},{\\"id\\":5368,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5670,\\"weight\\":1},{\\"id\\":5676,\\"weight\\":1},{\\"id\\":5691,\\"weight\\":1}]"
+          name="Hvad sker der bag hækken?"
+          onFrontPage={true}
+          subtext="Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger."
+          tags={
+            Array [
+              Object {
+                "id": 2683,
+                "weight": 1,
+              },
+              Object {
+                "id": 4907,
+                "weight": 10,
+              },
+              Object {
+                "id": 5368,
+                "weight": 10,
+              },
+              Object {
+                "id": 5731,
+                "weight": 1,
+              },
+              Object {
+                "id": 5670,
+                "weight": 1,
+              },
+              Object {
+                "id": 5676,
+                "weight": 1,
+              },
+              Object {
+                "id": 5691,
+                "weight": 1,
+              },
+            ]
+          }
+          type="belt"
+        />
         <TagsBelt
           child={false}
           id="Fart over feltet"
@@ -671,40 +713,28 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="Hvad sker der bag hækken?"
+          id="Historiske romaner"
           isLoading={false}
-          mount="frontpage[{\\"id\\":2683,\\"weight\\":1},{\\"id\\":4907,\\"weight\\":10},{\\"id\\":5368,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5670,\\"weight\\":1},{\\"id\\":5676,\\"weight\\":1},{\\"id\\":5691,\\"weight\\":1}]"
-          name="Hvad sker der bag hækken?"
+          mount="frontpage[{\\"id\\":4901,\\"weight\\":10},{\\"id\\":5660,\\"weight\\":1},{\\"id\\":5658,\\"weight\\":1},{\\"id\\":189,\\"weight\\":1}]"
+          name="Historiske romaner"
           onFrontPage={true}
-          subtext="Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger."
+          subtext="Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær."
           tags={
             Array [
               Object {
-                "id": 2683,
-                "weight": 1,
-              },
-              Object {
-                "id": 4907,
+                "id": 4901,
                 "weight": 10,
               },
               Object {
-                "id": 5368,
-                "weight": 10,
-              },
-              Object {
-                "id": 5731,
+                "id": 5660,
                 "weight": 1,
               },
               Object {
-                "id": 5670,
+                "id": 5658,
                 "weight": 1,
               },
               Object {
-                "id": 5676,
-                "weight": 1,
-              },
-              Object {
-                "id": 5691,
+                "id": 189,
                 "weight": 1,
               },
             ]
