@@ -31,7 +31,7 @@ export class Storage extends React.Component {
   };
 
   remove = params => {
-    return this.storageClient.delete(params, this.getRole());
+    return this.storageClient.delete({id: params._id}, this.getRole());
   };
 
   render() {
