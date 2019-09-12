@@ -40,8 +40,11 @@ class Footer extends React.Component {
     const contentHeight = this.contentLine
       ? this.contentLine.offsetTop
       : document.body.scrollHeight;
-
-    return contentHeight + 200 < window.innerHeight;
+    const footerHeight =
+      this.footerContainer && this.footerContainer.clientHeight
+        ? this.footerContainer.clientHeight
+        : 0;
+    return contentHeight + footerHeight + 50 < window.innerHeight;
   }
 
   observeDom = () => {
@@ -67,7 +70,10 @@ class Footer extends React.Component {
     return (
       <React.Fragment>
         <div className="Footer__ghost" ref={e => (this.contentLine = e)} />
-        <div className={`Footer__outer-container--flexbox ${isStickyClass}`}>
+        <div
+          className={`Footer__outer-container--flexbox ${isStickyClass}`}
+          ref={e => (this.footerContainer = e)}
+        >
           <div className="Footer__container--elements p-3 pt-5 pb-md-5">
             <div className="Footer__logo--element mb-1">
               <img
