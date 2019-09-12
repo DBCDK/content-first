@@ -143,7 +143,7 @@ describe('List test', function() {
     });
   });
 
-  it.only('Can add with addToListButton to public list', function() {
+  it('Can add with addToListButton to public list', function() {
     cy.visit(`/v%C3%A6rk/870970-basis:25775481`);
     waitForListsLoaded();
     cy.wait(1000);
