@@ -32,8 +32,8 @@ pipeline {
         }
 
         stage('Integration test') {
-            lock("integration_test_lock") {
-                steps {
+            steps {
+                lock("integration_test_lock") {
                     script {
                         ansiColor("xterm") {
                             sh "echo Integrating..."
