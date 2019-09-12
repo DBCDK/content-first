@@ -15,6 +15,7 @@ import FilterCards from '../filter/FilterCards/FilterCards.component';
 import TagsBelt from '../base/Belt/TagsBelt.component';
 import withTagsFromUrl from '../../components/hoc/AdressBar/withTagsFromUrl.hoc';
 import Icon from '../base/Icon';
+import Storage from '../../components/roles/Storage.component';
 
 export class CreateBelt extends React.Component {
   constructor(props) {
@@ -40,11 +41,13 @@ export class CreateBelt extends React.Component {
     });
   };
 
-  handleSubmit = () => {
+  handleSubmit = create => {
     if (typeof this.props.onSubmit === 'function') {
       this.props.onSubmit(this.state);
     }
-    // const result = {...this.state, tags: this.props.tags.map(item => item.id)};
+    const result = {...this.state, tags: this.props.tags.map(item => item.id)};
+    create(result);
+    console.log('CreateBelt Result', result);
     window.open('/redaktionen', '_self');
   };
 
@@ -156,17 +159,26 @@ export class CreateBelt extends React.Component {
           >
             <T component="general" name="cancel" />
           </Button>
-          <Button
-            ref={this.createBeltButton}
+
+          <Storage
             align="center"
-            size="large"
-            type="quaternary"
-            onClick={this.handleSubmit}
-            disabled={this.checkDisabled()}
-            dataCy="create-belt-ok-button"
-          >
-            <T component="editStartPage" name="createBelt" />
-          </Button>
+            role="contentFirstEditor"
+            render={({create}) => {
+              return (
+                <Button
+                  ref={this.createBeltButton}
+                  align="center"
+                  size="large"
+                  type="quaternary"
+                  onClick={() => this.handleSubmit(create)}
+                  disabled={this.checkDisabled()}
+                  dataCy="create-belt-ok-button"
+                >
+                  <T component="editStartPage" name="createBelt" />
+                </Button>
+              );
+            }}
+          />
         </Toolbar>
       </div>
     );
