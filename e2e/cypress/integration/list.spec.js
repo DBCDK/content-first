@@ -147,19 +147,21 @@ describe('List test', function() {
     cy.visit(`/v%C3%A6rk/870970-basis:25775481`);
     waitForListsLoaded();
     cy.wait(1000);
+    cy.request('/v1/initial-state').then(resp => {
+      expect(Object.values(resp.body.data.listReducer.lists)).to.have.length.of(
+        2
+      );
+    });
     cy.get('[data-cy=add-to-list-btn]').click();
     cy.get('[data-cy=add-to-new-list]').click();
     cy.get('[data-cy=public-radio-btn]').click();
     cy.wait(1000);
     cy.get('[data-cy=modal-done-btn]').click();
-
-    gotoListByName('Ny liste');
-    cy.wait(1000);
-
-    cy.get('.list-container')
-      .find('.listElement')
-      .its('length')
-      .should('eq', 1);
+    cy.request('/v1/initial-state').then(resp => {
+      expect(Object.values(resp.body.data.listReducer.lists)).to.have.length.of(
+        3
+      );
+    });
   });
 
   it('Can move elements from shortlist to an other list', function() {

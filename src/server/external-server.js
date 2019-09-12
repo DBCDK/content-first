@@ -117,6 +117,24 @@ external.use(
 );
 
 // Administrative API.
+// Indicates that app is ready for test
+external.get('/ready', async (req, res) => {
+  const services = [database];
+  const status = await generatingServiceStatus(services);
+  Object.assign(status, {
+    version: require('../../package').version,
+    'api-version': constants.apiversion,
+    hostname: req.hostname,
+    address: req.ip
+  });
+  if (!status.ok) {
+    res.status(503);
+    logger.log.error(status);
+  }
+  res.json(status);
+});
+
+// Administrative API.
 external.get('/howru', async (req, res) => {
   const configWithoutSecrets = _.omit(config, [
     'db.connection.user',

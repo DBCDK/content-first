@@ -36,7 +36,12 @@ describe('OrderModal', () => {
       mapStateToProps({
         orderReducer: {orders: {}, pickupBranches: []}
       })
-    ).toEqual({branches: [], currentBranch: undefined, orders: []});
+    ).toEqual({
+      branches: [],
+      branchesLoaded: false,
+      currentBranch: undefined,
+      orders: []
+    });
   });
   it('has a working mapDispatchToProps', () => {
     expect(Object.keys(mapDispatchToProps(() => {}))).toEqual([

@@ -59,7 +59,7 @@ export function OrderState({book}) {
   return '';
 }
 
-function orderInfo({orders, onStart, currentBranch, branches}) {
+function orderInfo({orders, onStart, currentBranch, branches, branchesLoaded}) {
   let orderError = 0;
   let orderSuccess = 0;
   let orderable = [];
@@ -68,6 +68,12 @@ function orderInfo({orders, onStart, currentBranch, branches}) {
   let doneText, onDone;
   let orderStatus = '';
   let unavailableCount = 0;
+  const orderPossible =
+    orders &&
+    orders.filter(
+      book => book && book.availability && book.availability.orderPossible
+    ).length > 0;
+  let doneDisabled = !branchesLoaded || !orderPossible;
 
   for (const o of orders) {
     const state = o.orderState;
@@ -117,7 +123,8 @@ function orderInfo({orders, onStart, currentBranch, branches}) {
     orderStatus,
     unavailableCount,
     reviewingOrder,
-    ordering
+    ordering,
+    doneDisabled
   };
 }
 
@@ -130,8 +137,10 @@ export function OrderModal(props) {
     onDone,
     orderStatus,
     unavailableCount,
-    reviewingOrder
+    reviewingOrder,
+    doneDisabled
   } = orderInfo(props);
+  const {branchesLoaded} = props;
 
   const bookOrBooks = count =>
     T({
@@ -212,6 +221,7 @@ export function OrderModal(props) {
       onClose={props.onClose}
       onDone={onDone}
       doneText={doneText}
+      doneDisabled={doneDisabled}
     >
       <div>
         <div className="form-group">
@@ -281,19 +291,22 @@ export function OrderModal(props) {
             <label htmlFor="pickupBranch">
               <T component="order" name="orderPickup" />
             </label>
-            <select
-              className="form-control"
-              id="pickupBranch"
-              style={{width: 'auto'}}
-              onChange={props.onChangeBranch}
-              value={props.currentBranch}
-            >
-              {props.branches.map(branch => (
-                <option key={branch.branchId} value={branch.branchId}>
-                  {branch.branchName[0]}
-                </option>
-              ))}
-            </select>
+            <div className="d-flex align-items-center">
+              <select
+                className="form-control"
+                id="pickupBranch"
+                style={{width: branchesLoaded ? 'auto' : 150}}
+                onChange={props.onChangeBranch}
+                value={props.currentBranch}
+              >
+                {props.branches.map(branch => (
+                  <option key={branch.branchId} value={branch.branchId}>
+                    {branch.branchName[0]}
+                  </option>
+                ))}
+              </select>
+              {!branchesLoaded && <Spinner className="ml-2" size={24} />}
+            </div>
           </div>
         ) : (
           <div style={{textAlign: 'center'}}>{orderStatus}</div>
@@ -308,7 +321,11 @@ export function mapStateToProps(state) {
       book => book.ordering
     ),
     branches: state.orderReducer.pickupBranches,
-    currentBranch: state.orderReducer.currentBranch
+    currentBranch: state.orderReducer.currentBranch,
+    branchesLoaded:
+      (state.orderReducer.pickupBranches &&
+        state.orderReducer.pickupBranches.length > 0) ||
+      false
   };
 }
 export function mapDispatchToProps(dispatch) {

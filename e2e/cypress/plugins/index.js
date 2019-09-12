@@ -37,4 +37,20 @@ module.exports = (on, config) => {
       return args;
     }
   });
+
+  on('task', {
+    readFileMaybe(filename) {
+      const fs = require('fs');
+      if (fs.existsSync(filename)) {
+        return fs.readFileSync(filename, 'utf8');
+      }
+
+      return null;
+    },
+    writeFile({path, content}) {
+      const fs = require('fs');
+      fs.writeFileSync(path, content);
+      return null;
+    }
+  });
 };

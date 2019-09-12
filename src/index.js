@@ -75,5 +75,18 @@ smoothscroll.polyfill();
 
 // Overwrite specific openplatform methods, to make stubbing possible for testing purposes
 if (window.Cypress && window.__stubbed_openplatform__) {
+  window.__stubbed_openplatform__._work = openplatform.work;
+  window.__stubbed_openplatform__._libraries = openplatform.libraries;
+  window.__stubbed_openplatform__._order = openplatform.order;
+  window.__stubbed_openplatform__._connect = openplatform.connect;
+  window.__stubbed_openplatform__._disconnect = openplatform.disconnect;
+  window.__stubbed_openplatform__._connected = openplatform.connected;
+  window.__stubbed_openplatform__._availability = openplatform.availability;
+  window.__stubbed_openplatform__._infomedia = openplatform.infomedia;
+  window.__stubbed_openplatform__._user = openplatform.user;
+  window.__stubbed_openplatform__._wait = ms => {
+    return new Promise(r => setTimeout(r, ms));
+  };
+
   Object.assign(openplatform, window.__stubbed_openplatform__);
 }

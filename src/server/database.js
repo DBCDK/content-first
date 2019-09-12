@@ -9,15 +9,22 @@ const database = new Database(knex);
  * Make sure database is at most recent schema.
  */
 const logger = require('server/logger');
-knex.migrate
-  .latest()
-  .then(() => {
-    logger.log.debug('Database is now at latest version.');
-    database.setOk();
-  })
-  .catch(error => {
-    logger.log.info(`Could not update database to latest version: ${error}`);
-    database.logError(error);
-  });
+function migrate() {
+  knex.migrate
+    .latest()
+    .then(() => {
+      logger.log.debug('Database is now at latest version.');
+      database.setOk();
+    })
+    .catch(error => {
+      const delay = 2000;
+      logger.log.info(
+        `Could not update database to latest version: ${error}, will retry ${delay}ms`
+      );
+      database.logError(error);
+      setTimeout(migrate, delay);
+    });
+}
+migrate();
 
 module.exports = database;
