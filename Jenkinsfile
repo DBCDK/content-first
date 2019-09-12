@@ -19,6 +19,7 @@ pipeline {
     options {
         // Limit concurrent builds to one pr. branch.
         disableConcurrentBuilds()
+        lock resource: 'content_first_lock'
     }
     stages {
 
@@ -33,13 +34,11 @@ pipeline {
 
         stage('Integration test') {
             steps {
-                lock("integration_test_lock") {
-                    script {
-                        ansiColor("xterm") {
-                            sh "echo Integrating..."
-                            sh "docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} build"
-                            sh "IMAGE=${IMAGE} docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} run e2e"
-                        }
+                script {
+                    ansiColor("xterm") {
+                        sh "echo Integrating..."
+                        sh "docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} build"
+                        sh "IMAGE=${IMAGE} docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} run e2e"
                     }
                 }
             }
