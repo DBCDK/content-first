@@ -32,12 +32,14 @@ pipeline {
         }
 
         stage('Integration test') {
-            steps {
-                script {
-                    ansiColor("xterm") {
-                        sh "echo Integrating..."
-                        sh "docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} build"
-                        sh "IMAGE=${IMAGE} docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} run e2e"
+            lock("integration_test_lock") {
+                steps {
+                    script {
+                        ansiColor("xterm") {
+                            sh "echo Integrating..."
+                            sh "docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} build"
+                            sh "IMAGE=${IMAGE} docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} run e2e"
+                        }
                     }
                 }
             }
