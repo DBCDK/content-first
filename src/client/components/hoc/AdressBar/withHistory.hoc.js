@@ -21,7 +21,7 @@ const withHistory = WrappedComponent => {
     }
   };
 
-  const mapStateToProps = () => {};
+  const mapStateToProps = () => ({});
 
   const mapDispatchToProps = dispatch => ({
     historyPush: (path, params) => {
