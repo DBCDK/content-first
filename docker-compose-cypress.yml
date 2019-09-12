@@ -21,14 +21,14 @@ services:
     depends_on:
       - database
       - minismaug
-    command: bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; sleep 25; node src/main.js'
+      - web
+    command: bash -c 'until $$(curl --output /dev/null --silent --head --fail http://web:3000/ready); do printf '.'; sleep 5; done; node src/main.js'
   web:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: '${IMAGE:-docker-ux.dbc.dk/content-first:latest}'
     env_file: ./docker/env.docker
     depends_on:
       - database
-      - storage
     command: bash -c 'node src/server/main.js'
   injectmeta:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
@@ -46,6 +46,7 @@ services:
       - './e2e:/app/e2e'
     depends_on:
       - injectmeta
+      - storage
     environment:
       - CYPRESS_baseUrl=http://web:3000
-    command: bash -c 'sleep 90; npm run cy'
+    command: bash -c 'until $$(curl --output /dev/null --silent --head --fail http://web:3000/v1/object/bf130fb7-8bd4-44fd-ad1d-43b6020ad102); do printf '.'; sleep 5; done; npm run cy'
