@@ -152,16 +152,23 @@ describe('List test', function() {
         2
       );
     });
+
+    cy.get('[data-cy=add-to-list-btn]').click();
+    cy.get('[data-cy=add-to-new-list]').click();
+    cy.wait(1000);
     cy.server()
       .route('POST', '/v1/object/')
       .as('postList');
-    cy.get('[data-cy=add-to-list-btn]').click();
-    cy.get('[data-cy=add-to-new-list]').click();
-    cy.get('[data-cy=public-radio-btn]').click();
-    cy.wait('@postList');
     cy.get('[data-cy=modal-done-btn]').click();
-    cy.wait('@postList');
-
+    const waitForListPost = () => {
+      cy.wait('@postList').then(xhr => {
+        if (xhr.request.body._type !== 'list') {
+          // this was not a posted list object, wait again
+          waitForListPost();
+        }
+      });
+    };
+    waitForListPost();
     cy.request('/v1/initial-state').then(resp => {
       expect(Object.values(resp.body.data.listReducer.lists)).to.have.length.of(
         3
