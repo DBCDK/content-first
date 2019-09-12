@@ -19,30 +19,30 @@ export default class OPMock {
     this.name = name;
   };
   libraries = async arg => {
-    return await this.call('_libraries', arg);
+    return await this.invoke('_libraries', arg);
   };
   order = async arg => {
-    return await this.call('_order', arg);
+    return await this.invoke('_order', arg);
   };
   work = async arg => {
-    return await this.call('_work', arg);
+    return await this.invoke('_work', arg);
   };
   // connect = async arg => {
-  //   return await this.call('_connect', arg);
+  //   return await this.invoke('_connect', arg);
   // };
   // connected = async arg => {
-  //   return await this.call('_connected', arg);
+  //   return await this.invoke('_connected', arg);
   // };
   availability = async arg => {
-    return await this.call('_availability', arg);
+    return await this.invoke('_availability', arg);
   };
   infomedia = async arg => {
-    return await this.call('_infomedia', arg);
+    return await this.invoke('_infomedia', arg);
   };
   user = async arg => {
-    return await this.call('_user', arg);
+    return await this.invoke('_user', arg);
   };
-  call = async (funcName, arg) => {
+  invoke = async (funcName, arg) => {
     const recorded = this.getRecorded(funcName, arg);
     if (recorded) {
       console.log('Use recording', {funcName, arg, recorded});
