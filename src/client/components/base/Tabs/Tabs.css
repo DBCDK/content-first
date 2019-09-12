@@ -1,6 +1,6 @@
 .Tabs__container-horizontal {
   position: relative;
-  padding-top: 30px !important;
+  padding-top: 40px;
 }
 
 .Tabs__pagination {
@@ -12,10 +12,34 @@
   cursor: pointer;
   outline: none;
   font-weight: 600;
+  position: relative;
+  display: inline-block;
+}
+.Tabs__pagination-bullet:after {
+  position: absolute;
+  left: 50%;
+  content: '';
+  height: 3px;
+  background: var(--petroleum);
+  transition: all 0.2s linear;
+  width: 0;
+  bottom: -3px;
+}
+.Tabs__pagination-bullet:active:after {
+  width: 10%;
+  left: 45%;
+}
+.Tabs__pagination-bullet-active:active:after {
+  width: 80%;
+  left: 10%;
+}
+.Tabs__pagination-bullet-active:after {
+  width: 100%;
+  left: 0px;
 }
 
-.Tabs__pagination-bullet-active {
-  text-decoration: underline;
+.swiper-slide {
+  height: 100%;
 }
 
 .swiper-slide::-webkit-scrollbar-track {

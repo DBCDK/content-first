@@ -2,7 +2,6 @@ import React from 'react';
 import ResumeReview from './ResumeReview.component';
 import PaperReview from './PaperReview.component';
 import Icon from '../../base/Icon';
-import Title from '../../base/Title';
 import Text from '../../base/Text';
 import T from '../../base/T';
 import SkeletonText from '../../base/Skeleton/Text';
@@ -84,7 +83,7 @@ class ReviewList extends React.Component {
         : null;
 
       return (
-        <div className="review_list__review mb-3 mr-md-4" key={key}>
+        <div className="review_list__review mb-3" key={key}>
           <span className="review_list__review__details ">
             <Text type="body" variant="weight-semibold" className="mb0">
               {rev.creator.includes('Litteratursiden')
@@ -134,14 +133,6 @@ class ReviewList extends React.Component {
           }
           style={containerHeight}
         >
-          <div className="row">
-            <div className="col-md-12">
-              <Title Tag="h5" type="title5" className="mb-2">
-                <T component="work" name={'reviewsTitle'} />
-              </Title>
-            </div>
-          </div>
-
           {work.reviewsHasLoaded && (
             <div
               ref={reviewsContainer =>
@@ -177,7 +168,7 @@ class ReviewList extends React.Component {
             </React.Fragment>
           )}
 
-          {this.state.collapsed && (
+          {false && this.state.collapsed && (
             <div
               className="show-more-reviews "
               onClick={() =>

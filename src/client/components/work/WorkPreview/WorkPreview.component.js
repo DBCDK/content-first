@@ -1,4 +1,5 @@
 import React from 'react';
+import {get, some} from 'lodash';
 import BookCover from '../../general/BookCover/BookCover.component';
 import TaxDescription from '../TaxDescription.component';
 import Heading from '../../base/Heading';
@@ -7,6 +8,8 @@ import Button from '../../base/Button';
 import Paragraph from '../../base/Paragraph';
 import Icon from '../../base/Icon';
 import T from '../../base/T';
+import Tabs from '../../base/Tabs';
+import Expand from '../../base/Expand';
 import Share from '../../base/Share';
 import RemindsOf from '../../base/RemindsOf';
 import Link from '../../general/Link.component';
@@ -26,6 +29,28 @@ import './WorkPreview.css';
  */
 
 class WorkPreview extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tabsCollapsed: true,
+      transition: true
+    };
+  }
+
+  init() {
+    this.setState({tabsCollapsed: true, transition: false});
+  }
+
+  componentDidMount() {
+    this.init();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.pid !== prevProps.pid) {
+      this.init();
+    }
+  }
+
   render() {
     const {
       work,
@@ -36,6 +61,11 @@ class WorkPreview extends React.Component {
       filterReviews
     } = this.props;
 
+    // handle collapsible tag container
+    const tabsCollapsed = this.state.tabsCollapsed;
+    const collapsedClass = tabsCollapsed ? 'collapsed' : '';
+    const infoHeight = this.info ? this.info.offsetHeight : 'auto';
+
     const {book} = work;
     const tax_description =
       this.props.work.book.taxonomy_description ||
@@ -45,6 +75,10 @@ class WorkPreview extends React.Component {
     const collection = filterCollection(work);
     // get reviews from litteratursiden
     const reviews = filterReviews(work);
+
+    const appeals = this.props.sortTagsByAppeal();
+
+    const priorityTagsArr = book.tags.filter(e => e.score > 1);
 
     const lectorReviews =
       work.reviewsHasLoaded &&
@@ -238,15 +272,71 @@ class WorkPreview extends React.Component {
             </div>
           </div>
 
-          <ReviewList
-            book={book}
-            reviews={reviews}
-            lectorReviews={lectorReviews}
-            maxHeight={400}
-            work={work}
-            className="col-md-0 col-lg-5 workPreview__reviews pb-1 "
-            showMoreColor="var(--lys-graa)"
-          />
+          <div
+            className={`col-md-0 col-lg-5 workPreview__reviews pb-1 ${collapsedClass}`}
+            style={{height: tabsCollapsed ? infoHeight : 'auto'}}
+          >
+            {work.collectionHasLoaded &&
+              get(this.swiper, 'height') > infoHeight && (
+                <Expand
+                  title={T({component: 'general', name: 'showMore'})}
+                  onClick={() => {
+                    this.setState({
+                      tabsCollapsed: !this.state.tabsCollapsed,
+                      transition: true
+                    });
+                  }}
+                />
+              )}
+            <Tabs
+              pages={['Anmeldelser', 'Læseoplevelse']}
+              swiper={swiper => (this.swiper = swiper)}
+            >
+              <div className="tabs tabs-page-1">
+                <ReviewList
+                  book={book}
+                  reviews={reviews}
+                  lectorReviews={lectorReviews}
+                  maxHeight={400}
+                  work={work}
+                  showMoreColor="var(--lys-graa)"
+                />
+              </div>
+              <div className="tabs tabs-page-2">
+                {appeals.map(group => {
+                  return (
+                    <React.Fragment key={group.title}>
+                      <Text
+                        type="body"
+                        className="workPreview__tagHeading mb0 mt0"
+                      >
+                        {group.title}
+                      </Text>
+                      {group.data.map(t => {
+                        const matchClass = some(priorityTagsArr, ['id', t.id])
+                          ? 'match'
+                          : '';
+
+                        return (
+                          <Link key={t.id} href="/find" params={{tags: t.id}}>
+                            <Button
+                              key={t.title}
+                              type="tertiary"
+                              size="small"
+                              className={`workPreview__tag ${matchClass}`}
+                              dataCy={'tag-' + t.title}
+                            >
+                              {t.title}
+                            </Button>
+                          </Link>
+                        );
+                      })}
+                    </React.Fragment>
+                  );
+                })}
+              </div>
+            </Tabs>
+          </div>
         </div>
         {this.props.hasChildBelt && (
           <div className="col-12 col-xl-7 workPreview__arrow-container">
@@ -268,6 +358,7 @@ class WorkPreview extends React.Component {
 export default withChildBelt(
   withScrollToComponent(
     withWork(WorkPreview, {
+      includeTags: true,
       includeReviews: true,
       includeCollection: true
     })

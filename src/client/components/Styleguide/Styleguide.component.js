@@ -24,6 +24,8 @@ import Tabs from '../base/Tabs';
 import ToastMessage from '../base/ToastMessage';
 import Divider from '../base/Divider';
 
+import Expand from '../base/Expand';
+
 import Panel from './Components/Panel/Panel.component';
 import Color from './Components/Color/Color.component';
 import Font from './Components/Font/Font.component';
@@ -404,6 +406,23 @@ export default class Styleguide extends React.Component {
                 >
                   <Icon name="message" />
                 </button>
+              </div>
+            </div>
+          </section>
+
+          <section id="section-11">
+            <h1 className="section-title">{'Expand'}</h1>
+            <p>
+              {
+                'Overlay to axpand content. Must be implemented in a relative positioned element'
+              }
+            </p>
+            <div className="wrap">
+              <div
+                className="position-relative"
+                style={{height: 200, backgroundColor: 'var(--korn)'}}
+              >
+                <Expand title="watch more" />
               </div>
             </div>
           </section>

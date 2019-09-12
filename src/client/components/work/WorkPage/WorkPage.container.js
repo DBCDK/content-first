@@ -1,5 +1,5 @@
 import React from 'react';
-import {get} from 'lodash';
+import {get, some} from 'lodash';
 import Head from '../../base/Head';
 import TaxDescription from '../TaxDescription.component';
 import Title from '../../base/Title';
@@ -7,9 +7,11 @@ import Text from '../../base/Text';
 import Button from '../../base/Button';
 import Icon from '../../base/Icon';
 import T from '../../base/T';
+import Tabs from '../../base/Tabs';
 import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
 import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
 import Share from '../../base/Share';
+import Expand from '../../base/Expand';
 import RemindsOf from '../../base/RemindsOf';
 import SimilarBelt from '../../base/Belt/SimilarBelt.component';
 import BookCover from '../../general/BookCover/BookCover.component';
@@ -32,11 +34,15 @@ import {trackEvent} from '../../../matomo';
 class WorkPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {tagsCollapsed: true, transition: true, addToList: null};
+    this.state = {
+      tabsCollapsed: true,
+      transition: true,
+      addToList: null
+    };
   }
 
   init() {
-    this.setState({tagsCollapsed: true, transition: false});
+    this.setState({tabsCollapsed: true, transition: false});
   }
 
   componentDidMount() {
@@ -63,32 +69,40 @@ class WorkPage extends React.Component {
       return null;
     }
 
+    // handle collapsible tag container
+    const tabsCollapsed = this.state.tabsCollapsed;
+    const collapsedClass = tabsCollapsed ? 'collapsed' : '';
+
+    const infoHeight = this.info ? this.info.offsetHeight : 'auto';
+
+    const maxHeight = 400;
+    const tabsHeight = window.innerWidth > 1200 ? infoHeight : maxHeight;
+
     // get collections including ereolen
     const collection = this.props.filterCollection();
+
     // get reviews from litteratursiden
     const reviews = this.props.filterReviews();
+
     // sort tags by group
     const tags = this.props.sortTags();
-    // const tags = this.props.sortTagsByAppeal();
+    const appeals = this.props.sortTagsByAppeal();
 
     const stemningTags = tags.filter(e => e.title === 'stemning')[0];
     const priorityTagsArr = book.tags.filter(e => e.score > 1);
 
+    const prioTags = [];
     if (priorityTagsArr.length > 0) {
-      tags.unshift({
+      prioTags.unshift({
         title: T({component: 'work', name: 'readerExpTitle'}),
         data: priorityTagsArr
       });
     } else if (stemningTags) {
-      tags.unshift({
+      prioTags.unshift({
         title: T({component: 'work', name: 'readerExpTitle'}),
         data: stemningTags.data.slice(0, 6)
       });
     }
-
-    // tags collapsable variables
-    const tagsDomNode = document.getElementById('collapsable-tags');
-    const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
 
     const tax_description =
       book.taxonomy_description || book.taxonomy_description_subjects || '';
@@ -130,7 +144,7 @@ class WorkPage extends React.Component {
         />
         <div className="WorkPage__container">
           <div className="container">
-            <div className="row mt-0 mt-sm-5">
+            <div className="row mt-0 mt-sm-5 d-flex align-items-start">
               <div className="col-12 col-xl-8 WorkPage__work">
                 <div className="WorkPage__image">
                   <BookCover book={book} enableLightbox>
@@ -154,7 +168,7 @@ class WorkPage extends React.Component {
                   </BookCover>
                 </div>
 
-                <div className="WorkPage__info">
+                <div className="WorkPage__info" ref={e => (this.info = e)}>
                   <Share
                     className="ssb-fb align-self-center"
                     href={'https://laesekompas.dk/værk/' + book.pid}
@@ -328,14 +342,9 @@ class WorkPage extends React.Component {
 
                   <div
                     id="collapsable-tags"
-                    style={{
-                      transition: this.state.transition ? null : 'none',
-                      height: this.state.tagsCollapsed ? '65px' : height + 'px',
-                      overflowY: 'hidden'
-                    }}
                     className="row col-12 mt1 WorkPage__tagContainer text-left"
                   >
-                    {tags.map(group => {
+                    {prioTags.map(group => {
                       return (
                         <React.Fragment key={group.title}>
                           <Text
@@ -378,35 +387,89 @@ class WorkPage extends React.Component {
                           dataCy="tags-collaps-toggle"
                           onClick={() => {
                             trackEvent('tags', 'seeAllTags', book.title);
-                            this.setState({
-                              tagsCollapsed: !this.state.tagsCollapsed,
-                              transition: true
-                            });
+                            this.swiper.slideTo(1, 400);
                           }}
                         >
-                          <T
-                            component="work"
-                            name={
-                              this.state.tagsCollapsed
-                                ? 'tagsCollapsibleShow'
-                                : 'tagsCollapsibleHide'
-                            }
-                          />
+                          <T component="work" name={'tagsCollapsibleShow'} />
                         </Button>
                       </div>
                     </div>
                   )}
                 </div>
               </div>
-              <ReviewList
-                book={book}
-                reviews={reviews}
-                lectorReviews={lectorReviews}
-                maxHeight={500}
-                work={work}
-                className="col-12 col-xl-4 WorkPage__reviews mt-xl-0 mb-xl-0 pt-4"
-                showMoreColor="white"
-              />
+
+              <div
+                className={`col-12 col-xl-4 WorkPage__reviews mt-xl-0 mb-xl-0 ${collapsedClass}`}
+                style={{height: tabsCollapsed ? tabsHeight : 'auto'}}
+              >
+                {get(this.swiper, 'height') + 100 > tabsHeight && (
+                  <Expand
+                    title={T({component: 'general', name: 'showMore'})}
+                    onClick={() => {
+                      this.setState({
+                        tabsCollapsed: !this.state.tabsCollapsed,
+                        transition: true
+                      });
+                    }}
+                  />
+                )}
+
+                <Tabs
+                  pages={['Anmeldelser', 'Læseoplevelse']}
+                  swiper={swiper => (this.swiper = swiper)}
+                  onUpdate={() => this.setState({})}
+                >
+                  <div className="tabs tabs-page-1">
+                    <ReviewList
+                      book={book}
+                      reviews={reviews}
+                      lectorReviews={lectorReviews}
+                      work={work}
+                      showMoreColor="white"
+                    />
+                  </div>
+                  <div className="tabs tabs-page-2">
+                    {appeals.map(group => {
+                      return (
+                        <React.Fragment key={group.title}>
+                          <Text
+                            type="body"
+                            className="WorkPage__tagHeading mb0 mt0"
+                          >
+                            {group.title}
+                          </Text>
+                          {group.data.map(t => {
+                            const matchClass = some(priorityTagsArr, [
+                              'id',
+                              t.id
+                            ])
+                              ? 'match'
+                              : '';
+
+                            return (
+                              <Link
+                                key={t.id}
+                                href="/find"
+                                params={{tags: t.id}}
+                              >
+                                <Button
+                                  key={t.title}
+                                  type="tertiary"
+                                  size="small"
+                                  className={`WorkPage__tag ${matchClass}`}
+                                  dataCy={'tag-' + t.title}
+                                >
+                                  {t.title}
+                                </Button>
+                              </Link>
+                            );
+                          })}
+                        </React.Fragment>
+                      );
+                    })}
+                  </div>
+                </Tabs>
+              </div>
             </div>
           </div>
 
