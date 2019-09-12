@@ -1,46 +1,37 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import StorageClient from '../../../shared/client-side-storage.client';
 
 export class Storage extends React.Component {
-  getId() {
+  storageClient = new StorageClient();
+
+  getRole() {
     if (Array.isArray(this.props.roles)) {
-      const owner = this.props.roles.find(
+      const role = this.props.roles.find(
         element =>
           typeof element.machineName === 'string' &&
           element.machineName === this.props.role
       );
-      return typeof owner === 'undefined' ? owner : owner._id; // If owner is undefined then return undefined
+      return typeof role === 'undefined' ? role : role._id; // If owner is undefined then return undefined
     }
     return; // If this.props.roles is undefined then return undefined
   }
 
   noop() {}
 
-  create = parameters => {
-    console.log(
-      '$$$ Create is now called with owner:',
-      this.getId(),
-      'and parameters: ',
-      parameters
-    );
+  create = object => {
+    return this.storageClient.put(object, this.getRole());
   };
 
-  update = parameters => {
-    console.log(
-      '$$$ Update is now called with owner:',
-      this.getId(),
-      'and parameters: ',
-      parameters
-    );
+  update = object => {
+    if (typeof object._id !== 'string') {
+      throw new Error('ID must be given, when updating a Storage Object');
+    }
+    return this.storageClient.put(object, this.getRole());
   };
 
-  remove = parameters => {
-    console.log(
-      '$$$ Remove is now called with owner:',
-      this.getId(),
-      'and parameters: ',
-      parameters
-    );
+  remove = params => {
+    return this.storageClient.delete(params, this.getRole());
   };
 
   render() {
