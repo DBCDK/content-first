@@ -152,13 +152,13 @@ describe('List test', function() {
         2
       );
     });
-    cy.get('[data-cy=add-to-list-btn]').click();
-    cy.get('[data-cy=add-to-new-list]').click();
-    cy.get('[data-cy=public-radio-btn]').click();
-    cy.wait(1000);
     cy.server()
       .route('POST', '/v1/object/')
       .as('postList');
+    cy.get('[data-cy=add-to-list-btn]').click();
+    cy.get('[data-cy=add-to-new-list]').click();
+    cy.get('[data-cy=public-radio-btn]').click();
+    cy.wait('@postList');
     cy.get('[data-cy=modal-done-btn]').click();
     cy.wait('@postList');
 
