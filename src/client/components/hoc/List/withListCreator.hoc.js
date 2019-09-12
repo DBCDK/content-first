@@ -84,8 +84,8 @@ export const withListCreator = WrappedComponent => {
 
   const mapDispatchToProps = dispatch => {
     return {
-      onCreateList: async list => {
-        await dispatch({type: ADD_LIST, list});
+      onCreateList: list => {
+        dispatch({type: ADD_LIST, list});
       }
     };
   };
