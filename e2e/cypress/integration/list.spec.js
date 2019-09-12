@@ -156,7 +156,12 @@ describe('List test', function() {
     cy.get('[data-cy=add-to-new-list]').click();
     cy.get('[data-cy=public-radio-btn]').click();
     cy.wait(1000);
+    cy.server()
+      .route('POST', '/v1/object/')
+      .as('postList');
     cy.get('[data-cy=modal-done-btn]').click();
+    cy.wait('@postList');
+
     cy.request('/v1/initial-state').then(resp => {
       expect(Object.values(resp.body.data.listReducer.lists)).to.have.length.of(
         3
