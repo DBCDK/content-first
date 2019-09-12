@@ -169,6 +169,7 @@ describe('List test', function() {
       });
     };
     waitForListPost();
+    cy.wait(3000);
     cy.request('/v1/initial-state').then(resp => {
       expect(Object.values(resp.body.data.listReducer.lists)).to.have.length.of(
         3
