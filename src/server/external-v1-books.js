@@ -25,6 +25,7 @@ const getWork = (
   dcTitle,
   creator,
   creatorAut,
+  contributor,
   abstract,
   extent,
   dcLanguage,
@@ -54,8 +55,9 @@ const getWork = (
     book: {
       pid,
       title: (dcTitle && dcTitle[0]) || '',
-      creator: (creatorAut && creatorAut[0]) || (creator && creator[0]) || '',
+      creator: (creatorAut && creatorAut[0]) || (creator && creator[0]) || (contributor && contributor.join(', ')) || '',
       creatorAut: (creatorAut && creatorAut[0]) || '',
+      contributor: (contributor && contributor.join(', ')) || '',
       description: (abstract && abstract[0]) || '',
       identifierISBN: identifierISBN || '',
       pages: (extent && extent[0] && parseInt(extent[0], 10)) || '',
@@ -87,6 +89,7 @@ const fetchWork = async pid => {
     dcTitle,
     creator,
     creatorAut,
+    contributor,
     abstract,
     extent,
     dcLanguage,
@@ -104,6 +107,7 @@ const fetchWork = async pid => {
       'dcTitle',
       'creator',
       'creatorAut',
+      'contributor',
       'abstract',
       'extent',
       'dcLanguage',
@@ -125,6 +129,7 @@ const fetchWork = async pid => {
     dcTitle,
     creator,
     creatorAut,
+    contributor,
     abstract,
     extent,
     dcLanguage,
@@ -158,6 +163,7 @@ const fetchWorks = async pids => {
   );
   const failed = _.difference(pids, works.map(b => b.book.pid));
 
+  console.log('works', works);
   return {data: works, failed};
 };
 
