@@ -40,12 +40,14 @@ export class Tabs extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    if (this.swiper) {
-      const prevHeight = this.swiper.height;
-      this.swiper.update();
-      if (prevHeight !== this.swiper.height && this.props.onUpdate) {
-        this.props.onUpdate();
+  componentDidUpdate(prevProps) {
+    if (this.props.children !== prevProps.children) {
+      if (this.swiper) {
+        const prevHeight = this.swiper.height;
+        this.swiper.update();
+        if (prevHeight !== this.swiper.height && this.props.onUpdate) {
+          this.props.onUpdate();
+        }
       }
     }
   }
@@ -90,7 +92,7 @@ export class Tabs extends React.Component {
       pagination: {
         ...defaultSettings.pagination,
         renderBullet: function(i, swiperClass) {
-          return `<span class="${swiperClass} mr-4">
+          return `<span class="${swiperClass} mr-4" data-cy="${pages[i]}">
                   <Text type="body" variant="weight-semibold">
                     ${pages[i]}
                   </Text>

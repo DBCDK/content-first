@@ -3,7 +3,8 @@ export default class OPMock {
     cy.on('window:before:load', window => {
       window.__stubbed_openplatform__ = this;
     });
-    this.name = `order.${Cypress.mocha
+
+    this.name = `${Cypress.mocha
       .getRunner()
       .suite.ctx.currentTest.title.replace(/ /g, '')
       .toLowerCase()}`;
@@ -74,7 +75,10 @@ export default class OPMock {
     if (this.record) {
       this.cy
         .writeFile(
-          `cypress/fixtures/${this.name}.mock.json`,
+          `cypress/fixtures/${Cypress.mocha
+            .getRunner()
+            .suite.title.replace(/ /g, '')
+            .toLowerCase()}/${this.name}.mock.json`,
           JSON.stringify(this.recorded, null, 2)
         )
         .then(() => {
@@ -85,7 +89,13 @@ export default class OPMock {
   };
   load = () => {
     this.cy
-      .task('readFileMaybe', `cypress/fixtures/${this.name}.mock.json`)
+      .task(
+        'readFileMaybe',
+        `cypress/fixtures/${Cypress.mocha
+          .getRunner()
+          .suite.title.replace(/ /g, '')
+          .toLowerCase()}/${this.name}.mock.json`
+      )
       .then(textOrNull => {
         if (textOrNull) {
           this.recorded = JSON.parse(textOrNull);

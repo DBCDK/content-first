@@ -400,6 +400,7 @@ class WorkPage extends React.Component {
 
               <div
                 className={`col-12 col-xl-4 WorkPage__reviews mt-xl-0 mb-xl-0 ${collapsedClass}`}
+                data-cy={'WorkPage__reviews'}
                 style={{height: tabsCollapsed ? tabsHeight : 'auto'}}
               >
                 {get(this.swiper, 'height') + 100 > tabsHeight && (
@@ -419,7 +420,10 @@ class WorkPage extends React.Component {
                   swiper={swiper => (this.swiper = swiper)}
                   onUpdate={() => this.setState({})}
                 >
-                  <div className="tabs tabs-page-1">
+                  <div
+                    data-cy="tabs-page-Anmeldelser"
+                    className="tabs tabs-page-1"
+                  >
                     <ReviewList
                       book={book}
                       reviews={reviews}
@@ -428,7 +432,10 @@ class WorkPage extends React.Component {
                       showMoreColor="white"
                     />
                   </div>
-                  <div className="tabs tabs-page-2">
+                  <div
+                    data-cy="tabs-page-Læseoplevelse"
+                    className="tabs tabs-page-2"
+                  >
                     {appeals.map(group => {
                       return (
                         <React.Fragment key={group.title}>

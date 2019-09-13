@@ -1,0 +1,243 @@
+{
+  "_work_{\"pids\":[\"870970-basis:54127774\"],\"fields\":[\"hasReview\",\"collection\"]}": {
+    "data": [
+      {
+        "hasReview": [
+          "870976-anmeld:31619203",
+          "870971-anmeld:37876135",
+          "870971-anmeld:37857696",
+          "870971-anmeld:38045024",
+          "870971-anmeld:37865354",
+          "870971-anmeld:37921297",
+          "870971-anmeld:37860530",
+          "870971-anmeld:37865397",
+          "870971-anmeld:37857742",
+          "870971-anmeld:37857661",
+          "870971-anmeld:37857483",
+          "870971-anmeld:47100194"
+        ],
+        "collection": [
+          "870970-basis:54127774",
+          "870970-basis:54127766",
+          "870970-basis:54925603",
+          "870970-basis:54925883"
+        ]
+      }
+    ],
+    "timing": 3861
+  },
+  "_work_{\"pids\":[\"870970-basis:54127774\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog"
+        ]
+      }
+    ],
+    "timing": 178
+  },
+  "_work_{\"pids\":[\"870976-anmeld:31619203\",\"870971-anmeld:37876135\",\"870971-anmeld:37857696\",\"870971-anmeld:38045024\",\"870971-anmeld:37865354\",\"870971-anmeld:37921297\",\"870971-anmeld:37860530\",\"870971-anmeld:37865397\",\"870971-anmeld:37857742\",\"870971-anmeld:37857661\",\"870971-anmeld:37857483\",\"870971-anmeld:47100194\"],\"fields\":[\"identifierURI\",\"creatorOth\",\"isPartOf\",\"date\",\"fullTextReviews\",\"abstract\"]}": {
+    "data": [
+      {
+        "creatorOth": [
+          "Louise Hede"
+        ],
+        "date": [
+          "2018"
+        ],
+        "fullTextReviews": [
+          {
+            "reviewer": {
+              "firstname": "Louise",
+              "surname": "Hede"
+            },
+            "creationDate": "2018-04-30T00:00:00+02:00",
+            "review": {
+              "Kort om bogen": "\"Disse vidneudsagn blev indsamlet for at få indblik i relationerne mellem de ansatte og objekterne i rummene. I en periode på 18 måneder interviewede udvalget samtlige ansatte ud fra spørgsmål om, hvilke relationer de havde til rummene og dets objekter\". Sådan starter Olga Ravns science-fiction roman. For læsere af eksperimenterende litteratur",
+              "Beskrivelse": "På det sekstusinde skib består besætningen af mennesker og menneskeligende ansatte. De har fået en række nye genstande om bord fra planeten Nyopdagelsen som de skal passe på, men besætningen begynder at udvikle dybe forbindelser til disse genstande, hvilket truer sammenholdet på skibet. Olga Ravn har senest udgivet digtsamlingen Den hvide rose",
+              "Vurdering": "Opbygget som en protokol over besætningens vidneudsagn, består historien af en masse korte, fragmenterede fortællinger og tanker om livet på skibet, og om samarbejdet mellem menneskerne og robotterne. I de forkerte hænder vil bogen virke rodet og frustrerende på grund af den manglende lineære fortælling. For den rette læser vil dette være en yderst interessant skildring af en dansk science fiction fremtid",
+              "Andre bøger om samme emne": "I formen minder den om Maria Gerhardts Transfervindue. Plotmæssigt mindede den mit om en fragmenteret blanding af Dicks Drømmer androider om elektriske får? og VanderMeers Udslettelse"
+            },
+            "note": "Materialevurdering oprindeligt udarbejdet til udgave fra 2018"
+          }
+        ]
+      },
+      {
+        "identifierURI": [
+          "https://litteratursiden.dk/boeger/de-ansatte"
+        ],
+        "creatorOth": [
+          "Søren Feldtfos Thomsen"
+        ],
+        "isPartOf": [
+          "Litteratursiden.dk online, 2018-05-30"
+        ],
+        "date": [
+          "2018"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Martin Gregersen"
+        ],
+        "isPartOf": [
+          "Kristeligt dagblad, 2018-05-25"
+        ],
+        "date": [
+          "2018"
+        ],
+        "abstract": [
+          "Vurdering: 6/6"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Eskil Halberg"
+        ],
+        "isPartOf": [
+          "Tidsskrift for arbejdsliv, Årg. 20, nr. 3 (2018)"
+        ],
+        "date": [
+          "2018"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Alexander Vesterlund"
+        ],
+        "isPartOf": [
+          "Politiken, 2018-05-24"
+        ],
+        "date": [
+          "2018"
+        ],
+        "abstract": [
+          "Vurdering: 5/6"
+        ]
+      },
+      {
+        "identifierURI": [
+          "http://atlasmag.dk/kultur/b%C3%B8ger/tilbage-til-materien"
+        ],
+        "creatorOth": [
+          "Mikkel Andersen"
+        ],
+        "isPartOf": [
+          "Atlas online, 2018-06-12"
+        ],
+        "date": [
+          "2018"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Søren Kassebeer"
+        ],
+        "isPartOf": [
+          "Berlingske tidende, 2018-05-27"
+        ],
+        "date": [
+          "2018"
+        ],
+        "abstract": [
+          "Vurdering: 5/6"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Erik Skyum-Nielsen"
+        ],
+        "isPartOf": [
+          "Information, 2018-05-24"
+        ],
+        "date": [
+          "2018"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Line Rasmussen"
+        ],
+        "isPartOf": [
+          "Børsen, 2018-05-25"
+        ],
+        "date": [
+          "2018"
+        ],
+        "abstract": [
+          "Vurdering: 6/6"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Tobias Skiveren"
+        ],
+        "isPartOf": [
+          "Jyllands-posten, 2018-05-25"
+        ],
+        "date": [
+          "2018"
+        ],
+        "abstract": [
+          "Vurdering: 4/6"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Lars Bukdahl"
+        ],
+        "isPartOf": [
+          "Weekendavisen, 2018-05-25"
+        ],
+        "date": [
+          "2018"
+        ]
+      },
+      {
+        "creatorOth": [
+          "Niels Dalgaard"
+        ],
+        "isPartOf": [
+          "Proxima, Nr. 104 (2019)"
+        ],
+        "date": [
+          "2019"
+        ]
+      }
+    ],
+    "timing": 323
+  },
+  "_work_{\"pids\":[\"870970-basis:54127766\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Ebog"
+        ],
+        "identifierURI": [
+          "https://ereolen.dk/ting/object/870970-basis:54127766"
+        ]
+      }
+    ],
+    "timing": 625
+  },
+  "_work_{\"pids\":[\"870970-basis:54925883\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (net)"
+        ]
+      }
+    ],
+    "timing": 630
+  },
+  "_work_{\"pids\":[\"870970-basis:54925603\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (cd-mp3)"
+        ]
+      }
+    ],
+    "timing": 822
+  }
+}
