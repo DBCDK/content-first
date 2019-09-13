@@ -134,7 +134,7 @@ export class PaperReview extends React.Component {
       }
     }
     return (
-      <div className={'Review__container mr-4 mb-3 ' + allowAccess()}>
+      <div className={'Review__container mb-3'}>
         <div className="Review__block--top">
           <div className="Review__block--title mb-0 d-flex">
             <Title Tag="h6" type="title6" className={'mb-0 mr-2'}>

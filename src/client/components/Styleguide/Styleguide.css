@@ -19,6 +19,15 @@
     padding: 0 0 75vh 0;
   }
 
+  .Styleguide-container {
+    padding: 0;
+  }
+
+  .Styleguide section p,
+  .Styleguide section h1 {
+    padding: 0 15px 0 15px;
+  }
+
   .Styleguide-container .Panel {
     display: none;
   }

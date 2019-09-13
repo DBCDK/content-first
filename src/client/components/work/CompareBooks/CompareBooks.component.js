@@ -67,7 +67,7 @@ export class CompareBooks extends React.Component {
       return work.book.pid !== main;
     })[0];
 
-    // The compared works tags sorted into Appeal categories
+    // The compared works tags, sorted into Appeal categories
     const comparedWorkAppel = sortTagsByAppeal(comparedWork);
 
     // Array of tags which the Compared and Main Work has in common

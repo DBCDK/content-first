@@ -83,8 +83,64 @@
 }
 /* reviews */
 
-.WorkPreview__container .workPreview__reviews {
-  padding: 0 0 0 3rem;
+.workPreview__reviews {
+  height: 100%;
+}
+
+.workPreview__reviews.collapsed {
+  overflow: hidden;
+}
+
+.workPreview__reviews .expand_wrap {
+  display: none;
+}
+
+.workPreview__reviews.collapsed .expand_wrap {
+  display: flex;
+}
+
+.workPreview__reviews .Tabs__container-horizontal {
+  padding-top: 40px;
+}
+
+.workPreview__reviews .Tabs__pagination {
+  padding: 0;
+}
+
+.workPreview__reviews .Tabs__pagination-bullet-active:after,
+.workPreview__reviews .Tabs__pagination-bullet:after {
+  background: var(--korn);
+}
+
+.workPreview__reviews .WorkPage__tag {
+  margin: 8px 8px 0 0;
+}
+
+.workPreview__tag.match {
+  background-color: var(--pistache);
+}
+
+/*  tags */
+
+.workPreview__reviews .workPreview__tag {
+  margin: 8px 8px 0 0;
+}
+
+.workPreview__tagContainer .workPreview__tagHeading,
+.workPreview__reviews .workPreview__tagHeading {
+  padding-top: 1rem;
+  width: 100%;
+  display: block;
+  clear: both;
+}
+
+.workPreview__reviews .workPreview__tagHeading:first-child {
+  padding-top: 0;
+}
+
+.workPreview__reviews .workPreview__tag::first-letter,
+.workPreview__reviews .workPreview__tagHeading::first-letter {
+  text-transform: uppercase;
 }
 
 .workPreview__reviews .workPreview__review {

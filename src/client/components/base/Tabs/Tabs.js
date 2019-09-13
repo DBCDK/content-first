@@ -31,13 +31,23 @@ const defaultSettings = {
 export class Tabs extends React.Component {
   constructor(props) {
     super(props);
-    this.initialScrollPos = props.initialScrollPos || 0;
+    this.state = {index: props.initialSlide || 0};
+  }
+
+  componentDidMount() {
+    if (this.props.swiper && this.swiper) {
+      this.props.swiper(this.swiper);
+    }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.children !== this.props.children) {
+    if (this.props.children !== prevProps.children) {
       if (this.swiper) {
+        const prevHeight = this.swiper.height;
         this.swiper.update();
+        if (prevHeight !== this.swiper.height && this.props.onUpdate) {
+          this.props.onUpdate();
+        }
       }
     }
   }
@@ -59,18 +69,30 @@ export class Tabs extends React.Component {
   };
 
   render() {
-    const {className = null, children, pages, customSettings = {}} = this.props;
+    const {
+      className = null,
+      children,
+      initialSlide = 0,
+      pages,
+      customSettings = {}
+    } = this.props;
+
+    // Swiper containerClass
+    const containerClass = {
+      containerClass: `swiper-container ${className}`
+    };
 
     //
     // Merge settings
     //
 
     const settings = {
+      ...containerClass,
       ...defaultSettings,
       pagination: {
         ...defaultSettings.pagination,
         renderBullet: function(i, swiperClass) {
-          return `<span class="${swiperClass} mr-4">
+          return `<span class="${swiperClass} mr-4" data-cy="${pages[i]}">
                   <Text type="body" variant="weight-semibold">
                     ${pages[i]}
                   </Text>
@@ -87,6 +109,7 @@ export class Tabs extends React.Component {
             this.init(node.swiper);
           }
         }}
+        initialSlide={initialSlide}
         className={className}
         onPageChange={this.onPageChange}
         {...settings}

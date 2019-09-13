@@ -1,0 +1,202 @@
+{
+  "_work_{\"pids\":[\"870970-basis:53410405\"],\"fields\":[\"hasReview\",\"collection\"]}": {
+    "data": [
+      {
+        "hasReview": [
+          "870976-anmeld:31519152"
+        ],
+        "collection": [
+          "870970-basis:53280714",
+          "870970-basis:46615824",
+          "870970-basis:53708439",
+          "870970-basis:53945988",
+          "810015-katalog:010812619__1",
+          "870970-basis:53945996",
+          "870970-basis:53946011",
+          "870970-basis:53946038",
+          "870970-basis:53410405",
+          "870970-basis:53749658",
+          "870970-basis:53749631",
+          "870970-basis:53749666",
+          "874310-katalog:DBB0045248",
+          "874310-katalog:DBB0418106"
+        ]
+      }
+    ],
+    "timing": 1430
+  },
+  "_work_{\"pids\":[\"870970-basis:53410405\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Ebog"
+        ]
+      }
+    ],
+    "timing": 240
+  },
+  "_work_{\"pids\":[\"870970-basis:53708439\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog"
+        ]
+      }
+    ],
+    "timing": 323
+  },
+  "_work_{\"pids\":[\"870970-basis:53945996\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog stor skrift (bind 2)"
+        ]
+      }
+    ],
+    "timing": 346
+  },
+  "_work_{\"pids\":[\"870970-basis:53946038\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog stor skrift (bind 4)"
+        ]
+      }
+    ],
+    "timing": 368
+  },
+  "_work_{\"pids\":[\"870976-anmeld:31519152\"],\"fields\":[\"identifierURI\",\"creatorOth\",\"isPartOf\",\"date\",\"fullTextReviews\",\"abstract\"]}": {
+    "data": [
+      {
+        "creatorOth": [
+          "Jacob Holm Krogsøe"
+        ],
+        "date": [
+          "2017"
+        ],
+        "fullTextReviews": [
+          {
+            "reviewer": {
+              "firstname": "Jacob Holm",
+              "surname": "Krogsøe"
+            },
+            "creationDate": "2017-09-15T00:00:00+02:00",
+            "review": {
+              "Kort om bogen": "Tag med til 1500-tallet, hvor religionskrige og den store kærlighed udfoldes. Til læsere af historiske romaner",
+              "Beskrivelse": "De to første bind i Folletts serie om Kingsbridge foregik i henholdsvis 1100-tallet og 1300-tallet. Med \"Den evige ild\" tager Follett os med til 1500-tallet. Romanen starter i 1558 og slutter i 1606. I Kingsbridge møder vi Ned Willard, bogens hovedperson, der også i flere passager fungerer som fortæller. Ned er forelsket i Margery og det er gengældt. Men Margerys forældre vil det anderledes og Margery giftes væk til en anden mand. Så Ned må væk og det bliver starten på en lang karriere i kongehusets tjeneste i en tid fyldt med politiske intriger, religionskrige og kærlighed. Handlingen springer blandt andet også til Frankrig, Spanien, Nederlandene og Hispaniola, mens vi møder et spraglet og stort persongalleri",
+              "Vurdering": "Klassisk Follett. Fin underholdning, lettere karikerede personer (de onde er meget onde), lidt for mange sidehistorier og flot historisk research. Der er smæk for skillingen, den store og umulige kærlighed, intriger, tragedier, vold og alle de andre elementer der skaber en succesfuld mainstream historisk roman",
+              "Andre bøger om samme emne": "De to foregående bind i serien om Kingsbridge, Jordens søjler og Uendelige verden, og Edward Rutherfurds historiske romaner, eksempelvis Sarum (Ved Birgitte Brix) og Dublin er med samme ambitionsniveau, men dog ikke helt på Folletts niveau"
+            }
+          }
+        ]
+      }
+    ],
+    "timing": 387
+  },
+  "_work_{\"pids\":[\"870970-basis:53749658\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (cd)"
+        ]
+      }
+    ],
+    "timing": 433
+  },
+  "_work_{\"pids\":[\"870970-basis:53945988\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog stor skrift (bind 1)"
+        ]
+      }
+    ],
+    "timing": 434
+  },
+  "_work_{\"pids\":[\"810015-katalog:010812619__1\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog stor skrift (bind 4)"
+        ]
+      }
+    ],
+    "timing": 460
+  },
+  "_work_{\"pids\":[\"874310-katalog:DBB0418106\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Punktskrift"
+        ],
+        "identifierURI": [
+          "https://nota.dk/bibliotek/bogid/418106"
+        ]
+      }
+    ],
+    "timing": 474
+  },
+  "_work_{\"pids\":[\"870970-basis:53749666\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (net)"
+        ]
+      }
+    ],
+    "timing": 488
+  },
+  "_work_{\"pids\":[\"870970-basis:53946011\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog stor skrift (bind 3)"
+        ]
+      }
+    ],
+    "timing": 502
+  },
+  "_work_{\"pids\":[\"870970-basis:53749631\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (cd-mp3)"
+        ]
+      }
+    ],
+    "timing": 515
+  },
+  "_work_{\"pids\":[\"870970-basis:53280714\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog"
+        ]
+      }
+    ],
+    "timing": 528
+  },
+  "_work_{\"pids\":[\"874310-katalog:DBB0045248\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (net)"
+        ],
+        "identifierURI": [
+          "https://nota.dk/bibliotek/bogid/45248"
+        ]
+      }
+    ],
+    "timing": 544
+  },
+  "_work_{\"pids\":[\"870970-basis:46615824\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog"
+        ]
+      }
+    ],
+    "timing": 559
+  }
+}

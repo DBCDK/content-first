@@ -129,6 +129,10 @@
       "lists": {
         "da": "Lister",
         "en": "Lists"
+      },
+      "showMore": {
+        "da": "Vis mere",
+        "en": "Show more"
       }
     },
     "login": {
@@ -230,7 +234,7 @@
         "da": "Bogens læseoplevelse",
         "en": "Reader experience"
       },
-      "moodTag":{
+      "moodTag": {
         "da": "Stemning",
         "en": "Mood"
       },
@@ -274,7 +278,7 @@
         "da": "Anmeldelser:",
         "en": "Reviews:"
       },
-       "noReviews": {
+      "noReviews": {
         "da": "Vi har ikke nogen anmeldelser af bogen",
         "en": "We do not have any reviews of this book"
       },
