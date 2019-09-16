@@ -2,32 +2,6 @@
   width: 750px;
 }
 
-@media only screen and (max-width: 750px) {
-  .reorder-list-modal-window {
-    width: 100%;
-  }
-
-  .CompareBooks .Cards .Card {
-    overflow: hidden;
-  }
-
-  .Compare_loans .Cards .Card p span {
-    flex-direction: column;
-    text-align: center;
-    padding: 0;
-  }
-
-  .Compare_loans .Cards .Card_loan p span {
-    flex-direction: column;
-    text-align: center !important;
-    padding: 0;
-  }
-
-  .CompareBooks .Cards .Card p span strong {
-    margin: 0;
-  }
-}
-
 .CompareBooks {
   padding-top: 8px;
 }
@@ -175,4 +149,95 @@
 
 .Compare_loans_indicator {
   padding-top: 8px;
+}
+
+.Card_vs .Compare_icon {
+  display: none;
+}
+
+@media only screen and (max-width: 750px) {
+  .reorder-list-modal-window {
+    width: 100%;
+  }
+
+  .CompareBooks .Cards {
+    max-width: 200px;
+    margin: auto;
+    padding: 16px 0 16px 0;
+  }
+
+  .CompareBooks .Cards .Card {
+    background-color: transparent;
+    height: auto;
+    padding: 0;
+  }
+
+  .CompareBooks .Cards .Card img {
+    max-width: 48px;
+    min-width: 48px;
+  }
+
+  .CompareBooks .Cards .Card .Cards_title {
+    display: none;
+  }
+
+  .Card_vs p {
+    display: none;
+  }
+  .Card_vs .Compare_icon {
+    display: block;
+  }
+
+  .CompareBooks .Cards .Card {
+    width: 48px;
+  }
+
+  .CompareBooks .Cards .Card span {
+    padding: 0 8px 0 8px;
+  }
+
+  .Compare_loans .Cards {
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 200px;
+    max-width: 100%;
+  }
+
+  .Compare_loans .Cards .Card {
+    width: calc(50% - 4px);
+    background-color: var(--concrete);
+    margin-bottom: 8px;
+    height: 64px;
+    padding: 8px;
+  }
+
+  .Compare_loans .Cards .Card span p span {
+    padding: 0;
+  }
+
+  .Compare_loans .Cards .Card img {
+    max-width: 32px;
+    min-width: 32px;
+  }
+
+  .Compare_loans .Cards .Card_loan {
+    margin: 0 0 0 8px;
+    width: calc(50% - 4px);
+    background-color: transparent;
+    order: 99 !important;
+    height: 136px;
+  }
+
+  .Compare_loans .Cards .Card_loan p {
+    width: 100%;
+  }
+
+  .Compare_loans .Cards .Card_loan p span {
+    flex-direction: column;
+    text-align: center !important;
+  }
+
+  .Compare_loans .Cards .Card_loan p span strong {
+    margin: 0 0 8px 0;
+  }
 }
