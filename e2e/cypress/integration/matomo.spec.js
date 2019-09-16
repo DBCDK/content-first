@@ -1,28 +1,39 @@
 const PID_REGEX = /^pid:\d+-\w+:\d+/;
 const PID_REGEX_2 = /^\d+-\w+:\d+/;
 
+const createMatomoMock = () => {
+  let tracked = {};
+  let trackedData = {};
+  cy.visitWithMatomoMocks('/', {
+    trackEvent: (category, action, name) => {
+      tracked.category = category;
+      tracked.action = action;
+      tracked.name = name;
+    },
+    trackDataEvent: (action, data) => {
+      trackedData.action = action;
+      trackedData.data = data;
+    }
+  });
+  return {tracked, trackedData};
+};
+
 describe('Matomo test', function() {
   beforeEach(function() {
     cy.clearClientStorage();
     cy.clearCookies();
   });
 
-  const testBelt = (endpoint, beltDataCy, expectedName, expectRid = true) => {
-    let tracked = {};
-    let trackedData = {};
-    cy.visitWithMatomoMocks(endpoint, {
-      trackEvent: (category, action, name) => {
-        tracked.category = category;
-        tracked.action = action;
-        tracked.name = name;
-      },
-      trackDataEvent: (action, data) => {
-        trackedData.action = action;
-        trackedData.data = data;
-      }
-    });
+  const testBelt = (
+    endpoint,
+    beltDataCy,
+    cardDataCy,
+    expectedName,
+    expectRid = true
+  ) => {
+    const {tracked, trackedData} = createMatomoMock();
     cy.get(beltDataCy).scrollIntoView();
-    cy.get(`${beltDataCy} [data-cy="workcard"]`)
+    cy.get(`${beltDataCy} ${cardDataCy}`)
       .first()
       .click()
       .then(() => {
@@ -60,6 +71,7 @@ describe('Matomo test', function() {
     const tracked = testBelt(
       '/',
       '[data-cy="tagsbelt-Familiens skyggesider"]',
+      '[data-cy="workcard"]',
       'belt:Familiens skyggesider'
     );
 
@@ -87,6 +99,7 @@ describe('Matomo test', function() {
     testBelt(
       '/værk/870970-basis:27206344',
       '[data-cy="similarBelt"]',
+      '[data-cy="workcard"]',
       'belt:Minder om Skyggen'
     );
   });
@@ -95,6 +108,7 @@ describe('Matomo test', function() {
     testBelt(
       '/find?tags=Stephen King (f. 1947)',
       '[data-cy="creator-belt"]',
+      '[data-cy="workcard"]',
       'belt:Fra søgning på forfatter Stephen King (f. 1947)',
       false
     );
@@ -114,7 +128,35 @@ describe('Matomo test', function() {
     testBelt(
       '/',
       '[data-cy="did-read-belt"]',
+      '[data-cy="workcard"]',
       'belt:Fordi du har læst Skyggen'
     );
+  });
+
+  it.only('Can track list ', function() {
+    cy.fixture('listaggregation/recentlists.json').as('recentLists');
+    cy.server();
+    cy.route('GET', '/v1/object/aggregation**', '@recentLists');
+    const expectedMatomoName = 'belt:Nyeste brugerlister';
+    const {tracked} = createMatomoMock();
+    cy.get('[data-cy="lists-belt"]').scrollIntoView();
+    cy.get(`[data-cy="list-card-Ny liste1"]`)
+      .click()
+      .then(() => {
+        expect(tracked.category).to.equal(expectedMatomoName);
+        expect(tracked.action).to.equal('beltListVisit');
+        expect(tracked.name).to.equal(
+          'id:eeed6588-8a96-44c5-a72d-cb4f8f0615a1'
+        );
+      });
+    cy.go('back');
+    cy.get(`[data-cy="lists-belt"] [data-cy="next-btn"]`)
+      .first()
+      .click()
+      .then(() => {
+        expect(tracked.category).to.equal(expectedMatomoName);
+        expect(tracked.action).to.equal('beltSwipe');
+        expect(tracked.name).to.equal('position');
+      });
   });
 });
