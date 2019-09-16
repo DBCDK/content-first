@@ -133,8 +133,12 @@ class TagsSuggester extends React.Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.hideKeyboardOnScroll.bind(this));
-    const mobileSearchField = document.getElementsByClassName('suggestion-list__search_fromFilter')[0];
-    const searchfield = document.getElementsByClassName('suggestion-list__search_fromTopbar')[0];
+    const mobileSearchField = document.getElementsByClassName(
+      'suggestion-list__search_fromFilter'
+    )[0];
+    const searchfield = document.getElementsByClassName(
+      'suggestion-list__search_fromTopbar'
+    )[0];
 
     if (searchfield) {
       searchfield.focus();
