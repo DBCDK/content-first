@@ -58,10 +58,10 @@ const getWork = (
       creator:
         (creatorAut && creatorAut[0]) ||
         (creator && creator[0]) ||
-        (contributor && contributor.join(', ')) ||
+        (contributor && joinContributors(contributor)) ||
         '',
       creatorAut: (creatorAut && creatorAut[0]) || '',
-      contributor: (contributor && contributor.join(', ')) || '',
+      contributor: (contributor && joinContributors(contributor)) || '',
       description: (abstract && abstract[0]) || '',
       identifierISBN: identifierISBN || '',
       pages: (extent && extent[0] && parseInt(extent[0], 10)) || '',
@@ -168,6 +168,16 @@ const fetchWorks = async pids => {
   const failed = _.difference(pids, works.map(b => b.book.pid));
 
   return {data: works, failed};
+};
+
+/**
+ *
+ * @param contributors
+ * @returns {*}
+ */
+const joinContributors = contributors => {
+  const mfl = contributors.length > 2 ? ' mfl.' : '';
+  return contributors.slice(0,2).join(', ') + mfl;
 };
 
 router
