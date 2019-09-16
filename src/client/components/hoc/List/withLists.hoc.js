@@ -26,7 +26,8 @@ export const withLists = WrappedComponent => {
     };
     getCustomLists = () => {
       return Object.values(this.props.lists).filter(
-        list => list.type === 'CUSTOM_LIST'
+        list =>
+          list.type === 'CUSTOM_LIST' && list._owner === this.props.loggedInUser
       );
     };
 
@@ -44,7 +45,8 @@ export const withLists = WrappedComponent => {
   const mapStateToProps = state => {
     return {
       lists: state.listReducer.lists || [],
-      shortlist: state.userReducer.shortlist
+      shortlist: state.userReducer.shortlist,
+      loggedInUser: state.userReducer.openplatformId
     };
   };
 

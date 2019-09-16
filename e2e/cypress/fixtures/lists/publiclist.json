@@ -1,0 +1,22 @@
+{
+  "data": {
+    "type": "CUSTOM_LIST",
+    "_public": true,
+    "title": "Min offentlige liste",
+    "description": "",
+    "dotColor": "petroleum",
+    "list": [{"_id": "some-list-element-id"}],
+    "_created": 1566893866,
+    "_type": "list",
+    "_modified": 1566893902,
+    "_key": "",
+    "_owner": "someoneelse",
+    "deleted": {},
+    "owner": "someoneelse",
+    "image": "",
+    "imageIsLoading": false,
+    "pending": null,
+    "_id": "some-list-id",
+    "_rev": "2019-08-27T08:18:21.907Z"
+  }
+}
