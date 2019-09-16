@@ -133,6 +133,15 @@ class TagsSuggester extends React.Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.hideKeyboardOnScroll.bind(this));
+    const mobileSearchField = document.getElementsByClassName('suggestion-list__search_fromFilter')[0];
+    const searchfield = document.getElementsByClassName('suggestion-list__search_fromTopbar')[0];
+
+    if (searchfield) {
+      searchfield.focus();
+    }
+    if (mobileSearchField) {
+      mobileSearchField.focus();
+    }
   }
 
   componentWillUnmount() {
@@ -174,6 +183,7 @@ class TagsSuggester extends React.Component {
   }
 
   render() {
+    const cn = 'form-control suggestion-list__search_' + this.props.origin;
     const tagsInField = this.props.tags.length > 0;
     const pholder = tagsInField
       ? ' '
@@ -183,7 +193,7 @@ class TagsSuggester extends React.Component {
       id: 'Searchbar__inputfield',
       type: 'text',
       placeholder: pholder,
-      className: 'form-control suggestion-list__search',
+      className: cn,
       value: this.props.value || '',
       onChange: this.props.onChange,
       onFocus: this.props.onFocus,
