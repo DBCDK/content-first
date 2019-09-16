@@ -60,6 +60,7 @@ class FrontPage extends React.Component {
             name: 'recentListsTitle',
             renderAsHtml: true
           })}
+          matomoTitle={'Nyeste brugerlister'}
           mount={'frontpage-lists'}
           sort="created"
           limit={50}

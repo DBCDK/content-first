@@ -59,7 +59,14 @@ class ListCard extends React.Component {
   }
 
   render() {
-    const {list, cardRef, isVisible, style, className = ''} = this.props;
+    const {
+      list,
+      cardRef,
+      isVisible,
+      style,
+      className = '',
+      onClick
+    } = this.props;
 
     // if not visible, show skeletons
     if (!isVisible) {
@@ -82,8 +89,12 @@ class ListCard extends React.Component {
     }
 
     return (
-      <div className={'list-card mr-4 align-top ' + className} style={style}>
-        <Link href={`/lister/${list._id}`}>
+      <div
+        className={'list-card mr-4 align-top ' + className}
+        style={style}
+        data-cy={`list-card-${list.title}`}
+      >
+        <Link href={`/lister/${list._id}`} onClick={onClick}>
           <div className="list-card-wrap">
             <div className="list-card-cover">
               {this.renderBookCover(list._id, list.image)}

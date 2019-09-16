@@ -44,11 +44,13 @@ export class ListsBelt extends React.Component {
     }
 
     const listsPerSlide = this.getListsPerSlide();
+    const matomoTitle = this.props.matomoTitle || 'list-belt';
 
     return (
       <div
         className="belt text-left"
         ref={container => (this.refs = {...this.refs, container})}
+        data-cy="lists-belt"
       >
         <Title
           Tag="h1"
@@ -59,9 +61,14 @@ export class ListsBelt extends React.Component {
           {title}
         </Title>
         <Slider
+          {...this.props}
           initialScrollPos={scrollPos}
           onSwipe={index =>
-            this.props.updateMount({didSwipe: true, scrollPos: index})
+            this.props.updateMount({
+              didSwipe: true,
+              scrollPos: index,
+              beltName: matomoTitle
+            })
           }
         >
           {lists.map((list, i) => {
@@ -74,6 +81,13 @@ export class ListsBelt extends React.Component {
                 key={list._id}
                 id={list._id}
                 list={list}
+                onClick={() => {
+                  this.props.updateMount({
+                    type: 'LIST_VISIT',
+                    beltName: matomoTitle,
+                    listId: list._id
+                  });
+                }}
               />
             );
           })}

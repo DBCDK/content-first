@@ -3,7 +3,6 @@ export default class OPMock {
     cy.on('window:before:load', window => {
       window.__stubbed_openplatform__ = this;
     });
-
     this.name = `${Cypress.mocha
       .getRunner()
       .suite.ctx.currentTest.title.replace(/ /g, '')
@@ -46,13 +45,23 @@ export default class OPMock {
   invoke = async (funcName, arg) => {
     const recorded = this.getRecorded(funcName, arg);
     if (recorded) {
-      console.log('Use recording', {funcName, arg, recorded});
       await this._wait(recorded.timing);
+      Cypress.log({
+        name: 'Mock.play',
+        message: `openplatform.${funcName}`,
+        consoleProps: () => {
+          return {
+            request: arg,
+            response: recorded.data,
+            timing: recorded.timing
+          };
+        }
+      });
       return recorded.data;
     }
     const t0 = performance.now();
     const res = await this[funcName](arg);
-    console.log('Recording not found', {funcName, arg, res});
+
     this.putRecord(funcName, arg, res, Math.floor(performance.now() - t0));
     return res;
   };
@@ -69,6 +78,29 @@ export default class OPMock {
         data: res,
         timing
       };
+      Cypress.log({
+        name: 'Mock.rec',
+        message: `openplatform.${funcName}`,
+        consoleProps: () => {
+          return {
+            request: req,
+            response: res,
+            timing
+          };
+        }
+      });
+    } else {
+      Cypress.log({
+        name: 'Mock.pass',
+        message: `openplatform.${funcName}`,
+        consoleProps: () => {
+          return {
+            request: req,
+            response: res,
+            timing
+          };
+        }
+      });
     }
   };
   store = () => {

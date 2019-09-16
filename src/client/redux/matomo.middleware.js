@@ -48,7 +48,12 @@ export const matomoMiddleware = store => next => action => {
       const titleClick = get(action, 'data.titleClick');
       const tagClick = get(action, 'data.tagClick');
 
-      if (type === 'PREVIEW') {
+      if (type === 'LIST_VISIT') {
+        const category = `belt:${parentBeltName}`;
+        const a = 'beltListVisit';
+        const name = `id:${get(action, 'data.listId', 'unknown')}`;
+        trackEvent(category, a, name);
+      } else if (type === 'PREVIEW') {
         const category = `belt:${parentBeltName}`;
         const a = 'beltExpandWork';
         const name = `pid:${pid}`;
