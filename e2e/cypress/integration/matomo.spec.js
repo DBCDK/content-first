@@ -1,10 +1,10 @@
 const PID_REGEX = /^pid:\d+-\w+:\d+/;
 const PID_REGEX_2 = /^\d+-\w+:\d+/;
 
-const createMatomoMock = () => {
+const createMatomoMock = endpoint => {
   let tracked = {};
   let trackedData = {};
-  cy.visitWithMatomoMocks('/', {
+  cy.visitWithMatomoMocks(endpoint, {
     trackEvent: (category, action, name) => {
       tracked.category = category;
       tracked.action = action;
@@ -31,7 +31,7 @@ describe('Matomo test', function() {
     expectedName,
     expectRid = true
   ) => {
-    const {tracked, trackedData} = createMatomoMock();
+    const {tracked, trackedData} = createMatomoMock(endpoint);
     cy.get(beltDataCy).scrollIntoView();
     cy.get(`${beltDataCy} ${cardDataCy}`)
       .first()
@@ -133,12 +133,12 @@ describe('Matomo test', function() {
     );
   });
 
-  it.only('Can track list ', function() {
+  it('Can track list ', function() {
     cy.fixture('listaggregation/recentlists.json').as('recentLists');
     cy.server();
     cy.route('GET', '/v1/object/aggregation**', '@recentLists');
     const expectedMatomoName = 'belt:Nyeste brugerlister';
-    const {tracked} = createMatomoMock();
+    const {tracked} = createMatomoMock('/');
     cy.get('[data-cy="lists-belt"]').scrollIntoView();
     cy.get(`[data-cy="list-card-Ny liste1"]`)
       .click()
