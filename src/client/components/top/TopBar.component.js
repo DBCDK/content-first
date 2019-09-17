@@ -523,6 +523,7 @@ export const mapDispatchToProps = dispatch => ({
               }
               dataCy="topbar-lists"
               modalView={true}
+              expanded={true}
               closeModal={() => {
                 dispatch({
                   type: 'CLOSE_MODAL',

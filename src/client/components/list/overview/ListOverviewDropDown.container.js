@@ -182,6 +182,7 @@ class ListOverviewDropDown extends React.Component {
       />
     ));
   };
+
   render() {
     let {
       hasFetched,
@@ -240,11 +241,11 @@ class ListOverviewDropDown extends React.Component {
 const usersSelector = createGetUsersSelector();
 const listsSelector = createGetLists();
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   const openplatformId = state.userReducer.openplatformId;
 
   return {
-    expanded: state.listReducer.expanded,
+    expanded: ownProps.expanded || state.listReducer.expanded,
     profiles: usersSelector(state),
     shortListExpanded: state.shortListReducer.expanded,
     openplatformId: openplatformId,
