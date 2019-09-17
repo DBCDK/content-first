@@ -6,6 +6,7 @@ const config = require('server/config');
 const request = require('superagent');
 const smaug = require('./smaug');
 
+const rootType = 'bf130fb7-8bd4-44fd-ad1d-43b6020ad102';
 let storageUrl;
 let aggregationUrl;
 let typeId;
@@ -322,6 +323,30 @@ async function getRoles(user) {
   }
 }
 
+async function getAllRoles() {
+  await validateObjectStore();
+  const requestObject = {
+    access_token: (await fetchAnonymousToken()).access_token,
+    scan: {
+      _type: rootType,
+      index: ['_owner', 'name'],
+      startsWith: ['cf-admin', 'role'],
+      expand: true
+    }
+  };
+
+  try {
+    const res = (await request
+      .post(storageUrl)
+      .send(requestObject)).body.data.map(role => fromStorageObject(role));
+    return {
+      data: res
+    };
+  } catch (e) {
+    return parseException(e);
+  }
+}
+
 function parseException(e) {
   if (e.status === 404) {
     return {
@@ -348,6 +373,7 @@ function parseException(e) {
 }
 
 module.exports = {
+  getAllRoles,
   getRoles,
   aggregation,
   getUser,

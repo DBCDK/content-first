@@ -23,6 +23,7 @@ import scrollToComponent from './scrollToComponent';
 import matomo from './matomo.reducer';
 import animateReducer from './animate.reducer';
 import mountsReducer from './mounts.reducer';
+import rolesReducer from './roles.reducer';
 
 const combined = combineReducers({
   beltsReducer,
@@ -48,7 +49,8 @@ const combined = combineReducers({
   scrollToComponent,
   matomo,
   animateReducer,
-  mounts: mountsReducer
+  mounts: mountsReducer,
+  roles: rolesReducer
 });
 
 const rootReducer = (state = {}, action) => {
