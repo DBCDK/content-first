@@ -177,7 +177,7 @@ const fetchWorks = async pids => {
  */
 const joinContributors = contributors => {
   const mfl = contributors.length > 2 ? ' mfl.' : '';
-  return contributors.slice(0,2).join(', ') + mfl;
+  return contributors.slice(0, 2).join(', ') + mfl;
 };
 
 router

@@ -256,7 +256,7 @@ describe('List test', function() {
     });
   });
 
-  it.only('Will not show followed list, when list is gone', function() {
+  it('Will not show followed list, when list is gone', function() {
     waitForListsLoaded();
     const list = {
       type: 'CUSTOM_LIST',
