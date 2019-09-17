@@ -183,7 +183,7 @@ class ListOverviewDropDown extends React.Component {
     ));
   };
   render() {
-    const {
+    let {
       hasFetched,
       systemLists,
       customLists,
@@ -191,6 +191,8 @@ class ListOverviewDropDown extends React.Component {
       expanded,
       modalView
     } = this.props;
+    followedLists =
+      followedLists && followedLists.map(entry => ({_id: entry.id}));
 
     return (
       <React.Fragment>

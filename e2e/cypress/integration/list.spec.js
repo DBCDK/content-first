@@ -256,7 +256,7 @@ describe('List test', function() {
     });
   });
 
-  it('Will not show followed list, when list is gone', function() {
+  it.only('Will not show followed list, when list is gone', function() {
     waitForListsLoaded();
     const list = {
       type: 'CUSTOM_LIST',
@@ -278,6 +278,7 @@ describe('List test', function() {
       cy.request('POST', '/v1/object', {...list, _id: id, _public: false}).then(
         response => {
           cy.login('otheruser');
+          waitForListsLoaded();
           cy.get('[data-cy=topbar-lists]').click();
           cy.contains('Har læst');
           cy.get('.top-bar-dropdown-list-element')
