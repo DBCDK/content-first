@@ -1,0 +1,86 @@
+{
+  "data": {
+    "userReducer": {
+      "profileImageIsLoading": false,
+      "profileImage": null,
+      "isLoading": false,
+      "isLoggedIn": true,
+      "id": 6,
+      "created_epoch": 1519122865,
+      "name": "Anders And",
+      "openplatformId": "someuserid",
+      "image": "",
+      "roles": [],
+      "acceptedTerms": true,
+      "profiles": [],
+      "lists": [],
+      "acceptedAge": true,
+      "shortlist": [],
+      "openplatformToken": "sometoken",
+      "over13": true,
+      "tempname": "Anders And"
+    },
+    "listReducer": {
+      "lists": {
+        "didreadid": {
+          "_type": "list",
+          "_created": 1520347189,
+          "_modified": 1568101911,
+          "created_epoch": 1519122908,
+          "modified_epoch": 1519122908,
+          "owner": "someuserid",
+          "_public": false,
+          "type": "SYSTEM_LIST",
+          "title": "Har læst",
+          "description": "Her kan du se listen over de bøger, som du har markeret som \"Har læst\". Du kan tilføje flere bøger til listen nederst på denne side. Du kan redigere og fjerne bøger, men ikke slette selve listen.",
+          "list": [],
+          "id": "didreadid",
+          "oldId": true,
+          "isLoading": false,
+          "deleted": {},
+          "_owner": "someuserid",
+          "hasLoaded": true,
+          "pending": null,
+          "_key": "",
+          "_id": "didreadid",
+          "_rev": "2019-09-10T07:51:51.178Z"
+        },
+        "willreadid": {
+          "_type": "list",
+          "_created": 1520347188,
+          "_modified": 1538731903,
+          "created_epoch": 1519122865,
+          "modified_epoch": 1519122866,
+          "_public": false,
+          "type": "SYSTEM_LIST",
+          "title": "Vil læse",
+          "description": "Her kan du se listen over de bøger, som du har markeret som \"Vil læse\". Du kan tilføje flere bøger til listen nederst på denne side. Du kan redigere og fjerne bøger, men ikke slette selve listen.",
+          "list": [],
+          "oldId": true,
+          "image": "img/lists/checklist.png",
+          "pending": null,
+          "deletingIsLoading": false,
+          "isLoading": false,
+          "_owner": "someuserid",
+          "_id": "willreadid",
+          "id": "willreadid-differs-from_id",
+          "_rev": "2018-10-05T09:31:43.000Z",
+          "deleted": {},
+          "hasLoaded": true
+        }
+      },
+      "changeMap": {},
+      "latestUsedId": false,
+      "expanded": false,
+      "isFetching": false,
+      "hasFetched": false,
+      "isFetchingOwned": false,
+      "hasFetchedOwned": true
+    },
+    "interactionReducer": {
+      "interactions": [],
+      "isLoading": false
+    },
+    "orderReducer": {"orders": {}, "pickupBranches": []}
+  }
+}

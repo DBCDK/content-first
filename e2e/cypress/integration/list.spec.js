@@ -152,7 +152,6 @@ describe('List test', function() {
         2
       );
     });
-
     cy.get('[data-cy=add-to-list-btn]').click();
     cy.get('[data-cy=add-to-new-list]').click();
     cy.wait(1000);
@@ -287,5 +286,16 @@ describe('List test', function() {
         }
       );
     });
+  });
+
+  it('Can show lists containing deprecated "id" field', function() {
+    cy.fixture('initialstate/deprecated_list_id.json').as('initialstate');
+    cy.server();
+    cy.route('GET', '/v1/initial-state', '@initialstate').as('listRequest');
+    cy.visit('/');
+    cy.wait('@listRequest');
+    cy.get('[data-cy=topbar-lists]').click();
+    cy.contains('Har læst');
+    cy.contains('Vil læse');
   });
 });

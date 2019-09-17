@@ -25,7 +25,14 @@ import readListIcon from '../../images/readListIcon.png';
 
 import {withLists, withList} from '../../hoc/List';
 import {withFollows} from '../../hoc/Follow';
+import {withUser} from '../../hoc/User';
 
+const OwnerName = withUser(({user, className}) => {
+  if (!user) {
+    return null;
+  }
+  return <span className={className}>{user.name}</span>;
+});
 const ListElement = props => {
   if (!props.list || !props.list._id || props.list.error || !props.list._type) {
     return null;
@@ -89,11 +96,12 @@ const ListElement = props => {
           {props.list.description}
         </div>
         <div className="top-bar-dropdown-list-element--origin">
-          {props.profiles[props.list._owner] && !props.isListOwner
-            ? T({component: 'general', name: 'by'}) +
-              ' ' +
-              props.profiles[props.list._owner].name
-            : ''}
+          {!props.isListOwner && (
+            <span>
+              {T({component: 'general', name: 'by'})}
+              <OwnerName id={props.list._owner} className="ml-1" />
+            </span>
+          )}
         </div>
       </div>
     </div>
@@ -165,7 +173,7 @@ class ListOverviewDropDown extends React.Component {
   renderLists = lists => {
     return lists.map((list, index) => (
       <ListElementWithList
-        id={list.id || list._id}
+        id={list._id}
         key={'ele-' + list._id}
         profiles={this.props.profiles}
         index={index}
@@ -183,6 +191,7 @@ class ListOverviewDropDown extends React.Component {
       expanded,
       modalView
     } = this.props;
+
     return (
       <React.Fragment>
         {!modalView && (
@@ -199,26 +208,28 @@ class ListOverviewDropDown extends React.Component {
             {this.props.children}
           </div>
         )}
-        <UserListsContent
-          expanded={expanded}
-          modalView={modalView}
-          onClose={() => this.props.onUserListsClose()}
-          onEditLists={() => this.props.onEditLists()}
-          onCreateNewList={() => this.props.onCreateNewList()}
-        >
-          {!hasFetched && (
-            <div className="text-center">
-              <Spinner size="30px" className="mt-5" />
-            </div>
-          )}
-          {hasFetched && (
-            <React.Fragment>
-              {systemLists && this.renderLists(systemLists)}
-              {customLists && this.renderLists(customLists)}
-              {followedLists && this.renderLists(followedLists)}
-            </React.Fragment>
-          )}
-        </UserListsContent>
+        {expanded && (
+          <UserListsContent
+            expanded={expanded}
+            modalView={modalView}
+            onClose={() => this.props.onUserListsClose()}
+            onEditLists={() => this.props.onEditLists()}
+            onCreateNewList={() => this.props.onCreateNewList()}
+          >
+            {!hasFetched && (
+              <div className="text-center">
+                <Spinner size="30px" className="mt-5" />
+              </div>
+            )}
+            {hasFetched && (
+              <React.Fragment>
+                {systemLists && this.renderLists(systemLists)}
+                {customLists && this.renderLists(customLists)}
+                {followedLists && this.renderLists(followedLists)}
+              </React.Fragment>
+            )}
+          </UserListsContent>
+        )}
       </React.Fragment>
     );
   }

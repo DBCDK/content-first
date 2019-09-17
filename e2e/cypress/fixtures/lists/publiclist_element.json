@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "book": null,
+      "_owner": "someoneelse",
+      "pid": "870970-basis:29337691",
+      "_created": 1566893899,
+      "position": {"x": 89, "y": 6},
+      "_type": "list-entry",
+      "_key": "some-list-id",
+      "_public": true,
+      "_modified": 1566893902,
+      "_id": "some-list-element-id",
+      "_rev": "2019-08-27T08:18:21.791Z"
+    }
+  ]
+}
