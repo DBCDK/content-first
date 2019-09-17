@@ -173,7 +173,7 @@ class ListOverviewDropDown extends React.Component {
   renderLists = lists => {
     return lists.map((list, index) => (
       <ListElementWithList
-        id={list.id || list._id}
+        id={list._id}
         key={'ele-' + list._id}
         profiles={this.props.profiles}
         index={index}
