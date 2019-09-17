@@ -232,22 +232,6 @@ export const shortListMiddleware = store => next => async action => {
 
 export const listMiddleware = store => next => async action => {
   switch (action.type) {
-    case STORE_LIST: {
-      const {openplatformId} = store.getState().userReducer;
-      const list = getListById(store.getState(), {_id: action._id});
-      if (!list) {
-        throw new Error(`list with _id ${action._id} not found`);
-      }
-      if (store.getState().userReducer.isLoggedIn) {
-        const updatedList = await listRequester.saveList(list, openplatformId);
-        store.dispatch({
-          type: ADD_LIST,
-          list: updatedList
-        });
-      }
-      return next(action);
-    }
-
     case LIST_TOGGLE_ELEMENT:
     case ADD_ELEMENT_TO_LIST: {
       // TODO: should be moved to the withList.hoc

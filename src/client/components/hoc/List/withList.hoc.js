@@ -9,6 +9,7 @@ import {
   LIST_LOAD_RESPONSE,
   UPDATE_LIST_DATA,
   STORE_LIST,
+  ADD_LIST,
   REMOVE_LIST,
   REMOVE_LIST_SUCCESS,
   REMOVE_LIST_ERROR,
@@ -245,6 +246,10 @@ export const withList = WrappedComponent => {
 
       // Save list handle
       onStoreList: list => {
+        dispatch({
+          type: ADD_LIST,
+          list
+        });
         dispatch({
           type: STORE_LIST,
           _id: list._id,
