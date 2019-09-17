@@ -52,6 +52,7 @@ class WorkPage extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.pid !== prevProps.pid) {
       this.init();
+      this.swiper.slideTo(0, 0);
     }
   }
 
@@ -377,7 +378,7 @@ class WorkPage extends React.Component {
                     })}
                   </div>
 
-                  {book.tags.length > 0 && (
+                  {appeals.length > 0 && (
                     <div className="row">
                       <div className="mt1 col-12">
                         <Button
@@ -388,6 +389,9 @@ class WorkPage extends React.Component {
                           onClick={() => {
                             trackEvent('tags', 'seeAllTags', book.title);
                             this.swiper.slideTo(1, 400);
+                            this.setState({
+                              tabsCollapsed: false
+                            });
                           }}
                         >
                           <T component="work" name={'tagsCollapsibleShow'} />
@@ -408,8 +412,7 @@ class WorkPage extends React.Component {
                     title={T({component: 'general', name: 'showMore'})}
                     onClick={() => {
                       this.setState({
-                        tabsCollapsed: !this.state.tabsCollapsed,
-                        transition: true
+                        tabsCollapsed: false
                       });
                     }}
                   />
@@ -436,6 +439,16 @@ class WorkPage extends React.Component {
                     data-cy="tabs-page-Læseoplevelse"
                     className="tabs tabs-page-2"
                   >
+                    {appeals.length > 0 ? (
+                      <div className={`WorkPage__tabs-info`}>
+                        <div className="WorkPage__tabs-info-color" />
+                        <Text type="small">{'Særligt fremtrædende'}</Text>
+                      </div>
+                    ) : (
+                      <Text type="body" className="Compare_noTags">
+                        <T component="work" name="noAppeals" />
+                      </Text>
+                    )}
                     {appeals.map(group => {
                       return (
                         <React.Fragment key={group.title}>
