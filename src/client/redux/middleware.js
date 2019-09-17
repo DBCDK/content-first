@@ -24,8 +24,6 @@ import {
   SHORTLIST_CLEAR
 } from './shortlist.reducer';
 import {
-  ADD_LIST,
-  STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
   LIST_TOGGLE_ELEMENT,
@@ -33,14 +31,11 @@ import {
   ADD_LIST_IMAGE_SUCCESS,
   ADD_LIST_IMAGE_ERROR,
   ADD_ELEMENT_TO_LIST,
-  getListByIdSelector,
   LISTS_EXPAND
 } from './list.reducer';
 import ListRequester from '../../shared/list.requester';
 import StorageClient from '../../shared/client-side-storage.client';
 const listRequester = new ListRequester({storageClient: new StorageClient()});
-
-const getListById = getListByIdSelector();
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
