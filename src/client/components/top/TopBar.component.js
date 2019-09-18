@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {isMobileOnly} from 'react-device-detect';
 import Link from '../general/Link.component';
@@ -243,6 +242,7 @@ export class TopBar extends React.Component {
           data-cy="topbar-search-btn"
           onClick={() => {
             this.props.historyPush(HISTORY_REPLACE, '/find');
+            document.getElementById('Searchbar__inputfield').focus();
           }}
         >
           <i className="material-icons  material-icons-cancel" ref="cancelref">

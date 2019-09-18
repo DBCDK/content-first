@@ -22,7 +22,7 @@ class FilterPage extends React.Component {
         <div className="filters row">
           <div className="filter-page-top col-12">
             <div className="filter-page-searchbar">
-              <SearchBar origin="fromFilter" />
+              <SearchBar origin="fromFilter" blurInput={true} />
             </div>
           </div>
         </div>

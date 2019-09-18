@@ -148,6 +148,7 @@ class SearchBar extends React.Component {
   toggleFilter(filterId) {
     this.props.toggleFilter(filterId);
   }
+
   render() {
     return (
       <React.Fragment>
@@ -161,6 +162,7 @@ class SearchBar extends React.Component {
         >
           <TagsSuggester
             origin={this.props.origin}
+            blurInput={this.props.blurInput}
             tags={this.props.tags}
             filters={this.props.filters}
             scrollableSuggestions={this.props.scrollableSuggestions}
