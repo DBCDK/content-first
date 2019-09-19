@@ -1,5 +1,3 @@
-import {findIndex} from 'lodash';
-
 export default class BeltsRequester {
   constructor({storageClient}) {
     this.storageClient = storageClient;
