@@ -32,13 +32,12 @@ class WorkPreview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabsCollapsed: true,
-      transition: true
+      tabsCollapsed: true
     };
   }
 
   init() {
-    this.setState({tabsCollapsed: true, transition: false});
+    this.setState({tabsCollapsed: true});
   }
 
   componentDidMount() {
@@ -282,8 +281,7 @@ class WorkPreview extends React.Component {
                   title={T({component: 'general', name: 'showMore'})}
                   onClick={() => {
                     this.setState({
-                      tabsCollapsed: !this.state.tabsCollapsed,
-                      transition: true
+                      tabsCollapsed: false
                     });
                   }}
                 />
@@ -303,6 +301,18 @@ class WorkPreview extends React.Component {
                 />
               </div>
               <div className="tabs tabs-page-2">
+                {appeals.length > 0 ? (
+                  <div className="workPreview__tabs-info">
+                    <div className="workPreview__tabs-info-color" />
+                    <Text type="small">
+                      <T component="general" name="particularlyProminent" />
+                    </Text>
+                  </div>
+                ) : (
+                  <Text type="body" className="Compare_noTags">
+                    <T component="work" name="noAppeals" />
+                  </Text>
+                )}
                 {appeals.map(group => {
                   return (
                     <React.Fragment key={group.title}>

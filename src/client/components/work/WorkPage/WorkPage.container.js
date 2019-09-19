@@ -440,9 +440,11 @@ class WorkPage extends React.Component {
                     className="tabs tabs-page-2"
                   >
                     {appeals.length > 0 ? (
-                      <div className={`WorkPage__tabs-info`}>
+                      <div className="WorkPage__tabs-info">
                         <div className="WorkPage__tabs-info-color" />
-                        <Text type="small">{'Særligt fremtrædende'}</Text>
+                        <Text type="small">
+                          <T component="general" name="particularlyProminent" />
+                        </Text>
                       </div>
                     ) : (
                       <Text type="body" className="Compare_noTags">
