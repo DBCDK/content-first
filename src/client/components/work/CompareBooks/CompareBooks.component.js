@@ -6,6 +6,7 @@ import TruncateMarkup from 'react-truncate-markup';
 import Text from '../../base/Text';
 import Button from '../../base/Button';
 import T from '../../base/T';
+import Icon from '../../base/Icon';
 
 import BookCover from '../../general/BookCover/BookCover.component';
 import Link from '../../general/Link.component';
@@ -16,18 +17,12 @@ import {WORK_RECOMMEND_REQUEST} from '../../../redux/recommend';
 
 import './CompareBooks.css';
 
-const Card = ({work, title = work.book.title, main, styles, text}) => {
+const Card = ({work, children, main, styles}) => {
   const mainClass = main ? 'Card_main' : '';
   return (
     <div className={`Card ${mainClass}`} style={styles}>
       <BookCover book={work.book} />
-      <TruncateMarkup lines={2}>
-        <span>
-          <Text type={text.type} variant={text.variant}>
-            {title}
-          </Text>
-        </span>
-      </TruncateMarkup>
+      <TruncateMarkup lines={2}>{children}</TruncateMarkup>
     </div>
   );
 };
@@ -81,17 +76,27 @@ export class CompareBooks extends React.Component {
             return (
               <Card
                 key={`card-${work.book.pid}`}
-                text={{type: 'body', variant: 'weight-semibold'}}
                 work={work}
                 main={isMain}
                 styles={{order: isMain ? 99 : i}}
-              />
+              >
+                <span className="Cards_title">
+                  <Text type={'body'} variant={'weight-semibold'}>
+                    {work.book.title}
+                  </Text>
+                </span>
+              </Card>
             );
           })}
           <div className="Card_vs" style={{order: 98}}>
             <Text type="small">
               <T component="work" name="compare" />
             </Text>
+            <Icon
+              className="Compare_icon"
+              name="compare_arrows"
+              hex="&#xe915;"
+            />
           </div>
         </div>
         <div className="Compare">
@@ -166,17 +171,21 @@ export class CompareBooks extends React.Component {
                 return (
                   <Card
                     key={`card-${work.book.pid}`}
-                    title={T({
-                      component: 'work',
-                      renderAsHtml: true,
-                      name: 'loans',
-                      vars: [JSON.stringify(details[work.book.pid].loans)]
-                    })}
-                    text={{type: 'small', variant: null}}
                     work={work}
                     main={isMain}
                     styles={{order: isMain ? 99 : i}}
-                  />
+                  >
+                    <span>
+                      <Text type={'small'} variant={null}>
+                        <T
+                          component="work"
+                          name="loans"
+                          renderAsHtml={true}
+                          vars={[JSON.stringify(details[work.book.pid].loans)]}
+                        />
+                      </Text>
+                    </span>
+                  </Card>
                 );
               })}
               <div className="Card_loan" style={{order: 98}}>

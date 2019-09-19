@@ -1,7 +1,12 @@
+html {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
 .WorkCard {
   position: relative;
   display: inline-block;
-  height: 400px;
+  height: 450px;
   width: 215px;
   min-width: 215px;
   vertical-align: top;
@@ -24,6 +29,8 @@
 .WorkCard .book-cover img {
   width: auto;
   height: 100%;
+  /* prevent native image long-click handle */
+  pointer-events: none;
 }
 
 .WorkCard .book-cover p:first-child {
@@ -49,14 +56,20 @@
   transition-duration: 0.15s;
 }
 
-.WorkCard:hover .CompareButton,
 .WorkCard .CompareButton.active {
   transition-timing-function: ease-out;
   transform: rotate(0deg) scale(1);
 }
 
-.WorkCard .CompareButton.active {
-  background-color: var(--korn);
+@media only screen and (min-width: 768px) {
+  .WorkCard:hover .CompareButton {
+    transition-timing-function: ease-out;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .WorkCard .CompareButton.active {
+    background-color: var(--korn);
+  }
 }
 
 .WorkCard .taxonomy-description {
