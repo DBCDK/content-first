@@ -4,7 +4,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(transparent, white 60%);
+  background: linear-gradient(transparent 70%, white 90%);
   justify-content: center;
   z-index: 2;
   pointer-events: none;

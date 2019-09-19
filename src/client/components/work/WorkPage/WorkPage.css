@@ -146,6 +146,18 @@
   background-color: var(--pistache);
 }
 
+.WorkPage__tabs-info {
+  display: flex;
+  align-items: center;
+}
+
+.WorkPage__tabs-info-color {
+  width: 40px;
+  height: 16px;
+  background-color: var(--pistache);
+  margin: 0 8px 0 0;
+}
+
 .review_list__review {
   display: flex;
   justify-content: space-between;

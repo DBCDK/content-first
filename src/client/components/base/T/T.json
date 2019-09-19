@@ -133,6 +133,10 @@
       "showMore": {
         "da": "Vis mere",
         "en": "Show more"
+      },
+      "particularlyProminent": {
+        "da": "Særligt fremtrædende",
+        "en": "Particularly prominent"
       }
     },
     "login": {
