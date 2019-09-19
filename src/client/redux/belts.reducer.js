@@ -314,7 +314,7 @@ const beltsReducer = (state = defaultState, action) => {
 
     case BELTS_LOAD_RESPONSE: {
       const copy = {...state.belts};
-      action.data.forEach(belt => {
+      action.belts.forEach(belt => {
         copy[belt.key] = belt;
       });
       return Object.assign(
