@@ -64,15 +64,16 @@ export const withList = WrappedComponent => {
       if (this.props.justCreated && !this.stored) {
         this.deleteList();
       }
-      if (this.state.storePending) {
-        this._storeList(this.props.list);
+      if (this.storePending) {
+        this._storeList(this.listToStore || this.props.list);
       }
     }
 
     componentDidUpdate() {
-      if (this.state.storePending) {
+      if (this.storePending) {
         this._storeList(this.props.list);
-        this.setState({storePending: false});
+        this.storePending = false;
+        this.listToStore = null;
       }
     }
 
@@ -96,15 +97,15 @@ export const withList = WrappedComponent => {
     /**
      * StoreList
      **/
-    storeList = () => {
+    storeList = list => {
       // set store list to pending
       // when we retrieve the actual changes from the redux state
       // the list is stored
 
       // Flag stored - prevent auto-deleting list on componentWillUnmount()
       this.stored = true;
-
-      this.setState({storePending: true});
+      this.storePending = true;
+      this.listToStore = list;
     };
 
     _storeList = async list => {
@@ -114,7 +115,7 @@ export const withList = WrappedComponent => {
         await listRequester.saveList(list, openplatformId);
 
         // Dispatch reducer action
-        onStoreList(this.props.list);
+        onStoreList(list);
       } catch (e) {
         // ignored for now
         // ....
