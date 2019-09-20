@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import StorageClient from '../../../shared/client-side-storage.client';
 
-export class Storage extends React.Component {
+class Storage extends React.Component {
   storageClient = new StorageClient();
 
   getRole() {
@@ -54,9 +54,4 @@ const mapStateToProps = state => {
   return {roles: state.userReducer.roles};
 };
 
-export const mapDispatchToProps = () => ({});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Storage);
+export default connect(mapStateToProps)(Storage);

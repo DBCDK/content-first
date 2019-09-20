@@ -13,9 +13,10 @@ import Text from '../base/Text';
 import SearchBar from '../filter/SearchBar/SearchBar.component';
 import FilterCards from '../filter/FilterCards/FilterCards.component';
 import TagsBelt from '../base/Belt/TagsBelt.component';
-import withTagsFromUrl from '../../components/hoc/AdressBar/withTagsFromUrl.hoc';
+import withTagsFromUrl from '../hoc/AdressBar/withTagsFromUrl.hoc';
+import withHistory from '../hoc/AdressBar/withHistory.hoc';
 import Icon from '../base/Icon';
-import Storage from '../../components/roles/Storage.component';
+import Storage from '../roles/Storage.component';
 
 export class CreateBelt extends React.Component {
   constructor(props) {
@@ -23,7 +24,8 @@ export class CreateBelt extends React.Component {
     this.state = {
       title: '',
       description: '',
-      enabled: false
+      enabled: false,
+      saving: false
     };
   }
 
@@ -41,13 +43,35 @@ export class CreateBelt extends React.Component {
     });
   };
 
-  handleSubmit = create => {
+  beltObject = (title, description, enabled, tags) => ({
+    _public: true,
+    _type: 'belt',
+    key: title,
+    name: title,
+    subtext: description,
+    tags: tags.map(item => ({id: item.id, weight: 1})),
+    onFrontPage: enabled
+  });
+
+  handleSubmit = async create => {
     if (typeof this.props.onSubmit === 'function') {
       this.props.onSubmit(this.state);
     }
-    const result = {...this.state, tags: this.props.tags.map(item => item.id)};
-    create(result);
-    window.open('/redaktionen', '_self');
+    const belt = this.beltObject(
+      this.state.title,
+      this.state.description,
+      this.state.enabled,
+      this.props.tags
+    );
+    try {
+      this.setState({saving: true});
+      await create(belt);
+      this.props.historyReplace('/redaktionen');
+    } catch (e) {
+      console.log('--- Error when trying to create Belt', belt, e);
+      this.setState({error: 'An error happened when trying to create Belt'});
+      // Lav håndtering af denne fejl her på siden
+    }
   };
 
   checkDisabled = () => this.state.title.length === 0;
@@ -56,7 +80,6 @@ export class CreateBelt extends React.Component {
     const tags = this.props
       .flattenedTags()
       .map(tag => ({id: tag.id, weight: 1}));
-
     return (
       <div className="CreateBelt">
         <Banner
@@ -162,21 +185,19 @@ export class CreateBelt extends React.Component {
           <Storage
             align="center"
             role="contentFirstEditor"
-            render={({create}) => {
-              return (
-                <Button
-                  ref={this.createBeltButton}
-                  align="center"
-                  size="large"
-                  type="quaternary"
-                  onClick={() => this.handleSubmit(create)}
-                  disabled={this.checkDisabled()}
-                  dataCy="create-belt-ok-button"
-                >
-                  <T component="editStartPage" name="createBelt" />
-                </Button>
-              );
-            }}
+            render={({create}) => (
+              <Button
+                ref={this.createBeltButton}
+                align="center"
+                size="large"
+                type="quaternary"
+                onClick={() => this.handleSubmit(create)}
+                disabled={this.checkDisabled()}
+                dataCy="create-belt-ok-button"
+              >
+                <T component="editStartPage" name="createBelt" />
+              </Button>
+            )}
           />
         </Toolbar>
       </div>
@@ -184,4 +205,4 @@ export class CreateBelt extends React.Component {
   }
 }
 
-export default withTagsFromUrl(CreateBelt);
+export default withHistory(withTagsFromUrl(CreateBelt));
