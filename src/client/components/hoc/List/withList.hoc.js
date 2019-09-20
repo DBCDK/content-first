@@ -55,6 +55,7 @@ const createdToast = list => {
 
 export const withList = WrappedComponent => {
   const Wrapper = class extends React.Component {
+    state = {storePending: false};
     componentDidMount() {
       this.loadList();
     }
@@ -62,6 +63,16 @@ export const withList = WrappedComponent => {
     componentWillUnmount() {
       if (this.props.justCreated && !this.stored) {
         this.deleteList();
+      }
+      if (this.state.storePending) {
+        this._storeList(this.props.list);
+      }
+    }
+
+    componentDidUpdate() {
+      if (this.state.storePending) {
+        this._storeList(this.props.list);
+        this.setState({storePending: false});
       }
     }
 
@@ -85,15 +96,25 @@ export const withList = WrappedComponent => {
     /**
      * StoreList
      **/
-    storeList = async list => {
+    storeList = () => {
+      // set store list to pending
+      // when we retrieve the actual changes from the redux state
+      // the list is stored
+
+      // Flag stored - prevent auto-deleting list on componentWillUnmount()
+      this.stored = true;
+
+      this.setState({storePending: true});
+    };
+
+    _storeList = async list => {
       // Props
       const {openplatformId, onStoreList} = this.props;
       try {
         await listRequester.saveList(list, openplatformId);
-        // Flag stored - prevent auto-deleting list on componentWillUnmount()
-        this.stored = true;
+
         // Dispatch reducer action
-        onStoreList(list);
+        onStoreList(this.props.list);
       } catch (e) {
         // ignored for now
         // ....
@@ -146,13 +167,14 @@ export const withList = WrappedComponent => {
      **/
     addElementToList = async work => {
       // Props
-      const {list, onAddElementToList} = this.props;
+      const {onAddElementToList} = this.props;
 
       try {
         // Dispatch reducer action
         onAddElementToList(work);
+
         // Save List
-        this.storeList(list);
+        this.storeList();
       } catch (e) {
         // ignored for now
         // ....
@@ -165,13 +187,13 @@ export const withList = WrappedComponent => {
      **/
     toggleWorkInList = work => {
       // Props
-      const {list, onToggleWorkInList} = this.props;
+      const {onToggleWorkInList} = this.props;
 
       try {
         // Dispatch reducer action
         onToggleWorkInList(work);
         // Save List
-        this.storeList(list);
+        this.storeList();
       } catch (e) {
         // ignored for now
         // ....

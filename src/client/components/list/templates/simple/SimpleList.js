@@ -123,7 +123,7 @@ export class SimpleList extends React.Component {
             {(list.open || isListOwner) && (
               <div className="p-3 p-md-0">
                 <AddToList
-                  list={list}
+                  id={list._id}
                   onAdd={pid => this.setState({added: pid})}
                   suggesterRef={suggester =>
                     (this.refs = {...this.refs, suggester})

@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addElementToList, storeList} from '../../../redux/list.reducer';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import BookSearchSuggester from './BookSearchSuggester';
 import Title from '../../base/Title';
 import Text from '../../base/Text';
 import T from '../../base/T';
 import ProfileImage from '../../general/ProfileImage.component';
+import {withList} from '../../hoc/List';
 
 export class AddToList extends React.Component {
   constructor() {
@@ -18,14 +18,20 @@ export class AddToList extends React.Component {
   };
 
   submit = book => {
-    const {addElement, requireLogin, list, isLoggedIn, onAdd} = this.props;
+    const {
+      addElementToList,
+      requireLogin,
+      list,
+      isLoggedIn,
+      onAdd
+    } = this.props;
     if (!isLoggedIn) {
       return requireLogin();
     }
     if (list.list.filter(item => item.pid === book.pid).length > 0) {
       this.setState({exists: true, selected: book});
     } else {
-      addElement(book, list);
+      addElementToList(book);
       this.setState({exists: false});
       if (onAdd) {
         onAdd(book.book.pid);
@@ -117,10 +123,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 export const mapDispatchToProps = dispatch => ({
-  addElement: async (book, list) => {
-    await dispatch(addElementToList(book, list._id));
-    dispatch(storeList(list._id));
-  },
   requireLogin: () => {
     dispatch({
       type: OPEN_MODAL,
@@ -132,7 +134,9 @@ export const mapDispatchToProps = dispatch => ({
     });
   }
 });
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddToList);
+export default withList(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(AddToList)
+);
