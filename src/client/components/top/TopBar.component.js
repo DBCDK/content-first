@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {isMobileOnly} from 'react-device-detect';
 import Link from '../general/Link.component';
@@ -157,12 +156,6 @@ export class TopBar extends React.Component {
     if (action) {
       status = action === 'open' ? true : false;
     }
-    if (status) {
-      const searchfield = ReactDOM.findDOMNode(
-        this.refs.topSearchBar
-      ).getElementsByClassName('suggestion-list__search')[0];
-      searchfield.focus();
-    }
 
     this.props.historyPush(HISTORY_PUSH, '/find');
     this.setState({searchExpanded: status});
@@ -249,10 +242,7 @@ export class TopBar extends React.Component {
           data-cy="topbar-search-btn"
           onClick={() => {
             this.props.historyPush(HISTORY_REPLACE, '/find');
-            const searchfield = ReactDOM.findDOMNode(
-              this.refs.topSearchBar
-            ).getElementsByClassName('suggestion-list__search')[0];
-            searchfield.focus();
+            document.getElementById('Searchbar__inputfield').focus();
           }}
         >
           <i className="material-icons  material-icons-cancel" ref="cancelref">
@@ -303,7 +293,7 @@ export class TopBar extends React.Component {
                 style={{width: this.state.width}}
                 ref={e => (this.SearchBarWrapper = e)}
               >
-                <SearchBar ref="topSearchBar" />
+                <SearchBar origin="fromTopbar" />
               </span>
             </span>
             {searchIconText}

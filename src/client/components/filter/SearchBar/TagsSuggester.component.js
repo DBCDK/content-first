@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import request from 'superagent';
 import Autosuggest from 'react-autosuggest';
@@ -133,6 +132,7 @@ class TagsSuggester extends React.Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.hideKeyboardOnScroll.bind(this));
+    this.setFocus();
   }
 
   componentWillUnmount() {
@@ -173,7 +173,23 @@ class TagsSuggester extends React.Component {
     });
   }
 
+  setFocus = () => {
+    const searchField = document.getElementsByClassName(
+      'suggestion-list__search_fromTopbar'
+    )[0];
+    if (searchField) {
+      searchField.focus();
+    }
+    const mobileSearchField = document.getElementsByClassName(
+      'suggestion-list__search_fromFilter'
+    )[0];
+    if (mobileSearchField) {
+      mobileSearchField.focus();
+    }
+  };
+
   render() {
+    const cn = 'form-control suggestion-list__search_' + this.props.origin;
     const tagsInField = this.props.tags.length > 0;
     const pholder = tagsInField
       ? ' '
@@ -183,7 +199,7 @@ class TagsSuggester extends React.Component {
       id: 'Searchbar__inputfield',
       type: 'text',
       placeholder: pholder,
-      className: 'form-control suggestion-list__search',
+      className: cn,
       value: this.props.value || '',
       onChange: this.props.onChange,
       onFocus: this.props.onFocus,
@@ -211,10 +227,7 @@ class TagsSuggester extends React.Component {
               className="md-large d-md-none d-sm-inline-block"
               onClick={() => {
                 this.props.historyPush(HISTORY_REPLACE, '/find');
-                const searchfield = ReactDOM.findDOMNode(
-                  this.refs.smallSearchBar
-                ).getElementsByClassName('suggestion-list__search')[0];
-                searchfield.focus();
+                this.setFocus();
               }}
             />
           </div>
@@ -233,7 +246,7 @@ class TagsSuggester extends React.Component {
               renderSuggestion(suggestion, this.props.value)
             }
             onSuggestionSelected={this.props.onSuggestionSelected}
-            focusInputOnSuggestionClick={true}
+            focusInputOnSuggestionClick={!this.props.blurInput}
             inputProps={inputProps}
             highlightFirstSuggestion={true}
             ref={c => (this.searchBar = c)}
