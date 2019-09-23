@@ -218,7 +218,7 @@ export class BeltEditor extends React.Component {
       value.children.index,
       value.children.onFrontPage,
       value.children.name,
-      value.children._owner // Find real user name, and not owner id
+      value.children.createdBy
     );
 
   render() {
@@ -271,4 +271,4 @@ export class BeltEditor extends React.Component {
   }
 }
 
-export default connect()(withObjects(BeltEditor, {type: 'belt'}));
+export default connect()(withObjects(BeltEditor));

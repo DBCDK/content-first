@@ -12,7 +12,7 @@ import {isEqual} from 'lodash';
  * @return {Array} - returns array of the retrieved objects
  **/
 
-export const withObjects = (WrappedComponent, query = {}) => {
+export const withObjects = WrappedComponent => {
   const Wrapper = class extends React.Component {
     storageClient = new StorageClient();
 
@@ -35,7 +35,7 @@ export const withObjects = (WrappedComponent, query = {}) => {
 
     loadObjects = async () => {
       try {
-        const objects = (await this.storageClient.find(query)).data;
+        const objects = (await this.storageClient.find(this.props.query)).data;
         if (!isEqual(objects, this.state.objects.objects)) {
           this.setState({objects: {fetching: false, objects}});
         }
