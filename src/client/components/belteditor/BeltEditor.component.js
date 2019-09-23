@@ -12,6 +12,7 @@ import Link from '../general/Link.component';
 import {withObjects} from '../hoc/Storage/withObjects.hoc';
 import {isEqual} from 'lodash';
 import Storage from '../roles/Storage.component';
+import Spinner from '../general/Spinner/Spinner.component';
 
 const EditorRole = 'contentFirstEditor';
 
@@ -27,20 +28,27 @@ export class BeltEditor extends React.Component {
   }
   ascending = (a, b) => a.index - b.index;
 
+  updateSortableList = items => {
+    if (!this.props.objects.fetching) {
+      this.sortableList.current.update(items);
+    }
+  };
+
   componentDidUpdate() {
     if (
       !this.defaultValuesLoaded &&
       !isEqual(this.props.objects.objects, this.state.items)
     ) {
       // Initial update
-      this.setState({items: this.props.objects.objects});
-      this.sortableList.current.update(
-        this.props.objects.objects.sort(this.ascending)
-      );
+      this.setState({
+        items: this.props.objects.objects,
+        loading: this.props.objects.fetching
+      });
+      this.updateSortableList(this.props.objects.objects.sort(this.ascending));
       this.defaultValuesLoaded = true;
     } else {
       // All updates except initial update
-      this.sortableList.current.update(this.state.items.sort(this.ascending));
+      this.updateSortableList(this.state.items.sort(this.ascending));
     }
   }
 
@@ -233,14 +241,20 @@ export class BeltEditor extends React.Component {
           )}
           <Storage
             role={EditorRole}
-            render={({update}) => (
-              <SortableList
-                items={this.state.items}
-                listComponent={this.listComponent}
-                onSortEnd={items => this.onSortEnd(update, items)}
-                ref={this.sortableList}
-              />
-            )}
+            render={({update}) =>
+              this.state.loading ? (
+                <div className="d-flex justify-content-center">
+                  <Spinner size="30px" className="mt-5" />
+                </div>
+              ) : (
+                <SortableList
+                  items={this.state.items}
+                  listComponent={this.listComponent}
+                  onSortEnd={items => this.onSortEnd(update, items)}
+                  ref={this.sortableList}
+                />
+              )
+            }
           />
           <Link href="/redaktionen/opret">
             <Button
