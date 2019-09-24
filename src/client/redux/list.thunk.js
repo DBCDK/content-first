@@ -47,7 +47,7 @@ export const deleteList = _id => {
   return async (dispatch, getState, {listRequester}) => {
     try {
       dispatch({type: REMOVE_LIST, _id});
-      listRequester.deleteList(_id);
+      await listRequester.deleteList(_id);
       dispatch({type: REMOVE_LIST_SUCCESS, _id});
     } catch (e) {
       dispatch({type: REMOVE_LIST_ERROR, _id});
