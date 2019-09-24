@@ -73,7 +73,7 @@ export default class WorkSlider extends React.Component {
                     cardRef={workCard => (this.refs = {...this.refs, workCard})}
                     className={idx === pids.length - 1 ? '' : 'mr-4'}
                     enableHover={true}
-                    enableLongpress={true}
+                    enableLongpress={this.props.enableLongpress || false}
                     hoverClass={this.props.bgClass}
                     highlight={this.props.selected === pid}
                     isVisible={
