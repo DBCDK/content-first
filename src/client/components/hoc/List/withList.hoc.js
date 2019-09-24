@@ -4,26 +4,8 @@ import {toast} from 'react-toastify';
 import ToastMessage from '../../base/ToastMessage';
 import T from '../../base/T';
 import Link from '../../general/Link.component';
-
-import {
-  LIST_LOAD_RESPONSE,
-  UPDATE_LIST_DATA,
-  STORE_LIST,
-  ADD_LIST,
-  REMOVE_LIST,
-  REMOVE_LIST_SUCCESS,
-  REMOVE_LIST_ERROR,
-  getListByIdSelector,
-  LIST_TOGGLE_ELEMENT,
-  ADD_ELEMENT_TO_LIST,
-  LISTS_EXPAND
-} from '../../../redux/list.reducer';
-
-import {deleteObject} from '../../../utils/requester';
-import StorageClient from '../../../../shared/client-side-storage.client';
-import ListRequester from '../../../../shared/list.requester';
-
-const listRequester = new ListRequester({storageClient: new StorageClient()});
+import {getListByIdSelector} from '../../../redux/list.reducer';
+import * as listThunks from '../../../redux/list.thunk';
 
 const getListById = getListByIdSelector();
 
@@ -55,7 +37,6 @@ const createdToast = list => {
 
 export const withList = WrappedComponent => {
   const Wrapper = class extends React.Component {
-    state = {storePending: false};
     componentDidMount() {
       this.loadList();
     }
@@ -64,96 +45,38 @@ export const withList = WrappedComponent => {
       if (this.props.justCreated && !this.stored) {
         this.deleteList();
       }
-      if (this.storePending) {
-        this._storeList(this.listToStore || this.props.list);
-      }
-    }
-
-    componentDidUpdate() {
-      if (this.storePending) {
-        this._storeList(this.props.list);
-        this.storePending = false;
-        this.listToStore = null;
-      }
     }
 
     /**
      * LoadList
      **/
     loadList = async () => {
-      const {id, listLoaded, onLoadList, onLoadListError} = this.props;
-
+      const {id, listLoaded} = this.props;
       if (!listLoaded && id) {
-        try {
-          const list = await listRequester.fetchList(id);
-
-          onLoadList(list);
-        } catch (e) {
-          onLoadListError(id, e);
-        }
+        this.props.fetchList(id);
       }
     };
 
     /**
      * StoreList
      **/
-    storeList = list => {
-      // set store list to pending
-      // when we retrieve the actual changes from the redux state
-      // the list is stored
-
+    storeList = () => {
       // Flag stored - prevent auto-deleting list on componentWillUnmount()
       this.stored = true;
-      this.storePending = true;
-      this.listToStore = list;
-    };
-
-    _storeList = async list => {
-      // Props
-      const {openplatformId, onStoreList} = this.props;
-      try {
-        await listRequester.saveList(list, openplatformId);
-
-        // Dispatch reducer action
-        onStoreList(list);
-      } catch (e) {
-        // ignored for now
-        // ....
-        return;
-      }
+      this.props.storeList(this.props.openplatformId);
     };
 
     /**
      * DeleteList
      **/
     deleteList = async () => {
-      // Props
-      const {
-        list,
-        onDeleteList,
-        onDeleteListSuccess,
-        onDeleteListError
-      } = this.props;
-
-      // Dispatch reducer action
-      onDeleteList();
-
-      try {
-        await deleteObject({_id: list._id});
-        // Dispatch reducer action
-        onDeleteListSuccess();
-      } catch (e) {
-        // Dispatch reducer action
-        onDeleteListError();
-        return;
-      }
+      this.props.deleteList();
     };
 
     /**
      * Add multiple elements to list
      **/
     addElementsToList = works => {
-      // Props
       const {list} = this.props;
       works.forEach(work =>
         this.addElementToList(
@@ -167,55 +90,26 @@ export const withList = WrappedComponent => {
      * Add single element to list
      **/
     addElementToList = async work => {
-      // Props
-      const {onAddElementToList} = this.props;
-
-      try {
-        // Dispatch reducer action
-        onAddElementToList(work);
-
-        // Save List
-        this.storeList();
-      } catch (e) {
-        // ignored for now
-        // ....
-        return;
-      }
+      this.props.addElementToList(work);
+      this.storeList();
     };
 
     /**
      * Toggle element in list
      **/
     toggleWorkInList = work => {
-      // Props
       const {onToggleWorkInList} = this.props;
-
-      try {
-        // Dispatch reducer action
-        onToggleWorkInList(work);
-        // Save List
-        this.storeList();
-      } catch (e) {
-        // ignored for now
-        // ....
-        return;
-      }
+      onToggleWorkInList(work);
+      this.storeList();
     };
 
     /**
      * Updata List data
      **/
     updateListData = data => {
-      // Props
       const {list, onUpdateListData} = this.props;
-      try {
-        const newData = {_id: list._id, ...data};
-        onUpdateListData(newData);
-      } catch (e) {
-        // ignored for now
-        // ....
-        return;
-      }
+      const newData = {_id: list._id, ...data};
+      onUpdateListData(newData);
     };
 
     render() {
@@ -258,45 +152,26 @@ export const withList = WrappedComponent => {
     const _id = ownProps.id || ownProps._id;
 
     return {
-      onLoadList: list => {
-        dispatch({type: LISTS_EXPAND, lists: [list]});
+      addElementToList: work => {
+        dispatch(listThunks.addElementToList(work, _id));
       },
-      onLoadListError: (id, e) =>
-        dispatch({
-          type: LIST_LOAD_RESPONSE,
-          list: {_id: id, error: e}
-        }),
-
-      // Save list handle
-      onStoreList: list => {
-        dispatch({
-          type: ADD_LIST,
-          list
-        });
-        dispatch({
-          type: STORE_LIST,
-          _id: list._id,
-          createList: ownProps.justCreated
-        });
-        // show created list toast, if just created (not on edit list)
-        if (ownProps.justCreated) {
-          createdToast(list);
-        }
+      deleteList: () => {
+        dispatch(listThunks.deleteList(_id));
       },
-      // Delete list handle
-      onDeleteList: () => dispatch({type: REMOVE_LIST, _id}),
-      onDeleteListSuccess: () => dispatch({type: REMOVE_LIST_SUCCESS, _id}),
-      onDeleteListError: () => dispatch({type: REMOVE_LIST_ERROR, _id}),
-      // Work in list handle
-      onToggleWorkInList: work =>
-        dispatch({
-          type: LIST_TOGGLE_ELEMENT,
-          element: work,
-          _id
-        }),
-      onUpdateListData: data => dispatch({type: UPDATE_LIST_DATA, data}),
-      onAddElementToList: work =>
-        dispatch({type: ADD_ELEMENT_TO_LIST, element: work, _id})
+      storeList: openplatformId => {
+        dispatch(
+          listThunks.storeList(
+            _id,
+            openplatformId,
+            ownProps.justCreated && createdToast
+          )
+        );
+      },
+      fetchList: () => {
+        dispatch(listThunks.fetchList(_id));
+      },
+      onToggleWorkInList: work => dispatch(listThunks.toggleElement(work, _id)),
+      onUpdateListData: data => dispatch(listThunks.updateListData(data))
     };
   };
 
