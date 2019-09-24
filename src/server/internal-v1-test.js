@@ -231,7 +231,7 @@ const rootType = 'bf130fb7-8bd4-44fd-ad1d-43b6020ad102';
 let typeId;
 
 const admin = {
-  id: 'test_admin_id',
+  id: 'cf-admin',
   token: 'test_admin_token'
 };
 const user1 = {
@@ -286,7 +286,8 @@ router.route('/initStorage').get(
         name: 'role',
         machineName: 'contentFirstEditor',
         displayName: 'Læsekompasredaktør',
-        description: 'Redaktør for læsekompas'
+        description: 'Redaktør for læsekompas',
+        public: true
       }
     });
 

@@ -9,6 +9,7 @@ import userReducer, {
 import interactionReducer, {
   FETCH_INTERACTIONS_SUCCESS
 } from '../client/redux/interaction.reducer';
+import rolesReducer, {ROLES_RESPONSE} from '../client/redux/roles.reducer';
 import orderReducer, {PREVIOUSLY_ORDERED} from '../client/redux/order.reducer';
 import beltsReducer, {BELTS_LOAD_RESPONSE} from '../client/redux/belts.reducer';
 import StorageClient from '../shared/server-side-storage.client';
@@ -35,6 +36,7 @@ async function initState(req) {
   let interactionState = interactionReducer(undefined, {});
   let orderState = orderReducer(undefined, {});
   let beltsState = beltsReducer(undefined, {});
+  let rolesState = rolesReducer(undefined, {});
 
   if (req.user) {
     userState = userReducer(userState, {
@@ -76,12 +78,15 @@ async function initState(req) {
     });
   }
 
+  const roles = (await objectStore.getAllRoles()).data;
+  rolesState = rolesReducer(rolesState, {type: ROLES_RESPONSE, roles});
   return {
     userReducer: userState,
     listReducer: listState,
     beltsReducer: beltsState,
     interactionReducer: interactionState,
-    orderReducer: orderState
+    orderReducer: orderState,
+    roles: rolesState
   };
 }
 
