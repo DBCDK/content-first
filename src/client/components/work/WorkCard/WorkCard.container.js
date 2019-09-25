@@ -54,13 +54,15 @@ class WorkCard extends React.Component {
 
   componentDidMount() {
     if (this.props.enableLongpress) {
-      document.addEventListener('touchstart', this.resetLongpress(true));
+      this.shouldUpdate = true;
+      document.addEventListener('touchstart', this.resetLongpress);
     }
   }
 
   componentWillUnmount() {
     if (this.props.enableLongpress) {
-      document.removeEventListener('touchstart', this.resetLongpress(false));
+      this.shouldUpdate = false;
+      document.removeEventListener('touchstart', this.resetLongpress);
     }
   }
 
@@ -79,10 +81,15 @@ class WorkCard extends React.Component {
     }
   };
 
-  resetLongpress = (updateState = true) => {
-    if (isMobile && updateState) {
-      setTimeout(() => this.setState({showCompareButton: false}), 200);
+  resetLongpress = () => {
+    if (isMobile) {
+      setTimeout(() => {
+        if (this.shouldUpdate) {
+          this.setState({showCompareButton: false});
+        }
+      }, 200);
     }
+    return this.resetLongpress;
   };
 
   handleLongPress = () => {
