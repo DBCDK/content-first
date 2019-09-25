@@ -72,7 +72,6 @@ function fetchAvailability({store, pid}) {
         try {
           const pids = await getCollectionPids(pid);
           availability = await openplatform.availability({pids});
-          console.log('avail', availability, 'pids', pids, 'pid', pid);
           availability =
             availability.filter(o => o && o.orderPossible)[0] ||
             availability[0];
@@ -83,7 +82,6 @@ function fetchAvailability({store, pid}) {
             : false;
           break;
         } catch (e) {
-          console.log(e);
           store.dispatch({
             type: 'LOG_ERROR',
             msg: 'retry fetch availability',
