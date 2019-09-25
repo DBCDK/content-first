@@ -122,6 +122,19 @@ const fromStorageObject = storageObject => {
       copy[key] = value;
     }
   });
+
+  // TODO remove when storage contains native timestamps
+  copy._created = storageObject.cf_created;
+  copy._modified = storageObject.cf_modified;
+
+  // TODO comment in when storage contains native timestamps
+  // storageObject._created = Math.floor(
+  //   Date.parse(storageObject._created) / 1000
+  // );
+  // storageObject._modified = Math.floor(
+  //   Date.parse(storageObject._version) / 1000
+  // );
+
   return copy;
 };
 
