@@ -67,17 +67,17 @@ export class BeltEditor extends React.Component {
   };
 
   onSortEnd = (update, items) => {
-    this.setState({items: items}, this.updateStorage(update, items));
+    this.setState({items: items}, () => this.updateStorage(update, items));
   };
 
   moveUp = (update, index) => {
-    this.sortableList.current.moveUp(index, items =>
+    this.sortableList.current.moveUp(index, items => () =>
       this.updateStorage(update, items)
     );
   };
 
   moveDown = (update, index) => {
-    this.sortableList.current.moveDown(index, items =>
+    this.sortableList.current.moveDown(index, items => () =>
       this.updateStorage(update, items)
     );
   };
@@ -92,6 +92,7 @@ export class BeltEditor extends React.Component {
       let newItems = this.state.items;
       newItems[index].onFrontPage = !newItems[index].onFrontPage;
       this.setState({items: newItems});
+      newItems[index]._rev = ''; // Suppress overwrite error
       update(newItems[index]);
     }
   };
