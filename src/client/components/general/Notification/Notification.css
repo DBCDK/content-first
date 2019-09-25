@@ -1,0 +1,7 @@
+.Notification__container {
+    margin-bottom: 1rem;
+}
+
+.Notification__container-cause {
+    font-style: italic;
+}

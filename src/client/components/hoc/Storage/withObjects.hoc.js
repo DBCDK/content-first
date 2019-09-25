@@ -18,15 +18,17 @@ export const withObjects = WrappedComponent => {
 
     constructor() {
       super();
-      this.state = {objects: {fetching: true, objects: []}};
+      this.state = {objects: {fetching: true, error: null, objects: []}};
     }
 
     componentDidMount() {
       this.loadObjects();
     }
 
-    componentDidUpdate() {
-      this.loadObjects();
+    componentDidUpdate(prevProps) {
+      if (this.props.query !== prevProps.query) {
+        this.loadObjects();
+      }
     }
 
     /**
@@ -35,12 +37,20 @@ export const withObjects = WrappedComponent => {
 
     loadObjects = async () => {
       try {
+        // Hent rollerne ud fra redux state'd og oversæt tekst til id - ellers gør ikke noget - for query.owner
+
         const objects = (await this.storageClient.find(this.props.query)).data;
         if (!isEqual(objects, this.state.objects.objects)) {
           this.setState({objects: {fetching: false, objects}});
         }
       } catch (e) {
-        // error handle ??????? Hvad hvis jeg udelader try/catch - hvordan håndteres exceptions i async?
+        this.setState({
+          objects: {
+            error: 'Could not fetch objects from storage',
+            fetching: false,
+            objects: []
+          }
+        });
       }
     };
 

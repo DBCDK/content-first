@@ -13,6 +13,8 @@ import {withObjects} from '../hoc/Storage/withObjects.hoc';
 import {isEqual} from 'lodash';
 import Storage from '../roles/Storage.component';
 import Spinner from '../general/Spinner/Spinner.component';
+import {OPEN_MODAL} from '../../redux/modal.reducer';
+import {ERROR} from '../general/Notification/Notification.component';
 
 const EditorRole = 'contentFirstEditor';
 
@@ -35,6 +37,9 @@ export class BeltEditor extends React.Component {
   };
 
   componentDidUpdate() {
+    if (this.props.objects.error) {
+      return;
+    }
     if (
       !this.defaultValuesLoaded &&
       !isEqual(this.props.objects.objects, this.state.items)
@@ -222,6 +227,14 @@ export class BeltEditor extends React.Component {
     );
 
   render() {
+    if (this.props.objects.error) {
+      this.props.showNotification(
+        ERROR,
+        T({component: 'editStartPage', name: 'readBelts'}),
+        T({component: 'editStartPage', name: 'readBeltsError'}),
+        this.props.objects.error
+      );
+    }
     return (
       <div className="BeltEditor">
         <Banner
@@ -271,4 +284,32 @@ export class BeltEditor extends React.Component {
   }
 }
 
-export default connect()(withObjects(BeltEditor));
+export const mapDispatchToProps = dispatch => ({
+  showNotification: (notificationType, title = '', text = '', cause = '') => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'notification',
+      context: {
+        notificationType: notificationType,
+        title: title,
+        text: text,
+        cause: cause,
+        hideCancel: true,
+        hideConfirm: false,
+        doneText: T({component: 'general', name: 'close'}),
+        cancelText: T({component: 'general', name: 'cancel'}),
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'notification'
+          });
+        }
+      }
+    });
+  }
+});
+
+export default connect(
+  () => {},
+  mapDispatchToProps
+)(withObjects(BeltEditor));

@@ -11,6 +11,7 @@ import ReorderListModal from './ReorderListModal.container';
 import ListModal from './ListModal/ListModal.component';
 import ShowReviewModal from './ShowReviewModal.component';
 import CompareBooksModal from './CompareBooksModal.component';
+import NotificationModal from './NotificationModal.component';
 
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 
@@ -97,10 +98,16 @@ class Modal extends React.Component {
         <ShowReviewModal context={this.props.modalState.showReview.context} />
       );
     }
-
     if (this.props.modalState.compare.open) {
       modal = (
         <CompareBooksModal context={this.props.modalState.compare.context} />
+      );
+    }
+    if (this.props.modalState.notification.open) {
+      modal = (
+        <NotificationModal
+          context={this.props.modalState.notification.context}
+        />
       );
     }
 
