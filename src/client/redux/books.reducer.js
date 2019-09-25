@@ -27,13 +27,15 @@ const booksReducer = (state = defaultState, action) => {
     case BOOKS_PARTIAL_UPDATE: {
       const books = {...state.books};
       action.books.forEach(b => {
-        const pid = b.book.pid;
-        const oldTags = get(books[pid], 'book.tags', []);
-        const newTags = get(b, 'book.tags', []);
+        if (b.book && b.book.pid) {
+          const pid = b.book.pid;
+          const oldTags = get(books[pid], 'book.tags', []);
+          const newTags = get(b, 'book.tags', []);
 
-        books[pid] = merge({}, books[pid], b, {
-          book: {tags: mergeTags(oldTags, newTags)}
-        });
+          books[pid] = merge({}, books[pid], b, {
+            book: {tags: mergeTags(oldTags, newTags)}
+          });
+        }
       });
       return Object.assign({}, state, {books: books});
     }
