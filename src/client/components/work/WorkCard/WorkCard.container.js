@@ -53,11 +53,17 @@ class WorkCard extends React.Component {
   };
 
   componentDidMount() {
-    document.addEventListener('touchstart', this.resetLongpress);
+    if (this.props.enableLongpress) {
+      this.shouldUpdate = true;
+      document.addEventListener('touchstart', this.resetLongpress);
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('touchstart', this.resetLongpress);
+    if (this.props.enableLongpress) {
+      this.shouldUpdate = false;
+      document.removeEventListener('touchstart', this.resetLongpress);
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -69,16 +75,25 @@ class WorkCard extends React.Component {
     );
   }
 
-  resetLongpress = () => {
+  touchEnd = () => {
     if (isMobile) {
       this.setState({showCompareButton: false});
     }
   };
 
-  handleLongPress = e => {
+  resetLongpress = () => {
+    if (isMobile) {
+      setTimeout(() => {
+        if (this.shouldUpdate) {
+          this.setState({showCompareButton: false});
+        }
+      }, 200);
+    }
+    return this.resetLongpress;
+  };
+
+  handleLongPress = () => {
     if (this.props.enableLongpress) {
-      e.stopPropagation();
-      e.preventDefault();
       this.buttonPressTimer = setTimeout(
         () => this.setState({showCompareButton: true}),
         1000
@@ -86,17 +101,13 @@ class WorkCard extends React.Component {
     }
   };
 
-  handleLongRelease = e => {
+  handleLongRelease = () => {
     if (this.props.enableLongpress) {
-      e.stopPropagation();
-      e.preventDefault();
       clearTimeout(this.buttonPressTimer);
     }
   };
 
-  onWorkClick = e => {
-    e.stopPropagation();
-    e.preventDefault();
+  onWorkClick = () => {
     this.props.onWorkClick(this.props.work, this.props.origin, this.props.rid);
   };
 
