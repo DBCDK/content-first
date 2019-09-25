@@ -57,11 +57,27 @@ export class BeltEditor extends React.Component {
     }
   }
 
+  displayUpdateError = (
+    updateName = 'updateBelt',
+    errorName = 'updateBeltError',
+    text = 'Fejl under skrivning'
+  ) =>
+    this.props.showNotification(
+      ERROR,
+      T({component: 'editStartPage', name: updateName}),
+      T({component: 'editStartPage', name: errorName}),
+      text
+    );
+
   updateStorage = (update, items) => {
     if (Array.isArray(items)) {
-      items.forEach(item => {
+      items.forEach(async item => {
         item._rev = ''; // Suppress overwrite error
-        update(item);
+        try {
+          await update(item);
+        } catch (e) {
+          this.displayUpdateError();
+        }
       });
     }
   };
@@ -82,18 +98,30 @@ export class BeltEditor extends React.Component {
     );
   };
 
-  remove = (remove, index) => {
+  remove = async (remove, index) => {
     this.sortableList.current.remove(index);
-    remove(this.state.items.find(e => e.index === index));
+    try {
+      await remove(this.state.items.find(e => e.index === index));
+    } catch (e) {
+      this.displayUpdateError(
+        'deleteBelt',
+        'deleteBeltError',
+        'Sletning af bånd'
+      );
+    }
   };
 
-  enableDisable = (update, index) => {
+  enableDisable = async (update, index) => {
     if (index < this.state.items.length) {
       let newItems = this.state.items;
       newItems[index].onFrontPage = !newItems[index].onFrontPage;
       this.setState({items: newItems});
       newItems[index]._rev = ''; // Suppress overwrite error
-      update(newItems[index]);
+      try {
+        await update(newItems[index]);
+      } catch (e) {
+        this.displayUpdateError();
+      }
     }
   };
 
