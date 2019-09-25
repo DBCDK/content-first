@@ -17,8 +17,12 @@ import withTagsFromUrl from '../hoc/AdressBar/withTagsFromUrl.hoc';
 import withHistory from '../hoc/AdressBar/withHistory.hoc';
 import Icon from '../base/Icon';
 import Storage from '../roles/Storage.component';
+import {OPEN_MODAL} from '../../redux/modal.reducer';
+import {connect} from 'react-redux';
+import {withObjects} from '../hoc/Storage/withObjects.hoc';
+import {ERROR} from '../general/Notification/Notification.component';
 
-export class CreateBelt extends React.Component {
+class CreateBelt extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,9 +72,12 @@ export class CreateBelt extends React.Component {
       await create(belt);
       this.props.historyReplace('/redaktionen');
     } catch (e) {
-      console.log('--- Error when trying to create Belt', belt, e);
-      this.setState({error: 'An error happened when trying to create Belt'});
-      // Lav håndtering af denne fejl her på siden
+      this.props.showNotification(
+        ERROR,
+        T({component: 'editStartPage', name: 'createBelt'}),
+        T({component: 'editStartPage', name: 'createBeltError'}),
+        'An error happened when trying to create Belt'
+      );
     }
   };
 
@@ -205,4 +212,32 @@ export class CreateBelt extends React.Component {
   }
 }
 
-export default withHistory(withTagsFromUrl(CreateBelt));
+const mapDispatchToProps = dispatch => ({
+  showNotification: (notificationType, title = '', text = '', cause = '') => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'notification',
+      context: {
+        notificationType: notificationType,
+        title: title,
+        text: text,
+        cause: cause,
+        hideCancel: true,
+        hideConfirm: false,
+        doneText: T({component: 'general', name: 'close'}),
+        cancelText: T({component: 'general', name: 'cancel'}),
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'notification'
+          });
+        }
+      }
+    });
+  }
+});
+
+export default connect(
+  () => {},
+  mapDispatchToProps
+)(withObjects(withHistory(withTagsFromUrl(CreateBelt))));

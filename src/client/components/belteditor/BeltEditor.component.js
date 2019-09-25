@@ -284,7 +284,7 @@ export class BeltEditor extends React.Component {
   }
 }
 
-export const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   showNotification: (notificationType, title = '', text = '', cause = '') => {
     dispatch({
       type: OPEN_MODAL,

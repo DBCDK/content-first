@@ -1150,6 +1150,10 @@
         "da": "Opret bånd",
         "en": "Create belt"
       },
+      "createBeltError": {
+        "da": "Der opstod en fejl under forsøg på at oprette et bånd",
+        "en": "An error occured when attempting to create a belt"
+      },
       "readBelts": {
         "da": "Indlæsning af bånd",
         "en": "Read belts"
