@@ -72,9 +72,9 @@ export class BeltEditor extends React.Component {
   updateStorage = (update, items) => {
     if (Array.isArray(items)) {
       items.forEach(async item => {
-        item._rev = ''; // Suppress overwrite error
         try {
-          await update(item);
+          let ret = await update(item);
+          item._rev = ret.data._rev;
         } catch (e) {
           this.displayUpdateError();
         }
@@ -116,9 +116,9 @@ export class BeltEditor extends React.Component {
       let newItems = this.state.items;
       newItems[index].onFrontPage = !newItems[index].onFrontPage;
       this.setState({items: newItems});
-      newItems[index]._rev = ''; // Suppress overwrite error
       try {
-        await update(newItems[index]);
+        let ret = await update(newItems[index]);
+        newItems[index]._rev = ret.data._rev;
       } catch (e) {
         this.displayUpdateError();
       }
