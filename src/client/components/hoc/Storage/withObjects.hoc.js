@@ -37,9 +37,9 @@ export const withObjects = WrappedComponent => {
 
     loadObjects = async () => {
       try {
-        // Hent rollerne ud fra redux state'd og oversæt tekst til id - ellers gør ikke noget - for query.owner
-
-        const objects = (await this.storageClient.find(this.props.query)).data;
+        const {roles, query} = this.props;
+        const owner = roles[query.owner] ? roles[query.owner]._id : query.owner;
+        const objects = (await this.storageClient.find({...query, owner})).data;
         if (!isEqual(objects, this.state.objects.objects)) {
           this.setState({objects: {fetching: false, objects}});
         }
@@ -65,7 +65,8 @@ export const withObjects = WrappedComponent => {
 
   const mapStateToProps = state => {
     return {
-      objects: state.objects
+      objects: state.objects,
+      roles: state.roles
     };
   };
 

@@ -100,8 +100,7 @@ class App extends Component {
             requiredRoles={[ADMIN_ROLE, EDITOR_ROLE]}
             onAccessDenied={<Article path={`/${pathSplit[1]}`} />}
           >
-            {/* <BeltEditor query={{type: 'belt', owner: 'contentFirstEditor'}} /> */}
-            <BeltEditor query={{type: 'belt'}} />
+            <BeltEditor query={{type: 'belt', owner: EDITOR_ROLE}} />
           </Role>
         );
       }
