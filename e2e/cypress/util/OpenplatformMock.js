@@ -44,6 +44,7 @@ export default class OPMock {
   };
   invoke = async (funcName, arg) => {
     const recorded = this.getRecorded(funcName, arg);
+
     if (recorded) {
       await this._wait(recorded.timing);
       Cypress.log({
@@ -60,10 +61,24 @@ export default class OPMock {
       return recorded.data;
     }
     const t0 = performance.now();
-    const res = await this[funcName](arg);
-
-    this.putRecord(funcName, arg, res, Math.floor(performance.now() - t0));
-    return res;
+    try {
+      const res = await this[funcName](arg);
+      this.putRecord(funcName, arg, res, Math.floor(performance.now() - t0));
+      return res;
+    } catch (e) {
+      Cypress.log({
+        name: 'Mock.err',
+        message: `openplatform.${funcName}`,
+        consoleProps: () => {
+          return {
+            request: arg,
+            error: e,
+            timing: Math.floor(performance.now() - t0)
+          };
+        }
+      });
+      throw e;
+    }
   };
   getRecorded = (funcName, req) => {
     const copy = {...req};
