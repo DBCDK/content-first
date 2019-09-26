@@ -134,4 +134,8 @@ export default class ListRequester {
 
     return list;
   }
+
+  async deleteList(id) {
+    await this.storageClient.delete({id});
+  }
 }
