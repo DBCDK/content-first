@@ -62,6 +62,7 @@ export class ListsBelt extends React.Component {
         </Title>
         <Slider
           {...this.props}
+          name="listbelt"
           initialScrollPos={scrollPos}
           onSwipe={index =>
             this.props.updateMount({

@@ -4,20 +4,6 @@ import {isMobile} from 'react-device-detect';
 import Icon from '../Icon';
 import './Slider.css';
 
-const params = {
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true
-  },
-  navigation: {
-    // nextEl: '.swiper-button-next',
-    // prevEl: '.swiper-button-prev'
-  },
-  slidesPerView: 'auto',
-  slidesPerGroup: 3,
-  rebuildOnUpdate: false
-};
-
 class MobileSlider extends React.Component {
   constructor(props) {
     super(props);
@@ -96,23 +82,55 @@ class DesktopSlider extends React.Component {
       }
     }
   }
+  setPagination = () => {
+    let bulletEl = document.getElementsByClassName('paginate_listbelt')[0];
 
-  render() {
-    const props = this.props;
+    if (bulletEl) {
+      if (bulletEl.children.length === 1) {
+        bulletEl.style.display = 'none';
+      } else {
+        bulletEl.style.display = 'block';
+      }
+    }
+  };
+
+  setSwiper = () => {
+    let props = this.props;
+    const params = {
+      pagination: {
+        el: '.swiper-pagination.paginate_' + this.props.name,
+        clickable: true
+      },
+      navigation: {
+        // nextEl: '.swiper-button-next',
+        // prevEl: '.swiper-button-prev'
+      },
+      slidesPerView: 'auto',
+      slidesPerGroup: 3,
+      rebuildOnUpdate: false
+    };
+
+    this.setPagination();
 
     return (
+      <Swiper
+        {...params}
+        initialSlide={this.initialScrollPos}
+        ref={node => {
+          if (node) {
+            this.init(node.swiper);
+          }
+        }}
+      >
+        {props.children}
+      </Swiper>
+    );
+  };
+
+  render() {
+    return (
       <div className="col-12 p-0 desktop-slider">
-        <Swiper
-          {...params}
-          initialSlide={this.initialScrollPos}
-          ref={node => {
-            if (node) {
-              this.init(node.swiper);
-            }
-          }}
-        >
-          {props.children}
-        </Swiper>
+        {this.setSwiper()}
 
         {!this.state.isEnd && (
           <div className="swiper-button-next">
@@ -162,6 +180,7 @@ export default class Slider extends React.Component {
         initialScrollPos={this.props.initialScrollPos}
         children={this.props.children}
         onSwipe={this.props.onSwipe}
+        name={this.props.name}
       />
     );
   }
