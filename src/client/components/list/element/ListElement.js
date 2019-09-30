@@ -120,6 +120,7 @@ const Description = ({
         component: 'post',
         name: 'aboutTheBook'
       })}
+      data-cy="element-description-input"
     />
   ) : (
     showDescription && (
