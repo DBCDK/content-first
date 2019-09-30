@@ -41,7 +41,7 @@ describe('List test', function() {
     cy.get('[data-cy=listinfo-description]').contains(listDescription);
   });
 
-  it('Can edit list element', function() {
+  it.only('Can add, edit and remove list element', function() {
     cy.request('POST', '/v1/object', {
       type: 'CUSTOM_LIST',
       title: 'Privat liste',
@@ -71,6 +71,12 @@ describe('List test', function() {
       cy.get('#comment-submit').click();
       cy.reload();
       cy.contains(newDescription);
+
+      cy.get('[data-cy=element-context-menu]').click();
+      cy.get('[data-cy=context-action-remove-element]').click();
+      cy.reload();
+      cy.contains('Privat liste');
+      cy.get('[data-cy=list-element]').should('not.exist');
     });
   });
 
