@@ -14,8 +14,6 @@ import PopupLink from '../../base/PopupLink/PopupLink';
  * Creator and ful review link are hidden for now.
  */
 export class PaperReview extends React.Component {
-
-
   render() {
     if (this.props.review === false) {
       return '';
@@ -42,12 +40,12 @@ export class PaperReview extends React.Component {
       null;
     date = date
       ? timestampToShortDate(
-        new Date(
-          date.split('-')[0],
-          parseInt(date.split('-')[1], 10) - 1,
-          date.split('-')[2]
+          new Date(
+            date.split('-')[0],
+            parseInt(date.split('-')[1], 10) - 1,
+            date.split('-')[2]
+          )
         )
-      )
       : null;
     date = date.split(' ')[1] !== 'undefined' ? date : review.date;
 
@@ -58,16 +56,16 @@ export class PaperReview extends React.Component {
 
     const maxRating = review.abstract
       ? review.abstract[0]
-        .trim()
-        .replace('Vurdering:', '')
-        .split('/')[1]
+          .trim()
+          .replace('Vurdering:', '')
+          .split('/')[1]
       : null;
 
     const rating = review.abstract
       ? review.abstract[0]
-        .trim()
-        .replace('Vurdering:', '')
-        .split('/')[0]
+          .trim()
+          .replace('Vurdering:', '')
+          .split('/')[0]
       : null;
 
     const ratingShape = source === 'Politiken' ? 'favorite' : 'star';
@@ -85,7 +83,6 @@ export class PaperReview extends React.Component {
     let reviewLink;
 
     if (showLink) {
-
       switch (allowAccess()) {
         case 'fullAccess': {
           reviewLink = (
@@ -101,7 +98,9 @@ export class PaperReview extends React.Component {
                   );
                 }}
               >
-                <span><T component="work" name={'readReview'} /></span>
+                <span>
+                  <T component="work" name={'readReview'} />
+                </span>
               </button>
             </Text>
           );
@@ -127,7 +126,9 @@ export class PaperReview extends React.Component {
                   this.props.requireLogin();
                 }}
               >
-                <span><T component="work" name={'readReview'} /></span>
+                <span>
+                  <T component="work" name={'readReview'} />
+                </span>
               </button>
             </Text>
           );
@@ -138,7 +139,6 @@ export class PaperReview extends React.Component {
         }
       }
     }
-
 
     return (
       <div className={'Review__container mb-3'}>

@@ -92,7 +92,13 @@ class ReviewList extends React.Component {
             </Text>
 
             <Text type="body" className="d-flex Review__block--lector mb-1">
-              <a type="small" onClick={() => {}} target="_blank" rel="noopener noreferrer" href={rev.url}>
+              <a
+                type="small"
+                onClick={() => {}}
+                target="_blank"
+                rel="noopener noreferrer"
+                href={rev.url}
+              >
                 <T component="work" name={'readReview'} />
               </a>
             </Text>
