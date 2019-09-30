@@ -107,7 +107,7 @@ export class BookcaseList extends React.Component {
   };
 
   render() {
-    const {_id, list, deleteList, isListOwner} = this.props;
+    const {_id, list, deleteList, isListOwner, storeList} = this.props;
     const {added} = this.state;
     return (
       <React.Fragment>
@@ -177,6 +177,7 @@ export class BookcaseList extends React.Component {
                     list={list}
                     showUserInfo={false}
                     editing={added === element.pid ? true : false}
+                    submit={storeList}
                   />
                 );
               })}

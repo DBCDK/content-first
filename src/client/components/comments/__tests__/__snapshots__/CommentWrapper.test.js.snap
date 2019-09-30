@@ -513,6 +513,7 @@ exports[`CommentContainer Edit button 2`] = `
                 <textarea
                   autoFocus={true}
                   className="comment-textarea border-0 pl-3"
+                  data-cy="comment-input"
                   name="list-description"
                   onChange={[Function]}
                   placeholder="Din kommentar ..."

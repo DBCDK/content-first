@@ -99,6 +99,7 @@ export default class CommentInput extends React.Component {
               }
               onChange={e => this.props.onChange(e.target.value)}
               value={this.props.value}
+              data-cy={this.props['data-cy'] || 'comment-input'}
             />
             <Icon
               id="comment-submit"
