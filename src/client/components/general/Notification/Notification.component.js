@@ -15,7 +15,7 @@ export default class Notification extends React.Component {
   render() {
     const {notificationType, title, text, cause} = this.props;
     return (
-      <div className="Notification__container">
+      <div className="Notification__container" data-cy="notification-container">
         <Title Tag="h4" type="title4" className="Notification__container-title">
           {notificationType.toLowerCase().replace(/^\w/, c => c.toUpperCase())}{' '}
           - {title}

@@ -1,0 +1,55 @@
+{
+  "data": [
+    {
+      "index": 0,
+      "_public": true,
+      "_type": "belt",
+      "key": "Norske superromaner",
+      "name": "Norske superromaner",
+      "subtext": "Description",
+      "tags": [],
+      "onFrontPage": true,
+      "createdBy": "Bibliotekar Sarah",
+      "_created": 1569584299,
+      "_modified": 1569584299,
+      "_key": "",
+      "_owner": "12345678-1234-1234-1234-123456789012",
+      "_id": "715b24c5-8bce-47f9-87f0-d3d40e299430",
+      "_rev": "2019-09-27T12:34:56.789Z"
+    },
+    {
+      "index": 1,
+      "_public": true,
+      "_type": "belt",
+      "key": "Franske fristelser",
+      "name": "Franske fristelser",
+      "subtext": "Description",
+      "tags": [],
+      "onFrontPage": true,
+      "createdBy": "Christian Ertmann-Christiansen",
+      "_created": 1569584300,
+      "_modified": 1569584300,
+      "_key": "",
+      "_owner": "06ad8729-1216-428c-911c-de4a73c83042",
+      "_id": "0af2f486-4163-4eea-b41e-73ad0dee5cdd",
+      "_rev": "2019-09-27T12:34:56.789Z"
+    },
+    {
+      "index": 2,
+      "_public": true,
+      "_type": "belt",
+      "key": "Uhygge bag hjemmets fire vægge",
+      "name": "Uhygge bag hjemmets fire vægge",
+      "subtext": "Description",
+      "tags": [],
+      "onFrontPage": false,
+      "createdBy": "Bibliotekar Sarah",
+      "_created": 1569584300,
+      "_modified": 1569584300,
+      "_key": "",
+      "_owner": "06ad8729-1216-428c-911c-de4a73c83042",
+      "_id": "5143f91b-597a-4880-a817-d60f8a84635b",
+      "_rev": "2019-09-27T12:34:56.789Z"
+    }
+  ]
+}
