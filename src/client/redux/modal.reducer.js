@@ -43,6 +43,11 @@ const defaultState = {
     open: false,
     context: null,
     callback: null
+  },
+  notification: {
+    open: false,
+    context: null,
+    callback: null
   }
 };
 

@@ -23,52 +23,52 @@ export class SortableList extends React.Component {
     this.onSortEndHandler = props.onSortEnd;
   }
 
-  notifyParent = () => {
+  notify = callback => {
+    if (callback instanceof Function) {
+      callback(this.state.items);
+    }
     if (this.onSortEndHandler instanceof Function) {
       this.onSortEndHandler(this.state.items);
     }
   };
 
-  onSortEnd = ({oldIndex, newIndex}) => {
+  onSortEnd = ({oldIndex, newIndex, callback}) => {
     this.setState(
       ({items}) => ({
         items: arrayMove(items, oldIndex, newIndex)
       }),
-      this.notifyParent
+      () => this.notify(callback)
     );
   };
 
-  moveUp = event => {
-    let index = parseInt(event.target.getAttribute('index'), 10);
+  moveUp = (index, callback) => {
     if (index > 0) {
       this.setState(
         {
           items: arrayMove(this.state.items, index, index - 1)
         },
-        this.notifyParent
+        () => this.notify(callback)
       );
     }
   };
 
-  moveDown = event => {
-    let index = parseInt(event.target.getAttribute('index'), 10);
+  moveDown = (index, callback) => {
     if (index < this.state.items.length - 1) {
       this.setState(
         {
           items: arrayMove(this.state.items, index, index + 1)
         },
-        this.notifyParent
+        () => this.notify(callback)
       );
     }
   };
 
-  remove = event => {
-    let index = parseInt(event.target.getAttribute('index'), 10);
+  remove = (index, callback) => {
     this.setState(
       ({items}) => ({
         items: arrayRemove(items, index)
       }),
-      this.notifyParent
+      () => this.notify(callback)
     );
   };
 

@@ -3,5 +3,6 @@ import withTagsFromUrl, {
   addTag,
   removeTag
 } from './withTagsFromUrl.hoc';
+import withHistory from './withHistory.hoc';
 
-export {withTagsFromUrl, tagsFromURL, addTag, removeTag};
+export {withTagsFromUrl, tagsFromURL, addTag, removeTag, withHistory};

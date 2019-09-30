@@ -1149,6 +1149,34 @@
       "createBelt": {
         "da": "Opret bånd",
         "en": "Create belt"
+      },
+      "createBeltError": {
+        "da": "Der opstod en fejl under forsøg på at oprette et bånd",
+        "en": "An error occured when attempting to create a belt"
+      },
+      "readBelts": {
+        "da": "Indlæsning af bånd",
+        "en": "Read belts"
+      },
+      "readBeltsError": {
+        "da": "Der opstod en fejl under indlæsning af bånd",
+        "en": "An error occured when reading belts"
+      },
+      "updateBelt": {
+        "da": "Opdater bånd",
+        "en": "Update belt"
+      },
+      "updateBeltError": {
+        "da": "Der opstod en fejl under forsøg på at opdatere et bånd",
+        "en": "An error occured when attempting to update a belt"
+      },
+      "deleteBelt": {
+        "da": "Slet bånd",
+        "en": "Delete belt"
+      },
+      "deleteBeltError": {
+        "da": "Der opstod en fejl under forsøg på at slette et bånd",
+        "en": "An error occured when attempting to delete a belt"
       }
     }
   },

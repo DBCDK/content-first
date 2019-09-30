@@ -2,25 +2,31 @@ import React from 'react';
 import {connect} from 'react-redux';
 import StorageClient from '../../../shared/client-side-storage.client';
 
-export class Storage extends React.Component {
+class Storage extends React.Component {
   storageClient = new StorageClient();
 
   getRole() {
+    if (typeof this.props.role === 'undefined') {
+      return;
+    }
     if (Array.isArray(this.props.roles)) {
       const role = this.props.roles.find(
         element =>
           typeof element.machineName === 'string' &&
           element.machineName === this.props.role
       );
-      return typeof role === 'undefined' ? role : role._id; // If owner is undefined then return undefined
+      if (typeof role !== 'undefined') {
+        return role._id;
+      }
     }
-    return; // If this.props.roles is undefined then return undefined
+    throw new Error('User is not authorized');
   }
 
-  noop() {}
-
   create = object => {
-    return this.storageClient.put(object, this.getRole());
+    return this.storageClient.put(
+      {...object, createdBy: this.props.openplatformId},
+      this.getRole()
+    );
   };
 
   update = object => {
@@ -35,28 +41,20 @@ export class Storage extends React.Component {
   };
 
   render() {
-    const {role, render} = this.props;
-    if (
-      typeof render === 'function' &&
-      (role === 'contentFirstEditor' || role === 'contentFirstAdmin')
-    ) {
-      return render({
-        create: this.create,
-        update: this.update,
-        remove: this.remove
-      });
-    }
-    return render({create: this.noop, update: this.noop, remove: this.noop});
+    const {render} = this.props;
+    return render({
+      create: this.create,
+      update: this.update,
+      remove: this.remove
+    });
   }
 }
 
 const mapStateToProps = state => {
-  return {roles: state.userReducer.roles};
+  return {
+    roles: state.userReducer.roles,
+    openplatformId: state.userReducer.openplatformId
+  };
 };
 
-export const mapDispatchToProps = () => ({});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Storage);
+export default connect(mapStateToProps)(Storage);
