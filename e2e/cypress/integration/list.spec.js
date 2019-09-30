@@ -41,7 +41,7 @@ describe('List test', function() {
     cy.get('[data-cy=listinfo-description]').contains(listDescription);
   });
 
-  it.only('Can add, edit and remove list element', function() {
+  it('Can add, edit and remove list element', function() {
     cy.request('POST', '/v1/object', {
       type: 'CUSTOM_LIST',
       title: 'Privat liste',
