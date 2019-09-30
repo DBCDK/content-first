@@ -225,7 +225,6 @@ class WorkPreview extends React.Component {
                   })}
                 {!work.collectionHasLoaded && (
                   <React.Fragment>
-                    <a>
                       <Button
                         type="tertiary"
                         size="medium"
@@ -234,8 +233,6 @@ class WorkPreview extends React.Component {
                         <Icon name={'local_library'} />
                         <T component="general" name="book" />
                       </Button>
-                    </a>
-                    <a>
                       <Button
                         type="tertiary"
                         size="medium"
@@ -244,8 +241,6 @@ class WorkPreview extends React.Component {
                         <Icon name={'language'} />
                         <T component="general" name="ebook" />
                       </Button>
-                    </a>
-                    <a>
                       <Button
                         type="tertiary"
                         size="medium"
@@ -254,7 +249,6 @@ class WorkPreview extends React.Component {
                         <Icon name={'voicemail'} />
                         <T component="general" name="audiobook" />
                       </Button>
-                    </a>
                   </React.Fragment>
                 )}
               </div>

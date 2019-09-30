@@ -78,6 +78,7 @@ export default class Modal extends React.Component {
                     data-cy="modal-done-btn"
                     href={this.props.url || null}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <Button
                       disabled={doneDisabled || onError}

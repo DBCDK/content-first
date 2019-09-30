@@ -14,6 +14,8 @@ import PopupLink from '../../base/PopupLink/PopupLink';
  * Creator and ful review link are hidden for now.
  */
 export class PaperReview extends React.Component {
+
+
   render() {
     if (this.props.review === false) {
       return '';
@@ -40,12 +42,12 @@ export class PaperReview extends React.Component {
       null;
     date = date
       ? timestampToShortDate(
-          new Date(
-            date.split('-')[0],
-            parseInt(date.split('-')[1], 10) - 1,
-            date.split('-')[2]
-          )
+        new Date(
+          date.split('-')[0],
+          parseInt(date.split('-')[1], 10) - 1,
+          date.split('-')[2]
         )
+      )
       : null;
     date = date.split(' ')[1] !== 'undefined' ? date : review.date;
 
@@ -56,16 +58,16 @@ export class PaperReview extends React.Component {
 
     const maxRating = review.abstract
       ? review.abstract[0]
-          .trim()
-          .replace('Vurdering:', '')
-          .split('/')[1]
+        .trim()
+        .replace('Vurdering:', '')
+        .split('/')[1]
       : null;
 
     const rating = review.abstract
       ? review.abstract[0]
-          .trim()
-          .replace('Vurdering:', '')
-          .split('/')[0]
+        .trim()
+        .replace('Vurdering:', '')
+        .split('/')[0]
       : null;
 
     const ratingShape = source === 'Politiken' ? 'favorite' : 'star';
@@ -83,11 +85,13 @@ export class PaperReview extends React.Component {
     let reviewLink;
 
     if (showLink) {
+
       switch (allowAccess()) {
         case 'fullAccess': {
           reviewLink = (
             <Text type="body" className="d-flex Review__block--lector mb-1">
-              <a
+              <button
+                class="link"
                 type="small"
                 onClick={() => {
                   this.props.showReviewModal(
@@ -97,8 +101,8 @@ export class PaperReview extends React.Component {
                   );
                 }}
               >
-                <T component="work" name={'readReview'} />
-              </a>
+                <span><T component="work" name={'readReview'} /></span>
+              </button>
             </Text>
           );
           break;
@@ -116,14 +120,15 @@ export class PaperReview extends React.Component {
         case 'mustLogIn': {
           reviewLink = (
             <Text type="body" className="d-flex Review__block--lector mb-1">
-              <a
+              <button
+                class="link"
                 type="small"
                 onClick={() => {
                   this.props.requireLogin();
                 }}
               >
-                <T component="work" name={'readReview'} />
-              </a>
+                <span><T component="work" name={'readReview'} /></span>
+              </button>
             </Text>
           );
           break;
@@ -133,6 +138,8 @@ export class PaperReview extends React.Component {
         }
       }
     }
+
+
     return (
       <div className={'Review__container mb-3'}>
         <div className="Review__block--top">
