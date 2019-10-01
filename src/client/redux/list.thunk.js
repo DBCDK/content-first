@@ -14,8 +14,10 @@ import {
 export const storeList = (_id, openplatformId, cb) => {
   return async (dispatch, getState, {listRequester}) => {
     try {
-      const list = get(getState(), `listReducer.lists[${_id}]`);
-      await listRequester.saveList(list, openplatformId);
+      let list = get(getState(), `listReducer.lists[${_id}]`);
+      list = await listRequester.saveList(list, openplatformId);
+      dispatch({type: LISTS_EXPAND, lists: [list]});
+
       if (cb) {
         cb(list);
       }

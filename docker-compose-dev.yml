@@ -11,7 +11,7 @@ services:
       - "${DB_PORT:-5432}:5432"
   storage:
     image: docker-ux.dbc.dk/serviceprovider-master:latest
-    env_file: ./docker/serviceprovider-master.docker
+    env_file: ./docker/serviceprovider.docker
     depends_on:
       - database
       - minismaug
