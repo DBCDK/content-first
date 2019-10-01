@@ -43,11 +43,24 @@ class FrontPage extends React.Component {
     );
   }
 
-  render() {
-    const beltsMap = this.props.beltsMap;
-    const aBeltsMap = Object.values(beltsMap);
+  convertToSortedArray = beltsMap => {
+    const ownedBelts = [];
+    const editorialBelts = [];
+    Object.values(beltsMap).forEach(belt => {
+      if (belt.origin && belt.origin === 'beltEditor') {
+        editorialBelts.push(belt);
+      } else {
+        ownedBelts.push(belt);
+      }
+    });
+    ownedBelts.sort((a, b) => (b._created || 0) - (a._created || 0));
+    editorialBelts.sort((a, b) => (a.index || 0) - (b.index || 0));
+    return ownedBelts.concat(editorialBelts);
+  };
 
-    aBeltsMap.sort((a, b) => (b._created || 0) - (a._created || 0));
+  render() {
+    const aBeltsMap = this.convertToSortedArray(this.props.beltsMap || {});
+
     return (
       <div className="frontpage">
         <Head />
