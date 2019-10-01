@@ -123,17 +123,8 @@ const fromStorageObject = storageObject => {
     }
   });
 
-  // TODO remove when storage contains native timestamps
-  copy._created = storageObject.cf_created;
-  copy._modified = storageObject.cf_modified;
-
-  // TODO comment in when storage contains native timestamps
-  // storageObject._created = Math.floor(
-  //   Date.parse(storageObject._created) / 1000
-  // );
-  // storageObject._modified = Math.floor(
-  //   Date.parse(storageObject._version) / 1000
-  // );
+  copy._created = Math.floor(Date.parse(storageObject._created) / 1000);
+  copy._modified = Math.floor(Date.parse(storageObject._version) / 1000);
 
   return copy;
 };
@@ -200,7 +191,7 @@ async function find(query, user = {}, role) {
     requestObject.scan.index.push('cf_key');
     requestObject.scan.startsWith.push(query.key);
   }
-  requestObject.scan.index.push('cf_created');
+  requestObject.scan.index.push('_created');
   try {
     const objects = (await request
       .post(storageUrl)
