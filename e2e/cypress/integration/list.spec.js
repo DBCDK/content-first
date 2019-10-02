@@ -41,6 +41,45 @@ describe('List test', function() {
     cy.get('[data-cy=listinfo-description]').contains(listDescription);
   });
 
+  it('Can add, edit and remove list element', function() {
+    cy.request('POST', '/v1/object', {
+      type: 'CUSTOM_LIST',
+      title: 'Privat liste',
+      description: 'masser af de gode',
+      list: [],
+      _type: 'list',
+      _public: false
+    }).then(response => {
+      const id = response.body.data._id;
+      cy.visit(`/lister/${id}`);
+
+      const firstElement = 'Krig og fred';
+      const newDescription = 'hello new description';
+      cy.get('[data-cy=listview-add-element-input]')
+        .clear()
+        .type(firstElement);
+      cy.get(`[data-cy="suggestion-row-${firstElement}"]`)
+        .first()
+        .click();
+      cy.reload();
+      cy.get('[data-cy=element-context-menu]').click();
+      cy.get('[data-cy=context-action-edit-element]').click();
+      cy.get('[data-cy=element-description-input]')
+        .first()
+        .clear()
+        .type(newDescription);
+      cy.get('#comment-submit').click();
+      cy.reload();
+      cy.contains(newDescription);
+
+      cy.get('[data-cy=element-context-menu]').click();
+      cy.get('[data-cy=context-action-remove-element]').click();
+      cy.reload();
+      cy.contains('Privat liste');
+      cy.get('[data-cy=list-element]').should('not.exist');
+    });
+  });
+
   it('Can be viewed only by owner when it is private', function() {
     cy.request('POST', '/v1/object', {
       type: 'CUSTOM_LIST',

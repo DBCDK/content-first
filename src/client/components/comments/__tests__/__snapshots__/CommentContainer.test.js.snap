@@ -55,6 +55,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
         >
           <textarea
             className="comment-textarea border-0 pl-3"
+            data-cy="comment-input"
             name="list-description"
             onChange={[Function]}
             placeholder="Din kommentar ..."
@@ -130,6 +131,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
         >
           <textarea
             className="comment-textarea border-0 pl-3"
+            data-cy="comment-input"
             name="list-description"
             onChange={[Function]}
             placeholder="Din kommentar ..."
@@ -325,6 +327,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
             >
               <textarea
                 className="comment-textarea border-0 pl-3"
+                data-cy="comment-input"
                 name="list-description"
                 onChange={[Function]}
                 placeholder="Din kommentar ..."
@@ -567,6 +570,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
         >
           <textarea
             className="comment-textarea border-0 pl-3"
+            data-cy="comment-input"
             name="list-description"
             onChange={[Function]}
             placeholder="Din kommentar ..."
@@ -735,6 +739,7 @@ exports[`CommentContainer Component renders error 1`] = `
             >
               <textarea
                 className="comment-textarea border-0 pl-3"
+                data-cy="comment-input"
                 name="list-description"
                 onChange={[Function]}
                 placeholder="Din kommentar ..."
@@ -970,6 +975,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             >
               <textarea
                 className="comment-textarea border-0 pl-3"
+                data-cy="comment-input"
                 name="list-description"
                 onChange={[Function]}
                 placeholder="Din kommentar ..."
@@ -1221,6 +1227,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
             >
               <textarea
                 className="comment-textarea border-0 pl-3"
+                data-cy="comment-input"
                 name="list-description"
                 onChange={[Function]}
                 placeholder="Din kommentar ..."
@@ -1485,6 +1492,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
             >
               <textarea
                 className="comment-textarea border-0 pl-3"
+                data-cy="comment-input"
                 name="list-description"
                 onChange={[Function]}
                 placeholder="Din kommentar ..."

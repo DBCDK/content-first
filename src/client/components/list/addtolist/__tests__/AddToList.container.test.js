@@ -75,7 +75,7 @@ describe('AddToList', () => {
         allowAdd={true}
         isLoggedIn={true}
         requireLogin={() => (requireLoginInvoked = true)}
-        addElement={() => (addElementInvoked = true)}
+        addElementToList={() => (addElementInvoked = true)}
       />
     );
     tree.instance().submit(element);

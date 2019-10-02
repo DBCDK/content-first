@@ -5,6 +5,26 @@ describe('Start Belt Editor test', function() {
     cy.clearCookies();
   });
 
+  const mockStorage = () => {
+    cy.fixture('beltEditor/initialState.json').as('initialState');
+    cy.fixture('beltEditor/defaultBelts.json').as('defaultBelts');
+    cy.server();
+    cy.route('GET', '/v1/initial-state', '@initialState').as(
+      'initialStateRequest'
+    );
+    cy.route(
+      'GET',
+      '/v1/object/find?type=belt&owner=12345678-1234-1234-1234-123456789012',
+      '@defaultBelts'
+    ).as('defaultBeltsRequest');
+    cy.route('POST', '/v1/object/?role=*', () => {
+      return {data: {_rev: '123'}};
+    }).as('postBelt');
+    cy.route('DELETE', '/v1/object/*', () => {
+      return {data: {_rev: '234'}};
+    }).as('deleteBelt');
+  };
+
   const nthContentRow = n =>
     '.BeltEditor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]:nth-child(' +
     n +
@@ -22,6 +42,7 @@ describe('Start Belt Editor test', function() {
   const verifyContentRow = (number, enabled, title, creator) => {
     const selector = nthContentRow(number);
     const enabledDisabled = enabled ? 'enabled' : 'disabled';
+    cy.get('[data-cy=notification-container]').should('not.exist'); // Check that the error modal is not displayed
     cy.get(selector)
       .find('div.flex-container i')
       .should($i => {
@@ -38,7 +59,9 @@ describe('Start Belt Editor test', function() {
   const clickEnableDisableButton = number => {
     cy.get(nthContentRow(number))
       .contains('i', 'fiber_manual_record')
-      .click();
+      .click({
+        force: true
+      });
   };
 
   const clickSortButton = (row, upDown) => {
@@ -46,13 +69,17 @@ describe('Start Belt Editor test', function() {
       upDown === 'up' ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
     cy.get(nthContentRow(row))
       .contains('i', arrowKey)
-      .click();
+      .click({
+        force: true
+      });
   };
 
   const clickDeleteButton = row => {
     cy.get(nthContentRow(row))
       .contains('i', 'delete')
-      .click();
+      .click({
+        force: true
+      });
   };
 
   const clickCreateButton = () => {
@@ -111,6 +138,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test Table contains three elements', function() {
+    mockStorage();
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
     cy.get(
@@ -136,45 +164,48 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test Enable/Disable belt', function() {
+    mockStorage();
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
+    const verifyEnableDisableContent = firstEnabled => {
+      verifyContentRow(
+        1,
+        firstEnabled,
+        'Norske superromaner',
+        'Bibliotekar Sarah'
+      );
+      verifyContentRow(
+        2,
+        true,
+        'Franske fristelser',
+        'Christian Ertmann-Christiansen'
+      );
+      verifyContentRow(
+        3,
+        false,
+        'Uhygge bag hjemmets fire vægge',
+        'Bibliotekar Sarah'
+      );
+    };
+
     clickEnableDisableButton(1);
-
-    verifyContentRow(1, false, 'Norske superromaner', 'Bibliotekar Sarah');
-    verifyContentRow(
-      2,
-      true,
-      'Franske fristelser',
-      'Christian Ertmann-Christiansen'
+    cy.wait('@postBelt').then(
+      xhr => expect(xhr.request.body.onFrontPage).to.be.false
     );
-    verifyContentRow(
-      3,
-      false,
-      'Uhygge bag hjemmets fire vægge',
-      'Bibliotekar Sarah'
-    );
+    verifyEnableDisableContent(false);
 
     clickEnableDisableButton(1);
-
-    verifyContentRow(1, true, 'Norske superromaner', 'Bibliotekar Sarah');
-    verifyContentRow(
-      2,
-      true,
-      'Franske fristelser',
-      'Christian Ertmann-Christiansen'
+    cy.wait('@postBelt').then(
+      xhr => expect(xhr.request.body.onFrontPage).to.be.true
     );
-    verifyContentRow(
-      3,
-      false,
-      'Uhygge bag hjemmets fire vægge',
-      'Bibliotekar Sarah'
-    );
+    verifyEnableDisableContent(true);
   });
 
   // ======================================================================================
 
   it('Test Sort with arrow keys - inrange', function() {
+    mockStorage();
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
@@ -212,6 +243,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test Sort with arrow keys - out of range', function() {
+    mockStorage();
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
@@ -251,10 +283,12 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test delete row', function() {
+    mockStorage();
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
     clickDeleteButton(2);
+    // Still missing: Test, that the DELETE operation succeeded
 
     cy.get(
       '.BeltEditor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]'
@@ -272,6 +306,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test click create new row button', function() {
+    mockStorage();
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
@@ -286,6 +321,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test create new belt page - test disabled Create button', function() {
+    mockStorage();
     const TitleText = 'Title';
 
     cy.createUser('EditorUser', 'editor');
@@ -303,6 +339,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test create new belt page - test disabled Publish Today text', function() {
+    mockStorage();
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen/opret');
 
@@ -320,6 +357,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test create new belt page - test Title and Description texts', function() {
+    mockStorage();
     const TitleText = 'Title';
     const DescriptionText = 'Description';
 
@@ -342,6 +380,7 @@ describe('Start Belt Editor test', function() {
   // ======================================================================================
 
   it('Test create new belt page - test Tag selection', function() {
+    mockStorage();
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen/opret');
 

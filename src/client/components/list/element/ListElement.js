@@ -120,6 +120,7 @@ const Description = ({
         component: 'post',
         name: 'aboutTheBook'
       })}
+      data-cy="element-description-input"
     />
   ) : (
     showDescription && (
@@ -326,7 +327,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   removeElement: async () => {
     await dispatch(removeElementFromList(ownProps.element, ownProps.list._id));
-    dispatch(storeList(ownProps.list._id));
+    ownProps.submit();
   },
   updateElement: element =>
     dispatch({

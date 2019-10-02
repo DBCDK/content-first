@@ -50,6 +50,7 @@ export default class WorkSlider extends React.Component {
           </Title>
         )}
         <Slider
+          name="workslider"
           initialScrollPos={scrollPos}
           onSwipe={index => {
             if (index > 0 && !didSwipe) {

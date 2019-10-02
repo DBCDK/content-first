@@ -80,6 +80,14 @@ async function initState(req) {
 
   const roles = (await objectStore.getAllRoles()).data;
   rolesState = rolesReducer(rolesState, {type: ROLES_RESPONSE, roles});
+  const editorBelts = await beltsRequester.fetchOwnedBelts(
+    rolesState.contentFirstEditor._id
+  );
+  beltsState = beltsReducer(beltsState, {
+    type: BELTS_LOAD_RESPONSE,
+    belts: editorBelts
+  });
+
   return {
     userReducer: userState,
     listReducer: listState,

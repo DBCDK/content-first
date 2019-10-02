@@ -15,6 +15,7 @@ import {
   listMiddleware,
   logMiddleware
 } from './client/redux/middleware';
+import thunk from 'redux-thunk';
 // import {followMiddleware} from './client/redux/follow.middleware';
 import {userMiddleware} from './client/redux/user.middleware';
 import {usersMiddleware} from './client/redux/users';
@@ -30,6 +31,11 @@ import {hotjarMiddleware} from './client/redux/hotjar.middleware';
 import openplatform from 'openplatform';
 import request from 'superagent';
 
+import StorageClient from './shared/client-side-storage.client';
+import ListRequester from './shared/list.requester';
+const storageClient = new StorageClient();
+const listRequester = new ListRequester({storageClient});
+
 // for window.scroll() back compatibility
 smoothscroll.polyfill();
 (async () => {
@@ -42,6 +48,7 @@ smoothscroll.polyfill();
 
   const store = createStore(
     [
+      thunk.withExtraArgument({storageClient, listRequester}),
       userMiddleware,
       usersMiddleware,
       requestMiddleware,

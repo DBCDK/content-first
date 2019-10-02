@@ -4,25 +4,12 @@ import {isMobile} from 'react-device-detect';
 import Icon from '../Icon';
 import './Slider.css';
 
-const params = {
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true
-  },
-  navigation: {
-    // nextEl: '.swiper-button-next',
-    // prevEl: '.swiper-button-prev'
-  },
-  slidesPerView: 'auto',
-  slidesPerGroup: 3,
-  rebuildOnUpdate: false
-};
-
 class MobileSlider extends React.Component {
   constructor(props) {
     super(props);
     this.index = props.initialScrollPos || 0;
   }
+
   componentDidMount() {
     this.slider.scrollLeft =
       (this.slider.scrollWidth / this.props.children.length) * this.index;
@@ -57,27 +44,26 @@ class MobileSlider extends React.Component {
 }
 
 class DesktopSlider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.initialScrollPos = props.initialScrollPos || 0;
-    this.state = {isBeginning: true, isEnd: false};
-  }
   init = swiper => {
     if (swiper !== this.swiper) {
       this.swiper = swiper;
       swiper.on('transitionStart', this.onSwipe);
+      let hidePagination = this.state.isBeginning && this.state.isEnd;
+
       this.setState({
         isBeginning: this.swiper.isBeginning,
-        isEnd: this.swiper.isEnd
+        isEnd: this.swiper.isEnd,
+        hidePagination: hidePagination
       });
     }
   };
-
   onSwipe = () => {
+    let hidePagination = this.state.isBeginning && this.state.isEnd;
     this.setState({
       isBeginning: this.swiper.isBeginning,
       isEnd: this.swiper.isEnd,
-      index: this.swiper.realIndex
+      index: this.swiper.realIndex,
+      hidePagination: hidePagination
     });
 
     if (this.props.onSwipe) {
@@ -88,31 +74,63 @@ class DesktopSlider extends React.Component {
       );
     }
   };
+  setSwiper = () => {
+    let p = 'show';
+    if (this.state.hidePagination) {
+      p = 'hide';
+    }
+    let props = this.props;
+    const params = {
+      pagination: {
+        el: '.swiper-pagination.swiper-pagination-' + p,
+        clickable: true
+      },
+      navigation: {
+        // nextEl: '.swiper-button-next',
+        // prevEl: '.swiper-button-prev'
+      },
+      slidesPerView: 'auto',
+      slidesPerGroup: 3,
+      rebuildOnUpdate: false
+    };
+
+    return (
+      <Swiper
+        {...params}
+        initialSlide={this.initialScrollPos}
+        ref={node => {
+          if (node) {
+            this.init(node.swiper);
+          }
+        }}
+      >
+        {props.children}
+      </Swiper>
+    );
+  };
+
+  constructor(props) {
+    super(props);
+    this.initialScrollPos = props.initialScrollPos || 0;
+    this.state = {isBeginning: true, isEnd: false, hidePagination: false};
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.children !== this.props.children) {
       if (this.swiper) {
+        let hidePagination = this.state.isBeginning && this.state.isEnd;
+        this.setState({
+          hidePagination: hidePagination
+        });
         this.swiper.update();
       }
     }
   }
 
   render() {
-    const props = this.props;
-
     return (
       <div className="col-12 p-0 desktop-slider">
-        <Swiper
-          {...params}
-          initialSlide={this.initialScrollPos}
-          ref={node => {
-            if (node) {
-              this.init(node.swiper);
-            }
-          }}
-        >
-          {props.children}
-        </Swiper>
+        {this.setSwiper()}
 
         {!this.state.isEnd && (
           <div className="swiper-button-next">
@@ -162,6 +180,7 @@ export default class Slider extends React.Component {
         initialScrollPos={this.props.initialScrollPos}
         children={this.props.children}
         onSwipe={this.props.onSwipe}
+        name={this.props.name}
       />
     );
   }

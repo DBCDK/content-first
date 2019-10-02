@@ -24,6 +24,14 @@ describe('Matomo test', function() {
     cy.clearCookies();
   });
 
+  const mockInitialState = () => {
+    cy.fixture('beltEditor/initialState.json').as('initialState');
+    cy.server();
+    cy.route('GET', '/v1/initial-state', '@initialState').as(
+      'initialStateRequest'
+    );
+  };
+
   const testBelt = (
     endpoint,
     beltDataCy,
@@ -68,6 +76,7 @@ describe('Matomo test', function() {
   };
 
   it('Can track tags belt events', function() {
+    mockInitialState();
     const tracked = testBelt(
       '/',
       '[data-cy="tagsbelt-Familiens skyggesider"]',

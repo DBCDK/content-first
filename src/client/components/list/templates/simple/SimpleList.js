@@ -38,7 +38,7 @@ export class SimpleList extends React.Component {
   };
 
   render() {
-    const {_id, list, deleteList, isListOwner} = this.props;
+    const {_id, list, deleteList, isListOwner, storeList} = this.props;
     const {added} = this.state;
     return (
       <React.Fragment>
@@ -102,6 +102,7 @@ export class SimpleList extends React.Component {
                     list={list}
                     editing={added === element.pid ? true : false}
                     showUserInfo={list._owner !== element._owner}
+                    submit={storeList}
                   />
                 );
               })}
@@ -123,7 +124,7 @@ export class SimpleList extends React.Component {
             {(list.open || isListOwner) && (
               <div className="p-3 p-md-0">
                 <AddToList
-                  list={list}
+                  id={list._id}
                   onAdd={pid => this.setState({added: pid})}
                   suggesterRef={suggester =>
                     (this.refs = {...this.refs, suggester})

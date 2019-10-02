@@ -24,6 +24,7 @@ describe('Order ', function() {
     cy.visit('/v%C3%A6rk/' + pid);
 
     cy.get('[data-cy=order-btn]').click();
+    cy.contains('Kan bestilles');
     cy.get('[data-cy=modal-done-btn]').click();
     cy.get('[data-cy=order-status]').should('have.text', '1 bog er bestilt');
   });

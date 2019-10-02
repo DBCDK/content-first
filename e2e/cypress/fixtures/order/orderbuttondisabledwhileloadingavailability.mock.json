@@ -436,6 +436,7 @@
         "expectedDelivery": "2019-10-19T00:00:00+02:00",
         "orderPossible": true,
         "orderPossibleReason": "owned_accepted"
+
       }
     ],
     "timing": 5000
