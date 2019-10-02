@@ -50,7 +50,6 @@ class CreateBelt extends React.Component {
   beltObject = (title, description, enabled, tags) => ({
     _public: true,
     _type: 'belt',
-    origin: 'beltEditor',
     key: title,
     name: title,
     subtext: description,
