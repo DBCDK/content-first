@@ -47,7 +47,7 @@ class FrontPage extends React.Component {
     const ownedBelts = [];
     const editorialBelts = [];
     Object.values(beltsMap).forEach(belt => {
-      if (belt.origin && belt.origin === 'beltEditor') {
+      if (belt._owner !== this.props.user.openplatformId) {
         editorialBelts.push(belt);
       } else {
         ownedBelts.push(belt);
@@ -59,14 +59,14 @@ class FrontPage extends React.Component {
   };
 
   render() {
-    const aBeltsMap = this.convertToSortedArray(this.props.beltsMap || {});
+    const belts = this.convertToSortedArray(this.props.beltsMap || {});
 
     return (
       <div className="frontpage">
         <Head />
         <Hero />
         <PersonalBelt mount={'frontpage-because-you-read-belt-1'} />
-        {this.renderBelts(aBeltsMap.slice(0, 2))}
+        {this.renderBelts(belts.slice(0, 2))}
         <ListsBelt
           title={T({
             component: 'list',
@@ -80,7 +80,7 @@ class FrontPage extends React.Component {
         />
         <PersonalBelt mount={'frontpage-because-you-read-belt-2'} />
         <SpotsContainer />
-        {this.renderBelts(aBeltsMap.slice(2, aBeltsMap.length))}
+        {this.renderBelts(belts.slice(2, belts.length))}
         <PersonalBelt mount={'frontpage-because-you-read-belt-3'} />
       </div>
     );
@@ -90,7 +90,8 @@ class FrontPage extends React.Component {
 const mapStateToProps = state => {
   return {
     beltsMap: state.beltsReducer.belts,
-    hash: state.routerReducer.hash
+    hash: state.routerReducer.hash,
+    user: state.userReducer
   };
 };
 
