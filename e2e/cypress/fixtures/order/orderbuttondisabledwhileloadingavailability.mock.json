@@ -423,8 +423,13 @@
     ],
     "timing": 0
   },
-  "_availability_{\"pids\":[\"870970-basis:54154313\"]}": {
+  "_availability_{\"pids\":[\"870970-basis:54154313\",\"870970-basis:46081994\"]}": {
     "data": [
+      {
+        "willLend": false,
+        "orderPossible": true,
+        "orderPossibleReason": "not_owned_ILL_loc"
+      },
       {
         "willLend": false,
         "orderPossible": true,
