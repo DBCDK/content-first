@@ -426,14 +426,17 @@
   "_availability_{\"pids\":[\"870970-basis:54154313\",\"870970-basis:46081994\"]}": {
     "data": [
       {
-        "willLend": false,
+        "willLend": true,
+        "expectedDelivery": "2019-09-26T00:00:00+02:00",
         "orderPossible": true,
-        "orderPossibleReason": "not_owned_ILL_loc"
+        "orderPossibleReason": "owned_accepted"
       },
       {
-        "willLend": false,
+        "willLend": true,
+        "expectedDelivery": "2019-10-19T00:00:00+02:00",
         "orderPossible": true,
-        "orderPossibleReason": "not_owned_ILL_loc"
+        "orderPossibleReason": "owned_accepted"
+
       }
     ],
     "timing": 5000
