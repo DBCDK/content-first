@@ -423,24 +423,17 @@
     ],
     "timing": 0
   },
-  "_availability_{\"pids\":[\"870970-basis:54154313\",\"870970-basis:46081994\"]}": {
+  "_availability_{\"pids\":[\"870970-basis:54154313\"]}": {
     "data": [
       {
-        "willLend": true,
-        "expectedDelivery": "2019-09-26T00:00:00+02:00",
+        "willLend": false,
         "orderPossible": true,
-        "orderPossibleReason": "owned_accepted"
-      },
-      {
-        "willLend": true,
-        "expectedDelivery": "2019-10-19T00:00:00+02:00",
-        "orderPossible": true,
-        "orderPossibleReason": "owned_accepted"
+        "orderPossibleReason": "not_owned_ILL_loc"
       }
     ],
     "timing": 0
   },
-  "_order_{\"pids\":[\"870970-basis:54154313\",\"870970-basis:46081994\"],\"pickUpBranch\":\"790900\"}": {
+  "_order_{\"pids\":[\"870970-basis:54154313\"],\"pickUpBranch\":\"790900\"}": {
     "data": {
       "status": "ok",
       "orsId": "1034785015"
