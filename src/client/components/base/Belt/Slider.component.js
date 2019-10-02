@@ -27,7 +27,7 @@ class MobileSlider extends React.Component {
         onScroll={e => {
           const index = Math.floor(
             e.target.scrollLeft /
-            (e.target.scrollWidth / this.props.children.length)
+              (e.target.scrollWidth / this.props.children.length)
           );
           if (this.index !== index) {
             this.index = index;
