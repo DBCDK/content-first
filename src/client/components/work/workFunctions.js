@@ -14,10 +14,9 @@ export function collectionContainsBook(work) {
   }
 
   // Type could be "Bog" and "Bog (bind x)" but NOT "Ebog"
-  // Until multivolume stories are done, "Bog (bind x)" is not valid
   const res = work.book.collection.data.filter(
     col =>
-      (col.type && col.type[0] === 'Bog') ||
+      (col.type && col.type[0].includes('Bog')) ||
       (col.type && col.type[0].includes('Tegneserie'))
   ).length;
 
