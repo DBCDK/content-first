@@ -6,7 +6,17 @@ describe('Test shortlist', function() {
     cy.wait(1000);
   });
 
+  const mockInitialState = () => {
+    cy.fixture('beltEditor/initialState.json').as('initialState');
+    cy.server();
+    cy.route('GET', '/v1/initial-state', '@initialState').as(
+      'initialStateRequest'
+    );
+  };
+
   it('Add element to shortlist', function() {
+    mockInitialState();
+
     cy.visit('/');
     cy.get('[data-cy=workcard]')
       .first()
