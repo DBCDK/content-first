@@ -161,6 +161,11 @@ export class CreateBelt extends React.Component {
 
           <Storage
             align="center"
+            // this homemade role creates a warning for the following reason:
+            // Elements with ARIA roles must use a valid, non-abstract ARIA role
+            // google this: jsx-a11y/aria-role
+            // currently skipping the warning with the following comment
+            // eslint-disable-next-line
             role="contentFirstEditor"
             render={({create}) => {
               return (
