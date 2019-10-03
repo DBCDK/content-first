@@ -19,7 +19,8 @@ export default class ListRequester {
   async fetchOwnedLists(owner) {
     const lists = (await this.storageClient.find({
       type: 'list',
-      owner
+      owner,
+      limit: 1000
     })).data;
 
     await Promise.all(
