@@ -117,8 +117,9 @@ const mapStateToProps = (state, ownProps) => {
     openplatformId: state.userReducer.openplatformId,
     profileId: state.userReducer.openplatformId,
     allowAdd:
-      ownProps.list.open ||
-      ownProps.list._owner === state.userReducer.openplatformId,
+      (ownProps.list && ownProps.list.open) ||
+      (ownProps.list &&
+        ownProps.list._owner === state.userReducer.openplatformId),
     isLoggedIn: state.userReducer.isLoggedIn
   };
 };
