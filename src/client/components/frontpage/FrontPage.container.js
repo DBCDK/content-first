@@ -55,7 +55,7 @@ class FrontPage extends React.Component {
     });
     ownedBelts.sort((a, b) => (b._created || 0) - (a._created || 0));
     editorialBelts.sort((a, b) => (a.index || 0) - (b.index || 0));
-    return ownedBelts.concat(editorialBelts);
+    return ownedBelts.concat(editorialBelts).filter(a => a.onFrontPage);
   };
 
   render() {
