@@ -53,10 +53,7 @@ class DesktopSlider extends React.Component {
     if (swiper !== this.swiper) {
       this.swiper = swiper;
       swiper.on('transitionStart', this.onSwipe);
-      let isReallyEnd =
-        this.swiper.isEnd ||
-        this.swiper.pagination.bullets.length < 2 ||
-        this.props.children.length < 4;
+      let isReallyEnd = this.getIsEnd(this.swiper);
       this.setState({
         isBeginning: this.swiper.isBeginning,
         isEnd: isReallyEnd,
@@ -65,10 +62,7 @@ class DesktopSlider extends React.Component {
     }
   };
   onSwipe = () => {
-    let isReallyEnd =
-      this.swiper.isEnd ||
-      this.swiper.pagination.bullets.length < 2 ||
-      this.props.children.length < 4;
+    let isReallyEnd = this.getIsEnd(this.swiper);
     this.setState({
       isBeginning: this.swiper.isBeginning,
       isEnd: isReallyEnd,
@@ -121,6 +115,14 @@ class DesktopSlider extends React.Component {
     );
   };
 
+  getIsEnd = swiper => {
+    return (
+      swiper.isEnd ||
+      swiper.pagination.bullets.length < 2 ||
+      this.props.children.length < 4
+    );
+  };
+
   constructor(props) {
     super(props);
     this.initialScrollPos = props.initialScrollPos || 0;
@@ -137,10 +139,7 @@ class DesktopSlider extends React.Component {
     }
     if (prevProps.children !== this.props.children) {
       if (this.swiper) {
-        let isReallyEnd =
-          this.swiper.isEnd ||
-          this.swiper.pagination.bullets.length < 2 ||
-          this.props.children.length < 4;
+        let isReallyEnd = this.getIsEnd(this.swiper);
         this.setState({
           isEnd: isReallyEnd,
           noOfPages: this.swiper.pagination.bullets.length
