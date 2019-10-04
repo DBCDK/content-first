@@ -1,7 +1,7 @@
 import React from 'react';
 import T from '../base/T';
 
-import './CreateBelt.css';
+import './BeltForm.css';
 
 import Banner from '../base/Banner';
 import Input from '../base/Input';
@@ -21,14 +21,21 @@ import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {connect} from 'react-redux';
 import {withObjects} from '../hoc/Storage/withObjects.hoc';
 import {ERROR} from '../general/Notification/Notification.component';
+import {
+  timestampToLongDate,
+  timestampToShortDate
+} from '../../utils/dateTimeFormat';
 
-class CreateBelt extends React.Component {
+const CREATE = 'create';
+
+class BeltForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      description: '',
-      enabled: false,
+      title: props.title || '',
+      description: props.description || '',
+      enabled: props.enabled ? props.enabled.toLowerCase() === 'true' : false,
+      id: props.id || '',
       saving: false
     };
   }
@@ -47,9 +54,10 @@ class CreateBelt extends React.Component {
     });
   };
 
-  beltObject = (title, description, enabled, tags) => ({
+  beltObject = (title, description, enabled, tags, id) => ({
     _public: true,
     _type: 'belt',
+    _id: id,
     key: title,
     name: title,
     subtext: description,
@@ -57,7 +65,7 @@ class CreateBelt extends React.Component {
     onFrontPage: enabled
   });
 
-  handleSubmit = async create => {
+  handleSubmit = async (create, update) => {
     if (typeof this.props.onSubmit === 'function') {
       this.props.onSubmit(this.state);
     }
@@ -65,58 +73,104 @@ class CreateBelt extends React.Component {
       this.state.title,
       this.state.description,
       this.state.enabled,
-      this.props.tags
+      this.props.tags,
+      this.props.id
     );
     try {
       this.setState({saving: true});
-      await create(belt);
+      if (this.props.mode === CREATE) {
+        await create(belt);
+      } else {
+        await update(belt);
+      }
+      this.props.historyReplace('/redaktionen');
+    } catch (e) {
+      if (this.props.mode === CREATE) {
+        this.props.showNotification(
+          ERROR,
+          T({component: 'editStartPage', name: 'createBelt'}),
+          T({component: 'editStartPage', name: 'createBeltError'}),
+          'An error happened when trying to create Belt'
+        );
+      } else {
+        this.props.showNotification(
+          ERROR,
+          T({component: 'editStartPage', name: 'updateBelt'}),
+          T({component: 'editStartPage', name: 'updateBeltError'}),
+          'An error happened when trying to update Belt'
+        );
+      }
+    }
+  };
+
+  removeBelt = async remove => {
+    try {
+      await remove(
+        this.beltObject(
+          this.state.title,
+          this.state.description,
+          this.state.enabled,
+          this.props.tags,
+          this.props.id
+        )
+      );
       this.props.historyReplace('/redaktionen');
     } catch (e) {
       this.props.showNotification(
         ERROR,
-        T({component: 'editStartPage', name: 'createBelt'}),
-        T({component: 'editStartPage', name: 'createBeltError'}),
-        'An error happened when trying to create Belt'
+        T({component: 'editStartPage', name: 'deleteBelt'}),
+        T({component: 'editStartPage', name: 'deleteBeltError'}),
+        'An error happened when trying to delete Belt'
       );
     }
   };
 
   checkDisabled = () => this.state.title.length === 0;
 
+  publishedNote = () =>
+    timestampToShortDate(parseInt(this.props.created, 10)) +
+    ', ' +
+    this.props.createdBy;
+
   render() {
     const tags = this.props
       .flattenedTags()
       .map(tag => ({id: tag.id, weight: 1}));
+    const {mode} = this.props;
     return (
-      <div className="CreateBelt">
+      <div className="BeltForm">
         <Banner
-          title={T({component: 'editStartPage', name: 'createNewBelt'})}
+          title={
+            mode === CREATE
+              ? T({component: 'editStartPage', name: 'createNewBelt'})
+              : T({component: 'editStartPage', name: 'editBelt'})
+          }
           className="fixed-width-col-md"
         />
-        <div className="CreateBelt__container col-centered">
+        <div className="BeltForm__container col-centered">
           <Input
-            className="create-belt-title"
-            name="create-belt-title"
+            className="belt-form-title"
+            name="belt-form-title"
             placeholder={T({
               component: 'editStartPage',
               name: 'placeholderTitle'
             })}
             onChange={this.handleTitleChange}
             value={this.state.title}
-            data-cy="create-belt-title-input"
+            data-cy="belt-form-title-input"
           >
             <T component="editStartPage" name="beltTitle" />
           </Input>
           <Input
-            className="create-belt-description"
-            name="create-belt-description"
+            className="belt-form-description"
+            name="belt-form-description"
             placeholder={T({
               component: 'editStartPage',
               name: 'placeholderDescription'
             })}
             onChange={this.handleDescriptionChange}
             value={this.state.description}
-            data-cy="create-belt-description-input"
+            data-cy="belt-form-description-input"
           >
             <T component="editStartPage" name="description" />
           </Input>
@@ -124,37 +178,48 @@ class CreateBelt extends React.Component {
           <label className="Input__label">
             <T component="editStartPage" name="publishing" />
           </label>
-          <span className="CreateBelt__radioButtonContainer">
-            <label className="CreateBelt__radioButton">
+          <span className="BeltForm__radioButtonContainer">
+            <label className="BeltForm__radioButton">
               <Radio
                 name="publishing-group"
                 value="disabled"
                 checked={!this.state.enabled}
                 onChange={this.handleEnabledChange}
-                data-cy="create-belt-disabled-radio-button"
+                data-cy="belt-form-disabled-radio-button"
               />
               <T component="editStartPage" name="dontShowBelt" />
             </label>
           </span>
-          <span className="CreateBelt__radioButtonContainer">
-            <label className="CreateBelt__radioButton">
+          <span className="BeltForm__radioButtonContainer">
+            <label className="BeltForm__radioButton">
               <Radio
                 name="publishing-group"
                 value="enabled"
                 checked={this.state.enabled}
                 onChange={this.handleEnabledChange}
-                data-cy="create-belt-enabled-radio-button"
+                data-cy="belt-form-enabled-radio-button"
               />
               <T component="editStartPage" name="doShowBelt" />
             </label>
-            <Text
+            <div
               className={
                 'publish-today' + (this.state.enabled ? '' : ' disabled')
               }
               data-cy="create-belt-publish-today"
             >
-              <T component="editStartPage" name="publishToday" />
-            </Text>
+              {mode === CREATE ? (
+                <Text>
+                  <T component="editStartPage" name="publishToday" />
+                </Text>
+              ) : (
+                <React.Fragment>
+                  <Text>
+                    <T component="editStartPage" name="published" />:
+                  </Text>
+                  <Text>{this.publishedNote()}</Text>
+                </React.Fragment>
+              )}
+            </div>
           </span>
           <Divider type="horizontal" variant="thin" />
           <label className="Input__label">
@@ -169,7 +234,7 @@ class CreateBelt extends React.Component {
         </div>
         <FilterCards />
         <TagsBelt
-          mount={'createBelt' + JSON.stringify(tags)}
+          mount={'beltForm' + JSON.stringify(tags)}
           id={this.state.title}
           name={this.state.title}
           subtext={this.state.description}
@@ -179,35 +244,58 @@ class CreateBelt extends React.Component {
           <Button
             ref={this.cancelButton}
             id="cancel-button"
-            align="center"
+            align="left"
             size="large"
             type="quaternary"
             href="redaktionen"
             hrefSelf={true}
-            dataCy="create-belt-cancel-button"
+            dataCy="belt-form-cancel-button"
           >
             <T component="general" name="cancel" />
           </Button>
 
+          {this.props.mode === CREATE || (
+            <Storage
+              align="left"
+              role="contentFirstEditor"
+              render={({remove}) => (
+                <Button
+                  ref={this.deleteButton}
+                  id="delete-button"
+                  size="large"
+                  type="quaternary"
+                  onClick={() => this.removeBelt(remove)}
+                  dataCy="belt-form-delete-button"
+                >
+                  <T component="editStartPage" name="delete" />
+                </Button>
+              )}
+            />
+          )}
+
           <Storage
-            align="center"
+            align="right"
             // this homemade role creates a warning for the following reason:
             // Elements with ARIA roles must use a valid, non-abstract ARIA role
             // google this: jsx-a11y/aria-role
             // currently skipping the warning with the following comment
             // eslint-disable-next-line
             role="contentFirstEditor"
-            render={({create}) => (
+            render={({create, update}) => (
               <Button
-                ref={this.createBeltButton}
+                ref={this.beltFormButton}
                 align="center"
                 size="large"
                 type="quaternary"
-                onClick={() => this.handleSubmit(create)}
+                onClick={() => this.handleSubmit(create, update)}
                 disabled={this.checkDisabled()}
-                dataCy="create-belt-ok-button"
+                dataCy="belt-form-ok-button"
               >
-                <T component="editStartPage" name="createBelt" />
+                {this.props.mode === CREATE ? (
+                  <T component="editStartPage" name="createBelt" />
+                ) : (
+                  <T component="editStartPage" name="saveBelt" />
+                )}
               </Button>
             )}
           />
@@ -245,4 +333,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   () => {},
   mapDispatchToProps
-)(withObjects(withHistory(withTagsFromUrl(CreateBelt))));
+)(withObjects(withHistory(withTagsFromUrl(BeltForm))));
