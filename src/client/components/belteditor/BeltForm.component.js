@@ -21,10 +21,7 @@ import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {connect} from 'react-redux';
 import {withObjects} from '../hoc/Storage/withObjects.hoc';
 import {ERROR} from '../general/Notification/Notification.component';
-import {
-  timestampToLongDate,
-  timestampToShortDate
-} from '../../utils/dateTimeFormat';
+import {timestampToShortDate} from '../../utils/dateTimeFormat';
 
 const CREATE = 'create';
 
