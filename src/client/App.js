@@ -102,7 +102,10 @@ class App extends Component {
               <Article path={`/${pathSplit[1]}/${pathSplit[2]}`} />
             }
           >
-            <BeltForm {...this.beltFormParams(this.props.routerState.params)} />
+            <BeltForm
+              mode="edit"
+              {...this.beltFormParams(this.props.routerState.params)}
+            />
           </Role>
         );
       } else {
