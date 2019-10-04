@@ -21,7 +21,7 @@ import Article from './components/article/Article.component';
 import Animate from './components/base/Animate';
 import CookieWarning from './components/general/CookieWarning/CookieWarning';
 import BeltEditor from './components/belteditor/BeltEditor.component';
-import CreateBelt from './components/belteditor/CreateBelt.component';
+import BeltForm from './components/belteditor/BeltForm.component';
 import PrintLayout from './components/list/printLayout/PrintLayout';
 import {OPEN_MODAL} from './redux/modal.reducer';
 
@@ -91,7 +91,18 @@ class App extends Component {
               <Article path={`/${pathSplit[1]}/${pathSplit[2]}`} />
             }
           >
-            <CreateBelt />
+            <BeltForm mode="create" />
+          </Role>
+        );
+      } else if (pathSplit[2] === 'rediger') {
+        currentPage = (
+          <Role
+            requiredRoles={[ADMIN_ROLE, EDITOR_ROLE]}
+            onAccessDenied={
+              <Article path={`/${pathSplit[1]}/${pathSplit[2]}`} />
+            }
+          >
+            <BeltForm {...this.beltFormParams(this.props.routerState.params)} />
           </Role>
         );
       } else {
@@ -150,6 +161,16 @@ class App extends Component {
       </div>
     );
   }
+
+  beltFormParams = params => ({
+    title: params.title ? params.title[0] : '',
+    description: params.description ? params.description[0] : '',
+    enabled: params.enabled ? params.enabled[0] : false,
+    tags: params.tags ? params.tags[0] : [],
+    createdBy: params.createdBy ? params.createdBy[0] : '',
+    created: params.created ? params.created[0] : '',
+    id: params.id ? params.id[0] : ''
+  });
 }
 
 const mapStateToProps = state => {

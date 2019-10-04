@@ -1118,6 +1118,10 @@
         "da": "Opret nyt bånd",
         "en": "Create new belt"
       },
+      "editBelt": {
+        "da": "Rediger bånd",
+        "en": "Edit belt"
+      },
       "placeholderTitle": {
         "da": "Skriv titel",
         "en": "Type a title"
@@ -1170,6 +1174,10 @@
         "da": "Der opstod en fejl under forsøg på at opdatere et bånd",
         "en": "An error occured when attempting to update a belt"
       },
+      "delete": {
+        "da": "Slet",
+        "en": "Delete"
+      },
       "deleteBelt": {
         "da": "Slet bånd",
         "en": "Delete belt"
@@ -1177,6 +1185,14 @@
       "deleteBeltError": {
         "da": "Der opstod en fejl under forsøg på at slette et bånd",
         "en": "An error occured when attempting to delete a belt"
+      },
+      "saveBelt": {
+        "da": "Gem bånd",
+        "en": "Save belt"
+      },
+      "published": {
+        "da": "Publiceret",
+        "en": "Published"
       }
     }
   },
