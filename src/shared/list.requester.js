@@ -1,5 +1,3 @@
-import {findIndex} from 'lodash';
-
 export default class ListRequester {
   constructor({storageClient}) {
     this.storageClient = storageClient;
@@ -17,24 +15,34 @@ export default class ListRequester {
   }
 
   async fetchOwnedLists(owner) {
-    const lists = (await this.storageClient.find({
+    let lists = (await this.storageClient.find({
       type: 'list',
       owner,
       limit: 1000
     })).data;
+    lists.sort((l1, l2) => l1._created - l2._created);
+    let didRead = lists.filter(
+      list => list.type === 'SYSTEM_LIST' && list.title === 'Har læst'
+    );
+    let willRead = lists.filter(
+      list => list.type === 'SYSTEM_LIST' && list.title === 'Vil læse'
+    );
+    lists = lists.filter(list => list.type !== 'SYSTEM_LIST');
+    const toBeDeleted = [...didRead.slice(1), ...willRead.slice(1)];
+    if (didRead.length === 0) {
+      didRead.push(await this.createSystemList('Har læst'));
+    }
+    if (willRead.length === 0) {
+      willRead.push(await this.createSystemList('Vil læse'));
+    }
+    lists = [didRead[0], willRead[0], ...lists];
+    await Promise.all(toBeDeleted.map(list => this.deleteList(list._id)));
 
     await Promise.all(
       lists.map(async list => {
         list.tmpEntries = await this.fetchEntries(list);
       })
     );
-
-    if (findIndex(lists, {type: 'SYSTEM_LIST', title: 'Har læst'}) === -1) {
-      lists.push(await this.createSystemList('Har læst'));
-    }
-    if (findIndex(lists, {type: 'SYSTEM_LIST', title: 'Vil læse'}) === -1) {
-      lists.push(await this.createSystemList('Vil læse'));
-    }
 
     return lists;
   }
