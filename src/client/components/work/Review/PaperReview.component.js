@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import ReviewRating from './ReviewRating.component';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import T from '../../base/T';
-import PopupLink from '../../base/PopupLink/PopupLink';
+import Button from '../../base/Button';
 
 /**
  * This class displays a single paper review item
@@ -87,9 +87,9 @@ export class PaperReview extends React.Component {
         case 'fullAccess': {
           reviewLink = (
             <Text type="body" className="d-flex Review__block--lector mb-1">
-              <button
-                class="link"
-                type="small"
+              <Button
+                type="link"
+                size="medium"
                 onClick={() => {
                   this.props.showReviewModal(
                     'paperReview',
@@ -101,14 +101,16 @@ export class PaperReview extends React.Component {
                 <span>
                   <T component="work" name={'readReview'} />
                 </span>
-              </button>
+              </Button>
             </Text>
           );
           break;
         }
         case 'noInfomediaAccess': {
           reviewLink = (
-            <PopupLink
+            <Button
+              type="link"
+              size="medium"
               link={<T component="work" name={'readReview'} />}
               info={<T component="work" name={'noInfomediaAccess'} />}
             />
@@ -119,9 +121,9 @@ export class PaperReview extends React.Component {
         case 'mustLogIn': {
           reviewLink = (
             <Text type="body" className="d-flex Review__block--lector mb-1">
-              <button
-                class="link"
-                type="small"
+              <Button
+                type="link"
+                size="medium"
                 onClick={() => {
                   this.props.requireLogin();
                 }}
@@ -129,7 +131,7 @@ export class PaperReview extends React.Component {
                 <span>
                   <T component="work" name={'readReview'} />
                 </span>
-              </button>
+              </Button>
             </Text>
           );
           break;

@@ -41,13 +41,19 @@ exports[`ResumeReview render function 1`] = `
   <p
     className=" Text Text__body "
   >
-    <Link
-      className="Review__block--link mb0"
+    <button
+      className="Review__block--link mb0
+      btn Button Button__medium Button__link "
+      data-cy=""
+      disabled={false}
       onClick={[Function]}
-      type="small"
     >
-      Læs materialevurderingen
-    </Link>
+      
+      <span>
+        Læs materialevurderingen
+      </span>
+      
+    </button>
   </p>
 </div>
 `;
@@ -93,13 +99,19 @@ exports[`ResumeReview render function 2`] = `
   <p
     className=" Text Text__body "
   >
-    <Link
-      className="Review__block--link mb0"
+    <button
+      className="Review__block--link mb0
+      btn Button Button__medium Button__link "
+      data-cy=""
+      disabled={false}
       onClick={[Function]}
-      type="small"
     >
-      Læs materialevurderingen
-    </Link>
+      
+      <span>
+        Læs materialevurderingen
+      </span>
+      
+    </button>
   </p>
 </div>
 `;
@@ -145,13 +157,19 @@ exports[`ResumeReview render function 3`] = `
   <p
     className=" Text Text__body "
   >
-    <Link
-      className="Review__block--link mb0"
+    <button
+      className="Review__block--link mb0
+      btn Button Button__medium Button__link "
+      data-cy=""
+      disabled={false}
       onClick={[Function]}
-      type="small"
     >
-      Læs materialevurderingen
-    </Link>
+      
+      <span>
+        Læs materialevurderingen
+      </span>
+      
+    </button>
   </p>
 </div>
 `;
@@ -197,13 +215,19 @@ exports[`ResumeReview render function 4`] = `
   <p
     className=" Text Text__body "
   >
-    <Link
-      className="Review__block--link mb0"
+    <button
+      className="Review__block--link mb0
+      btn Button Button__medium Button__link "
+      data-cy=""
+      disabled={false}
       onClick={[Function]}
-      type="small"
     >
-      Læs materialevurderingen
-    </Link>
+      
+      <span>
+        Læs materialevurderingen
+      </span>
+      
+    </button>
   </p>
 </div>
 `;

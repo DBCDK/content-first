@@ -5,8 +5,8 @@ import Title from '../../base/Title';
 import Text from '../../base/Text';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import {connect} from 'react-redux';
-import Link from '../../general/Link.component';
 import TruncateMarkup from 'react-truncate-markup';
+import Button from '../../base/Button';
 
 /**
  * This class displays a single resume review item
@@ -53,9 +53,10 @@ export class ResumeReview extends React.Component {
           </em>
         </Text>
         <Text>
-          <Link
+          <Button
+            type="link"
+            size="medium"
             className="Review__block--link mb0"
-            type="small"
             onClick={() => {
               this.props.showReviewModal(
                 this.props.reviewType,
@@ -65,7 +66,7 @@ export class ResumeReview extends React.Component {
             }}
           >
             Læs materialevurderingen
-          </Link>
+          </Button>
         </Text>
       </div>
     );

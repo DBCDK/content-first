@@ -90,6 +90,11 @@
   text-decoration: underline !important;
 }
 
+
+.Review__container button{
+  padding: 0 !important;
+}
+
 .show-review--modal {
   max-width: 680px;
   width: fit-content;
