@@ -47,25 +47,3 @@ button:disabled,
 button[disabled] {
   color: var(--silver-chalice);
 }
-
-
-
-button.link span {
-  text-decoration: underline;
-  color: var(--petroleum);
-}
-button.link:hover span,
-button.link:focus span {
-  color: var(--malibu);
-}
-button.link {
-  font-family: "Verdana" sans-serif;
-  font-size: 1em;
-  text-align: left;
-  color: var(--petroleum);
-  background: none;
-  margin: 0;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-}
