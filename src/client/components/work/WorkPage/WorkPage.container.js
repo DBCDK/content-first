@@ -116,7 +116,6 @@ class WorkPage extends React.Component {
 
     const isbn =
       book.identifierISBN || (book.identifierISBN && book.identifierISBN[0]);
-
     return (
       <div>
         <Head
@@ -278,36 +277,30 @@ class WorkPage extends React.Component {
                       })}
                     {!work.collectionHasLoaded && (
                       <React.Fragment>
-                        <a>
-                          <Button
-                            type="tertiary"
-                            size="medium"
-                            className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
-                          >
-                            <Icon name={'book'} />
-                            <T component="general" name="book" />
-                          </Button>
-                        </a>
-                        <a>
-                          <Button
-                            type="tertiary"
-                            size="medium"
-                            className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
-                          >
-                            <Icon name={'language'} />
-                            <T component="general" name="ebook" />
-                          </Button>
-                        </a>
-                        <a>
-                          <Button
-                            type="tertiary"
-                            size="medium"
-                            className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
-                          >
-                            <Icon name={'voicemail'} />
-                            <T component="general" name="audiobook" />
-                          </Button>
-                        </a>
+                        <Button
+                          type="tertiary"
+                          size="medium"
+                          className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
+                        >
+                          <Icon name={'book'} />
+                          <T component="general" name="book" />
+                        </Button>
+                        <Button
+                          type="tertiary"
+                          size="medium"
+                          className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
+                        >
+                          <Icon name={'language'} />
+                          <T component="general" name="ebook" />
+                        </Button>
+                        <Button
+                          type="tertiary"
+                          size="medium"
+                          className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
+                        >
+                          <Icon name={'voicemail'} />
+                          <T component="general" name="audiobook" />
+                        </Button>
                       </React.Fragment>
                     )}
                   </div>

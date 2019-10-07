@@ -90,6 +90,17 @@
   text-decoration: underline !important;
 }
 
+
+.Review__container button{
+  padding: 0 !important;
+}
+
+.Review__container button.Button__link:hover span,
+.Review__container button.Button__link:focus span {
+  color: var(--malibu);
+}
+
+
 .show-review--modal {
   max-width: 680px;
   width: fit-content;

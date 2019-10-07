@@ -42,7 +42,9 @@ export class CommentContainer extends React.Component {
       comment,
       owner: this.props.user.openplatformId
     });
-    this.setState({showCount: ++this.state.showCount, newCommentValue: ''});
+
+    let newCount = this.state.showCount + 1;
+    this.setState({showCount: newCount, newCommentValue: ''});
   };
 
   componentDidUpdate(prevProps) {

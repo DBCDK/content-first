@@ -47,3 +47,4 @@ button:disabled,
 button[disabled] {
   color: var(--silver-chalice);
 }
+

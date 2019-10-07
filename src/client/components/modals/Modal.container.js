@@ -4,7 +4,6 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import OrderModal from './OrderModal.container';
 import LoginModal from './LoginModal.component';
-import ProfileModal from './ProfileModal/ProfileModal.component';
 import ConfirmModal from './ConfirmModal.component';
 import ListSettingsModal from './ListSettingsModal.container';
 import ReorderListModal from './ReorderListModal.container';
@@ -57,9 +56,6 @@ class Modal extends React.Component {
           close={this.props.close('login')}
         />
       );
-    }
-    if (this.props.modalState.profile.open) {
-      modal = <ProfileModal context={this.props.modalState.profile.context} />;
     }
     if (this.props.modalState.confirm.open) {
       modal = (

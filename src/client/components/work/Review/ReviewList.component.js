@@ -7,6 +7,7 @@ import T from '../../base/T';
 import SkeletonText from '../../base/Skeleton/Text';
 import {timestampToShortDate} from '../../../utils/dateTimeFormat';
 import './Review.css';
+import Button from '../../base/Button';
 
 /**
  * This class displays a list of reviews
@@ -92,9 +93,16 @@ class ReviewList extends React.Component {
             </Text>
 
             <Text type="body" className="d-flex Review__block--lector mb-1">
-              <a type="small" onClick={() => {}} target="_blank" href={rev.url}>
+              <Button
+                type="link"
+                size="medium"
+                onClick={() => {}}
+                target="_blank"
+                rel="noopener noreferrer"
+                href={rev.url}
+              >
                 <T component="work" name={'readReview'} />
-              </a>
+              </Button>
             </Text>
           </span>
           {date && (

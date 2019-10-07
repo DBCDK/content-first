@@ -125,7 +125,7 @@
   .spots-container {
     display: flex;
     overflow: scroll;
-    justify-content: start;
+    justify-content: flex-start;
     -webkit-overflow-scrolling: touch;
   }
   .spot-item-wide-container,
