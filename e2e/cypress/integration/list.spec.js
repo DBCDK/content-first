@@ -338,4 +338,50 @@ describe('List test', function() {
     cy.contains('Har læst');
     cy.contains('Vil læse');
   });
+
+  it('Cleans up duplicate system lists', function() {
+    // the initial state will create system lists
+    cy.request('/v1/initial-state');
+
+    // but we create an extra system list
+    // and also a custom list
+    cy.request('POST', '/v1/object', {
+      type: 'SYSTEM_LIST',
+      title: 'Vil læse',
+      description: '',
+      list: [],
+      _type: 'list'
+    }).then(systemListRes => {
+      const systemListId = systemListRes.body.data._id;
+      cy.request('POST', '/v1/object', {
+        type: 'CUSTOM_LIST',
+        title: 'Offentlig liste',
+        description: 'masser af de gode',
+        list: [],
+        open: true,
+        _type: 'list',
+        _public: true
+      }).then(customListRes => {
+        const customListId = customListRes.body.data._id;
+
+        // the newly created system list should not be part of the initial state
+        // but the custom list shall
+
+        cy.request('/v1/initial-state').then(initState => {
+          expect(
+            Object.values(initState.body.data.listReducer.lists)
+          ).to.have.length.of(3);
+          expect(initState.body.data.listReducer.lists[customListId]).to.not.be
+            .null;
+
+          cy.request({
+            url: `/v1/object/${systemListId}`,
+            failOnStatusCode: false
+          }).then(systemListResAfter => {
+            expect(systemListResAfter.status).to.eq(404);
+          });
+        });
+      });
+    });
+  });
 });
