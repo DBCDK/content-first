@@ -205,4 +205,56 @@ describe('Filter page test', function() {
       .its('length')
       .should('eq', 1);
   });
+
+  it('Should keep input focus on book select - mouse click', function() {
+    cy.visit('/find');
+    cy.get('[data-cy=search-bar-input]')
+      .first()
+      .type('c');
+
+    cy.get('[data-cy=suggestion-element]')
+      .first()
+      .click();
+
+    cy.get('[data-cy=search-bar-input]').should('have.focus');
+  });
+
+  it('Should keep input focus on book select - enter click', function() {
+    cy.visit('/find');
+    cy.get('[data-cy=search-bar-input]')
+      .first()
+      .type('x')
+      .type('{enter}');
+
+    cy.get('[data-cy=search-bar-input]').should('have.focus');
+  });
+
+  it('MOBILE: Should keep input focus on book select - mouse click', function() {
+    cy.viewport('iphone-6');
+    cy.visit('/find');
+    cy.get('[data-cy=search-bar-input]')
+      .last()
+      .type('c');
+
+    cy.get('[data-cy=suggestion-element]')
+      .first()
+      .click();
+
+    cy.get('[data-cy=search-bar-input]')
+      .last()
+      .should('not.have.focus');
+  });
+
+  it('MOBILE: Should keep input focus on book select - enter click', function() {
+    cy.viewport('iphone-6');
+    cy.visit('/find');
+    cy.get('[data-cy=search-bar-input]')
+      .last()
+      .type('x')
+      .type('{enter}');
+
+    cy.get('[data-cy=search-bar-input]')
+      .last()
+      .should('not.have.focus');
+  });
 });
