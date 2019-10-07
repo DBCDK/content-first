@@ -6,6 +6,7 @@ import {BOOKS_PARTIAL_UPDATE} from '../../../redux/books.reducer';
 import Icon from '../../base/Icon';
 import T from '../../base/T';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
+
 import _ from 'lodash';
 
 const getTypeData = suggestion => {
@@ -154,7 +155,13 @@ class TagsSuggester extends React.Component {
   }
 
   handleKeyPress(e) {
-    if (e.key === 'Enter' && this.searchBar && this.searchBar.input) {
+    if (
+      e.key === 'Enter' &&
+      this.searchBar &&
+      this.searchBar.input &&
+      // is moble device
+      window.innerWidth < 500
+    ) {
       this.searchBar.input.blur();
     }
   }
