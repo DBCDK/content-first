@@ -202,7 +202,7 @@ class BeltForm extends React.Component {
               className={
                 'publish-today' + (this.state.enabled ? '' : ' disabled')
               }
-              data-cy="create-belt-publish-today"
+              data-cy="belt-form-publish-today"
             >
               {mode === CREATE ? (
                 <Text>
