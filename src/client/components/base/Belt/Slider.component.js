@@ -45,25 +45,29 @@ class MobileSlider extends React.Component {
 
 class DesktopSlider extends React.Component {
   init = swiper => {
+    if (swiper.pagination.bullets.length !== this.state.noOfPages) {
+      this.setState({
+        noOfPages: swiper.pagination.bullets.length
+      });
+    }
     if (swiper !== this.swiper) {
       this.swiper = swiper;
       swiper.on('transitionStart', this.onSwipe);
-      let hidePagination = this.state.isBeginning && this.state.isEnd;
-
+      let isReallyEnd = this.getIsEnd(this.swiper);
       this.setState({
         isBeginning: this.swiper.isBeginning,
-        isEnd: this.swiper.isEnd,
-        hidePagination: hidePagination
+        isEnd: isReallyEnd,
+        noOfPages: this.swiper.pagination.bullets.length
       });
     }
   };
   onSwipe = () => {
-    let hidePagination = this.state.isBeginning && this.state.isEnd;
+    let isReallyEnd = this.getIsEnd(this.swiper);
     this.setState({
       isBeginning: this.swiper.isBeginning,
-      isEnd: this.swiper.isEnd,
+      isEnd: isReallyEnd,
       index: this.swiper.realIndex,
-      hidePagination: hidePagination
+      noOfPages: this.swiper.pagination.bullets.length
     });
 
     if (this.props.onSwipe) {
@@ -76,13 +80,15 @@ class DesktopSlider extends React.Component {
   };
   setSwiper = () => {
     let p = 'show';
-    if (this.state.hidePagination) {
+    if (this.state.noOfPages < 2) {
       p = 'hide';
     }
     let props = this.props;
     const params = {
       pagination: {
-        el: '.swiper-pagination.swiper-pagination-' + p,
+        el:
+          '.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-' +
+          p,
         clickable: true
       },
       navigation: {
@@ -109,18 +115,34 @@ class DesktopSlider extends React.Component {
     );
   };
 
+  getIsEnd = swiper => {
+    return (
+      swiper.isEnd ||
+      swiper.pagination.bullets.length < 2 ||
+      this.props.children.length < 4
+    );
+  };
+
   constructor(props) {
     super(props);
     this.initialScrollPos = props.initialScrollPos || 0;
-    this.state = {isBeginning: true, isEnd: false, hidePagination: false};
+    this.state = {isBeginning: true, isEnd: false, noOfPages: 3};
   }
 
   componentDidUpdate(prevProps) {
+    if (this.swiper) {
+      if (this.swiper.pagination.bullets.length !== this.state.noOfPages) {
+        this.setState({
+          noOfPages: this.swiper.pagination.bullets.length
+        });
+      }
+    }
     if (prevProps.children !== this.props.children) {
       if (this.swiper) {
-        let hidePagination = this.state.isBeginning && this.state.isEnd;
+        let isReallyEnd = this.getIsEnd(this.swiper);
         this.setState({
-          hidePagination: hidePagination
+          isEnd: isReallyEnd,
+          noOfPages: this.swiper.pagination.bullets.length
         });
         this.swiper.update();
       }
