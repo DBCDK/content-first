@@ -65,7 +65,7 @@ export class ResumeReview extends React.Component {
               );
             }}
           >
-            Læs materialevurderingen
+            <span> Læs materialevurderingen </span>
           </Button>
         </Text>
       </div>

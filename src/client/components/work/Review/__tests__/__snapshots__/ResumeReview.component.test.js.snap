@@ -50,7 +50,9 @@ exports[`ResumeReview render function 1`] = `
     >
       
       <span>
-        Læs materialevurderingen
+        <span>
+           Læs materialevurderingen 
+        </span>
       </span>
       
     </button>
@@ -108,7 +110,9 @@ exports[`ResumeReview render function 2`] = `
     >
       
       <span>
-        Læs materialevurderingen
+        <span>
+           Læs materialevurderingen 
+        </span>
       </span>
       
     </button>
@@ -166,7 +170,9 @@ exports[`ResumeReview render function 3`] = `
     >
       
       <span>
-        Læs materialevurderingen
+        <span>
+           Læs materialevurderingen 
+        </span>
       </span>
       
     </button>
@@ -224,7 +230,9 @@ exports[`ResumeReview render function 4`] = `
     >
       
       <span>
-        Læs materialevurderingen
+        <span>
+           Læs materialevurderingen 
+        </span>
       </span>
       
     </button>

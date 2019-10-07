@@ -169,6 +169,11 @@
   padding: 0;
 }
 
+.review_list__review button.Button__link:hover span,
+.review_list__review button.Button__link:focus span {
+  color: var(--malibu);
+}
+
 .WorkPage__review:hover .review_list__review__details {
   color: var(--dark-cyan);
 }
