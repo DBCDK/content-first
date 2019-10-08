@@ -215,15 +215,25 @@ describe('List test', function() {
     });
   });
 
-  it('Can move elements from shortlist to an other list', function() {
+  it.only('Can move elements from shortlist to an other list', function() {
+    cy.fixture('shortlist.json').as('shortlist');
+    cy.server();
+    cy.route('GET', '/v1/shortlist', '@shortlist').as('shortlistRequest');
     cy.visit('/huskeliste');
-    waitForListsLoaded();
-    cy.addElementsToShortlist(3);
+    cy.wait('@shortlistRequest');
     cy.get('[data-cy=add-all-to-list]').click();
     cy.get(
       '[data-cy=add-all-to-list] [data-cy="add-to-list-button-Har læst"]'
     ).click();
-    cy.contains('3 bøger tilføjet til listen');
+    cy.get('[data-cy=topbar-lists]').click();
+    cy.get('[data-cy="list-overview-element-Har læst"]').click();
+    cy.request('/v1/initial-state').then(initState => {
+      const didRead = Object.values(
+        initState.body.data.listReducer.lists
+      ).filter(l => l.title === 'Har læst')[0];
+
+      expect(didRead.list).to.have.length.of(20);
+    });
   });
 
   it('Can change element order in a list', function() {

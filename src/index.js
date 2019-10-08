@@ -52,7 +52,7 @@ smoothscroll.polyfill();
       //   var t0 = performance.now();
       //   let result = next(action);
       //   var t1 = performance.now();
-      //   console.log(`${action.type}`, t1 - t0);
+      //   console.log(`${action.type}`, action, t1 - t0);
       //   return result;
       // },
       thunk.withExtraArgument({storageClient, listRequester}),

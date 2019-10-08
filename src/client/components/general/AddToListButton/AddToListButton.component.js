@@ -8,6 +8,7 @@ import Button from '../../base/Button';
 import T from '../../base/T/';
 import {withList, withLists} from '../../hoc/List/';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
+
 import './AddToListButton.css';
 
 const MenuEntry = withList(
@@ -66,11 +67,11 @@ const MenuEntry = withList(
 );
 
 export class AddToListButton extends React.Component {
+  state = {show: false};
   componentDidMount() {
     document.addEventListener('mouseup', this.forceClose);
     document.addEventListener('scroll', this.dropdownDirection);
   }
-
   componentWillUnmount() {
     window.removeEventListener('mouseup', this.forceClose);
     window.removeEventListener('scroll', this.dropdownDirection);
@@ -89,15 +90,19 @@ export class AddToListButton extends React.Component {
 
   // Force dropdown to show
   forceOpen = () => {
-    if (this.dropdown) {
-      this.dropdown.classList.add('show');
+    if (!this.state.show) {
+      this.setState({show: true});
     }
   };
 
   // Force dropdown to close
-  forceClose = () => {
-    if (this.dropdown) {
-      this.dropdown.classList.remove('show');
+  forceClose = e => {
+    if (this.dropdown && this.dropdown.contains(e.target)) {
+      // inside click
+      return;
+    }
+    if (this.state.show) {
+      this.setState({show: false});
     }
   };
 
@@ -268,7 +273,9 @@ export class AddToListButton extends React.Component {
 
         <ul
           ref={e => (this.dropdown = e)}
-          className="AddToListButton__Dropdown AddToListButton__Dropdown__ShowLists"
+          className={`AddToListButton__Dropdown AddToListButton__Dropdown__ShowLists ${
+            this.state.show ? 'show' : ''
+          }`}
         >
           <li
             className="AddToListButton__Mobile__Back"
@@ -294,10 +301,15 @@ export class AddToListButton extends React.Component {
             <T component="general" name="lists" />
           </li>
 
-          <div className="AddToListButton__Lists">
-            {this.createDropdownElement(systemListsArr, systemListsArr.length)}
-            {this.createDropdownElement(customLists, customLists.length)}
-          </div>
+          {this.state.show && (
+            <div className="AddToListButton__Lists">
+              {this.createDropdownElement(
+                systemListsArr,
+                systemListsArr.length
+              )}
+              {this.createDropdownElement(customLists, customLists.length)}
+            </div>
+          )}
 
           <li
             className="border-top d-none d-sm-flex align-items-center"

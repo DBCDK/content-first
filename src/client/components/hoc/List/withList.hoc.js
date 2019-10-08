@@ -74,21 +74,23 @@ export const withList = WrappedComponent => {
      * Add multiple elements to list
      **/
     addElementsToList = works => {
-      const {list} = this.props;
       works.forEach(work =>
         this.addElementToList(
           {book: work.book, description: work.origin || '...'},
-          list._id
+          false
         )
       );
+      this.storeList();
     };
 
     /**
      * Add single element to list
      **/
-    addElementToList = async work => {
+    addElementToList = async (work, store = true) => {
       this.props.addElementToList(work);
-      this.storeList();
+      if (store) {
+        this.storeList();
+      }
     };
 
     /**
