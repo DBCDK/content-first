@@ -6,14 +6,8 @@ import Icon from '../../base/Icon';
 import ToastMessage from '../../base/ToastMessage';
 import Button from '../../base/Button';
 import T from '../../base/T/';
-import {withList} from '../../hoc/List/';
+import {withList, withLists} from '../../hoc/List/';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
-
-import {
-  CUSTOM_LIST,
-  SYSTEM_LIST,
-  createGetLists
-} from '../../../redux/list.reducer';
 import './AddToListButton.css';
 
 const MenuEntry = withList(
@@ -35,7 +29,7 @@ const MenuEntry = withList(
           `AddToListButton__${list.type} ${classLast}` +
           (multiple ? ' pl-3' : '')
         }
-        data-cy="add-to-list-button"
+        data-cy={`add-to-list-button-${list.title}`}
         onClick={() => {
           if (isMobileOnly) {
             // Dont auto-close dropdown on mobile devices - multiselection is allowed
@@ -125,7 +119,7 @@ export class AddToListButton extends React.Component {
   };
 
   // Title for addToList button
-  constructTitle(defaultTitle) {
+  constructTitle(defaultTitle, customLists, systemLists) {
     const work = this.props.work;
     const book = work.book;
 
@@ -135,13 +129,13 @@ export class AddToListButton extends React.Component {
 
     // Construct title based on which lists the work is presented on.
     if (this.props.isLoggedIn) {
-      this.props.customLists.forEach(list => {
+      customLists.forEach(list => {
         let status = this.pidInList(book.pid, list.list);
         if (status) {
           customTitle += list.title + ', ';
         }
       });
-      this.props.systemLists.forEach(list => {
+      systemLists.forEach(list => {
         let status = this.pidInList(book.pid, list.list);
         if (status) {
           systemTitle += list.title + ', ';
@@ -202,19 +196,23 @@ export class AddToListButton extends React.Component {
       work,
       isLoggedIn,
       className = '',
-      customLists = [],
-      systemLists = [],
       openModal,
       multiple,
-      elements
+      elements,
+      getCustomLists,
+      getSystemLists
     } = this.props;
+
+    const customLists = getCustomLists();
+    const systemLists = getSystemLists();
+    const systemListsArr = [systemLists.didRead, systemLists.willRead];
 
     const defaultTitle = multiple
       ? T({component: 'list', name: 'addAllToList'})
       : T({component: 'list', name: 'addToList'});
     const buttonTitle = multiple
       ? defaultTitle
-      : this.constructTitle(defaultTitle);
+      : this.constructTitle(defaultTitle, customLists, systemListsArr);
 
     const buttonActive =
       defaultTitle !== buttonTitle ? 'AddToListButton__Active' : '';
@@ -297,7 +295,7 @@ export class AddToListButton extends React.Component {
           </li>
 
           <div className="AddToListButton__Lists">
-            {this.createDropdownElement(systemLists, systemLists.length)}
+            {this.createDropdownElement(systemListsArr, systemListsArr.length)}
             {this.createDropdownElement(customLists, customLists.length)}
           </div>
 
@@ -330,21 +328,8 @@ export class AddToListButton extends React.Component {
   }
 }
 
-const customListSelector = createGetLists();
-const systemListsSelector = createGetLists();
-
 const mapStateToProps = state => {
   return {
-    customLists: customListSelector(state, {
-      type: CUSTOM_LIST,
-      _owner: state.userReducer.openplatformId,
-      sort: 'created'
-    }),
-    systemLists: systemListsSelector(state, {
-      type: SYSTEM_LIST,
-      _owner: state.userReducer.openplatformId,
-      sort: true
-    }),
     isLoggedIn: state.userReducer.isLoggedIn
   };
 };
@@ -363,4 +348,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddToListButton);
+)(withLists(AddToListButton));

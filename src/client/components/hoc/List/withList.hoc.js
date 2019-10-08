@@ -4,10 +4,7 @@ import {toast} from 'react-toastify';
 import ToastMessage from '../../base/ToastMessage';
 import T from '../../base/T';
 import Link from '../../general/Link.component';
-import {getListByIdSelector} from '../../../redux/list.reducer';
 import * as listThunks from '../../../redux/list.thunk';
-
-const getListById = getListByIdSelector();
 
 const createdToast = list => {
   toast(
@@ -137,7 +134,7 @@ export const withList = WrappedComponent => {
   const mapStateToProps = (state, ownProps) => {
     const _id = ownProps.id || ownProps._id;
     const openplatformId = state.userReducer.openplatformId;
-    const list = getListById(state, {_id});
+    const list = state.listReducer.lists[_id];
 
     return {
       list,
