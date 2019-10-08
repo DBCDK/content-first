@@ -204,7 +204,7 @@ describe('Start Belt Form test', function() {
       expect(xhr.request.body._public).to.be.true;
       expect(xhr.request.body._type).to.equal('belt');
       // eslint-disable-next-line no-unused-expressions
-      expect(xhr.request.body._id).to.be.undefined; // Undefined id means save and not update
+      expect(xhr.request.body._id).to.equal(''); // Empty id means save and not update
     });
   });
 
