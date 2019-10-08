@@ -1,20 +1,31 @@
+.book-cover .BookmarkButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Exclude if cover is also includes a comparebutton */
+.book-cover .book-cover-content .BookmarkButton {
+  position: relative;
+}
+
+.footerCaption_2r5qf {
+  text-align: center !important;
+  margin-top: 3px !important;
+}
+
 @media only screen and (min-width: 600px) {
-    .figure_10ki57k img{
-        height: 70vh !important;
-        width: auto !important;
-    }
-    .content_13hv8io{
-        margin-top: 40px !important;
-    }
+  .figure_10ki57k img {
+    height: 70vh !important;
+    width: auto !important;
+  }
+  .content_13hv8io {
+    margin-top: 40px !important;
+  }
 }
 @media only screen and (max-width: 400px) {
-    .figure_10ki57k img{
-        width: 80vw !important;
-        height: auto !important;
-    }
+  .figure_10ki57k img {
+    width: 80vw !important;
+    height: auto !important;
+  }
 }
-.footerCaption_2r5qf{
-    text-align: center !important;
-    margin-top: 3px !important;
- }
- 

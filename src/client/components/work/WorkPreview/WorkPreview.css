@@ -1,220 +1,207 @@
-.WorkPreview__container {
-  height: auto;
-  background-color: var(--lys-graa);
-  padding: 3rem;
-}
+/*
+  Styles related to the work and the work details
+*/
 
-/* work */
-
-.workPreview__work .paper_reviews_hide_overflow {
-  max-height: 300px;
-}
-
-.WorkPreview__container .workPreview__work {
+.work-preview {
   display: flex;
-  padding: 0 3rem 0 0;
-  border-right: 1px solid var(--lightgrey);
+  padding: 32px;
+  background-color: var(--white);
 }
 
-.workPreview__work .workPreview__image {
-  max-width: 250px;
-  margin-right: 3rem;
-  text-align: center;
+.work-preview.light-grey {
+  background-color: var(--lys-graa);
 }
 
-.workPreview__work .workPreview__info {
+.work-preview__work {
+  max-width: 60%;
+  display: flex;
+}
+
+.work-preview__information {
+  /* margin is used to make share button respect the relative div - padding is ignored */
+  margin: 0 32px;
+
+  /* keeps track of share button */
   position: relative;
-  width: 100%;
 }
 
-.workPreview__work .workPreview__info .Share {
+.work-preview__information .Share {
   position: absolute;
   right: 0;
   top: 0;
 }
 
-.workPreview__work .workPreview__info .workPreview__details {
-  display: flex;
-  justify-content: space-between;
+.work-preview__information h1 {
+  margin: 0;
 }
 
-.workPreview__work .workPreview__info .workPreview__details span {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  font-weight: 600;
+.work-preview__information h2 {
+  margin-top: 8px;
 }
 
-.workPreview__work .workPreview__info .workPreview__media a {
-  text-decoration: none;
+.work-preview__information .work-preview__information-description,
+.work-preview__information .work-preview__information-taxdescription {
+  margin-top: 8px;
 }
 
-.workPreview__work .workPreview__info .workPreview__media button {
-  height: 33px;
-}
-
-.workPreview__work .workPreview__info .workPreview__media button i {
-  font-size: 19px;
-  font-weight: normal;
-  margin-right: 0.5rem;
-  vertical-align: middle;
-}
-
-.workPreview__work .workPreview__info .workPreview__media button,
-.workPreview__work .workPreview__info .workPreview__media a,
-.workPreview__work .workPreview__info .workPreview__media a i {
-  color: var(--petroleum);
-}
-
-.workPreview__arrow-container {
-  padding-left: 3rem;
-  padding-right: 3rem;
-  margin: -2rem -15px auto -15px;
-}
-
-.workPreview__arrow {
-  text-align: center;
-  width: 250px;
-  padding: 0px 15px;
-  margin-right: 3rem;
-}
-
-.workPreview__arrow i {
-  cursor: pointer;
-}
-/* reviews */
-
-.workPreview__reviews {
-  height: 100%;
-}
-
-.workPreview__reviews.collapsed {
-  overflow: hidden;
-}
-
-.workPreview__reviews .expand_wrap {
-  display: none;
-}
-
-.workPreview__reviews.collapsed .expand_wrap {
+.work-preview__information-details {
+  margin-top: 16px;
   display: flex;
 }
 
-.workPreview__reviews .Tabs__container-horizontal {
-  padding-top: 40px;
+.work-preview__information-details .detail-element {
+  display: block;
+  margin-right: 16px;
 }
 
-.workPreview__reviews .Tabs__pagination {
-  padding: 0;
+.work-preview__information-details .detail-element p {
+  display: inline;
+  margin-right: 4px;
 }
 
-.workPreview__reviews .Tabs__pagination-bullet-active:after,
-.workPreview__reviews .Tabs__pagination-bullet:after {
-  background: var(--korn);
+/*
+  Styles related to loan options (+collection)
+*/
+
+.work-preview__actions .detail-no-valid-collection {
+  margin-top: 8px;
 }
 
-.workPreview__reviews .WorkPage__tag {
+.work-preview__actions .work-preview__action-loan,
+.work-preview__actions .AddToListButton,
+.work-preview__actions .RemindsOf {
+  margin-top: 16px;
+}
+
+.work-preview__actions .orderButton,
+.work-preview__actions .work-preview__collection-button,
+.work-preview__actions .work-preview__skeleton-button {
   margin: 8px 8px 0 0;
 }
 
-.workPreview__tag.match {
+.work-preview__work .work-preview__work-cover {
+  width: 200px;
+}
+
+/*
+  Styles related to Tabs section
+*/
+
+.work-preview__tabs-wrap {
+  max-width: 40%;
+  position: relative;
+
+  /* height is also calculated dynamicaly (inline) in code */
+  height: auto;
+}
+
+.work-preview__tabs-wrap.collapsed {
+  overflow: hidden;
+}
+
+.work-preview__tabs-wrap .expand_wrap {
+  display: none;
+}
+
+.work-preview.light-grey .work-preview__tabs-wrap.collapsed .expand_wrap {
+  display: flex;
+  background: linear-gradient(transparent 70%, var(--lys-graa) 90%);
+}
+
+.work-preview__tabs-wrap .Tabs__container-horizontal {
+  padding-top: 40px;
+}
+
+.work-preview__tabs-wrap .Tabs__pagination {
+  padding: 0;
+}
+
+.work-preview__tabs-wrap .Tabs__pagination-bullet-active:after,
+.work-preview__tabs-wrap .Tabs__pagination-bullet:after {
+  background: var(--korn);
+}
+
+.work-preview__tabs-wrap .work-preview__tag {
+  margin: 8px 8px 0 0;
+}
+
+.work-preview__tag.match {
   background-color: var(--pistache);
 }
 
-.workPreview__tabs-info {
+.work-preview__tabs-info {
   display: flex;
   align-items: center;
 }
 
-.workPreview__tabs-info-color {
+.work-preview__tabs-info-color {
   width: 40px;
   height: 16px;
   background-color: var(--pistache);
   margin: 0 8px 0 0;
 }
 
-/*  tags */
-
-.workPreview__reviews .workPreview__tag {
-  margin: 8px 8px 0 0;
-}
-
-.workPreview__tagContainer .workPreview__tagHeading,
-.workPreview__reviews .workPreview__tagHeading {
-  padding-top: 1rem;
+.work-preview__tabs-wrap .work-preview__tag-title {
+  padding-top: 16px;
   width: 100%;
   display: block;
+
+  /* tags is floated */
   clear: both;
 }
 
-.workPreview__reviews .workPreview__tagHeading:first-child {
+.work-preview__tabs-wrap .work-preview__tag-title:first-child {
   padding-top: 0;
 }
 
-.workPreview__reviews .workPreview__tag::first-letter,
-.workPreview__reviews .workPreview__tagHeading::first-letter {
+.work-preview__tabs-wrap .work-preview__tag::first-letter,
+.work-preview__tabs-wrap .work-preview__tag-title::first-letter {
   text-transform: uppercase;
 }
 
-.workPreview__reviews .workPreview__review {
+/*
+  Styles related to the Arrow below preview in "belt-mode" (more-like-this clicked)
+*/
+
+.work-preview__arrow-container {
+  background-color: white;
+
+  /* Padding should always be the same as
+    .work-preview, to maintain the center of
+    the more-like-this-arrow */
+  padding: 0 32px;
+}
+
+.work-preview__arrow {
   display: flex;
-  text-decoration: none;
-  color: var(--petroleum);
+  align-items: center;
+  height: 50px;
+
+  /* width should be the same as cover-image
+    width, to maintain the center of the
+    more-like-this-arrow. */
+  width: 200px;
 }
 
-.workPreview__review:hover .workPreview__review__details {
-  color: var(--dark-cyan);
+.work-preview__arrow i {
+  margin: auto;
 }
 
-.workPreview__reviews .workPreview__review i {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 1.6rem;
-  text-align: center;
-  display: inline-block;
-  border-radius: 50%;
-  background-color: var(--porcelain);
-}
-
-.workPreview__reviews .workPreview__review .workPreview__review__details {
-  display: inline-block;
-}
-
-.workPreview__reviews .workPreview__review .workPreview__review__details h5 {
-  margin-top: 0.2rem;
-}
-
-/* Skeleton */
-
-.workPreview__media__skeleton,
-.workPreview__media__skeleton i {
-  color: transparent !important;
-}
-
-.workPreview__reviews .workPreview__review .Skeleton__text {
-  display: inline-block;
-}
-
-/* Media Q */
+/*
+  Media Queries
+*/
 
 @media only screen and (max-width: 1200px) {
-  .WorkPreview__container .workPreview__reviews {
+  .work-preview .work-preview__tabs-wrap {
     display: none;
   }
 
-  .WorkPreview__container .workPreview__work {
-    border-right: none;
+  .work-preview .work-preview__work {
+    max-width: 100%;
   }
-}
 
-@media only screen and (max-width: 767px) {
-  .workPreview__work .workPreview__image img,
-  .workPreview__arrow {
-    width: 100%;
-    height: auto;
+  .work-preview__information {
+    margin: 0;
+    padding: 0 0 0 32px;
   }
-}
-
-.work-preview-book-creator {
-  color: var(--petroleum) !important;
 }

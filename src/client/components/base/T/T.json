@@ -1030,6 +1030,10 @@
       }
     },
     "share": {
+      "share": {
+        "da": "Del",
+        "en": "Share"
+      },
       "shareOnFacebook": {
         "da": "Del på facebook",
         "en": "share on facebook"

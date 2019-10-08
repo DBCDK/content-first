@@ -11,6 +11,12 @@
   border: none;
 }
 
+/* .Button span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
 /* Variants */
 .Button__primary {
   text-transform: uppercase;
@@ -175,7 +181,8 @@
 }
 
 /* Icons */
-.Button__icon--left, .Button__icon--right {
+.Button__icon--left,
+.Button__icon--right {
   vertical-align: middle;
   font-size: 1.4em;
 }
