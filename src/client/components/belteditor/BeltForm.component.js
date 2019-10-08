@@ -33,7 +33,9 @@ class BeltForm extends React.Component {
       description: props.description || '',
       enabled: props.enabled ? props.enabled.toLowerCase() === 'true' : false,
       id: props.id || '',
-      saving: false
+      saving: false,
+      created: this.props.created,
+      createdBy: this.props.createdBy
     };
   }
 
@@ -125,9 +127,9 @@ class BeltForm extends React.Component {
   checkDisabled = () => this.state.title.length === 0;
 
   publishedNote = () =>
-    timestampToShortDate(parseInt(this.props.created, 10)) +
+    timestampToShortDate(parseInt(this.state.created, 10)) +
     ', ' +
-    this.props.createdBy;
+    this.state.createdBy;
 
   render() {
     const tags = this.props
