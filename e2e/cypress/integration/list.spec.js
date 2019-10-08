@@ -215,7 +215,7 @@ describe('List test', function() {
     });
   });
 
-  it.only('Can move elements from shortlist to an other list', function() {
+  it('Can move elements from shortlist to an other list', function() {
     cy.fixture('shortlist.json').as('shortlist');
     cy.server();
     cy.route('GET', '/v1/shortlist', '@shortlist').as('shortlistRequest');
