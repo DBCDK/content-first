@@ -3,7 +3,7 @@ export function eventPath(evt) {
   var path = (evt.composedPath && evt.composedPath()) || evt.path,
     target = evt.target;
 
-  if (path !== null) {
+  if (path) {
     // Safari doesn't include Window, but it should.
     return path.indexOf(window) < 0 ? path.concat(window) : path;
   }

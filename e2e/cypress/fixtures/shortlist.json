@@ -1,0 +1,85 @@
+{
+  "data": [
+    {
+      "pid": "870970-basis:53945910",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:50776204",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:46931734",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:29351252",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:46259335",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:55130434",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:46936957",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:46963628",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:52910153",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:52342236",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:52591252",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:46470214",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:51699599",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:46232917",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:46530799",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:51897080",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:28656572",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:50957802",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:29611394",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:53986196",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    }
+  ],
+  "links": {"self": "/v1/shortlist"}
+}

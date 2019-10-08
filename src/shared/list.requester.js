@@ -60,6 +60,7 @@ export default class ListRequester {
     return (await this.storageClient.find({
       type: 'list-entry',
       key: list._id,
+      limit: 1000,
       owner: list._public ? undefined : list._owner // eslint-disable-line no-undefined
     })).data;
   }

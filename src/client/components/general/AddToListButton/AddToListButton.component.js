@@ -6,14 +6,9 @@ import Icon from '../../base/Icon';
 import ToastMessage from '../../base/ToastMessage';
 import Button from '../../base/Button';
 import T from '../../base/T/';
-import {withList} from '../../hoc/List/';
+import {withList, withLists} from '../../hoc/List/';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 
-import {
-  CUSTOM_LIST,
-  SYSTEM_LIST,
-  createGetLists
-} from '../../../redux/list.reducer';
 import './AddToListButton.css';
 
 const MenuEntry = withList(
@@ -35,7 +30,7 @@ const MenuEntry = withList(
           `AddToListButton__${list.type} ${classLast}` +
           (multiple ? ' pl-3' : '')
         }
-        data-cy="add-to-list-button"
+        data-cy={`add-to-list-button-${list.title}`}
         onClick={() => {
           if (isMobileOnly) {
             // Dont auto-close dropdown on mobile devices - multiselection is allowed
@@ -72,11 +67,11 @@ const MenuEntry = withList(
 );
 
 export class AddToListButton extends React.Component {
+  state = {show: false};
   componentDidMount() {
     document.addEventListener('mouseup', this.forceClose);
     document.addEventListener('scroll', this.dropdownDirection);
   }
-
   componentWillUnmount() {
     window.removeEventListener('mouseup', this.forceClose);
     window.removeEventListener('scroll', this.dropdownDirection);
@@ -95,15 +90,19 @@ export class AddToListButton extends React.Component {
 
   // Force dropdown to show
   forceOpen = () => {
-    if (this.dropdown) {
-      this.dropdown.classList.add('show');
+    if (!this.state.show) {
+      this.setState({show: true});
     }
   };
 
   // Force dropdown to close
-  forceClose = () => {
-    if (this.dropdown) {
-      this.dropdown.classList.remove('show');
+  forceClose = e => {
+    if (this.dropdown && this.dropdown.contains(e.target)) {
+      // inside click
+      return;
+    }
+    if (this.state.show) {
+      this.setState({show: false});
     }
   };
 
@@ -125,7 +124,7 @@ export class AddToListButton extends React.Component {
   };
 
   // Title for addToList button
-  constructTitle(defaultTitle) {
+  constructTitle(defaultTitle, customLists, systemLists) {
     const work = this.props.work;
     const book = work.book;
 
@@ -135,13 +134,13 @@ export class AddToListButton extends React.Component {
 
     // Construct title based on which lists the work is presented on.
     if (this.props.isLoggedIn) {
-      this.props.customLists.forEach(list => {
+      customLists.forEach(list => {
         let status = this.pidInList(book.pid, list.list);
         if (status) {
           customTitle += list.title + ', ';
         }
       });
-      this.props.systemLists.forEach(list => {
+      systemLists.forEach(list => {
         let status = this.pidInList(book.pid, list.list);
         if (status) {
           systemTitle += list.title + ', ';
@@ -202,19 +201,23 @@ export class AddToListButton extends React.Component {
       work,
       isLoggedIn,
       className = '',
-      customLists = [],
-      systemLists = [],
       openModal,
       multiple,
-      elements
+      elements,
+      getCustomLists,
+      getSystemLists
     } = this.props;
+
+    const customLists = getCustomLists();
+    const systemLists = getSystemLists();
+    const systemListsArr = [systemLists.didRead, systemLists.willRead];
 
     const defaultTitle = multiple
       ? T({component: 'list', name: 'addAllToList'})
       : T({component: 'list', name: 'addToList'});
     const buttonTitle = multiple
       ? defaultTitle
-      : this.constructTitle(defaultTitle);
+      : this.constructTitle(defaultTitle, customLists, systemListsArr);
 
     const buttonActive =
       defaultTitle !== buttonTitle ? 'AddToListButton__Active' : '';
@@ -270,7 +273,9 @@ export class AddToListButton extends React.Component {
 
         <ul
           ref={e => (this.dropdown = e)}
-          className="AddToListButton__Dropdown AddToListButton__Dropdown__ShowLists"
+          className={`AddToListButton__Dropdown AddToListButton__Dropdown__ShowLists ${
+            this.state.show ? 'show' : ''
+          }`}
         >
           <li
             className="AddToListButton__Mobile__Back"
@@ -296,10 +301,15 @@ export class AddToListButton extends React.Component {
             <T component="general" name="lists" />
           </li>
 
-          <div className="AddToListButton__Lists">
-            {this.createDropdownElement(systemLists, systemLists.length)}
-            {this.createDropdownElement(customLists, customLists.length)}
-          </div>
+          {this.state.show && (
+            <div className="AddToListButton__Lists">
+              {this.createDropdownElement(
+                systemListsArr,
+                systemListsArr.length
+              )}
+              {this.createDropdownElement(customLists, customLists.length)}
+            </div>
+          )}
 
           <li
             className="border-top d-none d-sm-flex align-items-center"
@@ -330,21 +340,8 @@ export class AddToListButton extends React.Component {
   }
 }
 
-const customListSelector = createGetLists();
-const systemListsSelector = createGetLists();
-
 const mapStateToProps = state => {
   return {
-    customLists: customListSelector(state, {
-      type: CUSTOM_LIST,
-      _owner: state.userReducer.openplatformId,
-      sort: 'created'
-    }),
-    systemLists: systemListsSelector(state, {
-      type: SYSTEM_LIST,
-      _owner: state.userReducer.openplatformId,
-      sort: true
-    }),
     isLoggedIn: state.userReducer.isLoggedIn
   };
 };
@@ -363,4 +360,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddToListButton);
+)(withLists(AddToListButton));

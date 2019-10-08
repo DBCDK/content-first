@@ -44,7 +44,7 @@ export const withLists = WrappedComponent => {
 
   const mapStateToProps = state => {
     return {
-      lists: state.listReducer.lists || [],
+      lists: state.listReducer.lists || {},
       shortlist: state.userReducer.shortlist,
       loggedInUser: state.userReducer.openplatformId
     };
