@@ -15,6 +15,7 @@ import Storage from '../roles/Storage.component';
 import Spinner from '../general/Spinner/Spinner.component';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {ERROR} from '../general/Notification/Notification.component';
+import {HISTORY_PUSH} from '../../redux/middleware';
 
 const EditorRole = 'contentFirstEditor';
 
@@ -125,6 +126,18 @@ export class BeltEditor extends React.Component {
     }
   };
 
+  editBelt = index => {
+    this.props.editBelt(
+      this.state.items[index].name,
+      this.state.items[index].subtext,
+      this.state.items[index].onFrontPage,
+      this.state.items[index].tags,
+      this.state.items[index].createdBy,
+      this.state.items[index]._created,
+      this.state.items[index]._id
+    );
+  };
+
   listRow = (
     index,
     dragIcon,
@@ -163,10 +176,18 @@ export class BeltEditor extends React.Component {
             )}
           />
         )}
-        <Text type="small" variant="weight-semibold">
+        <Text
+          type="small"
+          variant="weight-semibold"
+          onClick={() => this.editBelt(index)}
+        >
           {title}
         </Text>
-        <Text type="small" className="desktop-only-column">
+        <Text
+          type="small"
+          className="desktop-only-column"
+          onClick={() => this.editBelt(index)}
+        >
           {createdBy}
         </Text>
         {upIcon !== '' ? (
@@ -333,6 +354,21 @@ const mapDispatchToProps = dispatch => ({
             modal: 'notification'
           });
         }
+      }
+    });
+  },
+  editBelt: (title, description, enabled, tags, createdBy, created, id) => {
+    dispatch({
+      type: HISTORY_PUSH,
+      path: '/redaktionen/rediger',
+      params: {
+        title,
+        description,
+        enabled,
+        tags: tags.map(tag => tag.id).join(),
+        createdBy,
+        created,
+        id
       }
     });
   }
