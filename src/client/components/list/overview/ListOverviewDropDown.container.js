@@ -62,6 +62,7 @@ const ListElement = props => {
 
   return (
     <div
+      data-cy={`list-overview-element-${props.list.title}`}
       className={`top-bar-dropdown-list-element${
         props.modalView ? '--modal' : ''
       }`}

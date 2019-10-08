@@ -220,9 +220,9 @@ describe('List test', function() {
     waitForListsLoaded();
     cy.addElementsToShortlist(3);
     cy.get('[data-cy=add-all-to-list]').click();
-    cy.get('[data-cy=add-all-to-list] [data-cy=add-to-list-button]')
-      .first()
-      .click();
+    cy.get(
+      '[data-cy=add-all-to-list] [data-cy="add-to-list-button-Har læst"]'
+    ).click();
     cy.contains('3 bøger tilføjet til listen');
   });
 
