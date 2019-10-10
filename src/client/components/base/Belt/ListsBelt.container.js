@@ -8,6 +8,8 @@ import {UPDATE_MOUNT} from '../../../redux/mounts.reducer';
 import Title from '../Title';
 import Slider from './Slider.component';
 
+import './ListsBelt.css';
+
 /**
  *
  * ListsBelt
@@ -24,6 +26,7 @@ export class ListsBelt extends React.Component {
     return (
       nextProps.lists.length !== this.props.lists.length ||
       this.props.isVisible !== nextProps.isVisible ||
+      this.props.title !== nextProps.title ||
       this.props.mountedData.scrollPos !== nextProps.mountedData.scrollPos
     );
   }
@@ -46,9 +49,11 @@ export class ListsBelt extends React.Component {
     const listsPerSlide = this.getListsPerSlide();
     const matomoTitle = this.props.matomoTitle || 'list-belt';
 
+    console.log('title', title);
+
     return (
       <div
-        className="belt text-left"
+        className="lists-belt"
         ref={container => (this.refs = {...this.refs, container})}
         data-cy="lists-belt"
       >
@@ -56,7 +61,7 @@ export class ListsBelt extends React.Component {
           Tag="h1"
           type="title4"
           variant="transform-uppercase"
-          className="mb-3 mb-md-0 px-2 px-sm-3 px-lg-5 pb-0 pb-sm-3 pt-5"
+          className="lists-belt__title"
         >
           {title}
         </Title>

@@ -62,7 +62,8 @@ const withChildBelt = WrappedComponent => {
           parent: work.book.pid,
           child: (
             <WorkPreview
-              className="light-grey"
+              className="preview light-grey"
+              hideAppels={true}
               mount={mount}
               key={mount}
               pid={work.book.pid}

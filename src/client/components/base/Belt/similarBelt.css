@@ -1,3 +1,25 @@
+.similarBelt {
+  margin-top: var(--5pt);
+  position: relative;
+}
+
+.similarBelt .similarbelt-title {
+  margin: 0;
+  padding: 0 var(--5pt);
+}
+
+@media only screen and (max-width: 768px) {
+  .similarBelt .similarbelt-title {
+    padding: 0 var(--5pt) var(--3pt) var(--5pt);
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .similarBelt .similarbelt-title {
+    padding: 0 var(--2pt) var(--2pt) var(--2pt);
+  }
+}
+
 .similarBelt.childBelt .WorkCard .book-cover {
   background-color: var(--porcelain);
 }

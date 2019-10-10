@@ -22,31 +22,78 @@ import {withWork} from '../../hoc/Work';
 import ReviewList from '../Review/ReviewList.component';
 import {withChildBelt} from '../../hoc/Belt';
 
+import {trackEvent} from '../../../matomo';
+
 import './WorkPreview.css';
 
-const CollectionButton = ({pid, url, type, icon, collectionIsValid}) => {
+const PrioTag = ({id, title}) => {
   return (
-    collectionIsValid && (
-      <Link
-        key={url}
-        href={url}
-        type={HISTORY_NEW_TAB}
-        meta={{materialType: type, pid}}
+    <Link href="/find" params={{tags: id}}>
+      <Button
+        key={title}
+        type="tertiary"
+        size="small"
+        className="prio-tag"
+        dataCy={'tag-' + title}
       >
-        <Button
-          className="work-preview__collection-button"
-          type="quaternary"
-          size="medium"
-          iconLeft={icon}
-        >
-          {type}
-        </Button>
-      </Link>
-    )
+        {title}
+      </Button>
+    </Link>
   );
 };
 
-const RenderCollectionButtons = ({isLoading, collection, ...props}) => {
+const RenderPrioTags = ({tags, onClick}) => {
+  return (
+    <div className="work-preview__prio-tags">
+      {tags.map(group => (
+        <React.Fragment key={group.title}>
+          <Text type="body" className="prio-tags-title">
+            {group.title}
+          </Text>
+          {group.data.map(t => (
+            <PrioTag key={t.title} id={t.id} title={t.title} />
+          ))}
+        </React.Fragment>
+      ))}
+      <Button
+        size="medium"
+        type="tertiary"
+        className="work-preview__show-full-exp underline"
+        dataCy="tags-collaps-toggle"
+        onClick={onClick}
+      >
+        <T component="work" name={'tagsCollapsibleShow'} />
+      </Button>
+    </div>
+  );
+};
+
+const CollectionButton = ({pid, url, type, icon}) => {
+  return (
+    <Link
+      key={url}
+      href={url}
+      type={HISTORY_NEW_TAB}
+      meta={{materialType: type, pid}}
+    >
+      <Button
+        className="work-preview__collection-button"
+        type="quaternary"
+        size="medium"
+        iconLeft={icon}
+      >
+        {type}
+      </Button>
+    </Link>
+  );
+};
+
+const RenderCollectionButtons = ({
+  isLoading,
+  collection,
+  collectionIsValid,
+  ...props
+}) => {
   if (isLoading) {
     return (
       <React.Fragment>
@@ -72,7 +119,8 @@ const RenderCollectionButtons = ({isLoading, collection, ...props}) => {
 
   return collection.map(
     col =>
-      col.count === 1 && (
+      col.count === 1 &&
+      collectionIsValid && (
         <CollectionButton
           url={col.url}
           type={col.type}
@@ -118,10 +166,12 @@ class WorkPreview extends React.Component {
 
   init() {
     this.setState({tabsCollapsed: true});
+    this.swiper.slideTo(0, 0);
   }
 
   componentDidMount() {
     this.init();
+    this.swiper.slideTo(0, 0);
   }
 
   componentDidUpdate(prevProps) {
@@ -133,6 +183,7 @@ class WorkPreview extends React.Component {
   render() {
     const {
       work,
+      hideAppels = false,
       className = '',
       dataCy,
       newRelease,
@@ -141,9 +192,9 @@ class WorkPreview extends React.Component {
       hasValidCollection,
       filterCollection,
       filterReviews,
+      sortTags,
       sortTagsByAppeal
     } = this.props;
-
     // handle collapsible tag container
     const tabsCollapsed = this.state.tabsCollapsed;
     const collapsedClass = tabsCollapsed ? 'collapsed' : '';
@@ -158,6 +209,8 @@ class WorkPreview extends React.Component {
     // get reviews from litteratursiden
     const reviews = filterReviews(work);
 
+    const tags = sortTags();
+
     const appeals = sortTagsByAppeal();
 
     const priorityTagsArr = book.tags.filter(e => e.score > 1);
@@ -169,6 +222,21 @@ class WorkPreview extends React.Component {
         ? book.reviews.data
         : false;
 
+    const stemningTags = tags.filter(e => e.title === 'stemning')[0];
+
+    const prioTags = [];
+    if (priorityTagsArr.length > 0) {
+      prioTags.unshift({
+        title: T({component: 'work', name: 'readerExpTitle'}),
+        data: priorityTagsArr
+      });
+    } else if (stemningTags) {
+      prioTags.unshift({
+        title: T({component: 'work', name: 'readerExpTitle'}),
+        data: stemningTags.data.slice(0, 6)
+      });
+    }
+
     return (
       <React.Fragment>
         <div
@@ -176,9 +244,12 @@ class WorkPreview extends React.Component {
           ref={preview => (this.refs = {...this.refs, preview})}
         >
           <div className="work-preview__work">
-            <Link href={'/værk/' + book.pid}>
+            <Link
+              className="work-preview__cover-link"
+              href={'/værk/' + book.pid}
+            >
               <BookCover
-                className="work-preview__work-cover"
+                className="work-preview__cover"
                 book={book}
                 dataCy={dataCy}
               >
@@ -207,14 +278,11 @@ class WorkPreview extends React.Component {
               >
                 <T component="share" name="share" />
               </Share>
-              <Title Tag="h1" type="lead">
+              <Title Tag="h1" type="title3" className="work-preview__title">
                 <Link href={'/værk/' + book.pid}>{book.title}</Link>
               </Title>
-              <Link
-                href={'/find?tags=' + encodeURI(book.creator)}
-                className="work-preview-book-creator"
-              >
-                <Title Tag="h2" type="heading">
+              <Link href={'/find?tags=' + encodeURI(book.creator)}>
+                <Title Tag="h2" type="title5" className="work-preview__creator">
                   {book.creator}
                 </Title>
               </Link>
@@ -263,7 +331,7 @@ class WorkPreview extends React.Component {
 
               <div className="work-preview__actions">
                 <div className="work-preview__action-loan">
-                  <Text Tag="h4" type="body" variant="weight-semibold">
+                  <Text type="body" variant="weight-semibold">
                     <T component="work" name="loanTitle" />
                   </Text>
                 </div>
@@ -294,8 +362,24 @@ class WorkPreview extends React.Component {
                   collectionIsValid={collectionIsValid}
                 />
 
-                <AddToListButton work={work} />
+                <AddToListButton
+                  className="work-preview__add-to-list"
+                  work={work}
+                />
                 <RemindsOf onClick={() => remindsOfClick(work)} />
+
+                {!hideAppels && appeals.length > 0 && (
+                  <RenderPrioTags
+                    tags={prioTags}
+                    onClick={() => {
+                      trackEvent('tags', 'seeAllTags', book.title);
+                      this.swiper.slideTo(1, 400);
+                      this.setState({
+                        tabsCollapsed: false
+                      });
+                    }}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -305,28 +389,27 @@ class WorkPreview extends React.Component {
             style={{height: tabsCollapsed ? infoHeight : 'auto'}}
           >
             {work.collectionHasLoaded &&
-              get(this.swiper, 'height') > infoHeight && (
+              get(this.swiper, 'height') + 100 > infoHeight && (
                 <Expand
                   title={T({component: 'general', name: 'showMore'})}
-                  onClick={() => {
+                  onClick={() =>
                     this.setState({
                       tabsCollapsed: false
-                    });
-                  }}
+                    })
+                  }
                 />
               )}
             <Tabs
               pages={['Anmeldelser', 'Læseoplevelse']}
               swiper={swiper => (this.swiper = swiper)}
+              onUpdate={() => this.setState({})}
             >
               <div className="tabs tabs-page-1">
                 <ReviewList
                   book={book}
                   reviews={reviews}
                   lectorReviews={lectorReviews}
-                  maxHeight={400}
                   work={work}
-                  showMoreColor="var(--lys-graa)"
                 />
               </div>
               <div className="tabs tabs-page-2">

@@ -4,11 +4,12 @@
 
 .work-preview {
   display: flex;
-  padding: 32px;
+  height: auto;
+  padding: var(--5pt);
   background-color: var(--white);
 }
 
-.work-preview.light-grey {
+.work-preview.preview.light-grey {
   background-color: var(--lys-graa);
 }
 
@@ -19,7 +20,7 @@
 
 .work-preview__information {
   /* margin is used to make share button respect the relative div - padding is ignored */
-  margin: 0 32px;
+  margin: 0 var(--5pt);
 
   /* keeps track of share button */
   position: relative;
@@ -31,56 +32,81 @@
   top: 0;
 }
 
-.work-preview__information h1 {
+.work-preview__information .work-preview__title {
   margin: 0;
 }
 
-.work-preview__information h2 {
-  margin-top: 8px;
+.work-preview__information .work-preview__creator {
+  margin-top: var(--1pt);
 }
 
 .work-preview__information .work-preview__information-description,
 .work-preview__information .work-preview__information-taxdescription {
-  margin-top: 8px;
+  margin-top: var(--1pt);
 }
 
 .work-preview__information-details {
-  margin-top: 16px;
+  margin-top: var(--2pt);
   display: flex;
 }
 
 .work-preview__information-details .detail-element {
   display: block;
-  margin-right: 16px;
+  margin-right: var(--2pt);
 }
 
 .work-preview__information-details .detail-element p {
   display: inline;
-  margin-right: 4px;
+  margin-right: var(--05pt);
 }
 
 /*
-  Styles related to loan options (+collection)
+  Styles related to action buttons (+collection)
 */
 
 .work-preview__actions .detail-no-valid-collection {
-  margin-top: 8px;
+  margin-top: var(--1pt);
 }
 
 .work-preview__actions .work-preview__action-loan,
-.work-preview__actions .AddToListButton,
+.work-preview__actions .work-preview__add-to-list,
 .work-preview__actions .RemindsOf {
-  margin-top: 16px;
+  margin-top: var(--2pt);
 }
 
 .work-preview__actions .orderButton,
 .work-preview__actions .work-preview__collection-button,
 .work-preview__actions .work-preview__skeleton-button {
-  margin: 8px 8px 0 0;
+  margin: var(--1pt) var(--1pt) 0 0;
 }
 
-.work-preview__work .work-preview__work-cover {
+.work-preview__work .work-preview__cover {
   width: 200px;
+}
+
+.work-preview__actions .work-preview__add-to-list {
+  /* Drops AddToList Button to next line */
+  display: block;
+}
+
+/*
+    Styles related to the prioritized tags
+ */
+
+.work-preview__prio-tags {
+  padding: var(--2pt) 0 0 0;
+}
+
+.work-preview__prio-tags .prio-tags-title {
+}
+
+.work-preview__prio-tags .prio-tag {
+  margin: var(--1pt) var(--1pt) 0 0;
+}
+
+.work-preview__prio-tags .work-preview__show-full-exp {
+  display: block;
+  margin: var(--1pt) 0 0 0;
 }
 
 /*
@@ -103,13 +129,20 @@
   display: none;
 }
 
-.work-preview.light-grey .work-preview__tabs-wrap.collapsed .expand_wrap {
+.work-preview .work-preview__tabs-wrap.collapsed .expand_wrap {
   display: flex;
+}
+
+.work-preview.light-grey .work-preview__tabs-wrap.collapsed .expand_wrap {
   background: linear-gradient(transparent 70%, var(--lys-graa) 90%);
 }
 
+.work-preview .work-preview__tabs-wrap.collapsed .expand_wrap {
+  background: linear-gradient(transparent 70%, var(--white) 90%);
+}
+
 .work-preview__tabs-wrap .Tabs__container-horizontal {
-  padding-top: 40px;
+  padding-top: var(--5pt);
 }
 
 .work-preview__tabs-wrap .Tabs__pagination {
@@ -122,7 +155,7 @@
 }
 
 .work-preview__tabs-wrap .work-preview__tag {
-  margin: 8px 8px 0 0;
+  margin: var(--1pt) var(--1pt) 0 0;
 }
 
 .work-preview__tag.match {
@@ -138,11 +171,11 @@
   width: 40px;
   height: 16px;
   background-color: var(--pistache);
-  margin: 0 8px 0 0;
+  margin: 0 var(--1pt) 0 0;
 }
 
 .work-preview__tabs-wrap .work-preview__tag-title {
-  padding-top: 16px;
+  padding-top: var(--2pt);
   width: 100%;
   display: block;
 
@@ -169,7 +202,7 @@
   /* Padding should always be the same as
     .work-preview, to maintain the center of
     the more-like-this-arrow */
-  padding: 0 32px;
+  padding: 0 var(--5pt);
 }
 
 .work-preview__arrow {
@@ -192,16 +225,16 @@
 */
 
 @media only screen and (max-width: 1200px) {
-  .work-preview .work-preview__tabs-wrap {
+  .work-preview.preview .work-preview__tabs-wrap {
     display: none;
   }
 
-  .work-preview .work-preview__work {
+  .work-preview.preview .work-preview__work {
     max-width: 100%;
   }
 
-  .work-preview__information {
+  .work-preview.preview .work-preview__information {
     margin: 0;
-    padding: 0 0 0 32px;
+    padding: 0 0 0 var(--5pt);
   }
 }

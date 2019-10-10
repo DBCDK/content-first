@@ -222,10 +222,14 @@ export class AddToListButton extends React.Component {
     const newListFromElements = multiple ? [...elements] : [work];
     if (!isLoggedIn) {
       return (
-        <div className={multiple ? 'multiple-works-button-container ' : ''}>
+        <div
+          className={`${className} ${
+            multiple ? 'multiple-works-button-container ' : ''
+          }`}
+        >
           <Button
             className={
-              `AddToListButton ${className}` +
+              `AddToListButton` +
               (multiple ? ' multiple-works-to-list-button ' : '')
             }
             type={multiple ? 'tertiary' : 'quinary'}
