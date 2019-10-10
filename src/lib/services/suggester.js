@@ -38,6 +38,7 @@ class Suggester {
       const result = await request.get(this.config.suggester.url).query(params);
       return result.body;
     } catch (e) {
+      console.log(e);
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
       this.logger.log.error({
         source: 'suggester',

@@ -1,8 +1,8 @@
 describe('List test', function() {
   beforeEach(function() {
-    cy.initStorage();
     cy.clearClientStorage();
     cy.clearCookies();
+
     cy.createUser('listowner');
     cy.wait(1000);
   });

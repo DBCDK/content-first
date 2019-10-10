@@ -92,6 +92,49 @@ router
           .cookie('test-user-data', JSON.stringify(user))
           .send();
       } catch (error) {
+        console.log(error);
+        let errorMsg = JSON.stringify(error);
+        if (errorMsg === '{}') {
+          errorMsg = error.toString();
+        }
+        return res.status(400).send(error);
+      }
+    })
+  );
+
+router
+  .route('/delete/:id')
+  // Removes user
+  // GET /v1/test/remove/:id
+  //
+  .get(
+    asyncMiddleware(async (req, res) => {
+      try {
+        const roles = await objectStore.getRoles({
+          openplatformToken: req.params.id
+        });
+        await Promise.all(
+          roles.data.map(role => {
+            return request.post(config.storage.url).send({
+              access_token: admin.token,
+              unassign_role: {
+                userId: req.params.id,
+                roleId: role._id
+              }
+            });
+          })
+        );
+        await objectStore.deleteUser({
+          openplatformToken: req.params.id,
+          openplatformId: req.params.id
+        });
+        return res
+          .status(303)
+          .location('/')
+          .clearCookie('login-token')
+          .clearCookie('test-user-data')
+          .send();
+      } catch (error) {
         let errorMsg = JSON.stringify(error);
         if (errorMsg === '{}') {
           errorMsg = error.toString();
@@ -174,6 +217,7 @@ async function fetchAllRoles() {
  * @param {boolean} isEditor     if true: give the user editor role
  */
 async function createUser(req, doCreateUser, isEditor) {
+  console.log('creating');
   const loginToken = uuidv4();
   const id = req.params.id;
   await knex(cookieTable).insert({
@@ -278,7 +322,7 @@ router.route('/initStorage').get(
       )
     );
 
-    await request.post(config.storage.url).send({
+    const roleId = (await request.post(config.storage.url).send({
       access_token: admin.token,
       put: {
         _type: rootType,
@@ -289,7 +333,7 @@ router.route('/initStorage').get(
         description: 'Redaktør for læsekompas',
         public: true
       }
-    });
+    })).body.data._id;
 
     typeId = (await request.post(config.storage.url).send({
       access_token: admin.token,
@@ -331,6 +375,66 @@ router.route('/initStorage').get(
     await objectStore.setupObjectStore({
       typeId,
       url: config.storage.url
+    });
+
+    // create default editor
+    await putUserData(
+      {
+        name: 'the admin',
+        roles: [],
+        openplatformId: admin.id,
+        shortlist: [],
+        profiles: [],
+        lists: [],
+        acceptedAge: true,
+        acceptedTerms: true
+      },
+      {openplatformId: admin.id, openplatformToken: admin.token}
+    );
+
+    // assign role
+    await request.post(config.storage.url).send({
+      access_token: admin.token,
+      assign_role: {
+        userId: admin.id,
+        roleId
+      }
+    });
+
+    // create default belt
+    await request.post(config.storage.url).send({
+      access_token: admin.token,
+      put: {
+        _type: typeId,
+        cf_type: 'belt',
+        _public: true,
+        public: true,
+        key: 'Det smukke, smukke sprog',
+        name: 'Det smukke, smukke sprog',
+        subtext: 'Bøger til dig, der bliver glad af smukke sætninger.',
+        tags: [
+          {
+            id: 5615,
+            weight: 1
+          },
+          {
+            id: 5614,
+            weight: 1
+          },
+          {
+            id: 153,
+            weight: 1
+          },
+          {
+            id: 5612,
+            weight: 1
+          }
+        ],
+        onFrontPage: true,
+        createdBy: admin.id,
+        index: 0
+      },
+      role: roleId
     });
 
     res.status(200).send(typeId);

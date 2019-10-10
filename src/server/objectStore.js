@@ -1,4 +1,5 @@
 'use strict';
+var fs = require('fs');
 const logger = require('server/logger');
 const assert = require('assert');
 const _ = require('lodash');
@@ -16,11 +17,65 @@ function trimEpoch(timestamp) {
   return Number(timestamp.toString().slice(0, 10));
 }
 
+const sleep = ms => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(), ms);
+  });
+};
+
 const fetchAnonymousToken = !config.server.isProduction
   ? () => ({
       access_token: 'anon_token'
     })
   : smaug.fetchAnonymousToken;
+
+/**
+ * Will setup the storage with either creating or reusing
+ * the content-first type
+ */
+async function initDevStore() {
+  try {
+    await request.post(config.storage.url).send({
+      access_token: fetchAnonymousToken().access_token,
+      get: {_id: rootType}
+    });
+
+    const file = 'storage_type_id.env';
+    let cfTypeId;
+    try {
+      const contents = fs.readFileSync(file, 'utf8');
+      await request.post(config.storage.url).send({
+        access_token: fetchAnonymousToken().access_token,
+        get: {_id: contents}
+      });
+      cfTypeId = contents;
+      logger.log.info('Initializing dev storage: Using existing cf-type', {
+        cfTypeId,
+        storageUrl: config.storage.url
+      });
+    } catch (readError) {
+      cfTypeId = (await request.get(
+        'http://localhost:3000/v1/test/initStorage'
+      )).text;
+      fs.writeFileSync(file, cfTypeId);
+      logger.log.info('Initializing dev storage: Creating new cf-type', {
+        cfTypeId
+      });
+    }
+    setupObjectStore({typeId: cfTypeId, url: config.storage.url});
+  } catch (e) {
+    logger.log.info(
+      'Initializing dev storage: Storage not ready, waiting 2000ms',
+      {e}
+    );
+    await sleep(2000);
+    initDevStore();
+  }
+}
+
+if (!config.server.isProduction) {
+  initDevStore();
+}
 
 function setupObjectStore(storageOptions) {
   if (config.server.isProduction && !storageOptions.typeId) {

@@ -124,7 +124,6 @@ describe('Matomo test', function() {
   });
 
   it('Can track did read belt events', function() {
-    cy.initStorage();
     cy.createUser('someuser');
     // make interaction such that personal recommendations belt appears
     cy.visit('/v%C3%A6rk/870970-basis:27206344');

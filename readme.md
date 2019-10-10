@@ -5,15 +5,7 @@ The system currently runs on [`http://laesekompas.dk`](http://content-first.demo
 For development of the system, see [`src`](src/readme.md).
 
 ## Development
-
-    $ . /nvm.sh
-    $ nvm install
-    $ npm install
-    $ cp env/integration.env current.env
     $ docker-compose -f docker-compose-dev.yml up
-    $ npm run start
-    $ npm run fetch-inject-metakompas (cf must be started)
-    $ npm run init-storage (cf must be started)
     
 ### Users for development and Cypress testing
 Create normal user

@@ -50,6 +50,7 @@ Cypress.Commands.add('clearClientStorage', () => {
  */
 Cypress.Commands.add('createUser', (userName, role) => {
   if (!userName) userName = 'user' + Math.floor(Math.random() * 1000);
+  cy.request('/v1/test/delete/' + userName);
   if (role) {
     cy.visit('/v1/test/create/' + userName + '?' + role + '=true');
   } else {
@@ -115,12 +116,4 @@ Cypress.Commands.add('visitWithMatomoMocks', (url, matomo) => {
       };
     }
   });
-});
-
-/**
- * Initializes object storage
- */
-Cypress.Commands.add('initStorage', userName => {
-  cy.request('/v1/test/wipeStorage');
-  cy.request('/v1/test/initStorage');
 });
