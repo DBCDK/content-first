@@ -92,7 +92,6 @@ router
           .cookie('test-user-data', JSON.stringify(user))
           .send();
       } catch (error) {
-        console.log(error);
         let errorMsg = JSON.stringify(error);
         if (errorMsg === '{}') {
           errorMsg = error.toString();
@@ -217,7 +216,6 @@ async function fetchAllRoles() {
  * @param {boolean} isEditor     if true: give the user editor role
  */
 async function createUser(req, doCreateUser, isEditor) {
-  console.log('creating');
   const loginToken = uuidv4();
   const id = req.params.id;
   await knex(cookieTable).insert({
