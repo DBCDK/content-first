@@ -53,6 +53,7 @@ router
           .cookie('login-token', loginToken, {
             httpOnly: true
           })
+          .clearCookie('session')
           .cookie('test-user-data', JSON.stringify(user))
           .send();
       } catch (error) {
@@ -90,6 +91,7 @@ router
             httpOnly: true
           })
           .cookie('test-user-data', JSON.stringify(user))
+          .clearCookie('session')
           .send();
       } catch (error) {
         let errorMsg = JSON.stringify(error);
@@ -226,6 +228,7 @@ async function createUser(req, doCreateUser, isEditor) {
     expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000)
   });
   req.cookies['login-token'] = loginToken;
+
   await request
     .put(`http://${config.test.minismaug.host}:3333/configuration?token=${id}`)
     .send({user: {uniqueId: id}, storage: null});
