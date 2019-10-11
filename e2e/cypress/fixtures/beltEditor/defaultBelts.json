@@ -41,8 +41,21 @@
       "key": "Uhygge bag hjemmets fire vægge",
       "name": "Uhygge bag hjemmets fire vægge",
       "subtext": "Description",
-      "tags": [],
-      "onFrontPage": false,
+      "tags": [
+        {
+          "id": 4044,
+          "weight": 1
+        },
+        {
+          "id": 4895,
+          "weight": 1
+        },
+        {
+          "id": 5149,
+          "weight": 1
+        }
+      ],
+          "onFrontPage": false,
       "createdBy": "Bibliotekar Sarah",
       "_created": 1569584300,
       "_modified": 1569584300,
