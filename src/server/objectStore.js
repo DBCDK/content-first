@@ -85,7 +85,8 @@ function setupObjectStore(storageOptions) {
     throw new Error('storageOptions.url is not valid');
   }
   storageUrl = storageOptions.url;
-  aggregationUrl = storageOptions.url.replace('storage', 'aggregation');
+  aggregationUrl = storageOptions.url.replace(/storage\/?$/, 'aggregation');
+  console.log({storageUrl, aggregationUrl});
   typeId = storageOptions.typeId;
   validated = false;
 }
