@@ -71,7 +71,7 @@ class BeltForm extends React.Component {
       this.state.description,
       this.state.enabled,
       this.props.tags,
-      this.props.id
+      this.state.id
     );
     try {
       this.setState({saving: true});
@@ -108,7 +108,7 @@ class BeltForm extends React.Component {
           this.state.description,
           this.state.enabled,
           this.props.tags,
-          this.props.id
+          this.state.id
         )
       );
       this.props.historyReplace('/redaktionen');
