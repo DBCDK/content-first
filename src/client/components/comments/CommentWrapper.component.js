@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import ProfileImage from '../general/ProfileImage.component';
 import {
   UPDATE_COMMENT,
   TOGGLE_EDIT_COMMENT,
@@ -9,7 +10,7 @@ import {
 
 import Spinner from '../general/Spinner/Spinner.component';
 import {timestampToLongDate} from '../../utils/dateTimeFormat';
-import ProfileImage from '../general/ProfileImage.component';
+
 import CommentInput from './CommentInput.component';
 import Text from '../base/Text';
 import T from '../base/T';
@@ -115,6 +116,7 @@ export class CommentWrapper extends React.Component {
                   style={{marginRight: '15px', marginTop: '10px'}}
                   size="40"
                 />
+
                 <div className="d-flex flex-column w-100">
                   <Text type="small" variant="color-due" className="mb-1">
                     {timestampToLongDate(_created)}
