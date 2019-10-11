@@ -16,8 +16,16 @@ import Spinner from '../general/Spinner/Spinner.component';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {ERROR} from '../general/Notification/Notification.component';
 import {HISTORY_PUSH} from '../../redux/middleware';
+import {withUser} from '../hoc/User';
 
 const EditorRole = 'contentFirstEditor';
+
+const OwnerName = withUser(({user, className}) => {
+  if (!user) {
+    return null;
+  }
+  return <span className={className}>{user.name}</span>;
+});
 
 export class BeltEditor extends React.Component {
   constructor(props) {
@@ -213,7 +221,7 @@ export class BeltEditor extends React.Component {
           className="desktop-only-column"
           onClick={() => this.editBelt(index)}
         >
-          {createdBy}
+          <OwnerName id={createdBy} />
         </Text>
         {upIcon !== '' ? (
           <Storage
