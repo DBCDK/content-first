@@ -86,7 +86,6 @@ function setupObjectStore(storageOptions) {
   }
   storageUrl = storageOptions.url;
   aggregationUrl = storageOptions.url.replace(/storage\/?$/, 'aggregation');
-  console.log({storageUrl, aggregationUrl});
   typeId = storageOptions.typeId;
   validated = false;
 }
