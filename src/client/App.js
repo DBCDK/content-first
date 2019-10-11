@@ -172,7 +172,8 @@ class App extends Component {
     tags: params.tags ? params.tags[0] : [],
     createdBy: params.createdBy ? params.createdBy[0] : '',
     created: params.created ? params.created[0] : '',
-    id: params.id ? params.id[0] : ''
+    id: params.id ? params.id[0] : '',
+    index: params.index ? params.index[0] : ''
   });
 }
 

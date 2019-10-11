@@ -33,7 +33,10 @@ class BeltForm extends React.Component {
       description: props.description || '',
       enabled: props.enabled ? props.enabled.toLowerCase() === 'true' : false,
       id: props.id || '',
-      saving: false
+      index: props.index || '',
+      saving: false,
+      created: this.props.created,
+      createdBy: this.props.createdBy
     };
   }
 
@@ -51,7 +54,7 @@ class BeltForm extends React.Component {
     });
   };
 
-  beltObject = (title, description, enabled, tags, id) => ({
+  beltObject = (title, description, enabled, tags, id, index) => ({
     _public: true,
     _type: 'belt',
     _id: id,
@@ -59,7 +62,8 @@ class BeltForm extends React.Component {
     name: title,
     subtext: description,
     tags: tags.map(item => ({id: item.id, weight: 1})),
-    onFrontPage: enabled
+    onFrontPage: enabled,
+    index: index
   });
 
   handleSubmit = async (create, update) => {
@@ -71,7 +75,8 @@ class BeltForm extends React.Component {
       this.state.description,
       this.state.enabled,
       this.props.tags,
-      this.state.id
+      this.state.id,
+      this.state.index
     );
     try {
       this.setState({saving: true});
@@ -108,7 +113,8 @@ class BeltForm extends React.Component {
           this.state.description,
           this.state.enabled,
           this.props.tags,
-          this.state.id
+          this.state.id,
+          this.state.index
         )
       );
       this.props.historyReplace('/redaktionen');
@@ -125,9 +131,9 @@ class BeltForm extends React.Component {
   checkDisabled = () => this.state.title.length === 0;
 
   publishedNote = () =>
-    timestampToShortDate(parseInt(this.props.created, 10)) +
+    timestampToShortDate(parseInt(this.state.created, 10)) +
     ', ' +
-    this.props.createdBy;
+    this.state.createdBy;
 
   render() {
     const tags = this.props
