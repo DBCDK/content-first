@@ -16,6 +16,9 @@
 .work-preview__work {
   max-width: 60%;
   display: flex;
+
+  /* Allow items to have heights according to content */
+  align-items: flex-start;
 }
 
 .work-preview__information {

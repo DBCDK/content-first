@@ -36,7 +36,7 @@ const WorksTitle = ({pids, className}) => (
     Tag="h1"
     type="title4"
     variant="transform-uppercase"
-    className={`similarbelt-title ${className}`}
+    className={`similar-belt__title ${className}`}
   >
     <strong>
       <T component="work" name="remindsOf" />{' '}
@@ -67,15 +67,13 @@ export class SimilarBelt extends React.Component {
 
     const bgColor = isChildBelt ? 'lys-graa' : 'white';
 
-    const isChildBeltClass = isChildBelt
-      ? 'similarBelt-childBelt childBelt'
-      : '';
+    const isChildBeltClass = isChildBelt ? 'child-belt' : '';
 
     return (
       <div
         ref={beltRef}
         data-cy="similarBelt"
-        className={`similarBelt ${className} ${isChildBeltClass} ${bgColor}`}
+        className={`similar-belt ${className} ${isChildBeltClass} ${bgColor}`}
         style={{
           ...style
         }}

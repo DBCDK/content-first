@@ -57,9 +57,13 @@
   }
 
   .work-preview__cover-link {
+    width: 100%;
     display: block;
     padding: var(--2pt);
     background-color: var(--lys-graa);
+
+    /* prevent flex-start height hack */
+    align-self: center;
   }
 
   .work-preview__cover-link .work-preview__cover {

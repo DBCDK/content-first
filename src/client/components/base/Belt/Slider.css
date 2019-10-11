@@ -3,7 +3,7 @@
 }
 
 .desktop-slider .swiper-wrapper {
-  padding: var(--6pt) var(--5pt) 0 var(--5pt);
+  padding: var(--6pt) var(--5pt);
 }
 
 .childBelt .desktop-slider .swiper-wrapper {
