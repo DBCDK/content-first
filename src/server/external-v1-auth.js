@@ -22,15 +22,15 @@ router.post('/logout', async (req, res) => {
   if (req.isAuthenticated()) {
     const openplatformToken = req.user.openplatformToken;
     req.logout();
-    if (config.server.isProduction) {
-      res.redirect(
-        `${config.login.url}/logout/?access_token=${openplatformToken}`
-      );
-    } else {
+    if (req.cookies['test-user-data']) {
       res
         .clearCookie('test-user-data')
         .clearCookie('login-token')
         .redirect('/');
+    } else {
+      res.redirect(
+        `${config.login.url}/logout/?access_token=${openplatformToken}`
+      );
     }
   } else {
     res.redirect('/');
