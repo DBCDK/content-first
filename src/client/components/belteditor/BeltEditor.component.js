@@ -341,7 +341,11 @@ export class BeltEditor extends React.Component {
               this.fixNewUnsortedItems(update, this.state.items);
               return this.state.loading ? (
                 <div className="d-flex justify-content-center">
-                  <Spinner size="30px" className="mt-5" />
+                  <Spinner
+                    size="30px"
+                    className="mt-5"
+                    data-cy="belt-editor-spinner"
+                  />
                 </div>
               ) : (
                 <SortableList
