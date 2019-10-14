@@ -193,7 +193,8 @@ class WorkPreview extends React.Component {
       filterCollection,
       filterReviews,
       sortTags,
-      sortTagsByAppeal
+      sortTagsByAppeal,
+      enableLightbox = false
     } = this.props;
     // handle collapsible tag container
     const tabsCollapsed = this.state.tabsCollapsed;
@@ -249,8 +250,9 @@ class WorkPreview extends React.Component {
               href={'/værk/' + book.pid}
             >
               <BookCover
+                pid={book.pid}
                 className="work-preview__cover"
-                book={book}
+                enableLightbox={enableLightbox}
                 dataCy={dataCy}
               >
                 <BookmarkButton

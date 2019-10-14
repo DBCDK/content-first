@@ -1,4 +1,4 @@
-.filter-page-title {
+work-card.filter-page-title {
   font-size: 30px;
   vertical-align: bottom;
   cursor: default;
@@ -93,7 +93,7 @@
   justify-content: space-evenly;
 }
 
-.filter-page-works .WorkCard {
+.filter-page-works .work-card {
   box-sizing: content-box;
   padding: 0rem 1rem 1rem 0;
 }

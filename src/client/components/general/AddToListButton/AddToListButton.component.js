@@ -59,9 +59,8 @@ const MenuEntry = withList(
           <Icon
             name="lens"
             className={
-              `md-xsmall ${
-                status && !multiple ? 'pistache pistache-txt' : ''
-              }` + (multiple ? ' m-0' : '')
+              `md-small ${status && !multiple ? 'pistache pistache-txt' : ''}` +
+              (multiple ? ' m-0' : '')
             }
           />
         )}

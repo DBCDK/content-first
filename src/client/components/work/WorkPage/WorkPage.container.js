@@ -71,6 +71,7 @@ class WorkPage extends React.Component {
           <WorkPreview
             className="white"
             pid={book.pid}
+            enableLightbox={true}
             dataCy="workpreviewCard"
           />
         </div>

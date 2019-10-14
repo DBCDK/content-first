@@ -29,22 +29,22 @@ i {
 }
 
 .material-icons.md-xsmall {
-  font-size: 1rem;
+  font-size: var(--1pt);
 }
 .material-icons.md-small {
-  font-size: 18px;
+  font-size: var(--2pt);
 }
 .material-icons.md-medium {
-  font-size: 24px;
+  font-size: var(--3pt);
 }
 .material-icons.md-large {
-  font-size: 28px;
+  font-size: var(--4pt);
 }
 .material-icons.md-xlarge {
-  font-size: 34px;
+  font-size: var(--5pt);
 }
 .material-icons.md-xxlarge {
-  font-size: 54px;
+  font-size: var(--6pt);
 }
 
 /* disbaled icon */

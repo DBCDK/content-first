@@ -10,7 +10,7 @@ const Divider = ({
 }) => {
   return (
     <div
-      className={`${className} Divider Divider__${type} Divider__${type}--${variant}`}
+      className={`${className} divider divider__${type} divider__${type}--${variant}`}
       {...props}
     />
   );

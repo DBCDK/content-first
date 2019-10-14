@@ -1,9 +1,4 @@
-html {
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-}
-
-.WorkCard {
+.work-card {
   position: relative;
   display: inline-block;
   height: 450px;
@@ -14,11 +9,11 @@ html {
   cursor: pointer;
 }
 
-.WorkCard:last-child {
-  margin-right: 1.5rem;
+.work-card .work-card__content {
+  height: 100%;
 }
 
-.WorkCard .book-cover {
+.work-card .book-cover {
   width: 100%;
   height: 70%;
   padding: 20px;
@@ -26,18 +21,22 @@ html {
   object-fit: contain;
 }
 
-.WorkCard .book-cover img {
+.work-card .book-cover img {
   width: auto;
   height: 100%;
   /* prevent native image long-click handle */
   pointer-events: none;
 }
 
-.WorkCard .book-cover p:first-child {
-  padding-top: 50px;
+.work-card .work-card__title {
+  margin: 0;
 }
 
-.WorkCard .book-cover-content {
+.work-card .work-card__creator {
+  margin-bottom: var(--1pt);
+}
+
+.work-card .book-cover-content {
   position: absolute;
   top: 0;
   right: 0;
@@ -46,41 +45,33 @@ html {
   z-index: 3;
 }
 
-.WorkCard .BookmarkButton {
-  margin-bottom: 0.5rem;
+.work-card .BookmarkButton {
+  margin-bottom: var(--05pt);
 }
 
-.WorkCard .CompareButton {
+.work-card .CompareButton {
   transform: rotate(-25deg) scale(0);
   transition-timing-function: ease-in;
   transition-duration: 0.15s;
 }
 
-.WorkCard .CompareButton.active {
+.work-card .CompareButton.active {
   transition-timing-function: ease-out;
   transform: rotate(0deg) scale(1);
 }
 
 @media only screen and (min-width: 768px) {
-  .WorkCard:hover .CompareButton {
+  .work-card:hover .CompareButton {
     transition-timing-function: ease-out;
     transform: rotate(0deg) scale(1);
   }
 
-  .WorkCard .CompareButton.active {
+  .work-card.CompareButton.active {
     background-color: var(--korn);
   }
 }
 
-.WorkCard .taxonomy-description {
-  font-size: 0.9rem;
-  line-height: 1.4rem;
-  color: var(--petroleum);
-  white-space: normal;
-  margin-top: 1em;
-}
-
-.WorkCard .hover-details {
+.work-card .hover-details {
   text-align: left;
   opacity: 0;
   transition: all 0.25s;
@@ -91,10 +82,10 @@ html {
   bottom: 0;
   width: 100%;
 }
-.WorkCard.highlight .hover-details {
+.work-card.highlight .hover-details {
   opacity: 1;
 }
-.WorkCard:hover .hover-details {
+.work-card:hover .hover-details {
   opacity: 1;
 }
 
@@ -109,41 +100,57 @@ html {
   z-index: 1;
 }
 
-.WorkCard.highlight .hover-details-fade {
+.work-card.highlight .hover-details-fade {
   opacity: 1;
 }
-.WorkCard:hover .hover-details-fade {
+.work-card:hover .hover-details-fade {
   opacity: 1;
 }
 
-.WorkCard .expand-more-wrapper {
+.work-card .expand-more-wrapper {
+  text-align: center;
   width: 100%;
   position: absolute;
   bottom: -180px;
   left: 0;
 }
 
-.WorkCard.ghost {
+.work-card.ghost {
   opacity: 0;
   pointer-events: none;
 }
 
+.work-card .work-card__tax-description {
+  display: block;
+  margin-top: var(--1pt);
+}
+
 @media only screen and (max-width: 768px) {
-  .WorkCard {
+  .work-card {
     height: 350px;
     width: 160px;
     min-width: 160px;
   }
 }
 
-@media only screen and (max-width: 480px) {
-  .WorkCard {
+@media only screen and (max-width: 576px) {
+  .work-card {
     height: 180px;
     width: 130px;
     min-width: 130px;
   }
-  .WorkCard .book-cover {
+
+  .work-card .book-cover {
     height: 100%;
     padding: 10px;
+  }
+
+  .hover-details-fade,
+  .hover-details {
+    display: none;
+  }
+
+  .work-card .work-card__tax-description {
+    display: none;
   }
 }

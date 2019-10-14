@@ -44,7 +44,7 @@ export class CompareButton extends React.PureComponent {
           openModal('compare', {main, pids: [main, pid]});
         }}
       >
-        <Icon name="compare_arrows" hex="&#xe915;" />
+        <Icon name="compare_arrows" />
       </button>
     );
   }

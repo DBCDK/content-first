@@ -25,7 +25,7 @@ const ShortListElement = props => {
     <div className="top-bar-dropdown-list-element">
       <div className="top-bar-dropdown-list-element--cover-image">
         <Link href={url}>
-          <BookCover book={props.element.book} hideCoverText={true} />
+          <BookCover pid={props.element.book.pid} />
         </Link>
       </div>
       <div className="top-bar-dropdown-list-element--text">

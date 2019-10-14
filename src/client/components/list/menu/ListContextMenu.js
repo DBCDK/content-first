@@ -9,6 +9,8 @@ import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
 
+import './ListContextMenu.css';
+
 const ListContextMenu = ({
   list,
   editListInfo,

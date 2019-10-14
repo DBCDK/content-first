@@ -4,43 +4,16 @@ import BookCover from '../../general/BookCover/BookCover.component';
 import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
 import CompareButton from '../../general/CompareButton/CompareButton.component';
 import TaxDescription from '../TaxDescription.component';
+import SkeletonCard from '../../base/Skeleton/Card';
 import Text from '../../base/Text';
 import Title from '../../base/Title';
+import Divider from '../../base/Divider';
 import Icon from '../../base/Icon';
 import {withWork} from '../../hoc/Work';
 import RemindsOf from '../../base/RemindsOf';
 
 import './WorkCard.css';
 
-export const SkeletonWorkCard = props => {
-  return (
-    <div
-      ref={props.cardRef || null}
-      className={'WorkCard ' + props.className}
-      data-hj-ignore-attributes
-    >
-      <BookCover book={{book: {}}} />
-      <div
-        className="skelet-taxonomy-description d-xs-none d-sm-block"
-        style={{height: 12, width: '80%', background: '#f8f8f8', marginTop: 10}}
-      />
-      <div
-        className="skelet-taxonomy-description d-xs-none d-sm-block"
-        style={{
-          height: 12,
-          width: '100%',
-          background: '#f8f8f8',
-          marginTop: 10
-        }}
-      />
-      <div
-        className="skelet-taxonomy-description d-xs-none d-sm-block"
-        style={{height: 12, width: '60%', background: '#f8f8f8', marginTop: 10}}
-      />
-      <div className="whiteLine" />
-    </div>
-  );
-};
 class WorkCard extends React.Component {
   constructor() {
     super();
@@ -112,82 +85,81 @@ class WorkCard extends React.Component {
   };
 
   render() {
-    if (
-      !this.props.work ||
-      !this.props.work.detailsHasLoaded ||
-      !this.props.isVisible
-    ) {
-      return <SkeletonWorkCard {...this.props} />;
+    const {
+      pid,
+      work,
+      className,
+      origin,
+      rid,
+      cardRef,
+      isVisible,
+      highlight,
+      enableHover,
+      skeleton,
+      hideMoreLikeThis = false,
+      onMoreLikeThisClick
+    } = this.props;
+
+    if (!work || !work.detailsHasLoaded || !isVisible) {
+      return <SkeletonCard className="work-card" cardRef={cardRef} />;
     }
-    // check if more-like-this button is disabled (default: false)
-    const hideMoreLikeThis = this.props.hideMoreLikeThis || false;
 
     const compareButtonIsVisible = this.state.showCompareButton;
     const compareButtonVisibleClass = compareButtonIsVisible ? 'active' : '';
 
     const tax_description =
-      this.props.work.book.taxonomy_description ||
-      this.props.work.book.taxonomy_description_subjects ||
-      `${this.props.work.book.title || ''}\n${this.props.work.book.creator ||
-        ''}`;
+      work.book.taxonomy_description ||
+      work.book.taxonomy_description_subjects ||
+      `${work.book.title || ''}\n${work.book.creator || ''}`;
 
-    const highlight = this.props.highlight ? 'highlight' : '';
+    const highlightClass = highlight ? 'highlight' : '';
 
     return (
       <div
-        ref={this.props.cardRef || null}
-        className={`WorkCard ${highlight} ${this.props.className}`}
+        ref={cardRef || null}
+        className={`work-card ${highlightClass} ${className}`}
         data-cy={this.props['data-cy'] || 'workcard'}
         data-hj-ignore-attributes
         onTouchStart={this.handleLongPress}
         onTouchEnd={this.handleLongRelease}
       >
-        <div style={{height: '100%'}} onClick={this.onWorkClick}>
-          <BookCover
-            book={this.props.skeleton ? {book: {}} : this.props.work.book}
-          >
-            {this.props.enableHover && (
+        <div className="work-card__content" onClick={this.onWorkClick}>
+          <BookCover pid={skeleton ? null : work.book.pid}>
+            {enableHover && (
               <React.Fragment>
-                <div className="hover-details-fade d-xs-none d-sm-block" />
-                <div
-                  className={`hover-details d-xs-none d-sm-block`}
-                  onClick={this.onWorkClick}
-                >
+                <div className="hover-details-fade" />
+                <div className="hover-details" onClick={this.onWorkClick}>
                   <Title
-                    className="m-0"
+                    className="work-card__title"
                     Tag="h1"
                     type="title6"
                     data-cy={'workcard-title'}
                   >
-                    {this.props.work.book.title}
+                    {work.book.title}
                   </Title>
                   <Title
+                    className="work-card__creator"
                     Tag="h2"
                     type="title6"
                     variant="weight-normal"
-                    className="mb-1"
                   >
-                    {this.props.work.book.creator}
+                    {work.book.creator}
                   </Title>
-                  {hideMoreLikeThis ? (
-                    <hr className="w-100" />
+                  {!hideMoreLikeThis ? (
+                    <Divider variant="thin" />
                   ) : (
                     <RemindsOf
                       onClick={e => {
                         e.stopPropagation();
                         e.preventDefault();
-                        this.props.onMoreLikeThisClick(
-                          this.props.work,
-                          this.props.origin,
-                          this.props.rid
-                        );
+                        onMoreLikeThisClick(work, origin, rid);
                       }}
                       data-cy="WC-more-like-this"
                     />
                   )}
 
-                  <div className="expand-more-wrapper text-center">
-                    <Icon name="&#xe5cf;" className="md-large" />
+                  <div className="expand-more-wrapper">
+                    <Icon name="expand_more" className="md-large" />
                   </div>
                 </div>
               </React.Fragment>
@@ -196,9 +168,9 @@ class WorkCard extends React.Component {
             <div className="book-cover-content">
               <BookmarkButton
                 className="icon-large"
-                origin={this.props.origin}
-                work={this.props.work}
-                rid={this.props.rid}
+                origin={origin}
+                work={work}
+                rid={rid}
                 layout="circle"
                 dataCy="bookmarkBtn"
                 size="default"
@@ -206,13 +178,13 @@ class WorkCard extends React.Component {
               <CompareButton
                 active={compareButtonIsVisible}
                 className={`${compareButtonVisibleClass}`}
-                main={this.props.origin.parent}
-                pid={this.props.pid}
+                main={origin.parent}
+                pid={pid}
               />
             </div>
           </BookCover>
 
-          <Text className="mt-2 d-xs-none d-sm-block">
+          <Text className="work-card__tax-description">
             {<TaxDescription text={tax_description} />}
           </Text>
         </div>

@@ -10,11 +10,11 @@
   padding: var(--5pt);
 }
 
-.swiper-wrapper .WorkCard {
+.swiper-wrapper .work-card {
   margin: 0 var(--3pt) 0 0;
 }
 
-.swiper-wrapper .WorkCard:last-child {
+.swiper-wrapper .work-card:last-child {
   margin: 0 var(--5pt) 0 0;
 }
 
@@ -22,11 +22,11 @@
   padding: 0 var(--3pt);
 }
 
-.mobile-slider .WorkCard {
+.mobile-slider .work-card {
   margin: 0 var(--2pt) 0 0;
 }
 
-.mobile-slider .WorkCard:last-child {
+.mobile-slider .work-card:last-child {
   margin: 0 var(--3pt) 0 0;
 }
 
@@ -35,7 +35,7 @@
     padding: 0 var(--2pt);
   }
 
-  .mobile-slider .WorkCard:last-child {
+  .mobile-slider .work-card:last-child {
     margin: 0 var(--2pt) 0 0;
   }
 }

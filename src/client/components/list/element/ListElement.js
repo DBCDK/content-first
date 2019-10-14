@@ -224,11 +224,7 @@ export class ListElement extends React.Component {
         <div className={'d-flex flex-row'}>
           <div className="position-relative">
             <Link href={'/værk/' + book.pid}>
-              <BookCover
-                book={book}
-                className="width-70 width-md-120 bg-white"
-                imageClassName="align-self-start"
-              />
+              <BookCover pid={book.pid} />
             </Link>
             <BookmarkButton
               className="icon-large"

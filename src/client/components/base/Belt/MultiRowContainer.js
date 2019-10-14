@@ -23,7 +23,7 @@ const Row = withIsVisible(
         {pids.map((pid, idx) => (
           <WorkCard
             cardRef={cardRef}
-            className={'mb-3 mb-sm-0 ' + (pid ? '' : 'invisible')}
+            className={pid ? '' : 'invisible'}
             enableHover={true}
             highlight={pid === selected}
             isVisible={isVisible}

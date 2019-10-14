@@ -149,7 +149,7 @@ class WorkPage extends React.Component {
             <div className="row mt-0 mt-sm-5 d-flex align-items-start">
               <div className="col-12 col-xl-8 WorkPage__work">
                 <div className="WorkPage__image">
-                  <BookCover book={book} enableLightbox>
+                  <BookCover pid={book.pid} enableLightbox>
                     <BookmarkButton
                       className="icon-large"
                       origin={T({

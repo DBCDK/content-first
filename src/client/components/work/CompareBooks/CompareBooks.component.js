@@ -21,7 +21,7 @@ const Card = ({work, children, main, styles}) => {
   const mainClass = main ? 'Card_main' : '';
   return (
     <div className={`Card ${mainClass}`} style={styles}>
-      <BookCover book={work.book} />
+      <BookCover pid={work.book.pid} />
       <TruncateMarkup lines={2}>{children}</TruncateMarkup>
     </div>
   );
@@ -92,11 +92,7 @@ export class CompareBooks extends React.Component {
             <Text type="small">
               <T component="work" name="compare" />
             </Text>
-            <Icon
-              className="Compare_icon"
-              name="compare_arrows"
-              hex="&#xe915;"
-            />
+            <Icon name="compare_arrows" />
           </div>
         </div>
         <div className="Compare">

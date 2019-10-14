@@ -49,8 +49,6 @@ export class ListsBelt extends React.Component {
     const listsPerSlide = this.getListsPerSlide();
     const matomoTitle = this.props.matomoTitle || 'list-belt';
 
-    console.log('title', title);
-
     return (
       <div
         className="lists-belt"
