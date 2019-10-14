@@ -2,156 +2,162 @@
   width: 750px;
 }
 
-.CompareBooks {
-  padding-top: 8px;
+.compare-books {
+  padding-top: var(--1pt);
 }
 
-.CompareBooks .Cards {
+.compare-books .cards {
   display: flex;
-  justify-content: space-between;
+  justify-content: spae-between;
   flex-wrap: nowrap;
 }
 
-.CompareBooks .Cards .Card {
-  width: calc(50% - 32px);
+.compare-books .cards .card {
+  width: calc(50% - var(--4pt));
   display: flex;
+
   align-items: center;
   background-color: var(--concrete);
-  height: 64px;
-  padding: 16px;
-  border-radius: 4px;
+  height: var(--8pt);
+  padding: var(--2pt);
+  border-radius: var(--05pt);
+
+  /* #bootstrap-overwrite */
+  border: none;
+  border-radius: 0;
+  flex-direction: row;
 }
 
-.CompareBooks .Cards .Card span {
+.compare-books .cards .card span {
   width: 100%;
-  padding: 0 16px 0 16px;
+  padding: 0 var(--2pt);
 }
 
-.CompareBooks .Cards .Card span p {
+.compare-books .cards .card span p {
   width: 100%;
-  padding: 0 16px 0 0;
+  padding: 0 var(--2pt) 0 0;
 }
 
-.Compare_loans .Cards .Card span p {
+.compare_loans .cards .card span p {
   padding: 0;
 }
 
-.CompareBooks .Cards .Card span p span {
+.compare-books .cards .card span p span {
   display: flex;
   justify-content: center;
 }
 
-.CompareBooks .Cards .Card strong,
-.CompareBooks .Cards .Card_loan strong {
+.compare-books .cards .card strong,
+.compare-books .cards .card_loan strong {
   font-size: 18px;
   vertical-align: middle;
-  margin-right: 16px;
+  margin-right: var(--2pt);
 }
 
-.CompareBooks .Cards .Card_loan strong {
-  margin: 0 16px 0 8px;
+.compare-books .cards .card_loan strong {
+  margin: 0 var(--2pt) 0 var(--1pt);
 }
 
-.CompareBooks .Cards .Card img {
-  max-width: 32px;
-  min-width: 32px;
+.compare-books .cards .card img {
+  max-width: var(--4pt);
+  min-width: var(--4pt);
 }
 
-.CompareBooks .Cards .Card_vs,
-.CompareBooks .Cards .Card_loan {
-  min-width: 64px;
+.compare-books .cards .card_vs,
+.compare-books .cards .card_loan {
+  min-width: var(--8pt);
   text-align: center;
   align-self: center;
   order: 0;
 }
 
-.CompareBooks .Cards .Card_loan {
+.compare-books .cards .card_loan {
   width: calc(100% / 3);
   display: flex;
   align-items: center;
-  padding: 8px;
-  height: 64px;
+  padding: var(--1pt);
+  height: var(--8pt);
   border: 1px solid black;
-  margin: 0 16px 0 16px;
+  margin: 0 var(--2pt);
 }
 
-.CompareBooks .Cards .Card_loan p span {
+.compare-books .cards .card_loan p span {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: left;
+  text-align: center;
 }
 
-.CompareBooks .Compare .Compare_title {
-  padding: 16px 0 8px 0;
+.compare-books .compare .compare_title {
+  padding: var(--2pt) 0 var(--1pt) 0;
 }
 
-.Compare .Compare_informations {
+.compare .compare_informations {
   background-color: var(--concrete);
-  padding: 8px 16px 8px 16px;
+  padding: var(--1pt) var(--2pt);
 }
 
-.Compare_informations .Info {
+.compare_informations .info {
   display: flex;
   align-items: center;
-  margin-top: 8px;
+  margin-top: var(--1pt);
 }
 
-.Info .Info_color {
-  width: 40px;
-  height: 16px;
-  margin-right: 8px;
+.info .info_color {
+  width: var(--5pt);
+  height: var(--2pt);
+  margin-right: var(--1pt);
   background-color: var(--porcelain);
 }
 
-.Info.Info_main .Info_color {
+.info.info_main .info_color {
   background-color: var(--pistache);
 }
 
-.Compare_appeals {
-  padding: 0px 16px 8px 16px;
+.compare_appeals {
+  padding: 0px var(--2pt) var(--1pt) var(--2pt);
   background-color: var(--concrete);
 }
 
-.Compare_appeals .Compare_tag {
+.compare_appeals .compare_tag {
   display: inline-block;
-  margin: 0 8px 8px 0;
+  margin: 0 var(--1pt) var(--1pt) 0;
 }
 
-.Compare_appeals .Compare_tag button {
+.compare_appeals .compare_tag button {
   margin: 0;
 }
 
-.Compare_appeals-title {
-  padding: 8px 0 8px 0;
+.compare_appeals-title {
+  padding: var(--1pt) 0;
 }
 
-.Compare_Tag {
-  margin-right: 8px;
+.compare_tag {
+  margin-right: var(--1pt);
 }
 
-.Compare_Tag.Compare_match {
+.compare_tag.compare_match {
   background-color: var(--pistache);
 }
 
-.Compare_loans .Cards .Card {
+.compare_loans .cards .card {
   width: calc(100% / 3);
 }
 
-.Compare_loans .Cards .Card img {
-  max-width: 16px;
-  min-width: 16px;
+.compare_loans .cards .card img {
+  max-width: var(--3pt);
+  min-width: var(--3pt);
 }
 
-.Compare_appeals .Compare_noTags {
-  padding: 16px 0 16px 0;
+.compare_appeals .compare_no-tags {
+  padding: var(--2pt) 0;
 }
 
-.Compare_loans_indicator {
-  padding-top: 8px;
+.compare_loans_indicator {
+  padding-top: var(--1pt);
 }
 
-.Card_vs .Compare_icon {
+.card_vs .material-icons-compare_arrows {
   display: none;
 }
 
@@ -160,84 +166,83 @@
     width: 100%;
   }
 
-  .CompareBooks .Cards {
+  .compare-books .cards {
     max-width: 200px;
     margin: auto;
-    padding: 16px 0 16px 0;
+    padding: var(--2pt) 0;
   }
 
-  .CompareBooks .Cards .Card {
+  .compare-books .cards .card {
     background-color: transparent;
     height: auto;
     padding: 0;
   }
 
-  .CompareBooks .Cards .Card img {
-    max-width: 48px;
-    min-width: 48px;
+  .compare-books .cards .card img {
+    max-width: var(--1pt);
+    min-width: var(--1pt);
   }
 
-  .CompareBooks .Cards .Card .Cards_title {
+  .compare-books .cards .card .cards_title {
     display: none;
   }
 
-  .Card_vs p {
+  .card_vs p {
     display: none;
   }
-  .Card_vs .Compare_icon {
+  .card_vs .material-icons-compare_arrows {
     display: block;
   }
 
-  .CompareBooks .Cards .Card {
-    width: 48px;
+  .compare-books .cards .card {
+    width: var(--6pt);
   }
 
-  .CompareBooks .Cards .Card span {
-    padding: 0 8px 0 8px;
+  .compare-books .cards .card span {
+    padding: 0 var(--1pt);
   }
 
-  .Compare_loans .Cards {
+  .compare_loans .cards {
     flex-direction: column;
     flex-wrap: wrap;
     max-height: 200px;
     max-width: 100%;
   }
 
-  .Compare_loans .Cards .Card {
-    width: calc(50% - 4px);
+  .compare_loans .cards .card {
+    width: calc(50% - var(--05pt));
     background-color: var(--concrete);
-    margin-bottom: 8px;
-    height: 64px;
-    padding: 8px;
+    margin-bottom: var(--1pt);
+    height: var(--8pt);
+    padding: var(--1pt);
   }
 
-  .Compare_loans .Cards .Card span p span {
+  .compare_loans .cards .card span p span {
     padding: 0;
   }
 
-  .Compare_loans .Cards .Card img {
-    max-width: 32px;
-    min-width: 32px;
+  .compare_loans .cards .card img {
+    max-width: var(--4pt);
+    min-width: var(--4pt);
   }
 
-  .Compare_loans .Cards .Card_loan {
-    margin: 0 0 0 8px;
-    width: calc(50% - 4px);
+  .compare_loans .cards .card_loan {
+    margin: 0 0 0 var(--1pt);
+    width: calc(50% - var(--05pt));
     background-color: transparent;
     order: 99 !important;
     height: 136px;
   }
 
-  .Compare_loans .Cards .Card_loan p {
+  .compare_loans .cards .card_loan p {
     width: 100%;
   }
 
-  .Compare_loans .Cards .Card_loan p span {
+  .compare_loans .cards .card_loan p span {
     flex-direction: column;
-    text-align: center !important;
   }
 
-  .Compare_loans .Cards .Card_loan p span strong {
-    margin: 0 0 8px 0;
+  .compare_loans .cards .Card_loan p span strong {
+    margin: 0 0 var(--1pt) 0;
   }
 }

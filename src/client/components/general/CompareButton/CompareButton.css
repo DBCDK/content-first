@@ -1,4 +1,4 @@
-.CompareButton {
+.compare-button {
   width: 40px;
   height: 40px;
   border: none;
@@ -12,16 +12,16 @@
 }
 
 @media only screen and (max-width: 576px) {
-  .CompareButton {
+  .compare-button {
     width: 30px;
     height: 30px;
   }
 }
 
-.CompareButton:hover {
+.compare-button:hover {
   background-color: var(--korn);
 }
 
-.CompareButton i {
+.compare-button i {
   align-self: center;
 }

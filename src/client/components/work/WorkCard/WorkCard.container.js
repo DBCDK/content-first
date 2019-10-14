@@ -145,7 +145,7 @@ class WorkCard extends React.Component {
                   >
                     {work.book.creator}
                   </Title>
-                  {!hideMoreLikeThis ? (
+                  {hideMoreLikeThis ? (
                     <Divider variant="thin" />
                   ) : (
                     <RemindsOf

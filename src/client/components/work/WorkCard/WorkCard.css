@@ -49,24 +49,24 @@
   margin-bottom: var(--05pt);
 }
 
-.work-card .CompareButton {
+.work-card .compare-button {
   transform: rotate(-25deg) scale(0);
   transition-timing-function: ease-in;
   transition-duration: 0.15s;
 }
 
-.work-card .CompareButton.active {
+.work-card .compare-button.active {
   transition-timing-function: ease-out;
   transform: rotate(0deg) scale(1);
 }
 
 @media only screen and (min-width: 768px) {
-  .work-card:hover .CompareButton {
+  .work-card:hover .compare-button {
     transition-timing-function: ease-out;
     transform: rotate(0deg) scale(1);
   }
 
-  .work-card.CompareButton.active {
+  .work-card.compare-button.active {
     background-color: var(--korn);
   }
 }

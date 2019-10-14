@@ -33,10 +33,10 @@ export class Hero extends React.Component {
       window.innerHeight > window.innerWidth ? 'portrait' : 'landscape';
 
     return (
-      <Parallax className={`Info ${className}`} strength={250}>
+      <Parallax className={`info-slide ${className}`} strength={250}>
         <Background>
           <div
-            className={`hero-bg-image box-wrap ${flip}`}
+            className={`hero_bg-image box-wrap ${flip}`}
             style={{
               backgroundImage: `url(${hero.img[orientation]})`,
               backgroundColor: hero.img.blend || 'transparent'

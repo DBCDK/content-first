@@ -35,7 +35,7 @@ export class CompareButton extends React.PureComponent {
 
     return (
       <button
-        className={`CompareButton ${className} ${activeClass}`}
+        className={`compare-button ${className} ${activeClass}`}
         onClick={e => {
           // Prevent opening workpreview on bookmark click
           e.preventDefault();

@@ -18,9 +18,9 @@ import {WORK_RECOMMEND_REQUEST} from '../../../redux/recommend';
 import './CompareBooks.css';
 
 const Card = ({work, children, main, styles}) => {
-  const mainClass = main ? 'Card_main' : '';
+  const mainClass = main ? 'card_main' : '';
   return (
-    <div className={`Card ${mainClass}`} style={styles}>
+    <div className={`card ${mainClass}`} style={styles}>
       <BookCover pid={work.book.pid} />
       <TruncateMarkup lines={2}>{children}</TruncateMarkup>
     </div>
@@ -28,13 +28,13 @@ const Card = ({work, children, main, styles}) => {
 };
 
 const Info = ({work, main}) => {
-  const mainClass = main ? 'Info_main' : '';
+  const mainClass = main ? 'info_main' : '';
   const title = main
     ? T({component: 'work', name: 'infoCommon'})
     : T({component: 'work', name: 'onlyCompared', vars: [work.book.title]});
   return (
-    <div className={`Info ${mainClass}`}>
-      <div className="Info_color" />
+    <div className={`info ${mainClass}`}>
+      <div className="info_color" />
       <Text type="small">{title}</Text>
     </div>
   );
@@ -69,8 +69,8 @@ export class CompareBooks extends React.Component {
     const intersectedTags = intersectTags();
 
     return (
-      <div className="CompareBooks">
-        <div className="Cards">
+      <div className="compare-books">
+        <div className="cards">
           {works.map((work, i) => {
             const isMain = work.book.pid === main;
             return (
@@ -80,7 +80,7 @@ export class CompareBooks extends React.Component {
                 main={isMain}
                 styles={{order: isMain ? 99 : i}}
               >
-                <span className="Cards_title">
+                <span className="cards_title">
                   <Text type={'body'} variant={'weight-semibold'}>
                     {work.book.title}
                   </Text>
@@ -88,18 +88,18 @@ export class CompareBooks extends React.Component {
               </Card>
             );
           })}
-          <div className="Card_vs" style={{order: 98}}>
+          <div className="card_vs" style={{order: 98}}>
             <Text type="small">
               <T component="work" name="compare" />
             </Text>
             <Icon name="compare_arrows" />
           </div>
         </div>
-        <div className="Compare">
-          <Text className="Compare_title" type="body" variant="weight-bold">
+        <div className="compare">
+          <Text className="compare_title" type="body" variant="weight-bold">
             <T component="work" name="appealsTitle" />
           </Text>
-          <div className="Compare_informations">
+          <div className="compare_informations">
             {works.map(work => {
               return (
                 <Info
@@ -111,7 +111,7 @@ export class CompareBooks extends React.Component {
             })}
           </div>
 
-          <div className="Compare_appeals">
+          <div className="compare_appeals">
             {comparedWorkAppel.length > 0 ? (
               comparedWorkAppel.map(g => {
                 return (
@@ -119,18 +119,18 @@ export class CompareBooks extends React.Component {
                     <Text
                       type="small"
                       variant="weight-bold"
-                      className="Compare_appeals-title"
+                      className="compare_appeals-title"
                     >
                       {g.title}
                     </Text>
                     {g.data.map(t => {
                       const matchClass = some(intersectedTags, ['id', t.id])
-                        ? 'Compare_match'
+                        ? 'compare_match'
                         : '';
 
                       return (
                         <Link
-                          className="Compare_tag"
+                          className="compare_tag"
                           key={t.id}
                           href="/find"
                           params={{tags: t.id}}
@@ -139,7 +139,7 @@ export class CompareBooks extends React.Component {
                             key={t.title}
                             type="tertiary"
                             size="small"
-                            className={`Compare_Tag ${matchClass}`}
+                            className={`compare_tag ${matchClass}`}
                             dataCy={'tag-' + t.title}
                           >
                             {t.title}
@@ -151,16 +151,16 @@ export class CompareBooks extends React.Component {
                 );
               })
             ) : (
-              <Text type="body" className="Compare_noTags">
+              <Text type="body" className="compare_no-tags">
                 <T component="work" name="noAppeals" />
               </Text>
             )}
           </div>
-          <Text className="Compare_title" type="body" variant="weight-bold">
+          <Text className="compare_title" type="body" variant="weight-bold">
             <T component="work" name="loansTitle" />
           </Text>
-          <div className="Compare_loans">
-            <div className="Cards">
+          <div className="compare_loans">
+            <div className="cards">
               {works.map((work, i) => {
                 const isMain = work.book.pid === main;
 
@@ -184,7 +184,7 @@ export class CompareBooks extends React.Component {
                   </Card>
                 );
               })}
-              <div className="Card_loan" style={{order: 98}}>
+              <div className="card_loan" style={{order: 98}}>
                 <Text type="small">
                   <T
                     component="work"
@@ -200,7 +200,7 @@ export class CompareBooks extends React.Component {
               </div>
             </div>
           </div>
-          <div className="Compare_loans_indicator">
+          <div className="compare_loans_indicator">
             <Text type="small">
               <T component="work" name="aboutLoans" />
             </Text>

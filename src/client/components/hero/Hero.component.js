@@ -4,7 +4,6 @@ import Swiper from 'react-id-swiper';
 import {isMobile} from 'react-device-detect';
 
 /* templates */
-import SearchbarTemplate from './templates/Searchbar.template.js';
 import InfoTemplate from './templates/Info.template.js';
 import InteractionSlide from './templates/InteractionSlide.template.js';
 
@@ -54,15 +53,6 @@ export class Hero extends React.Component {
 
   template(hero, idx) {
     switch (hero.template) {
-      case 'Searchbar': {
-        return (
-          <SearchbarTemplate
-            className="swiper-slide"
-            key={`${hero.title}-${idx}`}
-            hero={hero}
-          />
-        );
-      }
       case 'Info': {
         return (
           <InfoTemplate
@@ -93,10 +83,7 @@ export class Hero extends React.Component {
     const {heroes, heroesIsLoading} = this.props;
 
     return (
-      <div
-        className="Hero position-relative mb-5"
-        ref={e => (this.container = e)}
-      >
+      <div className="hero" ref={e => (this.container = e)}>
         <Swiper {...params}>
           {!heroesIsLoading &&
             heroes.map((hero, idx) => {

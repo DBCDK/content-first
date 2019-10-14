@@ -1,11 +1,15 @@
-.InteractionSlide .box-wrap {
+.interaction-slide .box-wrap {
+  -webkit-background-blend-mode: multiply;
+  -ms-background-blend-mode: multiply;
+  -moz-background-blend-mode: multiply;
   background-blend-mode: multiply;
+
   background-position: center center !important;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.InteractionSlide .box {
+.interaction-slide .box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -14,74 +18,73 @@
   transform: translate(0, -50%);
 }
 
-.InteractionSlide .box.box-left {
+.interaction-slide .box.box-left {
   left: 15%;
 }
-.InteractionSlide .box.box-right {
+.interaction-slide .box.box-right {
   right: 15%;
 }
 
-.InteractionSlide .box-wrap.flipX {
+.interaction-slide .box-wrap.flipX {
   transform: scaleX(-1);
 }
 
-.InteractionSlide .box-wrap.flipY {
+.interaction-slide .box-wrap.flipY {
   transform: scaleX(1);
 }
 
-.InteractionSlide .box .Button__term,
-.InteractionSlide .box .Button__primary {
+.interaction-slide .box .Button__term,
+.interaction-slide .box .Button__primary {
   height: 60px;
 }
 
-.InteractionSlide .box .Button__term:hover {
+.interaction-slide .box .Button__term:hover {
   background-color: var(--alto);
 }
 
-@media (max-width: 767px) {
-
-  .InteractionSlide .box.box-left {
+@media (max-width: 768px) {
+  .interaction-slide .box.box-left {
     left: 5%;
   }
-  .InteractionSlide .box.box-right {
+  .interaction-slide .box.box-right {
     right: 5%;
   }
 }
 
-@media (max-width: 767px) and (orientation: landscape) {
-  .InteractionSlide .box {
+@media (max-width: 768px) and (orientation: landscape) {
+  .interaction-slide .box {
     top: 50%;
   }
 
-  .InteractionSlide .box.box-left {
+  .interaction-slide .box.box-left {
     left: 10%;
   }
-  .InteractionSlide .box.box-right {
+  .interaction-slide .box.box-right {
     right: 10%;
   }
 }
 
-@media (max-width: 767px) and (orientation: landscape), (max-width: 575px) {
-  .InteractionSlide .box .Button__term,
-  .InteractionSlide .box .Button__primary {
+@media (max-width: 768px) and (orientation: landscape), (max-width: 576px) {
+  .interaction-slide .box .Button__term,
+  .interaction-slide .box .Button__primary {
     height: 40px;
   }
 
-  .InteractionSlide .box .Button__term {
+  .interaction-slide .box .Button__term {
     font-size: 18px;
   }
 
-  .InteractionSlide .box .Button__primary {
+  .interaction-slide .box .Button__primary {
     font-size: 14px;
   }
 }
 
-@media (max-width: 575px) {
-  .InteractionSlide .box-wrap.flipX {
+@media (max-width: 576px) {
+  .interaction-slide .box-wrap.flipX {
     transform: scaleX(1) !important;
   }
-  .InteractionSlide .box.box-left,
-  .InteractionSlide .box.box-right {
+  .interaction-slide .box.box-left,
+  .interaction-slide .box.box-right {
     left: 5%;
   }
 }
