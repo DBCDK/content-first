@@ -9,8 +9,6 @@ import withWork from '../../hoc/Work/withWork.hoc';
 import './BookCover.css';
 
 const generateSvg = (backgroundColor, title, creator) => {
-  console.log('title', title);
-
   const titleLines = splitLine(title, 18, 6).map(encodeEntities);
   const tspanTitle =
     '<tspan x="50%">' +

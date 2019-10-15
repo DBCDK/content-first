@@ -58,6 +58,8 @@ export class TagsBelt extends React.Component {
   }
 
   render() {
+    const {_owne, plainSelectedTagIds, className, name} = this.props;
+
     const isOwner =
       this.props._owner &&
       this.props._owner === get(this.props, 'user.openplatformId');
@@ -76,8 +78,8 @@ export class TagsBelt extends React.Component {
     return (
       <div
         id={`temp_${tags.map(v => v.id || v).join('')}`}
-        className={'belt ' + this.props.className}
-        data-cy={`tagsbelt-${this.props.name}`}
+        className={`belt ${className}`}
+        data-cy={`tagsbelt-${name}`}
       >
         <div className="mb-0 px-0 px-sm-3 px-lg-5 pt-5 d-flex position-relative">
           {editing ? (

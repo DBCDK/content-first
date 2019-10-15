@@ -31,7 +31,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .info-slide .box-wrap {
     top: 0;
     left: 0;
@@ -43,20 +43,20 @@
   }
 }
 
-@media (max-width: 767px) and (orientation: landscape) {
+@media (max-width: 768px) and (orientation: landscape) {
   .info-slide .box {
     width: 50vw;
     font-size: 3vw;
   }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 576px) {
   .info-slide .box-wrap {
     transform: scaleX(1) !important;
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 320px) {
   .info-slide .box {
     width: 65vw;
   }
