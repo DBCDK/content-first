@@ -101,7 +101,13 @@ class WorkCard extends React.Component {
     } = this.props;
 
     if (!work || !work.detailsHasLoaded || !isVisible) {
-      return <SkeletonCard className="work-card" cardRef={cardRef} />;
+      return (
+        <SkeletonCard
+          className={`work-card ${className}`}
+          cardRef={cardRef}
+          data-cy={this.props['data-cy'] || 'workcard'}
+        />
+      );
     }
 
     const compareButtonIsVisible = this.state.showCompareButton;

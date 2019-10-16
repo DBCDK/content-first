@@ -24,7 +24,7 @@ Array [
       clear
     </i>
     <a
-      className="list-card-nohover"
+      className="link"
       data-cy=""
       href="/huskeliste"
       onClick={[Function]}
@@ -56,7 +56,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="list-card-nohover"
+              className="link"
               data-cy=""
               href="/værk/pid1"
               onClick={[Function]}
@@ -82,7 +82,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="list-card-nohover"
+                className="link"
                 data-cy=""
                 href="/værk/pid1"
                 onClick={[Function]}
@@ -125,7 +125,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="list-card-nohover"
+              className="link"
               data-cy=""
               href="/værk/pid2"
               onClick={[Function]}
@@ -151,7 +151,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="list-card-nohover"
+                className="link"
                 data-cy=""
                 href="/værk/pid2"
                 onClick={[Function]}
@@ -253,7 +253,7 @@ Array [
       clear
     </i>
     <a
-      className="list-card-nohover"
+      className="link"
       data-cy=""
       href="/huskeliste"
       onClick={[Function]}
@@ -285,7 +285,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="list-card-nohover"
+              className="link"
               data-cy=""
               href="/værk/pid4"
               onClick={[Function]}
@@ -311,7 +311,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="list-card-nohover"
+                className="link"
                 data-cy=""
                 href="/værk/pid4"
                 onClick={[Function]}
@@ -354,7 +354,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="list-card-nohover"
+              className="link"
               data-cy=""
               href="/værk/pid3"
               onClick={[Function]}
@@ -380,7 +380,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="list-card-nohover"
+                className="link"
                 data-cy=""
                 href="/værk/pid3"
                 onClick={[Function]}
@@ -423,7 +423,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="list-card-nohover"
+              className="link"
               data-cy=""
               href="/værk/pid2"
               onClick={[Function]}
@@ -449,7 +449,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="list-card-nohover"
+                className="link"
                 data-cy=""
                 href="/værk/pid2"
                 onClick={[Function]}
@@ -492,7 +492,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="list-card-nohover"
+              className="link"
               data-cy=""
               href="/værk/pid1"
               onClick={[Function]}
@@ -518,7 +518,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="list-card-nohover"
+                className="link"
                 data-cy=""
                 href="/værk/pid1"
                 onClick={[Function]}
@@ -620,7 +620,7 @@ Array [
       clear
     </i>
     <a
-      className="list-card-nohover"
+      className="link"
       data-cy=""
       href="/huskeliste"
       onClick={[Function]}
@@ -652,7 +652,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="list-card-nohover"
+              className="link"
               data-cy=""
               href="/værk/pid1"
               onClick={[Function]}
@@ -678,7 +678,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="list-card-nohover"
+                className="link"
                 data-cy=""
                 href="/værk/pid1"
                 onClick={[Function]}

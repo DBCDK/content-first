@@ -76,7 +76,7 @@ export default class ContextMenu extends React.Component {
   render() {
     const {
       title = '',
-      className,
+      className = '',
       children,
       style,
       dataCy,
@@ -85,7 +85,7 @@ export default class ContextMenu extends React.Component {
 
     return (
       <div
-        className={'ContextMenu ' + className || ''}
+        className={'ContextMenu ' + className}
         style={style}
         data-cy={dataCy || props['data-cy']}
       >

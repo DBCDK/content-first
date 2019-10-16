@@ -1,0 +1,21 @@
+.belt-personal .belt-personal__title {
+  margin: 0 var(--5pt) var(--3pt) var(--5pt);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.belt-personal .belt-personal__title strong {
+  margin: 0 var(--1pt) 0 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .belt-personal .belt-personal__title {
+    margin: 0 var(--5pt) var(--3pt) var(--5pt);
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .belt-personal .belt-personal__title {
+    margin: 0 var(--2pt) var(--2pt) var(--2pt);
+  }
+}

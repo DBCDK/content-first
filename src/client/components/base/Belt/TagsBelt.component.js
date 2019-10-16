@@ -20,32 +20,31 @@ import Button from '../Button';
 import './TagsBelt.css';
 
 const EditBelt = props => {
-  if (isMobileOnly) {
-    return <BeltContextMenu onClick={props.onClick} />;
-  }
-
   return (
-    <div
-      className="Belt_editButton d-flex align-items-center mt-2"
-      onClick={props.onClick}
-    >
-      <Icon className="md-small" name="edit" />
-      <Text className="m-0 ml-2 " type="small">
-        <T component="general" name="edit" />
-      </Text>
-    </div>
+    <React.Fragment>
+      <BeltContextMenu {...props} />
+      <div className="belt-tags__edit-button" onClick={props.onEditClick}>
+        <Icon className="md-small" name="edit" />
+        <Text type="small">
+          <T component="general" name="edit" />
+        </Text>
+      </div>
+    </React.Fragment>
   );
 };
 
-const BeltContextMenu = ({onClick}) => {
-  const style = {position: 'absolute', right: 0, top: '42px', zIndex: 1};
-
+const BeltContextMenu = ({onEditClick, onDeleteClick}) => {
   return (
-    <ContextMenu title={''} className={'mt-2 mr-2'} style={style}>
+    <ContextMenu>
       <ContextMenuAction
         title={T({component: 'general', name: 'editMultiple'})}
         icon="edit"
-        onClick={onClick}
+        onClick={onEditClick}
+      />
+      <ContextMenuAction
+        title={T({component: 'editStartPage', name: 'deleteBelt'})}
+        icon="delete"
+        onClick={onDeleteClick}
       />
     </ContextMenu>
   );
@@ -58,13 +57,23 @@ export class TagsBelt extends React.Component {
   }
 
   render() {
-    const {_owne, plainSelectedTagIds, className, name} = this.props;
+    const {
+      _owner,
+      subtext,
+      plainSelectedTagIds,
+      className = '',
+      name,
+      removeBelt,
+      updateMount,
+      openSimilarBelt,
+      openWorkPreview,
+      recommendations
+    } = this.props;
 
-    const isOwner =
-      this.props._owner &&
-      this.props._owner === get(this.props, 'user.openplatformId');
-    const tags = this.props.plainSelectedTagIds;
+    const isOwner = _owner && _owner === get(this.props, 'user.openplatformId');
+    const tags = plainSelectedTagIds;
     const editing = this.state.editing;
+    const editingClass = editing ? 'editing' : '';
     const titleMissing = this.state.name.trim().length === 0;
     const titleMissingClass = titleMissing ? 'value-missing' : '';
     const origin = {
@@ -78,195 +87,158 @@ export class TagsBelt extends React.Component {
     return (
       <div
         id={`temp_${tags.map(v => v.id || v).join('')}`}
-        className={`belt ${className}`}
+        className={`belt belt-tags ${className} ${editingClass}`}
         data-cy={`tagsbelt-${name}`}
       >
-        <div className="mb-0 px-0 px-sm-3 px-lg-5 pt-5 d-flex position-relative">
-          {editing ? (
-            <div className="w-100">
-              <div className="d-flex flex-row">
-                <Textarea
-                  className={`w-100 ${titleMissingClass} Title Title__title4 Title__title4--transform-uppercase p-1 mt-1 mr-4`}
-                  name="belt-name"
-                  placeholder={T({
-                    component: 'belts',
-                    name: 'pinPlaceholderTitle'
-                  })}
-                  onChange={e => this.setState({name: e.target.value})}
-                  maxRows={1}
-                  value={this.state.name}
-                />
-
-                <div className="scrollable-tags d-sm-inline h-scroll-xs h-scroll-sm-none align-self-center ml-sm-0">
-                  {tags.map((t, idx) => {
-                    const tag = filtersMapAll[t.id ? t.id : t];
-                    const isLast = idx === tags.length - 1;
-                    return (
-                      <Link
-                        key={tag.id}
-                        href="/find"
-                        params={{tags: tag.id}}
-                        data-cy={`tag-${tag.title}`}
-                      >
-                        <Term
-                          className={'my-1 ' + (isLast ? '' : 'mr-2')}
-                          size="medium"
-                          style={{verticalAlign: 'baseline'}}
-                        >
-                          {tag.title}
-                        </Term>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="mt-2">
-                <Textarea
-                  className={`Title Title__title5 p-1 w-100`}
-                  name="belt-description"
-                  placeholder={T({
-                    component: 'belts',
-                    name: 'pinPlaceholderDescription'
-                  })}
-                  onChange={e => this.setState({subtext: e.target.value})}
-                  value={this.state.subtext}
-                />
-              </div>
-
-              <div className="d-flex w-100 w-sm-auto flex-row-reverse flex-sm-row mb-4 mt-3">
-                <Button
-                  type="quaternary"
-                  size="medium"
-                  className="mr-0 mr-sm-2 ml-2 ml-sm-0"
-                  onClick={() => {
-                    this.props.updateBelt({
-                      name: this.state.name,
-                      subtext: this.state.subtext
-                    });
-                    this.setState({editing: false});
-                  }}
-                  disabled={this.state.name.trim().length === 0}
+        <div className="belt-tags__content--wrap">
+          <div className="belt-tags__title-tags--wrap">
+            {!editing ? (
+              <Link
+                className="belt-tags__title--link"
+                href="/find"
+                params={{
+                  tags: tags.map(t => (t.id ? t.id : t)).join(',')
+                }}
+                onClick={() => {
+                  if (updateMount) {
+                    updateMount({titleClick: origin});
+                  }
+                }}
+              >
+                <Title
+                  Tag="h1"
+                  type="title4"
+                  variant="transform-uppercase"
+                  className="belt-tags__title"
+                  style={{lineHeight: 'inherit'}}
                 >
-                  <T component="general" name="saveChanges" />
-                </Button>
-                <Button
-                  type="link"
-                  size="medium"
-                  className="mx-2"
-                  onClick={() => this.setState({editing: false})}
-                >
-                  <T component="general" name="cancel" />
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <React.Fragment>
-              <div className="">
-                <div className="pl-0 d-flex flex-wrap mw-100">
+                  {name.split(' ').map((word, idx) => {
+                    if (idx === 0) {
+                      return <strong key={idx}>{word}</strong>;
+                    }
+                    return ' ' + word;
+                  })}
+                </Title>
+              </Link>
+            ) : (
+              <Textarea
+                className={`${titleMissingClass} Title Title__title4 Title__title4--transform-uppercase`}
+                name="belt-tags-name"
+                placeholder={T({
+                  component: 'belts',
+                  name: 'pinPlaceholderTitle'
+                })}
+                onChange={e => this.setState({name: e.target.value})}
+                value={this.state.name}
+              />
+            )}
+
+            {isOwner && !editing && (
+              <Pin icon="delete" active={true} onClick={removeBelt} />
+            )}
+
+            <div className="belt-tags__tags--container">
+              {tags.map((t, idx) => {
+                const tag = filtersMapAll[t.id ? t.id : t];
+                return (
                   <Link
+                    className="belt-tags__tag--link"
+                    key={tag.id}
                     href="/find"
-                    params={{
-                      tags: tags.map(t => (t.id ? t.id : t)).join(',')
-                    }}
+                    params={{tags: tag.id}}
                     onClick={() => {
-                      if (this.props.updateMount) {
-                        this.props.updateMount({titleClick: origin});
+                      if (updateMount) {
+                        updateMount({
+                          beltName: origin,
+                          tagClick: tag.title
+                        });
                       }
                     }}
+                    data-cy={`tag-${tag.title}`}
                   >
-                    <Title
-                      Tag="h1"
-                      type="title4"
-                      variant="transform-uppercase"
-                      className="m-0 p-0 pr-4 ml-2 ml-sm-0 mr-4 my-1 border-right-sm-1"
-                      style={{lineHeight: 'inherit'}}
-                    >
-                      {this.props.name.split(' ').map((word, idx) => {
-                        if (idx === 0) {
-                          return <strong key={idx}>{word}</strong>;
-                        }
-                        return ' ' + word;
-                      })}
-                    </Title>
+                    <Term size="medium">{tag.title}</Term>
                   </Link>
-                  {isOwner && (
-                    <Pin
-                      icon="delete"
-                      className="d-inline mr-4 mt-2"
-                      active={true}
-                      onClick={this.props.removeBelt}
-                    />
-                  )}
-                  <div className="scrollable-tags d-sm-inline h-scroll-xs h-scroll-sm-none align-self-center ml-sm-0">
-                    {tags.map((t, idx) => {
-                      const tag = filtersMapAll[t.id ? t.id : t];
-                      const isLast = idx === tags.length - 1;
-                      return (
-                        <Link
-                          key={tag.id}
-                          href="/find"
-                          params={{tags: tag.id}}
-                          onClick={() => {
-                            if (this.props.updateMount) {
-                              this.props.updateMount({
-                                beltName: origin,
-                                tagClick: tag.title
-                              });
-                            }
-                          }}
-                          data-cy={`tag-${tag.title}`}
-                        >
-                          <Term
-                            className={'my-1 ' + (isLast ? '' : 'mr-2')}
-                            size="medium"
-                            style={{verticalAlign: 'baseline'}}
-                          >
-                            {tag.title}
-                          </Term>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <Title
-                    Tag="h3"
-                    type="title5"
-                    className="mb-4 mt-2 ml-2 ml-sm-0 mr-2 w-100 w-sm-auto d-block "
-                  >
-                    {this.props.subtext || ''}
-                  </Title>
-                </div>
-              </div>
-              {isOwner && !editing && (
-                <EditBelt
-                  onClick={() =>
-                    this.setState({
-                      editing: true,
-                      name: this.props.name,
-                      subtext: this.props.subtext
-                    })
-                  }
-                />
-              )}
-            </React.Fragment>
+                );
+              })}
+            </div>
+          </div>
+          <div className="belt-tags__description">
+            {!editing ? (
+              <Title
+                Tag="h3"
+                type="title5"
+                className="belt-tags__description--title"
+              >
+                {subtext}
+              </Title>
+            ) : (
+              <Textarea
+                className={`Title Title__title5`}
+                name="belt-tags-description"
+                placeholder={T({
+                  component: 'belts',
+                  name: 'pinPlaceholderDescription'
+                })}
+                onChange={e => this.setState({subtext: e.target.value})}
+                value={this.state.subtext}
+              />
+            )}
+          </div>
+
+          {editing && (
+            <div className="belt-tags__edit-actions">
+              <Button
+                type="quaternary"
+                size="medium"
+                className="belt-tags__save--btn"
+                onClick={() => {
+                  this.props.updateBelt({
+                    name: this.state.name,
+                    subtext: this.state.subtext
+                  });
+                  this.setState({editing: false});
+                }}
+                disabled={this.state.name.trim().length === 0}
+              >
+                <T component="general" name="saveChanges" />
+              </Button>
+              <Button
+                type="link"
+                size="medium"
+                className="belt-tags__cancel--btn"
+                onClick={() => this.setState({editing: false})}
+              >
+                <T component="general" name="cancel" />
+              </Button>
+            </div>
           )}
         </div>
+        {isOwner && !editing && (
+          <EditBelt
+            onEditClick={() =>
+              this.setState({
+                editing: true,
+                name,
+                subtext
+              })
+            }
+            onDeleteClick={removeBelt}
+          />
+        )}
 
         <WorkSlider
           {...this.props}
           className="TagsBelt"
-          pids={this.props.recommendations}
+          pids={recommendations}
           onMoreLikeThisClick={(wrk, bName, rid) =>
-            this.props.openSimilarBelt(
+            openSimilarBelt(
               wrk,
               get(this, 'props.belt.name', 'unknownBeltName'),
               rid
             )
           }
           onWorkClick={(wrk, bName, rid) =>
-            this.props.openWorkPreview(
+            openWorkPreview(
               wrk,
               get(this, 'props.belt.name', 'unknownBeltName'),
               rid

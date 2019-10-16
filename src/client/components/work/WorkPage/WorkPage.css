@@ -38,6 +38,11 @@
     flex-direction: column;
   }
 
+  .work-page .work-preview .book-cover {
+    max-width: 200px;
+    min-width: 200px;
+  }
+
   .work-page .work-preview .work-preview__work,
   .work-page .work-preview .work-preview__tabs-wrap {
     max-width: 100%;
@@ -55,6 +60,11 @@
 @media only screen and (max-width: 576px) {
   .work-page .work-preview .work-preview__work {
     flex-direction: column;
+  }
+
+  .work-page .work-preview .book-cover {
+    max-width: 150px;
+    min-width: 150px;
   }
 
   .work-page .work-preview__information {

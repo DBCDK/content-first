@@ -354,7 +354,7 @@ exports[`renders without crashing 1`] = `
         />
         <li>
           <a
-            className="list-card-nohover"
+            className="link"
             data-cy=""
             href="/profil/rediger"
             onClick={[Function]}
