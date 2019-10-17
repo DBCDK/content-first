@@ -221,7 +221,7 @@ export class BeltEditor extends React.Component {
           className="desktop-only-column"
           onClick={() => this.editBelt(index)}
         >
-          <OwnerName id={createdBy} />
+          {createdBy}
         </Text>
         {upIcon !== '' ? (
           <Storage
@@ -294,7 +294,7 @@ export class BeltEditor extends React.Component {
       'drag_indicator',
       enabled,
       title,
-      createdBy,
+      <OwnerName id={createdBy} />,
       'keyboard_arrow_up',
       'keyboard_arrow_down',
       'delete',
