@@ -46,7 +46,7 @@ describe('Login test', function() {
     cy.get('[data-cy=user-form-name]').should('have.value', userName);
   });
 
-  it('Can login through Adgangsplatformen', function() {
+  it.skip('Can login through Adgangsplatformen', function() {
     cy.visit('/v1/auth/login');
 
     cy.get('[data-cy=libraryname-input]:visible').type('Ishø');
