@@ -243,7 +243,7 @@ describe('Start Belt Editor test', function() {
     clickCreateButton();
 
     cy.url().should('include', '/redaktionen/opret');
-    cy.get('.BeltForm div.banner__title [data-cy=banner-title]').contains(
+    cy.get('.BeltForm div.banner__title--wrap [data-cy=banner-title]').contains(
       'Opret nyt bånd'
     );
   });
