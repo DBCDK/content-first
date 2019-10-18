@@ -18,7 +18,7 @@ exports[`renders without crashing 1`] = `
         className="topbar__navigation"
       >
         <a
-          className="link  link--no-hover"
+          className="link widthCalc link--no-hover"
           data-cy=""
           href="/"
           onClick={[Function]}
@@ -26,7 +26,7 @@ exports[`renders without crashing 1`] = `
           target="_self"
         >
           <div
-            className="topbar__navigation--icon widthCalc"
+            className="topbar__navigation--icon "
           >
             <img
               src="/img/general/dibliofigur.svg"
@@ -99,7 +99,7 @@ exports[`renders without crashing 1`] = `
                   </div>
                 </div>
                 <i
-                  className="material-icons material-icons-search md-large d-md-none d-sm-inline-block "
+                  className="material-icons material-icons-search d-md-none d-sm-inline-block "
                   dangerouslySetInnerHTML={
                     Object {
                       "__html": "&#xE8B6;",

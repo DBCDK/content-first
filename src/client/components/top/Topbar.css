@@ -28,7 +28,7 @@
 }
 
 .topbar .topbar__navigation .navigation-btn i {
-  padding: var(--2pt) var(--05pt) var(--2pt) var(--2pt);
+  padding: var(--2pt) var(--05pt) var(--2pt) var(--1pt);
   color: var(--petroleum);
 }
 
@@ -38,7 +38,7 @@
 }
 
 .topbar .topbar__navigation .navigation-btn {
-  width: 80px;
+  min-width: 80px;
   height: 100%;
   display: flex;
   justify-content: space-around;
@@ -58,6 +58,7 @@
 }
 .topbar .topbar__navigation .navigation-btn.navigation-btn__search--bar {
   width: auto;
+  min-width: auto;
 }
 
 .searchbar__cancel--btn {
@@ -278,6 +279,11 @@ toggle on top of navigation bar - in the open/close animation */
     display: flex;
   }
 
+  .topbar .navigation-btn.navigation-btn__search--btn i,
+  .topbar .navigation-btn.navigation-btn__menu--burger i {
+    padding: 0;
+  }
+
   .navigation-btn.navigation-btn__shortlist--btn span {
     padding: 0;
     margin-left: -9px;
@@ -320,12 +326,12 @@ toggle on top of navigation bar - in the open/close animation */
   }
 
   .topbar .topbar__navigation .navigation-btn {
-    width: 60px;
+    min-width: 60px;
     border-left: 0;
   }
 
   .searchbar__cancel--btn {
-    width: 60px;
+    display: none;
   }
 
   .topbar .topbar__navigation .navigation-btn.navigation__login--link {

@@ -138,7 +138,10 @@ export class TopBar extends React.Component {
   componentWillReceiveProps(nextProps) {
     searchPage = nextProps.router.path === '/find' ? true : false;
     this.setState({searchExpanded: searchPage});
-    this.calcWidth();
+
+    setTimeout(() => {
+      this.calcWidth();
+    }, 100);
   }
 
   toggleDropdown() {
@@ -162,26 +165,24 @@ export class TopBar extends React.Component {
   }
 
   calcWidth() {
-    setTimeout(() => {
-      const btns = document.getElementsByClassName('widthCalc');
+    const btns = document.getElementsByClassName('widthCalc');
 
-      const topbar = this.Topbar ? this.Topbar.offsetWidth : 0;
+    const topbar = this.Topbar ? this.Topbar.offsetWidth : 0;
 
-      const searchbarwrapper = this.SearchBarWrapper
-        ? this.SearchBarWrapper.offsetWidth
-        : 0;
+    const searchbarwrapper = this.SearchBarWrapper
+      ? this.SearchBarWrapper.offsetWidth
+      : 0;
 
-      let width = 0;
-      for (var i = 0; i < btns.length; i++) {
-        width += btns[i].offsetWidth;
-      }
+    let width = 0;
+    for (var i = 0; i < btns.length; i++) {
+      width += btns[i].offsetWidth;
+    }
 
-      const res = topbar - (width - searchbarwrapper);
+    const res = topbar - (width - searchbarwrapper);
 
-      if (this.state.width !== res) {
-        this.setState({width: res});
-      }
-    }, 200);
+    if (this.state.width !== res) {
+      this.setState({width: res});
+    }
   }
 
   renderShortListBtn() {
@@ -256,8 +257,8 @@ export class TopBar extends React.Component {
         className={`topbar ${collapsedClass}`}
       >
         <nav className="topbar__navigation">
-          <Link href="/">
-            <div className="topbar__navigation--icon widthCalc">
+          <Link href="/" className="widthCalc">
+            <div className="topbar__navigation--icon ">
               <img type="image/svg+xml" src="/img/general/dibliofigur.svg" />
             </div>
           </Link>
