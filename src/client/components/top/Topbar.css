@@ -19,6 +19,7 @@
 */
 
 .topbar .topbar__navigation {
+  width: 100%;
   padding: 0;
   display: flex;
   justify-content: flex-end;
@@ -27,17 +28,17 @@
 }
 
 .topbar .topbar__navigation .navigation-btn i {
-  padding: var(--2pt) var(--1pt) var(--2pt) var(--2pt);
+  padding: var(--2pt) var(--05pt) var(--2pt) var(--2pt);
   color: var(--petroleum);
 }
 
 .topbar .topbar__navigation .navigation-btn span {
-  padding: 15px 15px 15px 5px;
+  padding: var(--2pt) var(--1pt) var(--2pt) var(--05pt);
   color: var(--petroleum);
 }
 
 .topbar .topbar__navigation .navigation-btn {
-  min-width: 80px;
+  width: 80px;
   height: 100%;
   display: flex;
   justify-content: space-around;
@@ -47,6 +48,21 @@
   cursor: pointer;
   position: relative;
   z-index: 3;
+}
+
+/* exclude searchbar */
+.topbar.collapsed
+  .topbar__navigation
+  .navigation-btn.navigation-btn__search--bar {
+  width: 80px;
+}
+.topbar .topbar__navigation .navigation-btn.navigation-btn__search--bar {
+  width: auto;
+}
+
+.searchbar__cancel--btn {
+  width: 80px;
+  text-align: center;
 }
 
 .topbar .navigation-btn.navigation-btn__shortlist--btn,
@@ -104,6 +120,10 @@
 .navigation-btn:hover > .badge {
   color: var(--elm) !important;
   transition-timing-function: ease-out;
+}
+
+.navigation-btn__search--bar .searchbar__cancel--btn.hide i {
+  display: none;
 }
 
 /*
@@ -282,8 +302,17 @@ toggle on top of navigation bar - in the open/close animation */
     display: none;
   }
 
+  .topbar .topbar__logo {
+    padding: 0 var(--2pt);
+  }
+
   .topbar__logo object {
+    height: var(--3pt);
     margin: 6px 7px 0 0;
+  }
+
+  .topbar__logo-title {
+    font-size: 14px;
   }
 
   .topbar .topbar__logo .logo-beta-text {
@@ -291,8 +320,16 @@ toggle on top of navigation bar - in the open/close animation */
   }
 
   .topbar .topbar__navigation .navigation-btn {
-    min-width: 60px;
+    width: 60px;
     border-left: 0;
+  }
+
+  .searchbar__cancel--btn {
+    width: 60px;
+  }
+
+  .topbar .topbar__navigation .navigation-btn.navigation__login--link {
+    width: auto;
   }
 
   .topbar .topbar__navigation .navigation-btn i {

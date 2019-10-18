@@ -1,4 +1,5 @@
-const defaultState = {
+// eslint-disable-next-line no-unused-vars
+const testState = {
   belts: {
     'Vemodige nordmænd': {
       key: 'Vemodige nordmænd',
@@ -241,7 +242,7 @@ export const BELT_SCROLL = 'BELT_SCROLL';
 export const REORGANIZE_FILTERPAGE_BELTS = 'REORGANIZE_FILTERPAGE_BELTS';
 
 /* eslint-disable complexity */
-const beltsReducer = (state = defaultState, action) => {
+const beltsReducer = (state = {}, action) => {
   switch (action.type) {
     case BELTS_LOAD_REQUEST: {
       return Object.assign({}, state, {

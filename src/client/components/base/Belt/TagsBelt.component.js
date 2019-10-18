@@ -1,7 +1,6 @@
 import React from 'react';
 import {get} from 'lodash';
 import Textarea from 'react-textarea-autosize';
-import {isMobileOnly} from 'react-device-detect';
 import Pin from '../Pin';
 import {withIsVisible, withScrollToComponent} from '../../hoc/Scroll';
 import {withChildBelt, withStoreBelt} from '../../hoc/Belt';
@@ -62,7 +61,7 @@ export class TagsBelt extends React.Component {
       subtext,
       plainSelectedTagIds,
       className = '',
-      name,
+      name = '',
       removeBelt,
       updateMount,
       openSimilarBelt,
@@ -138,7 +137,7 @@ export class TagsBelt extends React.Component {
             )}
 
             <div className="belt-tags__tags--container">
-              {tags.map((t, idx) => {
+              {tags.map(t => {
                 const tag = filtersMapAll[t.id ? t.id : t];
                 return (
                   <Link
@@ -230,20 +229,20 @@ export class TagsBelt extends React.Component {
           {...this.props}
           className="TagsBelt"
           pids={recommendations}
-          onMoreLikeThisClick={(wrk, bName, rid) =>
+          onMoreLikeThisClick={(wrk, bName, rid) => {
             openSimilarBelt(
               wrk,
               get(this, 'props.belt.name', 'unknownBeltName'),
               rid
-            )
-          }
-          onWorkClick={(wrk, bName, rid) =>
+            );
+          }}
+          onWorkClick={(wrk, bName, rid) => {
             openWorkPreview(
               wrk,
               get(this, 'props.belt.name', 'unknownBeltName'),
               rid
-            )
-          }
+            );
+          }}
           origin={origin}
         />
       </div>

@@ -13,8 +13,6 @@ const withChildBelt = WrappedComponent => {
       }
     }
     openSimilarBelt = (work, beltName = '', rid) => {
-      console.log('work', work);
-
       if (isMobileOnly) {
         this.props.historyPush(work.book.pid);
       } else if (

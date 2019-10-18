@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import toColor from '../../../utils/toColor';
 import splitLine from '../../../utils/splitLine';
 import Lightbox from 'react-images';

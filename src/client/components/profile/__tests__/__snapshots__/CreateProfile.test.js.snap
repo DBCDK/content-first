@@ -365,7 +365,7 @@ exports[`Image Upload render function Add image 1`] = `
                       >
                         <button
                           className="
-      btn Button Button__medium Button__quaternary "
+      button button__medium button__quaternary   "
                           data-cy="user-form-cancel"
                           disabled={false}
                           onClick={[Function]}
@@ -394,7 +394,7 @@ exports[`Image Upload render function Add image 1`] = `
                       >
                         <button
                           className="
-      btn Button Button__medium Button__quaternary "
+      button button__medium button__quaternary   "
                           data-cy="user-form-submit"
                           disabled={false}
                         >
@@ -567,7 +567,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               >
                 <button
                   className="
-      btn Button Button__medium Button__quaternary "
+      button button__medium button__quaternary   "
                   data-cy="user-form-cancel"
                   disabled={false}
                   onClick={[Function]}
@@ -577,23 +577,19 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                     }
                   }
                 >
-                  
                   <span>
                     Fortryd
                   </span>
-                  
                 </button>
                 <button
                   className="
-      btn Button Button__medium Button__quaternary "
+      button button__medium button__quaternary   "
                   data-cy="user-form-submit"
                   disabled={true}
                 >
-                  
                   <span>
                     Gem ændringer
                   </span>
-                  
                 </button>
               </div>
             </div>

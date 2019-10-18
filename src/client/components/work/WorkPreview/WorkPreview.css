@@ -72,7 +72,7 @@
 }
 
 .work-preview__actions .work-preview__action-loan,
-.work-preview__actions .work-preview__add-to-list,
+.work-preview__actions .work-preview__add-to-list--wrap,
 .work-preview__actions .RemindsOf {
   margin-top: var(--2pt);
 }
@@ -85,11 +85,6 @@
 
 .work-preview__work .work-preview__cover {
   width: 200px;
-}
-
-.work-preview__actions .work-preview__add-to-list {
-  /* Drops AddToList Button to next line */
-  display: block;
 }
 
 /*

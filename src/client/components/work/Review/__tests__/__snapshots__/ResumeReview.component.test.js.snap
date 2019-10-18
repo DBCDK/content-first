@@ -43,18 +43,16 @@ exports[`ResumeReview render function 1`] = `
   >
     <button
       className="Review__block--link mb0
-      btn Button Button__medium Button__link "
+      button button__medium button__link   "
       data-cy=""
       disabled={false}
       onClick={[Function]}
     >
-      
       <span>
         <span>
            Læs materialevurderingen 
         </span>
       </span>
-      
     </button>
   </p>
 </div>
@@ -103,18 +101,16 @@ exports[`ResumeReview render function 2`] = `
   >
     <button
       className="Review__block--link mb0
-      btn Button Button__medium Button__link "
+      button button__medium button__link   "
       data-cy=""
       disabled={false}
       onClick={[Function]}
     >
-      
       <span>
         <span>
            Læs materialevurderingen 
         </span>
       </span>
-      
     </button>
   </p>
 </div>
@@ -163,18 +159,16 @@ exports[`ResumeReview render function 3`] = `
   >
     <button
       className="Review__block--link mb0
-      btn Button Button__medium Button__link "
+      button button__medium button__link   "
       data-cy=""
       disabled={false}
       onClick={[Function]}
     >
-      
       <span>
         <span>
            Læs materialevurderingen 
         </span>
       </span>
-      
     </button>
   </p>
 </div>
@@ -223,18 +217,16 @@ exports[`ResumeReview render function 4`] = `
   >
     <button
       className="Review__block--link mb0
-      btn Button Button__medium Button__link "
+      button button__medium button__link   "
       data-cy=""
       disabled={false}
       onClick={[Function]}
     >
-      
       <span>
         <span>
            Læs materialevurderingen 
         </span>
       </span>
-      
     </button>
   </p>
 </div>

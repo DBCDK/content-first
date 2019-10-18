@@ -1,8 +1,8 @@
-.Banner__wrap {
+.banner__wrap {
   height: 160px;
 }
 
-.Banner {
+.banner {
   margin: auto;
   height: 100%;
   padding: 1rem;
@@ -11,12 +11,25 @@
   justify-content: center;
 }
 
+.banner .banner__children {
+  align-self: start;
+}
+
+.banner .banner__title--wrap {
+  display: flex;
+  align-self: stretch;
+}
+
+.banner .banner__title {
+  align-self: center;
+}
+
 @media (min-width: 768px) {
-  .Banner {
+  .banner {
     padding: 1rem 57px 1rem 57px;
   }
 }
 
-.Banner .Banner__title {
+.banner .banner__title--wrap {
   flex-grow: 2;
 }

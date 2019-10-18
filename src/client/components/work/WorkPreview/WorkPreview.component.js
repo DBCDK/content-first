@@ -309,7 +309,11 @@ class WorkPreview extends React.Component {
                   <Text type="micro" variant="color-petroleum">
                     <T component="work" name="pages" />
                   </Text>
-                  <Text type="micro" variant="color-petroleum">
+                  <Text
+                    type="micro"
+                    data-cy={'pages-count'}
+                    variant="color-petroleum"
+                  >
                     {book.pages}
                   </Text>
                 </span>
@@ -364,10 +368,12 @@ class WorkPreview extends React.Component {
                   collectionIsValid={collectionIsValid}
                 />
 
-                <AddToListButton
-                  className="work-preview__add-to-list"
-                  work={work}
-                />
+                <div className="work-preview__add-to-list--wrap">
+                  <AddToListButton
+                    className="work-preview__add-to-list"
+                    work={work}
+                  />
+                </div>
                 <RemindsOf onClick={() => remindsOfClick(work)} />
 
                 {!hideAppels && appeals.length > 0 && (
@@ -389,6 +395,7 @@ class WorkPreview extends React.Component {
           <div
             className={`work-preview__tabs-wrap ${collapsedClass}`}
             style={{height: tabsCollapsed ? infoHeight : 'auto'}}
+            data-cy="work-preview-tabs"
           >
             {work.collectionHasLoaded &&
               get(this.swiper, 'height') + 100 > infoHeight && (
@@ -406,7 +413,7 @@ class WorkPreview extends React.Component {
               swiper={swiper => (this.swiper = swiper)}
               onUpdate={() => this.setState({})}
             >
-              <div className="tabs tabs-page-1">
+              <div className="tabs tabs-page-1" data-cy="tabs-page-Anmeldelser">
                 <ReviewList
                   book={book}
                   reviews={reviews}
@@ -414,7 +421,10 @@ class WorkPreview extends React.Component {
                   work={work}
                 />
               </div>
-              <div className="tabs tabs-page-2">
+              <div
+                className="tabs tabs-page-2"
+                data-cy="tabs-page-Læseoplevelse"
+              >
                 {appeals.length > 0 ? (
                   <div className="work-preview__tabs-info">
                     <div className="work-preview__tabs-info-color" />

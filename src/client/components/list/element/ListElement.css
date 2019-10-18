@@ -2,9 +2,9 @@
   width: 120px;
 }
 
-.element-context-menu {
+.listElement .element-context-menu {
   /* flex hack to keep dropdown close to icon */
-  align-self: start;
+  align-self: center;
 }
 
 @media (max-width: 768px) {

@@ -249,11 +249,11 @@ export class AddToListButton extends React.Component {
     return (
       <div
         ref={e => (this.listContainer = e)}
+        data-cy={this.props['data-cy'] || 'add-to-list-btn'}
         className={
           `AddToListButton__Container dropdown ${className}` +
           (multiple ? ' multiple-works-button-container ' : '')
         }
-        data-cy={this.props['data-cy'] || 'add-to-list-btn'}
       >
         <Button
           className={`AddToListButton ${buttonActive}`}

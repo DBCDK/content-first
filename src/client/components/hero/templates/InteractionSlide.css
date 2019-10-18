@@ -33,12 +33,12 @@
   transform: scaleX(1);
 }
 
-.interaction-slide .box .Button__term,
-.interaction-slide .box .Button__primary {
+.interaction-slide .box .button__term,
+.interaction-slide .box .button__primary {
   height: 60px;
 }
 
-.interaction-slide .box .Button__term:hover {
+.interaction-slide .box .button__term:hover {
   background-color: var(--alto);
 }
 
@@ -65,16 +65,16 @@
 }
 
 @media (max-width: 768px) and (orientation: landscape), (max-width: 576px) {
-  .interaction-slide .box .Button__term,
-  .interaction-slide .box .Button__primary {
+  .interaction-slide .box .button__term,
+  .interaction-slide .box .button__primary {
     height: 40px;
   }
 
-  .interaction-slide .box .Button__term {
+  .interaction-slide .box .button__term {
     font-size: 18px;
   }
 
-  .interaction-slide .box .Button__primary {
+  .interaction-slide .box .button__primary {
     font-size: 14px;
   }
 }

@@ -52,7 +52,7 @@ const ElementContextMenu = ({
   }
   return (
     <ContextMenu
-      className="element-context-menu mr-0 mt-0"
+      className="element-context-menu"
       data-cy="element-context-menu"
     >
       {isElementOwner && (

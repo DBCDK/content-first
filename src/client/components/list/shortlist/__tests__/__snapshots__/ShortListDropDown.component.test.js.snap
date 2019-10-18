@@ -24,7 +24,7 @@ Array [
       clear
     </i>
     <a
-      className="link"
+      className="link  link--no-hover"
       data-cy=""
       href="/huskeliste"
       onClick={[Function]}
@@ -56,7 +56,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="link"
+              className="link  link--no-hover"
               data-cy=""
               href="/værk/pid1"
               onClick={[Function]}
@@ -64,14 +64,7 @@ Array [
               target="_self"
             >
               <BookCover
-                book={
-                  Object {
-                    "pid": "pid1",
-                    "taxonomy_description": "some description1",
-                    "title": "some title1",
-                  }
-                }
-                hideCoverText={true}
+                pid="pid1"
               />
             </a>
           </div>
@@ -82,7 +75,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="link"
+                className="link  link--no-hover"
                 data-cy=""
                 href="/værk/pid1"
                 onClick={[Function]}
@@ -125,7 +118,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="link"
+              className="link  link--no-hover"
               data-cy=""
               href="/værk/pid2"
               onClick={[Function]}
@@ -133,14 +126,7 @@ Array [
               target="_self"
             >
               <BookCover
-                book={
-                  Object {
-                    "pid": "pid2",
-                    "taxonomy_description": "some description2",
-                    "title": "some title2",
-                  }
-                }
-                hideCoverText={true}
+                pid="pid2"
               />
             </a>
           </div>
@@ -151,7 +137,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="link"
+                className="link  link--no-hover"
                 data-cy=""
                 href="/værk/pid2"
                 onClick={[Function]}
@@ -197,15 +183,13 @@ Array [
       >
         <button
           className="
-      btn Button Button__medium Button__tertiary "
+      button button__medium button__tertiary   "
           data-cy="shortlist-dropdown-visit-shortlist"
           disabled={false}
         >
-          
           <span>
             Gå til huskeliste
           </span>
-          
         </button>
       </div>
       <div
@@ -213,15 +197,13 @@ Array [
       >
         <button
           className="
-      btn Button Button__medium Button__tertiary "
+      button button__medium button__tertiary   "
           data-cy=""
           disabled={false}
         >
-          
           <span>
             Lån alle bøger
           </span>
-          
         </button>
       </div>
     </div>
@@ -253,7 +235,7 @@ Array [
       clear
     </i>
     <a
-      className="link"
+      className="link  link--no-hover"
       data-cy=""
       href="/huskeliste"
       onClick={[Function]}
@@ -285,7 +267,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="link"
+              className="link  link--no-hover"
               data-cy=""
               href="/værk/pid4"
               onClick={[Function]}
@@ -293,14 +275,7 @@ Array [
               target="_self"
             >
               <BookCover
-                book={
-                  Object {
-                    "pid": "pid4",
-                    "taxonomy_description": "some description4",
-                    "title": "some title4",
-                  }
-                }
-                hideCoverText={true}
+                pid="pid4"
               />
             </a>
           </div>
@@ -311,7 +286,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="link"
+                className="link  link--no-hover"
                 data-cy=""
                 href="/værk/pid4"
                 onClick={[Function]}
@@ -354,7 +329,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="link"
+              className="link  link--no-hover"
               data-cy=""
               href="/værk/pid3"
               onClick={[Function]}
@@ -362,14 +337,7 @@ Array [
               target="_self"
             >
               <BookCover
-                book={
-                  Object {
-                    "pid": "pid3",
-                    "taxonomy_description": "some description3",
-                    "title": "some title3",
-                  }
-                }
-                hideCoverText={true}
+                pid="pid3"
               />
             </a>
           </div>
@@ -380,7 +348,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="link"
+                className="link  link--no-hover"
                 data-cy=""
                 href="/værk/pid3"
                 onClick={[Function]}
@@ -423,7 +391,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="link"
+              className="link  link--no-hover"
               data-cy=""
               href="/værk/pid2"
               onClick={[Function]}
@@ -431,14 +399,7 @@ Array [
               target="_self"
             >
               <BookCover
-                book={
-                  Object {
-                    "pid": "pid2",
-                    "taxonomy_description": "some description2",
-                    "title": "some title2",
-                  }
-                }
-                hideCoverText={true}
+                pid="pid2"
               />
             </a>
           </div>
@@ -449,7 +410,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="link"
+                className="link  link--no-hover"
                 data-cy=""
                 href="/værk/pid2"
                 onClick={[Function]}
@@ -492,7 +453,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="link"
+              className="link  link--no-hover"
               data-cy=""
               href="/værk/pid1"
               onClick={[Function]}
@@ -500,14 +461,7 @@ Array [
               target="_self"
             >
               <BookCover
-                book={
-                  Object {
-                    "pid": "pid1",
-                    "taxonomy_description": "some description1",
-                    "title": "some title1",
-                  }
-                }
-                hideCoverText={true}
+                pid="pid1"
               />
             </a>
           </div>
@@ -518,7 +472,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="link"
+                className="link  link--no-hover"
                 data-cy=""
                 href="/værk/pid1"
                 onClick={[Function]}
@@ -564,15 +518,13 @@ Array [
       >
         <button
           className="
-      btn Button Button__medium Button__tertiary "
+      button button__medium button__tertiary   "
           data-cy="shortlist-dropdown-visit-shortlist"
           disabled={false}
         >
-          
           <span>
             Gå til huskeliste
           </span>
-          
         </button>
       </div>
       <div
@@ -580,15 +532,13 @@ Array [
       >
         <button
           className="
-      btn Button Button__medium Button__tertiary "
+      button button__medium button__tertiary   "
           data-cy=""
           disabled={false}
         >
-          
           <span>
             Lån alle bøger
           </span>
-          
         </button>
       </div>
     </div>
@@ -620,7 +570,7 @@ Array [
       clear
     </i>
     <a
-      className="link"
+      className="link  link--no-hover"
       data-cy=""
       href="/huskeliste"
       onClick={[Function]}
@@ -652,7 +602,7 @@ Array [
             className="top-bar-dropdown-list-element--cover-image"
           >
             <a
-              className="link"
+              className="link  link--no-hover"
               data-cy=""
               href="/værk/pid1"
               onClick={[Function]}
@@ -660,14 +610,7 @@ Array [
               target="_self"
             >
               <BookCover
-                book={
-                  Object {
-                    "pid": "pid1",
-                    "taxonomy_description": "some description1",
-                    "title": "some title1",
-                  }
-                }
-                hideCoverText={true}
+                pid="pid1"
               />
             </a>
           </div>
@@ -678,7 +621,7 @@ Array [
               className="top-bar-dropdown-list-element--header"
             >
               <a
-                className="link"
+                className="link  link--no-hover"
                 data-cy=""
                 href="/værk/pid1"
                 onClick={[Function]}
@@ -724,15 +667,13 @@ Array [
       >
         <button
           className="
-      btn Button Button__medium Button__tertiary "
+      button button__medium button__tertiary   "
           data-cy="shortlist-dropdown-visit-shortlist"
           disabled={false}
         >
-          
           <span>
             Gå til huskeliste
           </span>
-          
         </button>
       </div>
       <div
@@ -740,15 +681,13 @@ Array [
       >
         <button
           className="
-      btn Button Button__medium Button__tertiary "
+      button button__medium button__tertiary   "
           data-cy=""
           disabled={false}
         >
-          
           <span>
             Lån alle bøger
           </span>
-          
         </button>
       </div>
     </div>
@@ -802,15 +741,13 @@ Array [
       >
         <button
           className="
-      btn Button Button__medium Button__tertiary "
+      button button__medium button__tertiary   "
           data-cy="shortlist-dropdown-visit-shortlist"
           disabled={true}
         >
-          
           <span>
             Gå til huskeliste
           </span>
-          
         </button>
       </div>
       <div
@@ -818,15 +755,13 @@ Array [
       >
         <button
           className="
-      btn Button Button__medium Button__tertiary "
+      button button__medium button__tertiary   "
           data-cy=""
           disabled={true}
         >
-          
           <span>
             Lån alle bøger
           </span>
-          
         </button>
       </div>
     </div>

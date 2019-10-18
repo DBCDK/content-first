@@ -1,8 +1,8 @@
-.BeltEditor .Banner__wrap {
+.BeltEditor .banner__wrap {
   background-color: var(--kobber) !important;
 }
 
-.BeltEditor .Banner__title h1 {
+.BeltEditor .banner__title {
   text-transform: uppercase;
 }
 
@@ -26,7 +26,8 @@
 
 .flex-container .material-icons.enabled,
 .flex-container .material-icons.disabled {
-  text-shadow: -1px 0 1px white, 0 1px 1px white, 1px 0 1px white, 0 -1px 1px white, 0px 0px 4px #777777;
+  text-shadow: -1px 0 1px white, 0 1px 1px white, 1px 0 1px white,
+    0 -1px 1px white, 0px 0px 4px #777777;
 }
 
 .flex-container .material-icons.drag {
@@ -101,7 +102,7 @@
   margin-bottom: 0.5em;
 }
 
-.BeltEditor__container .Button {
+.BeltEditor__container .button {
   margin-top: 2.4em;
   padding: 1em 1.6em;
 }
@@ -116,8 +117,6 @@
   }
 
   .desktop-only-column {
-    display: none! important;
+    display: none !important;
   }
 }
-
-

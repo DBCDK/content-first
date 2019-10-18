@@ -45,6 +45,8 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
+        console.log('##', tracked, trackedData);
+
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltExpandWork');
         expect(tracked.name).to.match(PID_REGEX);
@@ -68,6 +70,8 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
+        console.log('##??', tracked.category);
+
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltSwipe');
         expect(tracked.name).to.equal('position');
@@ -75,7 +79,7 @@ describe('Matomo test', function() {
     return tracked;
   };
 
-  it('Can track tags belt events', function() {
+  it.only('Can track tags belt events', function() {
     mockInitialState();
     const tracked = testBelt(
       '/',

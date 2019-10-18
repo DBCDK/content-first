@@ -7,10 +7,7 @@ import {withWork} from '../../hoc/Work';
 import ListsBelt from '../../base/Belt/ListsBelt.container';
 import WorkPreview from '../WorkPreview/WorkPreview.component.js';
 
-import {HISTORY_NEW_TAB} from '../../../redux/middleware';
-
 import './WorkPage.css';
-import {trackEvent} from '../../../matomo';
 
 /**
  * WorkPage
@@ -20,7 +17,6 @@ class WorkPage extends React.Component {
   /* eslint-disable complexity */
 
   render() {
-    const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
 
     if (!book) {

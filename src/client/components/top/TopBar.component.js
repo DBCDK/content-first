@@ -164,6 +164,7 @@ export class TopBar extends React.Component {
   calcWidth() {
     setTimeout(() => {
       const btns = document.getElementsByClassName('widthCalc');
+
       const topbar = this.Topbar ? this.Topbar.offsetWidth : 0;
 
       const searchbarwrapper = this.SearchBarWrapper
@@ -176,7 +177,10 @@ export class TopBar extends React.Component {
       }
 
       const res = topbar - (width - searchbarwrapper);
-      this.setState({width: res});
+
+      if (this.state.width !== res) {
+        this.setState({width: res});
+      }
     }, 200);
   }
 
@@ -221,6 +225,15 @@ export class TopBar extends React.Component {
     );
   }
 
+  handleIconClick(searchExpanded, showCancelBtn) {
+    if (searchExpanded && showCancelBtn) {
+      this.props.historyPush(HISTORY_REPLACE, '/find');
+      document.getElementById('Searchbar__inputfield').focus();
+    } else {
+      this.toggleSearchBar();
+    }
+  }
+
   render() {
     const shortlist = this.renderShortListBtn();
     const userLists = this.renderListsOverviewDropdown();
@@ -229,31 +242,7 @@ export class TopBar extends React.Component {
 
     const {user, router, betaModal, listsModal, logout} = this.props;
 
-    let searchIconText;
-    if (searchExpanded && showCancelBtn) {
-      searchIconText = (
-        <span
-          data-cy="topbar-search-btn"
-          onClick={() => {
-            this.props.historyPush(HISTORY_REPLACE, '/find');
-            document.getElementById('Searchbar__inputfield').focus();
-          }}
-        >
-          <Icon name="cancel" />
-        </span>
-      );
-    }
-
-    if (!searchExpanded) {
-      searchIconText = (
-        <span
-          data-cy="topbar-search-btn"
-          onClick={() => this.toggleSearchBar()}
-        >
-          <T component="general" name="searchButton" />
-        </span>
-      );
-    }
+    const cancelVisibleClass = !searchExpanded && !showCancelBtn ? 'hide' : '';
 
     const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
     const hideOnIE11 = isIE11 && searchExpanded ? 'hidden' : '';
@@ -283,7 +272,16 @@ export class TopBar extends React.Component {
                 <SearchBar origin="fromTopbar" />
               </span>
             </span>
-            {searchIconText}
+            <span
+              className={`searchbar__cancel--btn ${cancelVisibleClass}`}
+              data-cy="topbar-search-btn"
+              onClick={() =>
+                this.handleIconClick(searchExpanded, showCancelBtn)
+              }
+            >
+              {searchExpanded && showCancelBtn && <Icon name="cancel" />}
+              {!searchExpanded && <T component="general" name="searchButton" />}
+            </span>
           </span>
           {!searchExpanded && (
             <Link
@@ -303,7 +301,7 @@ export class TopBar extends React.Component {
             <Link
               href={'/v1/auth/login'}
               type={HISTORY_PUSH_FORCE_REFRESH}
-              className="navigation-btn widthCalc"
+              className="navigation-btn navigation__login--link widthCalc"
               dataCy="topbar-login-btn"
             >
               <span>

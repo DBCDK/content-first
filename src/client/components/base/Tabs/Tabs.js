@@ -45,9 +45,6 @@ export class Tabs extends React.Component {
       if (this.swiper) {
         const prevHeight = this.swiper.height;
         this.swiper.update();
-
-        console.log('prevHeight?', prevHeight);
-
         if (prevHeight !== this.swiper.height && this.props.onUpdate) {
           this.props.onUpdate();
         }

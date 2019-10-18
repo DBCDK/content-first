@@ -313,9 +313,9 @@ describe('Start Belt Editor test', function() {
     clickCreateButton();
 
     cy.url().should('include', '/redaktionen/opret');
-    cy.get('.CreateBelt div.Banner__title [data-cy=banner-title]').contains(
-      'Opret nyt bånd'
-    );
+    cy.get(
+      '.CreateBelt div.banner__title--wrap [data-cy=banner-title]'
+    ).contains('Opret nyt bånd');
   });
 
   // ======================================================================================

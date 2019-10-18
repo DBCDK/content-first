@@ -1,5 +1,4 @@
 import React from 'react';
-import {get} from 'lodash';
 import {connect} from 'react-redux';
 import {storeBelt, removeBelt, updateBelt} from '../../../redux/belts.reducer';
 
@@ -11,8 +10,8 @@ const withBeltStore = WrappedComponent => {
   };
 
   const mapStateToProps = (state, ownProps) => ({
-    belt: get(state.beltsReducer, 'belts[ownProps.id]'),
-    isStored: !!get(state.beltsReducer, 'belts[ownProps.id]')
+    belt: state.beltsReducer.belts[ownProps.id],
+    isStored: !!state.beltsReducer.belts[ownProps.id]
   });
   const mapDispatchToProps = (dispatch, ownProps) => ({
     storeBelt: belt =>

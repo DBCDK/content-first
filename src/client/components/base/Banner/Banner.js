@@ -16,12 +16,12 @@ const Banner = ({
   };
 
   return (
-    <div className="Banner__wrap" style={bannerStyles} data-cy="banner-title">
-      <div className={`Banner ${className}`}>
-        <div className="align-self-start w-100">{children}</div>
-        <div className="Banner__title align-self-stretch d-flex">
+    <div className="banner__wrap" style={bannerStyles} data-cy="banner-title">
+      <div className={`banner ${className}`}>
+        <div className="banner__children">{children}</div>
+        <div className="banner__title--wrap">
           <Title
-            className="align-self-center "
+            className="banner__title"
             type="title3"
             variant={`color-${textColor}`}
             data-cy="banner-title"

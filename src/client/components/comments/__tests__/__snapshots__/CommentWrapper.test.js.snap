@@ -41,10 +41,14 @@ exports[`CommentContainer Delete button 1`] = `
           >
             <i
               className="material-icons material-icons-more_vert align-middle "
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "&#xE5D4;",
+                }
+              }
+              data-unicoded="true"
               onClick={[Function]}
-            >
-              more_vert
-            </i>
+            />
           </Icon>
         </div>
         <div
@@ -66,10 +70,14 @@ exports[`CommentContainer Delete button 1`] = `
               >
                 <i
                   className="material-icons material-icons-edit align-middle mr-2 "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE3C9;",
+                    }
+                  }
+                  data-unicoded="true"
                   onClick={[Function]}
-                >
-                  edit
-                </i>
+                />
               </Icon>
               <span
                 className="align-middle"
@@ -94,10 +102,14 @@ exports[`CommentContainer Delete button 1`] = `
               >
                 <i
                   className="material-icons material-icons-delete align-middle mr-2 "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE872;",
+                    }
+                  }
+                  data-unicoded="true"
                   onClick={[Function]}
-                >
-                  delete
-                </i>
+                />
               </Icon>
               <span
                 className="align-middle"
@@ -213,10 +225,14 @@ exports[`CommentContainer Edit button 1`] = `
           >
             <i
               className="material-icons material-icons-more_vert align-middle "
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "&#xE5D4;",
+                }
+              }
+              data-unicoded="true"
               onClick={[Function]}
-            >
-              more_vert
-            </i>
+            />
           </Icon>
         </div>
         <div
@@ -238,10 +254,14 @@ exports[`CommentContainer Edit button 1`] = `
               >
                 <i
                   className="material-icons material-icons-edit align-middle mr-2 "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE3C9;",
+                    }
+                  }
+                  data-unicoded="true"
                   onClick={[Function]}
-                >
-                  edit
-                </i>
+                />
               </Icon>
               <span
                 className="align-middle"
@@ -266,10 +286,14 @@ exports[`CommentContainer Edit button 1`] = `
               >
                 <i
                   className="material-icons material-icons-delete align-middle mr-2 "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE872;",
+                    }
+                  }
+                  data-unicoded="true"
                   onClick={[Function]}
-                >
-                  delete
-                </i>
+                />
               </Icon>
               <span
                 className="align-middle"
@@ -385,10 +409,14 @@ exports[`CommentContainer Edit button 2`] = `
           >
             <i
               className="material-icons material-icons-more_vert align-middle "
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "&#xE5D4;",
+                }
+              }
+              data-unicoded="true"
               onClick={[Function]}
-            >
-              more_vert
-            </i>
+            />
           </Icon>
         </div>
         <div
@@ -410,10 +438,14 @@ exports[`CommentContainer Edit button 2`] = `
               >
                 <i
                   className="material-icons material-icons-edit align-middle mr-2 "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE3C9;",
+                    }
+                  }
+                  data-unicoded="true"
                   onClick={[Function]}
-                >
-                  edit
-                </i>
+                />
               </Icon>
               <span
                 className="align-middle"
@@ -438,10 +470,14 @@ exports[`CommentContainer Edit button 2`] = `
               >
                 <i
                   className="material-icons material-icons-delete align-middle mr-2 "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE872;",
+                    }
+                  }
+                  data-unicoded="true"
                   onClick={[Function]}
-                >
-                  delete
-                </i>
+                />
               </Icon>
               <span
                 className="align-middle"
@@ -527,11 +563,15 @@ exports[`CommentContainer Edit button 2`] = `
                 >
                   <i
                     className="material-icons material-icons-check comment-submit-icon align-self-end "
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "&#xE5CA;",
+                      }
+                    }
+                    data-unicoded="true"
                     id="comment-submit"
                     onClick={[Function]}
-                  >
-                    check
-                  </i>
+                  />
                 </Icon>
               </div>
             </div>
@@ -614,10 +654,14 @@ exports[`CommentContainer Render edit form 1`] = `
     >
       <i
         className="material-icons material-icons-more_vert align-middle "
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "&#xE5D4;",
+          }
+        }
+        data-unicoded="true"
         onClick={[Function]}
-      >
-        more_vert
-      </i>
+      />
       
     </div>
     <div
@@ -630,10 +674,14 @@ exports[`CommentContainer Render edit form 1`] = `
       >
         <i
           className="material-icons material-icons-edit align-middle mr-2 "
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "&#xE3C9;",
+            }
+          }
+          data-unicoded="true"
           onClick={[Function]}
-        >
-          edit
-        </i>
+        />
         <span
           className="align-middle"
         >
@@ -647,10 +695,14 @@ exports[`CommentContainer Render edit form 1`] = `
       >
         <i
           className="material-icons material-icons-delete align-middle mr-2 "
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "&#xE872;",
+            }
+          }
+          data-unicoded="true"
           onClick={[Function]}
-        >
-          delete
-        </i>
+        />
         <span
           className="align-middle"
         >
@@ -741,10 +793,14 @@ exports[`CommentContainer Render save form 1`] = `
     >
       <i
         className="material-icons material-icons-more_vert align-middle "
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "&#xE5D4;",
+          }
+        }
+        data-unicoded="true"
         onClick={[Function]}
-      >
-        more_vert
-      </i>
+      />
       
     </div>
     <div
@@ -757,10 +813,14 @@ exports[`CommentContainer Render save form 1`] = `
       >
         <i
           className="material-icons material-icons-edit align-middle mr-2 "
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "&#xE3C9;",
+            }
+          }
+          data-unicoded="true"
           onClick={[Function]}
-        >
-          edit
-        </i>
+        />
         <span
           className="align-middle"
         >
@@ -774,10 +834,14 @@ exports[`CommentContainer Render save form 1`] = `
       >
         <i
           className="material-icons material-icons-delete align-middle mr-2 "
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "&#xE872;",
+            }
+          }
+          data-unicoded="true"
           onClick={[Function]}
-        >
-          delete
-        </i>
+        />
         <span
           className="align-middle"
         >
@@ -880,10 +944,14 @@ exports[`CommentContainer Save button 1`] = `
           >
             <i
               className="material-icons material-icons-more_vert align-middle "
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "&#xE5D4;",
+                }
+              }
+              data-unicoded="true"
               onClick={[Function]}
-            >
-              more_vert
-            </i>
+            />
           </Icon>
         </div>
         <div
@@ -905,10 +973,14 @@ exports[`CommentContainer Save button 1`] = `
               >
                 <i
                   className="material-icons material-icons-edit align-middle mr-2 "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE3C9;",
+                    }
+                  }
+                  data-unicoded="true"
                   onClick={[Function]}
-                >
-                  edit
-                </i>
+                />
               </Icon>
               <span
                 className="align-middle"
@@ -933,10 +1005,14 @@ exports[`CommentContainer Save button 1`] = `
               >
                 <i
                   className="material-icons material-icons-delete align-middle mr-2 "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE872;",
+                    }
+                  }
+                  data-unicoded="true"
                   onClick={[Function]}
-                >
-                  delete
-                </i>
+                />
               </Icon>
               <span
                 className="align-middle"

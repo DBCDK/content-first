@@ -11,44 +11,47 @@ exports[`renders without crashing 1`] = `
 >
   <div>
     <header
-      className="Topbar row searchBar-closed"
+      className="topbar collapsed"
       id="topbar"
     >
       <nav
-        className="col-12 col-m-8 Topbar__navigation"
+        className="topbar__navigation"
       >
         <a
+          className="link  link--no-hover"
+          data-cy=""
           href="/"
+          onClick={[Function]}
+          style={Object {}}
+          target="_self"
         >
           <div
-            className="Topbar__special widthCalc"
+            className="topbar__navigation--icon widthCalc"
           >
             <img
-              alt=""
               src="/img/general/dibliofigur.svg"
-              style={
-                Object {
-                  "height": "28px",
-                }
-              }
               type="image/svg+xml"
             />
           </div>
         </a>
         <span
-          className="Topbar__navigation__btn widthCalc d-none d-md-flex"
+          className="navigation-btn navigation-btn__search--bar widthCalc"
         >
           <i
             className="material-icons material-icons-search  "
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "&#xE8B6;",
+              }
+            }
+            data-unicoded="true"
             onClick={[Function]}
-          >
-            search
-          </i>
+          />
           <span
-            className="relative--container"
+            className="topbar__search-bar--container"
           >
             <span
-              className="Topbar__SearchBarWrapper"
+              className="topbar__search-bar--wrap"
               style={
                 Object {
                   "width": 0,
@@ -97,10 +100,14 @@ exports[`renders without crashing 1`] = `
                 </div>
                 <i
                   className="material-icons material-icons-search md-large d-md-none d-sm-inline-block "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE8B6;",
+                    }
+                  }
+                  data-unicoded="true"
                   onClick={[Function]}
-                >
-                  search
-                </i>
+                />
                 <div
                   className="selected-filters"
                   id="selectedFilters"
@@ -109,6 +116,7 @@ exports[`renders without crashing 1`] = `
             </span>
           </span>
           <span
+            className="searchbar__cancel--btn hide"
             data-cy="topbar-search-btn"
             onClick={[Function]}
           >
@@ -116,7 +124,7 @@ exports[`renders without crashing 1`] = `
           </span>
         </span>
         <a
-          className="Topbar__navigation__btn d-i-block d-md-none"
+          className="link navigation-btn navigation-btn__search--btn link--no-hover"
           data-cy=""
           href="/find"
           onClick={[Function]}
@@ -125,13 +133,17 @@ exports[`renders without crashing 1`] = `
         >
           <i
             className="material-icons material-icons-search  "
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "&#xE8B6;",
+              }
+            }
+            data-unicoded="true"
             onClick={[Function]}
-          >
-            search
-          </i>
+          />
         </a>
         <a
-          className="Topbar__navigation__btn d-flex d-md-none widthCalc"
+          className="link navigation-btn navigation-btn__shortlist--btn widthCalc link--no-hover"
           data-cy=""
           href="/huskeliste"
           onClick={[Function]}
@@ -140,33 +152,33 @@ exports[`renders without crashing 1`] = `
         >
           <i
             className="material-icons material-icons-bookmark_border  "
-            onClick={[Function]}
-          >
-            bookmark_border
-          </i>
-          <span
-            className="short-badge"
-            style={
+            dangerouslySetInnerHTML={
               Object {
-                "marginLeft": "-9px",
-                "padding": 0,
+                "__html": "&#xE867;",
               }
             }
-          >
+            data-unicoded="true"
+            onClick={[Function]}
+          />
+          <span>
             (0)
           </span>
         </a>
         <div
-          className="Topbar__navigation__btn d-none d-md-flex widthCalc  top-bar-dropdown-list"
+          className="navigation-btn navigation-btn__shortlist--dropdown widthCalc  top-bar-dropdown-list"
           data-cy="topbar-shortlist"
           onClick={[Function]}
         >
           <i
             className="material-icons material-icons-bookmark_border  "
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "&#xE867;",
+              }
+            }
+            data-unicoded="true"
             onClick={[Function]}
-          >
-            bookmark_border
-          </i>
+          />
           <span
             className="short-badge"
           >
@@ -207,15 +219,13 @@ exports[`renders without crashing 1`] = `
             >
               <button
                 className="
-      btn Button Button__medium Button__tertiary "
+      button button__medium button__tertiary   "
                 data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={true}
               >
-                
                 <span>
                   Gå til huskeliste
                 </span>
-                
               </button>
             </div>
             <div
@@ -223,21 +233,19 @@ exports[`renders without crashing 1`] = `
             >
               <button
                 className="
-      btn Button Button__medium Button__tertiary "
+      button button__medium button__tertiary   "
                 data-cy=""
                 disabled={true}
               >
-                
                 <span>
                   Lån alle bøger
                 </span>
-                
               </button>
             </div>
           </div>
         </div>
         <a
-          className="Topbar__navigation__btn widthCalc"
+          className="link navigation-btn navigation__login--link widthCalc link--no-hover"
           data-cy="topbar-login-btn"
           href="/v1/auth/login"
           onClick={[Function]}
@@ -249,112 +257,50 @@ exports[`renders without crashing 1`] = `
           </span>
         </a>
         <div
-          className="Topbar__overlay"
+          className="topbar__overlay"
         />
       </nav>
       <a
-        className="Topbar__logo "
+        className="link topbar__logo  link--no-hover"
         data-cy=""
         href="/"
         onClick={[Function]}
         style={Object {}}
         target="_self"
       >
-        <div
-          className="d-block d-sm-none d-inline-flex"
-        >
-          <object
-            aria-label=""
-            data="/img/general/dibliofigur.svg"
-            style={
-              Object {
-                "height": "28px",
-                "marginRight": "7px",
-                "marginTop": "1px",
-                "pointerEvents": "none",
-              }
-            }
-            type="image/svg+xml"
-          />
-          <div>
+        <object
+          data="/img/general/dibliofigur.svg"
+          type="image/svg+xml"
+        />
+        <div>
+          <h1
+            className="topbar__logo-title Title Title__title4 Title__title4--weight-semibold"
+          >
+            Læsekompas
+          </h1>
+          <div
+            className="logo-beta-wrap"
+          >
             <p
-              className="m-0 Text Text__large Text__large--weight-semibold"
-              style={
-                Object {
-                  "lineHeight": "1.25rem",
-                }
-              }
-            >
-              Læsekompas
-            </p>
-            <p
-              className="logo-beta-sign mb-0 Text Text__micro "
+              className="logo-beta-sign Text Text__micro "
             >
               SNEAK PEEK
             </p>
-          </div>
-        </div>
-        <div
-          className="d-none d-sm-block"
-        >
-          <div
-            className="d-inline-flex"
-          >
-            <object
-              aria-label=""
-              data="/img/general/dibliofigur.svg"
-              style={
-                Object {
-                  "height": "28px",
-                  "marginRight": "7px",
-                  "marginTop": "6px",
-                  "pointerEvents": "none",
-                }
-              }
-              type="image/svg+xml"
-            />
-            <div>
-              <h1
-                className="mb-0 Title Title__title4 Title__title4--weight-semibold"
-              >
-                Læsekompas
-              </h1>
-              <div
-                className="logo-beta-wrap d-flex position-relative"
-              >
-                <p
-                  className="logo-beta-sign mb-0 Text Text__micro "
-                >
-                  SNEAK PEEK
-                </p>
-                <div
-                  className="d-inline-flex"
-                >
-                  <div
-                    className="d-none d-sm-inline logo-beta-text Text__small"
-                  >
-                    <span
-                      className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
-                      onClick={[Function]}
-                    >
-                      Læs mere
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <p
+              className="logo-beta-link Text Text__small Text__small--decoration-underline"
+              onClick={[Function]}
+            >
+              Læs mere
+            </p>
           </div>
         </div>
       </a>
       <ul
-        className="Topbar__dropdown abort-closeDopdown Topbar__dropdown__hidden"
+        className="topbar__dropdown dropdown--dont-close hidden"
       >
-        <div
-          className="Topbar__dropdown__caret"
-        />
         <li>
           <a
-            className="link"
+            className="link  link--no-hover"
             data-cy=""
             href="/profil/rediger"
             onClick={[Function]}
@@ -472,16 +418,14 @@ exports[`renders without crashing 1`] = `
       >
         <button
           className="
-      btn Button Button__medium Button__primary Button__primary--bgcolor-petroleum--color-white"
+      button button__medium button__primary button__primary--bgcolor-petroleum--color-white  "
           data-cy=""
           disabled={false}
           onClick={[Function]}
         >
-          
           <span>
             ACCEPTER COOKIES
           </span>
-          
         </button>
       </div>
     </div>
@@ -494,24 +438,26 @@ exports[`renders without crashing 1`] = `
   >
     <button
       className="Button__feedback
-      btn Button Button__medium Button__secondary "
+      button button__medium button__secondary   "
       data-cy=""
       disabled={false}
       onClick={[Function]}
     >
-      
       <span>
         <i
           className="material-icons material-icons-chat_bubble_outline icon__feedback md-small "
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "&#xE0CB;",
+            }
+          }
+          data-unicoded="true"
           onClick={[Function]}
-        >
-          chat_bubble_outline
-        </i>
+        />
         <span
           className="feedback-text"
         />
       </span>
-      
     </button>
   </div>
   <Footer />
