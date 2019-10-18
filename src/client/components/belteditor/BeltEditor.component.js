@@ -15,6 +15,7 @@ import Storage from '../roles/Storage.component';
 import Spinner from '../general/Spinner/Spinner.component';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {ERROR} from '../general/Notification/Notification.component';
+import {HISTORY_PUSH} from '../../redux/middleware';
 
 const EditorRole = 'contentFirstEditor';
 
@@ -28,7 +29,16 @@ export class BeltEditor extends React.Component {
   componentDidMount() {
     this.defaultValuesLoaded = false;
   }
-  ascending = (a, b) => a.index - b.index;
+
+  ascending = (a, b) => {
+    if (a.index === '') {
+      return -1; // If a.index is empty - a is to be sorted on top
+    }
+    if (b.index === '') {
+      return +1; // If b.index is empty - b is to be sorted on top
+    }
+    return a.index - b.index;
+  };
 
   updateSortableList = items => {
     if (!this.props.objects.fetching) {
@@ -125,6 +135,34 @@ export class BeltEditor extends React.Component {
     }
   };
 
+  fixNewUnsortedItems = (update, items) => {
+    if (items.filter(item => item.index === '').length) {
+      let i = 0;
+      items.sort(this.ascending).map(async item => {
+        item.index = i++;
+        try {
+          let ret = await update(item);
+          item._rev = ret.data._rev;
+        } catch (e) {
+          this.displayUpdateError();
+        }
+      });
+    }
+  };
+
+  editBelt = index => {
+    this.props.editBelt(
+      this.state.items[index].name,
+      this.state.items[index].subtext,
+      this.state.items[index].onFrontPage,
+      this.state.items[index].tags,
+      this.state.items[index].createdBy,
+      this.state.items[index]._created,
+      this.state.items[index]._id,
+      this.state.items[index].index
+    );
+  };
+
   listRow = (
     index,
     dragIcon,
@@ -163,10 +201,18 @@ export class BeltEditor extends React.Component {
             )}
           />
         )}
-        <Text type="small" variant="weight-semibold">
+        <Text
+          type="small"
+          variant="weight-semibold"
+          onClick={() => this.editBelt(index)}
+        >
           {title}
         </Text>
-        <Text type="small" className="desktop-only-column">
+        <Text
+          type="small"
+          className="desktop-only-column"
+          onClick={() => this.editBelt(index)}
+        >
           {createdBy}
         </Text>
         {upIcon !== '' ? (
@@ -283,8 +329,9 @@ export class BeltEditor extends React.Component {
           )}
           <Storage
             role={EditorRole}
-            render={({update}) =>
-              this.state.loading ? (
+            render={({update}) => {
+              this.fixNewUnsortedItems(update, this.state.items);
+              return this.state.loading ? (
                 <div className="d-flex justify-content-center">
                   <Spinner size="30px" className="mt-5" />
                 </div>
@@ -295,8 +342,8 @@ export class BeltEditor extends React.Component {
                   onSortEnd={items => this.onSortEnd(update, items)}
                   ref={this.sortableList}
                 />
-              )
-            }
+              );
+            }}
           />
           <Link href="/redaktionen/opret">
             <Button
@@ -333,6 +380,31 @@ const mapDispatchToProps = dispatch => ({
             modal: 'notification'
           });
         }
+      }
+    });
+  },
+  editBelt: (
+    title,
+    description,
+    enabled,
+    tags,
+    createdBy,
+    created,
+    id,
+    index
+  ) => {
+    dispatch({
+      type: HISTORY_PUSH,
+      path: '/redaktionen/rediger',
+      params: {
+        title,
+        description,
+        enabled,
+        tags: tags.map(tag => tag.id).join(),
+        createdBy,
+        created,
+        id,
+        index
       }
     });
   }

@@ -33,7 +33,10 @@ class Storage extends React.Component {
     if (typeof object._id !== 'string') {
       throw new Error('ID must be given, when updating a Storage Object');
     }
-    return this.storageClient.put(object, this.getRole());
+    return this.storageClient.put(
+      {...object, createdBy: this.props.openplatformId},
+      this.getRole()
+    );
   };
 
   remove = params => {

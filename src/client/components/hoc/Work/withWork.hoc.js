@@ -157,15 +157,13 @@ const withWork = (
 
     fetch() {
       const {isVisible, fetchWork, pid, pids} = this.props;
-
       if (
-        ((isVisible || typeof isVisible === 'undefined') &&
-          this.fetched !== pid) ||
-        this.fetched !== pids
+        (isVisible || typeof isVisible === 'undefined') &&
+        (this.fetched !== pid || this.fetchedPids !== pids)
       ) {
         const pidsToSelect = pids ? pids : [pid];
-        this.fetched = pids ? pids : pid;
-
+        this.fetched = pid;
+        this.fetchedPids = pids;
         fetchWork(pidsToSelect);
       }
     }

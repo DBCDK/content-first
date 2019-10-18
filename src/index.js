@@ -16,7 +16,6 @@ import {
   logMiddleware
 } from './client/redux/middleware';
 import thunk from 'redux-thunk';
-// import {followMiddleware} from './client/redux/follow.middleware';
 import {userMiddleware} from './client/redux/user.middleware';
 import {usersMiddleware} from './client/redux/users';
 import {orderMiddleware} from './client/redux/order.middleware';
@@ -48,13 +47,20 @@ smoothscroll.polyfill();
 
   const store = createStore(
     [
+      // Used for performance debugging
+      // s => next => action => {
+      //   var t0 = performance.now();
+      //   let result = next(action);
+      //   var t1 = performance.now();
+      //   console.log(`${action.type}`, action, t1 - t0);
+      //   return result;
+      // },
       thunk.withExtraArgument({storageClient, listRequester}),
       userMiddleware,
       usersMiddleware,
       requestMiddleware,
       shortListMiddleware,
       listMiddleware,
-      // followMiddleware,
       logMiddleware,
       orderMiddleware,
       recommendMiddleware,

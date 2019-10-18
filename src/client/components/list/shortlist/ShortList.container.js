@@ -158,7 +158,7 @@ export class ShortListItem extends React.Component {
 }
 
 const ShortListItemWithWork = withWork(ShortListItem, {
-  includeReviews: true,
+  includeReviews: false,
   includeCollection: true,
   includeCover: true
 });
