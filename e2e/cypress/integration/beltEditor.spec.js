@@ -439,33 +439,30 @@ describe('Start Belt Editor test', function() {
 
   // ======================================================================================
 
-  it.only('Test spinner when loading table', function() {
+  it('Test spinner when loading table', function() {
     mockStorage();
     cy.createUser('EditorUser', 'editor');
     cy.route(
+      // The purpose of this route is to delay the GET in order to display the spinner
       {
         method: 'GET',
         url:
           '/v1/object/find?type=belt&owner=12345678-1234-1234-1234-123456789012',
         delay: 1000,
-        onRequest: xhr => {
-          // cy.get('[data-cy=belt-editor-spinner]').should('exist');
-        },
         response: '@defaultBelts'
       },
       '@defaultBelts'
     ).as('defaultDelayedBeltsRequest');
 
     cy.visit('/redaktionen');
-    cy.wait('@defaultDelayedBeltsRequest').then(xhr => {
-      console.log('##### Inde i wait', xhr);
-    });
-    console.log('##### Lige efter wait');
 
+    // Verify, that the Spinner is shown, and no data is shown
+    cy.get('[data-cy=belt-editor-spinner]').should('exist');
     cy.get(
       '.BeltEditor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]'
-    ).should('have.length', 3);
+    ).should('not.exist');
 
+    // Verify, that after data has been loaded, it is shown
     verifyTitleRow('Titel', 'Oprettet af');
     verifyContentRow(0, true, 'Norske superromaner', 'Bibliotekar Sarah');
     verifyContentRow(
