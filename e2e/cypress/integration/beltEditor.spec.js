@@ -27,7 +27,7 @@ describe('Start Belt Editor test', function() {
 
   const nthContentRow = n =>
     '.BeltEditor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]:nth-child(' +
-    n +
+    (n + 1) +
     ')';
 
   const verifyTitleRow = (title, creator) => {
@@ -40,7 +40,7 @@ describe('Start Belt Editor test', function() {
   };
 
   const verifyContentRow = (number, enabled, title, creator) => {
-    const selector = nthContentRow(number + 1);
+    const selector = nthContentRow(number);
     const enabledDisabled = enabled ? 'enabled' : 'disabled';
     cy.get('[data-cy=notification-container]').should('not.exist'); // Check that the error modal is not displayed
     cy.get(selector)
@@ -57,7 +57,7 @@ describe('Start Belt Editor test', function() {
   };
 
   const clickEnableDisableButton = number => {
-    cy.get(nthContentRow(number + 1))
+    cy.get(nthContentRow(number))
       .contains('i', 'fiber_manual_record')
       .click({
         force: true
@@ -182,19 +182,9 @@ describe('Start Belt Editor test', function() {
     ).should('have.length', 3);
 
     verifyTitleRow('Titel', 'Oprettet af');
-    verifyContentRow(1, true, 'Norske superromaner', '');
-    verifyContentRow(
-      2,
-      true,
-      'Franske fristelser',
-      ''
-    );
-    verifyContentRow(
-      3,
-      false,
-      'Uhygge bag hjemmets fire vægge',
-      ''
-    );
+    verifyContentRow(0, true, 'Norske superromaner', '');
+    verifyContentRow(1, true, 'Franske fristelser', '');
+    verifyContentRow(2, false, 'Uhygge bag hjemmets fire vægge', '');
   });
 
   // ======================================================================================
@@ -205,18 +195,18 @@ describe('Start Belt Editor test', function() {
     cy.visit('/redaktionen');
 
     const verifyEnableDisableContent = firstEnabled => {
-      verifyContentRow(1, firstEnabled, 'Norske superromaner', '');
-      verifyContentRow(2, true, 'Franske fristelser', '');
-      verifyContentRow(3, false, 'Uhygge bag hjemmets fire vægge', '');
+      verifyContentRow(0, firstEnabled, 'Norske superromaner', '');
+      verifyContentRow(1, true, 'Franske fristelser', '');
+      verifyContentRow(2, false, 'Uhygge bag hjemmets fire vægge', '');
     };
 
-    clickEnableDisableButton(1);
+    clickEnableDisableButton(0);
     cy.wait('@postBelt').then(
       xhr => expect(xhr.request.body.onFrontPage).to.be.false
     );
     verifyEnableDisableContent(false);
 
-    clickEnableDisableButton(1);
+    clickEnableDisableButton(0);
     cy.wait('@postBelt').then(
       xhr => expect(xhr.request.body.onFrontPage).to.be.true
     );
@@ -230,7 +220,7 @@ describe('Start Belt Editor test', function() {
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
-    clickSortButton(1, 'down');
+    clickSortButton(0, 'down');
     cy.wait('@postBelt').then(xhr => {
       verifyBeltSave(
         xhr,
@@ -270,21 +260,11 @@ describe('Start Belt Editor test', function() {
         '06ad8729-1216-428c-911c-de4a73c83042'
       );
     });
-    verifyContentRow(
-      1,
-      true,
-      'Franske fristelser',
-      ''
-    );
-    verifyContentRow(2, true, 'Norske superromaner', '');
-    verifyContentRow(
-      3,
-      false,
-      'Uhygge bag hjemmets fire vægge',
-      ''
-    );
+    verifyContentRow(0, true, 'Franske fristelser', '');
+    verifyContentRow(1, true, 'Norske superromaner', '');
+    verifyContentRow(2, false, 'Uhygge bag hjemmets fire vægge', '');
 
-    clickSortButton(3, 'up');
+    clickSortButton(2, 'up');
     cy.wait('@postBelt').then(xhr => {
       verifyBeltSave(
         xhr,
@@ -324,19 +304,9 @@ describe('Start Belt Editor test', function() {
         '12345678-1234-1234-1234-123456789012'
       );
     });
-    verifyContentRow(
-      1,
-      true,
-      'Franske fristelser',
-      ''
-    );
-    verifyContentRow(
-      2,
-      false,
-      'Uhygge bag hjemmets fire vægge',
-      ''
-    );
-    verifyContentRow(3, true, 'Norske superromaner', '');
+    verifyContentRow(0, true, 'Franske fristelser', '');
+    verifyContentRow(1, false, 'Uhygge bag hjemmets fire vægge', '');
+    verifyContentRow(2, true, 'Norske superromaner', '');
   });
 
   // ======================================================================================
@@ -346,17 +316,17 @@ describe('Start Belt Editor test', function() {
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
-    clickSortButton(1, 'up');
+    clickSortButton(0, 'up');
     verifyTitleRow('Titel', 'Oprettet af');
-    verifyContentRow(1, true, 'Norske superromaner', '');
-    verifyContentRow(2, true, 'Franske fristelser', '');
-    verifyContentRow(3, false, 'Uhygge bag hjemmets fire vægge', '');
+    verifyContentRow(0, true, 'Norske superromaner', '');
+    verifyContentRow(1, true, 'Franske fristelser', '');
+    verifyContentRow(2, false, 'Uhygge bag hjemmets fire vægge', '');
 
-    clickSortButton(3, 'down');
+    clickSortButton(2, 'down');
     verifyTitleRow('Titel', 'Oprettet af');
-    verifyContentRow(1, true, 'Norske superromaner', '');
-    verifyContentRow(2, true, 'Franske fristelser', '');
-    verifyContentRow(3, false, 'Uhygge bag hjemmets fire vægge', '');
+    verifyContentRow(0, true, 'Norske superromaner', '');
+    verifyContentRow(1, true, 'Franske fristelser', '');
+    verifyContentRow(2, false, 'Uhygge bag hjemmets fire vægge', '');
   });
 
   // ======================================================================================
@@ -366,7 +336,7 @@ describe('Start Belt Editor test', function() {
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
 
-    clickDeleteButton(2);
+    clickDeleteButton(1);
     cy.wait('@deleteBelt').then(xhr => {
       expect(xhr.xhr.method).to.equal('DELETE');
       expect(xhr.xhr.url).to.contain(
@@ -378,13 +348,8 @@ describe('Start Belt Editor test', function() {
       '.BeltEditor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]'
     ).should('have.length', 2);
     verifyTitleRow('Titel', 'Oprettet af');
-    verifyContentRow(1, true, 'Norske superromaner', '');
-    verifyContentRow(
-      2,
-      false,
-      'Uhygge bag hjemmets fire vægge',
-      ''
-    );
+    verifyContentRow(0, true, 'Norske superromaner', '');
+    verifyContentRow(1, false, 'Uhygge bag hjemmets fire vægge', '');
   });
 
   // ======================================================================================
@@ -429,19 +394,9 @@ describe('Start Belt Editor test', function() {
 
     // Verify, that after data has been loaded, it is shown
     verifyTitleRow('Titel', 'Oprettet af');
-    verifyContentRow(0, true, 'Norske superromaner', 'Bibliotekar Sarah');
-    verifyContentRow(
-      1,
-      true,
-      'Franske fristelser',
-      'Christian Ertmann-Christiansen'
-    );
-    verifyContentRow(
-      2,
-      false,
-      'Uhygge bag hjemmets fire vægge',
-      'Bibliotekar Sarah'
-    );
+    verifyContentRow(0, true, 'Norske superromaner', '');
+    verifyContentRow(1, true, 'Franske fristelser', '');
+    verifyContentRow(2, false, 'Uhygge bag hjemmets fire vægge', '');
   });
 
   // ======================================================================================
