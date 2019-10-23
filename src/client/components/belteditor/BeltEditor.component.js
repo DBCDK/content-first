@@ -30,7 +30,7 @@ const OwnerName = withUser(({user, className}) => {
 export class BeltEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {items: []};
+    this.state = {error: null, items: [], loading: true};
     this.sortableList = React.createRef();
   }
 
@@ -49,7 +49,7 @@ export class BeltEditor extends React.Component {
   };
 
   updateSortableList = items => {
-    if (!this.props.objects.fetching) {
+    if (!this.props.objects.fetching && this.sortableList.current) {
       this.sortableList.current.update(items);
     }
   };
@@ -64,6 +64,7 @@ export class BeltEditor extends React.Component {
     ) {
       // Initial update
       this.setState({
+        error: this.props.objects.error,
         items: this.props.objects.objects,
         loading: this.props.objects.fetching
       });
