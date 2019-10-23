@@ -54,6 +54,19 @@ class BeltForm extends React.Component {
     });
   };
 
+  extractTags(tags) {
+    const accumulatedTags = [];
+    tags.forEach(tag => {
+      if (tag.type === 'TAG') {
+        accumulatedTags.push(tag);
+      }
+      if (tag.type === 'TAG_RANGE') {
+        tag.inRange.forEach(t => accumulatedTags.push(t));
+      }
+    });
+    return accumulatedTags;
+  }
+
   beltObject = (title, description, enabled, tags, id, index) => ({
     _public: true,
     _type: 'belt',
@@ -61,7 +74,7 @@ class BeltForm extends React.Component {
     key: title,
     name: title,
     subtext: description,
-    tags: tags.map(item => ({id: item.id, weight: 1})),
+    tags: this.extractTags(tags).map(item => ({id: item.id, weight: 1})),
     onFrontPage: enabled,
     index: index
   });
