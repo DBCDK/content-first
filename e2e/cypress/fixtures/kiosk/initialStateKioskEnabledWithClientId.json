@@ -1,0 +1,70 @@
+{
+  "data": {
+    "userReducer": {
+      "profileImageIsLoading": false,
+      "profileImage": null,
+      "isLoading": false,
+      "isLoggedIn": false
+    },
+    "listReducer": {
+      "lists": {},
+      "changeMap": {},
+      "latestUsedId": false,
+      "expanded": false,
+      "isFetching": false,
+      "hasFetched": false,
+      "isFetchingOwned": false,
+      "hasFetchedOwned": false
+    },
+    "beltsReducer": {
+      "belts": {
+        "Det smukke, smukke sprog": {
+          "_type": "belt",
+          "_public": true,
+          "key": "Det smukke, smukke sprog",
+          "name": "Det smukke, smukke sprog",
+          "subtext": "Bøger til dig, der bliver glad af smukke sætninger.",
+          "tags": [
+            {"id": 5615, "weight": 1},
+            {"id": 5614, "weight": 1},
+            {"id": 153, "weight": 1},
+            {"id": 5612, "weight": 1}
+          ],
+          "onFrontPage": true,
+          "createdBy": "cf-admin",
+          "index": 0,
+          "_owner": "2bb8168b-5653-4b9a-a56c-6a9c79b984d8",
+          "_id": "3f794f85-19b8-4680-9aac-03f0f44588df",
+          "_rev": "2019-10-22T07:40:30.585Z",
+          "_created": 1571730030,
+          "_modified": 1571730030
+        }
+      },
+      "loadingBelts": false
+    },
+    "interactionReducer": {"interactions": []},
+    "orderReducer": {"orders": {}, "pickupBranches": []},
+    "roles": {
+      "contentFirstEditor": {
+        "type": "role",
+        "name": "role",
+        "machineName": "contentFirstEditor",
+        "displayName": "Læsekompasredaktør",
+        "description": "Redaktør for læsekompas",
+        "_public": true,
+        "_owner": "cf-admin",
+        "_id": "2bb8168b-5653-4b9a-a56c-6a9c79b984d8",
+        "_rev": "2019-10-22T07:40:30.485Z",
+        "_client": "XclientIdX",
+        "_created": 1571730030,
+        "_modified": 1571730030
+      }
+    },
+    "kiosk": {
+      "enabled": true,
+      "loaded": false,
+      "clientId": "some-client-id",
+      "clientSecret": "some-client-secret"
+    }
+  }
+}

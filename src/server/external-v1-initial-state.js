@@ -2,6 +2,8 @@
 
 'use strict';
 
+const config = require('server/config');
+
 import listReducer, {LISTS_EXPAND} from '../client/redux/list.reducer';
 import userReducer, {
   ON_USER_DETAILS_RESPONSE
@@ -12,6 +14,7 @@ import interactionReducer, {
 import rolesReducer, {ROLES_RESPONSE} from '../client/redux/roles.reducer';
 import orderReducer, {PREVIOUSLY_ORDERED} from '../client/redux/order.reducer';
 import beltsReducer, {BELTS_LOAD_RESPONSE} from '../client/redux/belts.reducer';
+import kioskReducer, {KIOSK_RESPONSE} from '../client/redux/kiosk.reducer';
 import StorageClient from '../shared/server-side-storage.client';
 import ListRequester from '../shared/list.requester';
 import BeltsRequester from '../shared/belts.requester';
@@ -37,6 +40,10 @@ async function initState(req) {
   let orderState = orderReducer(undefined, {});
   let beltsState = beltsReducer(undefined, {});
   let rolesState = rolesReducer(undefined, {});
+  let kioskState = kioskReducer(undefined, {
+    type: KIOSK_RESPONSE,
+    response: {...config.kiosk}
+  });
 
   if (req.user) {
     userState = userReducer(userState, {
@@ -94,7 +101,8 @@ async function initState(req) {
     beltsReducer: beltsState,
     interactionReducer: interactionState,
     orderReducer: orderState,
-    roles: rolesState
+    roles: rolesState,
+    kiosk: kioskState
   };
 }
 

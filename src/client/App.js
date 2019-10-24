@@ -23,6 +23,7 @@ import CookieWarning from './components/general/CookieWarning/CookieWarning';
 import BeltEditor from './components/belteditor/BeltEditor.component';
 import BeltForm from './components/belteditor/BeltForm.component';
 import PrintLayout from './components/list/printLayout/PrintLayout';
+import KioskSetup from './components/kiosk/KioskSetup.component';
 import {OPEN_MODAL} from './redux/modal.reducer';
 
 import './style/App.css';
@@ -126,6 +127,8 @@ class App extends Component {
       topbar = false;
       footer = false;
       feedBack = false;
+    } else if (pathSplit[1] === 'kiosk') {
+      currentPage = <KioskSetup />;
     }
 
     if (!currentPage) {

@@ -134,6 +134,10 @@
   color: var(--petroleum);
 }
 
+.Text__body--error {
+  color: var(--pomegranate);
+}
+
 /*
     MediaQ
 */
