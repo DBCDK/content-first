@@ -36,7 +36,9 @@ const common = new Common();
 exports.auth = {
   id: process.env.AUTH_CLIENT_ID || 'content-first',
   secret: common.secret,
-  url: process.env.AUTH_URL || 'https://auth.dbc.dk'
+  url: process.env.AUTH_URL || 'https://auth.dbc.dk',
+  configurationUrl:
+    process.env.AUTH_CONFIGURATION_URL || 'https://auth-config.dbc.dk'
 };
 
 exports.db = knexfile[common.environment];
@@ -96,6 +98,10 @@ exports.server = {
 exports.storage = {
   typeId: process.env.STORAGE_TYPE_ID,
   url: process.env.STORAGE_URL
+};
+
+exports.kiosk = {
+  enabled: process.env.KIOSK_ENABLED ? true : false
 };
 
 exports.test = {

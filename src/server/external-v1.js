@@ -31,6 +31,7 @@ router.use('/auth', require('server/external-v1-auth').router);
 router.use('/suggester', require('server/external-v1-suggester'));
 router.use('/searcher', require('server/external-v1-searcher'));
 router.use('/initial-state', require('server/external-v1-initial-state'));
+router.use('/kiosk', require('server/external-v1-kiosk'));
 if (config.server.environment !== 'production') {
   router.use('/test', require('server/internal-v1-test'));
 }

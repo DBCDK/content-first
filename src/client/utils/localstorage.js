@@ -1,27 +1,41 @@
 let supported;
 
 try {
-  supported = window && window.sessionStorage;
+  supported = window && window.sessionStorage && window.localStorage;
 } catch (e) {
   // no need to handle the exception here.
 }
 
-export const setItem = (key, value, version) => {
+export const setItem = (key, value, version, type = 'sessionstorage') => {
   if (supported) {
     const entry = {
       // modified: (new Date()).getTime(),
       version,
       value
     };
-    sessionStorage.setItem(key, JSON.stringify(entry));
+    if (type === 'sessionstorage') {
+      sessionStorage.setItem(key, JSON.stringify(entry));
+    } else if (type === 'localstorage') {
+      localStorage.setItem(key, JSON.stringify(entry));
+    }
   }
 };
 
-export const getItem = (key, version, defaultValue) => {
+export const getItem = (
+  key,
+  version,
+  defaultValue,
+  type = 'sessionstorage'
+) => {
   if (!supported) {
     return defaultValue;
   }
-  const jsonString = sessionStorage.getItem(key);
+  let jsonString;
+  if (type === 'sessionstorage') {
+    jsonString = sessionStorage.getItem(key);
+  } else if (type === 'localstorage') {
+    jsonString = localStorage.getItem(key);
+  }
   if (!jsonString) {
     return defaultValue;
   }

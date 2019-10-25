@@ -20,6 +20,7 @@ import './Topbar.css';
 import {eventPath} from '../../utils/path';
 import {ADMIN_ROLE, EDITOR_ROLE} from '../roles/Role.component';
 import Role from '../roles/Role.component';
+import Kiosk from '../base/Kiosk/Kiosk';
 
 let searchPage = false;
 
@@ -312,18 +313,25 @@ export class TopBar extends React.Component {
 
           {shortlist}
 
-          {!this.props.user.isLoggedIn && (
-            <Link
-              href={'/v1/auth/login'}
-              type={HISTORY_PUSH_FORCE_REFRESH}
-              className="Topbar__navigation__btn widthCalc"
-              dataCy="topbar-login-btn"
-            >
-              <span>
-                <T component="login" name="loginButton" />
-              </span>
-            </Link>
-          )}
+          <Kiosk
+            render={({kiosk}) => {
+              if (kiosk.enabled || this.props.user.isLoggedIn) {
+                return null;
+              }
+              return (
+                <Link
+                  href={'/v1/auth/login'}
+                  type={HISTORY_PUSH_FORCE_REFRESH}
+                  className="Topbar__navigation__btn widthCalc"
+                  dataCy="topbar-login-btn"
+                >
+                  <span>
+                    <T component="login" name="loginButton" />
+                  </span>
+                </Link>
+              );
+            }}
+          />
           {this.props.user.isLoggedIn && (
             <React.Fragment>
               {userLists}

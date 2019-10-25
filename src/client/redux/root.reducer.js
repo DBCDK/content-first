@@ -24,6 +24,7 @@ import matomo from './matomo.reducer';
 import animateReducer from './animate.reducer';
 import mountsReducer from './mounts.reducer';
 import rolesReducer from './roles.reducer';
+import kioskReducer from './kiosk.reducer';
 
 const combined = combineReducers({
   beltsReducer,
@@ -50,7 +51,8 @@ const combined = combineReducers({
   matomo,
   animateReducer,
   mounts: mountsReducer,
-  roles: rolesReducer
+  roles: rolesReducer,
+  kiosk: kioskReducer
 });
 
 const rootReducer = (state = {}, action) => {
