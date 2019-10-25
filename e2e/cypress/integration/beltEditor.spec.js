@@ -17,6 +17,18 @@ describe('Start Belt Editor test', function() {
       '/v1/object/find?type=belt&owner=12345678-1234-1234-1234-123456789012',
       '@defaultBelts'
     ).as('defaultBeltsRequest');
+    cy.route('GET', '/v1/user/12341234', () => ({
+      data: {
+        name: 'Bibliotekar Sarah',
+        openplatformId: 'Bibliotekar Sarah'
+      }
+    })).as('getUserSarah');
+    cy.route('GET', '/v1/user/43214321', () => ({
+      data: {
+        name: 'Christian Ertmann-Christiansen',
+        openplatformId: 'Christian Ertmann-Christiansen'
+      }
+    })).as('getUserChristian');
     cy.route('POST', '/v1/object/?role=*', () => {
       return {data: {_rev: '123'}};
     }).as('postBelt');
@@ -196,9 +208,19 @@ describe('Start Belt Editor test', function() {
     ).should('have.length', 3);
 
     verifyTitleRow('Titel', 'Oprettet af');
-    verifyContentRow(0, true, 'Norske superromaner', '');
-    verifyContentRow(1, true, 'Franske fristelser', '');
-    verifyContentRow(2, false, 'Uhygge bag hjemmets fire vægge', '');
+    verifyContentRow(0, true, 'Norske superromaner', 'Bibliotekar Sarah');
+    verifyContentRow(
+      1,
+      true,
+      'Franske fristelser',
+      'Christian Ertmann-Christiansen'
+    );
+    verifyContentRow(
+      2,
+      false,
+      'Uhygge bag hjemmets fire vægge',
+      'Bibliotekar Sarah'
+    );
   });
 
   // ======================================================================================
@@ -231,9 +253,24 @@ describe('Start Belt Editor test', function() {
     cy.visit('/redaktionen');
 
     const verifyEnableDisableContent = firstEnabled => {
-      verifyContentRow(0, firstEnabled, 'Norske superromaner', '');
-      verifyContentRow(1, true, 'Franske fristelser', '');
-      verifyContentRow(2, false, 'Uhygge bag hjemmets fire vægge', '');
+      verifyContentRow(
+        0,
+        firstEnabled,
+        'Norske superromaner',
+        'Bibliotekar Sarah'
+      );
+      verifyContentRow(
+        1,
+        true,
+        'Franske fristelser',
+        'Christian Ertmann-Christiansen'
+      );
+      verifyContentRow(
+        2,
+        false,
+        'Uhygge bag hjemmets fire vægge',
+        'Bibliotekar Sarah'
+      );
     };
 
     clickEnableDisableButton(0);
@@ -317,9 +354,19 @@ describe('Start Belt Editor test', function() {
         '06ad8729-1216-428c-911c-de4a73c83042'
       );
     });
-    verifyContentRow(0, true, 'Franske fristelser', '');
-    verifyContentRow(1, true, 'Norske superromaner', '');
-    verifyContentRow(2, false, 'Uhygge bag hjemmets fire vægge', '');
+    verifyContentRow(
+      0,
+      true,
+      'Franske fristelser',
+      'Christian Ertmann-Christiansen'
+    );
+    verifyContentRow(1, true, 'Norske superromaner', 'Bibliotekar Sarah');
+    verifyContentRow(
+      2,
+      false,
+      'Uhygge bag hjemmets fire vægge',
+      'Bibliotekar Sarah'
+    );
 
     clickSortButton(2, 'up');
     cy.wait('@postBelt').then(xhr => {
@@ -361,9 +408,19 @@ describe('Start Belt Editor test', function() {
         '12345678-1234-1234-1234-123456789012'
       );
     });
-    verifyContentRow(0, true, 'Franske fristelser', '');
-    verifyContentRow(1, false, 'Uhygge bag hjemmets fire vægge', '');
-    verifyContentRow(2, true, 'Norske superromaner', '');
+    verifyContentRow(
+      0,
+      true,
+      'Franske fristelser',
+      'Christian Ertmann-Christiansen'
+    );
+    verifyContentRow(
+      1,
+      false,
+      'Uhygge bag hjemmets fire vægge',
+      'Bibliotekar Sarah'
+    );
+    verifyContentRow(2, true, 'Norske superromaner', 'Bibliotekar Sarah');
   });
 
   // ======================================================================================
@@ -396,15 +453,35 @@ describe('Start Belt Editor test', function() {
 
     clickSortButton(0, 'up');
     verifyTitleRow('Titel', 'Oprettet af');
-    verifyContentRow(0, true, 'Norske superromaner', '');
-    verifyContentRow(1, true, 'Franske fristelser', '');
-    verifyContentRow(2, false, 'Uhygge bag hjemmets fire vægge', '');
+    verifyContentRow(0, true, 'Norske superromaner', 'Bibliotekar Sarah');
+    verifyContentRow(
+      1,
+      true,
+      'Franske fristelser',
+      'Christian Ertmann-Christiansen'
+    );
+    verifyContentRow(
+      2,
+      false,
+      'Uhygge bag hjemmets fire vægge',
+      'Bibliotekar Sarah'
+    );
 
     clickSortButton(2, 'down');
     verifyTitleRow('Titel', 'Oprettet af');
-    verifyContentRow(0, true, 'Norske superromaner', '');
-    verifyContentRow(1, true, 'Franske fristelser', '');
-    verifyContentRow(2, false, 'Uhygge bag hjemmets fire vægge', '');
+    verifyContentRow(0, true, 'Norske superromaner', 'Bibliotekar Sarah');
+    verifyContentRow(
+      1,
+      true,
+      'Franske fristelser',
+      'Christian Ertmann-Christiansen'
+    );
+    verifyContentRow(
+      2,
+      false,
+      'Uhygge bag hjemmets fire vægge',
+      'Bibliotekar Sarah'
+    );
   });
 
   // ======================================================================================
@@ -426,8 +503,13 @@ describe('Start Belt Editor test', function() {
       '.BeltEditor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]'
     ).should('have.length', 2);
     verifyTitleRow('Titel', 'Oprettet af');
-    verifyContentRow(0, true, 'Norske superromaner', '');
-    verifyContentRow(1, false, 'Uhygge bag hjemmets fire vægge', '');
+    verifyContentRow(0, true, 'Norske superromaner', 'Bibliotekar Sarah');
+    verifyContentRow(
+      1,
+      false,
+      'Uhygge bag hjemmets fire vægge',
+      'Bibliotekar Sarah'
+    );
   });
 
   // ======================================================================================
@@ -493,9 +575,19 @@ describe('Start Belt Editor test', function() {
 
     // Verify, that after data has been loaded, it is shown
     verifyTitleRow('Titel', 'Oprettet af');
-    verifyContentRow(0, true, 'Norske superromaner', '');
-    verifyContentRow(1, true, 'Franske fristelser', '');
-    verifyContentRow(2, false, 'Uhygge bag hjemmets fire vægge', '');
+    verifyContentRow(0, true, 'Norske superromaner', 'Bibliotekar Sarah');
+    verifyContentRow(
+      1,
+      true,
+      'Franske fristelser',
+      'Christian Ertmann-Christiansen'
+    );
+    verifyContentRow(
+      2,
+      false,
+      'Uhygge bag hjemmets fire vægge',
+      'Bibliotekar Sarah'
+    );
   });
 
   // ======================================================================================
