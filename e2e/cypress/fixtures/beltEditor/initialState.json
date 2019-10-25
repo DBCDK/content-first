@@ -138,6 +138,45 @@
           "isLoading": false,
           "type": "belt",
           "child": false
+        },
+        "Familiens skyggesider": {
+          "key": "Familiens skyggesider",
+          "name": "Familiens skyggesider",
+          "subtext": "Hjemme er ikke altid bedst. Når det ubehagelige og utænkelige folder sig ud inden for hjemmets 4 vægge.",
+          "tags": [
+            {
+              "id": 1672,
+              "weight": 10
+            },
+            {
+              "id": 5731,
+              "weight": 10
+            },
+            {
+              "id": 5699,
+              "weight": 1
+            },
+            {
+              "id": 5721,
+              "weight": 1
+            },
+            {
+              "id": 5696,
+              "weight": 1
+            },
+            {
+              "id": 5680,
+              "weight": 1
+            },
+            {
+              "id": 5691,
+              "weight": 10
+            }
+          ],
+          "onFrontPage": true,
+          "isLoading": false,
+          "type": "belt",
+          "child": false
         }
       },
       "loadingBelts": false
