@@ -42,7 +42,9 @@ describe('kiosk', function() {
     );
     cy.get('[data-cy="kiosk-error-msg"]').should('not.exist');
     cy.get('[data-cy="kiosk-start-btn"]').click();
-    cy.url().should('eq', 'http://localhost:3000/');
+    cy.location().should(loc => {
+      expect(loc.pathname).to.eq('/');
+    });
   });
 
   it(`Should hide login button in kiosk mode`, function() {
