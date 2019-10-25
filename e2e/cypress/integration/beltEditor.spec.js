@@ -122,6 +122,20 @@ describe('Start Belt Editor test', function() {
     expect(xhr.request.body._type).to.equal('belt');
   };
 
+  const verifyNotification = (title, text, cause) => {
+    cy.get(
+      '[data-cy=notification-container] .Notification__container-title'
+    ).should('have.text', title);
+    cy.get(
+      '[data-cy=notification-container] .Notification__container-text'
+    ).should('have.text', text);
+    cy.get(
+      '[data-cy=notification-container] .Notification__container-cause'
+    ).should('have.text', cause);
+  };
+
+  // ======================================================================================
+  // Tests starts here
   // ======================================================================================
 
   it('Test Top Bar menu -> Not logged in -> No access to the "Redaktionen" page', function() {
@@ -189,6 +203,28 @@ describe('Start Belt Editor test', function() {
 
   // ======================================================================================
 
+  it('Test Table contains three elements - read error', function() {
+    mockStorage();
+    cy.route({
+      method: 'GET',
+      status: 400,
+      url:
+        '/v1/object/find?type=belt&owner=12345678-1234-1234-1234-123456789012',
+      response: '@defaultBelts'
+    }).as('ReadBeltsWithDelay');
+
+    cy.createUser('EditorUser', 'editor');
+    cy.visit('/redaktionen');
+
+    verifyNotification(
+      'Error - Indlæsning af bånd',
+      'Der opstod en fejl under indlæsning af bånd',
+      'Could not fetch objects from storage'
+    );
+  });
+
+  // ======================================================================================
+
   it('Test Enable/Disable belt', function() {
     mockStorage();
     cy.createUser('EditorUser', 'editor');
@@ -211,6 +247,27 @@ describe('Start Belt Editor test', function() {
       xhr => expect(xhr.request.body.onFrontPage).to.be.true
     );
     verifyEnableDisableContent(true);
+  });
+
+  // ======================================================================================
+
+  it('Test Enable/Disable belt - error updating status', function() {
+    mockStorage();
+    cy.route({
+      method: 'POST',
+      status: 400,
+      url: '/v1/object/?role=12345678-1234-1234-1234-123456789012'
+    }).as('PostBeltWithError400');
+
+    cy.createUser('EditorUser', 'editor');
+    cy.visit('/redaktionen');
+
+    clickEnableDisableButton(0);
+    verifyNotification(
+      'Error - Opdater bånd',
+      'Der opstod en fejl under forsøg på at opdatere et bånd',
+      'Fejl under skrivning'
+    );
   });
 
   // ======================================================================================
@@ -311,6 +368,27 @@ describe('Start Belt Editor test', function() {
 
   // ======================================================================================
 
+  it('Test Sort with arrow keys - error updating status', function() {
+    mockStorage();
+    cy.route({
+      method: 'POST',
+      status: 400,
+      url: '/v1/object/?role=12345678-1234-1234-1234-123456789012'
+    }).as('PostBeltWithError400');
+
+    cy.createUser('EditorUser', 'editor');
+    cy.visit('/redaktionen');
+
+    clickSortButton(0, 'down');
+    verifyNotification(
+      'Error - Opdater bånd',
+      'Der opstod en fejl under forsøg på at opdatere et bånd',
+      'Fejl under skrivning'
+    );
+  });
+
+  // ======================================================================================
+
   it('Test Sort with arrow keys - out of range', function() {
     mockStorage();
     cy.createUser('EditorUser', 'editor');
@@ -350,6 +428,27 @@ describe('Start Belt Editor test', function() {
     verifyTitleRow('Titel', 'Oprettet af');
     verifyContentRow(0, true, 'Norske superromaner', '');
     verifyContentRow(1, false, 'Uhygge bag hjemmets fire vægge', '');
+  });
+
+  // ======================================================================================
+
+  it('Test delete row - write error when deleting', function() {
+    mockStorage();
+    cy.route({
+      method: 'DELETE',
+      status: 400,
+      url: '/v1/object/*'
+    }).as('DeleteBeltWithError400');
+
+    cy.createUser('EditorUser', 'editor');
+    cy.visit('/redaktionen');
+
+    clickDeleteButton(1);
+    verifyNotification(
+      'Error - Slet bånd',
+      'Der opstod en fejl under forsøg på at slette et bånd',
+      'Sletning af bånd'
+    );
   });
 
   // ======================================================================================

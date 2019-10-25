@@ -58,21 +58,25 @@ export class BeltEditor extends React.Component {
     if (this.props.objects.error) {
       return;
     }
-    if (
-      !this.defaultValuesLoaded &&
-      !isEqual(this.props.objects.objects, this.state.items)
-    ) {
-      // Initial update
-      this.setState({
-        error: this.props.objects.error,
-        items: this.props.objects.objects,
-        loading: this.props.objects.fetching
-      });
-      this.updateSortableList(this.props.objects.objects.sort(this.ascending));
-      this.defaultValuesLoaded = true;
-    } else {
-      // All updates except initial update
-      this.updateSortableList(this.state.items.sort(this.ascending));
+    if (!this.defaultValuesLoaded) {
+      if (!this.props.objects.fetching) {
+        // Initial update
+        this.defaultValuesLoaded = true;
+        this.setState({loading: false});
+      }
+      if (!isEqual(this.props.objects.objects, this.state.items)) {
+        this.setState({
+          error: this.props.objects.error,
+          items: this.props.objects.objects,
+          loading: this.props.objects.fetching
+        });
+        this.updateSortableList(
+          this.props.objects.objects.sort(this.ascending)
+        );
+      } else {
+        // All updates except initial update
+        this.updateSortableList(this.state.items.sort(this.ascending));
+      }
     }
   }
 
