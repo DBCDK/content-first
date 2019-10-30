@@ -52,7 +52,7 @@ const indexHtmlWithConfig = isProduction
         })};</script></head>`
       )
   : fs.readFileSync(
-      path.resolve(__dirname, '..', '..', 'build', 'index.html'),
+      path.resolve(__dirname, '..', '..', 'public', 'index.html'),
       'utf8'
     );
 

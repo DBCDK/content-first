@@ -47,7 +47,9 @@ async function userExists(openplatformToken, id) {
  */
 async function createCookieDev(legacyId, uniqueId, openplatformToken, user) {
   await request
-    .put(`http://localhost:3333/configuration?token=${openplatformToken}`)
+    .put(
+      `http://${config.test.minismaug.host}:3333/configuration?token=${openplatformToken}`
+    )
     .send({user: {uniqueId}, storage: null});
   return await createCookie(legacyId, uniqueId, openplatformToken, user);
 }

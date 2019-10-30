@@ -1,6 +1,5 @@
 describe('Start Belt Editor test', function() {
   beforeEach(function() {
-    cy.initStorage();
     cy.clearClientStorage();
     cy.clearCookies();
   });

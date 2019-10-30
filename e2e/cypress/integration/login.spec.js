@@ -1,6 +1,5 @@
 describe('Login test', function() {
   beforeEach(function() {
-    cy.initStorage();
     cy.clearClientStorage();
     cy.clearCookies();
   });
