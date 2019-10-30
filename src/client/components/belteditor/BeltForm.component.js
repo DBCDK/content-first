@@ -22,8 +22,16 @@ import {connect} from 'react-redux';
 import {withObjects} from '../hoc/Storage/withObjects.hoc';
 import {ERROR} from '../general/Notification/Notification.component';
 import {timestampToShortDate} from '../../utils/dateTimeFormat';
+import {withUser} from '../hoc/User';
 
 const CREATE = 'create';
+
+const PublishedNote = withUser(({created, user}) => (
+  <Text>
+    {timestampToShortDate(parseInt(created, 10)) +
+      (user && typeof user.name === 'string' ? ', ' + user.name : '')}
+  </Text>
+));
 
 class BeltForm extends React.Component {
   constructor(props) {
@@ -145,11 +153,6 @@ class BeltForm extends React.Component {
 
   checkDisabled = () => this.state.title.length === 0;
 
-  publishedNote = () =>
-    timestampToShortDate(parseInt(this.state.created, 10)) +
-    ', ' +
-    this.state.createdBy;
-
   render() {
     const tags = this.props
       .flattenedTags()
@@ -234,7 +237,10 @@ class BeltForm extends React.Component {
                   <Text>
                     <T component="editStartPage" name="published" />:
                   </Text>
-                  <Text>{this.publishedNote()}</Text>
+                  <PublishedNote
+                    id={this.state.createdBy}
+                    created={this.state.created}
+                  />
                 </React.Fragment>
               )}
             </div>
