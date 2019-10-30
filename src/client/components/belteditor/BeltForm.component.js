@@ -67,7 +67,7 @@ class BeltForm extends React.Component {
     return accumulatedTags;
   }
 
-  beltObject = (title, description, enabled, tags, id, index) => ({
+  beltObject = (title, description, enabled, tags, id, index, createdBy) => ({
     _public: true,
     _type: 'belt',
     _id: id,
@@ -76,7 +76,8 @@ class BeltForm extends React.Component {
     subtext: description,
     tags: this.extractTags(tags).map(item => ({id: item.id, weight: 1})),
     onFrontPage: enabled,
-    index: index
+    index: index,
+    createdBy: createdBy
   });
 
   handleSubmit = async (create, update) => {
@@ -89,7 +90,8 @@ class BeltForm extends React.Component {
       this.state.enabled,
       this.props.tags,
       this.state.id,
-      this.state.index
+      this.state.index,
+      this.state.createdBy
     );
     try {
       this.setState({saving: true});
