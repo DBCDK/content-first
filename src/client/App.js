@@ -169,8 +169,16 @@ class App extends Component {
   }
 
   beltFormParams = params => ({
-    title: params.title ? params.title[0] : '',
-    description: params.description ? params.description[0] : '',
+    title: params.title
+      ? Array.isArray(params.title[0])
+        ? params.title[0].join()
+        : params.title[0]
+      : '',
+    description: params.description
+      ? Array.isArray(params.description[0])
+        ? params.description[0].join()
+        : params.description[0]
+      : '',
     enabled: params.enabled ? params.enabled[0] : false,
     tags: params.tags ? params.tags[0] : [],
     createdBy: params.createdBy ? params.createdBy[0] : '',
