@@ -40,7 +40,10 @@ export const withObjects = WrappedComponent => {
         const {roles, query} = this.props;
         const owner = roles[query.owner] ? roles[query.owner]._id : query.owner;
         const objects = (await this.storageClient.find({...query, owner})).data;
-        if (!isEqual(objects, this.state.objects.objects)) {
+        if (
+          this.state.objects.fetching ||
+          !isEqual(objects, this.state.objects.objects)
+        ) {
           this.setState({objects: {fetching: false, objects}});
         }
       } catch (e) {
