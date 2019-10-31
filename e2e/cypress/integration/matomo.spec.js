@@ -75,7 +75,7 @@ describe('Matomo test', function() {
     return tracked;
   };
 
-  it.only('Can track tags belt events', function() {
+  it('Can track tags belt events', function() {
     mockInitialState();
     const tracked = testBelt(
       '/',
