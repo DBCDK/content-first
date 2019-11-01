@@ -22,7 +22,7 @@ router.post('/logout', async (req, res) => {
   if (req.isAuthenticated()) {
     const openplatformToken = req.user.openplatformToken;
     req.logout();
-    if (req.cookies['test-user-data']) {
+    if (req.cookies && req.cookies['test-user-data']) {
       res
         .clearCookie('test-user-data')
         .clearCookie('login-token')
