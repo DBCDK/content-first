@@ -17,7 +17,7 @@
 // appel-settings
 const appeals = {
   stemning: ['stemning'],
-  sprog: [
+  'sprog og form': [
     'univers',
     'genre',
     'fortællerstemme',

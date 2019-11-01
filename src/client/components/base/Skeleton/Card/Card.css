@@ -1,0 +1,11 @@
+.card.skeleton {
+  border: none;
+  cursor: default;
+
+  /* Bootstrap .card overwrite */
+  background-color: transparent;
+}
+
+.card__text {
+  margin-top: var(--1pt);
+}

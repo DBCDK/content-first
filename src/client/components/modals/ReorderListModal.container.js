@@ -36,7 +36,7 @@ const SortableItem = SortableElement(({book, moveUp, moveDown, className}) => (
 
     <div className="ml-2 w-75">
       <span style={{height: 32, float: 'left', marginRight: 10, marginTop: 3}}>
-        <BookCover book={book} style={{width: 'unset'}} />
+        <BookCover pid={book.pid} />
       </span>
       <div className="order-list-element-text">
         <Text type="large" data-cy="reorder-list-element-title">

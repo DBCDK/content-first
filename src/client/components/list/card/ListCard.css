@@ -60,7 +60,7 @@
   font-weight: 600;
   line-height: 1.3rem;
 }
-a.list-card-nohover {
+a.link {
   color: var(--petrolium);
   text-decoration: none;
 }

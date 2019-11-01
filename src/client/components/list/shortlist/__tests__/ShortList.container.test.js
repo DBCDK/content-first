@@ -153,7 +153,7 @@ describe('ShortList.container', () => {
     );
     tree
       .find(
-        '.top-bar-dropdown-list-page .top-bar-upper-toolbar .Toolbar__right .Button'
+        '.top-bar-dropdown-list-page .top-bar-upper-toolbar .Toolbar__right .button'
       )
       .at(1)
       .simulate('click');
@@ -244,7 +244,7 @@ describe('ShortList.container', () => {
     );
     tree
       .find(
-        '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__right .Button'
+        '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__right .button'
       )
       .at(0)
       .simulate('click');
@@ -266,7 +266,7 @@ describe('ShortList.container', () => {
     );
     tree
       .find(
-        'div.short-list-item + div.mobile-styling .Toolbar.mobile-styling .Toolbar__left .Button'
+        'div.short-list-item + div.mobile-styling .Toolbar.mobile-styling .Toolbar__left .button'
       )
       .at(0)
       .simulate('click');
@@ -288,7 +288,7 @@ describe('ShortList.container', () => {
     );
     tree
       .find(
-        '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__right .Button'
+        '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__right .button'
       )
       .at(1)
       .simulate('click');
@@ -310,7 +310,7 @@ describe('ShortList.container', () => {
     );
     tree
       .find(
-        'div.short-list-item + div.mobile-styling .Toolbar.mobile-styling .Toolbar__left .Button'
+        'div.short-list-item + div.mobile-styling .Toolbar.mobile-styling .Toolbar__left .button'
       )
       .at(1)
       .simulate('click');

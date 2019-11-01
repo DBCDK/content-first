@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Icon from '../Icon';
+
 import './Button.css';
 import '../Skeleton/skeleton.css';
 
@@ -7,11 +9,11 @@ const Button = ({
   Tag = 'button',
   size = 'large',
   type = 'primary',
-  iconLeft = '',
-  iconRight = '',
+  iconLeft = null,
+  iconRight = null,
   variant = false,
-  children,
-  className,
+  children = null,
+  className = '',
   disabled = false,
   dataCy,
   'data-cy': dataCyHyphen,
@@ -20,20 +22,9 @@ const Button = ({
   onClick,
   ...props
 }) => {
-  const modifier = variant ? `Button__${type}--${variant}` : '';
-
-  const iconLeftSnippet =
-    iconLeft === '' ? (
-      ''
-    ) : (
-      <i className="material-icons Button__icon--left">{iconLeft}</i>
-    );
-  const iconRightSnippet =
-    iconRight === '' ? (
-      ''
-    ) : (
-      <i className="material-icons Button__icon--right">{iconRight}</i>
-    );
+  const modifier = variant ? `button__${type}--${variant}` : '';
+  const iconLeftClass = iconLeft ? 'button__icon--left' : '';
+  const iconRightClass = iconRight ? 'button__icon--right' : '';
 
   var onClickValue = {};
   if (typeof href !== 'undefined') {
@@ -46,16 +37,16 @@ const Button = ({
 
   return (
     <Tag
-      className={`${className || ''}
-      btn Button Button__${size} Button__${type} ${modifier}`}
+      className={`${className}
+      button button__${size} button__${type} ${modifier} ${iconLeftClass} ${iconRightClass}`}
       {...props}
       disabled={disabled}
       data-cy={dataCy || dataCyHyphen || ''}
       {...onClickValue}
     >
-      {iconLeftSnippet}
+      {iconLeft && <Icon name={iconLeft} className="icon--left" />}
       <span>{children}</span>
-      {iconRightSnippet}
+      {iconRight && <Icon name={iconRight} className="icon--right" />}
     </Tag>
   );
 };

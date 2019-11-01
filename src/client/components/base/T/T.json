@@ -137,6 +137,10 @@
       "particularlyProminent": {
         "da": "Særligt fremtrædende",
         "en": "Particularly prominent"
+      },
+      "and": {
+        "da": "og",
+        "en": "and"
       }
     },
     "login": {
@@ -357,6 +361,10 @@
       "aboutLoans": {
         "da": "Udlånstal er vejledende og opdateres ikke real-time",
         "en": "Loans are indicative and are not updated in real time"
+      },
+      "listBeltTitle": {
+        "da": "Lister med",
+        "en": "Lists with"
       }
     },
     "profile": {
@@ -1030,6 +1038,10 @@
       }
     },
     "share": {
+      "share": {
+        "da": "Del",
+        "en": "Share"
+      },
       "shareOnFacebook": {
         "da": "Del på facebook",
         "en": "share on facebook"

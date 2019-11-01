@@ -30,21 +30,29 @@ export default class WorkSlider extends React.Component {
     if (this.props.isVisible === false) {
       return <div style={{height: 442}}></div>;
     }
-    const {pids = []} = this.props;
+    const {
+      pids = [],
+      className = '',
+      mountedData,
+      updateMount,
+      origin,
+      recommendationsLoaded
+    } = this.props;
+
     const worksPerSlide = this.getWorksPerSlide();
-    const {didSwipe = false, scrollPos = 0} = this.props.mountedData;
+    const {didSwipe = false, scrollPos = 0} = mountedData;
 
     return (
       <div
-        className={this.props.className + ' position-relative'}
+        className={`work-slider ${className}`}
         ref={container => (this.refs = {...this.refs, container})}
       >
-        {this.props.recommendationsLoaded && pids.length === 0 && (
+        {recommendationsLoaded && pids.length === 0 && (
           <Title
             tag="h1"
             type="title4"
             variant="transform-uppercase--weight-bold"
-            className="WorkSlider__no-hits-container position-relative"
+            className="work-slider__no-hits-container"
           >
             <T component="belts" name="noHits" renderAsHtml={true} />
           </Title>
@@ -54,15 +62,15 @@ export default class WorkSlider extends React.Component {
           initialScrollPos={scrollPos}
           onSwipe={index => {
             if (index > 0 && !didSwipe) {
-              this.props.updateMount({
+              updateMount({
                 didSwipe: true,
-                beltName: this.props.origin
+                beltName: origin
               });
             }
             if (scrollPos !== index) {
-              this.props.updateMount({
+              updateMount({
                 scrollPos: index,
-                beltName: this.props.origin
+                beltName: origin
               });
             }
           }}
@@ -71,8 +79,10 @@ export default class WorkSlider extends React.Component {
             ? pids.map((pid, idx) => {
                 return (
                   <WorkCard
+                    pid={pid}
+                    rid={this.props.rid}
+                    key={pid}
                     cardRef={workCard => (this.refs = {...this.refs, workCard})}
-                    className={idx === pids.length - 1 ? '' : 'mr-4'}
                     enableHover={true}
                     enableLongpress={this.props.enableLongpress || false}
                     hoverClass={this.props.bgClass}
@@ -81,9 +91,6 @@ export default class WorkSlider extends React.Component {
                       this.props.isVisible &&
                       idx < scrollPos + worksPerSlide * 2
                     }
-                    pid={pid}
-                    rid={this.props.rid}
-                    key={pid}
                     origin={this.props.origin}
                     onMoreLikeThisClick={this.props.onMoreLikeThisClick}
                     onWorkClick={this.props.onWorkClick}
@@ -96,7 +103,6 @@ export default class WorkSlider extends React.Component {
                 .map((val, idx) => (
                   <WorkCard
                     cardRef={workCard => (this.refs = {...this.refs, workCard})}
-                    className="ml-2 mr-2"
                     highlight={false}
                     isVisible={false}
                     key={idx}

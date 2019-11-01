@@ -1,64 +1,27 @@
-.Hero {
+.hero {
   height: 60vh;
+  position: relative;
+  margin-bottom: var(--5pt);
 }
 
-.Hero .swiper-container {
+.hero .swiper-container {
   padding-top: 0;
 }
 
-.Hero .swiper-container-horizontal > .swiper-pagination-bullets {
+.hero .swiper-container-horizontal > .swiper-pagination-bullets {
   top: auto;
   text-align: center;
-  top: 25px;
+  top: var(--3pt);
 }
 
-.Hero .swiper-pagination-bullet {
+.hero .swiper-pagination-bullet {
   background: white;
 }
-.Hero .swiper-pagination-bullet-active {
+.hero .swiper-pagination-bullet-active {
   background-color: white;
 }
 
-.Hero .searchbar-link {
-  display: block !important;
-  width: auto !important;
-  max-width: 800px;
-  margin: auto;
-}
-
-.Hero .searchbar-link:hover {
-  text-decoration: none;
-}
-
-.Hero .searchbar {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid var(--silver-chalice);
-  border-radius: 5px;
-  width: 100%;
-}
-
-.Hero .searchbar .searchbar-innerWrap i {
-  color: var(--petroleum);
-}
-
-.Hero .searchbar .searchbar-tags,
-.Hero .searchbar .searchbar-button {
-  height: 50px;
-}
-
-.Hero .searchbar .Button__term:hover {
-  background-color: var(--alto);
-}
-
-.Hero .black-shadow {
-  text-shadow: 0 0 40px rgba(0, 0, 0, 0.75);
-}
-
-.Hero .white-shadow {
-  text-shadow: 0 0 40px rgba(255, 255, 255, 0.75);
-}
-
-.Hero .hero-bg-image {
+.hero .hero_bg-image {
   height: calc(100% + 120px);
   width: 100%;
 }
@@ -83,63 +46,27 @@
   height: 100%;
 }
 
-.hero-filter {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-.hero-filter.lightFilter {
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0.2),
-    rgba(255, 255, 255, 0)
-  );
-  height: 50vh;
-}
-
-.hero-filter.darkFilter {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
-  height: 50vh;
-}
-
-.Hero .swiper-pagination-bullet {
-  width: 15px;
-  height: 15px;
+.hero .swiper-pagination-bullet {
+  width: var(--2pt);
+  height: var(--2pt);
   border: 3px solid var(--petroleum);
   border-radius: 100%;
   background-color: white;
   opacity: 0.4;
 }
 
-.Hero .swiper-pagination-bullet-active {
+.hero .swiper-pagination-bullet-active {
   opacity: 0.9;
 }
 
-@media (max-width: 991px) {
-  .Hero .searchbar {
-    border: none;
-    background: transparent;
-  }
-  .Hero .searchbar .searchbar-button {
-    border: 1px solid white;
+@media (max-width: 768px) {
+  .hero .swiper-container-horizontal > .swiper-pagination-bullets {
+    top: var(--2pt);
   }
 }
 
-@media (max-width: 767px) {
-  .Hero .searchbar-link {
-    padding-left: 8vw;
-  }
-
-  .Hero .swiper-container-horizontal > .swiper-pagination-bullets {
-    top: 15px;
-  }
-}
-
-@media (max-width: 767px) and (orientation: landscape) {
-  .Hero {
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
     height: calc(100vh - 80px);
   }
 
@@ -154,22 +81,9 @@
   }
 }
 
-@media (max-width: 575px) {
-  .Hero {
-    height: calc(60vh - 55px);
-  }
+@media (max-width: 576px) {
   .react-parallax-content {
     height: 100%;
     padding-top: 10vh;
-  }
-}
-
-@media (max-width: 380px) {
-  .Hero .searchbar .searchbar-tags,
-  .Hero .searchbar .searchbar-button {
-    height: 40px;
-  }
-  .Hero .Title__title3 {
-    display: none;
   }
 }

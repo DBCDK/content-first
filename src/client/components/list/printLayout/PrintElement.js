@@ -16,11 +16,7 @@ export class PrintElement extends React.Component {
     return (
       <div className="print-element-container">
         <div className="printelement-bookcover-container">
-          <BookCover
-            book={book}
-            className="bg-white"
-            imageClassName="align-self-start"
-          />
+          <BookCover pid={book.pid} />
         </div>
         <div className="print-element-book-info">
           <Text variant="weight-semibold" type="large">

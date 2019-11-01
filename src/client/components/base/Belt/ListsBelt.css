@@ -1,0 +1,13 @@
+.lists-belt {
+  margin-top: var(--5pt);
+}
+
+.lists-belt .lists-belt__title {
+  padding: 0 var(--5pt);
+}
+
+@media only screen and (max-width: 576px) {
+  .lists-belt .lists-belt__title {
+    padding: 0 var(--2pt) var(--2pt) var(--2pt);
+  }
+}

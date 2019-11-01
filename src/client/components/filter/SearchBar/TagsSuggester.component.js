@@ -231,7 +231,7 @@ class TagsSuggester extends React.Component {
           >
             <Icon
               name="cancel"
-              className="md-large d-md-none d-sm-inline-block"
+              className="d-md-none d-sm-inline-block"
               onClick={() => {
                 this.props.historyPush(HISTORY_REPLACE, '/find');
                 this.setFocus();
@@ -262,7 +262,7 @@ class TagsSuggester extends React.Component {
         {!tagsInField && (
           <Icon
             name="search"
-            className="md-large d-md-none d-sm-inline-block"
+            className="d-md-none d-sm-inline-block"
             onClick={() => this.toggleInputvisibility(true)}
           />
         )}

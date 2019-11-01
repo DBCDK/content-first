@@ -1,30 +1,81 @@
-.similarBelt.childBelt .WorkCard .book-cover {
-  background-color: var(--porcelain);
+.similar-belt {
+  margin-top: var(--5pt);
+  position: relative;
 }
 
-.similarBelt.childBelt .WorkCard .expand-more-wrapper {
-  bottom: -180px;
+.similar-belt .similar-belt__title {
+  margin: 0;
+  padding: 0 var(--5pt);
 }
 
-.similarBelt.childBelt .WorkCard:first-child .whiteLine {
+@media only screen and (max-width: 768px) {
+  .similar-belt .similar-belt__title {
+    padding: 0 var(--5pt) var(--3pt) var(--5pt);
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .similar-belt .similar-belt__title {
+    padding: 0 var(--2pt) var(--2pt) var(--2pt);
+  }
+}
+
+.similar-belt.lys-graa .swiper-container {
+  background-color: #f8f8f8;
+}
+
+.similar-belt.lys-graa .work-card .hover-details-fade {
+  background: linear-gradient(transparent, var(--lys-graa) 60%) !important;
+}
+
+/* Smimilarbelt as a CHILDBELT */
+
+.similar-belt.child-belt {
+  margin-top: 0;
+}
+
+.similar-belt.child-belt .similar-belt__title {
+  padding-top: var(--5pt);
+}
+
+.similar-belt.child-belt .work-slider {
+  padding-top: var(--2pt);
+}
+
+.similar-belt.child-belt .work-card .book-cover,
+.similar-belt.child-belt .work-card .Skeleton__text__line {
+  background-color: var(--porcelain) !important;
+}
+
+.similar-belt.child-belt .work-card:first-child .whiteLine {
   width: 500%;
   left: -400%;
 }
 
-.similarBelt.childBelt .WorkCard:last-child .whiteLine {
+.similar-belt.child-belt .work-card:last-child .whiteLine {
   width: 500%;
   right: -400%;
 }
 
-.similarBelt.childBelt .swiper-button-prev {
-  left: 0rem;
+.similar-belt.child-belt .swiper-button-prev,
+.similar-belt.child-belt .swiper-button-next {
+  background: radial-gradient(
+    rgba(248, 248, 248, 0.85) 25%,
+    rgba(248, 248, 248, 0.75) 35%,
+    rgba(248, 248, 248, 0.4) 50%,
+    rgba(248, 248, 248, 0) 65%
+  );
 }
 
-.similarBelt.childBelt .swiper-button-next {
-  right: 0rem;
+.similar-belt.child-belt .swiper-button-prev {
+  left: 0;
 }
 
-.similarBelt.childBelt
+.similar-belt.child-belt .swiper-button-next {
+  right: 0;
+}
+
+.similar-belt.child-belt
   .swiper-container-horizontal
   > .swiper-pagination-bullets {
   top: 10px;
@@ -32,7 +83,7 @@
   height: 20px;
 }
 
-.similarBelt.childBelt .WorkCard .whiteLine {
+.similar-belt.child-belt .work-card .whiteLine {
   width: 200%;
   height: 50px;
   position: absolute;
@@ -40,12 +91,4 @@
   left: -50%;
   z-index: 1;
   background-color: white;
-}
-
-.similarBelt.lys-graa .swiper-container {
-  background-color: #f8f8f8;
-}
-
-.similarBelt.lys-graa .WorkCard .hover-details-fade {
-  background: linear-gradient(transparent, var(--lys-graa) 60%) !important;
 }

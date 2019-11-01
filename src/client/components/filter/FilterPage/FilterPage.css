@@ -1,4 +1,4 @@
-.filter-page-title {
+work-card.filter-page-title {
   font-size: 30px;
   vertical-align: bottom;
   cursor: default;
@@ -93,7 +93,7 @@
   justify-content: space-evenly;
 }
 
-.filter-page-works .WorkCard {
+.filter-page-works .work-card {
   box-sizing: content-box;
   padding: 0rem 1rem 1rem 0;
 }
@@ -105,7 +105,7 @@
 }
 
 .filter-page .filter-group hr {
-  border: 1px var(--lightgrey) solid;
+  border: 1px var(--lys-graa) solid;
 }
 .filter-page .filter-group h4 {
   font-size: 16px;
@@ -139,7 +139,7 @@
   margin-bottom: -18px;
   padding-right: 5px;
   padding-top: 8px;
-  border-top: solid var(--lightgrey) 1px;
+  border-top: solid var(--lys-graa) 1px;
 }
 
 .tags-suggestion-list

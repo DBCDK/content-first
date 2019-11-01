@@ -25,7 +25,10 @@ const withScrollToComponent = WrappedComponent => {
 
     render() {
       return (
-        <div ref={ref => (this.componentRef = ref)}>
+        <div
+          className="scroll-to-component"
+          ref={ref => (this.componentRef = ref)}
+        >
           <WrappedComponent {...this.props} />
         </div>
       );

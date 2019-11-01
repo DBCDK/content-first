@@ -26,18 +26,18 @@ let searchPage = false;
 
 class TopBarDropdown extends React.Component {
   render() {
-    const state = this.props.active ? '' : 'Topbar__dropdown__hidden';
+    const {active, listsModal, onClick, logout} = this.props;
+
+    const hiddenClass = active ? '' : 'hidden';
     const isSmallScreen = window.innerWidth < 768;
 
     return (
-      <ul className={'Topbar__dropdown abort-closeDopdown ' + state}>
-        <div className="Topbar__dropdown__caret" />
-
+      <ul className={`topbar__dropdown dropdown--dont-close ${hiddenClass}`}>
         {isSmallScreen && (
           <li
             onClick={() => {
-              this.props.listsModal();
-              this.props.onClick();
+              listsModal();
+              onClick();
             }}
           >
             <span>
@@ -46,7 +46,7 @@ class TopBarDropdown extends React.Component {
           </li>
         )}
         <li>
-          <Link href="/profil/rediger" onClick={this.props.onClick}>
+          <Link href="/profil/rediger" onClick={onClick}>
             <span>
               <T component="profile" name="profilePage" />
             </span>
@@ -57,7 +57,7 @@ class TopBarDropdown extends React.Component {
           <li>
             <Link
               href="/redaktionen"
-              onClick={this.props.onClick}
+              onClick={onClick}
               data-cy="edit-start-page"
             >
               <span>
@@ -70,8 +70,8 @@ class TopBarDropdown extends React.Component {
         <li className="divider" />
         <li
           onClick={() => {
-            this.props.logout();
-            this.props.onClick();
+            logout();
+            onClick();
           }}
         >
           <span>
@@ -96,7 +96,7 @@ export class TopBar extends React.Component {
     for (var i = 0; i < path.length; i++) {
       if (
         path[i].className &&
-        path[i].className.includes('abort-closeDopdown')
+        path[i].className.includes('dropdown--dont-close')
       ) {
         abortCloseDropdown = true;
       }
@@ -139,7 +139,10 @@ export class TopBar extends React.Component {
   componentWillReceiveProps(nextProps) {
     searchPage = nextProps.router.path === '/find' ? true : false;
     this.setState({searchExpanded: searchPage});
-    this.calcWidth();
+
+    setTimeout(() => {
+      this.calcWidth();
+    }, 100);
   }
 
   toggleDropdown() {
@@ -163,47 +166,42 @@ export class TopBar extends React.Component {
   }
 
   calcWidth() {
-    setTimeout(() => {
-      const btns = document.getElementsByClassName('widthCalc');
-      const topbar = this.Topbar ? this.Topbar.offsetWidth : 0;
+    const btns = document.getElementsByClassName('widthCalc');
 
-      const searchbarwrapper = this.SearchBarWrapper
-        ? this.SearchBarWrapper.offsetWidth
-        : 0;
+    const topbar = this.Topbar ? this.Topbar.offsetWidth : 0;
 
-      let width = 0;
-      for (var i = 0; i < btns.length; i++) {
-        width += btns[i].offsetWidth;
-      }
+    const searchbarwrapper = this.SearchBarWrapper
+      ? this.SearchBarWrapper.offsetWidth
+      : 0;
 
-      const res = topbar - (width - searchbarwrapper);
+    let width = 0;
+    for (var i = 0; i < btns.length; i++) {
+      width += btns[i].offsetWidth;
+    }
+
+    const res = topbar - (width - searchbarwrapper);
+
+    if (this.state.width !== res) {
       this.setState({width: res});
-    }, 200);
+    }
   }
 
   renderShortListBtn() {
     const {expanded} = this.props.shortListState;
+    const expandedClass = expanded ? 'expanded' : '';
     const listLength = this.props.shortListState.elements.length || 0;
 
     return (
       <React.Fragment>
         <Link
           href="/huskeliste"
-          className="Topbar__navigation__btn d-flex d-md-none widthCalc"
+          className="navigation-btn navigation-btn__shortlist--btn widthCalc"
         >
           <Icon name="bookmark_border" />
-          <span
-            className="short-badge"
-            style={{padding: 0, marginLeft: '-9px'}}
-          >
-            {`(${listLength})`}
-          </span>
+          <span>{`(${listLength})`}</span>
         </Link>
         <ShortListDropDown
-          className={
-            'Topbar__navigation__btn d-none d-md-flex widthCalc ' +
-            (expanded ? 'Topbar__dropdown_expanded' : '')
-          }
+          className={`navigation-btn navigation-btn__shortlist--dropdown widthCalc ${expandedClass}`}
           dataCy="topbar-shortlist"
         >
           <Icon name="bookmark_border" />
@@ -214,12 +212,11 @@ export class TopBar extends React.Component {
 
   renderListsOverviewDropdown() {
     const {expanded} = this.props.listsState;
+    const expandedClass = expanded ? 'expanded' : '';
+
     return (
       <ListOverviewDropDown
-        className={
-          'Topbar__navigation__btn d-none d-sm-flex widthCalc ' +
-          (expanded ? 'Topbar__dropdown_expanded' : '')
-        }
+        className={`navigation-btn navigation-btn__list--dropdown widthCalc ${expandedClass}`}
         dataCy="topbar-lists"
       >
         <Icon name="list" />
@@ -230,79 +227,68 @@ export class TopBar extends React.Component {
     );
   }
 
+  handleIconClick(searchExpanded, showCancelBtn) {
+    if (searchExpanded && showCancelBtn) {
+      this.props.historyPush(HISTORY_REPLACE, '/find');
+      document.getElementById('Searchbar__inputfield').focus();
+    } else {
+      this.toggleSearchBar();
+    }
+  }
+
   render() {
     const shortlist = this.renderShortListBtn();
     const userLists = this.renderListsOverviewDropdown();
     const searchExpanded = searchPage && this.state.searchExpanded;
     const showCancelBtn = window.location.href.split('=')[1];
 
-    let searchIconText;
-    if (searchExpanded && showCancelBtn) {
-      searchIconText = (
-        <span
-          data-cy="topbar-search-btn"
-          onClick={() => {
-            this.props.historyPush(HISTORY_REPLACE, '/find');
-            document.getElementById('Searchbar__inputfield').focus();
-          }}
-        >
-          <i className="material-icons  material-icons-cancel" ref="cancelref">
-            cancel
-          </i>
-        </span>
-      );
-    }
+    const {user, router, betaModal, listsModal, logout} = this.props;
 
-    if (!searchExpanded) {
-      searchIconText = (
-        <span
-          data-cy="topbar-search-btn"
-          onClick={() => this.toggleSearchBar()}
-        >
-          <T component="general" name="searchButton" />
-        </span>
-      );
-    }
+    const cancelVisibleClass = !searchExpanded && !showCancelBtn ? 'hide' : '';
 
     const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
     const hideOnIE11 = isIE11 && searchExpanded ? 'hidden' : '';
-
-    const isIndex = this.props.router.path === '/' ? true : false;
+    const collapsedClass = !searchExpanded ? 'collapsed' : '';
+    const isIndex = router.path === '/' ? true : false;
 
     return (
       <header
         id="topbar"
         ref={e => (this.Topbar = e)}
-        className={`Topbar row ${!searchExpanded ? 'searchBar-closed' : ''}`}
+        className={`topbar ${collapsedClass}`}
       >
-        <nav className="col-12 col-m-8 Topbar__navigation">
-          <a href="/">
-            <div className="Topbar__special widthCalc">
-              <img
-                type="image/svg+xml"
-                alt=""
-                src="/img/general/dibliofigur.svg"
-                style={{height: '28px'}}
-              />
+        <nav className="topbar__navigation">
+          <Link href="/" className="widthCalc">
+            <div className="topbar__navigation--icon ">
+              <img type="image/svg+xml" src="/img/general/dibliofigur.svg" />
             </div>
-          </a>
-          <span className="Topbar__navigation__btn widthCalc d-none d-md-flex">
+          </Link>
+          <span className="navigation-btn navigation-btn__search--bar widthCalc">
             <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
-            <span className="relative--container">
+            <span className="topbar__search-bar--container">
               <span
-                className="Topbar__SearchBarWrapper"
+                className="topbar__search-bar--wrap"
                 style={{width: this.state.width}}
                 ref={e => (this.SearchBarWrapper = e)}
               >
                 <SearchBar origin="fromTopbar" />
               </span>
             </span>
-            {searchIconText}
+            <span
+              className={`searchbar__cancel--btn ${cancelVisibleClass}`}
+              data-cy="topbar-search-btn"
+              onClick={() =>
+                this.handleIconClick(searchExpanded, showCancelBtn)
+              }
+            >
+              {searchExpanded && showCancelBtn && <Icon name="cancel" />}
+              {!searchExpanded && <T component="general" name="searchButton" />}
+            </span>
           </span>
           {!searchExpanded && (
             <Link
               href="/find"
-              className="Topbar__navigation__btn d-i-block d-md-none"
+              className="navigation-btn navigation-btn__search--btn"
             >
               <Icon
                 name="search"
@@ -315,14 +301,14 @@ export class TopBar extends React.Component {
 
           <Kiosk
             render={({kiosk}) => {
-              if (kiosk.enabled || this.props.user.isLoggedIn) {
+              if (kiosk.enabled || user.isLoggedIn) {
                 return null;
               }
               return (
                 <Link
                   href={'/v1/auth/login'}
                   type={HISTORY_PUSH_FORCE_REFRESH}
-                  className="Topbar__navigation__btn widthCalc"
+                  className="navigation-btn navigation__login--link widthCalc"
                   dataCy="topbar-login-btn"
                 >
                   <span>
@@ -332,115 +318,66 @@ export class TopBar extends React.Component {
               );
             }}
           />
+
           {this.props.user.isLoggedIn && (
             <React.Fragment>
               {userLists}
 
               <span
-                className="Topbar__navigation__btn widthCalc abort-closeDopdown d-none d-sm-flex"
+                className="navigation-btn navigation-btn__menu--user widthCalc dropdown--dont-close"
                 onClick={() => this.toggleDropdown()}
                 data-cy="topbar-logged-in-btn"
               >
-                <ProfileImage
-                  type="top"
-                  user={this.props.user}
-                  style={{padding: '0'}}
-                />
+                <ProfileImage type="top" user={user} />
               </span>
               <span
-                className="Topbar__navigation__btn abort-closeDopdown d-flex d-sm-none"
+                className="navigation-btn navigation-btn__menu--burger dropdown--dont-close"
                 onClick={() => this.toggleDropdown()}
               >
-                <Icon name="menu" className="Topbar__burger" />
+                <Icon name="menu" />
               </span>
             </React.Fragment>
           )}
-          <div className="Topbar__overlay" />
+          <div className="topbar__overlay" />
         </nav>
-        <Link href="/" className={`Topbar__logo ${hideOnIE11}`}>
-          <div className="d-block d-sm-none d-inline-flex">
-            <object
-              aria-label=""
-              type="image/svg+xml"
-              data="/img/general/dibliofigur.svg"
-              style={{
-                height: '28px',
-                marginTop: '1px',
-                marginRight: '7px',
-                pointerEvents: 'none'
-              }}
-            />
-            <div>
-              <Text
-                className="m-0"
-                type="large"
-                variant="weight-semibold"
-                style={{lineHeight: '1.25rem'}}
-              >
-                Læsekompas
-              </Text>
-              <Text className="logo-beta-sign mb-0" type="micro">
+
+        <Link href="/" className={`topbar__logo ${hideOnIE11}`}>
+          <object type="image/svg+xml" data="/img/general/dibliofigur.svg" />
+          <div>
+            <Title
+              className="topbar__logo-title"
+              Tag="h1"
+              type="title4"
+              variant="weight-semibold"
+            >
+              Læsekompas
+            </Title>
+            <div className="logo-beta-wrap">
+              <Text className="logo-beta-sign" type="micro">
                 SNEAK PEEK
               </Text>
-            </div>
-          </div>
-
-          <div className="d-none d-sm-block">
-            <div className="d-inline-flex">
-              <object
-                aria-label=""
-                type="image/svg+xml"
-                data="/img/general/dibliofigur.svg"
-                style={{
-                  height: '28px',
-                  marginTop: '6px',
-                  marginRight: '7px',
-                  pointerEvents: 'none'
-                }}
-              />
-
-              <div>
-                <Title
-                  className="mb-0"
-                  Tag="h1"
-                  type="title4"
-                  variant="weight-semibold"
+              {!searchExpanded && ((isIndex && isMobileOnly) || !isMobileOnly) && (
+                <Text
+                  className="logo-beta-link"
+                  type="small"
+                  variant="decoration-underline"
+                  onClick={e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    betaModal();
+                  }}
                 >
-                  Læsekompas
-                </Title>
-                <div className="logo-beta-wrap d-flex position-relative">
-                  <Text className="logo-beta-sign mb-0" type="micro">
-                    SNEAK PEEK
-                  </Text>
-                  {!searchExpanded &&
-                    ((isIndex && isMobileOnly) || !isMobileOnly) && (
-                      <div className="d-inline-flex">
-                        <div className="d-none d-sm-inline logo-beta-text Text__small">
-                          <Text
-                            className="d-inline logo-beta-link mb0"
-                            type="small"
-                            variant="decoration-underline"
-                            onClick={e => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              this.props.betaModal();
-                            }}
-                          >
-                            <T component="general" name="readMore" />
-                          </Text>
-                        </div>
-                      </div>
-                    )}
-                </div>
-              </div>
+                  <T component="general" name="readMore" />
+                </Text>
+              )}
             </div>
           </div>
         </Link>
         <TopBarDropdown
-          logout={this.props.logout}
+          logout={logout}
           active={this.state.dropdownActive}
           onClick={() => this.setState({dropdownActive: false})}
-          listsModal={this.props.listsModal}
+          listsModal={listsModal}
         />
       </header>
     );
@@ -467,7 +404,7 @@ export const mapDispatchToProps = dispatch => ({
         title: <T component="topbar" name="betaModalTitle" />,
         reason: (
           <React.Fragment>
-            <Text type="body" variant="weight-semibold" className="mb-0">
+            <Text type="body" variant="weight-semibold">
               <T
                 component="topbar"
                 name="betaModalDescription"
@@ -477,7 +414,7 @@ export const mapDispatchToProps = dispatch => ({
             <Text type="body">
               <T component="topbar" name="betaModalBody1" renderAsHtml={true} />
               <Text
-                className="d-inline"
+                className="modal__sneak-peek"
                 type="body"
                 variant="color-fersken--weight-semibold--transform-uppercase"
               >
@@ -516,8 +453,7 @@ export const mapDispatchToProps = dispatch => ({
           <React.Fragment>
             <ListOverviewDropDown
               className={
-                'Topbar__navigation__btn d-none d-sm-flex widthCalc d-block' // +
-                //    (expanded ? 'Topbar__dropdown_expanded' : '')
+                'navigation-btn navigation-btn__dropdown-list--btn widthCalc'
               }
               dataCy="topbar-lists"
               modalView={true}

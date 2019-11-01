@@ -16,7 +16,7 @@ describe('belt', function() {
     cy.visit('/lister/some-list-id');
     cy.wait('@listRequest');
     cy.wait('@listElementRequest');
-    cy.get('.Topbar__logo').click();
+    cy.get('.topbar__logo').click();
     cy.get('[data-cy="did-read-belt"]').should('not.exist');
   });
 });

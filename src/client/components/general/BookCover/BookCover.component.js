@@ -1,8 +1,10 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import toColor from '../../../utils/toColor';
 import splitLine from '../../../utils/splitLine';
 import Lightbox from 'react-images';
+
+import withWork from '../../hoc/Work/withWork.hoc';
+
 import './BookCover.css';
 
 const generateSvg = (backgroundColor, title, creator) => {
@@ -36,6 +38,18 @@ const generateSvg = (backgroundColor, title, creator) => {
   </svg>`;
 };
 
+const SkeletonCover = ({className}) => {
+  // Generate transparent svg
+  const svg =
+    'data:image/svg+xml,' +
+    encodeURIComponent(generateSvg('transparent', '', ''));
+  return (
+    <div className={`book-cover ${className}`}>
+      <img src={svg} />
+    </div>
+  );
+};
+
 const encodeEntities = line => {
   return line.replace(/[\u00A0-\u9999<>&]/gim, function(i) {
     return '&#' + i.charCodeAt(0) + ';';
@@ -50,36 +64,40 @@ class BookCover extends React.Component {
 
   render() {
     const {
-      title = '',
-      creator = '',
-      coverUrl,
-      enableLightbox,
+      pid,
+      work,
       className = '',
-      imageClassName = '',
+      enableLightbox,
       onLoad,
       dataCy = '',
-      styles,
       children
     } = this.props;
 
-    const clickableStyle = enableLightbox ? {cursor: 'pointer'} : {};
-    const coverSvg =
-      'data:image/svg+xml,' +
-      encodeURIComponent(
-        generateSvg(title ? toColor(title) : 'transparent', title, creator)
-      );
+    if (!pid || !work || !work.detailsHasLoaded) {
+      return <SkeletonCover className={className} />;
+    }
+
+    const book = work.book;
+
+    const clickableClass = enableLightbox ? 'lightbox__enabled' : '';
+
+    // If the book has no cover, generate svg cover.
+    const cover = book.coverUrl
+      ? book.coverUrl
+      : 'data:image/svg+xml,' +
+        encodeURIComponent(
+          generateSvg(
+            book.title ? toColor(book.title) : 'transparent',
+            book.title,
+            book.creator
+          )
+        );
 
     return (
-      <div
-        style={{
-          ...styles
-        }}
-        alt={title}
-        className={`d-flex align-items-start book-cover text-center position-relative ${className}`}
-      >
+      <div alt={book.title} className={`book-cover ${className}`}>
         {enableLightbox && (
           <Lightbox
-            images={[{src: coverUrl || coverSvg, caption: title}]}
+            images={[{src: cover, caption: book.title}]}
             isOpen={this.state.lightboxIsOpen}
             onClose={() => {
               this.setState({lightboxIsOpen: false});
@@ -89,17 +107,10 @@ class BookCover extends React.Component {
           />
         )}
         <img
-          style={{
-            ...styles,
-            ...clickableStyle,
-            width: '100%',
-            maxHeight: '100%',
-            height: 'auto'
-          }}
-          alt={title}
-          src={coverUrl || coverSvg}
+          alt={book.title}
+          src={cover}
           onLoad={onLoad}
-          className={imageClassName || ''}
+          className={`${clickableClass}`}
           data-cy={dataCy}
           onClick={() => {
             this.setState({lightboxIsOpen: enableLightbox});
@@ -111,15 +122,4 @@ class BookCover extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const {book, coverHasLoaded} =
-    state.booksReducer.books[ownProps.book.pid] || {};
-  return {
-    coverUrl: book && book.coverUrl,
-    coverUrlHasLoaded: coverHasLoaded,
-    title: book && book.title,
-    creator: book && book.creator
-  };
-};
-
-export default connect(mapStateToProps)(BookCover);
+export default withWork(BookCover);

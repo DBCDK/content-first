@@ -44,9 +44,9 @@ const Share = ({
       title={title}
       target={target}
       onClick={onClick}
-      className={`Share d-flex align-items-center petroleum ${className}`}
+      className={`Share petroleum ${className}`}
     >
-      <img src={facebook} className="mr-2" width="13" height="auto" alt="" />
+      <img src={facebook} width="13" height="auto" alt="" />
       <p className="Share__title">{children}</p>
     </a>
   );

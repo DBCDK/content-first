@@ -6,6 +6,7 @@ import {withPidsToPids} from '../../hoc/Recommender';
 import withWork from '../../hoc/Work/withWork.hoc';
 import WorkSlider from './WorkSlider.component';
 import Title from '../Title';
+import T from '../T';
 
 import './similarBelt.css';
 
@@ -35,14 +36,20 @@ const WorksTitle = ({pids, className}) => (
     Tag="h1"
     type="title4"
     variant="transform-uppercase"
-    className={`mb-3 ${className}`}
+    className={`similar-belt__title ${className}`}
   >
-    <strong className="mr-2">Minder om</strong>
+    <strong>
+      <T component="work" name="remindsOf" />{' '}
+    </strong>
     {pids.map((pid, idx) => (
       <React.Fragment key={pid}>
         <WorkTitle pid={pid} />
-        {idx === pids.length - 2 && <span className="mx-2">og</span>}
-        {idx < pids.length - 2 && <span className="mr-2">,</span>}
+        {idx === pids.length - 2 && (
+          <span>
+            <T component="general" name="and" />
+          </span>
+        )}
+        {idx < pids.length - 2 && <span>{', '}</span>}
       </React.Fragment>
     ))}
   </Title>
@@ -60,23 +67,18 @@ export class SimilarBelt extends React.Component {
 
     const bgColor = isChildBelt ? 'lys-graa' : 'white';
 
-    const isChildBeltClass = isChildBelt
-      ? 'similarBelt-childBelt childBelt'
-      : '';
+    const isChildBeltClass = isChildBelt ? 'child-belt' : '';
 
     return (
       <div
         ref={beltRef}
         data-cy="similarBelt"
-        className={`similarBelt position-relative ${className} ${isChildBeltClass} ${bgColor}`}
+        className={`similar-belt ${className} ${isChildBeltClass} ${bgColor}`}
         style={{
           ...style
         }}
       >
-        <WorksTitle
-          pids={likes}
-          className={`mb-0 px-0 px-sm-3 px-lg-5 pt-5 ${bgColor}`}
-        />
+        <WorksTitle pids={likes} className={`${bgColor}`} />
         <Slider
           isChildBelt={isChildBelt}
           pid={get(this.props, 'likes[0]')}
