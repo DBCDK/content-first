@@ -24,7 +24,11 @@ class Storage extends React.Component {
 
   create = object => {
     return this.storageClient.put(
-      {...object, createdBy: this.props.openplatformId},
+      {
+        ...object,
+        createdBy: this.props.openplatformId,
+        modifiedBy: this.props.openplatformId
+      },
       this.getRole()
     );
   };
@@ -34,7 +38,7 @@ class Storage extends React.Component {
       throw new Error('ID must be given, when updating a Storage Object');
     }
     return this.storageClient.put(
-      {...object, createdBy: this.props.openplatformId},
+      {...object, modifiedBy: this.props.openplatformId},
       this.getRole()
     );
   };

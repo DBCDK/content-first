@@ -22,8 +22,16 @@ import {connect} from 'react-redux';
 import {withObjects} from '../hoc/Storage/withObjects.hoc';
 import {ERROR} from '../general/Notification/Notification.component';
 import {timestampToShortDate} from '../../utils/dateTimeFormat';
+import {withUser} from '../hoc/User';
 
 const CREATE = 'create';
+
+const PublishedNote = withUser(({created, user}) => (
+  <Text>
+    {timestampToShortDate(parseInt(created, 10)) +
+      (user && typeof user.name === 'string' ? ', ' + user.name : '')}
+  </Text>
+));
 
 class BeltForm extends React.Component {
   constructor(props) {
@@ -67,7 +75,7 @@ class BeltForm extends React.Component {
     return accumulatedTags;
   }
 
-  beltObject = (title, description, enabled, tags, id, index) => ({
+  beltObject = (title, description, enabled, tags, id, index, createdBy) => ({
     _public: true,
     _type: 'belt',
     _id: id,
@@ -76,7 +84,8 @@ class BeltForm extends React.Component {
     subtext: description,
     tags: this.extractTags(tags).map(item => ({id: item.id, weight: 1})),
     onFrontPage: enabled,
-    index: index
+    index: index,
+    createdBy: createdBy
   });
 
   handleSubmit = async (create, update) => {
@@ -89,7 +98,8 @@ class BeltForm extends React.Component {
       this.state.enabled,
       this.props.tags,
       this.state.id,
-      this.state.index
+      this.state.index,
+      this.state.createdBy
     );
     try {
       this.setState({saving: true});
@@ -142,11 +152,6 @@ class BeltForm extends React.Component {
   };
 
   checkDisabled = () => this.state.title.length === 0;
-
-  publishedNote = () =>
-    timestampToShortDate(parseInt(this.state.created, 10)) +
-    ', ' +
-    this.state.createdBy;
 
   render() {
     const tags = this.props
@@ -232,7 +237,10 @@ class BeltForm extends React.Component {
                   <Text>
                     <T component="editStartPage" name="published" />:
                   </Text>
-                  <Text>{this.publishedNote()}</Text>
+                  <PublishedNote
+                    id={this.state.createdBy}
+                    created={this.state.created}
+                  />
                 </React.Fragment>
               )}
             </div>
