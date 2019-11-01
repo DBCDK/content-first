@@ -39,22 +39,20 @@ external.use((req, res, next) => {
 });
 
 // Inject config into index.html
-const indexHtmlWithConfig = isProduction
-  ? fs
-      .readFileSync(
-        path.resolve(__dirname, '..', '..', 'build', 'index.html'),
-        'utf8'
-      )
-      .replace(
-        '</head>',
-        `<script>CONFIG = ${JSON.stringify({
-          matomo: config.matomo
-        })};</script></head>`
-      )
-  : fs.readFileSync(
-      path.resolve(__dirname, '..', '..', 'build', 'index.html'),
-      'utf8'
-    );
+let indexHtmlWithConfig;
+const buildPath = path.resolve(__dirname, '..', '..', 'build', 'index.html');
+const devPath = path.resolve(__dirname, '..', '..', 'public', 'index.html');
+if (fs.existsSync(buildPath)) {
+  indexHtmlWithConfig = fs.readFileSync(buildPath, 'utf8');
+} else {
+  indexHtmlWithConfig = fs.readFileSync(devPath, 'utf8');
+}
+indexHtmlWithConfig = indexHtmlWithConfig.replace(
+  '</head>',
+  `<script>CONFIG = ${JSON.stringify({
+    matomo: config.matomo
+  })};</script></head>`
+);
 
 // Serve indexHtmlWithConfig on the root path.
 // Needs to be done before setting up static files

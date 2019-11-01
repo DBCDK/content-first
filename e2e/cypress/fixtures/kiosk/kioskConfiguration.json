@@ -1,0 +1,10 @@
+{
+  "token_type": "bearer",
+  "access_token": "14032e3a40a64e27d0b69b6c887cbf1886777b3c",
+  "expires_in": 2592000,
+  "configuration": {
+    "agency": "123456",
+    "filial": "Osteby",
+    "welcomeMsg": "Velkommen.."
+  }
+}

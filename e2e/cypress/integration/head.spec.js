@@ -75,7 +75,6 @@ const data = {
 describe('Head test', function() {
   // List page test
   it(`Check metadata on listpage`, function() {
-    cy.initStorage();
     cy.clearClientStorage();
     cy.clearCookies();
     cy.createUser('listowner');

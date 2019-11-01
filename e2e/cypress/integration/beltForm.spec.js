@@ -1,6 +1,5 @@
 describe('Start Belt Form test', function() {
   beforeEach(function() {
-    cy.initStorage();
     cy.clearClientStorage();
     cy.clearCookies();
   });
@@ -23,6 +22,12 @@ describe('Start Belt Form test', function() {
     cy.route('DELETE', '/v1/object/*', () => {
       return {};
     }).as('deleteBelt');
+    cy.route('GET', '/v1/user/didrik', () => ({
+      data: {
+        name: 'Didrik Didriksen',
+        openplatformId: 'Didrik Didriksen'
+      }
+    })).as('getUserSarah');
   };
 
   const enterTitle = title => {
@@ -274,7 +279,7 @@ describe('Start Belt Form test', function() {
     verifyBeltEnabled(true);
     cy.get('[data-cy=belt-form-publish-today] p:nth-child(2)').should(
       'have.text',
-      '2. okt 2019, didrik'
+      '2. okt 2019, Didrik Didriksen'
     );
     verifyTags(['fantastisk', 'overnaturligt']);
   });

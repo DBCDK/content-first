@@ -9,6 +9,7 @@ function Spinner(props) {
   return (
     <span
       className={'spinner ' + spinnerClass}
+      data-cy={props['data-cy']}
       style={Object.assign(
         {
           borderTopColor: props.color || null,

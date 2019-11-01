@@ -17,6 +17,7 @@ export function collectionContainsBook(work) {
   const res = work.book.collection.data.filter(
     col =>
       (col.type && col.type[0].includes('Bog')) ||
+      (col.type && col.type[0].includes('Graphic novel')) ||
       (col.type && col.type[0].includes('Tegneserie'))
   ).length;
 

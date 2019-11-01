@@ -9,7 +9,7 @@
       "subtext": "Description",
       "tags": [],
       "onFrontPage": true,
-      "createdBy": "Bibliotekar Sarah",
+      "createdBy": "12341234",
       "_created": 1569584299,
       "_modified": 1569584299,
       "_key": "",
@@ -26,7 +26,7 @@
       "subtext": "Description",
       "tags": [],
       "onFrontPage": true,
-      "createdBy": "Christian Ertmann-Christiansen",
+      "createdBy": "43214321",
       "_created": 1569584300,
       "_modified": 1569584300,
       "_key": "",
@@ -41,9 +41,22 @@
       "key": "Uhygge bag hjemmets fire vægge",
       "name": "Uhygge bag hjemmets fire vægge",
       "subtext": "Description",
-      "tags": [],
-      "onFrontPage": false,
-      "createdBy": "Bibliotekar Sarah",
+      "tags": [
+        {
+          "id": 4044,
+          "weight": 1
+        },
+        {
+          "id": 4895,
+          "weight": 1
+        },
+        {
+          "id": 5149,
+          "weight": 1
+        }
+      ],
+          "onFrontPage": false,
+      "createdBy": "12341234",
       "_created": 1569584300,
       "_modified": 1569584300,
       "_key": "",

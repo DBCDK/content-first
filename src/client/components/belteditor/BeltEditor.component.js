@@ -30,7 +30,7 @@ const OwnerName = withUser(({user, className}) => {
 export class BeltEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {items: []};
+    this.state = {error: null, items: [], loading: true};
     this.sortableList = React.createRef();
   }
 
@@ -49,7 +49,7 @@ export class BeltEditor extends React.Component {
   };
 
   updateSortableList = items => {
-    if (!this.props.objects.fetching) {
+    if (!this.props.objects.fetching && this.sortableList.current) {
       this.sortableList.current.update(items);
     }
   };
@@ -58,20 +58,25 @@ export class BeltEditor extends React.Component {
     if (this.props.objects.error) {
       return;
     }
-    if (
-      !this.defaultValuesLoaded &&
-      !isEqual(this.props.objects.objects, this.state.items)
-    ) {
-      // Initial update
-      this.setState({
-        items: this.props.objects.objects,
-        loading: this.props.objects.fetching
-      });
-      this.updateSortableList(this.props.objects.objects.sort(this.ascending));
-      this.defaultValuesLoaded = true;
-    } else {
-      // All updates except initial update
-      this.updateSortableList(this.state.items.sort(this.ascending));
+    if (!this.defaultValuesLoaded) {
+      if (!this.props.objects.fetching) {
+        // Initial update
+        this.defaultValuesLoaded = true;
+        this.setState({loading: false});
+      }
+      if (!isEqual(this.props.objects.objects, this.state.items)) {
+        this.setState({
+          error: this.props.objects.error,
+          items: this.props.objects.objects,
+          loading: this.props.objects.fetching
+        });
+        this.updateSortableList(
+          this.props.objects.objects.sort(this.ascending)
+        );
+      } else {
+        // All updates except initial update
+        this.updateSortableList(this.state.items.sort(this.ascending));
+      }
     }
   }
 
@@ -341,7 +346,11 @@ export class BeltEditor extends React.Component {
               this.fixNewUnsortedItems(update, this.state.items);
               return this.state.loading ? (
                 <div className="d-flex justify-content-center">
-                  <Spinner size="30px" className="mt-5" />
+                  <Spinner
+                    size="30px"
+                    className="mt-5"
+                    data-cy="belt-editor-spinner"
+                  />
                 </div>
               ) : (
                 <SortableList

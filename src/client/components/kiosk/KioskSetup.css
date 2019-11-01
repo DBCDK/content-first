@@ -1,0 +1,56 @@
+.KioskSetup .Banner__title h1 {
+    text-transform: uppercase;
+}
+
+.KioskSetup__container {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 672px;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
+.KioskSetup__container .error {
+    margin: 1em 0;
+}
+
+
+.KioskSetup__container .ready-header {
+    margin-top: 2em;
+}
+
+.KioskSetup__container .attributes {
+    /* display: flex; */
+    /* justify-content: center; */
+    /* flex-direction: row; */
+    margin: 1em 0em;
+}
+
+.KioskSetup__container .attribute-row {
+    display: flex;
+    margin-top: 0.5em;
+    /* margin-left: 0.5em; */
+}
+
+.KioskSetup__container .attribute-row .val {
+    margin-left: 0.5em;
+}
+
+.KioskSetup__container .Toolbar {
+    margin-top: 1.2em;
+}
+
+.KioskSetup__container label {
+    margin-top: 1.2em;
+    font-weight: bold;
+}
+
+.BeltForm label.Input__label {
+    margin-top: 1.2em;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .KioskSetup__container {
+        padding: 0 1rem;
+    }
+}

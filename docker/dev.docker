@@ -1,0 +1,27 @@
+NODE_ENV=development
+INTERNAL_PORT=3002
+DB_NAME=contentfirst
+DB_USER=contentfirst
+DB_HOST=database
+DB_USER_PASSWORD=
+DB_CONNECTIONS_POOL_MIN=2
+DB_CONNECTIONS_POOL_MAX=10
+LOG_LEVEL=DEBUG
+PRETTY_LOG=0
+AUTH_CLIENT_ID=6589442e-0018-4230-89b3-d61ac4d52565
+AUTH_CLIENT_SECRET=d4733291acad68f02539336d2003a2d3c531534929f8ba61251c38d8f3d7878c
+JSON_FILES_URL=https://ux-is.dbc.dk/job/kompasset/job/make-reports/lastSuccessfulBuild/artifact/json-files.tar.gz
+DMZ_HOST=http://localhost:3000
+
+STORAGE_URL=http://storage:8080/v3/storage
+MINISMAUG_HOST=minismaug
+
+## staging
+## RECOMPASS_TAGS_URL=http://recompass-1-0.mi-staging.svc.cloud.dbc.dk/recompass
+## RECOMPASS_WORK_URL=http://recompass-work-1-0.mi-staging.svc.cloud.dbc.dk/recompass-work
+## SUGGESTER_URL=http://suggester-laesekompas-webservice-1-service.os-externals-staging.svc.cloud.dbc.dk
+
+## prod
+RECOMPASS_TAGS_URL=http://recompass-1-1.mi-prod.svc.cloud.dbc.dk/recompass
+RECOMPASS_WORK_URL=http://recompass-work-1-1.mi-prod.svc.cloud.dbc.dk/recompass-work
+SUGGESTER_URL=http://suggester-laesekompas-webservice-1-service.os-externals.svc.cloud.dbc.dk

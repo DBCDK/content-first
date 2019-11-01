@@ -10,7 +10,6 @@ describe('Order ', function() {
       record,
       cy
     });
-    cy.initStorage();
     cy.clearClientStorage();
     cy.createUser();
   });

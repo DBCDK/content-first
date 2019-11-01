@@ -23,6 +23,7 @@ import CookieWarning from './components/general/CookieWarning/CookieWarning';
 import BeltEditor from './components/belteditor/BeltEditor.component';
 import BeltForm from './components/belteditor/BeltForm.component';
 import PrintLayout from './components/list/printLayout/PrintLayout';
+import KioskSetup from './components/kiosk/KioskSetup.component';
 import {OPEN_MODAL} from './redux/modal.reducer';
 
 import './style/App.css';
@@ -126,6 +127,8 @@ class App extends Component {
       topbar = false;
       footer = false;
       feedBack = false;
+    } else if (pathSplit[1] === 'kiosk') {
+      currentPage = <KioskSetup />;
     }
 
     if (!currentPage) {
@@ -166,8 +169,16 @@ class App extends Component {
   }
 
   beltFormParams = params => ({
-    title: params.title ? params.title[0] : '',
-    description: params.description ? params.description[0] : '',
+    title: params.title
+      ? Array.isArray(params.title[0])
+        ? params.title[0].join()
+        : params.title[0]
+      : '',
+    description: params.description
+      ? Array.isArray(params.description[0])
+        ? params.description[0].join()
+        : params.description[0]
+      : '',
     enabled: params.enabled ? params.enabled[0] : false,
     tags: params.tags ? params.tags[0] : [],
     createdBy: params.createdBy ? params.createdBy[0] : '',
