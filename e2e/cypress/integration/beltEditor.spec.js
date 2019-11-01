@@ -317,7 +317,7 @@ describe('Start Belt Editor test', function() {
     cy.wait('@postBelt').then(xhr => {
       verifyBeltSave(
         xhr,
-        'didrik',
+        '43214321',
         0,
         'Franske fristelser',
         'Description',
@@ -330,7 +330,7 @@ describe('Start Belt Editor test', function() {
     cy.wait('@postBelt').then(xhr => {
       verifyBeltSave(
         xhr,
-        'didrik',
+        '12341234',
         1,
         'Norske superromaner',
         'Description',
@@ -343,7 +343,7 @@ describe('Start Belt Editor test', function() {
     cy.wait('@postBelt').then(xhr => {
       verifyBeltSave(
         xhr,
-        'didrik',
+        '12341234',
         2,
         'Uhygge bag hjemmets fire vægge',
         'Description',
@@ -371,7 +371,7 @@ describe('Start Belt Editor test', function() {
     cy.wait('@postBelt').then(xhr => {
       verifyBeltSave(
         xhr,
-        'didrik',
+        '43214321',
         0,
         'Franske fristelser',
         'Description',
@@ -384,7 +384,7 @@ describe('Start Belt Editor test', function() {
     cy.wait('@postBelt').then(xhr => {
       verifyBeltSave(
         xhr,
-        'didrik',
+        '12341234',
         1,
         'Uhygge bag hjemmets fire vægge',
         'Description',
@@ -397,7 +397,7 @@ describe('Start Belt Editor test', function() {
     cy.wait('@postBelt').then(xhr => {
       verifyBeltSave(
         xhr,
-        'didrik',
+        '12341234',
         2,
         'Norske superromaner',
         'Description',
