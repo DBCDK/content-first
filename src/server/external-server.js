@@ -44,7 +44,6 @@ const buildPath = path.resolve(__dirname, '..', '..', 'build', 'index.html');
 const devPath = path.resolve(__dirname, '..', '..', 'public', 'index.html');
 if (fs.existsSync(buildPath)) {
   indexHtmlWithConfig = fs.readFileSync(buildPath, 'utf8');
-  //file exists
 } else {
   indexHtmlWithConfig = fs.readFileSync(devPath, 'utf8');
 }
