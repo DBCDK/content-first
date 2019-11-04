@@ -23,7 +23,7 @@ class CardRange extends React.Component {
     this.initValue();
   }
 
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps) {
     if (this.props.tags !== prevProps.tags) {
       this.initValue(this.props.tags);
     }
