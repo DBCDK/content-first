@@ -141,6 +141,10 @@
       "and": {
         "da": "og",
         "en": "and"
+      },
+      "home": {
+        "da": "Hjem",
+        "en": "Home"
       }
     },
     "login": {
@@ -1221,7 +1225,10 @@
       },
       "submit": {"da": "Gem", "en": "Save"},
       "startKiosk": {"da": "Start", "en": "Start"},
-      "readyHeader": {"da": "Kiosken er klar til brug", "en": "The kiosk is ready"}
+      "readyHeader": {
+        "da": "Kiosken er klar til brug",
+        "en": "The kiosk is ready"
+      }
     }
   },
   "units": {

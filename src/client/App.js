@@ -24,6 +24,9 @@ import BeltEditor from './components/belteditor/BeltEditor.component';
 import BeltForm from './components/belteditor/BeltForm.component';
 import PrintLayout from './components/list/printLayout/PrintLayout';
 import KioskSetup from './components/kiosk/KioskSetup.component';
+import Navigation from './components/kiosk/Navigation/Navigation.component';
+import Kiosk from './components/base/Kiosk/Kiosk';
+
 import {OPEN_MODAL} from './redux/modal.reducer';
 
 import './style/App.css';
@@ -138,12 +141,24 @@ class App extends Component {
     return (
       <div className={'App'} style={{backgroundColor}}>
         <Head />
-        {topbar && (
-          <div>
-            <TopBar dispatch={this.props.dispatch} user={this.props.user} />
-            <div className="App__TopbarPlaceholder" />
-          </div>
-        )}
+        <Kiosk
+          render={({kiosk}) => {
+            if (kiosk.enabled) {
+              return <Navigation />;
+            }
+            return (
+              topbar && (
+                <div>
+                  <TopBar
+                    dispatch={this.props.dispatch}
+                    user={this.props.user}
+                  />
+                  <div className="App__TopbarPlaceholder" />
+                </div>
+              )
+            );
+          }}
+        />
         <div id="scrollableArea">{currentPage}</div>
         <Modal />
         <CookieWarning />
@@ -163,7 +178,15 @@ class App extends Component {
         />
 
         {feedBack && <FeedbackButton />}
-        {footer && <Footer />}
+
+        <Kiosk
+          render={({kiosk}) => {
+            if (kiosk.enabled) {
+              return <div className="navigation--placeholder" />;
+            }
+            return footer && <Footer />;
+          }}
+        />
       </div>
     );
   }

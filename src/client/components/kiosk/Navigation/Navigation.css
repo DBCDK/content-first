@@ -1,0 +1,97 @@
+.navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 128px;
+
+  z-index: 3000;
+  background-color: var(--lys-graa);
+  border-top: 1px solid var(--pistache);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation-actions {
+  display: flex;
+  flex-grow: 1;
+}
+
+.navigation-actions .actions {
+  width: 50%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.navigation-actions .actions.actions--right {
+  justify-content: flex-end;
+}
+
+.navigation-actions .actions.actions--right i {
+  font-size: 32px;
+}
+
+.navigation-actions .actions .action--btn {
+  width: 128px;
+  height: 100%;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.navigation-actions .actions .action--btn h1 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.actions.actions--right .action--btn .content--center {
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation-actions .actions .action--btn:hover {
+  cursor: pointer;
+}
+
+.shortlist__icon-value--wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shortlist__icon-value--wrap .shortlist__value {
+  position: absolute;
+  right: 0;
+  transform: translateX(calc(100% - 8px));
+  margin: 0;
+}
+
+.actions.actions--right .action--btn.underline .content--center h1 {
+  border-bottom: 3px solid var(--petroleum);
+  margin-bottom: -3px;
+}
+
+.navigation-actions .actions.actions--left .action--btn i {
+  font-size: 48px;
+  color: var(--silver-chalice);
+}
+
+.navigation__logo--wrap {
+  width: 100%;
+  padding: var(--1pt);
+}
+
+.navigation__logo--wrap img {
+  width: auto;
+  height: 16px;
+}
+
+/* Footer is replaced by a "space buffer" for the bottom fixed navigation bar in kiosk mode */
+
+.navigation--placeholder {
+  height: 128px;
+}
