@@ -23,7 +23,13 @@ export default class ProfileUpdateUser extends React.Component {
     };
   }
 
-  componentWillReceiveProps(props) {
+  componentDidUpdate(prevProps){
+    if (this.props.name !== prevProps.name) {
+      this.setState({name: this.props.name});
+    }
+
+  }
+  UNSAFE_componentWillReceiveProps(props) {
     this.setState({name: props.name});
   }
 
