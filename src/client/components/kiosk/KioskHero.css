@@ -1,0 +1,68 @@
+.KioskHero {
+    height: calc(100vh - 128px);
+    background-image: url("/img/hero/kiosk_background.jpg");
+    margin-bottom: var(--5pt);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--9pt);
+    position: relative;
+}
+.KioskHero .Title__title1 {
+    font-size: 9vw;
+    line-height: 1.1em;
+}
+.KioskHero .Title__title2 {
+    margin-top: var(--5pt);
+}
+.KioskHero .button {
+    padding: var(--3pt) var(--5pt);
+    font-size: var(--5pt);
+    line-height: var(--5pt);
+}
+.KioskHero .Search {
+    display: flex;
+    flex-direction: row;
+    margin-top: var(--2pt);
+}
+.KioskHero .Search .booksearch-suggester {
+    height: 100%;
+    background: red
+}
+.KioskHero .Search input {
+    height: 100%;
+    font-size: var(--5pt);
+
+}
+.KioskHero .Search .react-autosuggest__suggestions-container .Text {
+    top: 200px;
+    font-size: var(--5pt);
+    line-height: var(--6pt);
+}
+.KioskHero .RoundLabel {
+    background: var(--pistache);
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    font-size: var(--5pt);
+    display: flex;
+    align-items: center;
+    padding: var(--5pt);
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+
+}
+
+.KioskHero .RoundLabel .material-icons {
+    position:absolute;
+    bottom: var(--1pt);
+    left: 128px;
+    font-size: var(--8pt);
+}
+
+.KioskHero .RoundLabelWrapper {
+    position:absolute;
+    bottom: 208px;
+
+}
