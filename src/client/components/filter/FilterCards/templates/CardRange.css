@@ -78,6 +78,60 @@
   margin-top: 0rem;
 }
 
+/* kioskmode active */
+
+.App.kioskmode
+  .FilterCard__container.FilterCard-expanded
+  .FilterCard__range
+  .rc-slider-handle {
+  width: 24px;
+  height: 24px;
+  margin-top: -11px;
+}
+
+.App.kioskmode
+  .FilterCard__container.FilterCard-expanded
+  .FilterCard__range
+  .rc-slider {
+  width: calc(100% - var(--2pt));
+  margin: 20px auto 0 auto;
+}
+
+.App.kioskmode
+  .FilterCard__container.FilterCard-expanded
+  .FilterCard__range
+  .FilterCard__rangeIconWrap {
+  display: none;
+}
+
+.App.kioskmode .FilterCard__range .rc-slider-track {
+  background-color: var(--silver-chalice);
+}
+
+.App.kioskmode .FilterCard__range .rc-slider-handle {
+  border: 2px solid var(--silver-chalice);
+  background-color: var(--silver-chalice);
+}
+
+.App.kioskmode
+  .FilterCard__container.FilterCard-expanded
+  .FilterCard__range
+  .rc-slider-track {
+  background-color: var(--korn);
+}
+
+.App.kioskmode
+  .FilterCard__container.FilterCard-expanded
+  .FilterCard__range
+  .rc-slider-handle {
+  border: 2px solid var(--korn);
+  background-color: var(--korn);
+}
+
+.App.kioskmode .FilterCard__range .FilterCard__rangeIconWrap i {
+  color: var(--silver-chalice) !important;
+}
+
 @media only screen and (max-width: 600px) {
   .FilterCard__range .FilterCard__rangeIconWrap {
     display: none;

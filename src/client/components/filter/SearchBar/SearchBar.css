@@ -94,6 +94,14 @@
   z-index: 999;
 }
 
+.App.kioskmode .selected-filters-wrap #react-autowhatever-1 {
+  position: absolute;
+  top: auto;
+  bottom: 60px;
+  border-top: 1px solid #ccc;
+  border-bottom: none;
+}
+
 .selected-filters-wrap #react-autowhatever-1 li {
   margin-bottom: 0;
   font-family: var(--primary-font);

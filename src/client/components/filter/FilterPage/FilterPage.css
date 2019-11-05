@@ -15,6 +15,28 @@ work-card.filter-page-title {
   display: none;
 }
 
+/* Kiosk-mode enabled */
+
+.App.kioskmode .filter-page {
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: hidden;
+}
+
+.App.kioskmode .filter-page-results {
+  padding-top: 30vh !important;
+  /* (100vh - (cards.height + cars.padding + searchbar.height + navigationbar.height)) */
+  height: calc(100vh - (132px + 16px + 75px + 128px));
+  overflow-y: auto;
+}
+
+.App.kioskmode .filter-page-top {
+  display: block;
+  position: relative;
+}
+
+/*  */
+
 .filter-page-searchbar {
   background-color: white;
   border: 1px solid var(--de-york);

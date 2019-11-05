@@ -59,4 +59,31 @@ describe('kiosk', function() {
     cy.get('[data-cy="topbar-login-btn"]').should('not.exist');
     cy.url().should('not.include', '/kiosk');
   });
+
+  it(`Should be able to navigate from bottom Navigation`, function() {
+    cy.fixture('kiosk/initialStateKioskEnabledWithClientId.json').as(
+      'initialState'
+    );
+    cy.fixture('kiosk/kioskConfiguration.json').as('kioskConfiguration');
+    cy.server();
+    cy.route('GET', '/v1/initial-state', '@initialState');
+    cy.route('POST', '/v1/kiosk', '@kioskConfiguration');
+    cy.visit('/');
+
+    cy.get('[data-cy=navActionFind]').click();
+    cy.location('pathname').should('eq', '/find');
+
+    cy.get('[data-cy=navActionShort]').click();
+    cy.location('pathname').should('eq', '/huskeliste');
+
+    cy.get('[data-cy=navActionHome]').click();
+    cy.location('pathname').should('eq', '/');
+
+    // Forward-/back- buttons
+    cy.get('[data-cy=navBrowserBack]').click();
+    cy.location('pathname').should('eq', '/huskeliste');
+
+    cy.get('[data-cy=navBrowserForward]').click();
+    cy.location('pathname').should('eq', '/');
+  });
 });
