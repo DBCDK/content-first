@@ -31,15 +31,27 @@ export class Navigation extends React.Component {
       <div className="navigation">
         <div className="navigation-actions">
           <div className="actions actions--left">
-            <div className="action--btn" onClick={this.browserBack}>
+            <div
+              className="action--btn"
+              data-cy="navBrowserBack"
+              onClick={this.browserBack}
+            >
               <Icon name="chevron_left" />
             </div>
-            <div className="action--btn" onClick={this.browserForward}>
+            <div
+              className="action--btn"
+              data-cy="navBrowserForward"
+              onClick={this.browserForward}
+            >
               <Icon name="chevron_right" />
             </div>
           </div>
           <div className="actions actions--right">
-            <Link href="/" className={`action--btn ${onHome}`}>
+            <Link
+              href="/"
+              data-cy="navActionHome"
+              className={`action--btn ${onHome}`}
+            >
               <span className="content--center">
                 <Icon name="home" />
                 <Title type="title5">
@@ -48,7 +60,11 @@ export class Navigation extends React.Component {
               </span>
             </Link>
 
-            <Link href="/find" className={`action--btn ${onFind}`}>
+            <Link
+              href="/find"
+              data-cy="navActionFind"
+              className={`action--btn ${onFind}`}
+            >
               <span className="content--center">
                 <Icon name="search" />
                 <Title type="title5">
@@ -57,7 +73,11 @@ export class Navigation extends React.Component {
               </span>
             </Link>
 
-            <Link href="/huskeliste" className={`action--btn ${onShort}`}>
+            <Link
+              href="/huskeliste"
+              data-cy="navActionShort"
+              className={`action--btn ${onShort}`}
+            >
               <span className="content--center">
                 <span className="shortlist__icon-value--wrap">
                   <Icon name="bookmark_border" />
@@ -88,7 +108,7 @@ const mapStateToProps = state => {
   };
 };
 
-export const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = () => {
   return {};
 };
 

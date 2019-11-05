@@ -1,7 +1,7 @@
 .FilterCard__content ul.FilterCard__list {
   list-style: none;
   padding: 0;
-  color: var(--alto);
+  color: var(--silver-chalice);
   white-space: nowrap;
   overflow: hidden;
   transition-duration: 0.2s;

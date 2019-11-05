@@ -50,6 +50,8 @@ class App extends Component {
       this.setState({didShowCookieModal: true});
     }
 
+    const isKioskClass = this.props.isKiosk ? 'kioskmode' : '';
+
     const path = this.props.routerState.path;
     const pathSplit = path.split('/');
 
@@ -139,7 +141,7 @@ class App extends Component {
     }
 
     return (
-      <div className={'App'} style={{backgroundColor}}>
+      <div className={`App ${isKioskClass}`} style={{backgroundColor}}>
         <Head />
         <Kiosk
           render={({kiosk}) => {
@@ -214,6 +216,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     routerState: state.routerReducer,
+    isKiosk: state.kiosk.enabled,
     user: state.userReducer
   };
 };

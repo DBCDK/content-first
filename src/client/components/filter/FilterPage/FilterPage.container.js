@@ -19,8 +19,8 @@ class FilterPage extends React.Component {
             'og:type': 'book'
           }}
         />
-        <div className="filters row">
-          <div className="filter-page-top col-12">
+        <div className="filters">
+          <div className="filter-page-top">
             <div className="filter-page-searchbar">
               <SearchBar origin="fromFilter" blurInput={true} />
             </div>
