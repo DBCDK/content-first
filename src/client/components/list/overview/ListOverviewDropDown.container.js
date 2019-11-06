@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
   ON_USERLISTS_COLLAPSE,
   ON_USERLISTS_EXPAND

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import TruncateMarkup from 'react-truncate-markup';
-import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
   ON_SHORTLIST_EXPAND,
   ON_SHORTLIST_COLLAPSE,
