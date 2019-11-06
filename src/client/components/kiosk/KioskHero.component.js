@@ -40,7 +40,7 @@ export default class KioskHero extends React.Component {
         </Title>
         <div className="Search">
           <BookSearchSuggester
-            onSubmit={e => {}}
+            onSubmit={() => {}}
             onFocus={() => {
               this.setState({inputFocused: true});
               scroll(0);
