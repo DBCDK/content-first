@@ -136,7 +136,15 @@ export class TopBar extends React.Component {
     window.removeEventListener('resize', this.onResize);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
+    if (this.props.router.path !== prevProps.router.path) {
+      searchPage = this.props.router.path === '/find' ? true : false;
+      this.setState({searchExpanded: searchPage});
+      this.calcWidth();
+    }
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
     searchPage = nextProps.router.path === '/find' ? true : false;
     this.setState({searchExpanded: searchPage});
     this.calcWidth();
