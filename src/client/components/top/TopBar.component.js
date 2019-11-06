@@ -142,7 +142,7 @@ export class TopBar extends React.Component {
       this.setState({searchExpanded: searchPage});
       this.calcWidth();
     }
-
+  }
 
   toggleDropdown() {
     this.setState({dropdownActive: !this.state.dropdownActive});
