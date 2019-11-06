@@ -28,9 +28,6 @@ export default class ProfileUpdateUser extends React.Component {
       this.setState({name: this.props.name});
     }
   }
-  UNSAFE_componentWillReceiveProps(props) {
-    this.setState({name: props.name});
-  }
 
   render() {
     const checkActive = () => {

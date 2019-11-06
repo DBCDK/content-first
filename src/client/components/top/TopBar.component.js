@@ -144,12 +144,6 @@ export class TopBar extends React.Component {
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    searchPage = nextProps.router.path === '/find' ? true : false;
-    this.setState({searchExpanded: searchPage});
-    this.calcWidth();
-  }
-
   toggleDropdown() {
     this.setState({dropdownActive: !this.state.dropdownActive});
     if (this.props.shortListState.expanded) {

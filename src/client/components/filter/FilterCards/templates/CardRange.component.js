@@ -29,12 +29,6 @@ class CardRange extends React.Component {
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (this.props.tags !== nextProps.tags) {
-      this.initValue(nextProps.tags);
-    }
-  }
-
   initValue(selectedFilters = this.props.tags) {
     const range = this.props.filter.range;
 
