@@ -45,7 +45,7 @@ const SkeletonCover = ({className}) => {
     encodeURIComponent(generateSvg('transparent', '', ''));
   return (
     <div className={`book-cover ${className}`}>
-      <img src={svg} />
+      <img src={svg} alt="bookcover" />
     </div>
   );
 };

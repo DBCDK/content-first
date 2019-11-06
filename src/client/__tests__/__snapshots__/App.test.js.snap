@@ -29,6 +29,7 @@ exports[`renders without crashing 1`] = `
             className="topbar__navigation--icon "
           >
             <img
+              alt="logo"
               src="/img/general/dibliofigur.svg"
               type="image/svg+xml"
             />
@@ -269,6 +270,7 @@ exports[`renders without crashing 1`] = `
         target="_self"
       >
         <object
+          aria-labelledby="logo"
           data="/img/general/dibliofigur.svg"
           type="image/svg+xml"
         />
