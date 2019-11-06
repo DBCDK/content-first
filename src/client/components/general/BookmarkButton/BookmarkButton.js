@@ -46,7 +46,7 @@ export class BookmarkButton extends React.PureComponent {
         dataCy={this.props.dataCy}
         onTouchStart={() => {}}
       >
-        <Icon name="&#xe867;" />
+        <Icon name="bookmark_outline" />
         {!layout ? (
           <span className="ml-1">
             <T component="shortlist" name="buttonLabel" />

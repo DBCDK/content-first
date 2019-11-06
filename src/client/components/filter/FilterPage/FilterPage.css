@@ -1,4 +1,4 @@
-.filter-page-title {
+work-card.filter-page-title {
   font-size: 30px;
   vertical-align: bottom;
   cursor: default;
@@ -14,6 +14,28 @@
   padding: 1rem;
   display: none;
 }
+
+/* Kiosk-mode enabled */
+
+.App.kioskmode .filter-page {
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: hidden;
+}
+
+.App.kioskmode .filter-page-results {
+  padding-top: 30vh !important;
+  /* (100vh - (cards.height + cars.padding + searchbar.height + navigationbar.height)) */
+  height: calc(100vh - (132px + 16px + 75px + 128px));
+  overflow-y: auto;
+}
+
+.App.kioskmode .filter-page-top {
+  display: block;
+  position: relative;
+}
+
+/*  */
 
 .filter-page-searchbar {
   background-color: white;
@@ -93,7 +115,7 @@
   justify-content: space-evenly;
 }
 
-.filter-page-works .WorkCard {
+.filter-page-works .work-card {
   box-sizing: content-box;
   padding: 0rem 1rem 1rem 0;
 }
@@ -105,7 +127,7 @@
 }
 
 .filter-page .filter-group hr {
-  border: 1px var(--lightgrey) solid;
+  border: 1px var(--lys-graa) solid;
 }
 .filter-page .filter-group h4 {
   font-size: 16px;
@@ -139,7 +161,7 @@
   margin-bottom: -18px;
   padding-right: 5px;
   padding-top: 8px;
-  border-top: solid var(--lightgrey) 1px;
+  border-top: solid var(--lys-graa) 1px;
 }
 
 .tags-suggestion-list

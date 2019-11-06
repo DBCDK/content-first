@@ -151,7 +151,7 @@ class DesktopSlider extends React.Component {
 
   render() {
     return (
-      <div className="col-12 p-0 desktop-slider">
+      <div className="desktop-slider">
         {this.setSwiper()}
 
         {!this.state.isEnd && (

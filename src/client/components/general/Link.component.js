@@ -2,10 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {HISTORY_PUSH, HISTORY_NEW_TAB} from '../../redux/middleware';
 
+import './Link.css';
+
 const Link = ({
   href,
   type = HISTORY_PUSH,
-  className = 'list-card-nohover',
+  className = '',
+  noHover = true,
   children = '',
   dispatch,
   onClick,
@@ -15,12 +18,16 @@ const Link = ({
   disable = false,
   style = {},
   ...props
-}) =>
-  disable ? (
-    <React.Fragment>{children}</React.Fragment>
-  ) : (
+}) => {
+  if (disable) {
+    return <React.Fragment>{children}</React.Fragment>;
+  }
+
+  const noHoverClass = noHover ? 'link--no-hover' : '';
+
+  return (
     <a
-      className={className}
+      className={`link ${className} ${noHoverClass}`}
       href={href}
       style={style}
       onClick={e => {
@@ -39,5 +46,6 @@ const Link = ({
       {children}
     </a>
   );
+};
 
 export default connect()(Link);

@@ -1,5 +1,5 @@
 /* Global Settings */
-@import './global.css';
+@import './variables.css';
 
 /* Import util classes */
 @import './utils/deprecated-utils.css';
@@ -47,4 +47,3 @@ button:disabled,
 button[disabled] {
   color: var(--silver-chalice);
 }
-

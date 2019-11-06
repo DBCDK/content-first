@@ -92,10 +92,7 @@ export class ShortListItem extends React.Component {
             clear
           </i>
           <Link href={url}>
-            <BookCover
-              book={work.book}
-              style={{height: 'unset', width: '70px'}}
-            />
+            <BookCover pid={work.book.pid} />
           </Link>
           <div className="top-bar-dropdown-shortlist-item-page">
             <Title Tag="h1" type="title5" className="mr-4">

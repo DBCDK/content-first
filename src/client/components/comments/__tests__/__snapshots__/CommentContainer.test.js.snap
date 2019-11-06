@@ -63,11 +63,15 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
           />
           <i
             className="material-icons material-icons-send comment-submit-icon align-self-end "
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "&#xE163;",
+              }
+            }
+            data-unicoded="true"
             id="comment-submit"
             onClick={[Function]}
-          >
-            send
-          </i>
+          />
         </div>
       </div>
     </div>
@@ -139,11 +143,15 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
           />
           <i
             className="material-icons material-icons-send comment-submit-icon align-self-end "
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "&#xE163;",
+              }
+            }
+            data-unicoded="true"
             id="comment-submit"
             onClick={[Function]}
-          >
-            send
-          </i>
+          />
         </div>
       </div>
     </div>
@@ -341,11 +349,15 @@ exports[`CommentContainer Component renders all comments 1`] = `
               >
                 <i
                   className="material-icons material-icons-send comment-submit-icon align-self-end "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE163;",
+                    }
+                  }
+                  data-unicoded="true"
                   id="comment-submit"
                   onClick={[Function]}
-                >
-                  send
-                </i>
+                />
               </Icon>
             </div>
           </div>
@@ -578,11 +590,15 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
           />
           <i
             className="material-icons material-icons-send comment-submit-icon align-self-end "
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "&#xE163;",
+              }
+            }
+            data-unicoded="true"
             id="comment-submit"
             onClick={[Function]}
-          >
-            send
-          </i>
+          />
         </div>
       </div>
     </div>
@@ -753,11 +769,15 @@ exports[`CommentContainer Component renders error 1`] = `
               >
                 <i
                   className="material-icons material-icons-send comment-submit-icon align-self-end "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE163;",
+                    }
+                  }
+                  data-unicoded="true"
                   id="comment-submit"
                   onClick={[Function]}
-                >
-                  send
-                </i>
+                />
               </Icon>
             </div>
             <div
@@ -989,11 +1009,15 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
               >
                 <i
                   className="material-icons material-icons-send comment-submit-icon align-self-end "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE163;",
+                    }
+                  }
+                  data-unicoded="true"
                   id="comment-submit"
                   onClick={[Function]}
-                >
-                  send
-                </i>
+                />
               </Icon>
             </div>
           </div>
@@ -1241,11 +1265,15 @@ exports[`CommentContainer Toggle all comments 1`] = `
               >
                 <i
                   className="material-icons material-icons-send comment-submit-icon align-self-end "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE163;",
+                    }
+                  }
+                  data-unicoded="true"
                   id="comment-submit"
                   onClick={[Function]}
-                >
-                  send
-                </i>
+                />
               </Icon>
             </div>
           </div>
@@ -1506,11 +1534,15 @@ exports[`CommentContainer Toggle all comments 2`] = `
               >
                 <i
                   className="material-icons material-icons-send comment-submit-icon align-self-end "
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "&#xE163;",
+                    }
+                  }
+                  data-unicoded="true"
                   id="comment-submit"
                   onClick={[Function]}
-                >
-                  send
-                </i>
+                />
               </Icon>
             </div>
           </div>

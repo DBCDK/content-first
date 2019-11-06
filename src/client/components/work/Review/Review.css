@@ -78,7 +78,6 @@
   color: var(--alto) !important;
 }
 
-
 .Review__container {
   height: auto;
   text-align: left;
@@ -90,21 +89,18 @@
   text-decoration: underline !important;
 }
 
-
-.Review__container button{
+.Review__container button {
   padding: 0 !important;
 }
 
-.Review__container button.Button__link:hover span,
-.Review__container button.Button__link:focus span {
+.Review__container button.button__link:hover span,
+.Review__container button.button__link:focus span {
   color: var(--malibu);
 }
-
 
 .show-review--modal {
   max-width: 680px;
   width: fit-content;
-
 }
 
 .show-review--modal .bottom {
@@ -114,7 +110,6 @@
 .show-review--modal .content {
   margin: 0 0px;
   padding: 40px !important;
-
 }
 
 .modal-window .content {
@@ -199,9 +194,6 @@ a:hover.tooltips span {
 
   overflow: hidden;
 }
-
-
-
 
 @media (max-width: 575.98px) {
   .show-review--modal .content {

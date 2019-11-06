@@ -61,7 +61,7 @@ class Footer extends React.Component {
 
   render() {
     const sticky = this.state.sticky;
-    const isStickyClass = sticky ? 'Footer__sticky' : '';
+    const isStickyClass = sticky ? 'sticky' : '';
 
     if (sticky === null) {
       return null;
@@ -69,21 +69,17 @@ class Footer extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="Footer__ghost" ref={e => (this.contentLine = e)} />
+        <div className="footer__ghost" ref={e => (this.contentLine = e)} />
         <div
-          className={`Footer__outer-container--flexbox ${isStickyClass}`}
+          className={`footer__outer-container ${isStickyClass}`}
           ref={e => (this.footerContainer = e)}
         >
-          <div className="Footer__container--elements p-3 pt-5 pb-md-5">
-            <div className="Footer__logo--element mb-1">
-              <img
-                src={LaesekompasLogo}
-                className="Footer__logo--image"
-                alt=""
-              />
+          <div className="footer__container--elements">
+            <div className="footer__logo--wrap">
+              <img src={LaesekompasLogo} className="footer__logo" />
             </div>
-            <div className="Footer__element--block">
-              <Text type="body" className="mt-3 pr-md-3 pr-lg-3">
+            <div className="footer__element">
+              <Text type="body">
                 <T component="footer" name="sectionOne" />
                 <br />
                 <Link href="/om">
@@ -91,13 +87,13 @@ class Footer extends React.Component {
                 </Link>
               </Text>
             </div>
-            <div className="Footer__element--block">
-              <Text type="body" className="mt-3 pr-lg-3">
+            <div className="footer__element">
+              <Text type="body">
                 <T component="footer" name="sectionTwo" />
               </Text>
             </div>
-            <div className="Footer__element--block">
-              <Text type="body" className="mt-3 pr-md-3 pr-lg-3">
+            <div className="footer__element">
+              <Text type="body">
                 <T component="footer" name="customerServiceText" />
                 <br />
                 <a
@@ -109,8 +105,8 @@ class Footer extends React.Component {
                 </a>
               </Text>
             </div>
-            <div className="Footer__element--block">
-              <Text type="body" className="mt-3">
+            <div className="footer__element">
+              <Text type="body">
                 <T component="footer" name="addressCompany" />
                 <br />
                 <T component="footer" name="addressStreet" />

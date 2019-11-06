@@ -3,6 +3,7 @@
 
 /* Global variables */
 :root {
+  /* colors */
   --petroleum: #00414b;
   --elm: #1d768a;
   --fersken: #f37362;
@@ -25,5 +26,25 @@
   --mine-shaft: #333333;
   --white: #ffffff;
 
+  /* fonts */
   --primary-font: 'Montserrat', sans-serif;
+
+  /* breakpoints */
+  --xs: 320px;
+  --sm: 576px;
+  --md: 768px;
+  --la: 992px;
+  --xl: 1200px;
+
+  /* spacing (8 point grid)*/
+  --05pt: 4px;
+  --1pt: 8px;
+  --2pt: 16px;
+  --3pt: 24px;
+  --4pt: 32px;
+  --5pt: 40px;
+  --6pt: 48px;
+  --7pt: 56px;
+  --8pt: 64px;
+  --9pt: 72px;
 }

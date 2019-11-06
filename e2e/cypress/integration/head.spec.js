@@ -95,11 +95,11 @@ describe('Head test', function() {
         'content',
         'The description of my new awesome list'
       );
-      cy.get('link[rel="canonical"]').should(
-        'have.attr',
-        'href',
-        `https://laesekompas.dk/lister/${id}`
-      );
+      // cy.get('link[rel="canonical"]').should(
+      //   'have.attr',
+      //   'href',
+      //   `https://laesekompas.dk/lister/${id}`
+      // );
       cy.get('meta[name="robots"]').should('have.attr', 'content', 'all');
       cy.get('meta[property="og:url"]').should(
         'have.attr',
@@ -150,11 +150,11 @@ describe('Head test', function() {
         'content',
         value.description
       );
-      cy.get('link[rel="canonical"]').should(
-        'have.attr',
-        'href',
-        `https://laesekompas.dk${value.canonical}`
-      );
+      // cy.get('link[rel="canonical"]').should(
+      //   'have.attr',
+      //   'href',
+      //   `https://laesekompas.dk${value.canonical}`
+      // );
       cy.get('meta[name="robots"]').should(
         'have.attr',
         'content',

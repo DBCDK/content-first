@@ -35,7 +35,7 @@ export class CompareButton extends React.PureComponent {
 
     return (
       <button
-        className={`CompareButton ${className} ${activeClass}`}
+        className={`compare-button ${className} ${activeClass}`}
         onClick={e => {
           // Prevent opening workpreview on bookmark click
           e.preventDefault();
@@ -44,7 +44,7 @@ export class CompareButton extends React.PureComponent {
           openModal('compare', {main, pids: [main, pid]});
         }}
       >
-        <Icon name="compare_arrows" hex="&#xe915;" />
+        <Icon name="compare_arrows" />
       </button>
     );
   }

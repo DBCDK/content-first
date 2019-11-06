@@ -12,6 +12,8 @@ import {withInteractions} from '../../hoc/Interaction';
 import {withOrders} from '../../hoc/Order';
 import toColor from '../../../utils/toColor';
 
+import './PersonalBelt.css';
+
 // shared between all did read belts
 const picked = {};
 
@@ -20,10 +22,10 @@ const WorksTitle = withWork(({work, titlePrefix}) => (
     Tag="h1"
     type="title4"
     variant="transform-uppercase"
-    className={`mb-3 mb-md-0 px-2 px-sm-3 px-lg-5 pb-0 pb-sm-3 pt-5`}
+    className={'belt-personal__title'}
   >
     <strong>{titlePrefix}</strong>
-    <span className="ml-2">{get(work, 'book.title')}</span>
+    <span>{get(work, 'book.title')}</span>
   </Title>
 ));
 
@@ -146,7 +148,7 @@ export class PersonalBelt extends React.Component {
 
     return (
       <div
-        className={this.props.className}
+        className={`belt belt-personal ${this.props.className}`}
         style={this.props.style}
         data-cy="did-read-belt"
       >

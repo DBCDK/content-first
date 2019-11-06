@@ -1,4 +1,9 @@
-.WorkSlider__no-hits-container {
+.work-slider {
+  position: relative;
+}
+
+.work-slider__no-hits-container {
+  position: relative;
   max-width: 460px;
   color: var(--silver-chalice);
   text-align: center;
@@ -9,15 +14,13 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .WorkSlider__no-hits-container {
+  .work-slider__no-hits-container {
     top: 95px;
   }
 }
 
-@media only screen and (max-width: 480px) {
-  .WorkSlider__no-hits-container {
+@media only screen and (max-width: 576px) {
+  .work-slider__no-hits-container {
     top: 60px;
   }
 }
-
-

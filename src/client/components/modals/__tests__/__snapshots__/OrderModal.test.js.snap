@@ -60,18 +60,7 @@ exports[`OrderModal render function renders initial request 1`] = `
               }
             >
               <BookCover
-                book={
-                  Object {
-                    "creator": "creator1",
-                    "pid": "pid1",
-                    "title": "title1",
-                  }
-                }
-                style={
-                  Object {
-                    "width": "unset",
-                  }
-                }
+                pid="pid1"
               />
             </span>
             <div
@@ -142,18 +131,7 @@ exports[`OrderModal render function renders initial request 1`] = `
               }
             >
               <BookCover
-                book={
-                  Object {
-                    "creator": "creator2",
-                    "pid": "pid2",
-                    "title": "title2",
-                  }
-                }
-                style={
-                  Object {
-                    "width": "unset",
-                  }
-                }
+                pid="pid2"
               />
             </span>
             <div
@@ -224,18 +202,7 @@ exports[`OrderModal render function renders initial request 1`] = `
               }
             >
               <BookCover
-                book={
-                  Object {
-                    "creator": "creator3",
-                    "pid": "pid3",
-                    "title": "title3",
-                  }
-                }
-                style={
-                  Object {
-                    "width": "unset",
-                  }
-                }
+                pid="pid3"
               />
             </span>
             <div

@@ -53,7 +53,7 @@ export class SimpleList extends React.Component {
             </Text>
             <div className="d-flex ml-4">
               <Icon
-                className="align-middle md-xsmall text-white"
+                className="align-middle md-small text-white"
                 name={list._public ? 'visibility' : 'visibility_off'}
               />
               <Text className="ml-2" type="small" variant="color-white">

@@ -1,4 +1,6 @@
 .Share {
+  display: inline-flex;
+  align-items: center;
   border-radius: 2px;
   padding: 2px 7px;
 }
@@ -8,4 +10,8 @@
   font-weight: 700;
   color: white;
   margin: 0;
+}
+
+.Share img {
+  margin-right: 8px;
 }

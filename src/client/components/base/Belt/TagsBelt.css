@@ -1,44 +1,181 @@
-.Belt_editButton {
+.belt-tags {
+  position: relative;
+  margin: 0;
+}
+
+.belt-tags .belt-tags__content--wrap {
+  margin: 0 var(--5pt);
+}
+
+.belt-tags .belt-tags__title-tags--wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.belt-tags .belt-tags__title-tags--wrap textarea,
+.belt-tags .belt-tags__description textarea {
+  width: 100%;
+  resize: none;
+  outline: none;
+}
+.belt-tags__content--wrap textarea.value-missing {
+  border: 1px solid var(--fersken);
+}
+.belt-tags__content--wrap textarea.value-missing::placeholder {
+  color: var(--fersken);
+}
+
+.belt-tags .belt-tags__title {
+  margin: 0 var(--3pt) 0 0;
+}
+
+.belt-tags__title-tags--wrap .Pin {
+  margin: 0 var(--3pt) 0 0;
+  display: inline;
+}
+
+.belt-tags__content--wrap .belt-tags__description--title {
+  margin: 0;
+}
+
+.belt-tags__content--wrap .belt-tags__description {
+  padding: var(--1pt) 0 var(--2pt) 0;
+}
+
+.belt-tags .belt-tags__edit-button {
   position: absolute;
-  right: 0;
-  top: 42px;
+  display: flex;
+  align-items: center;
+  right: var(--2pt);
+  top: 12px;
   cursor: pointer;
   z-index: 1;
 }
 
-.belt .logo-circle {
-  width: 70px;
-  height: 70px;
-  min-width: 70px;
-  border: 20px solid var(--due);
-  border-radius: 50%;
+.belt-tags .belt-tags__edit-button i {
+  margin: 0 var(--1pt) 0 0;
 }
 
-.belt textarea.value-missing {
-  border: 1px solid var(--fersken);
-  outline: none;
+.belt-tags .ContextMenu {
+  position: absolute;
+  right: var(--1pt);
+  top: var(--1pt);
+  display: none;
 }
 
-.belt textarea.value-missing::placeholder {
-  color: var(--fersken);
+.belt-tags__title-tags--wrap .belt-tags__tags--container {
+  display: inline;
+
+  /* prevents edit button to overlap the tags */
+  padding: 0 var(--6pt) 0 0;
 }
 
-@media only screen and (min-width: 768px) {
-  .belt .scrollable-tags {
-    margin-left: 0.5rem;
+.belt-tags__tags--container .belt-tags__tag--link {
+  display: inline-block;
+  margin: var(--1pt) var(--1pt) 0 0;
+}
+.belt-tags__tags--container .belt-tags__tag--link:last-child {
+  margin: var(--1pt) 0 0 0;
+}
+
+.belt-tags.editing .belt-tags__tags--container {
+  width: 100%;
+  display: inline;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 0;
+}
+
+.belt-tags__content--wrap .belt-tags__edit-actions {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.belt-tags__edit-actions .belt-tags__cancel--btn {
+  margin: 0 0 0 var(--1pt);
+}
+
+@media only screen and (max-width: 768px) {
+  /* Swap edit menus */
+  .belt-tags .belt-tags__edit-button,
+  .belt-tags__title-tags--wrap .Pin {
+    display: none;
   }
-}
+  .belt-tags .ContextMenu {
+    display: block;
+  }
 
-@media only screen and (max-width: 767px) {
-  .belt .scrollable-tags {
+  .belt-tags .belt-tags__content--wrap {
+    margin: var(--2pt) 0 0 0;
+  }
+
+  .belt-tags .belt-tags__title--link,
+  .belt-tags .belt-tags__description {
+    margin: 0 0 0 var(--5pt);
+  }
+
+  .belt-tags__tags--container {
     width: 100vw;
+    display: inline;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 0;
   }
 
-  .belt .scrollable-tags > a.list-card-nohover:first-child {
-    margin-left: 0.5rem;
+  .belt-tags__tags--container .belt-tags__tag--link:first-child {
+    margin: 0 0 0 var(--5pt);
+  }
+  .belt-tags__tags--container .belt-tags__tag--link:last-child {
+    margin: var(--5pt) 0 0 0;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .belt-tags .belt-tags__content--wrap {
+    margin: var(--5pt) 0 0 0;
   }
 
-  .belt .scrollable-tags > a.list-card-nohover:last-child {
-    margin-right: 0.5rem;
+  .belt-tags .belt-tags__title--link,
+  .belt-tags .belt-tags__description {
+    margin: 0 0 0 var(--2pt);
   }
+
+  .belt-tags__tags--container .belt-tags__tag--link:first-child {
+    margin: var(--1pt) var(--1pt) 0 var(--2pt);
+  }
+  .belt-tags__tags--container .belt-tags__tag--link:last-child {
+    margin: var(--1pt) var(--2pt) 0 0;
+  }
+
+  .belt-tags .belt-tags__tags--container {
+    padding: 0;
+  }
+
+  .belt-tags__content--wrap .belt-tags__edit-actions {
+    flex-direction: row-reverse;
+  }
+
+  /* on edit only */
+  .belt-tags.editing .belt-tags__content--wrap {
+    margin: var(--2pt);
+  }
+  .belt-tags.editing .belt-tags__description {
+    margin: 0;
+    padding: var(--1pt) 0;
+  }
+
+  .belt-tags.editing .belt-tags__tags--container .belt-tags__tag--link {
+    margin: var(--1pt) var(--1pt) 0 0;
+  }
+  .belt-tags.editing
+    .belt-tags__tags--container
+    .belt-tags__tag--link:last-child {
+    margin: 0;
+  }
+  /* --- */
 }

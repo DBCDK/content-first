@@ -198,7 +198,7 @@ describe('Start Belt Editor test', function() {
 
   // ======================================================================================
 
-  it('Test Table contains three elements', function() {
+  it.only('Test Table contains three elements', function() {
     mockStorage();
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');
@@ -542,7 +542,7 @@ describe('Start Belt Editor test', function() {
     clickCreateButton();
 
     cy.url().should('include', '/redaktionen/opret');
-    cy.get('.BeltForm div.Banner__title [data-cy=banner-title]').contains(
+    cy.get('.BeltForm .banner__title--wrap [data-cy=banner-title]').contains(
       'Opret nyt bånd'
     );
   });

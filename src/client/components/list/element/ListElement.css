@@ -1,8 +1,18 @@
-.element-context-menu {
-  align-self: flex-start
+.listElement .book-cover {
+  width: 120px;
 }
-@media (min-width: 768px) { 
+
+.listElement .element-context-menu {
+  /* flex hack to keep dropdown close to icon */
+  align-self: center;
+}
+
+@media (max-width: 768px) {
+  .listElement .book-cover {
+    width: 70px;
+  }
+
   .element-context-menu {
-    align-self: center
+    align-self: center;
   }
 }

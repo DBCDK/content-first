@@ -54,9 +54,8 @@ const MenuEntry = withList(
           <Icon
             name="lens"
             className={
-              `md-xsmall ${
-                status && !multiple ? 'pistache pistache-txt' : ''
-              }` + (multiple ? ' m-0' : '')
+              `md-small ${status && !multiple ? 'pistache pistache-txt' : ''}` +
+              (multiple ? ' m-0' : '')
             }
           />
         )}
@@ -225,10 +224,14 @@ export class AddToListButton extends React.Component {
     const newListFromElements = multiple ? [...elements] : [work];
     if (!isLoggedIn) {
       return (
-        <div className={multiple ? 'multiple-works-button-container ' : ''}>
+        <div
+          className={`${className} ${
+            multiple ? 'multiple-works-button-container ' : ''
+          }`}
+        >
           <Button
             className={
-              `AddToListButton ${className}` +
+              `AddToListButton` +
               (multiple ? ' multiple-works-to-list-button ' : '')
             }
             type={multiple ? 'tertiary' : 'quinary'}
@@ -249,11 +252,11 @@ export class AddToListButton extends React.Component {
     return (
       <div
         ref={e => (this.listContainer = e)}
+        data-cy={this.props['data-cy'] || 'add-to-list-btn'}
         className={
           `AddToListButton__Container dropdown ${className}` +
           (multiple ? ' multiple-works-button-container ' : '')
         }
-        data-cy={this.props['data-cy'] || 'add-to-list-btn'}
       >
         <Button
           className={`AddToListButton ${buttonActive}`}
