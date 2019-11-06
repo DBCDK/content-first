@@ -1,0 +1,98 @@
+.KioskHero {
+    height: calc(1920px - 128px);
+    background-image: url("/img/hero/kiosk_background.jpg");
+    margin-bottom: var(--5pt);
+    display: flex;
+    flex-direction: column;
+    padding: var(--9pt);
+    padding-top: 640px;
+    position: relative;
+    transition: all 0.5s ease;
+}
+.KioskHero.input-focused {
+    padding-top: 128px;
+}
+
+.KioskHero .Title__title1 {
+    font-size: 9vw;
+    line-height: 1.1em;
+}
+.KioskHero .Title__title2 {
+    margin-top: var(--5pt);
+}
+.KioskHero .button {
+    padding: var(--3pt) var(--5pt);
+    font-size: var(--5pt);
+    line-height: var(--5pt);
+}
+.KioskHero .Search {
+    display: flex;
+    flex-direction: row;
+    margin-top: var(--2pt);
+}
+.KioskHero .Search .booksearch-suggester {
+    height: 100%;
+    background: white;
+    margin-left: 0px !important;
+    border-radius: 5px;
+    margin-right: var(--4pt);
+}
+.KioskHero .Search input {
+    height: 100%;
+    font-size: var(--4pt);
+    
+
+}
+.KioskHero .Search .react-autosuggest__suggestions-container{
+    top: var(--11pt);
+    align-items: center;
+}
+.KioskHero .Search .material-icons-search {
+    font-size: var(--5pt);
+    margin: var(--1pt);
+}
+.KioskHero .Search .react-autosuggest__suggestions-container .Text {
+    font-size: var(--4pt);
+    line-height: var(--5pt);
+}
+.KioskHero .Search .suggestion-row {
+    align-items: center;
+}
+.KioskHero .Search .suggestion-row .creator {
+    font-size: var(--3pt);
+}
+.KioskHero .Search img, 
+.KioskHero .Search .book-cover {
+    margin: var(--05pt);
+    margin-right: var(--1pt);
+    min-height: var(--7pt);
+    min-width: var(--7pt);
+}
+
+.KioskHero .RoundLabel {
+    background: var(--pistache);
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    font-size: var(--5pt);
+    display: flex;
+    align-items: center;
+    padding: var(--5pt);
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+
+}
+
+.KioskHero .RoundLabel .material-icons {
+    position:absolute;
+    bottom: var(--1pt);
+    left: 128px;
+    font-size: var(--8pt);
+}
+
+.KioskHero .RoundLabelWrapper {
+    position:absolute;
+    bottom: 208px;
+
+}
