@@ -19,7 +19,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
         }
       }
     >
-      <Profileimage
+      <ProfileImage
         size="40"
         style={
           Object {
@@ -99,7 +99,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
         }
       }
     >
-      <Profileimage
+      <ProfileImage
         size="40"
         style={
           Object {
@@ -299,7 +299,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
             }
           }
         >
-          <Profileimage
+          <ProfileImage
             size="40"
             style={
               Object {
@@ -546,7 +546,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
         }
       }
     >
-      <Profileimage
+      <ProfileImage
         size="40"
         style={
           Object {
@@ -719,7 +719,7 @@ exports[`CommentContainer Component renders error 1`] = `
             }
           }
         >
-          <Profileimage
+          <ProfileImage
             size="40"
             style={
               Object {
@@ -959,7 +959,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             }
           }
         >
-          <Profileimage
+          <ProfileImage
             size="40"
             style={
               Object {
@@ -1215,7 +1215,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
             }
           }
         >
-          <Profileimage
+          <ProfileImage
             size="40"
             style={
               Object {
@@ -1484,7 +1484,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
             }
           }
         >
-          <Profileimage
+          <ProfileImage
             size="40"
             style={
               Object {

@@ -1,7 +1,6 @@
 import React from 'react';
-import Textarea from 'react-textarea-autosize';
-
 import ProfileImage from '../general/ProfileImage.component';
+import Textarea from 'react-textarea-autosize';
 import T from '../base/T';
 import Icon from '../base/Icon';
 

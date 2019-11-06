@@ -281,6 +281,8 @@ class BeltForm extends React.Component {
           {this.props.mode === CREATE || (
             <Storage
               align="left"
+              // currently skipping the ARIA role warning with the following comment
+              // eslint-disable-next-line
               role="contentFirstEditor"
               render={({remove}) => (
                 <Button
