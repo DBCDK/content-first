@@ -76,7 +76,11 @@ class Footer extends React.Component {
         >
           <div className="footer__container--elements">
             <div className="footer__logo--wrap">
-              <img src={LaesekompasLogo} className="footer__logo" />
+              <img
+                src={LaesekompasLogo}
+                className="footer__logo"
+                alt="footer"
+              />
             </div>
             <div className="footer__element">
               <Text type="body">

@@ -259,7 +259,11 @@ export class TopBar extends React.Component {
         <nav className="topbar__navigation">
           <Link href="/" className="widthCalc">
             <div className="topbar__navigation--icon ">
-              <img type="image/svg+xml" src="/img/general/dibliofigur.svg" />
+              <img
+                type="image/svg+xml"
+                src="/img/general/dibliofigur.svg"
+                alt="logo"
+              />
             </div>
           </Link>
           <span className="navigation-btn navigation-btn__search--bar widthCalc">
@@ -341,7 +345,11 @@ export class TopBar extends React.Component {
         </nav>
 
         <Link href="/" className={`topbar__logo ${hideOnIE11}`}>
-          <object type="image/svg+xml" data="/img/general/dibliofigur.svg" />
+          <object
+            type="image/svg+xml"
+            data="/img/general/dibliofigur.svg"
+            aria-labelledby="logo"
+          />
           <div>
             <Title
               className="topbar__logo-title"
