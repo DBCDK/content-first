@@ -9,13 +9,9 @@
 .KioskHero .search-wrapper {
     transition: transform 0.5s ease;
     transform: translate3d(0px, 512px, 0);
-    
-    /* position: absolute; */
-    /* padding-top: 128px; */
 }
 .KioskHero.input-focused .search-wrapper {
-    transform: translate3d(0px, 0px, 0);
-    /* padding-top: 128px; */
+    transform: translate3d(0px, 256px, 0);
 }
 
 .KioskHero .Title__title1 {
@@ -36,17 +32,15 @@
     margin-top: var(--2pt);
 }
 .KioskHero .Search .booksearch-suggester {
-    height: 100%;
     background: white;
     margin-left: 0px !important;
     border-radius: 5px;
     margin-right: var(--4pt);
+    margin-bottom: 0;
 }
 .KioskHero .Search input {
     height: 100%;
     font-size: var(--4pt);
-    
-
 }
 .KioskHero .Search .react-autosuggest__suggestions-container{
     top: var(--11pt);
@@ -86,7 +80,11 @@
     text-align: center;
     font-weight: 600;
     position: relative;
-
+    opacity: 1;
+    transition: opacity 0.15s ease;
+}
+.KioskHero.input-focused .RoundLabel {
+    opacity: 0;
 }
 
 .KioskHero .RoundLabel .material-icons {
