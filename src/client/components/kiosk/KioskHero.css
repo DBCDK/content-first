@@ -2,15 +2,20 @@
     height: calc(1920px - 128px);
     background-image: url("/img/hero/kiosk_background.jpg");
     margin-bottom: var(--5pt);
-    display: flex;
-    flex-direction: column;
     padding: var(--9pt);
-    padding-top: 640px;
     position: relative;
-    transition: all 0.5s ease;
+    
 }
-.KioskHero.input-focused {
-    padding-top: 128px;
+.KioskHero .search-wrapper {
+    transition: transform 0.5s ease;
+    transform: translate3d(0px, 512px, 0);
+    
+    /* position: absolute; */
+    /* padding-top: 128px; */
+}
+.KioskHero.input-focused .search-wrapper {
+    transform: translate3d(0px, 0px, 0);
+    /* padding-top: 128px; */
 }
 
 .KioskHero .Title__title1 {

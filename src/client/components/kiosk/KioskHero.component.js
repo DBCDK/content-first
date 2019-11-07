@@ -32,28 +32,31 @@ export default class KioskHero extends React.Component {
           this.state.inputFocused ? 'input-focused' : ''
         }`}
       >
-        <Title type="title1">
-          <T component="kioskHero" name="title" />
-        </Title>
-        <Title type="title2" variant="color-white">
-          <T component="kioskHero" name="subtitle" />
-        </Title>
-        <div className="Search">
-          <BookSearchSuggester
-            onSubmit={() => {}}
-            onFocus={() => {
-              this.setState({inputFocused: true});
-              scroll(0);
-            }}
-            onBlur={() => {
-              this.setState({inputFocused: false});
-            }}
-            placeholder={T({component: 'kioskHero', name: 'placeholder'})}
-          />
-          <Button type="primary">
-            <T component="kioskHero" name="searchBtn" />
-          </Button>
+        <div className="search-wrapper">
+          <Title type="title1">
+            <T component="kioskHero" name="title" />
+          </Title>
+          <Title type="title2" variant="color-white">
+            <T component="kioskHero" name="subtitle" />
+          </Title>
+          <div className="Search">
+            <BookSearchSuggester
+              onSubmit={() => {}}
+              onFocus={() => {
+                this.setState({inputFocused: true});
+                scroll(0);
+              }}
+              onBlur={() => {
+                this.setState({inputFocused: false});
+              }}
+              placeholder={T({component: 'kioskHero', name: 'placeholder'})}
+            />
+            <Button type="primary">
+              <T component="kioskHero" name="searchBtn" />
+            </Button>
+          </div>
         </div>
+
         <div className="RoundLabelWrapper">
           <RoundLabel />
         </div>
