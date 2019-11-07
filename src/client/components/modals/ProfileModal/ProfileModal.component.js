@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Button from '../../base/Button';
 import T from '../../base/T';
 import {ProfileInput} from '../../profile/ProfileInput.component';
 import ProfileUploadImage from '../../general/ProfileUploadImage.component';
@@ -119,13 +120,12 @@ export class ProfileModal extends React.Component {
               <div>
                 <div className="profile__accept-title2">
                   <T component="profile" name="ruleText1" />
-                  <a
-                    style={{cursor: 'pointer', color: 'var(--malibu)'}}
-                    onClick={this.onShowRules}
-                  >
-                    {' '}
-                    <T component="profile" name="ruleLink" />{' '}
-                  </a>
+                  <Button type="link" size="medium" onClick={this.onShowRules}>
+                    <span>
+                      {' '}
+                      <T component="profile" name="ruleLink" />{' '}
+                    </span>
+                  </Button>
                   <T component="profile" name="ruleText2" />
                 </div>
 
@@ -230,7 +230,9 @@ export class ProfileModal extends React.Component {
       <div className="profile__modal-window profile__rules-window">
         <div className="profile__rules-margin">
           <div className="profile__rules-backbtn">
-            <a onClick={this.onBackButton}>{'<  Tilbage'}</a>
+            <Button type="link" size="medium" onClick={this.onBackButton}>
+              <span>{'<  Tilbage'}</span>
+            </Button>
           </div>
           <div className="profile__rules-line" />
           <div className="profile__rules-scroll">

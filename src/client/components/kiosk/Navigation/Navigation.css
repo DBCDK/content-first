@@ -84,12 +84,12 @@
   color: var(--silver-chalice);
 }
 
-.navigation-actions .actions.actions--left .action--btn.active i {
+<<<<<<< head .navigation-actions .actions.actions--left .action--btn.active i {
   font-size: 48px;
   color: var(--petroleum);
 }
 
-.navigation__logo--wrap {
+=======>>>>>>>56b9c8789c5f01f2972b4becf6079c99f0d473ff .navigation__logo--wrap {
   width: 100%;
   padding: var(--1pt);
 }

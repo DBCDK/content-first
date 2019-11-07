@@ -117,7 +117,10 @@ export class Navigation extends React.Component {
           </div>
         </div>
         <div className="navigation__logo--wrap">
-          <img src="/static/media/LaesekompasLogo.9c5e645e.svg" />
+          <img
+            src="/static/media/LaesekompasLogo.9c5e645e.svg"
+            alt="navigation"
+          />
         </div>
       </div>
     );

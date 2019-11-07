@@ -1229,6 +1229,22 @@
         "da": "Kiosken er klar til brug",
         "en": "The kiosk is ready"
       }
+    },
+    "kioskHero": {
+      "title": {"da": "Find din næste roman", "en": "Find your next book"},
+      "subtitle": {
+        "da": "Start med en god bog du har læst",
+        "en": "Type in a good book you've read"
+      },
+      "placeholder": {
+        "da": "Titel på en god bog",
+        "en": "Title of a good book"
+      },
+      "searchBtn": {"da": "Søg", "en": "Search"},
+      "inspirationBtn": {
+        "da": "Eller få inspiration her",
+        "en": "Or get inspired here"
+      }
     }
   },
   "units": {

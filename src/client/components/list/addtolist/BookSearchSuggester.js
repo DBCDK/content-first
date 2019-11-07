@@ -36,11 +36,11 @@ const renderSuggestion = (suggestion, suggestionString) => {
     >
       <BookCover pid={suggestion.book.pid} />
       <div className="ml-3">
-        <Text type="body" variant="weight-semibold" className="mb0">
+        <Text type="body" variant="book-title weight-semibold" className="mb0">
           {addEmphasisToString(suggestion.book.title, suggestionString)}
         </Text>
-        <Text type="small" className="mb0">
-          {addEmphasisToString(suggestion.book.creator, suggestionString)}
+        <Text type="small" className="creator mb0">
+          {suggestion.book.creator}
         </Text>
       </div>
     </div>
@@ -104,11 +104,21 @@ class BookSearchSuggester extends React.Component {
   }
   render() {
     const {value, suggestions} = this.state;
-    const {className, style, suggesterRef} = this.props;
+    const {
+      className,
+      style,
+      suggesterRef,
+      onFocus,
+      onBlur,
+      placeholder
+    } = this.props;
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      placeholder: T({component: 'list', name: 'placeholderBookSuggester'}),
+      onFocus,
+      onBlur,
+      placeholder:
+        placeholder || T({component: 'list', name: 'placeholderBookSuggester'}),
       className: 'w-100 suggestion-list__search',
       value,
       onChange: (e, change) => this.onChange(e, change),
