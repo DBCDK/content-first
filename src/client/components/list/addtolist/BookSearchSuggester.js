@@ -30,11 +30,9 @@ const addEmphasisToString = (string, pattern) => {
 };
 
 const renderSuggestion = (suggestion, suggestionString, emphasize) => {
-  const title = emphasize ? (
-    addEmphasisToString(suggestion.book.title, suggestionString)
-  ) : (
-    <span>{suggestion.book.title}</span>
-  );
+  const title = emphasize
+    ? addEmphasisToString(suggestion.book.title, suggestionString)
+    : suggestion.book.title;
   return (
     <div
       className="suggestion-row d-flex p-2"
@@ -44,7 +42,7 @@ const renderSuggestion = (suggestion, suggestionString, emphasize) => {
       <div className="ml-3">
         <Text type="body" variant="book-title weight-semibold" className="mb0">
           <TruncateMarkup lines={1} ellipsis="...">
-            {title}
+            <span>{title}</span>
           </TruncateMarkup>
         </Text>
         <Text type="small" className="creator mb0">
