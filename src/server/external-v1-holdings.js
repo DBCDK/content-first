@@ -26,7 +26,7 @@ router.use(nocache);
 router
   .route('/')
   //
-  // GET /v1/user/?agencyId=xxx&branch=yyy&pid=zzz
+  // GET /v1/holdings/?agencyId=xxx&branch=yyy&pid=zzz
   //
   .get(
     asyncMiddleware(async (req, res, next) => {
