@@ -13,6 +13,10 @@
   flex-direction: column;
 }
 
+.App.keyboard .navigation {
+  background-color: red !important;
+}
+
 .navigation-actions {
   display: flex;
   flex-grow: 1;
@@ -78,6 +82,11 @@
 .navigation-actions .actions.actions--left .action--btn i {
   font-size: 48px;
   color: var(--silver-chalice);
+}
+
+.navigation-actions .actions.actions--left .action--btn.active i {
+  font-size: 48px;
+  color: var(--petroleum);
 }
 
 .navigation__logo--wrap {

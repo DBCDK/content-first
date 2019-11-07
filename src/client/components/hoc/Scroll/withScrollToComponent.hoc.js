@@ -16,7 +16,7 @@ const withScrollToComponent = WrappedComponent => {
     handleScroll() {
       if (this.props.doScroll) {
         scrollToComponent(this.componentRef, {
-          align: 'bottom',
+          align: 'middle',
           ease: 'inOutCube'
         });
         this.props.complete();

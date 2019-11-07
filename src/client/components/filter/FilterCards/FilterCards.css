@@ -171,9 +171,16 @@
 
 /* kioskmode active */
 
-.App.kioskmode .FilterCard__container,
-.App.kioskmode .FilterCard__space {
+.App.kioskmode .FilterCard__container {
   width: 275px;
+}
+
+.App.kioskmode .FilterCard__container:first-child {
+  margin-left: var(--5pt);
+}
+
+.App.kioskmode .FilterCard__container:nth-last-child(2) {
+  margin-right: var(--5pt);
 }
 
 .App.kioskmode .FilterCard .FilterCard__cover {
@@ -216,7 +223,7 @@
   .FilterCard__space {
     width: 200px;
     height: 150px;
-    margin: 1rem 0.5rem 1rem 0.5rem;
+    margin: var(--2pt) var(--1pt);
   }
 
   .FilterCard__space {
@@ -225,7 +232,7 @@
   }
 
   .FilterCard__container:first-child {
-    margin-left: 1rem;
+    margin-left: var(--2pt);
   }
 
   .FilterCard__container .FilterCard {

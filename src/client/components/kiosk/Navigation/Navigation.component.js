@@ -18,6 +18,13 @@ export class Navigation extends React.Component {
     window.history.back();
   };
 
+  focusSearch = () => {
+    const input = document.getElementById('Searchbar__inputfield');
+    if (input) {
+      input.focus();
+    }
+  };
+
   render() {
     const {shortListState, router} = this.props;
 
@@ -27,19 +34,35 @@ export class Navigation extends React.Component {
 
     const shortlistVal = shortListState.elements.length || 0;
 
+    const history = window.history;
+
+    let backActiveClass = '';
+    let forwardActiveClass = '';
+
+    if (history.state && history.state.state.pos > 1) {
+      backActiveClass = 'active';
+    }
+
+    if (
+      (!history.state && history.length > 1) ||
+      (history.state && history.state.state.pos < history.length)
+    ) {
+      forwardActiveClass = 'active';
+    }
+
     return (
       <div className="navigation">
         <div className="navigation-actions">
           <div className="actions actions--left">
             <div
-              className="action--btn"
+              className={`action--btn ${backActiveClass}`}
               data-cy="navBrowserBack"
               onClick={this.browserBack}
             >
               <Icon name="chevron_left" />
             </div>
             <div
-              className="action--btn"
+              className={`action--btn ${forwardActiveClass}`}
               data-cy="navBrowserForward"
               onClick={this.browserForward}
             >
@@ -64,6 +87,7 @@ export class Navigation extends React.Component {
               href="/find"
               data-cy="navActionFind"
               className={`action--btn ${onFind}`}
+              onClick={() => this.focusSearch()}
             >
               <span className="content--center">
                 <Icon name="search" />

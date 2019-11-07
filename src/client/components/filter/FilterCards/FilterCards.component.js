@@ -156,30 +156,32 @@ class Filters extends React.Component {
 
     return (
       <React.Fragment>
-        <Swiper
-          {...params}
-          ref={node => {
-            if (node) {
-              this.swiper = node.swiper;
-            }
-          }}
-        >
-          {aFilters.map(filter => {
-            if (filter.show) {
-              return (
-                <FilterCard
-                  key={filter.title}
-                  expanded={filter.expanded}
-                  onCardClick={e => this.toggleCardExpanded(e, filter.title)}
-                  filter={filter}
-                  {...this.props}
-                />
-              );
-            }
-            return null;
-          })}
-          <div className="FilterCard__space" />
-        </Swiper>
+        <div className="filters--test">
+          <Swiper
+            {...params}
+            ref={node => {
+              if (node) {
+                this.swiper = node.swiper;
+              }
+            }}
+          >
+            {aFilters.map(filter => {
+              if (filter.show) {
+                return (
+                  <FilterCard
+                    key={filter.title}
+                    expanded={filter.expanded}
+                    onCardClick={e => this.toggleCardExpanded(e, filter.title)}
+                    filter={filter}
+                    {...this.props}
+                  />
+                );
+              }
+              return null;
+            })}
+            <div className="FilterCard__space" />
+          </Swiper>
+        </div>
         <div
           className={`Filters__dimmer ${dimmerClass}`}
           onClick={() => this.closeCards()}

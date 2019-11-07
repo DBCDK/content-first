@@ -42,7 +42,23 @@ class App extends Component {
 
   componentDidMount() {
     this.props.userDetailsRequest();
+    this.screenHeight = window.innerHeight;
+    this.offset = this.screenHeight / 6;
+
+    window.addEventListener('resize', this.handleResize);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    const softKeyboard =
+      window.innerHeight < this.screenHeight - this.offset ? true : false;
+    if (softKeyboard !== this.state.softKeyboard) {
+      this.setState({softKeyboard});
+    }
+  };
 
   render() {
     if (!navigator.cookieEnabled && !this.state.didShowCookieModal) {
@@ -51,6 +67,8 @@ class App extends Component {
     }
 
     const isKioskClass = this.props.isKiosk ? 'kioskmode' : '';
+    const softKeyboardClass =
+      this.props.isKiosk && this.state.softKeyboard ? 'keyboard' : '';
 
     const path = this.props.routerState.path;
     const pathSplit = path.split('/');
@@ -141,7 +159,10 @@ class App extends Component {
     }
 
     return (
-      <div className={`App ${isKioskClass}`} style={{backgroundColor}}>
+      <div
+        className={`App ${isKioskClass} ${softKeyboardClass}`}
+        style={{backgroundColor}}
+      >
         <Head />
         <Kiosk
           render={({kiosk}) => {

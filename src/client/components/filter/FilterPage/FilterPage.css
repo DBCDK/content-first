@@ -11,11 +11,31 @@ work-card.filter-page-title {
 
 .filter-page-top {
   background: var(--lys-graa);
-  padding: 1rem;
+  padding: var(--2pt) 0;
   display: none;
 }
 
 /* Kiosk-mode enabled */
+
+.App.kioskmode .filter-page-top {
+  padding: var(--2pt) var(--3pt);
+}
+
+.App.kioskmode .filters {
+  position: fixed;
+  bottom: 128px;
+  width: 100%;
+  z-index: 3001;
+}
+
+.App.kioskmode .filters--test {
+  width: 100%;
+  bottom: 200px;
+  z-index: 3000;
+  left: 0;
+  position: fixed;
+  background-color: white;
+}
 
 .App.kioskmode .filter-page {
   display: flex;
@@ -24,10 +44,12 @@ work-card.filter-page-title {
 }
 
 .App.kioskmode .filter-page-results {
-  padding-top: 30vh !important;
+  padding-top: 40vh !important;
   /* (100vh - (cards.height + cars.padding + searchbar.height + navigationbar.height)) */
-  height: calc(100vh - (132px + 16px + 75px + 128px));
-  overflow-y: auto;
+  /* height: calc(100vh - (132px + 16px + 75px + 128px)); */
+  /* overflow-y: auto;
+  width: 100%;
+  overflow-x: hidden; */
 }
 
 .App.kioskmode .filter-page-top {
@@ -43,7 +65,7 @@ work-card.filter-page-title {
   border-radius: 4px;
   z-index: 999;
   margin: auto;
-  width: calc(100% - 2rem);
+  width: calc(100% - var(--4pt));
 }
 
 .filter-page-editFilters {
