@@ -66,7 +66,6 @@ export class SimilarBelt extends React.Component {
     } = this.props;
 
     const bgColor = isChildBelt ? 'lys-graa' : 'white';
-
     const isChildBeltClass = isChildBelt ? 'child-belt' : '';
 
     return (

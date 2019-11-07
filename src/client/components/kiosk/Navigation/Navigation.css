@@ -13,6 +13,10 @@
   flex-direction: column;
 }
 
+.App.keyboard .navigation {
+  background-color: red !important;
+}
+
 .navigation-actions {
   display: flex;
   flex-grow: 1;
@@ -39,7 +43,28 @@
 
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
+}
+
+/* .navigation-actions .actions .action--btn:active {
+  transition-duration: 0.2s;
+  background-color: var(--porcelain);
+  border-radius: 50%;
+} */
+
+/* Ripple effect */
+.wave {
+  background-position: center;
+  transition: background 0.8s;
+}
+.wave:hover {
+  background: var(--lys-graa)
+    radial-gradient(circle, transparent 1%, var(--lys-graa) 1%) center/15000%;
+}
+.wave:active {
+  background-color: var(--porcelain);
+  background-size: 100%;
+  transition: background 0s;
 }
 
 .navigation-actions .actions .action--btn h1 {
@@ -80,9 +105,17 @@
   color: var(--silver-chalice);
 }
 
+.navigation-actions .actions.actions--left .action--btn.active i {
+  font-size: 48px;
+  color: var(--petroleum);
+}
+
 .navigation__logo--wrap {
   width: 100%;
   padding: var(--1pt);
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .navigation__logo--wrap img {

@@ -1,0 +1,21 @@
+.multirow--container {
+  width: 100%;
+}
+
+.multirow--container .container--row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--5pt);
+}
+
+@media only screen and (max-width: 576px) {
+  .multirow--container .container--row {
+    padding: var(--2pt) var(--5pt);
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .multirow--container .container--row {
+    justify-content: space-around;
+  }
+}
