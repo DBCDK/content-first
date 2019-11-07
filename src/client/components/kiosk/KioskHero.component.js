@@ -8,6 +8,7 @@ import scroll from '../../utils/scroll';
 import T from '../base/T';
 
 import BookSearchSuggester from '../list/addtolist/BookSearchSuggester';
+import withHistory from '../hoc/AdressBar/withHistory.hoc';
 
 const RoundLabel = () => {
   return (
@@ -23,7 +24,7 @@ const RoundLabel = () => {
   );
 };
 
-export default class KioskHero extends React.Component {
+export class KioskHero extends React.Component {
   state = {inputFocused: false};
   render() {
     return (
@@ -41,7 +42,9 @@ export default class KioskHero extends React.Component {
           </Title>
           <div className="Search">
             <BookSearchSuggester
-              onSubmit={() => {}}
+              onSubmit={work => {
+                this.props.historyPush(`/værk/${work.book.pid}`);
+              }}
               onFocus={() => {
                 this.setState({inputFocused: true});
                 scroll(0);
@@ -50,6 +53,7 @@ export default class KioskHero extends React.Component {
                 this.setState({inputFocused: false});
               }}
               placeholder={T({component: 'kioskHero', name: 'placeholder'})}
+              emphasize={false}
             />
             <Button type="primary">
               <T component="kioskHero" name="searchBtn" />
@@ -64,3 +68,5 @@ export default class KioskHero extends React.Component {
     );
   }
 }
+
+export default withHistory(KioskHero);

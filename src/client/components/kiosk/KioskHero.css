@@ -45,6 +45,7 @@
 .KioskHero .Search .react-autosuggest__suggestions-container{
     top: var(--11pt);
     align-items: center;
+    border-radius: 4px;
 }
 .KioskHero .Search .material-icons-search {
     font-size: var(--5pt);
@@ -56,6 +57,7 @@
 }
 .KioskHero .Search .suggestion-row {
     align-items: center;
+    height: 116px;
 }
 .KioskHero .Search .suggestion-row .creator {
     font-size: var(--3pt);
@@ -64,8 +66,8 @@
 .KioskHero .Search .book-cover {
     margin: var(--05pt);
     margin-right: var(--1pt);
-    min-height: var(--7pt);
-    min-width: var(--7pt);
+    min-height: var(--6pt);
+    min-width: var(--6pt);
 }
 
 .KioskHero .RoundLabel {
@@ -74,6 +76,7 @@
     height: 320px;
     border-radius: 50%;
     font-size: var(--5pt);
+    line-height: var(--7pt);
     display: flex;
     align-items: center;
     padding: var(--5pt);

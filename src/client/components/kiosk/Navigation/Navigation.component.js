@@ -39,13 +39,15 @@ export class Navigation extends React.Component {
     let backActiveClass = '';
     let forwardActiveClass = '';
 
-    if (history.state && history.state.state.pos > 1) {
+    if (history.state && history.state.state && history.state.state.pos > 1) {
       backActiveClass = 'active';
     }
 
     if (
       (!history.state && history.length > 1) ||
-      (history.state && history.state.state.pos < history.length)
+      (history.state &&
+        history.state.state &&
+        history.state.state.pos < history.length)
     ) {
       forwardActiveClass = 'active';
     }

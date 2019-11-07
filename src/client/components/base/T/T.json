@@ -1232,19 +1232,13 @@
     },
     "kioskHero": {
       "title": {"da": "Find din næste roman", "en": "Find your next book"},
-      "subtitle": {
-        "da": "Start med en god bog du har læst",
-        "en": "Type in a good book you've read"
-      },
+      "subtitle": {"da": "Se bøger, der minder om", "en": "See similar books"},
       "placeholder": {
-        "da": "Titel på en god bog",
+        "da": "... en god bog, du har læst",
         "en": "Title of a good book"
       },
-      "searchBtn": {"da": "Søg", "en": "Search"},
-      "inspirationBtn": {
-        "da": "Eller få inspiration her",
-        "en": "Or get inspired here"
-      }
+      "searchBtn": {"da": "Vis", "en": "Show"},
+      "inspirationBtn": {"da": "Eller få inspiration her", "en": "Or get inspired here"}
     }
   },
   "units": {
