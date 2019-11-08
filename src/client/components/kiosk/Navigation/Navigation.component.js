@@ -57,14 +57,14 @@ export class Navigation extends React.Component {
         <div className="navigation-actions">
           <div className="actions actions--left">
             <div
-              className={`action--btn wave ${backActiveClass}`}
+              className={`action--btn waves-effect ${backActiveClass}`}
               data-cy="navBrowserBack"
               onClick={this.browserBack}
             >
               <Icon name="chevron_left" />
             </div>
             <div
-              className={`action--btn wave ${forwardActiveClass}`}
+              className={`action--btn waves-effect ${forwardActiveClass}`}
               data-cy="navBrowserForward"
               onClick={this.browserForward}
             >
@@ -75,7 +75,7 @@ export class Navigation extends React.Component {
             <Link
               href="/"
               data-cy="navActionHome"
-              className={`action--btn wave ${onHome}`}
+              className={`action--btn waves-effect ${onHome}`}
             >
               <span className="content--center">
                 <Icon name="home" />
@@ -88,7 +88,7 @@ export class Navigation extends React.Component {
             <Link
               href="/find"
               data-cy="navActionFind"
-              className={`action--btn wave ${onFind}`}
+              className={`action--btn waves-effect ${onFind}`}
               onClick={() => this.focusSearch()}
             >
               <span className="content--center">
@@ -102,7 +102,7 @@ export class Navigation extends React.Component {
             <Link
               href="/huskeliste"
               data-cy="navActionShort"
-              className={`action--btn wave ${onShort}`}
+              className={`action--btn waves-effect ${onShort}`}
             >
               <span className="content--center">
                 <span className="shortlist__icon-value--wrap">

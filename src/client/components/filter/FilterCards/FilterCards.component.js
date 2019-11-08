@@ -156,7 +156,7 @@ class Filters extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="filters--test">
+        <div className="filters--wrap">
           <Swiper
             {...params}
             ref={node => {

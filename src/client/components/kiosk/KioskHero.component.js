@@ -13,7 +13,7 @@ import withHistory from '../hoc/AdressBar/withHistory.hoc';
 const RoundLabel = () => {
   return (
     <div
-      className="RoundLabel"
+      className="RoundLabel waves-effect"
       onClick={() => {
         scroll(1096);
       }}

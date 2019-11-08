@@ -28,7 +28,7 @@ work-card.filter-page-title {
   z-index: 3001;
 }
 
-.App.kioskmode .filters--test {
+.App.kioskmode .filters--wrap {
   width: 100%;
   bottom: 200px;
   z-index: 3000;
@@ -55,6 +55,16 @@ work-card.filter-page-title {
 .App.kioskmode .filter-page-top {
   display: block;
   position: relative;
+}
+
+/*  */
+
+/* Kisosk Keyboard active */
+
+.App.kioskmode.keyboard .navigation,
+.App.kioskmode.keyboard .filters--wrap,
+.App.kioskmode.keyboard .filters {
+  transform: translateY(128px);
 }
 
 /*  */

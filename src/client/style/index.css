@@ -1,6 +1,9 @@
 /* Global Settings */
 @import './variables.css';
 
+/* CSS class effects */
+@import './effects.css';
+
 /* Import util classes */
 @import './utils/deprecated-utils.css';
 @import './utils/color.css';
