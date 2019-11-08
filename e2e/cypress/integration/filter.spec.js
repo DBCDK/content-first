@@ -1,5 +1,5 @@
 describe('Filter page test', function() {
-  it.only('Should check if logo is visible and clickable', function() {
+  it('Should check if logo is visible and clickable', function() {
     cy.visit('/');
     cy.get('[data-cy=topbar-search-btn]').click();
     cy.get('.topbar__navigation > [data-cy=dibliofigur]').should('be.visible');
