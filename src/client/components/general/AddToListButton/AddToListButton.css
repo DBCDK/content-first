@@ -1,7 +1,3 @@
-.App.kioskmode .AddToListButton, .Ebog, .Lydbog, .orderAllBtn, .printListBtn, p.loanTitle{
-  display:none;
-}
-
 .AddToListButton__Container {
   display: inline-block;
 }
