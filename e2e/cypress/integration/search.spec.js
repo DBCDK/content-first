@@ -3,10 +3,12 @@ describe('Search test', function() {
     const searchWord = 'Min kam';
     cy.visit('/');
     cy.get('[data-cy=topbar-search-btn]').click();
-
     cy.get('[data-cy=search-bar-input]')
       .first()
       .type(searchWord);
+
+    cy.wait(1000);
+
     cy.get('[data-cy=suggestion-element]').contains(searchWord);
     cy.get('[data-cy=cat-name]')
       .contains('bog')
