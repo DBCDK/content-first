@@ -1,3 +1,7 @@
+.App.kioskmode .AddToListButton{
+  display:none;
+}
+
 .AddToListButton__Container {
   display: inline-block;
 }
