@@ -16,6 +16,8 @@ DMZ_HOST=http://localhost:3000
 STORAGE_URL=http://storage:8080/v3/storage
 MINISMAUG_HOST=minismaug
 
+KIOSK_ENABLED=true
+
 ## staging
 ## RECOMPASS_TAGS_URL=http://recompass-1-0.mi-staging.svc.cloud.dbc.dk/recompass
 ## RECOMPASS_WORK_URL=http://recompass-work-1-0.mi-staging.svc.cloud.dbc.dk/recompass-work
