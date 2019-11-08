@@ -1,4 +1,4 @@
-.App.kioskmode .AddToListButton{
+.App.kioskmode .AddToListButton, .Ebog, .Lydbog, .orderAllBtn, .printListBtn, p.loanTitle{
   display:none;
 }
 
