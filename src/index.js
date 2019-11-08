@@ -34,7 +34,7 @@ import StorageClient from './shared/client-side-storage.client';
 import ListRequester from './shared/list.requester';
 
 // Lib imports
-import './client/lib/waves-effect.js'
+import './client/lib/waves-effect.js';
 
 const storageClient = new StorageClient();
 const listRequester = new ListRequester({storageClient});
