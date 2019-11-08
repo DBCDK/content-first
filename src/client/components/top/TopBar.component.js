@@ -140,7 +140,9 @@ export class TopBar extends React.Component {
     if (this.props.router.path !== prevProps.router.path) {
       searchPage = this.props.router.path === '/find' ? true : false;
       this.setState({searchExpanded: searchPage});
-      this.calcWidth();
+      setTimeout(() => {
+        this.calcWidth();
+      }, 100);
     }
   }
 

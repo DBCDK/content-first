@@ -48,7 +48,6 @@ export class ShortListItem extends React.Component {
 
     // get collections including ereolen
     const collection = filterCollection();
-
     const orderBookButton = hasValidCollection() && (
       <OrderButton
         pid={pid}
@@ -73,7 +72,7 @@ export class ShortListItem extends React.Component {
               size="medium"
               type="quaternary"
               iconLeft={col.icon}
-              className="ml-2"
+              className={"ml-2 " + col.type}
               key={col.url}
               href={col.url}
             >
@@ -104,9 +103,10 @@ export class ShortListItem extends React.Component {
             <div type="body" className="mb-1">
               <Origin componentData={origin} />
             </div>
+
             <Toolbar className="desktop-styling">
               <AddToListButton work={work} align="left" />
-              <Text align="right" type="body">
+              <Text align="right" type="body" className="loanTitle">
                 <T component="work" name="loanTitle" />
               </Text>
               {orderBookButton}
@@ -195,7 +195,7 @@ export class ShortList extends React.Component {
                   size="medium"
                   type="quaternary"
                   iconLeft="print"
-                  className="bg-white pr-0"
+                  className="bg-white pr-0 printListBtn"
                   href="print/huskeliste"
                 >
                   <T component="list" name="printList" />
@@ -273,7 +273,7 @@ export class ShortList extends React.Component {
                   iconLeft="chrome_reader_mode"
                   size="large"
                   type="quaternary"
-                  className="btn ml-4"
+                  className="btn ml-4 orderAllBtn"
                   onClick={
                     this.props.orderList.length > 0 &&
                     (() =>
