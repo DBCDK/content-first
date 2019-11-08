@@ -58,38 +58,39 @@ export function OrderButton(props) {
     return null;
   }
 
-
-
   return (
     <Kiosk
       render={({kiosk}) => {
         if (kiosk.enabled) {
-          return <Button
+          return (
+            <Button
+              className={`orderButton ${orderState.class} ${props.className}`}
+              type={props.type}
+              size={props.size}
+              iconLeft={props.iconLeft}
+              iconRight={props.iconRight}
+              // onClick={props.order}
+              dataCy="order-btn"
+            >
+              Find Bogen
+            </Button>
+          );
+        }
+        return (
+          <Button
             className={`orderButton ${orderState.class} ${props.className}`}
             type={props.type}
             size={props.size}
             iconLeft={props.iconLeft}
             iconRight={props.iconRight}
-           // onClick={props.order}
+            onClick={props.order}
             dataCy="order-btn"
           >
-            Find Bogen
+            {orderState.label}
           </Button>
-        }
-        return <Button
-          className={`orderButton ${orderState.class} ${props.className}`}
-          type={props.type}
-          size={props.size}
-          iconLeft={props.iconLeft}
-          iconRight={props.iconRight}
-          onClick={props.order}
-          dataCy="order-btn"
-        >
-          {orderState.label}
-        </Button>
+        );
       }}
     />
-
   );
 }
 
