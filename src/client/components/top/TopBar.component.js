@@ -257,7 +257,7 @@ export class TopBar extends React.Component {
         className={`topbar ${collapsedClass}`}
       >
         <nav className="topbar__navigation">
-          <Link href="/" className="widthCalc">
+          <Link data-cy="dibliofigur" href="/" className="widthCalc">
             <div className="topbar__navigation--icon ">
               <img
                 type="image/svg+xml"
