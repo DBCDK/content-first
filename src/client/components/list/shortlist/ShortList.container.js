@@ -72,7 +72,7 @@ export class ShortListItem extends React.Component {
               size="medium"
               type="quaternary"
               iconLeft={col.icon}
-              className={"ml-2 " + col.type}
+              className={'ml-2 ' + col.type}
               key={col.url}
               href={col.url}
             >
