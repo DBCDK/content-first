@@ -10,7 +10,11 @@ import Text from '../../base/Text';
 export default class FullTextReview extends React.Component {
   showFullPaperReview = rev => {
     if (rev.infomedia[0]) {
-      const text = rev.infomedia[0].html;
+      let origtext = rev.infomedia[0].html;
+      const text = origtext.replace(
+        'infomedia_logo.gif',
+        '/infomedia_logo.gif'
+      );
       return (
         <div className="Review__scroll-container">
           <div className="Review__inner-scroll">
