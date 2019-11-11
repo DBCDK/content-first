@@ -79,16 +79,25 @@ class FrontPage extends React.Component {
 
         <PersonalBelt mount={'frontpage-because-you-read-belt-1'} />
         {this.renderBelts(belts.slice(0, 2))}
-        <ListsBelt
-          title={T({
-            component: 'list',
-            name: 'recentListsTitle',
-            renderAsHtml: true
-          })}
-          matomoTitle={'Nyeste brugerlister'}
-          mount={'frontpage-lists'}
-          sort="created"
-          limit={50}
+        <Kiosk
+          render={({kiosk}) => {
+            if (!kiosk.enabled) {
+              return (
+                <ListsBelt
+                  title={T({
+                    component: 'list',
+                    name: 'recentListsTitle',
+                    renderAsHtml: true
+                  })}
+                  matomoTitle={'Nyeste brugerlister'}
+                  mount={'frontpage-lists'}
+                  sort="created"
+                  limit={50}
+                />
+              );
+            }
+            return null;
+          }}
         />
         <PersonalBelt mount={'frontpage-because-you-read-belt-2'} />
         <SpotsContainer />

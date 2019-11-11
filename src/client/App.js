@@ -200,7 +200,7 @@ class App extends Component {
           delay={5000}
         />
 
-        {feedBack && <FeedbackButton />}
+        {feedBack && !this.props.isKiosk && <FeedbackButton />}
 
         <Kiosk
           render={({kiosk}) => {

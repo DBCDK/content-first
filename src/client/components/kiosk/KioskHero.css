@@ -6,6 +6,13 @@
   position: relative;
 }
 
+.KioskHero .react-parallax-background,
+.KioskHero .react-parallax-content,
+.KioskHero .react-parallax-background-children {
+  width: 100%;
+  height: 100%;
+}
+
 .KioskHero .search-wrapper {
   transition: transform 0.5s ease;
   transform: translate3d(0px, 512px, 0);
@@ -99,5 +106,5 @@
 
 .KioskHero .RoundLabelWrapper {
   position: absolute;
-  bottom: 208px;
+  bottom: 135px;
 }
