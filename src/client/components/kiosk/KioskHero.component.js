@@ -1,4 +1,6 @@
 import React from 'react';
+import {Parallax} from 'react-parallax';
+
 import './KioskHero.css';
 
 import Title from '../base/Title';
@@ -28,10 +30,12 @@ export class KioskHero extends React.Component {
   state = {inputFocused: false};
   render() {
     return (
-      <div
+      <Parallax
         className={`KioskHero ${
           this.state.inputFocused ? 'input-focused' : ''
         }`}
+        bgImage={'/img/hero/kiosk_background.jpg'}
+        strength={300}
       >
         <div className="search-wrapper">
           <Title type="title1">
@@ -64,7 +68,7 @@ export class KioskHero extends React.Component {
         <div className="RoundLabelWrapper">
           <RoundLabel />
         </div>
-      </div>
+      </Parallax>
     );
   }
 }
