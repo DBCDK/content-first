@@ -1,30 +1,40 @@
 .App {
-  min-height: 100vh;
-  position: relative;
-  background: white;
+    min-height: 100vh;
+    position: relative;
+    background: white;
 }
 
 .App__TopbarPlaceholder {
-  height: 80px;
+    height: 80px;
+}
+
+.App.kioskmode .Toolbar button.AddToListButton,
+.App.kioskmode .Toolbar button.Ebog,
+.App.kioskmode .Toolbar button.Lydbog,
+.App.kioskmode .Toolbar button.orderAllBtn,
+.App.kioskmode .Toolbar button.printListBtn,
+.App.kioskmode .Toolbar p.loanTitle {
+    display: none;
 }
 
 @media (min-width: 600px) {
-  .App {
-    min-width: 100%;
-  }
-  .container {
-    min-width: calc(100% - 100px);
-  }
+    .App {
+        min-width: 100%;
+    }
+
+    .container {
+        min-width: calc(100% - 100px);
+    }
 }
 
 @media only screen and (max-width: 575px) {
-  .App__TopbarPlaceholder {
-    height: 60px;
-  }
+    .App__TopbarPlaceholder {
+        height: 60px;
+    }
 }
 
 @media (min-width: 2000px) {
-  .App {
-    min-width: 2000px;
-  }
+    .App {
+        min-width: 2000px;
+    }
 }
