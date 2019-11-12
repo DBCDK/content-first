@@ -24,7 +24,7 @@
         ]
       }
     ],
-    "timing": 3861
+    "timing": 0
   },
   "_work_{\"pids\":[\"870970-basis:54127774\"],\"fields\":[\"type\",\"identifierURI\"]}": {
     "data": [
@@ -34,7 +34,7 @@
         ]
       }
     ],
-    "timing": 178
+    "timing": 0
   },
   "_work_{\"pids\":[\"870976-anmeld:31619203\",\"870971-anmeld:37876135\",\"870971-anmeld:37857696\",\"870971-anmeld:38045024\",\"870971-anmeld:37865354\",\"870971-anmeld:37921297\",\"870971-anmeld:37860530\",\"870971-anmeld:37865397\",\"870971-anmeld:37857742\",\"870971-anmeld:37857661\",\"870971-anmeld:37857483\",\"870971-anmeld:47100194\"],\"fields\":[\"identifierURI\",\"creatorOth\",\"isPartOf\",\"date\",\"fullTextReviews\",\"abstract\"]}": {
     "data": [
@@ -205,7 +205,7 @@
         ]
       }
     ],
-    "timing": 323
+    "timing": 0
   },
   "_work_{\"pids\":[\"870970-basis:54127766\"],\"fields\":[\"type\",\"identifierURI\"]}": {
     "data": [
@@ -218,7 +218,7 @@
         ]
       }
     ],
-    "timing": 625
+    "timing": 0
   },
   "_work_{\"pids\":[\"870970-basis:54925883\"],\"fields\":[\"type\",\"identifierURI\"]}": {
     "data": [
@@ -228,7 +228,7 @@
         ]
       }
     ],
-    "timing": 630
+    "timing": 0
   },
   "_work_{\"pids\":[\"870970-basis:54925603\"],\"fields\":[\"type\",\"identifierURI\"]}": {
     "data": [
@@ -238,6 +238,6 @@
         ]
       }
     ],
-    "timing": 822
+    "timing": 0
   }
 }
