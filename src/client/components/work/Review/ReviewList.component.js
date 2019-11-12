@@ -60,6 +60,7 @@ class ReviewList extends React.Component {
               review={reviewList}
               key={outerKey}
               book={this.props.book}
+              showLink={this.props.showPaperLinks}
             />
           )
         );

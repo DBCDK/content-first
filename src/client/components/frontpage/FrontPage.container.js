@@ -4,7 +4,7 @@ import scrollToComponent from 'react-scroll-to-component';
 import Head from '../base/Head';
 import T from '../base/T';
 import Hero from '../hero/Hero.component';
-import KioskHero from '../kiosk/KioskHero.component';
+import KioskHero from '../kiosk/Hero/KioskHero.component';
 import ListsBelt from '../base/Belt/ListsBelt.container';
 import TagsBelt from '../base/Belt/TagsBelt.component';
 import SpotsContainer from '../spots/Spots.container';

@@ -23,9 +23,10 @@ import CookieWarning from './components/general/CookieWarning/CookieWarning';
 import BeltEditor from './components/belteditor/BeltEditor.component';
 import BeltForm from './components/belteditor/BeltForm.component';
 import PrintLayout from './components/list/printLayout/PrintLayout';
-import KioskSetup from './components/kiosk/KioskSetup.component';
+import KioskSetup from './components/kiosk/Setup/KioskSetup.component';
 import Navigation from './components/kiosk/Navigation/Navigation.component';
 import Kiosk from './components/base/Kiosk/Kiosk';
+import KioskWorkPage from './components/kiosk/WorkPage/KioskWorkPage.component';
 
 import {OPEN_MODAL} from './redux/modal.reducer';
 
@@ -85,7 +86,11 @@ class App extends Component {
     if (pathSplit[1] === '') {
       currentPage = <FrontPage />;
     } else if (pathSplit[1] === 'værk') {
-      currentPage = <WorkPage pid={pathSplit[2]} />;
+      if (this.props.isKiosk) {
+        currentPage = <KioskWorkPage pid={pathSplit[2]} />;
+      } else {
+        currentPage = <WorkPage pid={pathSplit[2]} />;
+      }
     } else if (pathSplit[1] === 'profil') {
       if (pathSplit[2] === 'rediger') {
         currentPage = <EditProfilePage />;

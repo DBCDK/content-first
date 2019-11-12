@@ -1,0 +1,37 @@
+.Appeals .tabs-info {
+  display: flex;
+  align-items: center;
+}
+
+.Appeals .tabs-info-color {
+  width: 40px;
+  height: 16px;
+  background-color: var(--pistache);
+  margin: 0 var(--1pt) 0 0;
+}
+
+.Appeals .tag-title {
+  padding-top: var(--2pt);
+  width: 100%;
+  display: block;
+
+  /* tags is floated */
+  clear: both;
+}
+
+.Appeals .tag-title:first-child {
+  padding-top: 0;
+}
+
+.Appeals .tag::first-letter,
+.Appeals .tag-title::first-letter {
+  text-transform: uppercase;
+}
+
+.Appeals .tag {
+  margin: var(--1pt) var(--1pt) 0 0;
+}
+
+.Appeals .tag.match {
+  background-color: var(--pistache);
+}

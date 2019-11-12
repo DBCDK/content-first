@@ -1,5 +1,5 @@
 import React from 'react';
-import {get, some} from 'lodash';
+import {get} from 'lodash';
 import BookCover from '../../general/BookCover/BookCover.component';
 import TaxDescription from '../TaxDescription.component';
 import Title from '../../base/Title';
@@ -20,6 +20,7 @@ import {HISTORY_NEW_TAB} from '../../../redux/middleware';
 import {withScrollToComponent} from '../../hoc/Scroll';
 import {withWork} from '../../hoc/Work';
 import ReviewList from '../Review/ReviewList.component';
+import Appeals from '../Appeals/Appeals.component';
 import {withChildBelt} from '../../hoc/Belt';
 
 import {trackEvent} from '../../../matomo';
@@ -425,46 +426,7 @@ class WorkPreview extends React.Component {
                 className="tabs tabs-page-2"
                 data-cy="tabs-page-Læseoplevelse"
               >
-                {appeals.length > 0 ? (
-                  <div className="work-preview__tabs-info">
-                    <div className="work-preview__tabs-info-color" />
-                    <Text type="small">
-                      <T component="general" name="particularlyProminent" />
-                    </Text>
-                  </div>
-                ) : (
-                  <Text type="body" className="Compare_noTags">
-                    <T component="work" name="noAppeals" />
-                  </Text>
-                )}
-                {appeals.map(group => {
-                  return (
-                    <React.Fragment key={group.title}>
-                      <Text type="body" className="work-preview__tag-title">
-                        {group.title}
-                      </Text>
-                      {group.data.map(t => {
-                        const matchClass = some(priorityTagsArr, ['id', t.id])
-                          ? 'match'
-                          : '';
-
-                        return (
-                          <Link key={t.id} href="/find" params={{tags: t.id}}>
-                            <Button
-                              key={t.title}
-                              type="tertiary"
-                              size="small"
-                              className={`work-preview__tag ${matchClass}`}
-                              dataCy={'tag-' + t.title}
-                            >
-                              {t.title}
-                            </Button>
-                          </Link>
-                        );
-                      })}
-                    </React.Fragment>
-                  );
-                })}
+                <Appeals book={book} appeals={appeals} />
               </div>
             </Tabs>
           </div>

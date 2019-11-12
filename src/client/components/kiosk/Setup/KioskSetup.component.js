@@ -1,12 +1,12 @@
 import React from 'react';
-import T from '../base/T';
-import Button from '../base/Button';
-import Toolbar from '../base/Toolbar';
-import Banner from '../base/Banner';
-import Input from '../base/Input';
-import Text from '../base/Text';
-import Heading from '../base/Heading';
-import Kiosk from '../base/Kiosk/Kiosk';
+import T from '../../base/T';
+import Button from '../../base/Button';
+import Toolbar from '../../base/Toolbar';
+import Banner from '../../base/Banner';
+import Input from '../../base/Input';
+import Text from '../../base/Text';
+import Heading from '../../base/Heading';
+import Kiosk from '../../base/Kiosk/Kiosk';
 
 import './KioskSetup.css';
 
