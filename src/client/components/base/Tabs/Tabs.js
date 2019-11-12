@@ -47,7 +47,7 @@ export class Tabs extends React.Component {
       const currentIndex = this.swiper.realIndex;
       const currentHeight = this.getCurrentHeight();
       const prevHeight = prevState.tabHeights[currentIndex];
-      if (prevHeight !== currentHeight) {
+      if (prevHeight !== currentHeight && this.props.onUpdate) {
         this.props.onUpdate({height: currentHeight});
       }
     }
