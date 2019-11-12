@@ -70,6 +70,10 @@ export class Tabs extends React.Component {
   };
 
   onPageChange = () => {
+    if (this.prevPage === this.swiper.realIndex) {
+      return;
+    }
+    this.prevPage = this.swiper.realIndex;
     this.setState({
       index: this.swiper.realIndex
     });
