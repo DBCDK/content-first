@@ -61,7 +61,11 @@ export class KioskWorkPage extends React.Component {
         </div>
 
         <div className="bottom">
-          <Tabs pages={pages} onPageChange={this.handlePageChange}>
+          <Tabs
+            pages={pages}
+            onPageChange={this.handlePageChange}
+            customSettings={{noSwiping: false}}
+          >
             <div className="tab-page narrow-page">
               <Text className="description" type="body">
                 {book.description}
