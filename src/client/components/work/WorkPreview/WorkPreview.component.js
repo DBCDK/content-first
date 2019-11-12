@@ -1,5 +1,4 @@
 import React from 'react';
-import {get} from 'lodash';
 import BookCover from '../../general/BookCover/BookCover.component';
 import TaxDescription from '../TaxDescription.component';
 import Title from '../../base/Title';
