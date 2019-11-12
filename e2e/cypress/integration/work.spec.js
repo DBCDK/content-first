@@ -56,7 +56,7 @@ describe('work', function() {
     );
   });
 
-  it(`Should test expand button`, function() {
+  it.skip(`Should test expand button`, function() {
     const pid = '870970-basis:54127774';
     cy.visit('/v%C3%A6rk/' + pid);
 

@@ -37,6 +37,9 @@
   width: 100%;
   left: 0px;
 }
+.swiper-wrapper {
+  transition: all 400ms;
+}
 
 .swiper-slide {
   height: 100%;

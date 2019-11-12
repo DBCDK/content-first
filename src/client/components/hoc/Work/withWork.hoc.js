@@ -9,6 +9,8 @@ import intersectTags from '../../../utils/intersectTags';
 import {
   collectionHasValidContent,
   collectionContainsBook,
+  collectionContainsEBook,
+  collectionContainsAudioBook,
   filterCollection,
   filterReviews,
   sortTags
@@ -75,7 +77,6 @@ const withWork = (
 
     /**
      * Check if a collection contains a type "Bog" || "Bog (bind x)"
-     * @param {object} work work which collection to check.
      * @returns {bool} work has a type book associated (true/false)
      */
     collectionContainsBook = () => {
@@ -83,6 +84,28 @@ const withWork = (
         return false;
       }
       return collectionContainsBook(this.props.work);
+    };
+
+    /**
+     * Check if a collection contains a type "Ebog"
+     * @returns {bool} work has a type book associated (true/false)
+     */
+    collectionContainsEBook = () => {
+      if (!this.props.work) {
+        return false;
+      }
+      return collectionContainsEBook(this.props.work);
+    };
+
+    /**
+     * Check if a collection contains a type "Lydbog"
+     * @returns {bool} work has a type book associated (true/false)
+     */
+    collectionContainsAudioBook = () => {
+      if (!this.props.work) {
+        return false;
+      }
+      return collectionContainsAudioBook(this.props.work);
     };
 
     /**
@@ -141,7 +164,7 @@ const withWork = (
      */
 
     sortTagsByAppeal = (work = this.props.work) => {
-      if (!work && !work.book.tags) {
+      if (!work || !work.book || !work.book.tags) {
         return false;
       }
 
@@ -175,6 +198,8 @@ const withWork = (
           newRelease={this.newRelease}
           hasValidCollection={this.collectionHasValidContent}
           collectionContainsBook={this.collectionContainsBook}
+          collectionContainsEBook={this.collectionContainsEBook}
+          collectionContainsAudioBook={this.collectionContainsAudioBook}
           filterCollection={this.filterCollection}
           filterReviews={this.filterReviews}
           sortTags={this.sortTags}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {get, debounce} from 'lodash';
+import {get} from 'lodash';
 import WorkCard from '../../work/WorkCard/WorkCard.container';
 import {withChildBelt} from '../../hoc/Belt';
 import {withIsVisible} from '../../hoc/Scroll';
@@ -44,7 +44,7 @@ class MultiRowContainer extends React.Component {
   constructor() {
     super();
     this.state = {resultsPerRow: 1};
-    this.handleResize = debounce(this.handleResize, 100);
+    // this.handleResize = debounce(this.handleResize, 100, {leading: true});
   }
   componentDidMount() {
     this.handleResize();
