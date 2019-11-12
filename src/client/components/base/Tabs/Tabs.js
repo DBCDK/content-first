@@ -41,17 +41,21 @@ export class Tabs extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.children !== prevProps.children) {
-      if (this.swiper) {
-        const prevHeight = this.swiper.height;
-        this.swiper.update();
-        if (prevHeight !== this.swiper.height && this.props.onUpdate) {
-          this.props.onUpdate();
-        }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.swiper) {
+      this.swiper.update();
+      const currentIndex = this.swiper.realIndex;
+      const currentHeight = this.getCurrentHeight();
+      const prevHeight = prevState.tabHeights[currentIndex];
+      if (prevHeight !== currentHeight) {
+        this.props.onUpdate({height: currentHeight});
       }
     }
   }
+
+  getCurrentHeight = () => {
+    return this.state.tabHeights[this.swiper.realIndex];
+  };
 
   init = swiper => {
     if (swiper !== this.swiper) {
@@ -69,8 +73,15 @@ export class Tabs extends React.Component {
     this.setState({
       index: this.swiper.realIndex
     });
+    if (this.props.onUpdate) {
+      this.props.onUpdate({height: this.getCurrentHeight()});
+    }
+
     if (this.props.onPageChange) {
-      this.props.onPageChange(this.swiper.realIndex);
+      this.props.onPageChange(
+        this.swiper.realIndex,
+        this.state.tabHeights[this.swiper.realIndex]
+      );
     }
   };
 

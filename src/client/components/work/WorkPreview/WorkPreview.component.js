@@ -398,21 +398,20 @@ class WorkPreview extends React.Component {
             style={{height: tabsCollapsed ? infoHeight : 'auto'}}
             data-cy="work-preview-tabs"
           >
-            {work.collectionHasLoaded &&
-              get(this.swiper, 'height') + 100 > infoHeight && (
-                <Expand
-                  title={T({component: 'general', name: 'showMore'})}
-                  onClick={() =>
-                    this.setState({
-                      tabsCollapsed: false
-                    })
-                  }
-                />
-              )}
+            {this.state.currentTabHeight + 100 > infoHeight && (
+              <Expand
+                title={T({component: 'general', name: 'showMore'})}
+                onClick={() =>
+                  this.setState({
+                    tabsCollapsed: false
+                  })
+                }
+              />
+            )}
             <Tabs
               pages={['Anmeldelser', 'Læseoplevelse']}
               swiper={swiper => (this.swiper = swiper)}
-              onUpdate={() => this.setState({})}
+              onUpdate={({height}) => this.setState({currentTabHeight: height})}
             >
               <div className="tabs tabs-page-1" data-cy="tabs-page-Anmeldelser">
                 <ReviewList
