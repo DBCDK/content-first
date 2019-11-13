@@ -38,7 +38,10 @@ export default class Notification extends React.Component {
             - {title}
           </Title>
         )}
-        <Text className="Notification__container-text">{text}</Text>
+        {notificationType === RAW && text}
+        {notificationType !== RAW && (
+          <Text className="Notification__container-text">{text}</Text>
+        )}
         {cause === '' || (
           <Text className="Notification__container-cause">{cause}</Text>
         )}

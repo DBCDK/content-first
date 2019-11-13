@@ -33,7 +33,9 @@ const wayFinderBox = (dispatch, holdings) => {
       </Text>
       <div className="wayFinder__modal--wayfinder-list">
         {fetchWaysFromHoldings(holdings).map(way => (
-          <Title type="title4">{way}</Title>
+          <Title key={way} type="title4">
+            {way}
+          </Title>
         ))}
       </div>
     </div>

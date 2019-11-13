@@ -23,7 +23,7 @@ export const withHoldings = WrappedComponent => props => {
     }
   }, [agencyId, branch, pid, dispatch, hasDispatched]);
 
-  return <WrappedComponent {...props} holdings={holdings[pid]} />;
+  return <WrappedComponent pid={pid} holdings={holdings[pid]} />;
 };
 
 export default withHoldings;
