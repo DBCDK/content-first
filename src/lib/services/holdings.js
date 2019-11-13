@@ -48,7 +48,8 @@ class Holdings {
       location: item['holdingsitem.location'],
       subLocation: item['holdingsitem.subLocation'],
       onShelf: item['holdingsitem.status'].includes('OnShelf'),
-      notForLoan: item['holdingsitem.status'].includes('NotForLoan')
+      notForLoan: item['holdingsitem.status'].includes('NotForLoan'),
+      onLoan: item['holdingsitem.status'].includes('OnLoan')
     }));
   }
 
