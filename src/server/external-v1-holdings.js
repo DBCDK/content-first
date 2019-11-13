@@ -4,7 +4,6 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const nocache = require('server/nocache');
-const _ = require('lodash');
 const config = require('server/config');
 const logger = require('server/logger');
 const Holdings = require('__/services/holdings');
@@ -21,6 +20,14 @@ const throwIfInsufficientId = ({agencyId, branch, pid}) => {
   }
 };
 
+const getRecordId = pid => {
+  const pidSplit = pid.split(':');
+  if (pidSplit.length > 1) {
+    return pidSplit[1];
+  }
+  return pid;
+};
+
 router.use(nocache);
 
 router
@@ -32,11 +39,14 @@ router
     asyncMiddleware(async (req, res, next) => {
       try {
         throwIfInsufficientId(req.query);
-        const query = `holdingsitem.agencyId:${req.query.agencyId} AND holdingsitem.branch:${req.query.branch} AND holdingsitem.bibliographicRecordId:${req.query.pid}`;
+        const query = `holdingsitem.agencyId:${
+          req.query.agencyId
+        } AND holdingsitem.branch:${
+          req.query.branch
+        } AND holdingsitem.bibliographicRecordId:${getRecordId(req.query.pid)}`;
         const holdingsData = await holdings.getHoldings({q: query});
-        res.status(200).json({
-          data: holdingsData
-        });
+        console.log('===> External Holdings', holdingsData);
+        res.status(200).json(holdingsData);
       } catch (error) {
         return next(error);
       }

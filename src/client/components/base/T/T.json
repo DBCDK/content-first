@@ -369,6 +369,10 @@
       "listBeltTitle": {
         "da": "Lister med",
         "en": "Lists with"
+      },
+      "findBook": {
+        "da": "Find bogen",
+        "en": "Find the book"
       }
     },
     "profile": {
