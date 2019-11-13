@@ -21,7 +21,6 @@ import {withWork} from '../../hoc/Work';
 import ReviewList from '../Review/ReviewList.component';
 import Appeals from '../Appeals/Appeals.component';
 import {withChildBelt} from '../../hoc/Belt';
-import {withHoldings} from '../../hoc/Holding';
 
 import {trackEvent} from '../../../matomo';
 
@@ -239,10 +238,6 @@ class WorkPreview extends React.Component {
       });
     }
 
-    const wayFinderBox = () => {
-      window.alert('Der er trykket på "Find bogen" knappen');
-    };
-
     return (
       <React.Fragment>
         <div
@@ -341,14 +336,6 @@ class WorkPreview extends React.Component {
               </div>
 
               <div className="work-preview__actions">
-                <Button
-                  size="medium"
-                  type="quaternary"
-                  iconLeft="chrome_reader_mode"
-                  onClick={wayFinderBox}
-                >
-                  <T component="work" name="findBook" />
-                </Button>
                 <div className="work-preview__action-loan">
                   <Text type="body" variant="weight-semibold">
                     <T component="work" name="loanTitle" />
@@ -450,14 +437,12 @@ class WorkPreview extends React.Component {
   }
 }
 
-export default withHoldings(
-  withChildBelt(
-    withScrollToComponent(
-      withWork(WorkPreview, {
-        includeTags: true,
-        includeReviews: true,
-        includeCollection: true
-      })
-    )
+export default withChildBelt(
+  withScrollToComponent(
+    withWork(WorkPreview, {
+      includeTags: true,
+      includeReviews: true,
+      includeCollection: true
+    })
   )
 );

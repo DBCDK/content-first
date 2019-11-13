@@ -19,6 +19,7 @@ import ReviewList from '../../work/Review/ReviewList.component';
 import Appeals from '../../work/Appeals/Appeals.component';
 import MultiRowContainer from '../../base/Belt/MultiRowContainer';
 import {withPidsToPids} from '../../hoc/Recommender';
+import FindBookButton from '../WayFinder/FindBookButton';
 const Recommendations = withPidsToPids(MultiRowContainer);
 
 const pages = ['Om bogen', 'Anmeldelser', 'Læseoplevelse', 'Minder om'];
@@ -57,6 +58,7 @@ export class KioskWorkPage extends React.Component {
           >
             <TaxDescription text={tax_description} />
           </Text>
+          <FindBookButton {...this.props} className="find-book-button" />
           <Divider type="horizontal" variant="thin" />
         </div>
 

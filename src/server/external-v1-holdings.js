@@ -45,7 +45,6 @@ router
           req.query.branch
         } AND holdingsitem.bibliographicRecordId:${getRecordId(req.query.pid)}`;
         const holdingsData = await holdings.getHoldings({q: query});
-        console.log('===> External Holdings', holdingsData);
         res.status(200).json(holdingsData);
       } catch (error) {
         return next(error);

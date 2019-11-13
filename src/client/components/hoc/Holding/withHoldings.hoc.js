@@ -11,20 +11,17 @@ import {fetchHoldings} from '../../../redux/holdings.thunk';
  **/
 
 export const withHoldings = WrappedComponent => props => {
-  const {pid} = props;
+  const {agencyId, branch, pid} = props;
   const [hasDispatched, setHasDispatched] = useState(false);
   const {holdings} = useSelector(store => store.holdings, shallowEqual);
   const dispatch = useDispatch();
 
-  const agencyId = '737600';
-  const branch = 'Hovedbiblioteket';
-
   useEffect(() => {
-    if (!hasDispatched) {
+    if (agencyId && branch && !hasDispatched) {
       dispatch(fetchHoldings(agencyId, branch, pid));
       setHasDispatched(true);
     }
-  });
+  }, [agencyId, branch, pid, dispatch, hasDispatched]);
 
   return <WrappedComponent {...props} holdings={holdings[pid]} />;
 };
