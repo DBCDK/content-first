@@ -3,6 +3,6 @@ img.logo {
   top: var(--5pt);
   right: var(--5pt);
   width: auto;
-  height: 50px;
+  height: 60px;
   z-index: 1;
 }

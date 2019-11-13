@@ -28,7 +28,7 @@
 
 /* kiosk enabled */
 
-.mobile-slider .work-card {
+.App.kioskmode .mobile-slider .work-card {
   margin: 0 var(--3pt) 0 0;
 }
 
