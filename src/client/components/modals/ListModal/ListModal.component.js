@@ -424,7 +424,11 @@ export class ListModal extends React.Component {
         hideCancel={hideActions}
         onError={error}
       >
-        <Tabs pages={pages} onPageChange={this.handlePageChange}>
+        <Tabs
+          pages={pages}
+          onPageChange={this.handlePageChange}
+          customSettings={{autoHeight: false}}
+        >
           <PageInfo
             list={list}
             justCreated={justCreated}

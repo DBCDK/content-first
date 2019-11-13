@@ -126,6 +126,7 @@ const RenderCollectionButtons = ({
           type={col.type}
           icon={col.icon}
           {...props}
+          key={col.url}
         />
       )
   );
