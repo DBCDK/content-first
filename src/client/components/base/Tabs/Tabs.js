@@ -32,7 +32,8 @@ const defaultSettings = {
 export class Tabs extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {index: props.initialSlide || 0, tabHeights: {}};
+    this.state = {index: props.initialSlide || 0};
+    this.tabRefs = {};
   }
 
   componentDidMount() {
@@ -41,20 +42,25 @@ export class Tabs extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     if (this.swiper) {
       this.swiper.update();
-      const currentIndex = this.swiper.realIndex;
       const currentHeight = this.getCurrentHeight();
-      const prevHeight = prevState.tabHeights[currentIndex];
-      if (prevHeight !== currentHeight && this.props.onUpdate) {
-        this.props.onUpdate({height: currentHeight});
+      if (currentHeight !== this.prevHeight) {
+        if (this.props.onUpdate) {
+          this.props.onUpdate({height: currentHeight});
+        }
+        this.prevHeight = currentHeight;
       }
     }
   }
 
   getCurrentHeight = () => {
-    return this.state.tabHeights[this.swiper.realIndex];
+    const ref = this.tabRefs[this.swiper.realIndex];
+    if (ref) {
+      return ref.scrollHeight || 0;
+    }
+    return 0;
   };
 
   init = swiper => {
@@ -82,10 +88,7 @@ export class Tabs extends React.Component {
     }
 
     if (this.props.onPageChange) {
-      this.props.onPageChange(
-        this.swiper.realIndex,
-        this.state.tabHeights[this.swiper.realIndex]
-      );
+      this.props.onPageChange(this.swiper.realIndex);
     }
   };
 
@@ -140,23 +143,22 @@ export class Tabs extends React.Component {
             <div
               // we wrap content in div with height set to height of content its wrapping
               // otherwise id-swiper won't detect height properly
-              style={{height: this.state.tabHeights[idx]}}
-              ref={node => {
-                // detect height of content
-                // and store it in state if it has changed
-                if (node) {
-                  if (this.state.tabHeights[idx] !== node.scrollHeight) {
-                    const tabHeights = {
-                      ...this.state.tabHeights,
-                      [idx]: node.scrollHeight
-                    };
-                    this.setState({tabHeights});
-                  }
-                }
+              style={{
+                height:
+                  settings.autoHeight &&
+                  ((this.tabRefs[idx] && this.tabRefs[idx].scrollHeight) || 0)
               }}
               key={idx}
             >
-              {child}
+              <div
+                ref={node => {
+                  if (node) {
+                    this.tabRefs[idx] = node;
+                  }
+                }}
+              >
+                {child}
+              </div>
             </div>
           ))}
       </Swiper>
