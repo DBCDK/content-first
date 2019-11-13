@@ -74,6 +74,7 @@ export class Navigation extends React.Component {
           <div className="actions actions--right">
             <Link
               href="/"
+              onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
               data-cy="navActionHome"
               className={`action--btn waves-effect ${onHome}`}
             >
@@ -117,12 +118,6 @@ export class Navigation extends React.Component {
               </span>
             </Link>
           </div>
-        </div>
-        <div className="navigation__logo--wrap">
-          <img
-            src="/static/media/LaesekompasLogo.9c5e645e.svg"
-            alt="navigation"
-          />
         </div>
       </div>
     );

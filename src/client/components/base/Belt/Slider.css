@@ -26,6 +26,14 @@
   margin: 0 var(--2pt) 0 0;
 }
 
+/* kiosk enabled */
+
+.mobile-slider .work-card {
+  margin: 0 var(--3pt) 0 0;
+}
+
+/*  */
+
 .mobile-slider .work-card:last-child {
   margin: 0 var(--5pt) 0 0;
 }

@@ -1,0 +1,8 @@
+img.logo {
+  position: absolute;
+  top: var(--5pt);
+  right: var(--5pt);
+  width: auto;
+  height: 50px;
+  z-index: 1;
+}

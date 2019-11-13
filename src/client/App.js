@@ -27,6 +27,7 @@ import KioskSetup from './components/kiosk/Setup/KioskSetup.component';
 import Navigation from './components/kiosk/Navigation/Navigation.component';
 import Kiosk from './components/base/Kiosk/Kiosk';
 import KioskWorkPage from './components/kiosk/WorkPage/KioskWorkPage.component';
+import Logo from './components/kiosk/Logo/Logo';
 
 import {OPEN_MODAL} from './redux/modal.reducer';
 
@@ -169,6 +170,9 @@ class App extends Component {
         style={{backgroundColor}}
       >
         <Head />
+
+        {this.props.isKiosk && <Logo />}
+
         <Kiosk
           render={({kiosk}) => {
             if (kiosk.enabled) {

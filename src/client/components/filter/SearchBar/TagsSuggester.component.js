@@ -141,16 +141,18 @@ class TagsSuggester extends React.Component {
   }
 
   hideKeyboardOnScroll() {
-    const prevScrollPosiion = this.prevScrollPosition || 0;
-    const difference = window.pageYOffset - prevScrollPosiion;
-    if (
-      !this.props.scrollableSuggestions &&
-      this.searchBar &&
-      this.searchBar.input &&
-      (difference > 1 || difference < -1)
-    ) {
-      this.searchBar.input.blur();
-      this.prevScrollPosition = window.pageYOffset;
+    if (!this.props.isKiosk) {
+      const prevScrollPosiion = this.prevScrollPosition || 0;
+      const difference = window.pageYOffset - prevScrollPosiion;
+      if (
+        !this.props.scrollableSuggestions &&
+        this.searchBar &&
+        this.searchBar.input &&
+        (difference > 1 || difference < -1)
+      ) {
+        this.searchBar.input.blur();
+        this.prevScrollPosition = window.pageYOffset;
+      }
     }
   }
 
@@ -253,7 +255,9 @@ class TagsSuggester extends React.Component {
               renderSuggestion(suggestion, this.props.value)
             }
             onSuggestionSelected={this.props.onSuggestionSelected}
-            focusInputOnSuggestionClick={!this.props.blurInput}
+            focusInputOnSuggestionClick={
+              this.props.isKiosk || !this.props.blurInput
+            }
             inputProps={inputProps}
             highlightFirstSuggestion={true}
             ref={c => (this.searchBar = c)}
@@ -271,11 +275,15 @@ class TagsSuggester extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isKiosk: state.kiosk.enabled
+});
+
 export const mapDispatchToProps = dispatch => ({
   updateBooks: books => dispatch({type: BOOKS_PARTIAL_UPDATE, books}),
   historyPush: (type, path) => dispatch({type, path})
 });
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(TagsSuggester);
