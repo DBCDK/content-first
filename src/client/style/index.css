@@ -49,4 +49,5 @@ textarea {
 button:disabled,
 button[disabled] {
   color: var(--silver-chalice);
+  background-color: var(--porcelain);
 }

@@ -43,8 +43,10 @@ const wayFinderBox = (dispatch, holdings) => {
 };
 
 const isBookInLibrary = holdings =>
+  holdings &&
+  holdings.holdings &&
   typeof holdings.holdings.find(book => book.onShelf || book.notForLoan) !==
-  'undefined';
+    'undefined';
 
 const openWayFinderModal = (dispatch, title, ways) => {
   dispatch({
@@ -78,6 +80,7 @@ const FindBookButtonWithHoldings = withHoldings(props => {
         size="medium"
         type="quaternary"
         iconLeft="chrome_reader_mode"
+        className="find-book-button"
         disabled={true}
         {...props}
       >
@@ -90,6 +93,7 @@ const FindBookButtonWithHoldings = withHoldings(props => {
       size="medium"
       type="quaternary"
       iconLeft="chrome_reader_mode"
+      className="find-book-button"
       {...props}
       onClick={() => wayFinderBox(dispatch, holdings)}
     >

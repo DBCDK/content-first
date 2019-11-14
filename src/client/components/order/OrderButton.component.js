@@ -63,7 +63,7 @@ export function OrderButton(props) {
     <Kiosk
       render={({kiosk}) => {
         if (kiosk.enabled) {
-          return <FindBookButton {...props} className="find-book-button" />;
+          return <FindBookButton pid={props.pid} />;
         }
         return (
           <Button

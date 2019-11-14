@@ -82,7 +82,7 @@ export class KioskWorkPage extends React.Component {
           >
             <TaxDescription text={tax_description} />
           </Text>
-          <FindBookButton {...this.props} className="find-book-button" />
+          <FindBookButton pid={this.props.pid} />
           <Divider type="horizontal" variant="thin" />
         </div>
 
