@@ -43,7 +43,7 @@ export class KioskHero extends React.Component {
           <div className="Search">
             <BookSearchSuggester
               onSubmit={work => {
-                this.props.historyPush(`/værk/${work.book.pid}`);
+                this.props.historyPush(`/værk/${work.book.pid}`, {slide: 3});
               }}
               onFocus={() => {
                 this.setState({inputFocused: true});

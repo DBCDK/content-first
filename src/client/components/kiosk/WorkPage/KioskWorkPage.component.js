@@ -1,5 +1,6 @@
 import React from 'react';
 import './KioskWorkPage.css';
+import {get} from 'lodash';
 
 import Tabs from '../../base/Tabs';
 
@@ -9,6 +10,7 @@ import Icon from '../../base/Icon';
 import T from '../../base/T';
 
 import {withWork} from '../../hoc/Work';
+import withHistory from '../../hoc/AdressBar/withHistory.hoc';
 import TaxDescription from '../../work/TaxDescription.component';
 import Link from '../../general/Link.component';
 import Divider from '../../base/Divider';
@@ -26,8 +28,26 @@ const pages = ['Om bogen', 'Anmeldelser', 'Læseoplevelse', 'Minder om'];
 
 export class KioskWorkPage extends React.Component {
   state = {inputFocused: false};
+  handlePageChange = slide => {
+    this.props.historyReplace(this.props.router.path, {slide});
+  };
+  componentDidUpdate(prevProps) {
+    // if pid changed, force swiper to show initialSlide
+    if (prevProps.pid !== this.props.pid) {
+      if (this.swiper) {
+        this.swiper.slideTo(this.getInitialSlide(), 0);
+      }
+    }
+  }
+  getInitialSlide() {
+    let initialSlide = parseInt(get(this.props, 'router.params.slide[0]', 0));
+    if (Number.isInteger(initialSlide)) {
+      return initialSlide;
+    }
+    return 0;
+  }
   render() {
-    const work = this.props.work || {};
+    const {work = {}} = this.props;
     const book = (work && work.book) || {};
     const collectionHasLoaded = work.collectionHasLoaded;
     const reviews = this.props.filterReviews(work) || [];
@@ -37,6 +57,7 @@ export class KioskWorkPage extends React.Component {
         ? book.reviews.data
         : false;
 
+    const initialSlide = this.getInitialSlide();
     const tax_description =
       book.taxonomy_description || book.taxonomy_description_subjects;
     return (
@@ -65,8 +86,11 @@ export class KioskWorkPage extends React.Component {
         <div className="bottom">
           <Tabs
             pages={pages}
-            onPageChange={this.handlePageChange}
+            // onPageChange={this.handlePageChange}
+            onTransitionEnd={this.handlePageChange}
             customSettings={{noSwiping: false}}
+            initialSlide={initialSlide}
+            swiper={swiper => (this.swiper = swiper)}
           >
             <div className="tab-page narrow-page">
               <Text className="description" type="body">
@@ -148,8 +172,10 @@ export class KioskWorkPage extends React.Component {
   }
 }
 
-export default withWork(KioskWorkPage, {
-  includeTags: true,
-  includeReviews: true,
-  includeCollection: true
-});
+export default withHistory(
+  withWork(KioskWorkPage, {
+    includeTags: true,
+    includeReviews: true,
+    includeCollection: true
+  })
+);
