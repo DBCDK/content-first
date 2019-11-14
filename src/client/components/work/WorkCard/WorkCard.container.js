@@ -129,8 +129,11 @@ class WorkCard extends React.Component {
         onTouchStart={this.handleLongPress}
         onTouchEnd={this.handleLongRelease}
       >
-        <div className="work-card__content" onClick={this.onWorkClick}>
-          <BookCover pid={skeleton ? null : work.book.pid}>
+        <div className="work-card__content">
+          <BookCover
+            pid={skeleton ? null : work.book.pid}
+            onClick={this.onWorkClick}
+          >
             {enableHover && (
               <React.Fragment>
                 <div className="hover-details-fade" />

@@ -1,111 +1,117 @@
 .KioskWorkPage .book-title {
-    margin-top: var(--3pt);
-    margin-bottom: 0px;
-    color: black;
-    line-height: var(--4pt);
+  margin-top: var(--3pt);
+  margin-bottom: 0px;
+  color: black;
+  line-height: var(--4pt);
 }
 .KioskWorkPage .book-creator {
-    margin-top: var(--0pt);
-    font-size: var(--2pt);
-    color: black;
+  margin-top: var(--0pt);
+  font-size: var(--2pt);
+  color: black;
 }
 .KioskWorkPage .taxdescription {
-    margin-top: var(--1pt);
-    text-align: center;
+  margin-top: var(--1pt);
+  text-align: center;
 }
 .KioskWorkPage .top {
-    height: 50vh;
-    background: var(--lys-graa);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0 var(--5pt);
-    margin: 0;
+  height: 50vh;
+  background: var(--lys-graa);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 var(--5pt);
+  margin: 0;
 }
 
 .KioskWorkPage .bottom {
-    background: white;
+  background: white;
 }
 .KioskWorkPage .tab-page {
-    border-top: 2px solid var(--alto);
-    min-height: 784px;
+  border-top: 2px solid var(--alto);
+  min-height: 784px;
 }
 .KioskWorkPage .tab-page.narrow-page {
-    padding-left: calc(1080px / 2 - 304px);
-    padding-right: calc(1080px / 2 - 304px);
+  padding-left: calc(1080px / 2 - 304px);
+  padding-right: calc(1080px / 2 - 304px);
 }
 .KioskWorkPage .Tabs__container-horizontal {
-    padding-top: 48px;
+  padding-top: 48px;
 }
 .KioskWorkPage .Tabs__pagination {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    background: var(--lys-graa);
-    padding: var(--3pt) 0px;
-    padding-top: var(--4pt);
-    margin-top: calc(0px - var(--3pt));
-    padding-left: calc(1080px / 2 - 304px);
-    padding-right: calc(1080px / 2 - 304px);
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background: var(--lys-graa);
+  padding: var(--3pt) 0px;
+  padding-top: var(--4pt);
+  margin-top: calc(0px - var(--3pt));
+  padding-left: calc(1080px / 2 - 304px);
+  padding-right: calc(1080px / 2 - 304px);
 }
 .KioskWorkPage .Tabs__pagination-bullet-active:after,
 .KioskWorkPage .Tabs__pagination-bullet:after {
   background: var(--korn);
 }
-.KioskWorkPage  .divider__horizontal {
-    border-color: var(--alto);
-    margin-top: var(--9pt);
+.KioskWorkPage .divider__horizontal {
+  border-color: var(--alto);
+  margin-top: var(--9pt);
 }
 
 .KioskWorkPage .top .book-cover {
-    width: 184px;
-    border: 1px var(--alto) solid;
+  width: 240px;
+  border: 1px var(--alto) solid;
+}
+
+.KioskWorkPage .top .book-cover .BookmarkButton {
+  margin: 0;
+  top: -8px;
+  right: -8px;
 }
 
 .KioskWorkPage .remindsof-header,
 .KioskWorkPage .tab-page .Appeals,
 .KioskWorkPage .tab-page .reviews,
 .KioskWorkPage .tab-page .description {
-    margin-top: var(--7pt);
+  margin-top: var(--7pt);
 }
 
 .KioskWorkPage .tab-page .info {
-    margin-top: var(--2pt);
-    text-transform: uppercase;
-    font-size: 12px;
+  margin-top: var(--2pt);
+  text-transform: uppercase;
+  font-size: 12px;
 }
 .KioskWorkPage .tab-page .info span {
-    margin-right: var(--1pt)
+  margin-right: var(--1pt);
 }
 .KioskWorkPage .tab-page .book-types-skeleton,
 .KioskWorkPage .tab-page .book-types {
-    display: flex;
-    margin-top: var(--2pt);
+  display: flex;
+  margin-top: var(--2pt);
 }
 .KioskWorkPage .tab-page .book-types .type {
-    display: flex;
-    align-items: center;
-    margin-right: var(--2pt);
+  display: flex;
+  align-items: center;
+  margin-right: var(--2pt);
 }
 .KioskWorkPage .tab-page .book-types .type i {
-    margin-right: var(--05pt);
-    font-size: var(--2pt);
-    line-height: var(--2pt);
-    margin-top: -1px;
+  margin-right: var(--05pt);
+  font-size: var(--2pt);
+  line-height: var(--2pt);
+  margin-top: -1px;
 }
 .KioskWorkPage .swiper-wrapper {
-    transition: all 400ms;
+  transition: all 400ms;
 }
 
 .KioskWorkPage .remindsof-header {
-    margin-left: var(--5pt);
+  margin-left: var(--5pt);
 }
 .KioskWorkPage .swiper-wrapper .work-card:last-child,
 .KioskWorkPage .swiper-wrapper .work-card {
-    margin: 0;
+  margin: 0;
 }
 
 .KioskWorkPage .find-book-button {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }

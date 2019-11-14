@@ -13,6 +13,7 @@ import TaxDescription from '../../work/TaxDescription.component';
 import Link from '../../general/Link.component';
 import Divider from '../../base/Divider';
 import BookCover from '../../general/BookCover/BookCover.component';
+import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
 import Text from '../../base/Text';
 
 import ReviewList from '../../work/Review/ReviewList.component';
@@ -42,7 +43,16 @@ export class KioskWorkPage extends React.Component {
     return (
       <div className={`KioskWorkPage `}>
         <div className="top">
-          <BookCover pid={this.props.pid} />
+          <BookCover pid={this.props.pid}>
+            <BookmarkButton
+              className="icon-large"
+              origin={origin}
+              work={work}
+              layout="circle"
+              dataCy="bookmarkBtn"
+              size="default"
+            />
+          </BookCover>
           <Title Tag="h1" type="title3" className="book-title">
             {book.title}
           </Title>
