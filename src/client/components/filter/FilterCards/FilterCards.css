@@ -83,7 +83,7 @@
 .FilterCard__container,
 .FilterCard__space {
   width: 300px;
-  height: 100px;
+  height: 104px;
   margin: var(--2pt);
   display: block;
   background-color: transparent;
@@ -188,7 +188,7 @@
 }
 
 .App.kioskmode .FilterCard .FilterCard__content {
-  max-height: 100px;
+  max-height: 104px;
   background-color: var(--lys-graa);
   width: 100%;
   bottom: 0;
@@ -200,6 +200,12 @@
 
 .App.kioskmode .Filters__swiper-container {
   margin: 0 0 var(--3pt) 0;
+}
+
+/* on border active */
+.App.kioskmode .FilterCard .FilterCard__content.border--top {
+  border-top-width: 4px;
+  border-top-style: solid;
 }
 
 .App.kioskmode .Filters__prev,

@@ -70,7 +70,8 @@ class BookCover extends React.Component {
       enableLightbox,
       onLoad,
       dataCy = '',
-      children
+      children,
+      onClick
     } = this.props;
 
     if (!pid || !work || !work.detailsHasLoaded) {
@@ -94,7 +95,11 @@ class BookCover extends React.Component {
         );
 
     return (
-      <div alt={book.title} className={`book-cover ${className}`}>
+      <div
+        alt={book.title}
+        className={`book-cover ${className}`}
+        onClick={onClick}
+      >
         {enableLightbox && (
           <Lightbox
             images={[{src: cover, caption: book.title}]}

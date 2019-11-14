@@ -53,6 +53,10 @@
   color: var(--petroleum);
 }
 
+.App.kioskmode .FilterCard__listItem-more {
+  margin: 16px 0 0 0;
+}
+
 /*  */
 
 /* Prevent sticky hover on touch devices */

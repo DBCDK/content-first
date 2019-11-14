@@ -7,7 +7,8 @@ const defaultState = {
     icon: false,
     closeOnSelect: false,
     expanded: false,
-    show: true
+    show: true,
+    border: {color: 'var(--pistache)', active: true}
   },
   Tempo: {
     title: 'Tempo',
@@ -17,7 +18,8 @@ const defaultState = {
     range: [5629, 5630, 5631, 5632, 5633],
     closeOnSelect: false,
     expanded: false,
-    show: true
+    show: true,
+    border: {color: 'var(--korn)', active: true}
   },
   Længde: {
     title: 'Længde',
@@ -26,7 +28,8 @@ const defaultState = {
     icon: false,
     closeOnSelect: false,
     expanded: false,
-    show: true
+    show: true,
+    border: {color: 'var(--elm)', active: true}
   },
   Univers: {
     title: 'Univers',
@@ -35,7 +38,8 @@ const defaultState = {
     icon: false,
     closeOnSelect: false,
     expandeds: false,
-    show: true
+    show: true,
+    border: {color: 'var(--silver-chalice)', active: true}
   },
   Fortællerstemme: {
     title: 'Fortællerstemme',
@@ -44,7 +48,8 @@ const defaultState = {
     icon: false,
     closeOnSelect: false,
     expandeds: false,
-    show: true
+    show: true,
+    border: {color: 'var(--kobber)', active: true}
   },
   Sprog: {
     title: 'Sprog',
@@ -53,7 +58,8 @@ const defaultState = {
     icon: false,
     closeOnSelect: false,
     expanded: false,
-    show: true
+    show: true,
+    border: {color: 'var(--due)', active: true}
   },
   Skrivestil: {
     title: 'Skrivestil',
@@ -62,7 +68,8 @@ const defaultState = {
     icon: false,
     closeOnSelect: false,
     expanded: false,
-    show: true
+    show: true,
+    border: {color: 'var(--fersken)', active: true}
   },
   'Handlingens tid': {
     title: 'Handlingens tid',
@@ -71,7 +78,8 @@ const defaultState = {
     icon: false,
     closeOnSelect: false,
     expandeds: false,
-    show: true
+    show: true,
+    border: {color: 'var(--petroleum)', active: true}
   },
   'På biblioteket': {
     title: 'På biblioteket',
@@ -80,7 +88,8 @@ const defaultState = {
     icon: false,
     closeOnSelect: false,
     expanded: false,
-    show: false
+    show: false,
+    border: {color: '#ff0000', active: true}
   }
 };
 

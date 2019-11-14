@@ -58,6 +58,9 @@ class FilterCard extends React.Component {
     const expandedClass = expanded ? 'FilterCard-expanded' : '';
     const Template = this.getTemplate(filter.template);
 
+    const borderColor = filter.border.active ? filter.border.color : null;
+    const borderClass = filter.border.active ? 'border--top' : '';
+
     return (
       <div
         className={`FilterCard__container ${className} ${expandedClass}`}
@@ -82,8 +85,10 @@ class FilterCard extends React.Component {
               }
             />
           </div>
+
           <div
-            className="FilterCard__content"
+            className={`FilterCard__content ${borderClass}`}
+            style={{borderTopColor: borderColor}}
             onClick={e => this.props.onCardClick(e)}
           >
             <Heading type="title" className="FilterCard__heading mb0 mt0">
