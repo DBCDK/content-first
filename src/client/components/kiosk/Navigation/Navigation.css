@@ -89,19 +89,6 @@
   color: var(--petroleum);
 }
 
-.navigation__logo--wrap {
-  width: 100%;
-  padding: var(--1pt);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.navigation__logo--wrap img {
-  width: auto;
-  height: 16px;
-}
-
 /* Footer is replaced by a "space buffer" for the bottom fixed navigation bar in kiosk mode */
 
 .navigation--placeholder {

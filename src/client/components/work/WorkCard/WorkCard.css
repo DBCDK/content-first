@@ -83,12 +83,22 @@
   bottom: 0;
   width: 100%;
 }
+
 .work-card.highlight .hover-details {
   opacity: 1;
 }
 .work-card:hover .hover-details {
   opacity: 1;
 }
+
+/* kioskmode enabled */
+
+.App.kioskmode .work-card .hover-details,
+.App.kioskmode .hover-details-fade {
+  display: none;
+}
+
+/*  */
 
 .hover-details-fade {
   opacity: 0;

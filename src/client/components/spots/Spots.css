@@ -4,6 +4,7 @@
   justify-content: space-evenly;
   margin: 20px 0;
 }
+
 .spots-container h1 {
   color: white;
   font-size: 1.4em;
@@ -26,6 +27,17 @@
   min-height: 30vh;
   margin-left: 5px;
 }
+
+/* Kiosk enabled */
+
+.App.kioskmode .spot-item-wide-container,
+.App.kioskmode .spot-item-small-container {
+  min-height: auto;
+  height: 300px;
+}
+
+/*  */
+
 .spot-item-wide-container {
   width: 40%;
 }

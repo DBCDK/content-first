@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Swiper from 'react-id-swiper';
 import {isMobile} from 'react-device-detect';
 import Icon from '../Icon';
@@ -186,9 +187,9 @@ class DesktopSlider extends React.Component {
   }
 }
 
-export default class Slider extends React.Component {
+class Slider extends React.Component {
   render() {
-    if (this.props.forceMobile || isMobile) {
+    if (this.props.forceMobile || this.props.isKiosk || isMobile) {
       return (
         <MobileSlider
           initialScrollPos={this.props.initialScrollPos}
@@ -207,3 +208,12 @@ export default class Slider extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  isKiosk: state.kiosk.enabled
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Slider);
