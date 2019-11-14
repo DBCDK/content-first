@@ -1239,6 +1239,16 @@
       },
       "searchBtn": {"da": "Vis", "en": "Show"},
       "inspirationBtn": {"da": "Eller få inspiration her", "en": "Or get inspired here"}
+    },
+    "wayFinder": {
+      "findBook": {
+        "da": "Find bogen",
+        "en": "Find the book"
+      },
+      "theBookIsHere": {
+        "da": "Bogen står her:",
+        "en": "You can find the book here:"
+      }
     }
   },
   "units": {

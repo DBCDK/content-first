@@ -342,7 +342,6 @@ class WorkPreview extends React.Component {
                     <T component="work" name="loanTitle" />
                   </Text>
                 </div>
-
                 {work.collectionHasLoaded && !collectionIsValid && (
                   <Text type="body" className="detail-no-valid-collection">
                     <T
@@ -355,7 +354,6 @@ class WorkPreview extends React.Component {
                     />
                   </Text>
                 )}
-
                 <LoanButton
                   pid={book.pid}
                   isLoading={!work.collectionHasLoaded}
@@ -368,7 +366,6 @@ class WorkPreview extends React.Component {
                   isLoading={!work.collectionHasLoaded}
                   collectionIsValid={collectionIsValid}
                 />
-
                 <div className="work-preview__add-to-list--wrap">
                   <AddToListButton
                     className="work-preview__add-to-list"
@@ -376,7 +373,6 @@ class WorkPreview extends React.Component {
                   />
                 </div>
                 <RemindsOf onClick={() => remindsOfClick(work)} />
-
                 {!hideAppels && appeals.length > 0 && (
                   <RenderPrioTags
                     tags={prioTags}

@@ -1,0 +1,12 @@
+.notification--modal {
+    width: 824px;
+}
+
+.wayFinder__modal--subtitle {
+    margin-top: 2em;
+}
+
+.wayFinder__modal--wayfinder-list {
+    margin-top: 0.6em;
+    margin-bottom: 3em;
+}
