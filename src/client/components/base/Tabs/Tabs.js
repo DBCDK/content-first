@@ -149,7 +149,8 @@ export class Tabs extends React.Component {
               style={{
                 height:
                   settings.autoHeight &&
-                  ((this.tabRefs[idx] && this.tabRefs[idx].scrollHeight) || 0)
+                  ((this.tabRefs[idx] && this.tabRefs[idx].scrollHeight) ||
+                    'auto')
               }}
               key={idx}
             >

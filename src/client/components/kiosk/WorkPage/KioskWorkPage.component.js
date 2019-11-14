@@ -40,7 +40,10 @@ export class KioskWorkPage extends React.Component {
     }
   }
   getInitialSlide() {
-    let initialSlide = parseInt(get(this.props, 'router.params.slide[0]', 0));
+    let initialSlide = parseInt(
+      get(this.props, 'router.params.slide[0]', 0),
+      10
+    );
     if (Number.isInteger(initialSlide)) {
       return initialSlide;
     }
