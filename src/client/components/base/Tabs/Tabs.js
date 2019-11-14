@@ -73,6 +73,9 @@ export class Tabs extends React.Component {
   onTransitionEnd = () => {
     // hack for avoiding scroll position to be remembered
     window.scroll(window.scrollX, window.scrollY - 1);
+    if (this.props.onTransitionEnd) {
+      this.props.onTransitionEnd(this.swiper.realIndex);
+    }
   };
 
   onPageChange = () => {
@@ -146,7 +149,8 @@ export class Tabs extends React.Component {
               style={{
                 height:
                   settings.autoHeight &&
-                  ((this.tabRefs[idx] && this.tabRefs[idx].scrollHeight) || 0)
+                  ((this.tabRefs[idx] && this.tabRefs[idx].scrollHeight) ||
+                    'auto')
               }}
               key={idx}
             >
