@@ -49,7 +49,6 @@ export default class ProfileUpdateUser extends React.Component {
         <button
           className="btn Button profile__cancel-button"
           onClick={this.props.cancelLogin}
-          style={{backgroundColor: 'var(--korn)'}}
         >
           <T component="general" name="cancel" />
         </button>
