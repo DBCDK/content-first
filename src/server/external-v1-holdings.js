@@ -19,15 +19,6 @@ const throwIfInsufficientId = ({agencyId, branch, pid}) => {
     };
   }
 };
-
-const getRecordId = pid => {
-  const pidSplit = pid.split(':');
-  if (pidSplit.length > 1) {
-    return pidSplit[1];
-  }
-  return pid;
-};
-
 router.use(nocache);
 
 router
@@ -39,13 +30,15 @@ router
     asyncMiddleware(async (req, res, next) => {
       try {
         throwIfInsufficientId(req.query);
-        const query = `holdingsitem.agencyId:${
-          req.query.agencyId
-        } AND holdingsitem.branch:${
-          req.query.branch
-        } AND holdingsitem.bibliographicRecordId:${getRecordId(req.query.pid)}`;
-        const holdingsData = await holdings.getHoldings({q: query});
-        res.status(200).json(holdingsData);
+        const pids = Array.isArray(req.query.pid)
+          ? req.query.pid
+          : [req.query.pid];
+        const result = await holdings.getHoldings(
+          req.query.agencyId,
+          req.query.branch,
+          pids
+        );
+        res.status(200).json(result);
       } catch (error) {
         return next(error);
       }

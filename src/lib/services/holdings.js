@@ -53,10 +53,39 @@ class Holdings {
     }));
   }
 
-  async getHoldings(query) {
+  getRecordId(pid) {
+    const pidSplit = pid.split(':');
+    if (pidSplit.length > 1) {
+      return pidSplit[1];
+    }
+    return pid;
+  }
+
+  createQuery(agencyId, branch, recordIds) {
+    return `holdingsitem.agencyId:${agencyId} AND holdingsitem.branch:${branch} AND (${recordIds
+      .map(recordId => `holdingsitem.bibliographicRecordId:${recordId}`)
+      .join(' OR ')})`;
+  }
+
+  async getHoldings(agencyId, branch, pids) {
     try {
-      const result = await request.get(this.config.holdings.url).query(query);
-      return this.extractHoldingsData(result.body);
+      const recordIds = pids.map(pid => this.getRecordId(pid));
+      const q = this.createQuery(agencyId, branch, recordIds);
+      const result = await request.get(this.config.holdings.url).query({q});
+      const holdingsData = this.extractHoldingsData(result.body);
+      const holdingsDataMap = {};
+      holdingsData.forEach(
+        entry => (holdingsDataMap[entry.bibliographicRecordId] = entry)
+      );
+      return recordIds.map(
+        recordId =>
+          holdingsDataMap[recordId] || {
+            agencyId: agencyId,
+            branch: branch,
+            bibliographicRecordId: recordId,
+            onShelf: false
+          }
+      );
     } catch (e) {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
       this.logger.log.error({
