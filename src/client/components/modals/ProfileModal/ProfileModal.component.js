@@ -15,7 +15,7 @@ import {
 import {CLOSE_MODAL} from '../../../redux/modal.reducer';
 
 import './ProfileModal.css';
-import {HISTORY_PUSH_FORCE_REFRESH} from "../../../redux/middleware";
+import {HISTORY_PUSH_FORCE_REFRESH} from '../../../redux/middleware';
 
 export class ProfileModal extends React.Component {
   onHandleChange = val => {
@@ -337,11 +337,11 @@ export class ProfileModal extends React.Component {
     return (
       <div className="profile__modal-container">
         {this.state.page === 'accept' &&
-        this.props.over13 &&
-        this.showAcceptWindow(this.state.username)}
+          this.props.over13 &&
+          this.showAcceptWindow(this.state.username)}
         {this.state.page === 'rules' &&
-        this.props.over13 &&
-        this.showRulesWindow()}
+          this.props.over13 &&
+          this.showRulesWindow()}
         {!this.props.over13 && this.showAgeLimitWindow()}
       </div>
     );
@@ -358,7 +358,7 @@ export const mapStateToProps = state => ({
   profileImageId: state.userReducer.tempImageId || state.userReducer.image,
   tempImageId: state.userReducer.tempImageId,
   over13: state.userReducer.over13,
-  agencyName: state.userReducer.agencyName,
+  agencyName: state.userReducer.agencyName
 });
 
 export const mapDispatchToProps = dispatch => {
