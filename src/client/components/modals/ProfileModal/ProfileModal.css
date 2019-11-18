@@ -231,7 +231,7 @@
     font-weight: 600;
     text-transform: Uppercase;
     color: var(--petroleum);
-    background-color: var(--alto) !important;
+    background-color: var(--porcelain) !important;
 }
 
 .profile__cancel-button:hover {
