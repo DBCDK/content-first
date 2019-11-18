@@ -209,15 +209,16 @@
 
 .profile__accept-buttonbuffer {
     text-align: left;
-    width: 282px;
+    width: 200px;
     margin-top: 15px;
     font-size: 12px;
 
 }
 
-.profile__accept-button, .profile__cancel-button {
+.profile__accept-button {
     padding-top: 7px;
     height: 34px;
+    font-weight: 600;
     text-transform: Uppercase;
     color: var(--petroleum);
     background-color: var(--korn);
@@ -225,6 +226,17 @@
 
 .profile__cancel-button {
     margin-right: 10px;
+    padding-top: 7px;
+    height: 34px;
+    font-weight: 600;
+    text-transform: Uppercase;
+    color: var(--petroleum);
+    background-color: var(--alto) !important;
+}
+
+.profile__cancel-button:hover {
+    background-color: var(--grey-nurse) !important;
+    color: var(--petroleum) !important;
 }
 
 .profile__accept-button-disabled {
