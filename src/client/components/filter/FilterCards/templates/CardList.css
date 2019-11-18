@@ -26,7 +26,7 @@
 }
 
 .FilterCard__list .FilterCard__listItem.listItem-active {
-  color: var(--due);
+  color: var(--due) !important;
 }
 
 /* if card is expanded */
@@ -43,6 +43,21 @@
   color: var(--due);
   cursor: pointer;
 }
+
+/* Kiosk enabled */
+
+.App.kioskmode
+  .FilterCard__container.FilterCard-expanded
+  .FilterCard__list
+  .FilterCard__listItem:hover {
+  color: var(--petroleum);
+}
+
+.App.kioskmode .FilterCard__listItem-more {
+  margin: 16px 0 0 0;
+}
+
+/*  */
 
 /* Prevent sticky hover on touch devices */
 .FilterCard__container.FilterCard-expanded .listItem-inactive.isTouch {

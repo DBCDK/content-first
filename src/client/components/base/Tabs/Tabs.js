@@ -13,6 +13,7 @@ const defaultSettings = {
   slideClass: 'swiper-slide',
   mousewheel: false,
   slidesPerView: 1,
+  autoHeight: true,
   noSwiping: !isMobile,
   speed: 400,
   loop: false,
@@ -32,6 +33,7 @@ export class Tabs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {index: props.initialSlide || 0};
+    this.tabRefs = {};
   }
 
   componentDidMount() {
@@ -40,29 +42,54 @@ export class Tabs extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.children !== prevProps.children) {
-      if (this.swiper) {
-        const prevHeight = this.swiper.height;
-        this.swiper.update();
-        if (prevHeight !== this.swiper.height && this.props.onUpdate) {
-          this.props.onUpdate();
+  componentDidUpdate() {
+    if (this.swiper) {
+      this.swiper.update();
+      const currentHeight = this.getCurrentHeight();
+      if (currentHeight !== this.prevHeight) {
+        if (this.props.onUpdate) {
+          this.props.onUpdate({height: currentHeight});
         }
+        this.prevHeight = currentHeight;
       }
     }
   }
+
+  getCurrentHeight = () => {
+    const ref = this.tabRefs[this.swiper.realIndex];
+    if (ref) {
+      return ref.scrollHeight || 0;
+    }
+    return 0;
+  };
 
   init = swiper => {
     if (swiper !== this.swiper) {
       this.swiper = swiper;
       swiper.on('transitionStart', this.onPageChange);
+      swiper.on('transitionEnd', this.onTransitionEnd);
+    }
+  };
+  onTransitionEnd = () => {
+    // hack for avoiding scroll position to be remembered
+    window.scroll(window.scrollX, window.scrollY - 1);
+    if (this.props.onTransitionEnd) {
+      this.props.onTransitionEnd(this.swiper.realIndex);
     }
   };
 
   onPageChange = () => {
+    if (this.prevPage === this.swiper.realIndex) {
+      return;
+    }
+    this.prevPage = this.swiper.realIndex;
     this.setState({
       index: this.swiper.realIndex
     });
+    if (this.props.onUpdate) {
+      this.props.onUpdate({height: this.getCurrentHeight()});
+    }
+
     if (this.props.onPageChange) {
       this.props.onPageChange(this.swiper.realIndex);
     }
@@ -114,7 +141,30 @@ export class Tabs extends React.Component {
         onPageChange={this.onPageChange}
         {...settings}
       >
-        {children}
+        {children &&
+          children.map((child, idx) => (
+            <div
+              // we wrap content in div with height set to height of content its wrapping
+              // otherwise id-swiper won't detect height properly
+              style={{
+                height:
+                  settings.autoHeight &&
+                  ((this.tabRefs[idx] && this.tabRefs[idx].scrollHeight) ||
+                    'auto')
+              }}
+              key={idx}
+            >
+              <div
+                ref={node => {
+                  if (node) {
+                    this.tabRefs[idx] = node;
+                  }
+                }}
+              >
+                {child}
+              </div>
+            </div>
+          ))}
       </Swiper>
     );
   }

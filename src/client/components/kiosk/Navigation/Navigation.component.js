@@ -18,6 +18,13 @@ export class Navigation extends React.Component {
     window.history.back();
   };
 
+  focusSearch = () => {
+    const input = document.getElementById('Searchbar__inputfield');
+    if (input) {
+      input.focus();
+    }
+  };
+
   render() {
     const {shortListState, router} = this.props;
 
@@ -27,19 +34,37 @@ export class Navigation extends React.Component {
 
     const shortlistVal = shortListState.elements.length || 0;
 
+    const history = window.history;
+
+    let backActiveClass = '';
+    let forwardActiveClass = '';
+
+    if (history.state && history.state.state && history.state.state.pos > 1) {
+      backActiveClass = 'active';
+    }
+
+    if (
+      (!history.state && history.length > 1) ||
+      (history.state &&
+        history.state.state &&
+        history.state.state.pos < history.length)
+    ) {
+      forwardActiveClass = 'active';
+    }
+
     return (
       <div className="navigation">
         <div className="navigation-actions">
           <div className="actions actions--left">
             <div
-              className="action--btn"
+              className={`action--btn waves-effect ${backActiveClass}`}
               data-cy="navBrowserBack"
               onClick={this.browserBack}
             >
               <Icon name="chevron_left" />
             </div>
             <div
-              className="action--btn"
+              className={`action--btn waves-effect ${forwardActiveClass}`}
               data-cy="navBrowserForward"
               onClick={this.browserForward}
             >
@@ -49,8 +74,9 @@ export class Navigation extends React.Component {
           <div className="actions actions--right">
             <Link
               href="/"
+              onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
               data-cy="navActionHome"
-              className={`action--btn ${onHome}`}
+              className={`action--btn waves-effect ${onHome}`}
             >
               <span className="content--center">
                 <Icon name="home" />
@@ -63,7 +89,8 @@ export class Navigation extends React.Component {
             <Link
               href="/find"
               data-cy="navActionFind"
-              className={`action--btn ${onFind}`}
+              className={`action--btn waves-effect ${onFind}`}
+              onClick={() => this.focusSearch()}
             >
               <span className="content--center">
                 <Icon name="search" />
@@ -76,7 +103,7 @@ export class Navigation extends React.Component {
             <Link
               href="/huskeliste"
               data-cy="navActionShort"
-              className={`action--btn ${onShort}`}
+              className={`action--btn waves-effect ${onShort}`}
             >
               <span className="content--center">
                 <span className="shortlist__icon-value--wrap">
@@ -91,12 +118,6 @@ export class Navigation extends React.Component {
               </span>
             </Link>
           </div>
-        </div>
-        <div className="navigation__logo--wrap">
-          <img
-            src="/static/media/LaesekompasLogo.9c5e645e.svg"
-            alt="navigation"
-          />
         </div>
       </div>
     );

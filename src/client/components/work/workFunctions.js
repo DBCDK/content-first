@@ -14,12 +14,40 @@ export function collectionContainsBook(work) {
   }
 
   // Type could be "Bog" and "Bog (bind x)" but NOT "Ebog"
-  const res = work.book.collection.data.filter(
-    col =>
-      (col.type && col.type[0].includes('Bog')) ||
-      (col.type && col.type[0].includes('Graphic novel')) ||
-      (col.type && col.type[0].includes('Tegneserie'))
-  ).length;
+  const res =
+    work.book.collection.data.filter(
+      col =>
+        (col.type && col.type[0].includes('Bog')) ||
+        (col.type && col.type[0].includes('Graphic novel')) ||
+        (col.type && col.type[0].includes('Tegneserie'))
+    ).length > 0;
+
+  return res;
+}
+
+export function collectionContainsEBook(work) {
+  if (!work.book.collection) {
+    return false;
+  }
+
+  // Type could be "Bog" and "Bog (bind x)" but NOT "Ebog"
+  const res =
+    work.book.collection.data.filter(
+      col => col.type && col.type[0].includes('Ebog')
+    ).length > 0;
+
+  return res;
+}
+
+export function collectionContainsAudioBook(work) {
+  if (!work.book.collection) {
+    return false;
+  }
+
+  const res =
+    work.book.collection.data.filter(
+      col => col.type && col.type[0].includes('Lydbog')
+    ).length > 0;
 
   return res;
 }

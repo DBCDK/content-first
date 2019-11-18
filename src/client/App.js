@@ -23,9 +23,11 @@ import CookieWarning from './components/general/CookieWarning/CookieWarning';
 import BeltEditor from './components/belteditor/BeltEditor.component';
 import BeltForm from './components/belteditor/BeltForm.component';
 import PrintLayout from './components/list/printLayout/PrintLayout';
-import KioskSetup from './components/kiosk/KioskSetup.component';
+import KioskSetup from './components/kiosk/Setup/KioskSetup.component';
 import Navigation from './components/kiosk/Navigation/Navigation.component';
 import Kiosk from './components/base/Kiosk/Kiosk';
+import KioskWorkPage from './components/kiosk/WorkPage/KioskWorkPage.component';
+import Logo from './components/kiosk/Logo/Logo';
 
 import {OPEN_MODAL} from './redux/modal.reducer';
 
@@ -42,7 +44,23 @@ class App extends Component {
 
   componentDidMount() {
     this.props.userDetailsRequest();
+    this.screenHeight = window.innerHeight;
+    this.offset = this.screenHeight / 6;
+
+    window.addEventListener('resize', this.handleResize);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    const softKeyboard =
+      window.innerHeight < this.screenHeight - this.offset ? true : false;
+    if (softKeyboard !== this.state.softKeyboard) {
+      this.setState({softKeyboard});
+    }
+  };
 
   render() {
     if (!navigator.cookieEnabled && !this.state.didShowCookieModal) {
@@ -51,6 +69,8 @@ class App extends Component {
     }
 
     const isKioskClass = this.props.isKiosk ? 'kioskmode' : '';
+    const softKeyboardClass =
+      this.props.isKiosk && this.state.softKeyboard ? 'keyboard' : '';
 
     const path = this.props.routerState.path;
     const pathSplit = path.split('/');
@@ -67,7 +87,11 @@ class App extends Component {
     if (pathSplit[1] === '') {
       currentPage = <FrontPage />;
     } else if (pathSplit[1] === 'værk') {
-      currentPage = <WorkPage pid={pathSplit[2]} />;
+      if (this.props.isKiosk) {
+        currentPage = <KioskWorkPage pid={pathSplit[2]} />;
+      } else {
+        currentPage = <WorkPage pid={pathSplit[2]} />;
+      }
     } else if (pathSplit[1] === 'profil') {
       if (pathSplit[2] === 'rediger') {
         currentPage = <EditProfilePage />;
@@ -141,8 +165,14 @@ class App extends Component {
     }
 
     return (
-      <div className={`App ${isKioskClass}`} style={{backgroundColor}}>
+      <div
+        className={`App ${isKioskClass} ${softKeyboardClass}`}
+        style={{backgroundColor}}
+      >
         <Head />
+
+        {this.props.isKiosk && <Logo />}
+
         <Kiosk
           render={({kiosk}) => {
             if (kiosk.enabled) {
@@ -179,7 +209,7 @@ class App extends Component {
           delay={5000}
         />
 
-        {feedBack && <FeedbackButton />}
+        {feedBack && !this.props.isKiosk && <FeedbackButton />}
 
         <Kiosk
           render={({kiosk}) => {

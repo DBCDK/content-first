@@ -13,6 +13,10 @@
   flex-direction: column;
 }
 
+.App.keyboard .navigation {
+  bottom: -128px;
+}
+
 .navigation-actions {
   display: flex;
   flex-grow: 1;
@@ -39,7 +43,7 @@
 
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .navigation-actions .actions .action--btn h1 {
@@ -80,14 +84,9 @@
   color: var(--silver-chalice);
 }
 
-.navigation__logo--wrap {
-  width: 100%;
-  padding: var(--1pt);
-}
-
-.navigation__logo--wrap img {
-  width: auto;
-  height: 16px;
+.navigation-actions .actions.actions--left .action--btn.active i {
+  font-size: 48px;
+  color: var(--petroleum);
 }
 
 /* Footer is replaced by a "space buffer" for the bottom fixed navigation bar in kiosk mode */

@@ -25,6 +25,7 @@ import animateReducer from './animate.reducer';
 import mountsReducer from './mounts.reducer';
 import rolesReducer from './roles.reducer';
 import kioskReducer from './kiosk.reducer';
+import holdingsReducer from './holdings.reducer';
 
 const combined = combineReducers({
   beltsReducer,
@@ -52,7 +53,8 @@ const combined = combineReducers({
   animateReducer,
   mounts: mountsReducer,
   roles: rolesReducer,
-  kiosk: kioskReducer
+  kiosk: kioskReducer,
+  holdings: holdingsReducer
 });
 
 const rootReducer = (state = {}, action) => {

@@ -1,0 +1,8 @@
+/*
+    import of all CSS class effects
+
+    import effect like:
+    @import './effects/...';
+*/
+
+@import './effects/waves-effect.css';

@@ -22,3 +22,10 @@ e2e/cypress/videos
 e2e/reports/
 logs
 storage_type_id.env
+codeStyles/
+inspectionProfiles/
+misc.xml
+modules.xml
+vcs.xml
+watcherTasks.xml
+workspace.xml

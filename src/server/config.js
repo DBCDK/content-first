@@ -119,3 +119,9 @@ exports.test = {
     uniqueId: process.env.TEST_USER_UNIQUE_ID_2
   }
 };
+
+exports.holdings = {
+  url:
+    process.env.HOLDINGS_URL ||
+    'http://cisterne-solr.dbc.dk:8986/solr/cisterne-laesekompas-holdings-lookup/select'
+};

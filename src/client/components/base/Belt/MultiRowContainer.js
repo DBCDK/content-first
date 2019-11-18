@@ -1,8 +1,10 @@
 import React from 'react';
-import {get, debounce} from 'lodash';
+import {get} from 'lodash';
 import WorkCard from '../../work/WorkCard/WorkCard.container';
 import {withChildBelt} from '../../hoc/Belt';
 import {withIsVisible} from '../../hoc/Scroll';
+
+import './MultiRowContainer.css';
 
 const Row = withIsVisible(
   withChildBelt(
@@ -16,10 +18,7 @@ const Row = withIsVisible(
       origin,
       isVisible
     }) => (
-      <div
-        data-cy={'container-row'}
-        className="d-flex justify-content-around justify-content-md-between px-0 px-sm-3 px-lg-5 pt-5 "
-      >
+      <div data-cy={'container-row'} className="container--row">
         {pids.map((pid, idx) => (
           <WorkCard
             cardRef={cardRef}
@@ -45,7 +44,7 @@ class MultiRowContainer extends React.Component {
   constructor() {
     super();
     this.state = {resultsPerRow: 1};
-    this.handleResize = debounce(this.handleResize, 100);
+    // this.handleResize = debounce(this.handleResize, 100, {leading: true});
   }
   componentDidMount() {
     this.handleResize();
@@ -97,7 +96,7 @@ class MultiRowContainer extends React.Component {
     }
     const rows = this.pidsToRows(pids, this.state.resultsPerRow);
     return (
-      <div className={'work-container w-100 ' + this.props.className}>
+      <div className={`multirow--container ${this.props.className}`}>
         <div ref={container => (this.refs = {...this.refs, container})}>
           {rows.map(pidList => (
             <Row

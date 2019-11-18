@@ -4,8 +4,10 @@ import Icon from '../base/Icon';
 import T from '../base/T';
 import Spinner from '../general/Spinner/Spinner.component';
 import {withWork} from '../hoc/Work';
+import Kiosk from '../base/Kiosk/Kiosk';
 
 import './orderButton.css';
+import FindBookButton from '../kiosk/WayFinder/FindBookButton';
 
 export function OrderButton(props) {
   // OrderButton default state:
@@ -58,17 +60,26 @@ export function OrderButton(props) {
   }
 
   return (
-    <Button
-      className={`orderButton ${orderState.class} ${props.className}`}
-      type={props.type}
-      size={props.size}
-      iconLeft={props.iconLeft}
-      iconRight={props.iconRight}
-      onClick={props.order}
-      dataCy="order-btn"
-    >
-      {orderState.label}
-    </Button>
+    <Kiosk
+      render={({kiosk}) => {
+        if (kiosk.enabled) {
+          return <FindBookButton pid={props.pid} />;
+        }
+        return (
+          <Button
+            className={`orderButton ${orderState.class} ${props.className}`}
+            type={props.type}
+            size={props.size}
+            iconLeft={props.iconLeft}
+            iconRight={props.iconRight}
+            onClick={props.order}
+            dataCy="order-btn"
+          >
+            {orderState.label}
+          </Button>
+        );
+      }}
+    />
   );
 }
 

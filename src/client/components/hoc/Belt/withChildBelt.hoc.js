@@ -42,7 +42,11 @@ const withChildBelt = WrappedComponent => {
       }
     };
     openWorkPreview = (work, beltName = '', rid) => {
-      if (isMobileOnly) {
+      // temporarily disable preview in kiosk mode
+      // should be enabled again when new preview for kiosk is implemented
+      if (this.props.kiosk.enabled) {
+        this.props.historyPush(work.book.pid, {slide: 0});
+      } else if (isMobileOnly) {
         this.props.historyPush(work.book.pid);
       } else if (
         work.book.pid === this.props.mountedData.parent &&
@@ -91,7 +95,8 @@ const withChildBelt = WrappedComponent => {
 
   const defaultData = {};
   const mapStateToProps = (state, ownProps) => ({
-    mountedData: state.mounts[ownProps.mount] || defaultData
+    mountedData: state.mounts[ownProps.mount] || defaultData,
+    kiosk: state.kiosk
   });
   const mapDispatchToProps = (dispatch, ownProps) => ({
     updateMount: data => {
@@ -107,8 +112,8 @@ const withChildBelt = WrappedComponent => {
         type: SCROLL_TO_COMPONENT,
         id
       }),
-    historyPush: pid => {
-      dispatch({type: HISTORY_PUSH, path: '/værk/' + pid});
+    historyPush: (pid, params) => {
+      dispatch({type: HISTORY_PUSH, path: '/værk/' + pid, params});
     }
   });
 

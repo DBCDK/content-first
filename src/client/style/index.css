@@ -1,6 +1,9 @@
 /* Global Settings */
 @import './variables.css';
 
+/* CSS class effects */
+@import './effects.css';
+
 /* Import util classes */
 @import './utils/deprecated-utils.css';
 @import './utils/color.css';
@@ -46,4 +49,5 @@ textarea {
 button:disabled,
 button[disabled] {
   color: var(--silver-chalice);
+  background-color: var(--porcelain);
 }

@@ -2,7 +2,7 @@
 
 exports[`renders without crashing 1`] = `
 <div
-  className="App "
+  className="App  "
   style={
     Object {
       "backgroundColor": "var(--white)",
@@ -19,7 +19,7 @@ exports[`renders without crashing 1`] = `
       >
         <a
           className="link widthCalc link--no-hover"
-          data-cy=""
+          data-cy="dibliofigur"
           href="/"
           onClick={[Function]}
           style={Object {}}

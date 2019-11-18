@@ -23,7 +23,8 @@ export class PaperReview extends React.Component {
     const infomediaData = review.infomedia;
 
     const loggedIn = this.props.isLoggedIn;
-    let showLink = true;
+    let showLink =
+      typeof this.props.showLink !== 'undefined' ? this.props.showLink : true;
     let permission = true;
 
     if (infomediaData) {

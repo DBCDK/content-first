@@ -4,11 +4,13 @@ import scrollToComponent from 'react-scroll-to-component';
 import Head from '../base/Head';
 import T from '../base/T';
 import Hero from '../hero/Hero.component';
+import KioskHero from '../kiosk/Hero/KioskHero.component';
 import ListsBelt from '../base/Belt/ListsBelt.container';
 import TagsBelt from '../base/Belt/TagsBelt.component';
 import SpotsContainer from '../spots/Spots.container';
 import {HISTORY_REPLACE} from '../../redux/middleware';
 import PersonalBelt from '../base/Belt/PersonalBelt.component';
+import Kiosk from '../base/Kiosk/Kiosk';
 
 class FrontPage extends React.Component {
   componentDidMount() {
@@ -66,19 +68,36 @@ class FrontPage extends React.Component {
     return (
       <div className="frontpage">
         <Head />
-        <Hero />
+        <Kiosk
+          render={({kiosk}) => {
+            if (kiosk.enabled) {
+              return <KioskHero />;
+            }
+            return <Hero />;
+          }}
+        />
+
         <PersonalBelt mount={'frontpage-because-you-read-belt-1'} />
         {this.renderBelts(belts.slice(0, 2))}
-        <ListsBelt
-          title={T({
-            component: 'list',
-            name: 'recentListsTitle',
-            renderAsHtml: true
-          })}
-          matomoTitle={'Nyeste brugerlister'}
-          mount={'frontpage-lists'}
-          sort="created"
-          limit={50}
+        <Kiosk
+          render={({kiosk}) => {
+            if (!kiosk.enabled) {
+              return (
+                <ListsBelt
+                  title={T({
+                    component: 'list',
+                    name: 'recentListsTitle',
+                    renderAsHtml: true
+                  })}
+                  matomoTitle={'Nyeste brugerlister'}
+                  mount={'frontpage-lists'}
+                  sort="created"
+                  limit={50}
+                />
+              );
+            }
+            return null;
+          }}
         />
         <PersonalBelt mount={'frontpage-because-you-read-belt-2'} />
         <SpotsContainer />

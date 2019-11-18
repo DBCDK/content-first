@@ -6,6 +6,7 @@ import BookCover from '../../general/BookCover/BookCover.component';
 import Text from '../../base/Text';
 import T from '../../base/T';
 import Icon from '../../base/Icon';
+import TruncateMarkup from 'react-truncate-markup';
 
 import {BOOKS_REQUEST} from '../../../redux/books.reducer';
 
@@ -20,7 +21,7 @@ const addEmphasisToString = (string, pattern) => {
     return (
       <span>
         {start}
-        <u>{match}</u>
+        <b>{match}</b>
         {end}
       </span>
     );
@@ -28,7 +29,10 @@ const addEmphasisToString = (string, pattern) => {
   return string;
 };
 
-const renderSuggestion = (suggestion, suggestionString) => {
+const renderSuggestion = (suggestion, suggestionString, emphasize) => {
+  const title = emphasize
+    ? addEmphasisToString(suggestion.book.title, suggestionString)
+    : suggestion.book.title;
   return (
     <div
       className="suggestion-row d-flex p-2"
@@ -36,11 +40,13 @@ const renderSuggestion = (suggestion, suggestionString) => {
     >
       <BookCover pid={suggestion.book.pid} />
       <div className="ml-3">
-        <Text type="body" variant="weight-semibold" className="mb0">
-          {addEmphasisToString(suggestion.book.title, suggestionString)}
+        <Text type="body" variant="book-title weight-semibold" className="mb0">
+          <TruncateMarkup lines={1} ellipsis="...">
+            <span>{title}</span>
+          </TruncateMarkup>
         </Text>
-        <Text type="small" className="mb0">
-          {addEmphasisToString(suggestion.book.creator, suggestionString)}
+        <Text type="small" className="creator mb0">
+          {suggestion.book.creator}
         </Text>
       </div>
     </div>
@@ -102,13 +108,29 @@ class BookSearchSuggester extends React.Component {
     this.props.onSubmit(props.suggestion);
     this.setState({value: ''});
   }
+  onBlur = () => {
+    this.setState({value: ''});
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
+  };
   render() {
     const {value, suggestions} = this.state;
-    const {className, style, suggesterRef} = this.props;
+    const {
+      className,
+      style,
+      suggesterRef,
+      onFocus,
+      placeholder,
+      emphasize = true
+    } = this.props;
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      placeholder: T({component: 'list', name: 'placeholderBookSuggester'}),
+      onFocus,
+      onBlur: this.onBlur,
+      placeholder:
+        placeholder || T({component: 'list', name: 'placeholderBookSuggester'}),
       className: 'w-100 suggestion-list__search',
       value,
       onChange: (e, change) => this.onChange(e, change),
@@ -134,7 +156,9 @@ class BookSearchSuggester extends React.Component {
             this.onSuggestionSelected(e, props)
           }
           getSuggestionValue={({book}) => book.title}
-          renderSuggestion={suggestion => renderSuggestion(suggestion, value)}
+          renderSuggestion={suggestion =>
+            renderSuggestion(suggestion, value, emphasize)
+          }
           inputProps={inputProps}
           highlightFirstSuggestion={true}
         />

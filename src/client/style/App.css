@@ -8,10 +8,20 @@
   height: 80px;
 }
 
+.App.kioskmode .Toolbar button.AddToListButton,
+.App.kioskmode .Toolbar button.Ebog,
+.App.kioskmode .Toolbar button.Lydbog,
+.App.kioskmode .Toolbar button.orderAllBtn,
+.App.kioskmode .Toolbar button.printListBtn,
+.App.kioskmode .Toolbar p.loanTitle {
+  display: none;
+}
+
 @media (min-width: 600px) {
   .App {
     min-width: 100%;
   }
+
   .container {
     min-width: calc(100% - 100px);
   }

@@ -8,6 +8,7 @@ import ListsBelt from '../../base/Belt/ListsBelt.container';
 import WorkPreview from '../WorkPreview/WorkPreview.component.js';
 
 import './WorkPage.css';
+import Kiosk from '../../base/Kiosk/Kiosk';
 
 /**
  * WorkPage
@@ -64,11 +65,27 @@ class WorkPage extends React.Component {
             }}
           />
 
-          <WorkPreview
-            className="white"
-            pid={book.pid}
-            enableLightbox={true}
-            dataCy="workpreviewCard"
+          <Kiosk
+            render={({kiosk}) => {
+              return (
+                <WorkPreview
+                  className="white"
+                  agencyId={
+                    kiosk.enabled && kiosk.configuration
+                      ? kiosk.configuration.agencyId
+                      : ''
+                  }
+                  branch={
+                    kiosk.enabled && kiosk.configuration
+                      ? kiosk.configuration.branch
+                      : ''
+                  }
+                  pid={book.pid}
+                  enableLightbox={true}
+                  dataCy="workpreviewCard"
+                />
+              );
+            }}
           />
         </div>
 

@@ -64,9 +64,19 @@ export const historyMiddleware = history => store => next => action => {
       if (store.getState().routerReducer.path !== action.path) {
         const paramsString = action.params ? paramsToString(action.params) : '';
         if (action.path === '') {
-          history.push(window.location.pathname + paramsString);
+          history.push(window.location.pathname + paramsString, {
+            pos:
+              window.history.state && window.history.state.state
+                ? window.history.state.state.pos + 1
+                : 2
+          });
         } else {
-          history.push(action.path + paramsString);
+          history.push(action.path + paramsString, {
+            pos:
+              window.history.state && window.history.state.state
+                ? window.history.state.state.pos + 1
+                : 2
+          });
           window.scrollTo(0, 0);
         }
       }
@@ -80,9 +90,19 @@ export const historyMiddleware = history => store => next => action => {
     case HISTORY_REPLACE: {
       const paramsString = action.params ? paramsToString(action.params) : '';
       if (action.path === '') {
-        history.replace(window.location.pathname + paramsString);
+        history.replace(window.location.pathname + paramsString, {
+          pos:
+            window.history.state && window.history.state.state
+              ? window.history.state.state.pos
+              : 1
+        });
       } else {
-        history.replace(action.path + paramsString);
+        history.replace(action.path + paramsString, {
+          pos:
+            window.history.state && window.history.state.state
+              ? window.history.state.state.pos
+              : 1
+        });
         window.scrollTo(0, 0);
       }
       break;

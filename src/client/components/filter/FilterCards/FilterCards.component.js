@@ -58,6 +58,9 @@ class FilterCard extends React.Component {
     const expandedClass = expanded ? 'FilterCard-expanded' : '';
     const Template = this.getTemplate(filter.template);
 
+    const borderColor = filter.border.active ? filter.border.color : null;
+    const borderClass = filter.border.active ? 'border--top' : '';
+
     return (
       <div
         className={`FilterCard__container ${className} ${expandedClass}`}
@@ -82,8 +85,10 @@ class FilterCard extends React.Component {
               }
             />
           </div>
+
           <div
-            className="FilterCard__content"
+            className={`FilterCard__content ${borderClass}`}
+            style={{borderTopColor: borderColor}}
             onClick={e => this.props.onCardClick(e)}
           >
             <Heading type="title" className="FilterCard__heading mb0 mt0">
@@ -156,30 +161,32 @@ class Filters extends React.Component {
 
     return (
       <React.Fragment>
-        <Swiper
-          {...params}
-          ref={node => {
-            if (node) {
-              this.swiper = node.swiper;
-            }
-          }}
-        >
-          {aFilters.map(filter => {
-            if (filter.show) {
-              return (
-                <FilterCard
-                  key={filter.title}
-                  expanded={filter.expanded}
-                  onCardClick={e => this.toggleCardExpanded(e, filter.title)}
-                  filter={filter}
-                  {...this.props}
-                />
-              );
-            }
-            return null;
-          })}
-          <div className="FilterCard__space" />
-        </Swiper>
+        <div className="filters--wrap">
+          <Swiper
+            {...params}
+            ref={node => {
+              if (node) {
+                this.swiper = node.swiper;
+              }
+            }}
+          >
+            {aFilters.map(filter => {
+              if (filter.show) {
+                return (
+                  <FilterCard
+                    key={filter.title}
+                    expanded={filter.expanded}
+                    onCardClick={e => this.toggleCardExpanded(e, filter.title)}
+                    filter={filter}
+                    {...this.props}
+                  />
+                );
+              }
+              return null;
+            })}
+            <div className="FilterCard__space" />
+          </Swiper>
+        </div>
         <div
           className={`Filters__dimmer ${dimmerClass}`}
           onClick={() => this.closeCards()}

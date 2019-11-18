@@ -1,5 +1,4 @@
 import React from 'react';
-import {get, some} from 'lodash';
 import BookCover from '../../general/BookCover/BookCover.component';
 import TaxDescription from '../TaxDescription.component';
 import Title from '../../base/Title';
@@ -20,6 +19,7 @@ import {HISTORY_NEW_TAB} from '../../../redux/middleware';
 import {withScrollToComponent} from '../../hoc/Scroll';
 import {withWork} from '../../hoc/Work';
 import ReviewList from '../Review/ReviewList.component';
+import Appeals from '../Appeals/Appeals.component';
 import {withChildBelt} from '../../hoc/Belt';
 
 import {trackEvent} from '../../../matomo';
@@ -126,6 +126,7 @@ const RenderCollectionButtons = ({
           type={col.type}
           icon={col.icon}
           {...props}
+          key={col.url}
         />
       )
   );
@@ -341,7 +342,6 @@ class WorkPreview extends React.Component {
                     <T component="work" name="loanTitle" />
                   </Text>
                 </div>
-
                 {work.collectionHasLoaded && !collectionIsValid && (
                   <Text type="body" className="detail-no-valid-collection">
                     <T
@@ -354,7 +354,6 @@ class WorkPreview extends React.Component {
                     />
                   </Text>
                 )}
-
                 <LoanButton
                   pid={book.pid}
                   isLoading={!work.collectionHasLoaded}
@@ -367,7 +366,6 @@ class WorkPreview extends React.Component {
                   isLoading={!work.collectionHasLoaded}
                   collectionIsValid={collectionIsValid}
                 />
-
                 <div className="work-preview__add-to-list--wrap">
                   <AddToListButton
                     className="work-preview__add-to-list"
@@ -375,7 +373,6 @@ class WorkPreview extends React.Component {
                   />
                 </div>
                 <RemindsOf onClick={() => remindsOfClick(work)} />
-
                 {!hideAppels && appeals.length > 0 && (
                   <RenderPrioTags
                     tags={prioTags}
@@ -397,21 +394,20 @@ class WorkPreview extends React.Component {
             style={{height: tabsCollapsed ? infoHeight : 'auto'}}
             data-cy="work-preview-tabs"
           >
-            {work.collectionHasLoaded &&
-              get(this.swiper, 'height') + 100 > infoHeight && (
-                <Expand
-                  title={T({component: 'general', name: 'showMore'})}
-                  onClick={() =>
-                    this.setState({
-                      tabsCollapsed: false
-                    })
-                  }
-                />
-              )}
+            {this.state.currentTabHeight + 100 > infoHeight && (
+              <Expand
+                title={T({component: 'general', name: 'showMore'})}
+                onClick={() =>
+                  this.setState({
+                    tabsCollapsed: false
+                  })
+                }
+              />
+            )}
             <Tabs
               pages={['Anmeldelser', 'Læseoplevelse']}
               swiper={swiper => (this.swiper = swiper)}
-              onUpdate={() => this.setState({})}
+              onUpdate={({height}) => this.setState({currentTabHeight: height})}
             >
               <div className="tabs tabs-page-1" data-cy="tabs-page-Anmeldelser">
                 <ReviewList
@@ -425,46 +421,7 @@ class WorkPreview extends React.Component {
                 className="tabs tabs-page-2"
                 data-cy="tabs-page-Læseoplevelse"
               >
-                {appeals.length > 0 ? (
-                  <div className="work-preview__tabs-info">
-                    <div className="work-preview__tabs-info-color" />
-                    <Text type="small">
-                      <T component="general" name="particularlyProminent" />
-                    </Text>
-                  </div>
-                ) : (
-                  <Text type="body" className="Compare_noTags">
-                    <T component="work" name="noAppeals" />
-                  </Text>
-                )}
-                {appeals.map(group => {
-                  return (
-                    <React.Fragment key={group.title}>
-                      <Text type="body" className="work-preview__tag-title">
-                        {group.title}
-                      </Text>
-                      {group.data.map(t => {
-                        const matchClass = some(priorityTagsArr, ['id', t.id])
-                          ? 'match'
-                          : '';
-
-                        return (
-                          <Link key={t.id} href="/find" params={{tags: t.id}}>
-                            <Button
-                              key={t.title}
-                              type="tertiary"
-                              size="small"
-                              className={`work-preview__tag ${matchClass}`}
-                              dataCy={'tag-' + t.title}
-                            >
-                              {t.title}
-                            </Button>
-                          </Link>
-                        );
-                      })}
-                    </React.Fragment>
-                  );
-                })}
+                <Appeals book={book} appeals={appeals} />
               </div>
             </Tabs>
           </div>

@@ -1229,6 +1229,26 @@
         "da": "Kiosken er klar til brug",
         "en": "The kiosk is ready"
       }
+    },
+    "kioskHero": {
+      "title": {"da": "Find din næste roman", "en": "Find your next book"},
+      "subtitle": {"da": "Se bøger, der minder om", "en": "See similar books"},
+      "placeholder": {
+        "da": "... en god bog, du har læst",
+        "en": "Title of a good book"
+      },
+      "searchBtn": {"da": "Vis", "en": "Show"},
+      "inspirationBtn": {"da": "Eller få inspiration her", "en": "Or get inspired here"}
+    },
+    "wayFinder": {
+      "findBook": {
+        "da": "Find bogen",
+        "en": "Find the book"
+      },
+      "theBookIsHere": {
+        "da": "Bogen står her:",
+        "en": "You can find the book here:"
+      }
     }
   },
   "units": {

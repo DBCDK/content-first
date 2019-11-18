@@ -11,6 +11,7 @@ import CreatorBelt from '../../base/Belt/CreatorBelt.component';
 import MultiRowContainer from '../../base/Belt/MultiRowContainer';
 import {withStoreBelt} from '../../hoc/Belt';
 import Role from '../../roles/Role.component';
+import Kiosk from '../../base/Kiosk/Kiosk.js';
 
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
 
@@ -106,7 +107,7 @@ class Results extends React.Component {
       .filter(t => t.type === 'QUERY')
       .map(q => q.query);
     return (
-      <div className="filter-page-results pt-5">
+      <div id="filter-page-results" className="filter-page-results pt-5">
         {allPids.length > 0 && (
           <div>
             <MultiRowContainer recommendations={allPids} origin="Fra søgning" />
@@ -135,9 +136,18 @@ class Results extends React.Component {
                   return ', ' + tag.title;
                 })}
               </Title>
-              <StoreBeltPin
-                id={tags.map(tag => tag.id).join(',')}
-                tags={tags}
+              <Kiosk
+                render={({kiosk}) => {
+                  if (!kiosk.enabled) {
+                    return (
+                      <StoreBeltPin
+                        id={tags.map(tag => tag.id).join(',')}
+                        tags={tags}
+                      />
+                    );
+                  }
+                  return null;
+                }}
               />
             </div>
             <TagsMultiRowContainer

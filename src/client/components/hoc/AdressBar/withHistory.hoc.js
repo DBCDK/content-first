@@ -21,7 +21,7 @@ const withHistory = WrappedComponent => {
     }
   };
 
-  const mapStateToProps = () => ({});
+  const mapStateToProps = state => ({router: state.routerReducer});
 
   const mapDispatchToProps = dispatch => ({
     historyPush: (path, params) => {
