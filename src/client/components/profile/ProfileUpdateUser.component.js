@@ -47,6 +47,13 @@ export default class ProfileUpdateUser extends React.Component {
       <div className="d-flex">
         <div className="profile__accept-buttonbuffer" />
         <button
+          className="btn Button profile__cancel-button"
+          onClick={this.props.cancelLogin}
+          style={{backgroundColor: 'var(--korn)'}}
+        >
+          <T component="general" name="cancel" />
+        </button>
+        <button
           className={'btn Button profile__accept-button'}
           style={checkActive()}
           onClick={this.onSubmit}

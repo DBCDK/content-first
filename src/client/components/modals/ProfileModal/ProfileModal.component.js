@@ -8,12 +8,14 @@ import ProfileUpdateUser from '../../profile/ProfileUpdateUser.component';
 
 import {
   ADD_PROFILE_IMAGE,
+  DELETE_USER_PROFILE,
   ON_LOGOUT_REQUEST,
   SAVE_USER_PROFILE
 } from '../../../redux/user.reducer';
 import {CLOSE_MODAL} from '../../../redux/modal.reducer';
 
 import './ProfileModal.css';
+import {HISTORY_PUSH_FORCE_REFRESH} from "../../../redux/middleware";
 
 export class ProfileModal extends React.Component {
   onHandleChange = val => {
@@ -35,6 +37,13 @@ export class ProfileModal extends React.Component {
     this.props.onClose();
     this.props.logout();
   };
+
+  cancelLogin = () => {
+    this.props.onClose();
+    this.props.deleteUser(DELETE_USER_PROFILE);
+    this.props.refresh(HISTORY_PUSH_FORCE_REFRESH, window.location.href);
+  };
+
   showAgeLimitWindow = () => {
     return (
       <div
@@ -208,11 +217,13 @@ export class ProfileModal extends React.Component {
                 </div>
               </div>
               <div className="profile__accept-line" />
+
               <ProfileUpdateUser
                 imageId={this.props.profileImageId}
                 name={this.state.username}
                 acceptedAge={this.props.over13}
                 acceptedTerms={this.props.acceptedTerms}
+                cancelLogin={this.cancelLogin}
                 updateProfile={this.updateProfile}
                 error={this.props.error}
                 isSaving={this.props.isSaving}
@@ -326,11 +337,11 @@ export class ProfileModal extends React.Component {
     return (
       <div className="profile__modal-container">
         {this.state.page === 'accept' &&
-          this.props.over13 &&
-          this.showAcceptWindow(this.state.username)}
+        this.props.over13 &&
+        this.showAcceptWindow(this.state.username)}
         {this.state.page === 'rules' &&
-          this.props.over13 &&
-          this.showRulesWindow()}
+        this.props.over13 &&
+        this.showRulesWindow()}
         {!this.props.over13 && this.showAgeLimitWindow()}
       </div>
     );
@@ -347,7 +358,7 @@ export const mapStateToProps = state => ({
   profileImageId: state.userReducer.tempImageId || state.userReducer.image,
   tempImageId: state.userReducer.tempImageId,
   over13: state.userReducer.over13,
-  agencyName: state.userReducer.agencyName
+  agencyName: state.userReducer.agencyName,
 });
 
 export const mapDispatchToProps = dispatch => {
@@ -355,7 +366,9 @@ export const mapDispatchToProps = dispatch => {
     onClose: () => dispatch({type: CLOSE_MODAL, modal: 'profile'}),
     addImage: image => dispatch({type: ADD_PROFILE_IMAGE, image}),
     saveUser: user => dispatch({type: SAVE_USER_PROFILE, user}),
-    logout: () => dispatch({type: ON_LOGOUT_REQUEST})
+    logout: () => dispatch({type: ON_LOGOUT_REQUEST}),
+    deleteUser: type => dispatch({type}),
+    refresh: (type, path) => dispatch({type, path})
   };
 };
 export default connect(
