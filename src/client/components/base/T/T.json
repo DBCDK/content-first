@@ -119,7 +119,7 @@
         "en": "create"
       },
       "createdThe": {
-        "da": "Oprettede d.",
+        "da": "Oprettet d.",
         "en": "Created the"
       },
       "addedThe": {
@@ -1001,7 +1001,7 @@
         "en": "%s %s is ordered"
       },
       "booksOrderedText": {
-        "da": "Du får besked fra dit bibliotek, når de er klar til afhentning",
+        "da": "Du får besked fra dit bibliotek, når %s er klar til afhentning",
         "en": ""
       },
       "anErrorOccured": {
