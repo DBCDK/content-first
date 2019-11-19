@@ -21,12 +21,12 @@ const homeStatusInfo = holdings => {
 
 const HomeStatusComponent = ({icon, color, text}) => {
   return (
-    <div className="home-status-indicator">
+    <span className="home-status-indicator">
       <i className={'material-icons ' + color}>{icon}</i>
       <Text>
         <T component="homeStatus" name={text} />
       </Text>
-    </div>
+    </span>
   );
 };
 

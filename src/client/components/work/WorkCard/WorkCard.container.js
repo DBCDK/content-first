@@ -194,8 +194,8 @@ class WorkCard extends React.Component {
             </div>
           </BookCover>
 
+          <HomeStatus pid={pid} />
           <Text className="work-card__tax-description">
-            <HomeStatus pid={pid} />
             <TaxDescription text={tax_description} />
           </Text>
         </div>

@@ -21,7 +21,7 @@
     display: flex;
     justify-content: left;
     align-items: center;
-    margin-top: 6px;
+    margin-top: 12px;
 }
 
 .home-status-indicator i.material-icons {
