@@ -21,7 +21,7 @@ const homeStatusInfo = holdings => {
 
 const HomeStatusComponent = ({icon, color, text}) => {
   return (
-    <span className="home-status-indicator">
+    <span className="home-status-indicator" data-cy="home-status-indicator">
       <i className={'material-icons ' + color}>{icon}</i>
       <Text>
         <T component="homeStatus" name={text} />

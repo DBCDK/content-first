@@ -32,7 +32,10 @@ const wayFinderBox = (dispatch, holdings) => {
       <Text type="large" className="wayFinder__modal--subtitle">
         <T component="wayFinder" name="theBookIsHere" />
       </Text>
-      <div className="wayFinder__modal--wayfinder-list">
+      <div
+        className="wayFinder__modal--wayfinder-list"
+        data-cy={'wayfinder-modal'}
+      >
         {fetchWaysFromHoldings(holdings).map(way => (
           <Title key={way} type="title4">
             {way}
@@ -74,7 +77,10 @@ const openWayFinderModal = (dispatch, title, ways) => {
 
 const FindBookButtonComponent = props => {
   return (
-    <div className="find-book-button-container">
+    <div
+      className="find-book-button-container"
+      data-cy="find-book-button-container"
+    >
       <Button
         size="medium"
         type="quaternary"
