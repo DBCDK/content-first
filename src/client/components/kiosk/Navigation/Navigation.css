@@ -88,9 +88,3 @@
   font-size: 48px;
   color: var(--petroleum);
 }
-
-/* Footer is replaced by a "space buffer" for the bottom fixed navigation bar in kiosk mode */
-
-.navigation--placeholder {
-  height: 128px;
-}

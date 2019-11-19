@@ -213,10 +213,10 @@ class App extends Component {
 
         <Kiosk
           render={({kiosk}) => {
-            if (kiosk.enabled) {
-              return <div className="navigation--placeholder" />;
+            if (!kiosk.enabled) {
+              return footer && <Footer />;
             }
-            return footer && <Footer />;
+            return null;
           }}
         />
       </div>

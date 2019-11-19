@@ -23,6 +23,8 @@ export class PaperReview extends React.Component {
     const infomediaData = review.infomedia;
 
     const loggedIn = this.props.isLoggedIn;
+    const isKiosk = this.props.isKiosk;
+
     let showLink =
       typeof this.props.showLink !== 'undefined' ? this.props.showLink : true;
     let permission = true;
@@ -72,6 +74,9 @@ export class PaperReview extends React.Component {
     const ratingShape = source === 'Politiken' ? 'favorite' : 'star';
 
     function allowAccess() {
+      if (permission && isKiosk) {
+        return 'fullAccess';
+      }
       if (loggedIn) {
         if (permission) {
           return 'fullAccess';
@@ -177,7 +182,8 @@ export class PaperReview extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    isLoggedIn: state.userReducer.isLoggedIn
+    isLoggedIn: state.userReducer.isLoggedIn,
+    isKiosk: state.kiosk.enabled
   };
 }
 
