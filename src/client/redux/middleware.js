@@ -85,10 +85,10 @@ export const historyMiddleware = history => store => next => action => {
       if (store.getState().routerReducer.path !== action.path) {
         const paramsString = action.params ? paramsToString(action.params) : '';
         window.location.href = action.path + paramsString;
-        if( action.path === "http://localhost:3000/profil/rediger#!"){
+        if (action.path === 'http://localhost:3000/profil/rediger#!') {
           // user has just deleted profile >
           // return to main page as there is no profile page anymore
-        // window.location.href="/";
+          // window.location.href="/";
         }
       }
       break;

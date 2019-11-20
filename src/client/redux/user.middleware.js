@@ -102,7 +102,10 @@ export const userMiddleware = store => next => action => {
         try {
           await deleteUser(openplatformId);
           store.dispatch({type: DELETE_USER_PROFILE_SUCCESS});
-          store.dispatch({type: HISTORY_PUSH_FORCE_REFRESH, path: window.location.href});
+          store.dispatch({
+            type: HISTORY_PUSH_FORCE_REFRESH,
+            path: window.location.href
+          });
         } catch (error) {
           store.dispatch({type: DELETE_USER_PROFILE_ERROR, error});
         }

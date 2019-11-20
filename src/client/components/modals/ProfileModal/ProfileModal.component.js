@@ -332,7 +332,6 @@ export class ProfileModal extends React.Component {
     this.setState({username: !this.props.username ? '' : this.props.username});
   }
 
-
   render() {
     return (
       <div className="profile__modal-container">
