@@ -5,5 +5,6 @@ describe('Logout test', function() {
     cy.visit('/');
     cy.get('[data-cy=user-form-over13]');
     cy.get('[data-cy=profile-cancel-btn]').click();
+    cy.get('[data-cy=topbar-login-btn] > span').contains("Log ind");
   });
 });
