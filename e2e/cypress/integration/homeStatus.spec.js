@@ -1,5 +1,6 @@
 describe('kiosk', function() {
   const setKioskMode = () => {
+    cy.viewport(1080, 1920);
     cy.fixture('kiosk/initialStateKioskEnabledWithClientId.json').as(
       'initialState'
     );
