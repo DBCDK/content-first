@@ -41,7 +41,6 @@ export class ProfileModal extends React.Component {
   cancelLogin = () => {
     this.props.onClose();
     this.props.deleteUser();
-    this.props.refresh(window.location.href);
   };
 
   showAgeLimitWindow = () => {
@@ -333,6 +332,7 @@ export class ProfileModal extends React.Component {
     this.setState({username: !this.props.username ? '' : this.props.username});
   }
 
+
   render() {
     return (
       <div className="profile__modal-container">
@@ -367,8 +367,7 @@ export const mapDispatchToProps = dispatch => {
     addImage: image => dispatch({type: ADD_PROFILE_IMAGE, image}),
     saveUser: user => dispatch({type: SAVE_USER_PROFILE, user}),
     logout: () => dispatch({type: ON_LOGOUT_REQUEST}),
-    deleteUser: () => dispatch({type: DELETE_USER_PROFILE}),
-    refresh: path => dispatch({type: HISTORY_PUSH_FORCE_REFRESH, path})
+    deleteUser: () => dispatch({type: DELETE_USER_PROFILE})
   };
 };
 export default connect(

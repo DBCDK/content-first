@@ -48,6 +48,7 @@ export default class ProfileUpdateUser extends React.Component {
         <div className="profile__accept-buttonbuffer" />
         <button
           className="btn Button profile__cancel-button"
+          data-cy="profile-cancel-btn"
           onClick={this.props.cancelLogin}
         >
           <T component="general" name="cancel" />
