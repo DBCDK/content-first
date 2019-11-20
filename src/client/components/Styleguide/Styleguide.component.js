@@ -81,7 +81,7 @@ export default class Styleguide extends React.Component {
               <Color title="petroleum" hex="#00414b" />
               <Color title="elm" hex="#1d768a" />
               <Color title="due" hex="#74a9ff" />
-              <Color title="malibu" hex="#74a9ff" />
+              <Color title="malibu" hex="#99c0ff" />
               <Color title="french pass" hex="#bdd5fd" />
               <Color title="pomegranate" hex="#f2432c" />
               <Color title="fersken" hex="#f37362" />
