@@ -104,7 +104,7 @@ export const userMiddleware = store => next => action => {
           store.dispatch({type: DELETE_USER_PROFILE_SUCCESS});
           store.dispatch({
             type: HISTORY_PUSH_FORCE_REFRESH,
-            path: window.location.href
+            path: action.path ? action.path : '/'
           });
         } catch (error) {
           store.dispatch({type: DELETE_USER_PROFILE_ERROR, error});

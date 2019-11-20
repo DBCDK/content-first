@@ -15,7 +15,6 @@ import {
 import {CLOSE_MODAL} from '../../../redux/modal.reducer';
 
 import './ProfileModal.css';
-import {HISTORY_PUSH_FORCE_REFRESH} from '../../../redux/middleware';
 
 export class ProfileModal extends React.Component {
   onHandleChange = val => {
@@ -40,7 +39,7 @@ export class ProfileModal extends React.Component {
 
   cancelLogin = () => {
     this.props.onClose();
-    this.props.deleteUser();
+    this.props.deleteUser(window.location.href);
   };
 
   showAgeLimitWindow = () => {
@@ -366,7 +365,7 @@ export const mapDispatchToProps = dispatch => {
     addImage: image => dispatch({type: ADD_PROFILE_IMAGE, image}),
     saveUser: user => dispatch({type: SAVE_USER_PROFILE, user}),
     logout: () => dispatch({type: ON_LOGOUT_REQUEST}),
-    deleteUser: () => dispatch({type: DELETE_USER_PROFILE})
+    deleteUser: path => dispatch({type: DELETE_USER_PROFILE, path: path})
   };
 };
 export default connect(
