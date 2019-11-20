@@ -1,9 +1,23 @@
 import React from 'react';
+import Kiosk from '../../base/Kiosk/Kiosk.js';
+import {get} from 'lodash';
+
 import {withIsVisible, withScrollToComponent} from '../../hoc/Scroll';
 import {withChildBelt} from '../../hoc/Belt';
 import {withQueryToPids} from '../../hoc/Recommender';
 import WorkSlider from './WorkSlider.component';
 import Title from '../Title';
+
+const Result = withQueryToPids(props => (
+  <WorkSlider
+    {...props}
+    pids={props.pids}
+    onMoreLikeThisClick={props.openSimilarBelt}
+    onWorkClick={props.openWorkPreview}
+    className=""
+    origin={`Fra søgning på forfatter ${props.query}`}
+  />
+));
 
 export class CreatorBelt extends React.Component {
   render() {
@@ -18,18 +32,17 @@ export class CreatorBelt extends React.Component {
           <strong className="mr-2">Skrevet af</strong>
           <span>{this.props.query}</span>
         </Title>
-        <WorkSlider
-          {...this.props}
-          pids={this.props.pids}
-          onMoreLikeThisClick={this.props.openSimilarBelt}
-          onWorkClick={this.props.openWorkPreview}
-          className=""
-          origin={`Fra søgning på forfatter ${this.props.query}`}
+        <Kiosk
+          render={({kiosk}) => (
+            <Result
+              {...this.props}
+              branch={get(kiosk, 'configuration.branch')}
+              agencyId={get(kiosk, 'configuration.agencyId')}
+            />
+          )}
         />
       </div>
     );
   }
 }
-export default withChildBelt(
-  withScrollToComponent(withIsVisible(withQueryToPids(CreatorBelt)))
-);
+export default withChildBelt(withScrollToComponent(withIsVisible(CreatorBelt)));

@@ -73,19 +73,18 @@ class Holdings {
       const q = this.createQuery(agencyId, branch, recordIds);
       const result = await request.get(this.config.holdings.url).query({q});
       const holdingsData = this.extractHoldingsData(result.body);
-      const holdingsDataMap = {};
-      holdingsData.forEach(
-        entry => (holdingsDataMap[entry.bibliographicRecordId] = entry)
+      const recordIdToHoldingsMap = holdingsData.reduce(
+        (map, holding) => ({...map, [holding.bibliographicRecordId]: holding}),
+        {}
       );
-      return recordIds.map(
-        recordId =>
-          holdingsDataMap[recordId] || {
-            agencyId: agencyId,
-            branch: branch,
-            bibliographicRecordId: recordId,
-            onShelf: false
-          }
-      );
+      const pidToHoldingMap = pids.reduce((map, pid) => {
+        const recordId = this.getRecordId(pid);
+        return {
+          ...map,
+          [pid]: recordIdToHoldingsMap[recordId]
+        };
+      }, {});
+      return pidToHoldingMap;
     } catch (e) {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
       this.logger.log.error({

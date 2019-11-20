@@ -1,0 +1,24 @@
+[
+  {
+    "APost": true,
+    "author": "Stephen King (f. 1947)",
+    "bibIdsInWork": ["50746798", "51040104", "51274210", "51339754"],
+    "loans": 2684,
+    "order": 0,
+    "pid": "870970-basis:50746798",
+    "title": "22.11.63",
+    "type": "BOOK",
+    "workid": "work:1441280"
+  },
+  {
+    "APost": true,
+    "author": "Stephen King (f. 1947)",
+    "bibIdsInWork": ["51578031", "52111749", "52251028"],
+    "loans": 2552,
+    "order": 1,
+    "pid": "870970-basis:51578031",
+    "title": "Joyland",
+    "type": "BOOK",
+    "workid": "work:1473836"
+  }
+]

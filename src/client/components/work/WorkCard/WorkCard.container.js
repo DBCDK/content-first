@@ -124,7 +124,7 @@ class WorkCard extends React.Component {
       <div
         ref={cardRef || null}
         className={`work-card ${highlightClass} ${className}`}
-        data-cy={this.props['data-cy'] || 'workcard'}
+        data-cy={this.props['data-cy'] || `workcard-${pid}`}
         data-hj-ignore-attributes
         onTouchStart={this.handleLongPress}
         onTouchEnd={this.handleLongRelease}

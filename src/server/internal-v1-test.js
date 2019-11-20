@@ -458,4 +458,33 @@ router.route('/wipeStorage').get(
   })
 );
 
+router.route('/nock/idmapper').post(
+  asyncMiddleware(async (req, res) => {
+    const nock = require('nock');
+    const {status, body} = req.body;
+    nock(config.idmapper.url)
+      .post('/map/pid-to-workpids')
+      .reply(status, body);
+    res.status(200).send('OK');
+  })
+);
+router.route('/nock/holdingssolr').post(
+  asyncMiddleware(async (req, res) => {
+    const nock = require('nock');
+    const {status, body} = req.body;
+    nock(config.holdings.url)
+      .get(/.*/)
+      .reply(status, body);
+    res.status(200).send('OK');
+  })
+);
+
+router.route('/nock/cleanAll').post(
+  asyncMiddleware(async (req, res) => {
+    const nock = require('nock');
+    nock.cleanAll();
+    res.status(200).send('OK');
+  })
+);
+
 module.exports = router;

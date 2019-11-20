@@ -1,5 +1,6 @@
 import React from 'react';
 import request from 'superagent';
+import {difference} from 'lodash';
 
 /**
  * A HOC that makes the enhanced component take a search query as input prop,
@@ -20,6 +21,9 @@ import request from 'superagent';
  * // the search result may be lazy-loaded using the isVisible prop.
  * // if isVisible=false, search request is not sent until isVisible=true
  * <GreatBooks query="hest" isVisible={false}/>
+ *
+ * // One may filter on a specific branch
+ * <GreatBooks query="hest" branch="Hovedbiblioteket" agencyId="710100" />
  */
 const withQueryToPids = WrappedComponent => {
   const Wrapped = class extends React.Component {
@@ -34,27 +38,64 @@ const withQueryToPids = WrappedComponent => {
     componentDidUpdate() {
       this.fetch();
     }
-    async fetch() {
+    fetch = async () => {
       if (
         (this.props.isVisible || typeof this.props.isVisible === 'undefined') &&
-        this.fetched !== this.props.query
+        !this.state.isFetching &&
+        (this.fetched !== this.props.query ||
+          this.fetchedBranch !== this.props.branch ||
+          this.fetchedAgencyId !== this.props.agencyId)
       ) {
-        this.fetched = this.props.query;
-        this.setState({isFetching: true, pids: []});
-        const result = await request.get('/v1/searcher').query({
-          query: `"${this.props.query}"`,
-          rows: 200,
-          field: 'author',
-          exact: true,
-          merge_workid: true
-        });
+        try {
+          this.fetched = this.props.query;
+          this.fetchedBranch = this.props.branch;
+          this.fetchedAgencyId = this.props.agencyId;
+          this.setState({isFetching: true, pids: []});
+          const resultAll = (await request.get('/v1/searcher').query({
+            query: `"${this.props.query}"`,
+            rows: 200,
+            field: 'author',
+            exact: true,
+            merge_workid: true
+          })).body.map(entry => entry.pid);
 
-        this.setState({
-          isFetching: false,
-          pids: result.body.map(entry => entry.pid)
-        });
+          if (this.fetchedBranch && this.fetchedAgencyId) {
+            // Fetch books available at specific branch
+            // and make sure they occur first in the list
+            const holdings = (await request.get('/v1/holdings').query({
+              pid: resultAll,
+              branch: this.fetchedBranch,
+              agencyId: this.fetchedAgencyId
+            })).body;
+
+            const resultInBranch = resultAll.filter(
+              pid =>
+                holdings[pid].filter(
+                  holding => holding.onShelf && holding.type.includes('Bog')
+                ).length > 0
+            );
+
+            const resultNotInBranch = difference(resultAll, resultInBranch);
+            const result = [...resultInBranch, ...resultNotInBranch];
+            this.setState({
+              isFetching: false,
+              pids: result
+            });
+          } else {
+            this.setState({
+              isFetching: false,
+              pids: resultAll
+            });
+          }
+        } catch (e) {
+          this.setState({
+            isFetching: false,
+            pids: [],
+            error: 'Something went wrong'
+          });
+        }
       }
-    }
+    };
 
     render() {
       return <WrappedComponent {...this.props} {...this.state} />;
