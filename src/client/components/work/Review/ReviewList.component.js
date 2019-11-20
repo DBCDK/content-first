@@ -4,6 +4,7 @@ import PaperReview from './PaperReview.component';
 import Icon from '../../base/Icon';
 import Text from '../../base/Text';
 import T from '../../base/T';
+import Kiosk from '../../base/Kiosk/Kiosk';
 import SkeletonText from '../../base/Skeleton/Text';
 import {timestampToShortDate} from '../../../utils/dateTimeFormat';
 import './Review.css';
@@ -36,6 +37,7 @@ class ReviewList extends React.Component {
 
   renderReviewList() {
     const reviews = this.props.lectorReviews;
+
     let paperReviews = [];
     let libraryReview = [];
     const litteratursidenReview = this.renderLitteratursidenReview();
@@ -71,49 +73,62 @@ class ReviewList extends React.Component {
   }
 
   renderLitteratursidenReview() {
-    return this.props.reviews.map((rev, key) => {
-      let date =
-        (rev.creator.split(',')[1] && rev.creator.split(',')[1]) || null;
-      date = date
-        ? timestampToShortDate(
-            new Date(
-              date.split('-')[0],
-              parseInt(date.split('-')[1], 10) - 1,
-              date.split('-')[2]
-            )
-          )
-        : null;
+    return (
+      <Kiosk
+        render={({kiosk}) => {
+          if (!kiosk.enabled) {
+            return this.props.reviews.map((rev, key) => {
+              let date =
+                (rev.creator.split(',')[1] && rev.creator.split(',')[1]) ||
+                null;
+              date = date
+                ? timestampToShortDate(
+                    new Date(
+                      date.split('-')[0],
+                      parseInt(date.split('-')[1], 10) - 1,
+                      date.split('-')[2]
+                    )
+                  )
+                : null;
 
-      return (
-        <div className="review_list__review mb-3" key={key}>
-          <span className="review_list__review__details ">
-            <Text type="body" variant="weight-semibold" className="mb0">
-              {rev.creator.includes('Litteratursiden')
-                ? 'Litteratursiden'
-                : rev.creator}
-            </Text>
+              return (
+                <div className="review_list__review mb-3" key={key}>
+                  <span className="review_list__review__details ">
+                    <Text type="body" variant="weight-semibold" className="mb0">
+                      {rev.creator.includes('Litteratursiden')
+                        ? 'Litteratursiden'
+                        : rev.creator}
+                    </Text>
 
-            <Text type="body" className="d-flex Review__block--lector mb-1">
-              <Button
-                type="link"
-                size="medium"
-                onClick={() => {}}
-                target="_blank"
-                rel="noopener noreferrer"
-                href={rev.url}
-              >
-                <T component="work" name={'readReview'} />
-              </Button>
-            </Text>
-          </span>
-          {date && (
-            <Text type="small" className="due-txt mb0">
-              {date}
-            </Text>
-          )}
-        </div>
-      );
-    });
+                    <Text
+                      type="body"
+                      className="d-flex Review__block--lector mb-1"
+                    >
+                      <Button
+                        type="link"
+                        size="medium"
+                        onClick={() => {}}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={rev.url}
+                      >
+                        <T component="work" name={'readReview'} />
+                      </Button>
+                    </Text>
+                  </span>
+                  {date && (
+                    <Text type="small" className="due-txt mb0">
+                      {date}
+                    </Text>
+                  )}
+                </div>
+              );
+            });
+          }
+          return [];
+        }}
+      />
+    );
   }
 
   render() {

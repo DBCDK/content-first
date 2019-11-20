@@ -153,11 +153,11 @@ export const fetchStats = async () => {
  * @returns {Promise<any[] | never>}
  */
 export const fetchReviews = (pids, store) => {
-  const books = store.getState().booksReducer.books;
-  const authenticatedToken = get(
-    store.getState(),
-    'userReducer.openplatformToken'
-  );
+  const state = store.getState();
+  const books = state.booksReducer.books;
+
+  const authenticatedToken = get(state, 'userReducer.openplatformToken');
+
   const booksToBeFetched = pids.map(pid => books[pid]);
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
   return Promise.all(
@@ -176,25 +176,39 @@ export const fetchReviews = (pids, store) => {
           access_token: await fetchAnonymousToken()
         });
 
-        if (authenticatedToken) {
-          const pidsInRef = ref.book.reviews.data;
+        // Set auth token if user is logged in, else use anonymous token
+        const access_token = authenticatedToken
+          ? authenticatedToken
+          : await fetchAnonymousToken();
 
-          const reviewsFromPids = await Promise.all(
-            pidsInRef.map(async pid => {
-              try {
-                return await openplatform.infomedia({
-                  pid: pid,
-                  access_token: authenticatedToken
-                });
-              } catch (e) {
-                return {statusCode: e.statusCode};
-              }
-            })
-          );
-          result.forEach((e, index) => {
-            e.infomedia = reviewsFromPids[index];
-          });
-        }
+        /*
+          Check if kioskmode and if, get libraryCode from kiosk config.
+          This will allow to fetch infomedia articles with an anonymous token.
+          (user not logged in)
+        */
+        const libraryCode = state.kiosk.enabled
+          ? get(state, 'kiosk.configuration.agencyId')
+          : null;
+
+        const pidsInRef = ref.book.reviews.data;
+
+        const reviewsFromPids = await Promise.all(
+          pidsInRef.map(async pid => {
+            try {
+              return await openplatform.infomedia({
+                pid,
+                libraryCode,
+                access_token
+              });
+            } catch (e) {
+              return {statusCode: e.statusCode};
+            }
+          })
+        );
+        result.forEach((e, index) => {
+          e.infomedia = reviewsFromPids[index];
+        });
+
         return {
           book: {
             pid: ref.book.pid,

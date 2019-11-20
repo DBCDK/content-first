@@ -67,26 +67,6 @@ const MenuEntry = withList(
 
 export class AddToListButton extends React.Component {
   state = {show: false};
-  componentDidMount() {
-    document.addEventListener('mouseup', this.forceClose);
-    document.addEventListener('scroll', this.dropdownDirection);
-  }
-  componentWillUnmount() {
-    window.removeEventListener('mouseup', this.forceClose);
-    window.removeEventListener('scroll', this.dropdownDirection);
-  }
-
-  // Check if a work exist in a list
-  pidInList(pid, list) {
-    let status = false;
-    list.forEach(listWork => {
-      if (listWork.pid === pid) {
-        status = true;
-      }
-    });
-    return status;
-  }
-
   // Force dropdown to show
   forceOpen = () => {
     if (!this.state.show) {
@@ -96,6 +76,9 @@ export class AddToListButton extends React.Component {
 
   // Force dropdown to close
   forceClose = e => {
+    if (e.type === 'click') {
+      this.setState({show: false});
+    }
     if (this.dropdown && this.dropdown.contains(e.target)) {
       // inside click
       return;
@@ -104,7 +87,6 @@ export class AddToListButton extends React.Component {
       this.setState({show: false});
     }
   };
-
   dropdownDirection = () => {
     if (this.dropdown && this.listContainer) {
       const btn = this.listContainer.getBoundingClientRect();
@@ -121,6 +103,27 @@ export class AddToListButton extends React.Component {
       }
     }
   };
+
+  componentDidMount() {
+    document.addEventListener('mouseup', this.forceClose);
+    document.addEventListener('scroll', this.dropdownDirection);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('mouseup', this.forceClose);
+    window.removeEventListener('scroll', this.dropdownDirection);
+  }
+
+  // Check if a work exist in a list
+  pidInList(pid, list) {
+    let status = false;
+    list.forEach(listWork => {
+      if (listWork.pid === pid) {
+        status = true;
+      }
+    });
+    return status;
+  }
 
   // Title for addToList button
   constructTitle(defaultTitle, customLists, systemLists) {

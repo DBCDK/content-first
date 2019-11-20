@@ -103,12 +103,12 @@ class ListCard extends React.Component {
               <div className="list-card-summary">
                 <TruncateMarkup lines={3}>
                   <span>
-                    <Text className="list-card-about mb-1" type="large">
+                    <p className="list-card-about mb-1 Text Text__large">
                       {list.title}
-                    </Text>
-                    <Text className="list-card-about" type="body">
+                    </p>
+                    <p className="list-card-about Text Text__body">
                       {list.description}
-                    </Text>
+                    </p>
                   </span>
                 </TruncateMarkup>
               </div>

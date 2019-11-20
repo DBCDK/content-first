@@ -119,7 +119,7 @@
         "en": "create"
       },
       "createdThe": {
-        "da": "Oprettede d.",
+        "da": "Oprettet d.",
         "en": "Created the"
       },
       "addedThe": {
@@ -1001,7 +1001,7 @@
         "en": "%s %s is ordered"
       },
       "booksOrderedText": {
-        "da": "Du får besked fra dit bibliotek, når de er klar til afhentning",
+        "da": "Du får besked fra dit bibliotek, når %s er klar til afhentning",
         "en": ""
       },
       "anErrorOccured": {
@@ -1248,6 +1248,24 @@
       "theBookIsHere": {
         "da": "Bogen står her:",
         "en": "You can find the book here:"
+      }
+    },
+    "homeStatus": {
+      "onShelf": {
+        "da": "På hylden",
+        "en": "On shelf"
+      },
+      "notForLoan": {
+        "da": "Kan ikke lånes",
+        "en": "Not for loan"
+      },
+      "onLoan": {
+        "da": "Udlånt",
+        "en": "On loan"
+      },
+      "notAvailable": {
+        "da": "Haves ikke",
+        "en": "Not available"
       }
     }
   },

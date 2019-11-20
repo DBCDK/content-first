@@ -65,7 +65,7 @@
       "loaded": false,
       "clientId": "some-client-id",
       "clientSecret": "some-client-secret",
-      "configuration": {"branch": "Hovedbiblioteket", "agencyId": "710100"}
+      "configuration": {"agencyId": "710100", "branch": "Hovedbiblioteket"}
     }
   }
 }

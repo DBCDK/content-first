@@ -165,3 +165,11 @@
     display: none;
   }
 }
+
+.work-card__content .home-status-indicator .material-icons {
+  margin-left: -2px;
+}
+
+.work-card__content .home-status-indicator .Text {
+  font-weight: 600;
+}

@@ -8,7 +8,7 @@
 
 .compare-books .cards {
   display: flex;
-  justify-content: spae-between;
+  justify-content: space-between;
   flex-wrap: nowrap;
 }
 
@@ -115,8 +115,10 @@
 }
 
 .compare_appeals {
-  padding: 0px var(--2pt) var(--1pt) var(--2pt);
+  padding: 0 var(--2pt) var(--1pt) var(--2pt);
   background-color: var(--concrete);
+  pointer-events: none;
+  cursor: default;
 }
 
 .compare_appeals .compare_tag {
