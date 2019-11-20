@@ -206,7 +206,11 @@ export function OrderModal(props) {
           </div>
           {orderSuccess > 0 && (
             <div>
-              <T component="order" name="booksOrderedText" />
+              <T
+                component="order"
+                name="booksOrderedText"
+                vars={[props.orders.length > 1 ? 'de' : 'den']}
+              />
             </div>
           )}
         </div>
@@ -315,6 +319,7 @@ export function OrderModal(props) {
     </Modal>
   );
 }
+
 export function mapStateToProps(state) {
   return {
     orders: Object.values(state.orderReducer.orders).filter(
@@ -328,6 +333,7 @@ export function mapStateToProps(state) {
       false
   };
 }
+
 export function mapDispatchToProps(dispatch) {
   return {
     onChangeBranch: o => {
@@ -344,6 +350,7 @@ export function mapDispatchToProps(dispatch) {
     }
   };
 }
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
