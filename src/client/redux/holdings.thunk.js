@@ -12,7 +12,6 @@ export const fetchHoldings = (agencyId, branch, pid) => async dispatch => {
   try {
     dispatch({type: FETCH_HOLDINGS, pid});
     const holdings = await fetchHoldingsFromEndpoint(agencyId, branch, pid);
-    console.log({holdings});
     dispatch({type: FETCH_HOLDINGS_SUCCESS, pid, holdings: holdings[pid]});
   } catch (e) {
     dispatch({

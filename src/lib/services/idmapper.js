@@ -42,14 +42,8 @@ class IDMapper {
       const result = await request
         .post(`${this.config.idmapper.url}/map/pid-to-workpids`)
         .send(pids);
-
-      console.log(
-        `${this.config.idmapper.url}/map/pid-to-workpids`,
-        JSON.stringify(result.body)
-      );
       return result.body;
     } catch (e) {
-      console.log(e);
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
       this.logger.log.error({
         source: 'idmapper',
