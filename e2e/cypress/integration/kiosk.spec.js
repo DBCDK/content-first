@@ -10,12 +10,12 @@ const initSearchTest = holdings => {
 
   cy.route(
     'GET',
-    'http://localhost:3000/v1/searcher?query="Stephen King (f. 1947)"*',
+    '/v1/searcher?query="Stephen King (f. 1947)"*',
     '@stephenKingResponse'
   );
   cy.route(
     'GET',
-    'http://localhost:3000/v1/holdings?pid=870970-basis:50746798&pid=870970-basis:51578031&branch=Hovedbiblioteket&agencyId=710100',
+    '/v1/holdings?pid=870970-basis:50746798&pid=870970-basis:51578031&branch=Hovedbiblioteket&agencyId=710100',
     () => {
       return holdings;
     }
