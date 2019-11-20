@@ -1,0 +1,34 @@
+
+.home-status-indicator {
+    --red: #f37362;
+    --yellow: #fcbe45;
+    --green: #81c793;
+}
+
+.home-status-indicator .red {
+    color: var(--red);
+}
+
+.home-status-indicator .yellow {
+    color: var(--yellow);
+}
+
+.home-status-indicator .green {
+    color: var(--green);
+}
+
+.home-status-indicator {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.home-status-indicator i.material-icons {
+    font-size: 18px;
+}
+
+.home-status-indicator .Text {
+    font-size: 12px;
+    margin-left: 2px;
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import {Parallax} from 'react-parallax';
+
 import './KioskHero.css';
 
 import Title from '../../base/Title';
@@ -13,7 +15,7 @@ import withHistory from '../../hoc/AdressBar/withHistory.hoc';
 const RoundLabel = () => {
   return (
     <div
-      className="RoundLabel wave"
+      className="RoundLabel waves-effect"
       onClick={() => {
         scroll(1096);
       }}
@@ -28,7 +30,9 @@ export class KioskHero extends React.Component {
   state = {inputFocused: false};
   render() {
     return (
-      <div
+      <Parallax
+        bgImage={'/img/hero/kiosk_background.jpg'}
+        strength={300}
         className={`KioskHero ${
           this.state.inputFocused ? 'input-focused' : ''
         }`}
@@ -64,7 +68,7 @@ export class KioskHero extends React.Component {
         <div className="RoundLabelWrapper">
           <RoundLabel />
         </div>
-      </div>
+      </Parallax>
     );
   }
 }
