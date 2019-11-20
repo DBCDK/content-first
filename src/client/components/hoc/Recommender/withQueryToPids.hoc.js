@@ -22,7 +22,8 @@ import {difference} from 'lodash';
  * // if isVisible=false, search request is not sent until isVisible=true
  * <GreatBooks query="hest" isVisible={false}/>
  *
- * // One may filter on a specific branch
+ * // One may move results that are 'onShelf' on a specific branch to the beginning
+ * // of the list
  * <GreatBooks query="hest" branch="Hovedbiblioteket" agencyId="710100" />
  */
 const withQueryToPids = WrappedComponent => {
