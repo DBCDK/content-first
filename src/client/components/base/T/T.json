@@ -1249,6 +1249,24 @@
         "da": "Bogen står her:",
         "en": "You can find the book here:"
       }
+    },
+    "homeStatus": {
+      "onShelf": {
+        "da": "På hylden",
+        "en": "On shelf"
+      },
+      "notForLoan": {
+        "da": "Kan ikke lånes",
+        "en": "Not for loan"
+      },
+      "onLoan": {
+        "da": "Udlånt",
+        "en": "On loan"
+      },
+      "notAvailable": {
+        "da": "Haves ikke",
+        "en": "Not available"
+      }
     }
   },
   "units": {

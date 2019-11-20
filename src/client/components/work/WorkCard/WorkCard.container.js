@@ -13,6 +13,7 @@ import {withWork} from '../../hoc/Work';
 import RemindsOf from '../../base/RemindsOf';
 
 import './WorkCard.css';
+import HomeStatus from '../../kiosk/HomeStatus/HomeStatus';
 
 class WorkCard extends React.Component {
   constructor() {
@@ -193,8 +194,9 @@ class WorkCard extends React.Component {
             </div>
           </BookCover>
 
+          <HomeStatus pid={pid} />
           <Text className="work-card__tax-description">
-            {<TaxDescription text={tax_description} />}
+            <TaxDescription text={tax_description} />
           </Text>
         </div>
         <div className="whiteLine" />

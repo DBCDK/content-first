@@ -10,6 +10,7 @@ import Text from '../../base/Text';
 import Title from '../../base/Title';
 
 import './FindBookButton.css';
+import HomeStatus from '../HomeStatus/HomeStatus';
 
 const formatWay = book =>
   book.department +
@@ -31,7 +32,10 @@ const wayFinderBox = (dispatch, holdings) => {
       <Text type="large" className="wayFinder__modal--subtitle">
         <T component="wayFinder" name="theBookIsHere" />
       </Text>
-      <div className="wayFinder__modal--wayfinder-list">
+      <div
+        className="wayFinder__modal--wayfinder-list"
+        data-cy={'wayfinder-modal'}
+      >
         {fetchWaysFromHoldings(holdings).map(way => (
           <Title key={way} type="title4">
             {way}
@@ -71,34 +75,37 @@ const openWayFinderModal = (dispatch, title, ways) => {
   });
 };
 
-const FindBookButtonWithHoldings = withHoldings(props => {
-  const {holdings} = props;
-  const dispatch = useDispatch();
-  if (!holdings || holdings.isFetching || !isBookInLibrary(holdings)) {
-    return (
+const FindBookButtonComponent = props => {
+  return (
+    <div
+      className="find-book-button-container"
+      data-cy="find-book-button-container"
+    >
       <Button
         size="medium"
         type="quaternary"
         iconLeft="chrome_reader_mode"
         className="find-book-button"
-        disabled={true}
         {...props}
       >
         <T component="wayFinder" name="findBook" />
       </Button>
-    );
+      <HomeStatus {...props} />
+    </div>
+  );
+};
+
+const FindBookButtonWithHoldings = withHoldings(props => {
+  const {holdings} = props;
+  const dispatch = useDispatch();
+  if (!holdings || holdings.isFetching || !isBookInLibrary(holdings)) {
+    return <FindBookButtonComponent disabled={true} {...props} />;
   }
   return (
-    <Button
-      size="medium"
-      type="quaternary"
-      iconLeft="chrome_reader_mode"
-      className="find-book-button"
-      {...props}
+    <FindBookButtonComponent
       onClick={() => wayFinderBox(dispatch, holdings)}
-    >
-      <T component="wayFinder" name="findBook" />
-    </Button>
+      {...props}
+    />
   );
 });
 
@@ -106,18 +113,13 @@ const FindBookButton = props => (
   <Kiosk
     {...props}
     render={({kiosk}) => {
+      if (!kiosk.enabled) {
+        return null;
+      }
       return (
         <FindBookButtonWithHoldings
-          agencyId={
-            kiosk.enabled && kiosk.configuration
-              ? kiosk.configuration.agencyId
-              : ''
-          }
-          branch={
-            kiosk.enabled && kiosk.configuration
-              ? kiosk.configuration.branch
-              : ''
-          }
+          agencyId={kiosk.configuration ? kiosk.configuration.agencyId : ''}
+          branch={kiosk.configuration ? kiosk.configuration.branch : ''}
           {...props}
         />
       );
