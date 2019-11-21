@@ -1,4 +1,6 @@
 describe('kiosk', function() {
+  const pid = '870970-basis:51897080';
+
   const setKioskMode = () => {
     cy.viewport(1080, 1920);
     cy.fixture('kiosk/initialStateKioskEnabledWithClientId.json').as(
@@ -8,14 +10,23 @@ describe('kiosk', function() {
     cy.route('GET', '/v1/initial-state', '@initialState');
   };
 
-  const mockHoldings = status => {
-    const mockedHoldings = [
-      {
-        onShelf: false,
-        notForLoan: false,
-        onLoan: false
-      }
-    ].concat(Array.isArray(status) ? status : [status]);
+  const mockRecompas = pids => {
+    cy.route('GET', '/v1/recompass*', {
+      response: pids.map(pid => ({pid, value: 3})),
+      rid: 'some-rid'
+    });
+  };
+
+  const mockHoldings = (pid, status) => {
+    const mockedHoldings = {
+      [pid]: [
+        {
+          onShelf: false,
+          notForLoan: false,
+          onLoan: false
+        }
+      ].concat(Array.isArray(status) ? status : [status])
+    };
     cy.route('GET', '/v1/holdings?*', () => mockedHoldings).as(
       'getStatusHoldings'
     );
@@ -55,7 +66,7 @@ describe('kiosk', function() {
 
   const clickFirstBook = () => {
     cy.get('.scroll-to-component:first').scrollIntoView();
-    cy.get('[data-cy=workcard]:first').click();
+    cy.get('[data-cy="book-cover-loaded"]:first').click();
   };
 
   const clickFirstBooksBookmark = () => {
@@ -109,28 +120,32 @@ describe('kiosk', function() {
 
   it('On Shelf status on WorkCard', function() {
     setKioskMode();
-    mockHoldings({onShelf: true});
+    mockRecompas([pid]);
+    mockHoldings(pid, {onShelf: true});
     cy.visit('/');
     assertHomeStatusOnWorkCard('onShelf');
   });
 
   it('Nor For Loan status on WorkCard', function() {
     setKioskMode();
-    mockHoldings({notForLoan: true});
+    mockRecompas([pid]);
+    mockHoldings(pid, {notForLoan: true});
     cy.visit('/');
     assertHomeStatusOnWorkCard('notForLoan');
   });
 
   it('On Loan status on WorkCard', function() {
     setKioskMode();
-    mockHoldings({onLoan: true});
+    mockRecompas([pid]);
+    mockHoldings(pid, {onLoan: true});
     cy.visit('/');
     assertHomeStatusOnWorkCard('onLoan');
   });
 
   it('Not Available status on WorkCard', function() {
     setKioskMode();
-    mockHoldings({});
+    mockRecompas([pid]);
+    mockHoldings(pid, {});
     cy.visit('/');
     assertHomeStatusOnWorkCard('notAvailable');
   });
@@ -141,7 +156,8 @@ describe('kiosk', function() {
 
   it('Home Status on ShortList', function() {
     setKioskMode();
-    mockHoldings({onShelf: true});
+    mockRecompas([pid]);
+    mockHoldings(pid, {onShelf: true});
     cy.visit('/');
     clickFirstBooksBookmark();
     clickShortListButtonInKioskMode();
@@ -155,7 +171,8 @@ describe('kiosk', function() {
 
   it('Find Book button on Kiosk Workpage - book onShelf', function() {
     setKioskMode();
-    mockHoldings({onShelf: true});
+    mockRecompas([pid]);
+    mockHoldings(pid, {onShelf: true});
     cy.visit('/');
     clickFirstBook();
     assertHomeStatus('onShelf');
@@ -164,7 +181,8 @@ describe('kiosk', function() {
 
   it('Find Book button on Kiosk Workpage - book notForLoan', function() {
     setKioskMode();
-    mockHoldings({notForLoan: true});
+    mockRecompas([pid]);
+    mockHoldings(pid, {notForLoan: true});
     cy.visit('/');
     clickFirstBook();
     assertHomeStatus('notForLoan');
@@ -173,7 +191,8 @@ describe('kiosk', function() {
 
   it('Find Book button on Kiosk Workpage - book onLoan', function() {
     setKioskMode();
-    mockHoldings({onLoan: true});
+    mockRecompas([pid]);
+    mockHoldings(pid, {onLoan: true});
     cy.visit('/');
     clickFirstBook();
     assertHomeStatus('onLoan');
@@ -182,7 +201,8 @@ describe('kiosk', function() {
 
   it('Find Book button on Kiosk Workpage - book notAvailable', function() {
     setKioskMode();
-    mockHoldings({});
+    mockRecompas([pid]);
+    mockHoldings(pid, {});
     cy.visit('/');
     clickFirstBook();
     assertHomeStatus('notAvailable');
@@ -195,7 +215,8 @@ describe('kiosk', function() {
 
   it('Click Find Book button - One single location - onShelf', function() {
     setKioskMode();
-    mockHoldings({
+    mockRecompas([pid]);
+    mockHoldings(pid, {
       onShelf: true,
       department: 'Department',
       location: 'Location',
@@ -209,7 +230,8 @@ describe('kiosk', function() {
 
   it('Click Find Book button - One single location - notForLoan', function() {
     setKioskMode();
-    mockHoldings({
+    mockRecompas([pid]);
+    mockHoldings(pid, {
       notForLoan: true,
       department: 'Department',
       location: 'Location',
@@ -223,7 +245,8 @@ describe('kiosk', function() {
 
   it('Click Find Book button - Multiple locations with duplicates', function() {
     setKioskMode();
-    mockHoldings([
+    mockRecompas([pid]);
+    mockHoldings(pid, [
       {
         onShelf: true,
         department: 'Department',
@@ -254,7 +277,8 @@ describe('kiosk', function() {
 
   it('Click Find Book button - Multiple locations with duplicates - but only one available', function() {
     setKioskMode();
-    mockHoldings([
+    mockRecompas([pid]);
+    mockHoldings(pid, [
       {
         department: 'Department',
         location: 'Location',
@@ -285,14 +309,16 @@ describe('kiosk', function() {
 
   it('Non-Kiosk mode - Home Status in WorkCard', function() {
     cy.server();
-    mockHoldings({onShelf: true});
+    mockRecompas([pid]);
+    mockHoldings(pid, {onShelf: true});
     cy.visit('/');
     assertHomeStatusOnWorkCard('non-kiosk');
   });
 
   it('Non-Kiosk mode - Home Status in ShortList', function() {
     cy.server();
-    mockHoldings({onShelf: true});
+    mockRecompas([pid]);
+    mockHoldings(pid, {onShelf: true});
     cy.visit('/');
     clickFirstBooksBookmark();
     clickShortListButtonInNonKioskMode();
@@ -302,7 +328,8 @@ describe('kiosk', function() {
 
   it('Non-Kiosk mode - Find Book button on Kiosk Workpage - book onShelf', function() {
     cy.server();
-    mockHoldings({onShelf: true});
+    mockRecompas([pid]);
+    mockHoldings(pid, {onShelf: true});
     cy.visit('/');
     clickFirstBook();
     assertHomeStatus('non-kiosk');
