@@ -125,3 +125,8 @@ exports.holdings = {
     process.env.HOLDINGS_URL ||
     'http://cisterne-solr.dbc.dk:8986/solr/cisterne-laesekompas-holdings-lookup/select'
 };
+
+exports.idmapper = {
+  url:
+    process.env.IDMAPPER_URL || 'http://id-mapper-1-0.mi-prod.svc.cloud.dbc.dk'
+};

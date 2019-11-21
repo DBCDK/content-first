@@ -99,6 +99,7 @@ class BookCover extends React.Component {
         alt={book.title}
         className={`book-cover ${className}`}
         onClick={onClick}
+        data-cy="book-cover-loaded"
       >
         {enableLightbox && (
           <Lightbox

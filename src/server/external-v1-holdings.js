@@ -1,14 +1,19 @@
 'use strict';
 
 const express = require('express');
+const request = require('superagent');
+const {uniqBy, chunk} = require('lodash');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const nocache = require('server/nocache');
 const config = require('server/config');
 const logger = require('server/logger');
 const Holdings = require('__/services/holdings');
+const IDMapper = require('__/services/idmapper');
+const {fetchAnonymousToken} = require('./smaug');
 
 const holdings = new Holdings(config, logger);
+const idmapper = new IDMapper(config, logger);
 
 const throwIfInsufficientId = ({agencyId, branch, pid}) => {
   if (!agencyId || !branch || !pid) {
@@ -19,15 +24,6 @@ const throwIfInsufficientId = ({agencyId, branch, pid}) => {
     };
   }
 };
-
-const getRecordId = pid => {
-  const pidSplit = pid.split(':');
-  if (pidSplit.length > 1) {
-    return pidSplit[1];
-  }
-  return pid;
-};
-
 router.use(nocache);
 
 router
@@ -39,13 +35,73 @@ router
     asyncMiddleware(async (req, res, next) => {
       try {
         throwIfInsufficientId(req.query);
-        const query = `holdingsitem.agencyId:${
-          req.query.agencyId
-        } AND holdingsitem.branch:${
-          req.query.branch
-        } AND holdingsitem.bibliographicRecordId:${getRecordId(req.query.pid)}`;
-        const holdingsData = await holdings.getHoldings({q: query});
-        res.status(200).json(holdingsData);
+        const pids = Array.isArray(req.query.pid)
+          ? req.query.pid
+          : [req.query.pid];
+        const idmappings = await idmapper.pidToWorkPids(pids);
+        const pidsExpanded = pids.reduce(
+          (allPids, pid) =>
+            idmappings[pid]
+              ? [...allPids, ...idmappings[pid]]
+              : [...allPids, pid],
+          []
+        );
+
+        const chunks = chunk(pidsExpanded, 20);
+        const chunksRes = await Promise.all(
+          chunks.map(async pidsChunk => {
+            const holdingsRes = await holdings.getHoldings(
+              req.query.agencyId,
+              req.query.branch,
+              pidsChunk
+            );
+
+            const pidsWithHolding = pidsChunk.filter(pid => !!holdingsRes[pid]);
+            if (pidsWithHolding.length === 0) {
+              return {};
+            }
+
+            const types = (await request
+              .post(config.login.openplatformUrl + '/work')
+              .send({
+                pids: pidsWithHolding,
+                fields: ['type'],
+                access_token: (await fetchAnonymousToken()).access_token
+              })).body.data.map(
+              entry => entry && entry.type && entry.type[0],
+              ''
+            );
+
+            const combined = pidsWithHolding
+              .map((pid, idx) => ({
+                pid,
+                ...holdingsRes[pid],
+                type: types[idx]
+              }))
+              .reduce((map, entry) => ({...map, [entry.pid]: entry}), {});
+            return combined;
+          })
+        );
+
+        const pidToHoldingMap = chunksRes.reduce(
+          (map, chunkRes) => ({...map, ...chunkRes}),
+          {}
+        );
+
+        const result = pids.reduce(
+          (map, pid) => ({
+            ...map,
+            [pid]: uniqBy(
+              idmappings[pid]
+                ? idmappings[pid].map(pid2 => pidToHoldingMap[pid2])
+                : [],
+              'bibliographicRecordId'
+            ).filter(holding => !!holding)
+          }),
+          {}
+        );
+
+        res.status(200).json(result);
       } catch (error) {
         return next(error);
       }

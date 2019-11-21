@@ -25,7 +25,6 @@
     "jest-localstorage-mock": "^2.4.0",
     "mocha": "^4.0.1",
     "mockery": "^2.1.0",
-    "nock": "^9.1.4",
     "nodemon": "^1.12.5",
     "npm-run-all": "^4.0.2",
     "nyc": "^11.4.0",
@@ -98,7 +97,8 @@
     "twemoji": "^2.5.1",
     "typescript": "^3.6.4",
     "uuid": "^3.1.0",
-    "xml2js": "^0.4.19"
+    "xml2js": "^0.4.19",
+    "nock": "^9.6.1"
   },
   "scripts": {
     "prettier": "prettier --no-bracket-spacing --single-quote --write src/*.js src/*/*.js src/*/*/*.js src/*/*/*/*.js src/*/*/*/*/*.js src/*/*/*/*/*/*.js e2e/cypress/*/*.js",
