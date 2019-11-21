@@ -95,7 +95,11 @@ export default class WorkSlider extends React.Component {
                     onMoreLikeThisClick={this.props.onMoreLikeThisClick}
                     onWorkClick={this.props.onWorkClick}
                     cardIndex={idx}
-                    data-cy={`workcard-${pid}-${idx}`}
+                    data-cy={
+                      this.props.kiosk && this.props.kiosk.enabled
+                        ? `workcard-${pid}-${idx}`
+                        : 'workcard'
+                    }
                   />
                 );
               })
