@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {fetchHoldings} from '../../../redux/holdings.thunk';
 
 /**
