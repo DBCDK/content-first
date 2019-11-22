@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {fetchHoldings} from '../../../redux/holdings.thunk';
 
 /**
@@ -9,11 +9,10 @@ import {fetchHoldings} from '../../../redux/holdings.thunk';
  * @param {object} pid - The pid for the material to fetch Holdings for
  * @return {object} - returns the Holdings
  **/
-
 export const withHoldings = WrappedComponent => props => {
   const {agencyId, branch, pid} = props;
   const [hasDispatched, setHasDispatched] = useState(false);
-  const holdings = useSelector(store => store.holdings, shallowEqual);
+  const holdings = useSelector(store => store.holdings[pid]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +22,7 @@ export const withHoldings = WrappedComponent => props => {
     }
   }, [agencyId, branch, pid, dispatch, hasDispatched]);
 
-  return <WrappedComponent pid={pid} holdings={holdings[pid]} />;
+  return <WrappedComponent pid={pid} holdings={holdings} />;
 };
 
 export default withHoldings;
