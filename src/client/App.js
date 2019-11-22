@@ -28,6 +28,7 @@ import Navigation from './components/kiosk/Navigation/Navigation.component';
 import Kiosk from './components/base/Kiosk/Kiosk';
 import KioskWorkPage from './components/kiosk/WorkPage/KioskWorkPage.component';
 import Logo from './components/kiosk/Logo/Logo';
+import Timeout from './components/kiosk/Timeout/Timeout';
 
 import {OPEN_MODAL} from './redux/modal.reducer';
 
@@ -170,6 +171,8 @@ class App extends Component {
         style={{backgroundColor}}
       >
         <Head />
+
+        {this.props.isKiosk && <Timeout />}
 
         {this.props.isKiosk && <Logo />}
 

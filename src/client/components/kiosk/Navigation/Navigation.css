@@ -79,6 +79,8 @@
   margin-bottom: -3px;
 }
 
+/* on active back- / forward buttons */
+
 .navigation-actions .actions.actions--left .action--btn i {
   font-size: 48px;
   color: var(--silver-chalice);

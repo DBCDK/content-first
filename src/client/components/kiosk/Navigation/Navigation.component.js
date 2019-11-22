@@ -34,21 +34,14 @@ export class Navigation extends React.Component {
 
     const shortlistVal = shortListState.elements.length || 0;
 
-    const history = window.history;
-
     let backActiveClass = '';
     let forwardActiveClass = '';
 
-    if (history.state && history.state.state && history.state.state.pos > 1) {
+    if (router.pos > 0) {
       backActiveClass = 'active';
     }
 
-    if (
-      (!history.state && history.length > 1) ||
-      (history.state &&
-        history.state.state &&
-        history.state.state.pos < history.length)
-    ) {
+    if (router.pos < router.stack.length - 1) {
       forwardActiveClass = 'active';
     }
 
@@ -59,14 +52,22 @@ export class Navigation extends React.Component {
             <div
               className={`action--btn waves-effect ${backActiveClass}`}
               data-cy="navBrowserBack"
-              onClick={this.browserBack}
+              onClick={() => {
+                if (backActiveClass) {
+                  this.browserBack();
+                }
+              }}
             >
               <Icon name="chevron_left" />
             </div>
             <div
               className={`action--btn waves-effect ${forwardActiveClass}`}
               data-cy="navBrowserForward"
-              onClick={this.browserForward}
+              onClick={() => {
+                if (forwardActiveClass) {
+                  this.browserForward();
+                }
+              }}
             >
               <Icon name="chevron_right" />
             </div>
