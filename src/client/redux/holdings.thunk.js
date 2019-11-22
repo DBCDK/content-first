@@ -8,13 +8,17 @@ import {
 const fetchHoldingsFromEndpoint = async (agencyId, branch, pid) =>
   (await request.get('/v1/holdings').query({pid, agencyId, branch})).body;
 
+const ONE_MINUTE = 60 * 1000;
+const holdingsExpired = timestamp =>
+  new Date().getTime() - timestamp > ONE_MINUTE;
+
 export const fetchHoldings = (agencyId, branch, pid) => async (
   dispatch,
   getState
 ) => {
   try {
     const {holdings} = getState();
-    if (!holdings[pid]) {
+    if (!holdings[pid] || holdingsExpired(holdings[pid].timestamp)) {
       dispatch({type: FETCH_HOLDINGS, pid});
       const holdingsData = await fetchHoldingsFromEndpoint(
         agencyId,
