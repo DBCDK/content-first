@@ -97,7 +97,7 @@ export const userMiddleware = store => next => action => {
       return (async () => {
         const openplatformId = store.getState().userReducer.openplatformId;
         try {
-         deleteAndLogout(openplatformId);
+          deleteAndLogout(openplatformId);
         } catch (error) {
           store.dispatch({type: DELETE_USER_PROFILE_ERROR, error});
         }

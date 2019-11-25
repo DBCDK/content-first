@@ -21,7 +21,6 @@ router.get('/login', passport.authenticate('profile'));
 const logout = async (req, res) => {
   if (req.isAuthenticated()) {
     const openplatformToken = req.user.openplatformToken;
-
     req.logout();
     if (req.cookies && req.cookies['test-user-data']) {
       res
@@ -30,7 +29,7 @@ const logout = async (req, res) => {
         .redirect('/');
     } else {
       res.redirect(
-        `${config.login.url}/logout/?access_token=${openplatformToken}`
+        `${config.login.url}/logout/?access_token=${openplatformToken}&redirect_uri=${config.server.dmzHost}`
       );
     }
   } else {

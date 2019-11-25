@@ -99,7 +99,7 @@ export default class EditProfileForm extends React.Component {
           </a>
         </div>
 
-        <div className="profile__edit-link">
+        <div className="profile__edit-link" data-cy="delete-profile">
           <a href="#!" onClick={this.props.confirmDelete}>
             <T component="profile" name="deleteProfile" />
           </a>
