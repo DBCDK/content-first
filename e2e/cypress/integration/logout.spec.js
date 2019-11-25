@@ -1,10 +1,38 @@
-describe('Logout test', function() {
-  it.only('Can start to login and cancel', function() {
+describe('Cancel login test', function() {
+  it('Can start to login and cancel', function() {
     const userName = 'testUser' + Math.floor(Math.random() * 1000);
     cy.cprlogin(userName, '1');
     cy.visit('/');
     cy.get('[data-cy=user-form-over13]');
     cy.get('[data-cy=profile-cancel-btn]').click();
-    cy.get('[data-cy=topbar-login-btn] > span').contains("Log ind");
+    cy.get('[data-cy=topbar-login-btn] > span').contains('Log ind');
+  });
+});
+
+describe('Logout from  profile dropdown', function() {
+  it('Can click on profile and log out', function() {
+    const userName = 'testUser' + Math.floor(Math.random() * 1000);
+    cy.cprlogin(userName, '1');
+    cy.visit('/');
+    cy.get('[data-cy=user-form-over13]');
+    cy.get('[data-cy=user-form-submit]').click();
+    cy.get('[data-cy=topbar-profile-img] > .material-icons').click();
+    cy.get('[data-cy=logout-btn]').click();
+    cy.get('[data-cy=topbar-login-btn] > span').contains('Log ind');
+  });
+});
+
+describe('Logout from  profile dropdown', function() {
+  it('Can delete profile from profile page', function() {
+    const userName = 'testUser' + Math.floor(Math.random() * 1000);
+    cy.cprlogin(userName, '1');
+    cy.visit('/');
+    cy.get('[data-cy=user-form-over13]');
+    cy.get('[data-cy=user-form-submit]').click();
+    cy.get('[data-cy=topbar-profile-img] > .material-icons').click();
+    cy.get('[data-cy=profile-btn] > span').click();
+    cy.get('[data-cy=delete-profile] > a').click();
+    cy.get('[data-cy=modal-done-btn] > [data-cy]').click();
+    cy.get('[data-cy=topbar-login-btn] > span').contains('Log ind');
   });
 });

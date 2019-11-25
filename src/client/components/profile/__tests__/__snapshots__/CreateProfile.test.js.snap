@@ -322,6 +322,7 @@ exports[`Image Upload render function Add image 1`] = `
               </div>
               <div
                 className="profile__edit-link"
+                data-cy="delete-profile"
               >
                 <a
                   href="#!"
@@ -542,6 +543,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
           </div>
           <div
             className="profile__edit-link"
+            data-cy="delete-profile"
           >
             <a
               href="#!"
