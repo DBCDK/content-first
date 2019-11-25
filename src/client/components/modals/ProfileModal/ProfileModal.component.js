@@ -8,6 +8,7 @@ import ProfileUpdateUser from '../../profile/ProfileUpdateUser.component';
 
 import {
   ADD_PROFILE_IMAGE,
+  DELETE_USER_PROFILE,
   ON_LOGOUT_REQUEST,
   SAVE_USER_PROFILE
 } from '../../../redux/user.reducer';
@@ -35,6 +36,12 @@ export class ProfileModal extends React.Component {
     this.props.onClose();
     this.props.logout();
   };
+
+  cancelLogin = () => {
+    this.props.onClose();
+    this.props.deleteUser(window.location.href);
+  };
+
   showAgeLimitWindow = () => {
     return (
       <div
@@ -208,11 +215,13 @@ export class ProfileModal extends React.Component {
                 </div>
               </div>
               <div className="profile__accept-line" />
+
               <ProfileUpdateUser
                 imageId={this.props.profileImageId}
                 name={this.state.username}
                 acceptedAge={this.props.over13}
                 acceptedTerms={this.props.acceptedTerms}
+                cancelLogin={this.cancelLogin}
                 updateProfile={this.updateProfile}
                 error={this.props.error}
                 isSaving={this.props.isSaving}
@@ -355,7 +364,8 @@ export const mapDispatchToProps = dispatch => {
     onClose: () => dispatch({type: CLOSE_MODAL, modal: 'profile'}),
     addImage: image => dispatch({type: ADD_PROFILE_IMAGE, image}),
     saveUser: user => dispatch({type: SAVE_USER_PROFILE, user}),
-    logout: () => dispatch({type: ON_LOGOUT_REQUEST})
+    logout: () => dispatch({type: ON_LOGOUT_REQUEST}),
+    deleteUser: path => dispatch({type: DELETE_USER_PROFILE, path: path})
   };
 };
 export default connect(

@@ -9,16 +9,16 @@
     z-index: 99998;
 }
 
-.profile__rules-backbtn button{
+.profile__rules-backbtn button {
     text-decoration: none !important;
-    font-weight:600;
+    font-weight: 600;
 }
 
-.profile__accept-title2 button{
+.profile__accept-title2 button {
     padding: 0 !important;
     font-size: 14px;
-    margin-bottom:4px;
-    margin-left:4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
 }
 
 .profile__accept-title2 button.Button__link:hover span,
@@ -50,8 +50,8 @@
 
 /*ACCEPT*/
 
-.profile__accept-nameAndImg .profile-image-text{
-    display:none;
+.profile__accept-nameAndImg .profile-image-text {
+    display: none;
 }
 
 .profile__accept-window {
@@ -99,20 +99,22 @@
     width: 265px;
     margin-right: 8px;
 }
-.image-upload-loader, .image-upload-image{
+
+.image-upload-loader, .image-upload-image {
     border-radius: 50%;
     cursor: pointer;
 }
+
 .profile__accept-nameAndImg .image-upload-loader {
     margin-top: 16px;
-    width:44px;
-    height:44px;
+    width: 44px;
+    height: 44px;
     background-color: var(--petroleum);
 }
 
 .profile__accept-nameAndImg .image-upload-image {
-    width:46px;
-    height:46px;
+    width: 46px;
+    height: 46px;
 }
 
 .profile__accept-nameAndImg .profile__spinner {
@@ -120,6 +122,7 @@
     size: 45px;
     border-radius: 50%;
 }
+
 .profile__accept-inputNameTitle {
     font-size: 14px;
     font-weight: 400;
@@ -175,7 +178,7 @@
     margin: 5px 0;
 }
 
-.profile__image-errors{
+.profile__image-errors {
     color: red;
     font-size: 10px;
     font-weight: 400;
@@ -185,7 +188,7 @@
     width: 200px;
     margin-left: 60px;
     margin-top: 0;
-    height:40px;
+    height: 40px;
 }
 
 .profile__accept-userBox {
@@ -206,17 +209,34 @@
 
 .profile__accept-buttonbuffer {
     text-align: left;
-    width: 282px;
+    width: 200px;
     margin-top: 15px;
     font-size: 12px;
+
 }
 
 .profile__accept-button {
     padding-top: 7px;
     height: 34px;
+    font-weight: 600;
     text-transform: Uppercase;
     color: var(--petroleum);
     background-color: var(--korn);
+}
+
+.profile__cancel-button {
+    margin-right: 10px;
+    padding-top: 7px;
+    height: 34px;
+    font-weight: 600;
+    text-transform: Uppercase;
+    color: var(--petroleum);
+    background-color: var(--porcelain) !important;
+}
+
+.profile__cancel-button:hover {
+    background-color: var(--grey-nurse) !important;
+    color: var(--petroleum) !important;
 }
 
 .profile__accept-button-disabled {
