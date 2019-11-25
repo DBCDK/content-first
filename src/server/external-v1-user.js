@@ -74,6 +74,20 @@ router
     })
   );
 
+const deleteAndLogout = async (req, res, next) => {
+  const openplatformId = req.params.id;
+  const user = await getUser(req);
+  if (!openplatformId || !user || user.openplatformId !== openplatformId) {
+    return next({
+      status: 403,
+      title: 'Forbidden',
+      detail: 'Not allowed to try to delete that user'
+    });
+  }
+  await deleteUser(user);
+  res.redirect('/v1/auth/logout');
+};
+
 router
   .route('/:id')
   //
@@ -99,25 +113,7 @@ router
       }
     })
   )
-  .delete(
-    requireLoggedIn,
-    asyncMiddleware(async (req, res, next) => {
-      const openplatformId = req.params.id;
-      const user = await getUser(req);
-      const location = `/v1/user/${encodeURIComponent(openplatformId)}`;
-      if (!openplatformId || !user || user.openplatformId !== openplatformId) {
-        return next({
-          status: 403,
-          title: 'Forbidden',
-          detail: 'Not allowed to try to delete that user'
-        });
-      }
-      await deleteUser(user);
-      res.status(200).json({
-        data: {success: true},
-        links: {self: location}
-      });
-    })
-  );
+  .post(requireLoggedIn, asyncMiddleware(deleteAndLogout))
+  .delete(requireLoggedIn, asyncMiddleware(deleteAndLogout));
 
 module.exports = router;

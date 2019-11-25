@@ -424,11 +424,18 @@ export const deleteObject = object => {
  * logout
  * @param dispatch
  */
+
 export const logout = dispatch => {
   dispatch({type: ON_LOGOUT_RESPONSE});
   document.body.innerHTML +=
     '<form id="logoutform" action="/v1/auth/logout" method="post"></form>';
   document.getElementById('logoutform').submit();
+};
+
+export const deleteAndLogout = id => {
+  document.body.innerHTML +=
+    '<form id="deleteform" action="/v1/user/' + id + '" method="post"></form>';
+  document.getElementById('deleteform').submit();
 };
 
 /**

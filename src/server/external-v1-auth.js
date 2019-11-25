@@ -18,9 +18,10 @@ router.get(
 
 router.get('/login', passport.authenticate('profile'));
 
-router.post('/logout', async (req, res) => {
+const logout = async (req, res) => {
   if (req.isAuthenticated()) {
     const openplatformToken = req.user.openplatformToken;
+
     req.logout();
     if (req.cookies && req.cookies['test-user-data']) {
       res
@@ -35,7 +36,10 @@ router.post('/logout', async (req, res) => {
   } else {
     res.redirect('/');
   }
-});
+};
+
+router.get('/logout', logout);
+router.post('/logout', logout);
 
 module.exports = {
   router
