@@ -23,6 +23,8 @@ import CookieWarning from './components/general/CookieWarning/CookieWarning';
 import BeltEditor from './components/belteditor/BeltEditor.component';
 import BeltForm from './components/belteditor/BeltForm.component';
 import PrintLayout from './components/list/printLayout/PrintLayout';
+
+// kiosk
 import KioskSetup from './components/kiosk/Setup/KioskSetup.component';
 import Navigation from './components/kiosk/Navigation/Navigation.component';
 import Kiosk from './components/base/Kiosk/Kiosk';

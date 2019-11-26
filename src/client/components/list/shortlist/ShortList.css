@@ -1,0 +1,213 @@
+.shortlist--wrap {
+}
+
+.shortlist--wrap .shortlist__tools--top {
+  max-width: var(--md);
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: var(--2pt) 0;
+}
+
+.shortlist--wrap .shortlist__tools--top button {
+  background-color: transparent;
+}
+
+.shortlist__items--container {
+  max-width: var(--md);
+  margin: auto;
+}
+
+.shortlist__items--container .divider {
+  margin: 0;
+}
+
+.shortlist--wrap .shortlist__tools--bottom {
+  max-width: var(--md);
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: var(--4pt) 0;
+}
+
+.shortlist__tools--bottom .orderAllBtn {
+  margin: 0 0 0 var(--2pt);
+}
+
+/* Shortlist items */
+.shortlist__item {
+  position: relative;
+  display: flex;
+  padding: var(--2pt);
+}
+
+.shortlist__item i.remove-btn {
+  position: absolute;
+  cursor: pointer;
+  top: var(--1pt);
+  right: 0;
+  padding: var(--1pt);
+}
+
+.shortlist__item .book-cover {
+  max-width: 70px;
+  min-width: 70px;
+}
+
+.shortlist__item--details {
+  margin: 0 0 0 var(--2pt);
+  width: 100%;
+}
+
+.shortlist__item--actions {
+  display: flex;
+  justify-content: space-between;
+  margin: var(--2pt) 0 0 0;
+}
+
+.shortlist__item--actions .shortlist__item--loan {
+  display: flex;
+  align-items: center;
+}
+
+.shortlist__item--loan .find-book-button-container {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.shortlist__item--loan button {
+  margin: 0 0 0 var(--2pt);
+}
+
+/*  */
+
+.shortlist--wrap .shortlist__empty--wrap {
+  max-width: var(--md);
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  padding: var(--10pt) 0 0 0;
+}
+
+.shortlist--wrap .shortlist__empty--wrap span {
+  align-self: center;
+}
+
+/* kioskmode enabled */
+
+.App.kioskmode .shortlist--wrap .shortlist__tools {
+  max-width: none;
+}
+
+.App.kioskmode .shortlist--wrap .shortlist__item--devices {
+  display: flex;
+  align-items: flex-start;
+}
+
+.App.kioskmode .shortlist--wrap .shortlist__item--devices .type {
+  display: flex;
+  align-items: center;
+  margin: 0 var(--1pt) 0 0;
+  font-size: 12px;
+}
+
+.App.kioskmode .shortlist--wrap .shortlist__item--devices .type i {
+  padding: 0 var(--05pt) 1px 0;
+  font-size: 18px;
+}
+
+.App.kioskmode .shortlist--wrap .shortlist__tools--top {
+  max-width: 100%;
+  padding-right: var(--2pt);
+}
+
+.App.kioskmode .shortlist--wrap .shortlist__items--container {
+  max-width: 560px;
+}
+
+.App.kioskmode .shortlist--wrap .shortlist__items--container.scrollable {
+  padding-bottom: 15vh;
+}
+
+.App.kioskmode .shortlist--wrap .divider {
+  border-color: var(--alto);
+}
+
+.App.kioskmode .shortlist__item--loan .find-book-button-container {
+  transform: translateY(-20%);
+}
+
+.App.kioskmode .shortlist--wrap .shortlist__empty--wrap {
+  height: 30vh;
+  padding: 0;
+}
+
+/*  */
+
+@media (max-width: 768px) {
+  .shortlist--wrap {
+    padding: 0 var(--2pt);
+  }
+
+  .shortlist--wrap .shortlist__tools--top,
+  .shortlist--wrap .shortlist__tools--bottom {
+    max-width: 100%;
+    padding: var(--2pt) 0;
+  }
+
+  .shortlist__items--container {
+    max-width: 100%;
+  }
+
+  /* Shortlist items */
+  .shortlist--wrap .shortlist__item {
+    padding: var(--2pt) 0;
+  }
+
+  .shortlist__item--actions {
+    display: flex;
+    justify-content: flex-start;
+    margin: var(--2pt) 0 0 0;
+    flex-direction: column;
+  }
+
+  .shortlist__item--actions .shortlist__item--loan {
+    margin: var(--2pt) 0 0 0;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .shortlist__item--loan .loanTitle {
+    display: block;
+    min-width: 100%;
+    padding: var(--1pt) 0 0 0;
+  }
+
+  .shortlist__item--loan button:first-of-type {
+    margin-left: 0;
+  }
+  /*  */
+}
+
+@media (max-width: 576px) {
+  .shortlist__item--loan {
+    width: calc(100% + 84px);
+    transform: translateX(calc(-84px));
+  }
+
+  .shortlist--wrap .shortlist__tools--bottom {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column-reverse;
+    padding: var(--2pt) 0;
+  }
+
+  .shortlist__tools--bottom .orderAllBtn {
+    margin: 0 0 var(--2pt) 0;
+  }
+}

@@ -11,16 +11,19 @@ import BookCover from '../../general/BookCover/BookCover.component';
 import OrderButton from '../../order/OrderButton.component';
 import Link from '../../general/Link.component';
 import Head from '../../base/Head';
-import Toolbar from '../../base/Toolbar';
 import Title from '../../base/Title';
 import Text from '../../base/Text';
 import T from '../../base/T';
+import Icon from '../../base/Icon';
 import Divider from '../../base/Divider';
 import Button from '../../base/Button';
 import Banner from '../../base/Banner';
 import {withWork} from '../../hoc/Work';
 import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
 import Origin from '../../base/Origin';
+import SkeletonText from '../../base/Skeleton/Text';
+
+import './ShortList.css';
 
 export class ShortListItem extends React.Component {
   constructor(props) {
@@ -34,8 +37,10 @@ export class ShortListItem extends React.Component {
     const {
       work,
       pid,
+      isKiosk,
       origin,
-      className,
+      onRemove,
+      className = '',
       hasValidCollection,
       filterCollection,
       newRelease
@@ -51,10 +56,8 @@ export class ShortListItem extends React.Component {
     const orderBookButton = hasValidCollection() && (
       <OrderButton
         pid={pid}
-        align="right"
         size="medium"
         type="quaternary"
-        className="ml-2"
         iconLeft="chrome_reader_mode"
       >
         <T component="general" name="book" />
@@ -68,7 +71,6 @@ export class ShortListItem extends React.Component {
         .map(col => {
           return (
             <Button
-              align="right"
               size="medium"
               type="quaternary"
               iconLeft={col.icon}
@@ -83,41 +85,72 @@ export class ShortListItem extends React.Component {
 
     return (
       <div>
-        <div className={`short-list-item d-flex flex-row ${className}`}>
-          <i
-            className="material-icons remove-btn"
-            onClick={this.props.onRemove}
-          >
-            clear
-          </i>
+        <div className={`shortlist__item ${className}`}>
+          <Icon name="clear" className="remove-btn" onClick={onRemove} />
           <Link href={url}>
             <BookCover pid={work.book.pid} />
           </Link>
-          <div className="top-bar-dropdown-shortlist-item-page">
-            <Title Tag="h1" type="title5" className="mr-4">
+          <div className="shortlist__item--details">
+            <Title Tag="h1" type="title5">
               {work.book.title}
             </Title>
-            <Text type="body" className="mb-1">
-              {work.book.creator}
-            </Text>
-            <div type="body" className="mb-1">
-              <Origin componentData={origin} />
+
+            <Text type="body">{work.book.creator}</Text>
+
+            {!isKiosk && <Origin componentData={origin} />}
+
+            <div className="shortlist__item--actions">
+              {!isKiosk && <AddToListButton work={work} />}
+              {isKiosk && (
+                <div className="shortlist__item--devices">
+                  {work.collectionHasLoaded ? (
+                    <React.Fragment>
+                      {this.props.collectionContainsBook() && (
+                        <div className="type">
+                          <Icon name="chrome_reader_mode" />
+                          <Text type="body" variant="weight-semibold">
+                            BOG
+                          </Text>
+                        </div>
+                      )}
+                      {this.props.collectionContainsEBook() && (
+                        <div className="type">
+                          <Icon name="language" />
+                          <Text type="body" variant="weight-semibold">
+                            EBOG
+                          </Text>
+                        </div>
+                      )}
+                      {this.props.collectionContainsAudioBook() && (
+                        <div className="type">
+                          <Icon name="headset" />
+                          <Text type="body" variant="weight-semibold">
+                            LYDBOG
+                          </Text>
+                        </div>
+                      )}
+                    </React.Fragment>
+                  ) : (
+                    <SkeletonText
+                      className="book-types-skeleton Skeleton__Pulse"
+                      lines="1"
+                    />
+                  )}{' '}
+                </div>
+              )}
+              <div className="shortlist__item--loan">
+                {!isKiosk && (
+                  <Text type="body" className="loanTitle">
+                    <T component="work" name="loanTitle" />
+                  </Text>
+                )}
+                {orderBookButton}
+                {!isKiosk && orderElectronicBookButtons}
+              </div>
             </div>
 
-            <Toolbar className="desktop-styling">
-              <AddToListButton work={work} align="left" />
-              <Text align="right" type="body" className="loanTitle">
-                <T component="work" name="loanTitle" />
-              </Text>
-              {orderBookButton}
-              {orderElectronicBookButtons}
-            </Toolbar>
             {work.collectionHasLoaded && !hasValidCollection() && (
-              <Text
-                type="body"
-                className="mt-2 d-none d-sm-block"
-                align="right"
-              >
+              <Text type="body">
                 <T
                   component="work"
                   name={
@@ -126,32 +159,10 @@ export class ShortListItem extends React.Component {
                 />
               </Text>
             )}
-            <div className="mobile-styling">
-              <AddToListButton work={work} align="left" />
-            </div>
           </div>
         </div>
-        <div className="mobile-styling">
-          <Text align="left" type="body">
-            <T component="work" name="loanTitle" />
-          </Text>
-          {work.collectionHasLoaded && !hasValidCollection() && (
-            <Text type="body">
-              <T
-                component="work"
-                name={
-                  newRelease() ? 'noValidCollectionYet' : 'noValidCollection'
-                }
-              />
-            </Text>
-          )}
-          <Toolbar className="mobile-styling">
-            <div align="left" className="d-flex">
-              {orderBookButton}
-              {orderElectronicBookButtons}
-            </div>
-          </Toolbar>
-        </div>
+
+        <Divider />
       </div>
     );
   }
@@ -165,10 +176,23 @@ const ShortListItemWithWork = withWork(ShortListItem, {
 
 export class ShortList extends React.Component {
   render() {
-    const {elements, hasLoaded} = this.props.shortListState;
+    const {
+      orderAll,
+      orderList,
+      isKiosk,
+      shortListState,
+      clearList,
+      remove,
+      originUpdate
+    } = this.props;
+    const {elements, hasLoaded} = shortListState;
     if (!hasLoaded) {
       return null;
     }
+
+    const scrollableClass = elements.length > 3 ? 'scrollable' : '';
+    const isEmpty = !!(elements.length === 0);
+
     return (
       <React.Fragment>
         <Head
@@ -181,112 +205,85 @@ export class ShortList extends React.Component {
         />
 
         <Banner
-          color="#81c793"
+          color={!isKiosk ? '#81c793' : '#f3f3f3'}
+          textColor={!isKiosk ? '#ffffff' : '#00414b'}
           className="fixed-width-col-md position-relative text-uppercase"
-          title={T({component: 'shortlist', name: 'title'})}
+          title={
+            !isKiosk ? T({component: 'shortlist', name: 'title'}) : 'Huskeliste'
+          }
         />
 
-        <div className="container">
-          <div className="top-bar-dropdown-list-page col-11 col-centered">
-            <div className="items mb-2">
-              <Toolbar className="top-bar-upper-toolbar">
-                <Button
-                  align="right"
-                  size="medium"
-                  type="quaternary"
-                  iconLeft="print"
-                  className="bg-white pr-0 printListBtn"
-                  href="print/huskeliste"
-                >
-                  <T component="list" name="printList" />
-                </Button>
-                <Button
-                  align="right"
-                  size="medium"
-                  type="quaternary"
-                  iconLeft="delete"
-                  className="bg-white pr-0"
-                  onClick={() => this.props.clearList()}
-                >
-                  <T component="shortlist" name="shortlistClear" />
-                </Button>
-              </Toolbar>
-              <Divider />
-              <ReactCSSTransitionGroup
-                transitionName="dropdownlist"
-                transitionEnter={false}
-                transitionLeaveTimeout={200}
+        <div className="shortlist--wrap">
+          <div className="shortlist__tools--top">
+            {!isKiosk && (
+              <Button
+                size="medium"
+                type="quaternary"
+                iconLeft="print"
+                className="printListBtn"
+                href="print/huskeliste"
               >
-                {elements.map(e => {
-                  return (
-                    <div key={e.book.pid}>
-                      <ShortListItemWithWork
-                        key={e.book.pid}
-                        origin={e.origin}
-                        pid={e.book.pid}
-                        onRemove={() => {
-                          this.props.remove(e.book.pid);
-                        }}
-                        onOriginUpdate={origin => {
-                          this.props.originUpdate(origin, e.book.pid);
-                        }}
-                      />
-                      <Divider />
-                    </div>
-                  );
-                })}
-              </ReactCSSTransitionGroup>
-            </div>
-            {elements.length === 0 && (
-              <div className="empty-list-text">
-                <T component="shortlist" name="emptyList" />
-              </div>
+                <T component="list" name="printList" />
+              </Button>
             )}
-            {elements.length > 0 && (
-              <Toolbar className="bottom-toolbar mt-5 mb-5">
-                <AddToListButton
-                  elements={elements}
-                  align="right"
-                  multiple={true}
-                  data-cy="add-all-to-list"
-                />
-                {false && (
-                  <Button
-                    align="right"
-                    iconLeft="list"
-                    size="large"
-                    type="tertiary"
-                    className="text-uppercase"
-                    onClick={() =>
-                      this.props.addToList(
-                        elements,
-                        this.props.isLoggedIn,
-                        this.props.clearList
-                      )
-                    }
-                  >
-                    <T component="list" name="addAllToList" />
-                  </Button>
-                )}
-                <Button
-                  align="right"
-                  iconLeft="chrome_reader_mode"
-                  size="large"
-                  type="quaternary"
-                  className="btn ml-4 orderAllBtn"
-                  onClick={
-                    this.props.orderList.length > 0 &&
-                    (() =>
-                      this.props.orderAll(
-                        this.props.orderList.map(e => e.book)
-                      ))
-                  }
-                >
-                  <T component="shortlist" name="shortlistOrder" />
-                </Button>
-              </Toolbar>
-            )}
+            <Button
+              disabled={isEmpty}
+              size="medium"
+              type="quaternary"
+              iconLeft="delete"
+              onClick={() => clearList()}
+            >
+              <T component="shortlist" name="shortlistClear" />
+            </Button>
           </div>
+
+          <div className={`shortlist__items--container ${scrollableClass}`}>
+            {!isEmpty && <Divider />}
+            <ReactCSSTransitionGroup
+              transitionName="dropdownlist"
+              transitionEnter={false}
+              transitionLeaveTimeout={200}
+            >
+              {elements.map(e => (
+                <ShortListItemWithWork
+                  key={e.book.pid}
+                  origin={e.origin}
+                  pid={e.book.pid}
+                  isKiosk={isKiosk}
+                  onRemove={() => remove(e.book.pid)}
+                  onOriginUpdate={origin => originUpdate(origin, e.book.pid)}
+                />
+              ))}
+            </ReactCSSTransitionGroup>
+          </div>
+          {isEmpty && (
+            <div className="shortlist__empty--wrap">
+              <span>
+                <T component="shortlist" name="emptyList" />
+              </span>
+            </div>
+          )}
+          {!isKiosk && elements.length > 0 && (
+            <div className="shortlist__tools--bottom">
+              <AddToListButton
+                elements={elements}
+                multiple={true}
+                data-cy="add-all-to-list"
+              />
+              <Button
+                iconLeft="chrome_reader_mode"
+                size="large"
+                type="quaternary"
+                className="orderAllBtn"
+                onClick={
+                  orderList.length > 0 &&
+                  (() => orderAll(orderList.map(e => e.book)))
+                }
+              >
+                <T component="shortlist" name="shortlistOrder" />
+              </Button>
+            </div>
+          )}
         </div>
       </React.Fragment>
     );
@@ -304,6 +301,7 @@ const mapStateToProps = state => {
   return {
     shortListState: state.shortListReducer,
     isLoggedIn: state.userReducer.isLoggedIn,
+    isKiosk: state.kiosk.enabled,
     orderList
   };
 };

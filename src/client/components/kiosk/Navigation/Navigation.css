@@ -6,7 +6,7 @@
   height: 128px;
 
   z-index: 3000;
-  background-color: var(--lys-graa);
+  background-color: var(--concrete);
   border-top: 1px solid var(--pistache);
 
   display: flex;
