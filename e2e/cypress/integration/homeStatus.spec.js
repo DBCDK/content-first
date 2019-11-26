@@ -84,7 +84,7 @@ describe('kiosk', function() {
   };
 
   const clickClearShortlistButton = () => {
-    cy.get('.top-bar-dropdown-list-page .material-icons-delete').click();
+    cy.get('.shortlist__item .remove-btn').click();
   };
 
   const assertFindBookButton = enabled => {

@@ -8,7 +8,7 @@ import logoLight from './LaesekompasLogo--light.svg';
 
 const srcMap = {
   '/': logoLight,
-  '/huskeliste': logoLight
+  '/kiosk': logoLight
 };
 
 class Logo extends React.Component {

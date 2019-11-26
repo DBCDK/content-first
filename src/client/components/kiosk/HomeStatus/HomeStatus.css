@@ -1,34 +1,33 @@
-
 .home-status-indicator {
-    --red: #f37362;
-    --yellow: #fcbe45;
-    --green: #81c793;
+  --red: #f37362;
+  --yellow: #fcbe45;
+  --green: #81c793;
 }
 
 .home-status-indicator .red {
-    color: var(--red);
+  color: var(--red);
 }
 
 .home-status-indicator .yellow {
-    color: var(--yellow);
+  color: var(--yellow);
 }
 
 .home-status-indicator .green {
-    color: var(--green);
+  color: var(--green);
 }
 
 .home-status-indicator {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    margin-top: 12px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-top: var(--05pt);
 }
 
 .home-status-indicator i.material-icons {
-    font-size: 18px;
+  font-size: var(--2pt);
 }
 
 .home-status-indicator .Text {
-    font-size: 12px;
-    margin-left: 2px;
+  font-size: 12px;
+  margin-left: var(--05pt);
 }

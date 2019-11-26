@@ -18,18 +18,34 @@
 .banner .banner__title--wrap {
   display: flex;
   align-self: stretch;
+  flex-grow: 2;
 }
 
 .banner .banner__title {
   align-self: center;
 }
 
+/* kioskmode enabled */
+
+.App.kioskmode .banner__wrap {
+  height: 50vh;
+}
+
+.App.kioskmode .banner .banner__title--wrap {
+  justify-content: center;
+}
+
+.App.kioskmode .banner .banner__title {
+  align-self: flex-end;
+  padding-bottom: var(--5pt);
+  text-transform: capitalize;
+  font-size: var(--5pt);
+}
+
+/*  */
+
 @media (min-width: 768px) {
   .banner {
     padding: 1rem 57px 1rem 57px;
   }
-}
-
-.banner .banner__title--wrap {
-  flex-grow: 2;
 }

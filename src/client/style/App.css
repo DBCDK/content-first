@@ -14,7 +14,13 @@
 .App.kioskmode .Toolbar button.orderAllBtn,
 .App.kioskmode .Toolbar button.printListBtn,
 .App.kioskmode .Toolbar p.loanTitle {
-  display: none;
+  /* display: none; */
+}
+
+/* Kioskmode enabled */
+/* hides all blue outline borders on button/input focus */
+.App.kioskmode *:focus {
+  outline: none;
 }
 
 @media (min-width: 600px) {

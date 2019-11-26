@@ -136,7 +136,7 @@ describe('ShortList.container', () => {
       />
     );
     expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(OrderButton).toHaveBeenCalledTimes(3);
     expect(tree).toMatchSnapshot();
   });
 
@@ -152,13 +152,11 @@ describe('ShortList.container', () => {
       />
     );
     tree
-      .find(
-        '.top-bar-dropdown-list-page .top-bar-upper-toolbar .Toolbar__right .button'
-      )
+      .find('.shortlist--wrap .shortlist__tools--top .button')
       .at(1)
       .simulate('click');
     expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(OrderButton).toHaveBeenCalledTimes(3);
     expect(mockClearList).toHaveBeenCalledTimes(1);
     expect(tree).toMatchSnapshot();
   });
@@ -175,11 +173,11 @@ describe('ShortList.container', () => {
       />
     );
     tree
-      .find('.short-list-item .remove-btn')
+      .find('.shortlist__item .remove-btn')
       .first()
       .simulate('click');
     expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(OrderButton).toHaveBeenCalledTimes(3);
     expect(mockRemove).toHaveBeenCalledTimes(1);
     expect(mockRemove).toHaveBeenCalledWith('pid - 0');
     expect(tree).toMatchSnapshot();
@@ -189,7 +187,7 @@ describe('ShortList.container', () => {
    * This might be related to a Babel 7 (see https://github.com/facebook/jest/issues/8109#issuecomment-472280699)
    * The tests have been modified to pass for now. But the issue might be looked at, at a later point.
    */
-  test('Order book - desktop version', () => {
+  test('Order book', () => {
     jest.clearAllMocks();
     const testElements = createTestElements(3);
     const tree = mount(
@@ -201,39 +199,17 @@ describe('ShortList.container', () => {
     expect(
       tree
         .find(
-          '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__right mocked-order-button'
+          '.shortlist__item .shortlist__item--details .shortlist__item--actions .shortlist__item--loan mocked-order-button'
         )
         .at(0)
         .exists()
     ).toBeTruthy();
     expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(OrderButton).toHaveBeenCalledTimes(3);
     expect(tree).toMatchSnapshot();
   });
 
-  test('Order book - mobile version', () => {
-    jest.clearAllMocks();
-    const testElements = createTestElements(3);
-    const tree = mount(
-      <ShortList
-        shortListState={{elements: testElements, hasLoaded: true}}
-        orderList={testElements}
-      />
-    );
-    expect(
-      tree
-        .find(
-          '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__right mocked-order-button'
-        )
-        .at(0)
-        .exists()
-    ).toBeTruthy();
-    expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('Order ebook - desktop version', () => {
+  test('Order ebook', () => {
     jest.clearAllMocks();
     const testElements = createTestElements(3);
     const tree = mount(
@@ -244,34 +220,12 @@ describe('ShortList.container', () => {
     );
     tree
       .find(
-        '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__right .button'
+        '.shortlist__item .shortlist__item--details .shortlist__item--actions .shortlist__item--loan .button'
       )
       .at(0)
       .simulate('click');
     expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
-    expect(global.open).toHaveBeenCalledTimes(1);
-    expect(global.open).toHaveBeenCalledWith('https://this/url/ebog');
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('Order ebook - mobile version', () => {
-    jest.clearAllMocks();
-    const testElements = createTestElements(3);
-    const tree = mount(
-      <ShortList
-        shortListState={{elements: testElements, hasLoaded: true}}
-        orderList={testElements}
-      />
-    );
-    tree
-      .find(
-        'div.short-list-item + div.mobile-styling .Toolbar.mobile-styling .Toolbar__left .button'
-      )
-      .at(0)
-      .simulate('click');
-    expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(OrderButton).toHaveBeenCalledTimes(3);
     expect(global.open).toHaveBeenCalledTimes(1);
     expect(global.open).toHaveBeenCalledWith('https://this/url/ebog');
     expect(tree).toMatchSnapshot();
@@ -288,34 +242,12 @@ describe('ShortList.container', () => {
     );
     tree
       .find(
-        '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__right .button'
+        '.shortlist__item .shortlist__item--details .shortlist__item--actions .shortlist__item--loan .button'
       )
       .at(1)
       .simulate('click');
     expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
-    expect(global.open).toHaveBeenCalledTimes(1);
-    expect(global.open).toHaveBeenCalledWith('https://this/url/lydbog');
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('Order lydbook - mobile version', () => {
-    jest.clearAllMocks();
-    const testElements = createTestElements(3);
-    const tree = mount(
-      <ShortList
-        shortListState={{elements: testElements, hasLoaded: true}}
-        orderList={testElements}
-      />
-    );
-    tree
-      .find(
-        'div.short-list-item + div.mobile-styling .Toolbar.mobile-styling .Toolbar__left .button'
-      )
-      .at(1)
-      .simulate('click');
-    expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(OrderButton).toHaveBeenCalledTimes(3);
     expect(global.open).toHaveBeenCalledTimes(1);
     expect(global.open).toHaveBeenCalledWith('https://this/url/lydbog');
     expect(tree).toMatchSnapshot();
@@ -333,13 +265,11 @@ describe('ShortList.container', () => {
       />
     );
     tree
-      .find(
-        'div.top-bar-dropdown-list-page div.Toolbar.bottom-toolbar div.Toolbar__right button'
-      )
+      .find('.shortlist--wrap .shortlist__tools--bottom button')
       .at(0)
       .simulate('click');
     expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(OrderButton).toHaveBeenCalledTimes(3);
     expect(mockOrderAll).toHaveBeenCalledTimes(1);
     var argument = mockOrderAll.mock.calls[0][0]; // First argument in first call
     expect(argument.length).toBe(3);

@@ -8,6 +8,9 @@ export class Timeout extends React.Component {
   constructor(props) {
     super(props);
 
+    // Disable timeout in development
+    this.devmode = !!(get(process.env, 'NODE_ENV') === 'development');
+
     // props.miliseconds (is false if disabled)
     this.timeoutInMiliseconds = false;
     this.timeoutId = false;
@@ -30,7 +33,7 @@ export class Timeout extends React.Component {
   }
 
   init() {
-    if (this.timeoutInMiliseconds) {
+    if (this.timeoutInMiliseconds && !this.devmode) {
       this.setListeners();
       this.startTimer();
     }
