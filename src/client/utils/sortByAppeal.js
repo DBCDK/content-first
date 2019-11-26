@@ -24,8 +24,14 @@ const appeals = {
     'skrivestil og struktur',
     'tempo'
   ],
-  handling: ['hovedpersoner', 'handler om'],
-  'tid og sted': ['handlingens tid', 'tid', 'sted', 'fiktivt sted', 'miljø']
+  handling: ['hovedperson(er)', 'handler om'],
+  'tid og sted': [
+    'handlingens tid udtrykt i ord',
+    'handlingens tid udtrykt i tal',
+    'geografisk sted',
+    'fiktivt sted',
+    'miljø'
+  ]
 };
 
 export default function sortByAppeal(tags) {
