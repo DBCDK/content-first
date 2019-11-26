@@ -7,7 +7,8 @@ import logoDark from './LaesekompasLogo--dark.svg';
 import logoLight from './LaesekompasLogo--light.svg';
 
 const srcMap = {
-  '/': logoLight
+  '/': logoLight,
+  '/kiosk': logoLight
 };
 
 class Logo extends React.Component {

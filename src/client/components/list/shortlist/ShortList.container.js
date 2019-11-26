@@ -217,6 +217,7 @@ export class ShortList extends React.Component {
           <div className="shortlist__tools--top">
             {!isKiosk && (
               <Button
+                disabled={isEmpty}
                 size="medium"
                 type="quaternary"
                 iconLeft="print"
