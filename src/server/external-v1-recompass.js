@@ -5,6 +5,7 @@ const uuidGenerator = require('uuid');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const {recompasWork, recompasTags} = require('server/recompas');
+const {fetchWork} = require('./external-v1-books');
 const matomo = require('server/matomo');
 const logger = require('server/logger');
 
@@ -30,7 +31,14 @@ router
             //
             // Recompas recommend based on tags
             //
-            const {tags = {}, creators = {}, maxresults = 10} = req.query;
+            const {
+              tags = {},
+              creators = {},
+              maxresults = 10,
+              agencyId,
+              branch,
+              expand = true
+            } = req.query;
 
             const link = `${req.baseUrl}?tags=${req.query.tags ||
               ''}&creators=${req.query.creators ||
@@ -53,7 +61,9 @@ router
               const result = await recompasTags.getRecommendations({
                 tags: tags,
                 creators: creators,
-                maxresults: parseInt(maxresults, 10)
+                maxresults: parseInt(maxresults, 10),
+                agencyId,
+                branch
               });
 
               result.rid = uuidGenerator.v1();
@@ -61,6 +71,15 @@ router
                 'recommend',
                 Object.assign({}, result, {request: req.query})
               );
+
+              if (expand) {
+                result.response = await Promise.all(
+                  result.response.map(async entry => ({
+                    ...entry,
+                    work: await fetchWork(entry.pid)
+                  }))
+                );
+              }
 
               cache.set(req.originalUrl, result);
               logger.log.debug('recompasTags', {
@@ -82,14 +101,19 @@ router
               dislikes = [],
               limit = 50,
               debug = true,
-              tag_weight
+              tag_weight,
+              agencyId,
+              branch,
+              expand = true
             } = req.query;
 
             let objToSend = {
               likes: JSON.parse(likes),
               dislikes: JSON.parse(dislikes),
               limit: Number(limit),
-              debug
+              debug,
+              agencyId,
+              branch
             };
 
             if (tag_weight) {
@@ -117,6 +141,16 @@ router
                 'recommend',
                 Object.assign({}, result, {request: req.query})
               );
+
+              if (expand) {
+                result.response = await Promise.all(
+                  result.response.map(async entry => ({
+                    ...entry,
+                    work: await fetchWork(entry.pid)
+                  }))
+                );
+              }
+
               cache.set(req.originalUrl, result);
               logger.log.debug('recompasWork', {
                 originalUrl: req.originalUrl,

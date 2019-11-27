@@ -39,6 +39,15 @@ class RecompasWork {
 
   async getRecommendations(query) {
     try {
+      if (query.agencyId && query.branch) {
+        query = {
+          ...query,
+          branchid: `${query.agencyId}|${query.branch}`,
+          status: 'onShelf'
+        };
+        delete query.agencyId;
+        delete query.branch;
+      }
       const result = await request
         .post(this.config.recompass.url.work)
         .send(query);

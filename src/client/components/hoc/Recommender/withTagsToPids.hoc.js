@@ -1,10 +1,30 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {createGetIdsFromRange} from '../../../redux/selectors';
-import {
-  TAGS_RECOMMEND_REQUEST,
-  createGetRecommendedPids
-} from '../../../redux/recommend';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {get} from 'lodash';
+import {filtersMapAll} from '../../../redux/filter.reducer';
+import {fetchTagRecommendations} from '../../../redux/recommend.thunk';
+
+const getIdsFromRange = (filterCards, tags = []) => {
+  let plainSelectedTagIds = [];
+  tags.forEach(id => {
+    if (id instanceof Array) {
+      const parent = filtersMapAll[id[0]].parents[0];
+      const range = filterCards[parent].range;
+
+      const min = range.indexOf(id[0]);
+      const max = range.indexOf(id[1]);
+
+      range.forEach((aId, idx) => {
+        if (idx >= min && idx <= max) {
+          plainSelectedTagIds.push(aId);
+        }
+      });
+    } else {
+      plainSelectedTagIds.push(id);
+    }
+  });
+  return plainSelectedTagIds;
+};
 
 /**
  * A HOC that makes the enhanced component take a list of tags as input prop,
@@ -25,65 +45,60 @@ import {
  * // the recommendations may be lazy-loaded using the isVisible prop.
  * // if isVisible=false, recommendations are not downloaded until isVisible=true
  * <GreatRecommendations tags={[123, 234]} isVisible={false}/>
+ *
+ * // One may filter on a specific branch
+ * <GreatRecommendations tags={[123, 234]} branch="Hovedbiblioteket" agencyId="710100"/>
  */
-const withTagsToPids = WrappedComponent => {
-  const Wrapped = class extends React.Component {
-    componentDidMount() {
-      this.fetch();
-    }
-
-    componentDidUpdate() {
-      this.fetch();
-    }
-    fetch() {
-      if (
-        (this.props.isVisible || typeof this.props.isVisible === 'undefined') &&
-        this.fetched !== this.props.plainSelectedTagIds
-      ) {
-        this.fetched = this.props.plainSelectedTagIds;
-        this.props.fetchRecommendations(this.props.plainSelectedTagIds);
-      }
-    }
-
-    render() {
-      return <WrappedComponent {...this.props} />;
-    }
-  };
-
-  const makeMapStateToProps = () => {
-    const getIdsFromRange = createGetIdsFromRange();
-    const getRecommendedPids = createGetRecommendedPids();
-    return (state, ownProps) => {
-      const plainSelectedTagIds = getIdsFromRange(state, {
-        tags: ownProps.tags
-      });
-      let {pids, rid} = getRecommendedPids(state, {
-        tags: plainSelectedTagIds,
-        excluded: ownProps.excluded,
-        limit: ownProps.limit,
-        threshold: ownProps.thresHold
-      });
-      return {
-        plainSelectedTagIds,
-        recommendations: pids,
-        rid
-      };
-    };
-  };
-
-  const mapDispatchToProps = (dispatch, ownProps) => ({
-    fetchRecommendations: tags =>
-      dispatch({
-        type: TAGS_RECOMMEND_REQUEST,
-        fetchWorks: false,
-        tags: tags,
-        max: Math.max(50, (ownProps.limit || 0) * 2)
-      })
+export default WrappedComponent => props => {
+  const {tags, limit, threshold, excluded} = props;
+  const kiosk = useSelector(store => store.kiosk);
+  const agencyId = get(kiosk, 'configuration.agencyId');
+  const branch = get(kiosk, 'configuration.branch');
+  const requestKey = JSON.stringify({
+    tags,
+    limit,
+    threshold,
+    excluded,
+    agencyId,
+    branch
   });
-  return connect(
-    makeMapStateToProps,
-    mapDispatchToProps
-  )(Wrapped);
-};
+  const recommendations = useSelector(
+    store =>
+      store.recommendReducer.recommendations[requestKey] || {
+        pids: []
+      }
+  );
+  const filterCards = useSelector(store => store.filtercardReducer);
+  const plainSelectedTagIds = getIdsFromRange(filterCards, tags);
 
-export default withTagsToPids;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // if (!isVisible) {
+    //   return;
+    // }
+    if (kiosk.enabled && (!agencyId || !branch)) {
+      return;
+    }
+    dispatch(
+      fetchTagRecommendations({
+        requestKey,
+        tags,
+        agencyId,
+        branch,
+        limit
+      })
+    );
+
+    // }
+  }, [requestKey]);
+
+  return (
+    <WrappedComponent
+      {...props}
+      recommendations={recommendations.pids}
+      plainSelectedTagIds={plainSelectedTagIds}
+      rid={recommendations.rid}
+    />
+  );
+};
