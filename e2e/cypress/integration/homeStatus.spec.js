@@ -1,5 +1,30 @@
 describe('kiosk', function() {
   const pid = '870970-basis:51897080';
+  const work = {
+    book: {
+      pid: '870970-basis:51897080',
+      unit_id: 'unit:2044196',
+      work_id: 'work:1636485',
+      bibliographic_record_id: -1,
+      creator: 'Klaus Høeck',
+      title: 'Legacy',
+      title_full: 'Legacy',
+      pages: 585,
+      type: 'Bog',
+      work_type: 'book',
+      language: 'Dansk',
+      items: 69,
+      libraries: 65,
+      subject: 'Gud, eksistentialisme, systemdigtning',
+      genre: 'Skønlitteratur',
+      first_edition_year: 2015,
+      literary_form: '',
+      taxonomy_description: 'Realistisk erindringer om systemdigtning',
+      description:
+        'Systemdigte, der bevæger sig mellem sproget og virkeligheden i en søgen efter sig selv og forfatterens jeg',
+      loans: 90
+    }
+  };
 
   const setKioskMode = () => {
     cy.viewport(1080, 1920);
@@ -10,9 +35,9 @@ describe('kiosk', function() {
     cy.route('GET', '/v1/initial-state', '@initialState');
   };
 
-  const mockRecompas = pids => {
+  const mockRecompas = entries => {
     cy.route('GET', '/v1/recompass*', {
-      response: pids.map(pid => ({pid, value: 3})),
+      response: entries,
       rid: 'some-rid'
     });
   };
@@ -120,7 +145,7 @@ describe('kiosk', function() {
 
   it('On Shelf status on WorkCard', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
     assertHomeStatusOnWorkCard('onShelf');
@@ -128,7 +153,7 @@ describe('kiosk', function() {
 
   it('Nor For Loan status on WorkCard', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {notForLoan: true});
     cy.visit('/');
     assertHomeStatusOnWorkCard('notForLoan');
@@ -136,7 +161,7 @@ describe('kiosk', function() {
 
   it('On Loan status on WorkCard', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onLoan: true});
     cy.visit('/');
     assertHomeStatusOnWorkCard('onLoan');
@@ -144,7 +169,7 @@ describe('kiosk', function() {
 
   it('Not Available status on WorkCard', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {});
     cy.visit('/');
     assertHomeStatusOnWorkCard('notAvailable');
@@ -156,7 +181,7 @@ describe('kiosk', function() {
 
   it('Home Status on ShortList', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
     clickFirstBooksBookmark();
@@ -171,7 +196,7 @@ describe('kiosk', function() {
 
   it('Find Book button on Kiosk Workpage - book onShelf', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
     clickFirstBook();
@@ -181,7 +206,7 @@ describe('kiosk', function() {
 
   it('Find Book button on Kiosk Workpage - book notForLoan', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {notForLoan: true});
     cy.visit('/');
     clickFirstBook();
@@ -191,7 +216,7 @@ describe('kiosk', function() {
 
   it('Find Book button on Kiosk Workpage - book onLoan', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onLoan: true});
     cy.visit('/');
     clickFirstBook();
@@ -201,7 +226,7 @@ describe('kiosk', function() {
 
   it('Find Book button on Kiosk Workpage - book notAvailable', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {});
     cy.visit('/');
     clickFirstBook();
@@ -215,7 +240,7 @@ describe('kiosk', function() {
 
   it('Click Find Book button - One single location - onShelf', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {
       onShelf: true,
       department: 'Department',
@@ -230,7 +255,7 @@ describe('kiosk', function() {
 
   it('Click Find Book button - One single location - notForLoan', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {
       notForLoan: true,
       department: 'Department',
@@ -245,7 +270,7 @@ describe('kiosk', function() {
 
   it('Click Find Book button - Multiple locations with duplicates', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, [
       {
         onShelf: true,
@@ -277,7 +302,7 @@ describe('kiosk', function() {
 
   it('Click Find Book button - Multiple locations with duplicates - but only one available', function() {
     setKioskMode();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, [
       {
         department: 'Department',
@@ -309,7 +334,7 @@ describe('kiosk', function() {
 
   it('Non-Kiosk mode - Home Status in WorkCard', function() {
     cy.server();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
     assertHomeStatusOnWorkCard('non-kiosk');
@@ -317,7 +342,7 @@ describe('kiosk', function() {
 
   it('Non-Kiosk mode - Home Status in ShortList', function() {
     cy.server();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
     clickFirstBooksBookmark();
@@ -328,7 +353,7 @@ describe('kiosk', function() {
 
   it('Non-Kiosk mode - Find Book button on Kiosk Workpage - book onShelf', function() {
     cy.server();
-    mockRecompas([pid]);
+    mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
     clickFirstBook();
