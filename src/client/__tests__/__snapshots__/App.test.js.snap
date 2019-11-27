@@ -303,7 +303,7 @@ exports[`renders without crashing 1`] = `
         <li>
           <a
             className="link  link--no-hover"
-            data-cy=""
+            data-cy="profile-btn"
             href="/profil/rediger"
             onClick={[Function]}
             style={Object {}}
@@ -318,6 +318,7 @@ exports[`renders without crashing 1`] = `
           className="divider"
         />
         <li
+          data-cy="logout-btn"
           onClick={[Function]}
         >
           <span>

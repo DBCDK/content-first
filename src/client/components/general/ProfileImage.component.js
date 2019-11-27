@@ -42,6 +42,7 @@ class ProfileImage extends React.Component {
       >
         <span
           className="profile-image text-center small round align-self-center"
+          data-cy="topbar-profile-img"
           style={{
             width: size + 'px',
             height: size + 'px',

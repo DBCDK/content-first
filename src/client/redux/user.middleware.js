@@ -3,8 +3,8 @@ import {
   logout,
   addImage,
   saveUser,
-  deleteUser,
-  fetchAnonymousToken
+  fetchAnonymousToken,
+  deleteAndLogout
 } from '../utils/requester';
 import {
   ON_USER_DETAILS_REQUEST,
@@ -17,13 +17,11 @@ import {
   ADD_USER_AGENCY,
   SAVE_USER_PROFILE_SUCCESS,
   DELETE_USER_PROFILE,
-  DELETE_USER_PROFILE_SUCCESS,
   DELETE_USER_PROFILE_ERROR
 } from './user.reducer';
 import {RECEIVE_USER} from './users';
 import {SHORTLIST_LOAD_REQUEST} from './shortlist.reducer';
 import openplatform from 'openplatform';
-import {HISTORY_PUSH_FORCE_REFRESH} from './router.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 
 async function openplatformLogin(state) {
@@ -96,16 +94,10 @@ export const userMiddleware = store => next => action => {
 
     case DELETE_USER_PROFILE:
       next(action);
-
       return (async () => {
         const openplatformId = store.getState().userReducer.openplatformId;
         try {
-          await deleteUser(openplatformId);
-          store.dispatch({type: DELETE_USER_PROFILE_SUCCESS});
-          store.dispatch({
-            type: HISTORY_PUSH_FORCE_REFRESH,
-            path: action.path ? action.path : '/'
-          });
+          deleteAndLogout(openplatformId);
         } catch (error) {
           store.dispatch({type: DELETE_USER_PROFILE_ERROR, error});
         }

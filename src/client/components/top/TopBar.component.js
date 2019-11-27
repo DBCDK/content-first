@@ -46,7 +46,7 @@ class TopBarDropdown extends React.Component {
           </li>
         )}
         <li>
-          <Link href="/profil/rediger" onClick={onClick}>
+          <Link href="/profil/rediger" onClick={onClick} data-cy="profile-btn">
             <span>
               <T component="profile" name="profilePage" />
             </span>
@@ -73,6 +73,7 @@ class TopBarDropdown extends React.Component {
             logout();
             onClick();
           }}
+          data-cy="logout-btn"
         >
           <span>
             <T component="login" name="logoutButton" />

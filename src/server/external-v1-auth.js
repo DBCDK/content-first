@@ -18,7 +18,7 @@ router.get(
 
 router.get('/login', passport.authenticate('profile'));
 
-router.post('/logout', async (req, res) => {
+const logout = async (req, res) => {
   if (req.isAuthenticated()) {
     const openplatformToken = req.user.openplatformToken;
     req.logout();
@@ -29,13 +29,16 @@ router.post('/logout', async (req, res) => {
         .redirect('/');
     } else {
       res.redirect(
-        `${config.login.url}/logout/?access_token=${openplatformToken}`
+        `${config.login.url}/logout/?access_token=${openplatformToken}&redirect_uri=${config.server.dmzHost}`
       );
     }
   } else {
     res.redirect('/');
   }
-});
+};
+
+router.get('/logout', logout);
+router.post('/logout', logout);
 
 module.exports = {
   router
