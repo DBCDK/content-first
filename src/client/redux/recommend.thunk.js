@@ -141,7 +141,8 @@ export const fetchTagRecommendations = ({
       requestKey,
       pids: response.response
         .filter(entry => applyClientSideFilter(entry.work, tags))
-        .map(entry => entry.pid)
+        .map(entry => entry.pid),
+      rid: response.rid
     });
 
     dispatch({
