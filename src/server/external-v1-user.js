@@ -112,7 +112,14 @@ router
         return next(error);
       }
     })
-  )
+  );
+
+router
+  .route('/delete/:id')
+  //
+  // DELETE /v1/user/delete/:id
+  //
+
   .post(requireLoggedIn, asyncMiddleware(deleteAndLogout))
   .delete(requireLoggedIn, asyncMiddleware(deleteAndLogout));
 

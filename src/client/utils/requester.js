@@ -434,7 +434,9 @@ export const logout = dispatch => {
 
 export const deleteAndLogout = id => {
   document.body.innerHTML +=
-    '<form id="deleteform" action="/v1/user/' + id + '" method="post"></form>';
+    '<form id="deleteform" action="/v1/user/delete/' +
+    id +
+    '" method="post"></form>';
   document.getElementById('deleteform').submit();
 };
 

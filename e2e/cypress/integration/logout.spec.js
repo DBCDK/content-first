@@ -1,5 +1,5 @@
-describe('Logout from a variety of places', function () {
-  it('Can start to login and cancel', function () {
+describe('Logout from a variety of places', function() {
+  it('Can start to login and cancel', function() {
     const userName = 'testUser' + Math.floor(Math.random() * 1000);
     cy.cprlogin(userName, '1');
     cy.visit('/');
@@ -8,7 +8,7 @@ describe('Logout from a variety of places', function () {
     cy.get('[data-cy=topbar-login-btn] > span').contains('Log ind');
   });
 
-  it('Logout from profile dropdown', function () {
+  it('Logout from profile dropdown', function() {
     const userName = 'testUser' + Math.floor(Math.random() * 1000);
     cy.cprlogin(userName, '1');
     cy.visit('/');
@@ -19,7 +19,7 @@ describe('Logout from a variety of places', function () {
     cy.get('[data-cy=topbar-login-btn] > span').contains('Log ind');
   });
 
-  it('Can delete profile from profile page', function () {
+  it('Can delete profile from profile page', function() {
     const userName = 'testUser' + Math.floor(Math.random() * 1000);
     cy.cprlogin(userName, '1');
     cy.visit('/');
