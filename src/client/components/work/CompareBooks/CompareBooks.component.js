@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {some} from 'lodash';
 import TruncateMarkup from 'react-truncate-markup';
 
@@ -12,8 +11,6 @@ import BookCover from '../../general/BookCover/BookCover.component';
 import Link from '../../general/Link.component';
 
 import withWork from '../../hoc/Work/withWork.hoc';
-
-import {WORK_RECOMMEND_REQUEST} from '../../../redux/recommend';
 
 import './CompareBooks.css';
 
@@ -40,19 +37,8 @@ const Info = ({work, main}) => {
   );
 };
 export class CompareBooks extends React.Component {
-  componentDidMount() {
-    const {fetchRecommendations, pids, recommendations} = this.props;
-    if (pids) {
-      pids.forEach(pid => {
-        if (!recommendations[pid]) {
-          fetchRecommendations([pid]);
-        }
-      });
-    }
-  }
-
   render() {
-    const {main, works, details, intersectTags, sortTagsByAppeal} = this.props;
+    const {main, works, intersectTags, sortTagsByAppeal} = this.props;
 
     if (!works) {
       return null;
@@ -156,7 +142,8 @@ export class CompareBooks extends React.Component {
               </Text>
             )}
           </div>
-          <Text className="compare_title" type="body" variant="weight-bold">
+          {/* DISABLE FOR NOW - until we have more valid data */}
+          {/* <Text className="compare_title" type="body" variant="weight-bold">
             <T component="work" name="loansTitle" />
           </Text>
           <div className="compare_loans">
@@ -204,39 +191,12 @@ export class CompareBooks extends React.Component {
             <Text type="small">
               <T component="work" name="aboutLoans" />
             </Text>
-          </div>
+          </div> */}
         </div>
       </div>
     );
   }
 }
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    recommendations: state.recommendReducer.workRecommendations,
-    details:
-      state.recommendReducer.workRecommendations[
-        JSON.stringify([ownProps.main])
-      ].details
-  };
-};
-const mapDispatchToProps = dispatch => ({
-  fetchRecommendations: (likes, dislikes = []) => {
-    dispatch({
-      type: WORK_RECOMMEND_REQUEST,
-      fetchWorks: false,
-      likes,
-      dislikes,
-      limit: 50
-    });
-  }
+export default withWork(CompareBooks, {
+  includeTags: true
 });
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(
-  withWork(CompareBooks, {
-    includeTags: true
-  })
-);

@@ -100,7 +100,6 @@ class WorkCard extends React.Component {
       hideMoreLikeThis = false,
       onMoreLikeThisClick
     } = this.props;
-
     if (!work || !work.detailsHasLoaded || !isVisible) {
       return (
         <SkeletonCard
@@ -120,7 +119,6 @@ class WorkCard extends React.Component {
       `${work.book.title || ''}\n${work.book.creator || ''}`;
 
     const highlightClass = highlight ? 'highlight' : '';
-
     return (
       <div
         ref={cardRef || null}
