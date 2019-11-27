@@ -18,7 +18,9 @@ exports[`OrderModal render function renders initial request 1`] = `
   }
   onDone={[Function]}
 >
-  <div>
+  <div
+    className="order-elements--wrap"
+  >
     <div
       className="form-group"
     >
@@ -26,16 +28,7 @@ exports[`OrderModal render function renders initial request 1`] = `
         Du er ved at bestille 3 bøger
       </strong>
       <div
-        style={
-          Object {
-            "background": "white",
-            "marginTop": 10,
-            "maxHeight": 250,
-            "overflowX": "hidden",
-            "overflowY": "scroll",
-            "scroll": "auto",
-          }
-        }
+        className="order-elements--container"
       >
         <div
           className="row short-list-page"

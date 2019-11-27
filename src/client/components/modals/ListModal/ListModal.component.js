@@ -235,7 +235,7 @@ class PageAdvanced extends React.Component {
                 border: 0,
                 width: '100%',
                 height: list.image ? 'auto' : '325px',
-                backgroundImage: `url(img/general/bookshelf.jpg)`
+                backgroundImage: `url(/img/general/bookshelf.jpg)`
               }}
               heading={<T component="list" name="uploadBookcaseImageHeading" />}
               template={list.image ? false : 'img/general/bookshelf.jpg'}

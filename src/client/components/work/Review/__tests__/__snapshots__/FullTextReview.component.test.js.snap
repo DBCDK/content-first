@@ -2,7 +2,7 @@
 
 exports[`FullTextReview render function 1`] = `
 <div
-  className="Review__container mr-4 mb-5"
+  className="Review__container"
 >
   <div
     className="Review__block--top"
@@ -47,7 +47,7 @@ exports[`FullTextReview render function 1`] = `
 
 exports[`FullTextReview render function 2`] = `
 <div
-  className="Review__container mr-4 mb-5"
+  className="Review__container"
 >
   <div
     className="Review__block--top"
@@ -101,7 +101,7 @@ exports[`FullTextReview render function 2`] = `
 
 exports[`FullTextReview render function 3`] = `
 <div
-  className="Review__container mr-4 mb-5"
+  className="Review__container"
 >
   <div
     className="Review__block--top"
@@ -176,7 +176,7 @@ exports[`FullTextReview render function 3`] = `
 
 exports[`FullTextReview render function 4`] = `
 <div
-  className="Review__container mr-4 mb-5"
+  className="Review__container"
 >
   <div
     className="Review__block--top"

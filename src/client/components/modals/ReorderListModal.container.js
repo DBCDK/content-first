@@ -15,6 +15,8 @@ import withWork from '../hoc/Work/withWork.hoc';
 import BookCover from '../general/BookCover/BookCover.component';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 
+import './ReorderListModal.css';
+
 const SortableItemWithWork = withWork(
   ({work, index, moveUp, moveDown, className}) => (
     <SortableItem

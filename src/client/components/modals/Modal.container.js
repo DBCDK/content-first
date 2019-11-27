@@ -28,17 +28,16 @@ class Modal extends React.Component {
     };
 
     let rootView = document.getElementById('root');
-    let scrollArea = document.getElementById('scrollableArea');
+    let scrollArea = document.getElementById('App');
     //
     if (scrollArea && rootView) {
       if (anyOpen(this.props.modalState)) {
         let orig = scrollArea.getBoundingClientRect();
         rootView.style.height = '100vh';
-        scrollArea.style.marginTop = orig.top - 80 + 'px';
+        scrollArea.style.marginTop = orig.top + 'px';
       } else {
         rootView.style.height = 'auto';
-        let fixedScrollPos =
-          Math.abs(scrollArea.getBoundingClientRect().top) + 80;
+        let fixedScrollPos = Math.abs(scrollArea.getBoundingClientRect().top);
         scrollArea.style.marginTop = 0;
         window.scrollTo(0, fixedScrollPos);
       }

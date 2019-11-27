@@ -18,6 +18,10 @@
         "da": "Fortryd",
         "en": "Cancel"
       },
+      "ok": {
+        "da": "OK",
+        "en": "OK"
+      },
       "close": {
         "da": "Luk",
         "en": "Close"
@@ -1238,7 +1242,10 @@
         "en": "Title of a good book"
       },
       "searchBtn": {"da": "Vis", "en": "Show"},
-      "inspirationBtn": {"da": "Eller få inspiration her", "en": "Or get inspired here"}
+      "inspirationBtn": {
+        "da": "Eller få inspiration her",
+        "en": "Or get inspired here"
+      }
     },
     "wayFinder": {
       "findBook": {

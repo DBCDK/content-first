@@ -1,8 +1,237 @@
+/* modal transition */
+
 .modal-enter {
   opacity: 0;
 }
+
 .modal-enter .modal-window {
-  margin-top: -50px;
+  margin-top: -10vh;
+  transition: all 0.2s;
+}
+
+.modal-enter.modal-enter-active {
+  opacity: 1;
+  transition: all 0.2s;
+}
+.modal-enter.modal-enter-active .modal-window {
+  transition: all 0.2s;
+  margin-top: 0px;
+}
+
+.modal-leave.modal-leave-active {
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.modal-leave.modal-leave-active .modal-window {
+  margin-top: -10vh;
+  transition: all 0.2s;
+}
+
+/*  */
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  z-index: 3000;
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-window {
+  background-color: white;
+  width: var(--md);
+  height: auto;
+  max-height: 70vh;
+  align-self: center;
+  z-index: 3000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.175);
+  position: relative;
+}
+
+.modal-window .top {
+  height: 60px;
+  border-bottom: 1px solid var(--porcelain);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-window .top .close-modal--X {
+  padding: var(--2pt);
+  cursor: pointer;
+  align-self: center;
+}
+
+.modal-window .top .close-modal--back {
+  display: none;
+}
+
+.modal-window .content {
+  max-height: calc(70vh - 120px);
+  height: auto;
+  padding: var(--4pt) var(--10pt);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-window .bottom {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: var(--2pt);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  border-top: 1px solid var(--porcelain);
+  z-index: 1;
+}
+
+.modal-error--txt {
+  margin: 0 var(--1pt) 0 0;
+}
+
+.modal-done--btn {
+  margin: 0 0 0 var(--1pt);
+}
+
+.modal-cancel--btn {
+}
+
+/* Kiosk enabled */
+
+.App.kioskmode .modal-window {
+  max-height: 50vh;
+}
+
+.App.kioskmode .modal-window .content {
+  max-height: calc(50vh - 120px);
+  height: auto !important;
+}
+
+/*  */
+
+@media (max-width: 768px), (max-height: 768px) {
+  .modal-window {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    box-shadow: none;
+  }
+
+  .modal-window .content {
+    height: calc(100% - 60px);
+    max-height: calc(100% - 60px);
+  }
+
+  /* dont resize login-modal */
+  .modal-window.login-modal {
+    height: auto;
+    max-height: auto;
+  }
+  /*  */
+
+  .modal-window .top {
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 0 0 var(--2pt);
+  }
+
+  .modal-window .top .close-modal--back {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .modal-window .top .close-modal--X {
+    display: none;
+  }
+}
+
+@media (max-height: 576px) {
+  .modal-window.login-modal {
+    height: 100%;
+    max-width: 100% !important;
+    max-height: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-window {
+    max-width: 100% !important;
+    height: 100% !important;
+  }
+
+  .modal-window .content {
+    padding: var(--4pt);
+  }
+
+  .modal-window .top {
+    padding: 0 0 0 var(--1pt);
+  }
+}
+
+@media (max-width: 320px) {
+  .modal-window .content {
+    padding: var(--2pt);
+  }
+}
+
+/* Login modal */
+
+.modal-window.login-modal {
+  max-width: var(--sm);
+  max-height: var(--sm);
+}
+
+.modal-window.login-modal .content {
+  height: auto;
+}
+
+.modal-window--buttons {
+  margin: var(--5pt) 0;
+}
+
+.modal-window-login-btn {
+  display: block;
+  margin: auto;
+}
+
+@media (max-width: 576px) {
+  .modal-window.login-modal {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+/* .modal-enter {
+  opacity: 0;
+}
+.modal-container {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-window {
+  align-self: center;
+}
+
+.modal-window {
+  max-height: 75%;
 }
 
 .modal-enter.modal-enter-active {
@@ -36,8 +265,8 @@
   position: relative;
 }
 .modal-window .content {
-  max-height: 75%;
-  padding: 0rem 81px 2rem 81px;
+  height: calc(70vh - 55px);
+  padding: 0 var(--10pt) var(--4pt) var(--10pt);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -65,8 +294,8 @@
   }
 
   .modal-window .content {
-    height: calc(100% - 55px);
-    padding: 1rem;
+    height: calc(100vh - 55px);
+    padding: var(--2pt);
     max-height: 100%;
   }
   .modal-container {
@@ -75,7 +304,6 @@
 }
 @media (max-height: 812px) {
   .modal-window {
-    position: absolute;
     width: 100% !important;
     max-width: none !important;
     height: 100%;
@@ -83,13 +311,13 @@
     max-height: inherit;
   }
   .modal-window .content {
-    height: calc(100% - 55px);
+    height: calc(100vh - 55px);
     max-height: inherit;
   }
-}
+} */
 
 /*ReorderListModal styles*/
-.order-list-element {
+/* .order-list-element {
   -ms-flex-align: center;
   align-items: center;
   padding: 12px 18px;
@@ -183,8 +411,6 @@
   }
 }
 
-/* old */
-
 .modal-container,
 .modal-backdrop {
   position: fixed;
@@ -192,7 +418,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding-top: 100px;
   z-index: 99998;
 }
 .login-modal {
@@ -297,4 +522,4 @@
   .loginmodal-create-profile-text a {
     font-size: 1em;
   }
-}
+} */

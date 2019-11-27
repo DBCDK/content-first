@@ -169,6 +169,7 @@ class App extends Component {
 
     return (
       <div
+        id="App"
         className={`App ${isKioskClass} ${softKeyboardClass}`}
         style={{backgroundColor}}
       >

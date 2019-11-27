@@ -3,6 +3,7 @@
 exports[`renders without crashing 1`] = `
 <div
   className="App  "
+  id="App"
   style={
     Object {
       "backgroundColor": "var(--white)",

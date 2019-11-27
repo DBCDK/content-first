@@ -1,6 +1,6 @@
 import React from 'react';
-import {isMobile} from 'react-device-detect';
 
+import T from '../../base/T';
 import Button from '../../base/Button';
 import Text from '../../base/Text';
 import Title from '../../base/Title';
@@ -11,36 +11,31 @@ import './Modal.css';
 export default class Modal extends React.Component {
   render() {
     const {
-      doneText = 'OK',
-      cancelText,
+      className = '',
+      doneText = T({component: 'general', name: 'ok'}),
+      cancelText = T({component: 'general', name: 'cancel'}),
       hideCancel = false,
       hideConfirm = false,
       doneDisabled,
       onError = false
     } = this.props;
     return (
-      <div className="modal-container ">
+      <div className="modal-container">
         <div className="modal-backdrop" onClick={this.props.onClose} />
-        <div className={'modal-window ' + this.props.className || ''}>
-          <div className="top d-flex flex-row justify-content-start justify-content-sm-end">
+        <div className={`modal-window ${className}`}>
+          <div className="top">
             <Icon
               name="clear"
-              className={
-                'm-3 d-none d-sm-inline-block ' +
-                (isMobile ? ' increase-touch-area-large' : '')
-              }
+              className="close-modal--X"
               onClick={this.props.onClose}
-              style={{cursor: 'pointer'}}
             />
-            <Button
-              size="medium"
-              className="m-3 d-inline-block d-sm-none"
-              type="link2"
-              onClick={this.props.onClose}
-            >
-              <Icon name="chevron_left" className="align-middle" />
-              <span className="align-middle">Tilbage</span>
-            </Button>
+
+            <span className="close-modal--back" onClick={this.props.onClose}>
+              <Icon name="chevron_left" />
+              <span>
+                <T component="general" name="back" />
+              </span>
+            </span>
           </div>
 
           <div data-cy="modal-content" className="content">
@@ -50,50 +45,50 @@ export default class Modal extends React.Component {
               </Title>
             )}
             {this.props.children}
-            {!hideCancel && !hideConfirm && (
-              <div className="modal-seperator mt-5 mb-4" />
-            )}
-            {
-              <div className="bottom d-flex flex-row justify-content-end align-items-center pt-1">
-                {onError && (
-                  <div className="mr-3">
-                    <Text type="body" variant="color-fersken">
-                      {onError}
-                    </Text>
-                  </div>
-                )}
-                {!hideCancel && cancelText && (
-                  <Button
-                    size="medium"
-                    className="mr-1"
-                    type="quaternary"
-                    variant="bgcolor-porcelain--color-petroleum"
-                    onClick={this.props.onClose}
-                  >
-                    {cancelText}
-                  </Button>
-                )}
-                {!hideConfirm && (
-                  <a
-                    data-cy="modal-done-btn"
-                    href={this.props.url || null}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button
-                      disabled={doneDisabled || onError}
-                      size="medium"
-                      className={'mr-0' + (doneDisabled ? ' disabled' : '')}
-                      type="quaternary"
-                      onClick={doneDisabled ? () => {} : this.props.onDone}
-                    >
-                      {doneText}
-                    </Button>
-                  </a>
-                )}
-              </div>
-            }
           </div>
+
+          {!hideCancel && !hideConfirm && (
+            <div className="bottom">
+              {onError && (
+                <div className="modal-error--txt">
+                  <Text type="body" variant="color-fersken">
+                    {onError}
+                  </Text>
+                </div>
+              )}
+              {!hideCancel && (
+                <Button
+                  size="medium"
+                  className="modal-cancel--btn"
+                  type="quaternary"
+                  variant="bgcolor-porcelain--color-petroleum"
+                  onClick={this.props.onClose}
+                >
+                  {cancelText}
+                </Button>
+              )}
+              {!hideConfirm && (
+                <a
+                  data-cy="modal-done-btn"
+                  href={this.props.url || null}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button
+                    disabled={doneDisabled || onError}
+                    size="medium"
+                    className={
+                      'modal-done--btn' + (doneDisabled ? ' disabled' : '')
+                    }
+                    type="quaternary"
+                    onClick={doneDisabled ? () => {} : this.props.onDone}
+                  >
+                    {doneText}
+                  </Button>
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </div>
     );

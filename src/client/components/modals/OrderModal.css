@@ -1,0 +1,12 @@
+.order-elements--container {
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px), (max-height: 768px) {
+  .order-elements--container {
+    max-height: calc(100vh - 300px) !important;
+    height: calc(100vh - 300px) !important;
+  }
+}
