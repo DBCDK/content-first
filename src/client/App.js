@@ -169,6 +169,7 @@ class App extends Component {
 
     return (
       <div
+        id="App"
         className={`App ${isKioskClass} ${softKeyboardClass}`}
         style={{backgroundColor}}
       >
@@ -198,7 +199,7 @@ class App extends Component {
         />
         <div id="scrollableArea">{currentPage}</div>
         <Modal />
-        <CookieWarning />
+        {!this.props.isKiosk && <CookieWarning />}
         <Animate />
 
         <ToastContainer

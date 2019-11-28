@@ -1,58 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LoginModal renders function 1`] = `
-<div
-  className="modal-container login-modal-container"
+<Modal
+  className="login-modal"
+  header="abc"
+  hideCancel={true}
+  hideConfirm={true}
+  url="/v1/auth/login"
 >
+  <p>
+    def
+  </p>
   <div
-    className="modal-backdrop"
-  />
-  <div
-    className="modal-window text-left modal-narrow login-modal"
+    className="modal-window--buttons"
   >
-    <div
-      className="modal-window--header text-center"
+    <button
+      className="modal-window-login-btn
+      button button__large button__quaternary   "
+      data-cy=""
+      disabled={false}
     >
-      <i
-        className="material-icons modal-window--close-btn"
-      >
-        clear
-      </i>
-    </div>
-    <div
-      className="modal-window--content"
-    >
-      <h1
-        className=" Title Title__title4 Title__title4--transform-uppercase--weight-bold"
-      >
-        abc
-      </h1>
-      <p>
-        def
-      </p>
-      <div
-        className="modal-window--buttons text-center"
-      >
-        <span
-          className="btn  modal-window-login-btn"
-        >
-          Log ind
-        </span>
-      </div>
-      <div
-        className="loginmodal-create-profile-text"
-      >
-        <p>
-          Har du ikke en profil? Du kan nemt oprette en profil med det login, du bruger på biblioteket.
-          <a
-            href="/v1/auth/login"
-          >
-             
-            Opret en profil
-          </a>
-        </p>
-      </div>
-    </div>
+      <span>
+        Log ind
+      </span>
+    </button>
   </div>
-</div>
+  <p
+    className="loginmodal-create-profile-text Text Text__small "
+  >
+    Har du ikke en profil? Du kan nemt oprette en profil med det login, du bruger på biblioteket.
+     
+    <a
+      href="/v1/auth/login"
+    >
+      Opret en profil
+    </a>
+  </p>
+</Modal>
 `;

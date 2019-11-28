@@ -11,6 +11,8 @@ import {
   ORDER_DONE
 } from '../../redux/order.reducer';
 
+import './OrderModal.css';
+
 export function OrderState({book}) {
   if (book.orderState === 'ordered') {
     return (
@@ -227,7 +229,7 @@ export function OrderModal(props) {
       doneText={doneText}
       doneDisabled={doneDisabled}
     >
-      <div>
+      <div className="order-elements--wrap">
         <div className="form-group">
           <strong>
             <T
@@ -246,16 +248,7 @@ export function OrderModal(props) {
               <T component="order" name="modalOrderNotice" />
             </small>
           )}
-          <div
-            style={{
-              marginTop: 10,
-              background: 'white',
-              scroll: 'auto',
-              maxHeight: 250,
-              overflowY: 'scroll',
-              overflowX: 'hidden'
-            }}
-          >
+          <div className="order-elements--container">
             {props.orders.map(book => {
               return (
                 <div className="row short-list-page" key={book.pid}>

@@ -206,7 +206,7 @@ export class ShortList extends React.Component {
 
         <Banner
           color={!isKiosk ? '#81c793' : '#f3f3f3'}
-          textColor={!isKiosk ? '#ffffff' : '#00414b'}
+          textColor={!isKiosk ? 'white' : 'petroleum'}
           className="fixed-width-col-md position-relative text-uppercase"
           title={
             !isKiosk ? T({component: 'shortlist', name: 'title'}) : 'Huskeliste'

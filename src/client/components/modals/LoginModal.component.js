@@ -1,70 +1,41 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import T from '../base/T/';
+import Modal from './Modal/Modal.component';
+import Text from '../base/Text';
+import Button from '../base/Button';
 import {HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
-import ArrowBack from './ArrowBack.svg';
-import T from '../base/T/';
-import {isMobile} from 'react-device-detect';
-import Title from '../base/Title';
 
 export function LoginModal({context, closeModal, login}) {
-  const isSmallScreen = window.innerWidth < 768;
-
-  function renderHeder() {
-    if (isSmallScreen) {
-      return (
-        <div className="login-modal-small-screen-header" onClick={closeModal}>
-          <img src={ArrowBack} alt="luk" onClick={closeModal} />
-          <p>
-            <T component="general" name="back" />
-          </p>
-        </div>
-      );
-    }
-    return (
-      <i
-        onClick={closeModal}
-        className={
-          'material-icons modal-window--close-btn' +
-          (isMobile ? ' increase-touch-area-large' : '')
-        }
-      >
-        clear
-      </i>
-    );
-  }
-
   return (
-    <div className="modal-container login-modal-container">
-      <div className="modal-backdrop" onClick={closeModal} />
-      <div className={`modal-window text-left modal-narrow login-modal`}>
-        <div className="modal-window--header text-center">{renderHeder()}</div>
-        <div className="modal-window--content">
-          <Title type="title4" variant="transform-uppercase--weight-bold">
-            {context.title || context}
-          </Title>
-          <p>
-            {context.reason || (
-              <T component="login" name="modalNoContextReason" />
-            )}
-          </p>
-          <div className="modal-window--buttons text-center">
-            <span className={`btn  modal-window-login-btn`} onClick={login}>
-              <T component="login" name="loginButton" />
-            </span>
-          </div>
-          <div className="loginmodal-create-profile-text">
-            <p>
-              <T component="login" name="modalCreateProfileText" />
-              <a href={'/v1/auth/login'}>
-                {' '}
-                <T component="login" name="modalCreateProfileLink" />
-              </a>
-            </p>
-          </div>
-        </div>
+    <Modal
+      className="login-modal"
+      header={context.title || context}
+      onClose={closeModal}
+      hideConfirm={true}
+      hideCancel={true}
+      url={'/v1/auth/login'}
+    >
+      <p>
+        {context.reason || <T component="login" name="modalNoContextReason" />}
+      </p>
+      <div className="modal-window--buttons">
+        <Button
+          type="quaternary"
+          className={`modal-window-login-btn`}
+          onClick={login}
+        >
+          <T component="login" name="loginButton" />
+        </Button>
       </div>
-    </div>
+      <Text type="small" className="loginmodal-create-profile-text">
+        <T component="login" name="modalCreateProfileText" />{' '}
+        <a href={'/v1/auth/login'}>
+          <T component="login" name="modalCreateProfileLink" />
+        </a>
+      </Text>
+    </Modal>
   );
 }
 function mapStateToProps() {

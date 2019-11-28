@@ -18,7 +18,7 @@ export default class FullTextReview extends React.Component {
       return (
         <div className="Review__scroll-container">
           <div className="Review__inner-scroll">
-            <div className="Review__container mr-4 mb-5">
+            <div className="Review__container">
               <div dangerouslySetInnerHTML={{__html: text}} />
             </div>
           </div>
@@ -49,7 +49,7 @@ export default class FullTextReview extends React.Component {
     }
     const reviewKeys = Object.keys(review.review);
     return (
-      <div className="Review__container mr-4 mb-5">
+      <div className="Review__container">
         <div className="Review__block--top">
           <Text type="micro" className="mb-3">
             Bibliotekernes vurdering af {author}: {title}

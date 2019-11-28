@@ -225,7 +225,7 @@ exports[`ShortList.container Clearing list 1`] = `
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
-    textColor="#ffffff"
+    textColor="white"
     title="Din huskeliste"
   >
     <div
@@ -250,10 +250,10 @@ exports[`ShortList.container Clearing list 1`] = `
             className="banner__title"
             data-cy="banner-title"
             type="title3"
-            variant="color-#ffffff"
+            variant="color-white"
           >
             <h1
-              className="banner__title Title Title__title3 Title__title3--color-#ffffff"
+              className="banner__title Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -1717,7 +1717,7 @@ exports[`ShortList.container Order all books 1`] = `
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
-    textColor="#ffffff"
+    textColor="white"
     title="Din huskeliste"
   >
     <div
@@ -1742,10 +1742,10 @@ exports[`ShortList.container Order all books 1`] = `
             className="banner__title"
             data-cy="banner-title"
             type="title3"
-            variant="color-#ffffff"
+            variant="color-white"
           >
             <h1
-              className="banner__title Title Title__title3 Title__title3--color-#ffffff"
+              className="banner__title Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -3157,7 +3157,7 @@ exports[`ShortList.container Order book 1`] = `
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
-    textColor="#ffffff"
+    textColor="white"
     title="Din huskeliste"
   >
     <div
@@ -3182,10 +3182,10 @@ exports[`ShortList.container Order book 1`] = `
             className="banner__title"
             data-cy="banner-title"
             type="title3"
-            variant="color-#ffffff"
+            variant="color-white"
           >
             <h1
-              className="banner__title Title Title__title3 Title__title3--color-#ffffff"
+              className="banner__title Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -4597,7 +4597,7 @@ exports[`ShortList.container Order ebook 1`] = `
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
-    textColor="#ffffff"
+    textColor="white"
     title="Din huskeliste"
   >
     <div
@@ -4622,10 +4622,10 @@ exports[`ShortList.container Order ebook 1`] = `
             className="banner__title"
             data-cy="banner-title"
             type="title3"
-            variant="color-#ffffff"
+            variant="color-white"
           >
             <h1
-              className="banner__title Title Title__title3 Title__title3--color-#ffffff"
+              className="banner__title Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -6037,7 +6037,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
-    textColor="#ffffff"
+    textColor="white"
     title="Din huskeliste"
   >
     <div
@@ -6062,10 +6062,10 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
             className="banner__title"
             data-cy="banner-title"
             type="title3"
-            variant="color-#ffffff"
+            variant="color-white"
           >
             <h1
-              className="banner__title Title Title__title3 Title__title3--color-#ffffff"
+              className="banner__title Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -7492,7 +7492,7 @@ exports[`ShortList.container Remove element 1`] = `
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
-    textColor="#ffffff"
+    textColor="white"
     title="Din huskeliste"
   >
     <div
@@ -7517,10 +7517,10 @@ exports[`ShortList.container Remove element 1`] = `
             className="banner__title"
             data-cy="banner-title"
             type="title3"
-            variant="color-#ffffff"
+            variant="color-white"
           >
             <h1
-              className="banner__title Title Title__title3 Title__title3--color-#ffffff"
+              className="banner__title Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -8932,7 +8932,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
-    textColor="#ffffff"
+    textColor="white"
     title="Din huskeliste"
   >
     <div
@@ -8957,10 +8957,10 @@ exports[`ShortList.container Short list contains elements 1`] = `
             className="banner__title"
             data-cy="banner-title"
             type="title3"
-            variant="color-#ffffff"
+            variant="color-white"
           >
             <h1
-              className="banner__title Title Title__title3 Title__title3--color-#ffffff"
+              className="banner__title Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -10265,7 +10265,7 @@ exports[`ShortList.container Short list is empty 1`] = `
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
-    textColor="#ffffff"
+    textColor="white"
     title="Din huskeliste"
   >
     <div
@@ -10290,10 +10290,10 @@ exports[`ShortList.container Short list is empty 1`] = `
             className="banner__title"
             data-cy="banner-title"
             type="title3"
-            variant="color-#ffffff"
+            variant="color-white"
           >
             <h1
-              className="banner__title Title Title__title3 Title__title3--color-#ffffff"
+              className="banner__title Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
