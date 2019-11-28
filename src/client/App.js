@@ -199,7 +199,7 @@ class App extends Component {
         />
         <div id="scrollableArea">{currentPage}</div>
         <Modal />
-        <CookieWarning />
+        {!this.props.isKiosk && <CookieWarning />}
         <Animate />
 
         <ToastContainer
