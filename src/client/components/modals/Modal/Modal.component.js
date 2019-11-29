@@ -19,10 +19,14 @@ export default class Modal extends React.Component {
       doneDisabled,
       onError = false
     } = this.props;
+
+    const hasBottomActionsClass =
+      hideCancel && hideConfirm ? '' : 'hasBottomActions';
+
     return (
       <div className="modal-container">
         <div className="modal-backdrop" onClick={this.props.onClose} />
-        <div className={`modal-window ${className}`}>
+        <div className={`modal-window ${className} ${hasBottomActionsClass}`}>
           <div className="top">
             <Icon
               name="clear"

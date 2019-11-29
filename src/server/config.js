@@ -104,6 +104,10 @@ exports.kiosk = {
   enabled: process.env.KIOSK_ENABLED ? true : false
 };
 
+exports.fors = {
+  url: process.env.FORSRIGHTS_URL || 'http://forsrights.addi.dk/1.2/'
+};
+
 exports.test = {
   minismaug: {
     host: process.env.MINISMAUG_HOST || 'localhost'

@@ -15,6 +15,7 @@ const objectStore = require('server/objectStore');
 const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 const uuidv4 = require('uuid/v4');
 const request = require('superagent');
+const libraries = require('server/external-v1-libraries');
 
 module.exports = {
   putUserData,
@@ -132,11 +133,15 @@ async function getUserData(openplatformId, loggedInuser) {
       {type: 'USER_PROFILE', owner: openplatformId, public: true},
       loggedInuser
     )).data[0];
+
     const shortlist = (await objectStore.find(
       {type: 'USER_SHORTLIST', owner: openplatformId},
       loggedInuser
     )).data[0];
+
     const {data: roles} = await objectStore.getRoles(loggedInuser);
+
+    const premium = await libraries.userHasAPayingLibrary();
 
     if (!userData) {
       throw {
