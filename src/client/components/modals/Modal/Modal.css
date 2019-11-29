@@ -87,6 +87,11 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.modal-window.hasBottomActions .content {
+  /* *61px is modal bottombar/actionbar total height */
+  padding: var(--4pt) var(--10pt) calc(var(--4pt) + 61px) var(--10pt);
+}
+
 .modal-window .bottom {
   width: 100%;
   display: flex;
