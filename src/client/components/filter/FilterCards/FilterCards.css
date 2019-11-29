@@ -1,289 +1,291 @@
 .Filters__dimmer {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  background: rgba(255, 255, 255, 0.75);
-  z-index: 95;
-  opacity: 0;
-  pointer-events: none;
-  transition-duration: 0.2s;
-  cursor: pointer;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.75);
+    z-index: 95;
+    opacity: 0;
+    pointer-events: none;
+    transition-duration: 0.2s;
+    cursor: pointer;
 }
 
 .Filters__dimmer-show {
-  opacity: 1;
-  pointer-events: auto;
-  transition-duration: 0.3s;
+    opacity: 1;
+    pointer-events: auto;
+    transition-duration: 0.3s;
 }
 
 .Filters__prev,
 .Filters__next {
-  width: 150px;
-  height: 100px;
-  top: 2rem;
-  position: absolute;
-  background-color: red;
-  z-index: 99;
-  font-weight: 600;
-  line-height: 100px;
-  cursor: pointer;
-  outline: none;
+    margin-top: 1px;
+    width: 150px;
+    height: 106px;
+    top: 2rem;
+    position: absolute;
+    background-color: red;
+    z-index: 99;
+    font-weight: 600;
+    line-height: 100px;
+    cursor: pointer;
+    outline: none;
 }
 
 .Filters__prev span,
 .Filters__next span {
-  display: inline-block;
-  line-height: normal;
-  max-width: 40px;
-  vertical-align: middle;
-  text-align: left;
+    display: inline-block;
+    line-height: normal;
+    max-width: 40px;
+    vertical-align: middle;
+    text-align: left;
 }
 
 .Filters__prev i,
 .Filters__next i {
-  vertical-align: middle;
+
+    vertical-align: middle;
 }
 
 .Filters__prev {
-  left: 0;
-  text-align: left;
-  background: linear-gradient(to left, transparent, white);
+    left: 0;
+    text-align: left;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 1) 30%);
 }
 
 .Filters__next {
-  right: 0;
-  text-align: right;
-  background: linear-gradient(to right, transparent, white);
+    right: 0;
+    text-align: right;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 1) 30%);
 }
 
 .Filters__next.swiper-button-disabled,
 .Filters__prev.swiper-button-disabled {
-  display: none;
+    display: none;
 }
 
 #root {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .Filters__swiper-container {
-  height: 125px;
-  padding: 1rem 0 1rem 0;
-  white-space: nowrap;
-  position: relative;
+    height: 125px;
+    padding: 1rem 0 1rem 0;
+    white-space: nowrap;
+    position: relative;
 }
 
 .Filters__swiper-wrapper {
-  position: relative;
-  z-index: 99;
-  display: flex;
+    position: relative;
+    z-index: 99;
+    display: flex;
 }
 
 .FilterCard__container,
 .FilterCard__space {
-  width: 300px;
-  height: 104px;
-  margin: var(--2pt);
-  display: block;
-  background-color: transparent;
-  transition-duration: 0.2s;
+    width: 300px;
+    height: 104px;
+    margin: var(--2pt);
+    display: block;
+    background-color: transparent;
+    transition-duration: 0.2s;
 }
 
 .FilterCard__space {
-  display: none;
+    display: none;
 }
 
 .FilterCard__container .FilterCard {
-  height: 100%;
-  background-color: var(--lys-graa);
-  text-align: left;
-  cursor: pointer;
-  display: flex;
-  overflow: hidden;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    height: 100%;
+    background-color: var(--lys-graa);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 
 .FilterCard .FilterCard__cover {
-  display: block;
-  width: 135px;
-  min-width: 135px;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  transition-duration: 0.2s;
-  position: relative;
+    display: block;
+    width: 135px;
+    min-width: 135px;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    transition-duration: 0.2s;
+    position: relative;
 }
 
 .FilterCard .FilterCard__content {
-  width: calc(100% - 135px);
-  max-height: calc(100vh - (135px + 175px));
-  overflow-y: auto;
-  padding: var(--2pt) var(--2pt) 0 var(--2pt);
-  background-color: white;
+    width: calc(100% - 135px);
+    max-height: calc(100vh - (135px + 175px));
+    overflow-y: auto;
+    padding: var(--2pt) var(--2pt) 0 var(--2pt);
+    background-color: white;
 }
 
 .FilterCard .FilterCard__cover .FilterCard__close {
-  position: absolute;
-  bottom: -2rem;
-  right: 1.5rem;
-  font-size: 1rem;
-  z-index: 1;
-  opacity: 0;
+    position: absolute;
+    bottom: -2rem;
+    right: 1.5rem;
+    font-size: 1rem;
+    z-index: 1;
+    opacity: 0;
 }
 
 .FilterCard .FilterCard__cover .FilterCard__close:hover {
-  color: var(--fersken);
+    color: var(--fersken);
 }
 
 /* if card is expanded */
 
 .FilterCard__container.FilterCard-expanded .FilterCard {
-  display: block;
-  overflow: visible;
-  z-index: 99;
+    display: block;
+    overflow: visible;
+    z-index: 99;
 }
 
 .FilterCard__container.FilterCard-expanded .FilterCard .FilterCard__cover {
-  width: 100%;
-  height: 175px;
+    width: 100%;
+    height: 175px;
 }
 
 .FilterCard__container.FilterCard-expanded .FilterCard__content {
-  position: absolute;
-  width: 100%;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-  transition-duration: 0.2s;
-  padding: var(--2pt);
+    position: absolute;
+    width: 100%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    transition-duration: 0.2s;
+    padding: var(--2pt);
 }
 
 .FilterCard__container.FilterCard-expanded
-  .FilterCard
-  .FilterCard__cover
-  .FilterCard__close {
-  opacity: 1;
-  transition-duration: 0.2s;
+.FilterCard
+.FilterCard__cover
+.FilterCard__close {
+    opacity: 1;
+    transition-duration: 0.2s;
 }
 
 .FilterCard__container.FilterCard-expanded .FilterCard__list {
-  color: var(--petroleum);
+    color: var(--petroleum);
 }
 
 /* kioskmode active */
 
 .App.kioskmode .FilterCard__container {
-  width: 275px;
+    width: 275px;
 }
 
 .App.kioskmode .FilterCard__container:first-child {
-  margin-left: var(--5pt);
+    margin-left: var(--5pt);
 }
 
 .App.kioskmode .FilterCard__container:nth-last-child(2) {
-  margin-right: var(--5pt);
+    margin-right: var(--5pt);
 }
 
 .App.kioskmode .FilterCard .FilterCard__cover {
-  display: none;
+    display: none;
 }
 
 .App.kioskmode .FilterCard .FilterCard__content {
-  max-height: 104px;
-  background-color: var(--lys-graa);
-  width: 100%;
-  bottom: 0;
+    max-height: 104px;
+    background-color: var(--lys-graa);
+    width: 100%;
+    bottom: 0;
 }
 
 .App.kioskmode .FilterCard__container.FilterCard-expanded .FilterCard__content {
-  max-height: 50vh;
+    max-height: 50vh;
 }
 
 .App.kioskmode .Filters__swiper-container {
-  margin: 0 0 var(--3pt) 0;
+    margin: 0 0 var(--3pt) 0;
 }
 
 /* on border active */
 .App.kioskmode .FilterCard .FilterCard__content.border--top {
-  border-top-width: 4px;
-  border-top-style: solid;
+    border-top-width: 4px;
+    border-top-style: solid;
 }
 
 .App.kioskmode .Filters__prev,
 .App.kioskmode .Filters__next {
-  top: var(--3pt);
+    top: var(--3pt);
 }
+
 /*  */
 
 @media only screen and (max-width: 600px) {
-  .Filters__swiper-container {
-    padding: 0;
-    height: 175px;
-  }
+    .Filters__swiper-container {
+        padding: 0;
+        height: 175px;
+    }
 
-  .Filters__prev,
-  .Filters__next {
-    display: none;
-  }
+    .Filters__prev,
+    .Filters__next {
+        display: none;
+    }
 
-  .FilterCard__container,
-  .FilterCard__space {
-    width: 200px;
-    height: 150px;
-    margin: var(--2pt) var(--1pt);
-  }
+    .FilterCard__container,
+    .FilterCard__space {
+        width: 200px;
+        height: 150px;
+        margin: var(--2pt) var(--1pt);
+    }
 
-  .FilterCard__space {
-    width: 150px;
-    display: block;
-  }
+    .FilterCard__space {
+        width: 150px;
+        display: block;
+    }
 
-  .FilterCard__container:first-child {
-    margin-left: var(--2pt);
-  }
+    .FilterCard__container:first-child {
+        margin-left: var(--2pt);
+    }
 
-  .FilterCard__container .FilterCard {
-    display: flex;
-    flex-wrap: wrap;
-  }
+    .FilterCard__container .FilterCard {
+        display: flex;
+        flex-wrap: wrap;
+    }
 
-  .FilterCard .FilterCard__cover {
-    width: 200px;
-    height: 85px;
-  }
+    .FilterCard .FilterCard__cover {
+        width: 200px;
+        height: 85px;
+    }
 
-  .FilterCard .FilterCard__content {
-    width: 100%;
-  }
+    .FilterCard .FilterCard__content {
+        width: 100%;
+    }
 
-  .FilterCard .FilterCard__cover .FilterCard__close {
-    bottom: -3.9rem;
-    right: 0.7rem;
-    font-size: 1.3rem;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    line-height: 45px;
-  }
+    .FilterCard .FilterCard__cover .FilterCard__close {
+        bottom: -3.9rem;
+        right: 0.7rem;
+        font-size: 1.3rem;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 45px;
+    }
 
-  /* if card is expanded */
+    /* if card is expanded */
+    .FilterCard__container.FilterCard-expanded {
+        width: 75vw;
+    }
 
-  .FilterCard__container.FilterCard-expanded {
-    width: 75vw;
-  }
+    .FilterCard__container.FilterCard-expanded .FilterCard .FilterCard__cover {
+        width: 100%;
+        height: 150px;
+    }
 
-  .FilterCard__container.FilterCard-expanded .FilterCard .FilterCard__cover {
-    width: 100%;
-    height: 150px;
-  }
+    .FilterCard__container.FilterCard-expanded .FilterCard__content {
+        height: auto;
+    }
 
-  .FilterCard__container.FilterCard-expanded .FilterCard__content {
-    height: auto;
-  }
-
-  .FilterCard__container.FilterCard-expanded
+    .FilterCard__container.FilterCard-expanded
     .FilterCard__content
     .FilterCard__heading {
-    line-height: 2rem;
-    font-size: 1.2rem;
-  }
+        line-height: 2rem;
+        font-size: 1.2rem;
+    }
 }
