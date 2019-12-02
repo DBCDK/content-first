@@ -34,16 +34,6 @@ const createdToast = list => {
 
 export const withList = WrappedComponent => {
   const Wrapper = class extends React.Component {
-    componentDidMount() {
-      this.loadList();
-    }
-
-    componentWillUnmount() {
-      if (this.props.justCreated && !this.stored) {
-        this.deleteList();
-      }
-    }
-
     /**
      * LoadList
      **/
@@ -53,7 +43,6 @@ export const withList = WrappedComponent => {
         this.props.fetchList(id);
       }
     };
-
     /**
      * StoreList
      **/
@@ -62,14 +51,12 @@ export const withList = WrappedComponent => {
       this.stored = true;
       this.props.storeList(this.props.openplatformId);
     };
-
     /**
      * DeleteList
      **/
     deleteList = async () => {
       this.props.deleteList();
     };
-
     /**
      * Add multiple elements to list
      **/
@@ -82,7 +69,6 @@ export const withList = WrappedComponent => {
       );
       this.storeList();
     };
-
     /**
      * Add single element to list
      **/
@@ -92,7 +78,6 @@ export const withList = WrappedComponent => {
         this.storeList();
       }
     };
-
     /**
      * Toggle element in list
      **/
@@ -101,7 +86,6 @@ export const withList = WrappedComponent => {
       onToggleWorkInList(work);
       this.storeList();
     };
-
     /**
      * Updata List data
      **/
@@ -110,6 +94,16 @@ export const withList = WrappedComponent => {
       const newData = {_id: list._id, ...data};
       onUpdateListData(newData);
     };
+
+    componentDidMount() {
+      this.loadList();
+    }
+
+    componentWillUnmount() {
+      if (this.props.justCreated && !this.stored) {
+        this.deleteList();
+      }
+    }
 
     render() {
       // if child component dosen't provide an id/_id, the hoc will not block for rendering
@@ -137,9 +131,14 @@ export const withList = WrappedComponent => {
     const _id = ownProps.id || ownProps._id;
     const openplatformId = state.userReducer.openplatformId;
     const list = state.listReducer.lists[_id];
+    let printList;
+    if (list && list.list) {
+      printList = list.list;
+    }
 
     return {
       list,
+      printList,
       isLoading: list && list.isLoading,
       listLoaded: !!state.listReducer.lists[_id],
       isListOwner: list ? openplatformId === list._owner : null,
