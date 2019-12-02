@@ -7,7 +7,6 @@ import isBot from '../../../utils/isBot';
 const withIsVisible = WrappedComponent => {
   const wrapped = class extends React.Component {
     constructor(props) {
-      console.log('isKiosk', props.isKiosk);
       super(props);
       this.state = {isVisible: isBot() || props.isKiosk};
     }
