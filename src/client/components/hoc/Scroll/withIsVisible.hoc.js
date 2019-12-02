@@ -1,13 +1,15 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import VisibilitySensor from 'react-visibility-sensor';
 
 import isBot from '../../../utils/isBot';
 
 const withIsVisible = WrappedComponent => {
-  return class extends React.Component {
-    constructor() {
-      super();
-      this.state = {isVisible: isBot()};
+  const wrapped = class extends React.Component {
+    constructor(props) {
+      console.log('isKiosk', props.isKiosk);
+      super(props);
+      this.state = {isVisible: isBot() || props.isKiosk};
     }
     onChange = isVisible => {
       if (!this.state.isVisible && !isBot() && isVisible) {
@@ -27,6 +29,14 @@ const withIsVisible = WrappedComponent => {
       );
     }
   };
+
+  const mapStateToProps = state => {
+    return {
+      isKiosk: state.kiosk.enabled
+    };
+  };
+
+  return connect(mapStateToProps)(wrapped);
 };
 
 export default withIsVisible;
