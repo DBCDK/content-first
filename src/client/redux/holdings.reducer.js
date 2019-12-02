@@ -8,35 +8,42 @@ const holdingsReducer = (state = defaultState, action) => {
   const timestamp = new Date().getTime();
   switch (action.type) {
     case FETCH_HOLDINGS: {
-      if (!action.pid) {
-        throw new Error("'pid' is missing from action");
+      if (!action.pids) {
+        throw new Error("'pids' is missing from action");
       }
       const newState = {...state};
-      newState[action.pid] = {timestamp, isFetching: true};
+      action.pids.forEach(pid => {
+        newState[pid] = {timestamp, isFetching: true};
+      });
+
       return newState;
     }
 
     case FETCH_HOLDINGS_SUCCESS: {
-      if (!action.pid) {
-        throw new Error("'pid' is missing from action");
+      if (!action.holdings) {
+        throw new Error("'holdings' is missing from action");
       }
       const newState = {...state};
-      newState[action.pid] = {
-        holdings: [...action.holdings],
-        timestamp,
-        isFetching: false
-      };
+      Object.entries(action.holdings).forEach(([pid, holdings]) => {
+        newState[pid] = {
+          holdings: [...holdings],
+          timestamp,
+          isFetching: false
+        };
+      });
       return newState;
     }
 
     case FETCH_HOLDINGS_ERROR: {
       const newState = {...state};
-      newState[action.pid] = {
-        error: action.error,
-        holdings: [],
-        timestamp,
-        isFetching: false
-      };
+      action.pids.forEach(pid => {
+        newState[pid] = {
+          error: action.error,
+          holdings: [],
+          timestamp,
+          isFetching: false
+        };
+      });
       return newState;
     }
 
