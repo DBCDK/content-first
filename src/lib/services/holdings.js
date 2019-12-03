@@ -75,17 +75,19 @@ class Holdings {
       const holdingsData = this.extractHoldingsData(result.body);
       const recordIdToHoldingsMap = {};
       holdingsData.forEach(holding => {
-        if (!Array.isArray(recordIdToHoldingsMap[holding.bibliographicRecordId])) {
+        if (
+          !Array.isArray(recordIdToHoldingsMap[holding.bibliographicRecordId])
+        ) {
           recordIdToHoldingsMap[holding.bibliographicRecordId] = [];
         }
         recordIdToHoldingsMap[holding.bibliographicRecordId].push(holding);
-      })
+      });
 
       const pidToHoldingMap = pids.reduce((map, pid) => {
         const recordId = this.getRecordId(pid);
         return {
           ...map,
-            [pid]: recordIdToHoldingsMap[recordId]
+          [pid]: recordIdToHoldingsMap[recordId]
         };
       }, {});
       return pidToHoldingMap;

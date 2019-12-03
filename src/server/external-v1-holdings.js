@@ -73,10 +73,13 @@ router
             );
 
             let combined = {};
-            pidsWithHolding
-              .forEach((pid, idx) => {
-                combined[pid] = holdingsRes[pid].map(holding => ({pid, ...holding, type: types[idx]}));
-              });
+            pidsWithHolding.forEach((pid, idx) => {
+              combined[pid] = holdingsRes[pid].map(holding => ({
+                pid,
+                ...holding,
+                type: types[idx]
+              }));
+            });
             return combined;
           })
         );
@@ -98,7 +101,7 @@ router
           });
           const ret = uniqBy(records, 'bibliographicRecordId');
           return ret.filter(holding => !!holding);
-        }
+        };
 
         const result = pids.reduce(
           (map, pid) => ({
