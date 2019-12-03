@@ -73,15 +73,19 @@ class Holdings {
       const q = this.createQuery(agencyId, branch, recordIds);
       const result = await request.get(this.config.holdings.url).query({q});
       const holdingsData = this.extractHoldingsData(result.body);
-      const recordIdToHoldingsMap = holdingsData.reduce(
-        (map, holding) => ({...map, [holding.bibliographicRecordId]: holding}),
-        {}
-      );
+      const recordIdToHoldingsMap = {};
+      holdingsData.forEach(holding => {
+        if (!Array.isArray(recordIdToHoldingsMap[holding.bibliographicRecordId])) {
+          recordIdToHoldingsMap[holding.bibliographicRecordId] = [];
+        }
+        recordIdToHoldingsMap[holding.bibliographicRecordId].push(holding);
+      })
+
       const pidToHoldingMap = pids.reduce((map, pid) => {
         const recordId = this.getRecordId(pid);
         return {
           ...map,
-          [pid]: recordIdToHoldingsMap[recordId]
+            [pid]: recordIdToHoldingsMap[recordId]
         };
       }, {});
       return pidToHoldingMap;

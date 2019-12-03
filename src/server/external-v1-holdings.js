@@ -72,13 +72,11 @@ router
               ''
             );
 
-            const combined = pidsWithHolding
-              .map((pid, idx) => ({
-                pid,
-                ...holdingsRes[pid],
-                type: types[idx]
-              }))
-              .reduce((map, entry) => ({...map, [entry.pid]: entry}), {});
+            let combined = {};
+            pidsWithHolding
+              .forEach((pid, idx) => {
+                combined[pid] = holdingsRes[pid].map(holding => ({pid, ...holding, type: types[idx]}));
+              });
             return combined;
           })
         );
@@ -88,15 +86,24 @@ router
           {}
         );
 
+        const uniqueRes = pid => {
+          if (!idmappings[pid]) {
+            return [];
+          }
+          const records = [];
+          idmappings[pid].forEach(p => {
+            if (pidToHoldingMap[p]) {
+              pidToHoldingMap[p].forEach(item => records.push(item));
+            }
+          });
+          const ret = uniqBy(records, 'bibliographicRecordId');
+          return ret.filter(holding => !!holding);
+        }
+
         const result = pids.reduce(
           (map, pid) => ({
             ...map,
-            [pid]: uniqBy(
-              idmappings[pid]
-                ? idmappings[pid].map(pid2 => pidToHoldingMap[pid2])
-                : [],
-              'bibliographicRecordId'
-            ).filter(holding => !!holding)
+            [pid]: uniqueRes(pid)
           }),
           {}
         );
