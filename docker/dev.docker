@@ -23,6 +23,6 @@ MINISMAUG_HOST=minismaug
 ## SUGGESTER_URL=http://suggester-laesekompas-webservice-1-service.os-externals-staging.svc.cloud.dbc.dk
 
 ## prod
-RECOMPASS_TAGS_URL=http://recompass-1-1.mi-prod.svc.cloud.dbc.dk/recompass
-RECOMPASS_WORK_URL=http://recompass-work-1-1.mi-prod.svc.cloud.dbc.dk/recompass-work
+RECOMPASS_TAGS_URL=http://recompass-1-2.mi-prod.svc.cloud.dbc.dk/recompass
+RECOMPASS_WORK_URL=http://recompass-work-1-2.mi-prod.svc.cloud.dbc.dk/recompass-work
 SUGGESTER_URL=http://suggester-laesekompas-webservice-3-service.os-externals-staging.svc.cloud.dbc.dk

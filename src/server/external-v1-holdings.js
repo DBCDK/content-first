@@ -1,8 +1,9 @@
 'use strict';
 
+import {chunk, isEqual, uniqWith} from 'lodash';
+
 const express = require('express');
 const request = require('superagent');
-const {uniqBy, chunk} = require('lodash');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const nocache = require('server/nocache');
@@ -99,8 +100,7 @@ router
               pidToHoldingMap[p].forEach(item => records.push(item));
             }
           });
-          const ret = uniqBy(records, 'bibliographicRecordId');
-          return ret.filter(holding => !!holding);
+          return uniqWith(records, isEqual).filter(holding => !!holding);
         };
 
         const result = pids.reduce(

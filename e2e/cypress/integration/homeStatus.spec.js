@@ -151,7 +151,7 @@ describe('kiosk', function() {
     assertHomeStatusOnWorkCard('onShelf');
   });
 
-  it('Nor For Loan status on WorkCard', function() {
+  it('Not For Loan status on WorkCard', function() {
     setKioskMode();
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {notForLoan: true});
