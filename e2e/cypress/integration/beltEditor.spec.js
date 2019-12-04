@@ -198,7 +198,7 @@ describe('Start Belt Editor test', function() {
 
   // ======================================================================================
 
-  it.only('Test Table contains three elements', function() {
+  it('Test Table contains three elements', function() {
     mockStorage();
     cy.createUser('EditorUser', 'editor');
     cy.visit('/redaktionen');

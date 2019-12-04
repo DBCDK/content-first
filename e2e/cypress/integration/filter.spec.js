@@ -155,7 +155,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=container-row]').should('not.be.empty');
   });
 
-  it.only('Should give suggestions on author search', function() {
+  it('Should give suggestions on author search', function() {
     const authorName = 'Haruki Murakami';
     cy.visit('/');
 
