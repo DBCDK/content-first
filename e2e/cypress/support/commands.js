@@ -117,3 +117,26 @@ Cypress.Commands.add('visitWithMatomoMocks', (url, matomo) => {
     }
   });
 });
+
+/**
+ * Runs in kiosk mode
+ */
+Cypress.Commands.add('setKioskMode', () => {
+  cy.viewport(1080, 1920);
+  cy.fixture('kiosk/initialStateKioskEnabledWithClientId.json').as(
+    'initialState'
+  );
+  cy.fixture('kiosk/kioskConfiguration.json').as('kioskConfiguration');
+  cy.server();
+  cy.route('GET', '/v1/initial-state', '@initialState');
+  cy.route('POST', '/v1/kiosk', '@kioskConfiguration');
+});
+
+/**
+ * Mocks recompass response
+ */
+Cypress.Commands.add('mockRecompass', () => {
+  cy.server();
+  cy.fixture('recompass/simple.json').as('recompassResponse');
+  cy.route('GET', '/v1/recompass*', '@recompassResponse');
+});

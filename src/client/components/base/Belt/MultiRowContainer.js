@@ -24,6 +24,7 @@ const Row = withIsVisible(
             cardRef={cardRef}
             className={pid ? '' : 'invisible'}
             enableHover={true}
+            enableLongpress={true}
             highlight={pid === selected}
             isVisible={isVisible}
             pid={pid}
