@@ -109,7 +109,6 @@ class WorkCard extends React.Component {
         />
       );
     }
-
     const compareButtonIsVisible = this.state.showCompareButton;
     const compareButtonVisibleClass = compareButtonIsVisible ? 'active' : '';
 
