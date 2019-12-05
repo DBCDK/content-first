@@ -155,7 +155,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=container-row]').should('not.be.empty');
   });
 
-  it.only('Should give suggestions on author search', function() {
+  it('Should give suggestions on author search', function() {
     const authorName = 'Haruki Murakami';
     cy.visit('/');
 
@@ -239,7 +239,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=search-bar-input]').should('have.focus');
   });
 
-  it('MOBILE: Should keep input focus on book select - mouse click', function() {
+  it.skip('MOBILE: Should keep input focus on book select - mouse click', function() {
     cy.viewport('iphone-6');
     cy.visit('/find');
     cy.get('[data-cy=search-bar-input]')
@@ -255,7 +255,7 @@ describe('Filter page test', function() {
       .should('not.have.focus');
   });
 
-  it('MOBILE: Should keep input focus on book select - enter click', function() {
+  it.skip('MOBILE: Should keep input focus on book select - enter click', function() {
     cy.viewport('iphone-6');
     cy.visit('/find');
     cy.get('[data-cy=search-bar-input]')
