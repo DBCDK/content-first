@@ -72,7 +72,11 @@ const withQueryToPids = WrappedComponent => {
             const resultInBranch = resultAll.filter(
               pid =>
                 holdings[pid].filter(
-                  holding => holding.onShelf && holding.type.includes('Bog')
+                  holding =>
+                    holding &&
+                    holding.onShelf &&
+                    holding.type &&
+                    holding.type.includes('Bog')
                 ).length > 0
             );
 
