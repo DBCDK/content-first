@@ -1,0 +1,20 @@
+{
+  "CompareButton": {
+    "free": false,
+    "premium": true,
+    "kiosk": true,
+    "role": {
+      "contentFirstAdmin": true,
+      "contentFirstEditor": true
+    }
+  },
+  "EditorpageButton": {
+    "free": false,
+    "premium": false,
+    "kiosk": false,
+    "role": {
+      "contentFirstAdmin": true,
+      "contentFirstEditor": true
+    }
+  }
+}

@@ -71,6 +71,7 @@ class App extends Component {
       this.setState({didShowCookieModal: true});
     }
 
+    const isPremiumClass = this.props.isPremium ? 'premium' : '';
     const isKioskClass = this.props.isKiosk ? 'kioskmode' : '';
     const softKeyboardClass =
       this.props.isKiosk && this.state.softKeyboard ? 'keyboard' : '';
@@ -170,7 +171,7 @@ class App extends Component {
     return (
       <div
         id="App"
-        className={`App ${isKioskClass} ${softKeyboardClass}`}
+        className={`App ${isKioskClass} ${softKeyboardClass} ${isPremiumClass}`}
         style={{backgroundColor}}
       >
         <Head />
@@ -253,7 +254,8 @@ const mapStateToProps = state => {
   return {
     routerState: state.routerReducer,
     isKiosk: state.kiosk.enabled,
-    user: state.userReducer
+    user: state.userReducer,
+    isPremium: state.userReducer.isPremium
   };
 };
 

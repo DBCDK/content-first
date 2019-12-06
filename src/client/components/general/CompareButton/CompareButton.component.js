@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import Icon from '../../base/Icon';
 
+import withPermissions from '../../hoc/Permissions';
+
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 
 import './CompareButton.css';
@@ -68,4 +70,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CompareButton);
+)(withPermissions(CompareButton, 'CompareButton'));
