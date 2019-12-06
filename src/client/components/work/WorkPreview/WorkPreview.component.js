@@ -244,7 +244,7 @@ class WorkPreview extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="work-preview__container">
+        <div className="work-preview__container" data-cy="work-preview">
           <div className={`work-preview__top ${className}`}>
             {isWorkPreview(this.props) && (
               <Icon
@@ -390,7 +390,10 @@ class WorkPreview extends React.Component {
                       work={work}
                     />
                   </div>
-                  <RemindsOf onClick={() => remindsOfClick(work)} />
+                  <RemindsOf
+                    onClick={() => remindsOfClick(work)}
+                    data-cy="RO-more-like-this"
+                  />
                   {!hideAppels && appeals.length > 0 && (
                     <RenderPrioTags
                       tags={prioTags}
