@@ -241,198 +241,219 @@ class WorkPreview extends React.Component {
 
     return (
       <React.Fragment>
-        <div
-          className={`work-preview ${className}`}
-          ref={preview => (this.refs = {...this.refs, preview})}
-        >
-          <div className="work-preview__work">
-            <Link
-              className="work-preview__cover-link"
-              href={'/værk/' + book.pid}
-            >
-              <BookCover
-                pid={book.pid}
-                className="work-preview__cover"
-                enableLightbox={enableLightbox}
-                dataCy={dataCy}
+        <div className="work-preview__container">
+          <div className={`work-preview__top ${className}`}>
+            <Icon
+              name="clear"
+              className="close-work-preview--X"
+              onClick={this.props.close}
+            />
+          </div>
+          <div
+            className={`work-preview ${className}`}
+            ref={preview => (this.refs = {...this.refs, preview})}
+          >
+            <div className="work-preview__work">
+              <Link
+                className="work-preview__cover-link"
+                href={'/værk/' + book.pid}
               >
-                <BookmarkButton
-                  className="icon-large"
-                  origin={T({
-                    component: 'work',
-                    name: 'bookmarkButtonOrigin'
-                  })}
-                  work={work}
-                  rid={this.props.rid}
-                  layout="circle"
-                  dataCy="bookmarkBtn"
-                  size="large"
-                />
-              </BookCover>
-            </Link>
-
-            <div
-              className="work-preview__information"
-              ref={e => (this.info = e)}
-            >
-              <Share
-                href={'https://laesekompas.dk/værk/' + book.pid}
-                title={T({component: 'share', name: 'shareOnFacebook'})}
-              >
-                <T component="share" name="share" />
-              </Share>
-              <Title Tag="h1" type="title3" className="work-preview__title">
-                <Link href={'/værk/' + book.pid}>{book.title}</Link>
-              </Title>
-              <Link href={'/find?tags=' + encodeURI(book.creator)}>
-                <Title Tag="h2" type="title5" className="work-preview__creator">
-                  {book.creator}
-                </Title>
+                <BookCover
+                  pid={book.pid}
+                  className="work-preview__cover"
+                  enableLightbox={enableLightbox}
+                  dataCy={dataCy}
+                >
+                  <BookmarkButton
+                    className="icon-large"
+                    origin={T({
+                      component: 'work',
+                      name: 'bookmarkButtonOrigin'
+                    })}
+                    work={work}
+                    rid={this.props.rid}
+                    layout="circle"
+                    dataCy="bookmarkBtn"
+                    size="large"
+                  />
+                </BookCover>
               </Link>
 
-              <Text
-                type="body"
-                variant="weight-semibold"
-                className="work-preview__information-taxdescription"
+              <div
+                className="work-preview__information"
+                ref={e => (this.info = e)}
               >
-                <TaxDescription text={tax_description} />
-              </Text>
-
-              <Text
-                type="body"
-                className="work-preview__information-description"
-              >
-                {book.description}
-              </Text>
-
-              <div className="work-preview__information-details">
-                <span className="detail-element">
-                  <Text type="micro" variant="color-petroleum">
-                    <T component="work" name="pages" />
-                  </Text>
-                  <Text
-                    type="micro"
-                    data-cy={'pages-count'}
-                    variant="color-petroleum"
+                <Share
+                  href={'https://laesekompas.dk/værk/' + book.pid}
+                  title={T({component: 'share', name: 'shareOnFacebook'})}
+                >
+                  <T component="share" name="share" />
+                </Share>
+                <Title Tag="h1" type="title3" className="work-preview__title">
+                  <Link href={'/værk/' + book.pid}>{book.title}</Link>
+                </Title>
+                <Link href={'/find?tags=' + encodeURI(book.creator)}>
+                  <Title
+                    Tag="h2"
+                    type="title5"
+                    className="work-preview__creator"
                   >
-                    {book.pages}
-                  </Text>
-                </span>
-                <span className="detail-element">
-                  <Text type="micro" variant="color-petroleum">
-                    <T component="work" name="language" />
-                  </Text>
-                  <Text type="micro" variant="color-petroleum">
-                    {book.language}
-                  </Text>
-                </span>
-                <span className="detail-element">
-                  <Text type="micro" variant="color-petroleum">
-                    <T component="work" name="released" />
-                  </Text>
-                  <Text type="micro" variant="color-petroleum">
-                    {book.first_edition_year}
-                  </Text>
-                </span>
-              </div>
+                    {book.creator}
+                  </Title>
+                </Link>
 
-              <div className="work-preview__actions">
-                <div className="work-preview__action-loan">
-                  <Text type="body" variant="weight-semibold">
-                    <T component="work" name="loanTitle" />
-                  </Text>
+                <Text
+                  type="body"
+                  variant="weight-semibold"
+                  className="work-preview__information-taxdescription"
+                >
+                  <TaxDescription text={tax_description} />
+                </Text>
+
+                <Text
+                  type="body"
+                  className="work-preview__information-description"
+                >
+                  {book.description}
+                </Text>
+
+                <div className="work-preview__information-details">
+                  <span className="detail-element">
+                    <Text type="micro" variant="color-petroleum">
+                      <T component="work" name="pages" />
+                    </Text>
+                    <Text
+                      type="micro"
+                      data-cy={'pages-count'}
+                      variant="color-petroleum"
+                    >
+                      {book.pages}
+                    </Text>
+                  </span>
+                  <span className="detail-element">
+                    <Text type="micro" variant="color-petroleum">
+                      <T component="work" name="language" />
+                    </Text>
+                    <Text type="micro" variant="color-petroleum">
+                      {book.language}
+                    </Text>
+                  </span>
+                  <span className="detail-element">
+                    <Text type="micro" variant="color-petroleum">
+                      <T component="work" name="released" />
+                    </Text>
+                    <Text type="micro" variant="color-petroleum">
+                      {book.first_edition_year}
+                    </Text>
+                  </span>
                 </div>
-                {work.collectionHasLoaded && !collectionIsValid && (
-                  <Text type="body" className="detail-no-valid-collection">
-                    <T
-                      component="work"
-                      name={
-                        newRelease()
-                          ? 'noValidCollectionYet'
-                          : 'noValidCollection'
-                      }
-                    />
-                  </Text>
-                )}
-                <LoanButton
-                  pid={book.pid}
-                  isLoading={!work.collectionHasLoaded}
-                  collectionIsValid={collectionIsValid}
-                />
 
-                <RenderCollectionButtons
-                  pid={book.pid}
-                  collection={collection}
-                  isLoading={!work.collectionHasLoaded}
-                  collectionIsValid={collectionIsValid}
+                <div className="work-preview__actions">
+                  <div className="work-preview__action-loan">
+                    <Text type="body" variant="weight-semibold">
+                      <T component="work" name="loanTitle" />
+                    </Text>
+                  </div>
+                  {work.collectionHasLoaded && !collectionIsValid && (
+                    <Text type="body" className="detail-no-valid-collection">
+                      <T
+                        component="work"
+                        name={
+                          newRelease()
+                            ? 'noValidCollectionYet'
+                            : 'noValidCollection'
+                        }
+                      />
+                    </Text>
+                  )}
+                  <LoanButton
+                    pid={book.pid}
+                    isLoading={!work.collectionHasLoaded}
+                    collectionIsValid={collectionIsValid}
+                  />
+
+                  <RenderCollectionButtons
+                    pid={book.pid}
+                    collection={collection}
+                    isLoading={!work.collectionHasLoaded}
+                    collectionIsValid={collectionIsValid}
+                  />
+                  <div className="work-preview__add-to-list--wrap">
+                    <AddToListButton
+                      className="work-preview__add-to-list"
+                      work={work}
+                    />
+                  </div>
+                  <RemindsOf onClick={() => remindsOfClick(work)} />
+                  {!hideAppels && appeals.length > 0 && (
+                    <RenderPrioTags
+                      tags={prioTags}
+                      onClick={() => {
+                        trackEvent('tags', 'seeAllTags', book.title);
+                        this.swiper.slideTo(1, 400);
+                        this.setState({
+                          tabsCollapsed: false
+                        });
+                      }}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={`work-preview__tabs-wrap ${collapsedClass}`}
+              style={{height: tabsCollapsed ? infoHeight : 'auto'}}
+              data-cy="work-preview-tabs"
+            >
+              {this.state.currentTabHeight + 100 > infoHeight && (
+                <Expand
+                  title={T({component: 'general', name: 'showMore'})}
+                  onClick={() =>
+                    this.setState({
+                      tabsCollapsed: false
+                    })
+                  }
                 />
-                <div className="work-preview__add-to-list--wrap">
-                  <AddToListButton
-                    className="work-preview__add-to-list"
+              )}
+              <Tabs
+                pages={['Anmeldelser', 'Læseoplevelse']}
+                swiper={swiper => (this.swiper = swiper)}
+                onUpdate={({height}) =>
+                  this.setState({currentTabHeight: height})
+                }
+              >
+                <div
+                  className="tabs tabs-page-1"
+                  data-cy="tabs-page-Anmeldelser"
+                >
+                  <ReviewList
+                    book={book}
+                    reviews={reviews}
+                    lectorReviews={lectorReviews}
                     work={work}
                   />
                 </div>
-                <RemindsOf onClick={() => remindsOfClick(work)} />
-                {!hideAppels && appeals.length > 0 && (
-                  <RenderPrioTags
-                    tags={prioTags}
-                    onClick={() => {
-                      trackEvent('tags', 'seeAllTags', book.title);
-                      this.swiper.slideTo(1, 400);
-                      this.setState({
-                        tabsCollapsed: false
-                      });
-                    }}
-                  />
-                )}
-              </div>
+                <div
+                  className="tabs tabs-page-2"
+                  data-cy="tabs-page-Læseoplevelse"
+                >
+                  <Appeals book={book} appeals={appeals} />
+                </div>
+              </Tabs>
             </div>
           </div>
-
-          <div
-            className={`work-preview__tabs-wrap ${collapsedClass}`}
-            style={{height: tabsCollapsed ? infoHeight : 'auto'}}
-            data-cy="work-preview-tabs"
-          >
-            {this.state.currentTabHeight + 100 > infoHeight && (
-              <Expand
-                title={T({component: 'general', name: 'showMore'})}
-                onClick={() =>
-                  this.setState({
-                    tabsCollapsed: false
-                  })
-                }
-              />
-            )}
-            <Tabs
-              pages={['Anmeldelser', 'Læseoplevelse']}
-              swiper={swiper => (this.swiper = swiper)}
-              onUpdate={({height}) => this.setState({currentTabHeight: height})}
-            >
-              <div className="tabs tabs-page-1" data-cy="tabs-page-Anmeldelser">
-                <ReviewList
-                  book={book}
-                  reviews={reviews}
-                  lectorReviews={lectorReviews}
-                  work={work}
-                />
-              </div>
+          {this.props.hasChildBelt && (
+            <div className="work-preview__arrow-container">
               <div
-                className="tabs tabs-page-2"
-                data-cy="tabs-page-Læseoplevelse"
+                className="work-preview__arrow"
+                onClick={this.props.closeChild}
               >
-                <Appeals book={book} appeals={appeals} />
+                <Icon name="expand_more" className=" md-large" />
               </div>
-            </Tabs>
-          </div>
-        </div>
-        {this.props.hasChildBelt && (
-          <div className="work-preview__arrow-container">
-            <div className="work-preview__arrow">
-              <Icon name="expand_more" className=" md-large" />
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </React.Fragment>
     );
   }
