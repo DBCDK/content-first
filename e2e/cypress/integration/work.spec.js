@@ -3,7 +3,7 @@ let openplatformMock = new OpenplatormMock();
 
 const record = false;
 
-describe('work', function() {
+describe('Work Preview', function() {
   beforeEach(function() {
     openplatformMock.init({
       record,
@@ -68,5 +68,11 @@ describe('work', function() {
         expect(heightAfter).to.be.greaterThan(heightBefore);
       });
     });
+  });
+
+  it(`Should test that there is no 'Close' button`, function() {
+    const pid = '870970-basis:53410405';
+    cy.visit('/v%C3%A6rk/' + pid);
+    cy.get('[data-cy=close-work-preview-buton]').should('not.exist');
   });
 });
