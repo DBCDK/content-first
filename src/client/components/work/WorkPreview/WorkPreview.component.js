@@ -250,6 +250,7 @@ class WorkPreview extends React.Component {
               <Icon
                 name="clear"
                 className="close-work-preview--X"
+                data-cy="close-work-preview-buton"
                 onClick={this.props.close}
               />
             )}
