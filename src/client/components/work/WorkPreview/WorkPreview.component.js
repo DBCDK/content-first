@@ -239,15 +239,20 @@ class WorkPreview extends React.Component {
       });
     }
 
+    const isWorkPreview = props =>
+      props.className.split(' ').includes('preview');
+
     return (
       <React.Fragment>
         <div className="work-preview__container">
           <div className={`work-preview__top ${className}`}>
-            <Icon
-              name="clear"
-              className="close-work-preview--X"
-              onClick={this.props.close}
-            />
+            {isWorkPreview(this.props) && (
+              <Icon
+                name="clear"
+                className="close-work-preview--X"
+                onClick={this.props.close}
+              />
+            )}
           </div>
           <div
             className={`work-preview ${className}`}
