@@ -3,7 +3,7 @@ let openplatformMock = new OpenplatormMock();
 
 const record = false;
 
-describe('Work Preview', function() {
+describe('Work Page', function() {
   beforeEach(function() {
     openplatformMock.init({
       record,
@@ -73,6 +73,6 @@ describe('Work Preview', function() {
   it(`Should test that there is no 'Close' button`, function() {
     const pid = '870970-basis:53410405';
     cy.visit('/v%C3%A6rk/' + pid);
-    cy.get('[data-cy=close-work-preview-buton]').should('not.exist');
+    cy.get('[data-cy=close-work-preview-button]').should('not.exist');
   });
 });
