@@ -43,7 +43,11 @@ function mapStateToProps() {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    closeModal: () => dispatch({type: CLOSE_MODAL, modal: 'login'}),
+    closeModal: () =>
+      dispatch({
+        type: CLOSE_MODAL,
+        modal: 'login'
+      }),
     login: () => {
       dispatch({
         type: HISTORY_PUSH_FORCE_REFRESH,

@@ -4,6 +4,7 @@ import Icon from '../base/Icon';
 import T from '../base/T';
 import Spinner from '../general/Spinner/Spinner.component';
 import {withWork} from '../hoc/Work';
+import withPermisisons from '../hoc/Permissions';
 import Kiosk from '../base/Kiosk/Kiosk';
 
 import './orderButton.css';
@@ -72,7 +73,7 @@ export function OrderButton(props) {
             size={props.size}
             iconLeft={props.iconLeft}
             iconRight={props.iconRight}
-            onClick={props.order}
+            onClick={props.onClick || props.order}
             dataCy="order-btn"
           >
             {orderState.label}
@@ -83,6 +84,9 @@ export function OrderButton(props) {
   );
 }
 
-export default withWork(OrderButton, {
-  includeCollection: true
-});
+export default withPermisisons(
+  withWork(OrderButton, {
+    includeCollection: true
+  }),
+  {ComponentName: 'OrderButton'}
+);

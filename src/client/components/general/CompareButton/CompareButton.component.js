@@ -70,4 +70,9 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withPermissions(CompareButton, 'CompareButton'));
+)(
+  withPermissions(CompareButton, {
+    ComponentName: 'CompareButton',
+    onAccessDenied: 'premiumPromt'
+  })
+);
