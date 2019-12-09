@@ -10,8 +10,7 @@ describe('Filter page test', function() {
   });
 
   it('Should test "Stemning" filter', function() {
-    cy.visit('/');
-    cy.get('[data-cy=topbar-search-btn]').click();
+    cy.visit('/find');
     cy.get('[data-cy=stemning]').click();
     cy.get('[data-cy=mystisk]').click();
     cy.get('[data-cy=filterDimmer]').click();
@@ -46,9 +45,7 @@ describe('Filter page test', function() {
   });
 
   it('Should test "Længde" filter', function() {
-    cy.visit('/');
-
-    cy.get('[data-cy=topbar-search-btn]').click();
+    cy.visit('/find');
     cy.get('[data-cy=længde]').click();
     cy.get('[data-cy=kort]').click();
     cy.get('[data-cy=filterDimmer]').click();
@@ -65,9 +62,7 @@ describe('Filter page test', function() {
     });
   });
   it('Should test "Univers" filter', function() {
-    cy.visit('/');
-
-    cy.get('[data-cy=topbar-search-btn]').click();
+    cy.visit('/find');
     cy.get('[data-cy=univers]').click();
     cy.get('[data-cy=realistisk]').click();
     cy.get('[data-cy=filterDimmer]').click();
@@ -84,9 +79,7 @@ describe('Filter page test', function() {
   });
 
   it('Should test "Fortællerstemme" filter', function() {
-    cy.visit('/');
-
-    cy.get('[data-cy=topbar-search-btn]').click();
+    cy.visit('/find');
     cy.get('[data-cy=fortællerstemme]').click();
     cy.get('[data-cy=jeg-fortæller]').click();
     cy.get('[data-cy=filterDimmer]').click();
@@ -103,9 +96,7 @@ describe('Filter page test', function() {
   });
 
   it('Should test "Sprog" filter', function() {
-    cy.visit('/');
-
-    cy.get('[data-cy=topbar-search-btn]').click();
+    cy.visit('/find');
     cy.get('[data-cy=sprog]').click();
     cy.get('[data-cy=slang]').click();
     cy.get('[data-cy=filterDimmer]').click();
@@ -122,9 +113,7 @@ describe('Filter page test', function() {
   });
 
   it('Should test "Skrivestil" filter', function() {
-    cy.visit('/');
-
-    cy.get('[data-cy=topbar-search-btn]').click();
+    cy.visit('/find');
     cy.get('[data-cy=skrivestil]').click();
     cy.get('[data-cy=bevidsthedsstrøm]').click();
     cy.get('[data-cy=filterDimmer]').click();
@@ -144,9 +133,7 @@ describe('Filter page test', function() {
   });
 
   it('Should test "Handlingens tid" filter', function() {
-    cy.visit('/');
-
-    cy.get('[data-cy=topbar-search-btn]').click();
+    cy.visit('/find');
     cy.get('[data-cy=handlingens-tid]').click();
     cy.get('[data-cy="antikken"]').click();
     cy.get('[data-cy=filterDimmer]').click();
@@ -157,9 +144,7 @@ describe('Filter page test', function() {
 
   it('Should give suggestions on author search', function() {
     const authorName = 'Haruki Murakami';
-    cy.visit('/');
-
-    cy.get('[data-cy=topbar-search-btn]').click();
+    cy.visit('/find');
     cy.get('[data-cy=search-bar-input]')
       .first()
       .type(authorName);
@@ -196,9 +181,7 @@ describe('Filter page test', function() {
 
   it('Should give one result on work search', function() {
     const workTitle = 'Kafka på stranden';
-    cy.visit('/');
-
-    cy.get('[data-cy=topbar-search-btn]').click();
+    cy.visit('/find');
     cy.get('[data-cy=search-bar-input]')
       .first()
       .type(workTitle);

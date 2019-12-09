@@ -126,6 +126,25 @@ describe('kiosk', function() {
       cy.get('[data-cy="workcard-870970-basis:50746798-0"]');
       cy.get('[data-cy="workcard-870970-basis:51578031-1"]');
     });
+    it(`Should not fail when a holding has no type`, function() {
+      cy.setKioskMode();
+      initSearchTest({
+        '870970-basis:50746798': [
+          {
+            onShelf: false,
+            type: 'Bog'
+          }
+        ],
+        '870970-basis:51578031': [
+          {
+            onShelf: true
+          }
+        ]
+      });
+      cy.visit('/find?tags=Stephen%20King%20(f.%201947)');
+      cy.get('[data-cy="workcard-870970-basis:50746798-0"]');
+      cy.get('[data-cy="workcard-870970-basis:51578031-1"]');
+    });
   });
 
   describe('work page', function() {

@@ -16,10 +16,6 @@ import {timestampToLongDate} from '../../../../utils/dateTimeFormat';
 import './SimpleList.css';
 
 export class SimpleList extends React.Component {
-  constructor() {
-    super();
-    this.state = {added: null, titleMissing: false};
-  }
   onEdit = () => {
     scrollToComponent(this.refs.cover, {
       align: 'top',
@@ -27,7 +23,6 @@ export class SimpleList extends React.Component {
       duration: 500
     });
   };
-
   onAddBook = () => {
     scrollToComponent(this.refs.suggester, {
       align: 'top',
@@ -36,6 +31,11 @@ export class SimpleList extends React.Component {
     });
     this.refs.suggester.input.focus();
   };
+
+  constructor() {
+    super();
+    this.state = {added: null, titleMissing: false};
+  }
 
   render() {
     const {_id, list, deleteList, isListOwner, storeList} = this.props;
@@ -90,7 +90,6 @@ export class SimpleList extends React.Component {
               onAddBook={this.onAddBook}
               onEdit={this.onEdit}
               titleMissing={this.state.titleMissing}
-              commentsListRef={this.refs.commentsList}
             />
             <div className="position-relative mt-4 mt-md-5">
               {list.list.map(element => {
@@ -134,12 +133,7 @@ export class SimpleList extends React.Component {
             )}
 
             {list.social && (
-              <div
-                className="p-3 p-md-0"
-                ref={commentsList => {
-                  this.refs = {...this.refs, commentsList};
-                }}
-              >
+              <div className="p-3 p-md-0" id="listCommentsArea">
                 {(list.open || isListOwner) && (
                   <div className="list-divider petroleum mt-4 mb-4" />
                 )}

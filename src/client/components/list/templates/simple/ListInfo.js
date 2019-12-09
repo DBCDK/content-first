@@ -9,7 +9,7 @@ import Text from '../../../base/Text';
 import FollowButton from '../../button/FollowButton';
 import PrintButton from '../../button/PrintButton';
 
-export const ListInfo = ({list, isListOwner, commentsListRef}) => {
+export const ListInfo = ({list, isListOwner}) => {
   return (
     <div className="lys-graa position-relative">
       {list.image && (
@@ -53,9 +53,7 @@ export const ListInfo = ({list, isListOwner, commentsListRef}) => {
               <PrintButton _id={list._id} className="ml-sm-4" />
             </div>
             <div />
-            {list.social && (
-              <CommentCounter id={list._id} commentsListRef={commentsListRef} />
-            )}
+            {list.social && <CommentCounter id={list._id} />}
           </div>
         </React.Fragment>
       </div>
