@@ -19,6 +19,14 @@ export class CommentCounter extends React.Component {
     this.props.fetchComments(this.props.id);
   };
 
+  scrollToComments = () => {
+    let commentsElement = document.getElementById('listCommentsArea');
+    scrollToComponent(commentsElement, {
+      offset: 100,
+      duration: 700
+    });
+  };
+
   render() {
     const commentsCount = this.props.comments.length;
 
@@ -27,12 +35,7 @@ export class CommentCounter extends React.Component {
         type="small"
         variant="weight-semibold"
         style={{lineHeight: '1.5rem', cursor: 'pointer'}}
-        onClick={() => {
-          scrollToComponent(this.props.commentsListRef, {
-            offset: 100,
-            duration: 700
-          });
-        }}
+        onClick={this.scrollToComments}
       >
         <T
           component="post"
