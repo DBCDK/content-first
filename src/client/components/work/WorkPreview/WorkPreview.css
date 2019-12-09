@@ -29,10 +29,14 @@
     position: relative;
 }
 
-.work-preview__information .Share {
-    position: absolute;
-    right: 0;
-    top: 0;
+.work-preview__title-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.work-preview .Share {
+    align-self: flex-start;
+    margin-left: 0.5em;
 }
 
 .work-preview__information .work-preview__title {
