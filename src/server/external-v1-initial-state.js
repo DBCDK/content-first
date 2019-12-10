@@ -94,9 +94,11 @@ async function initState(req) {
     })).data;
 
     // check if user has premium access
-    isPremium = await libraries.userHasAPayingLibrary(
-      userLibraries[0].municipalityAgencyId
-    );
+    if (userLibraries.length > 0 && userLibraries[0].municipalityAgencyId) {
+      isPremium = await libraries.userHasAPayingLibrary(
+        userLibraries[0].municipalityAgencyId
+      );
+    }
   }
 
   const roles = (await objectStore.getAllRoles()).data;
