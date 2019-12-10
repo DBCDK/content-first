@@ -189,6 +189,8 @@ async function getUserData(openplatformId, loggedInuser) {
       };
     }
 
+    // "in-comment" for testing
+
     // return _.omitBy(
     //   {
     //     ...userData,

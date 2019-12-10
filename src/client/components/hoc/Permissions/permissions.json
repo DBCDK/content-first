@@ -6,8 +6,7 @@
     "role": {
       "contentFirstAdmin": true,
       "contentFirstEditor": true
-    },
-    "onDenied": "prompt-premium"
+    }
   },
   "EditorpageButton": {
     "free": false,
@@ -16,8 +15,7 @@
     "role": {
       "contentFirstAdmin": true,
       "contentFirstEditor": true
-    },
-    "onDenied": false
+    }
   },
   "OrderButton": {
     "free": false,
@@ -26,7 +24,15 @@
     "role": {
       "contentFirstAdmin": false,
       "contentFirstEditor": false
-    },
-    "onDenied": "prompt-premium"
+    }
+  },
+  "Navigation": {
+    "free": false,
+    "premium": false,
+    "kiosk": true,
+    "role": {
+      "contentFirstAdmin": false,
+      "contentFirstEditor": false
+    }
   }
 }

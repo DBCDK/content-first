@@ -26,7 +26,7 @@ export class CompareButton extends React.PureComponent {
   }
 
   render() {
-    const {className, openModal, main, pid} = this.props;
+    const {className, openModal, main, pid, onClick = false} = this.props;
     const {active} = this.state;
 
     if (!main) {
@@ -42,8 +42,13 @@ export class CompareButton extends React.PureComponent {
           // Prevent opening workpreview on bookmark click
           e.preventDefault();
           e.stopPropagation();
-          this.toggleButton();
-          openModal('compare', {main, pids: [main, pid]});
+
+          if (onClick) {
+            onClick(e);
+          } else {
+            this.toggleButton();
+            openModal('compare', {main, pids: [main, pid]});
+          }
         }}
       >
         <Icon name="compare_arrows" />
@@ -72,7 +77,9 @@ export default connect(
   mapDispatchToProps
 )(
   withPermissions(CompareButton, {
-    ComponentName: 'CompareButton',
-    onAccessDenied: 'premiumPromt'
+    name: 'CompareButton',
+    context: {
+      title: 'Sammenligning af bøger'
+    }
   })
 );

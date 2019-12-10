@@ -46,6 +46,7 @@ async function initState(req) {
     type: KIOSK_RESPONSE,
     response: {...config.kiosk}
   });
+  let isPremium = false;
 
   if (req.user) {
     userState = userReducer(userState, {
@@ -85,18 +86,18 @@ async function initState(req) {
         pid: order.pid
       });
     });
+
+    // Get user library info from USER_PRIVAT info obj
+    const userLibraries = (await storageClient.find({
+      type: 'USER_PRIVAT',
+      owner: req.user.openplatformId
+    })).data;
+
+    // check if user has premium access
+    isPremium = await libraries.userHasAPayingLibrary(
+      userLibraries[0].municipalityAgencyId
+    );
   }
-
-  // Get user library info from USER_PRIVAT info obj
-  const userLibraries = (await storageClient.find({
-    type: 'USER_PRIVAT',
-    owner: req.user.openplatformId
-  })).data;
-
-  // check if user has premium access
-  const isPremium = await libraries.userHasAPayingLibrary(
-    userLibraries[0].municipalityAgencyId
-  );
 
   const roles = (await objectStore.getAllRoles()).data;
   rolesState = rolesReducer(rolesState, {type: ROLES_RESPONSE, roles});

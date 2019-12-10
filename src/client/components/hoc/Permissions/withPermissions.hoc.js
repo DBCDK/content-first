@@ -1,12 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {get} from 'lodash';
 
 import Kiosk from '../../base/Kiosk/Kiosk';
-import ConfirmModal from '../../modals/ConfirmModal.component';
 
 import {loadKiosk} from '../../../redux/kiosk.thunk';
-import {OPEN_MODAL, CLOSE_MODAL} from '../../../redux/modal.reducer';
+import {OPEN_MODAL} from '../../../redux/modal.reducer';
 
 import permissions from './permissions.json';
 
@@ -14,19 +13,89 @@ function getUserRoles(roles) {
   return roles.map(role => role.machineName);
 }
 
-export default (WrappedComponent, ComponentOptions) => props => {
-  const name = get(ComponentOptions, 'ComponentName', false) || props.name;
+const defaultPremiumContext = {
+  title: 'Premium indhold',
+  reason: 'Indholdet er desværre kun tilgængeligt for betalende biblioteker'
+};
 
-  console.log('name', name);
+const defaultLoginContext = {
+  title: 'Login',
+  reason: 'Login for at se om dit bibliotek har købt adgang til dette indhold'
+};
+
+/**
+
+  Permissions.hoc usage example:
+
+  export default withPermissions(YourComponent, Options);
+
+  Options parameters
+  @param {string} name {required}
+  @param {obj} context premium + login modal context (same context for both)
+  @param {obj} modals individual modal context settings
+
+ Options example:
+    {
+      name: 'YourComponentName',
+      context: {
+        title: 'all prompted modals will have this title',
+        reason: 'all prompted modals will have this description'
+      },
+      modals:  {
+        login {title: 'only login modal will have this title', reason: '...'}
+        premium {title: '...', reason, '....'}
+      }
+    }
+
+  Set permissions for your component in the /permissions.json file
+
+  Permissions object in permissions.json example:
+
+  "YourComponentName": {
+    "free": false,
+    "premium": true,
+    "kiosk": false,
+    "role": {
+      "contentFirstAdmin": false,
+      "contentFirstEditor": false
+    }
+  }
+
+**/
+
+export default (WrappedComponent, ComponentOptions) => props => {
+  /* Get the name of the wrapped component, this name is used to
+  get the component options from the permissions.json object. */
+  const name = get(ComponentOptions, 'name', false) || props.name;
+
+  /* If user is denied acces to a premium functionality,
+    they will be prompted with a modal. content of the
+    modal is given by the premium context */
+  const premiumContext =
+    get(ComponentOptions, 'context', false) ||
+    get(ComponentOptions, 'modals.context.premium', false) ||
+    get(props, 'premium.context', false);
+
+  /* If user is denied acces to a logged-in-user functionality,
+      they will be prompted with a modal. content of the
+      modal is given by the login context */
+  const loginContext =
+    get(ComponentOptions, 'context', false) ||
+    get(ComponentOptions, 'modals.login.context', false) ||
+    get(props, 'login.context', false);
 
   const dispatch = useDispatch();
 
   // Kiosk
-  const kiosk = useSelector(state => get(state, 'kiosk', false));
+  const kioskState = useSelector(state => get(state, 'kiosk', false));
 
   // Premium
   const isPremium = useSelector(state =>
     get(state, 'userReducer.isPremium', false)
+  );
+
+  const isLoggedIn = useSelector(state =>
+    get(state, 'userReducer.isLoggedIn', false)
   );
 
   // Roles
@@ -38,21 +107,18 @@ export default (WrappedComponent, ComponentOptions) => props => {
   // Get component Permissions
   const p = permissions[name];
 
-  if (name !== 'CompareButton') {
-    console.log('p', name, p);
-  }
   // If no name or settings is found for the wrapped component
   if (!p) {
     return <WrappedComponent {...props} />;
   }
 
   // If Kioskmode is enabled and allowed - return component without further checks.
-  if (kiosk.enabled) {
+  if (kioskState.enabled) {
     // const agency = get(kiosk, 'configuration.agencyId', false);
     // const branch = get(kiosk, 'configuration.branch', false);
 
     // Get kiosk configuration if not loaded
-    if (!kiosk.loaded) {
+    if (!kioskState.loaded) {
       dispatch(loadKiosk());
     }
 
@@ -60,7 +126,11 @@ export default (WrappedComponent, ComponentOptions) => props => {
     if (p.kiosk) {
       // if (p.kiosk && agency && branch) {
       // return <WrappedComponent {...props} />;
-      return <Kiosk render={({kiosk}) => <WrappedComponent {...props} />} />;
+      return (
+        <Kiosk
+          render={({kiosk}) => <WrappedComponent kiosk={kiosk} {...props} />}
+        />
+      );
     }
   }
 
@@ -69,39 +139,38 @@ export default (WrappedComponent, ComponentOptions) => props => {
     return <WrappedComponent {...props} />;
   }
 
-  // If user has a paying library (Premium access)
-  if (p.premium && isPremium) {
-    return <WrappedComponent {...props} />;
-  }
+  // Checks, which is only available if user is logged in
+  if (isLoggedIn) {
+    // If user has a paying library (Premium access)
+    if (p.premium && isPremium) {
+      return <WrappedComponent {...props} />;
+    }
 
-  // if user has a editor role
-  if (p.role.contentFirstEditor && isEditor) {
-    return <WrappedComponent {...props} />;
-  }
+    // if user has a editor role
+    if (p.role.contentFirstEditor && isEditor) {
+      return <WrappedComponent {...props} />;
+    }
 
-  // if user has an admin role
-  if (p.role.contentFirstAdmin && isAdmin) {
-    return <WrappedComponent {...props} />;
-  }
+    // if user has an admin role
+    if (p.role.contentFirstAdmin && isAdmin) {
+      return <WrappedComponent {...props} />;
+    }
 
-  // If component has a onDenied option
-  if (p.onDenied) {
-    // Promt the user with a premium-only modal
-    if (p.onDenied === 'prompt-premium') {
+    // If component has premium options set
+    if (premiumContext) {
+      // Promt the user with a premium-only modal
       return (
         <WrappedComponent
           {...props}
           onClick={e => {
             e.preventDefault();
             e.stopPropagation();
-            console.log('i was clicked');
             dispatch({
               type: OPEN_MODAL,
               modal: 'confirm',
               context: {
-                title: 'Premium indhold',
-                reason:
-                  'Indholdet er desværre kun tilgængeligt for betalende biblioteker',
+                ...defaultPremiumContext,
+                ...premiumContext,
                 hideCancel: true
               }
             });
@@ -109,6 +178,26 @@ export default (WrappedComponent, ComponentOptions) => props => {
         />
       );
     }
+  }
+
+  if (!isLoggedIn && p.premium) {
+    return (
+      <WrappedComponent
+        {...props}
+        onClick={e => {
+          e.preventDefault();
+          e.stopPropagation();
+          dispatch({
+            type: OPEN_MODAL,
+            modal: 'login',
+            context: {
+              ...defaultLoginContext,
+              ...loginContext
+            }
+          });
+        }}
+      />
+    );
   }
 
   return null;

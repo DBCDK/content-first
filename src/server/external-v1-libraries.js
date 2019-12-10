@@ -5,8 +5,6 @@ const config = require('server/config');
 const logger = require('server/logger');
 const _ = require('lodash');
 
-const openplatform = require('openplatform');
-
 module.exports = {
   getPayingLibraries,
   getUserLibrary,
@@ -34,7 +32,7 @@ async function getPayingLibraries() {
 
     // Return libraries as list ['lib', 'lib',  ...]
     return list.map(l => l.$);
-  } catch (e) {
+  } catch (error) {
     logger.log.error(error);
     throw error;
   }
@@ -63,7 +61,7 @@ async function getUserLibrary(openplatformToken) {
       agencyId: user.agency,
       agencyName: _.get(librariesResponse, 'body.data[0].agencyName', '')
     };
-  } catch (e) {
+  } catch (error) {
     logger.log.error(error);
     throw error;
   }

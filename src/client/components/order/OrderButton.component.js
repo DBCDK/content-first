@@ -88,5 +88,5 @@ export default withPermisisons(
   withWork(OrderButton, {
     includeCollection: true
   }),
-  {ComponentName: 'OrderButton'}
+  {name: 'OrderButton', context: {title: 'Bestil bøger'}}
 );
