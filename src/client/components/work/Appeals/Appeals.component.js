@@ -4,7 +4,7 @@ import Text from '../../base/Text';
 import T from '../../base/T';
 import Button from '../../base/Button';
 import Link from '../../general/Link.component';
-
+import {HISTORY_REPLACE} from '../../../redux/middleware';
 import './Appeals.css';
 
 export default ({appeals, book}) => {
@@ -40,7 +40,12 @@ export default ({appeals, book}) => {
                 : '';
 
               return (
-                <Link key={t.id} href="/find" params={{tags: t.id}}>
+                <Link
+                  key={t.id}
+                  href="/find"
+                  params={{tags: t.id}}
+                  type={HISTORY_REPLACE}
+                >
                   <Button
                     key={t.title}
                     type="tertiary"

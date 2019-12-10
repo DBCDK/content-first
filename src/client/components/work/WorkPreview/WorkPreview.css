@@ -6,11 +6,25 @@
   display: flex;
   height: auto;
   padding: var(--5pt);
+  padding-top: 0;
   background-color: var(--white);
 }
 
-.work-preview.preview.light-grey {
+.work-preview.preview.light-grey,
+.work-preview__top.preview.light-grey {
   background-color: var(--lys-graa);
+}
+
+.work-preview__top {
+  height: var(--5pt);
+  display: flex;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.close-work-preview--X {
+  padding: var(--2pt);
+  cursor: pointer;
 }
 
 .work-preview__work {
@@ -167,6 +181,7 @@
 
 .work-preview__arrow {
   display: flex;
+  cursor: pointer;
   align-items: center;
   height: 50px;
 

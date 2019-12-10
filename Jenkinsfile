@@ -3,7 +3,7 @@
 def app
 def imageName="content-first"
 def imageLabel=BUILD_NUMBER
-def taxonomyUrl="https://ux-is.dbc.dk/job/kompasset/job/make-reports/lastSuccessfulBuild/artifact/json-files.tar.gz"
+def taxonomyUrl="https://artifactory.dbc.dk/artifactory/fe-generic/metakompasset/json-files.tar.gz"
 
 pipeline {
     agent {

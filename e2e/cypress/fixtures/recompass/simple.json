@@ -1,0 +1,33 @@
+{
+  "response": [
+    {
+      "pid": "870970-basis:51897080",
+      "value": 3,
+      "work": {
+        "book": {
+          "pid": "870970-basis:51897080",
+          "unit_id": "unit:2044196",
+          "work_id": "work:1636485",
+          "bibliographic_record_id": -1,
+          "creator": "Klaus Høeck",
+          "title": "Legacy",
+          "title_full": "Legacy",
+          "pages": 585,
+          "type": "Bog",
+          "work_type": "book",
+          "language": "Dansk",
+          "items": 69,
+          "libraries": 65,
+          "subject": "Gud, eksistentialisme, systemdigtning",
+          "genre": "Skønlitteratur",
+          "first_edition_year": 2015,
+          "literary_form": "",
+          "taxonomy_description": "Realistisk erindringer om systemdigtning",
+          "description": "Systemdigte, der bevæger sig mellem sproget og virkeligheden i en søgen efter sig selv og forfatterens jeg",
+          "loans": 90
+        }
+      }
+    }
+  ],
+  "rid": "some-rid"
+}

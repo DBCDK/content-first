@@ -109,7 +109,6 @@ class WorkCard extends React.Component {
         />
       );
     }
-
     const compareButtonIsVisible = this.state.showCompareButton;
     const compareButtonVisibleClass = compareButtonIsVisible ? 'active' : '';
 
@@ -167,7 +166,11 @@ class WorkCard extends React.Component {
                   )}
 
                   <div className="expand-more-wrapper">
-                    <Icon name="expand_more" className="md-large" />
+                    <Icon
+                      name="expand_more"
+                      className="md-large"
+                      data-cy="expand-work-preview"
+                    />
                   </div>
                 </div>
               </React.Fragment>

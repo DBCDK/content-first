@@ -1,8 +1,9 @@
 'use strict';
 
+import {chunk, isEqual, uniqWith} from 'lodash';
+
 const express = require('express');
 const request = require('superagent');
-const {uniqBy, chunk} = require('lodash');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const nocache = require('server/nocache');
@@ -72,13 +73,14 @@ router
               ''
             );
 
-            const combined = pidsWithHolding
-              .map((pid, idx) => ({
+            let combined = {};
+            pidsWithHolding.forEach((pid, idx) => {
+              combined[pid] = holdingsRes[pid].map(holding => ({
                 pid,
-                ...holdingsRes[pid],
+                ...holding,
                 type: types[idx]
-              }))
-              .reduce((map, entry) => ({...map, [entry.pid]: entry}), {});
+              }));
+            });
             return combined;
           })
         );
@@ -88,15 +90,23 @@ router
           {}
         );
 
+        const uniqueRes = pid => {
+          if (!idmappings[pid]) {
+            return [];
+          }
+          const records = [];
+          idmappings[pid].forEach(p => {
+            if (pidToHoldingMap[p]) {
+              pidToHoldingMap[p].forEach(item => records.push(item));
+            }
+          });
+          return uniqWith(records, isEqual).filter(holding => !!holding);
+        };
+
         const result = pids.reduce(
           (map, pid) => ({
             ...map,
-            [pid]: uniqBy(
-              idmappings[pid]
-                ? idmappings[pid].map(pid2 => pidToHoldingMap[pid2])
-                : [],
-              'bibliographicRecordId'
-            ).filter(holding => !!holding)
+            [pid]: uniqueRes(pid)
           }),
           {}
         );

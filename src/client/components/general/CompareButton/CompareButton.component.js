@@ -27,17 +27,20 @@ export class CompareButton extends React.PureComponent {
 
   render() {
     const {className, openModal, main, pid, onClick = false} = this.props;
-    const {active} = this.state;
+    const active =
+      typeof this.props.active !== 'undefined'
+        ? this.props.active
+        : this.state.active;
 
     if (!main) {
       return null;
     }
 
     const activeClass = active ? 'active' : '';
-
     return (
       <button
         className={`compare-button ${className} ${activeClass}`}
+        data-cy={active ? 'compare-button-active' : 'compare-button-inactive'}
         onClick={e => {
           // Prevent opening workpreview on bookmark click
           e.preventDefault();

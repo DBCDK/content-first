@@ -176,7 +176,10 @@ export class KioskWorkPage extends React.Component {
                 </strong>
                 {book.title}
               </Title>
-              <Recommendations likes={[this.props.pid]} />
+              <Recommendations
+                likes={[this.props.pid]}
+                origin={{parent: this.props.pid}}
+              />
             </div>
           </Tabs>
         </div>
