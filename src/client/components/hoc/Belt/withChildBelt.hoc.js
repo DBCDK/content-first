@@ -9,9 +9,12 @@ const withChildBelt = WrappedComponent => {
   const Wrapped = class extends React.Component {
     componentDidUpdate(prevProps) {
       if (prevProps.mount !== this.props.mount) {
-        // this.props.updateMount({parent: null, child: null, type: null});
+        // this.closeChild();
       }
     }
+    closeChild = () => {
+      this.props.updateMount({parent: null, child: null, type: null});
+    };
     openSimilarBelt = (work, beltName = '', rid) => {
       if (isMobileOnly) {
         this.props.historyPush(work.book.pid);
@@ -19,7 +22,7 @@ const withChildBelt = WrappedComponent => {
         work.book.pid === this.props.mountedData.parent &&
         this.props.mountedData.type === 'SIMILAR'
       ) {
-        this.props.updateMount({parent: null, child: null, type: null});
+        this.closeChild();
       } else {
         const mount = this.props.mount + work.book.pid;
         this.props.scrollToComponent(mount);
@@ -35,6 +38,7 @@ const withChildBelt = WrappedComponent => {
               mount={mount}
               isChildBelt={true}
               likes={[work.book.pid]}
+              close={this.closeChild}
             />
           ),
           rid
@@ -52,7 +56,7 @@ const withChildBelt = WrappedComponent => {
         work.book.pid === this.props.mountedData.parent &&
         this.props.mountedData.type === 'PREVIEW'
       ) {
-        this.props.updateMount({parent: null, child: null, type: null});
+        this.closeChild();
       } else {
         const mount = this.props.mount + work.book.pid;
         this.props.scrollToComponent(mount);
@@ -70,6 +74,7 @@ const withChildBelt = WrappedComponent => {
               key={mount}
               pid={work.book.pid}
               dataCy="workpreviewCard"
+              close={this.closeChild}
             />
           ),
           rid
@@ -86,6 +91,7 @@ const withChildBelt = WrappedComponent => {
             openSimilarBelt={this.openSimilarBelt}
             openWorkPreview={this.openWorkPreview}
             hasChildBelt={!!this.props.mountedData.child}
+            closeChild={this.closeChild}
           />
           {this.props.mountedData.child}
         </React.Fragment>

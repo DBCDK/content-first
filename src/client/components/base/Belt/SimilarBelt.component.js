@@ -9,6 +9,7 @@ import Title from '../Title';
 import T from '../T';
 
 import './similarBelt.css';
+import Icon from '../Icon';
 
 const WorkTitle = withWork(({work}) => (
   <span>{work && work.book && work.book.title}</span>
@@ -77,6 +78,14 @@ export class SimilarBelt extends React.Component {
           ...style
         }}
       >
+        <div className={`similar-belt__top ${className}`}>
+          <Icon
+            name="clear"
+            className="close-similar-belt--X"
+            data-cy="close-similar-belt-button"
+            onClick={this.props.close}
+          />
+        </div>
         <WorksTitle pids={likes} className={`${bgColor}`} />
         <Slider
           isChildBelt={isChildBelt}

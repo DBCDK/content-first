@@ -35,7 +35,19 @@
 }
 
 .similar-belt.child-belt .similar-belt__title {
-  padding-top: var(--5pt);
+  padding-top: 0;
+}
+
+.similar-belt__top {
+  height: var(--5pt);
+  display: flex;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.close-similar-belt--X {
+  padding: var(--2pt);
+  cursor: pointer;
 }
 
 .similar-belt.child-belt .work-slider {

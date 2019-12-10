@@ -3,68 +3,78 @@
 */
 
 .work-preview {
-    display: flex;
-    height: auto;
-    padding: var(--5pt);
-    background-color: var(--white);
+  display: flex;
+  height: auto;
+  padding: var(--5pt);
+  padding-top: 0;
+  background-color: var(--white);
 }
 
-.work-preview.preview.light-grey {
-    background-color: var(--lys-graa);
+.work-preview.preview.light-grey,
+.work-preview__top.preview.light-grey {
+  background-color: var(--lys-graa);
+}
+
+.work-preview__top {
+  height: var(--5pt);
+  display: flex;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.close-work-preview--X {
+  padding: var(--2pt);
+  cursor: pointer;
 }
 
 .work-preview__work {
-    max-width: 60%;
-    display: flex;
+  max-width: 60%;
+  display: flex;
 
-    /* Allow items to have heights according to content */
-    align-items: flex-start;
+  /* Allow items to have heights according to content */
+  align-items: flex-start;
 }
 
 .work-preview__information {
-    /* margin is used to make share button respect the relative div - padding is ignored */
-    margin: 0 var(--5pt);
+  /* margin is used to make share button respect the relative div - padding is ignored */
+  margin: 0 var(--5pt);
 
-    /* keeps track of share button */
-    position: relative;
+  /* keeps track of share button */
+  position: relative;
 }
 
-.work-preview__title-bar {
-    display: flex;
-    justify-content: space-between;
-}
-
-.work-preview .Share {
-    align-self: flex-start;
-    margin-left: 0.5em;
+.work-preview__information .Share {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .work-preview__information .work-preview__title {
-    margin: 0;
+  margin: 0;
 }
 
 .work-preview__information .work-preview__creator {
-    margin-top: var(--1pt);
+  margin-top: var(--1pt);
 }
 
 .work-preview__information .work-preview__information-description,
 .work-preview__information .work-preview__information-taxdescription {
-    margin-top: var(--1pt);
+  margin-top: var(--1pt);
 }
 
 .work-preview__information-details {
-    margin-top: var(--2pt);
-    display: flex;
+  margin-top: var(--2pt);
+  display: flex;
 }
 
 .work-preview__information-details .detail-element {
-    display: block;
-    margin-right: var(--2pt);
+  display: block;
+  margin-right: var(--2pt);
 }
 
 .work-preview__information-details .detail-element p {
-    display: inline;
-    margin-right: var(--05pt);
+  display: inline;
+  margin-right: var(--05pt);
 }
 
 /*
@@ -72,23 +82,23 @@
 */
 
 .work-preview__actions .detail-no-valid-collection {
-    margin-top: var(--1pt);
+  margin-top: var(--1pt);
 }
 
 .work-preview__actions .work-preview__action-loan,
 .work-preview__actions .work-preview__add-to-list--wrap,
 .work-preview__actions .RemindsOf {
-    margin-top: var(--2pt);
+  margin-top: var(--2pt);
 }
 
 .work-preview__actions .orderButton,
 .work-preview__actions .work-preview__collection-button,
 .work-preview__actions .work-preview__skeleton-button {
-    margin: var(--1pt) var(--1pt) 0 0;
+  margin: var(--1pt) var(--1pt) 0 0;
 }
 
 .work-preview__work .work-preview__cover {
-    width: 200px;
+  width: 200px;
 }
 
 /*
@@ -96,19 +106,19 @@
  */
 
 .work-preview__prio-tags {
-    padding: var(--2pt) 0 0 0;
+  padding: var(--2pt) 0 0 0;
 }
 
 .work-preview__prio-tags .prio-tags-title {
 }
 
 .work-preview__prio-tags .prio-tag {
-    margin: var(--1pt) var(--1pt) 0 0;
+  margin: var(--1pt) var(--1pt) 0 0;
 }
 
 .work-preview__prio-tags .work-preview__show-full-exp {
-    display: block;
-    margin: var(--1pt) 0 0 0;
+  display: block;
+  margin: var(--1pt) 0 0 0;
 }
 
 /*
@@ -116,44 +126,44 @@
 */
 
 .work-preview__tabs-wrap {
-    max-width: 40%;
-    position: relative;
+  max-width: 40%;
+  position: relative;
 
-    /* height is also calculated dynamicaly (inline) in code */
-    height: auto;
+  /* height is also calculated dynamicaly (inline) in code */
+  height: auto;
 }
 
 .work-preview__tabs-wrap.collapsed {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .work-preview__tabs-wrap .expand_wrap {
-    display: none;
+  display: none;
 }
 
 .work-preview .work-preview__tabs-wrap.collapsed .expand_wrap {
-    display: flex;
+  display: flex;
 }
 
 .work-preview.light-grey .work-preview__tabs-wrap.collapsed .expand_wrap {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 1));
+  background: linear-gradient(transparent 70%, var(--lys-graa) 90%);
 }
 
 .work-preview .work-preview__tabs-wrap.collapsed .expand_wrap {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 1));
+  background: linear-gradient(transparent 70%, var(--white) 90%);
 }
 
 .work-preview__tabs-wrap .Tabs__container-horizontal {
-    padding-top: var(--5pt);
+  padding-top: var(--5pt);
 }
 
 .work-preview__tabs-wrap .Tabs__pagination {
-    padding: 0;
+  padding: 0;
 }
 
 .work-preview__tabs-wrap .Tabs__pagination-bullet-active:after,
 .work-preview__tabs-wrap .Tabs__pagination-bullet:after {
-    background: var(--korn);
+  background: var(--korn);
 }
 
 /*
@@ -161,27 +171,28 @@
 */
 
 .work-preview__arrow-container {
-    background-color: white;
+  background-color: white;
 
-    /* Padding should always be the same as
-      .work-preview, to maintain the center of
-      the more-like-this-arrow */
-    padding: 0 var(--5pt);
+  /* Padding should always be the same as
+    .work-preview, to maintain the center of
+    the more-like-this-arrow */
+  padding: 0 var(--5pt);
 }
 
 .work-preview__arrow {
-    display: flex;
-    align-items: center;
-    height: 50px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  height: 50px;
 
-    /* width should be the same as cover-image
-      width, to maintain the center of the
-      more-like-this-arrow. */
-    width: 200px;
+  /* width should be the same as cover-image
+    width, to maintain the center of the
+    more-like-this-arrow. */
+  width: 200px;
 }
 
 .work-preview__arrow i {
-    margin: auto;
+  margin: auto;
 }
 
 /*
@@ -189,16 +200,16 @@
 */
 
 @media only screen and (max-width: 1200px) {
-    .work-preview.preview .work-preview__tabs-wrap {
-        display: none;
-    }
+  .work-preview.preview .work-preview__tabs-wrap {
+    display: none;
+  }
 
-    .work-preview.preview .work-preview__work {
-        max-width: 100%;
-    }
+  .work-preview.preview .work-preview__work {
+    max-width: 100%;
+  }
 
-    .work-preview.preview .work-preview__information {
-        margin: 0;
-        padding: 0 0 0 var(--5pt);
-    }
+  .work-preview.preview .work-preview__information {
+    margin: 0;
+    padding: 0 0 0 var(--5pt);
+  }
 }
