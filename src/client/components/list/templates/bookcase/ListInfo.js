@@ -24,8 +24,7 @@ export const ListInfo = ({
   info,
   expandClick,
   pulseClick,
-  forceUpdate,
-  commentsListRef
+  forceUpdate
 }) => {
   const height = info.height;
   const width = info.width;
@@ -123,9 +122,7 @@ export const ListInfo = ({
 
             <div />
 
-            {list.social && (
-              <CommentCounter id={list._id} commentsListRef={commentsListRef} />
-            )}
+            {list.social && <CommentCounter id={list._id} />}
           </div>
         </React.Fragment>
       </div>

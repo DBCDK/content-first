@@ -289,15 +289,17 @@ class WorkPreview extends React.Component {
                 className="work-preview__information"
                 ref={e => (this.info = e)}
               >
-                <Share
-                  href={'https://laesekompas.dk/værk/' + book.pid}
-                  title={T({component: 'share', name: 'shareOnFacebook'})}
-                >
-                  <T component="share" name="share" />
-                </Share>
-                <Title Tag="h1" type="title3" className="work-preview__title">
-                  <Link href={'/værk/' + book.pid}>{book.title}</Link>
-                </Title>
+                <div className="work-preview__title-bar">
+                  <Title Tag="h1" type="title3" className="work-preview__title">
+                    <Link href={'/værk/' + book.pid}>{book.title}</Link>
+                  </Title>
+                  <Share
+                    href={'https://laesekompas.dk/værk/' + book.pid}
+                    title={T({component: 'share', name: 'shareOnFacebook'})}
+                  >
+                    <T component="share" name="share" />
+                  </Share>
+                </div>
                 <Link href={'/find?tags=' + encodeURI(book.creator)}>
                   <Title
                     Tag="h2"
