@@ -74,16 +74,24 @@ router
   .get(
     asyncMiddleware(async (req, res) => {
       try {
-        const loginToken = await createUser(req, true, req.query.editor);
+        const loginToken = await createUser(
+          req,
+          true,
+          req.query.editor,
+          req.query.premium
+        );
+
         const user = {
           openplatformId: req.params.id,
           openplatformToken: req.params.id,
           expires: Math.ceil((Date.now() + ms_OneMonth) / 1000),
+          isPremium: !!req.query.premium,
           special: {
             over13: true,
             name: req.params.id
           }
         };
+
         return res
           .status(303)
           .location('/replay')
@@ -216,8 +224,9 @@ async function fetchAllRoles() {
  * @param {String} id openplatform_id
  * @param {boolean} createUser   if true: create user profile and log in. Else only log in
  * @param {boolean} isEditor     if true: give the user editor role
+ * @param {boolean} premium      if true: give the user premium access
  */
-async function createUser(req, doCreateUser, isEditor) {
+async function createUser(req, doCreateUser, isEditor, premium = false) {
   const loginToken = uuidv4();
   const id = req.params.id;
   await knex(cookieTable).insert({
@@ -261,6 +270,7 @@ async function createUser(req, doCreateUser, isEditor) {
         shortlist: [],
         profiles: [],
         lists: [],
+        isPremium: premium,
         acceptedAge: doCreateUser ? true : false,
         acceptedTerms: doCreateUser ? true : false
       },

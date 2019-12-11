@@ -11,7 +11,7 @@ describe('Order ', function() {
       cy
     });
     cy.clearClientStorage();
-    cy.createUser();
+    cy.createUser(null, null, true);
   });
 
   afterEach(function() {

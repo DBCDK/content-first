@@ -99,6 +99,11 @@ async function initState(req) {
         userLibraries[0].municipalityAgencyId
       );
     }
+
+    // Test user premium settings
+    if (req.user.isPremium) {
+      isPremium = req.user.isPremium;
+    }
   }
 
   const roles = (await objectStore.getAllRoles()).data;

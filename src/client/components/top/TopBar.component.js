@@ -18,8 +18,9 @@ import Text from '../base/Text/';
 import T from '../base/T/';
 import './Topbar.css';
 import {eventPath} from '../../utils/path';
+import {ADMIN_ROLE, EDITOR_ROLE} from '../roles/Role.component';
+import Role from '../roles/Role.component';
 import Kiosk from '../base/Kiosk/Kiosk';
-import Permissions from '../permissions/Permissions.component';
 
 let searchPage = false;
 
@@ -52,7 +53,7 @@ class TopBarDropdown extends React.Component {
           </Link>
         </li>
 
-        <Permissions name="EditorpageButton">
+        <Role requiredRoles={[ADMIN_ROLE, EDITOR_ROLE]}>
           <li>
             <Link
               href="/redaktionen"
@@ -64,7 +65,7 @@ class TopBarDropdown extends React.Component {
               </span>
             </Link>
           </li>
-        </Permissions>
+        </Role>
 
         <li className="divider" />
         <li

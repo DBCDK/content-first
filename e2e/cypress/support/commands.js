@@ -48,13 +48,21 @@ Cypress.Commands.add('clearClientStorage', () => {
 /**
  * Creates a new user and logs in
  */
-Cypress.Commands.add('createUser', (userName, role) => {
+Cypress.Commands.add('createUser', (userName, role, premium = false) => {
   if (!userName) userName = 'user' + Math.floor(Math.random() * 1000);
   cy.request('/v1/test/delete/' + userName);
   if (role) {
-    cy.visit('/v1/test/create/' + userName + '?' + role + '=true');
+    cy.visit(
+      '/v1/test/create/' +
+        userName +
+        '?' +
+        role +
+        '=true' +
+        '&premium=' +
+        premium
+    );
   } else {
-    cy.visit('/v1/test/create/' + userName);
+    cy.visit('/v1/test/create/' + userName + '?premium=' + premium);
   }
 });
 
