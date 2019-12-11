@@ -189,7 +189,7 @@ async function getUserData(openplatformId, loggedInuser) {
       };
     }
 
-    // "in-comment" for testing
+    // "in-comment" for testing role in permissions
 
     // return _.omitBy(
     //   {

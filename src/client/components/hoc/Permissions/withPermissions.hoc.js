@@ -14,13 +14,13 @@ function getUserRoles(roles) {
 }
 
 const defaultPremiumContext = {
-  title: 'Premium indhold',
-  reason: 'Indholdet er desværre kun tilgængeligt for betalende biblioteker'
+  title: 'Du har desværre ikke adgang',
+  reason: 'Indholdet er ikke tilgængeligt for dit bibliotek'
 };
 
 const defaultLoginContext = {
   title: 'Login',
-  reason: 'Login for at se om dit bibliotek har købt adgang til dette indhold'
+  reason: 'Login for at se om dit bibliotek har adgang til dette indhold'
 };
 
 /**
@@ -37,14 +37,25 @@ const defaultLoginContext = {
  Options example:
     {
       name: 'YourComponentName',
+
+    -- set context like this --
+
       context: {
         title: 'all prompted modals will have this title',
         reason: 'all prompted modals will have this description'
       },
+
+    -- or this --
+
       modals:  {
-        login {title: 'only login modal will have this title', reason: '...'}
-        premium {title: '...', reason, '....'}
+        login: {
+          context: {title: 'only login modal will have this title', reason: '...'}
+        },
+        premium: {
+          context: {title: '...', reason: '....'}
+        }
       }
+
     }
 
   Set permissions for your component in the /permissions.json file
@@ -73,7 +84,7 @@ export default (WrappedComponent, ComponentOptions) => props => {
     modal is given by the premium context */
   const premiumContext =
     get(ComponentOptions, 'context', false) ||
-    get(ComponentOptions, 'modals.context.premium', false) ||
+    get(ComponentOptions, 'modals.premium.context', false) ||
     get(props, 'premium.context', false);
 
   /* If user is denied acces to a logged-in-user functionality,
@@ -171,6 +182,7 @@ export default (WrappedComponent, ComponentOptions) => props => {
               context: {
                 ...defaultPremiumContext,
                 ...premiumContext,
+                className: 'premium-modal',
                 hideCancel: true
               }
             });

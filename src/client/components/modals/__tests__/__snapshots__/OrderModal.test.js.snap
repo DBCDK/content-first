@@ -2,7 +2,7 @@
 
 exports[`OrderModal render function renders initial request 1`] = `
 <Modal
-  className="add-to-list--modal"
+  className="order-modal"
   doneDisabled={true}
   doneText={
     <T

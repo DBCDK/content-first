@@ -85,7 +85,7 @@ router
           openplatformId: req.params.id,
           openplatformToken: req.params.id,
           expires: Math.ceil((Date.now() + ms_OneMonth) / 1000),
-          isPremium: !!req.query.premium,
+          isPremium: JSON.parse(req.query.premium),
           special: {
             over13: true,
             name: req.params.id

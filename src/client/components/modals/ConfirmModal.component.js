@@ -4,6 +4,7 @@ export default class ConfirmModal extends React.Component {
   render() {
     return (
       <Modal
+        className={this.props.context.className}
         header={this.props.context.title}
         onDone={this.props.context.onConfirm}
         onClose={this.props.close}
