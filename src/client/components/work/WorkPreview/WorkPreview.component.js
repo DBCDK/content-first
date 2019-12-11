@@ -195,7 +195,8 @@ class WorkPreview extends React.Component {
       filterReviews,
       sortTags,
       sortTagsByAppeal,
-      enableLightbox = false
+      enableLightbox = false,
+      is_work_page
     } = this.props;
     // handle collapsible tag container
     const tabsCollapsed = this.state.tabsCollapsed;
@@ -393,7 +394,7 @@ class WorkPreview extends React.Component {
                     />
                   </div>
                   <RemindsOf
-                    onClick={() => remindsOfClick(work)}
+                    onClick={() => remindsOfClick(work, is_work_page)}
                     data-cy="RO-more-like-this"
                   />
                   {!hideAppels && appeals.length > 0 && (

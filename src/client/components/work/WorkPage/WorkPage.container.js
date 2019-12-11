@@ -83,6 +83,7 @@ class WorkPage extends React.Component {
                   pid={book.pid}
                   enableLightbox={true}
                   dataCy="workpreviewCard"
+                  is_work_page={true}
                 />
               );
             }}
