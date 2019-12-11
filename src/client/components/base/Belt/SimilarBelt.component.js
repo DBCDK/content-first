@@ -79,12 +79,14 @@ export class SimilarBelt extends React.Component {
         }}
       >
         <div className={`similar-belt__top ${className}`}>
-          <Icon
-            name="clear"
-            className="close-similar-belt--X"
-            data-cy="close-similar-belt-button"
-            onClick={this.props.close}
-          />
+          {this.props.close && (
+            <Icon
+              name="clear"
+              className="close-similar-belt--X"
+              data-cy="close-similar-belt-button"
+              onClick={this.props.close}
+            />
+          )}
         </div>
         <WorksTitle pids={likes} className={`${bgColor}`} />
         <Slider

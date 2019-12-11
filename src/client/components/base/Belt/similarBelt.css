@@ -54,6 +54,10 @@
   padding-top: var(--2pt);
 }
 
+.work-slider .swiper-pagination {
+  padding-right: var(--2pt);
+}
+
 .similar-belt.child-belt .work-card .book-cover,
 .similar-belt.child-belt .work-card .Skeleton__text__line {
   background-color: var(--porcelain) !important;
