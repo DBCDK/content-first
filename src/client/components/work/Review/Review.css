@@ -67,7 +67,7 @@
 .Review__container {
   height: auto;
   text-align: left;
-  margin-bottom: 0;
+  margin-bottom: 1em;
 }
 
 .Review__container a {
@@ -99,6 +99,26 @@
 .WorkPreview__container .Review__block--paragraph,
 .WorkPreview__container .Review__block--link {
   font-size: 0.9em;
+}
+
+.Review__block--title {
+  margin-bottom: 0;
+}
+
+.Review__block--title div.d-flex {
+  margin-left: 0.8em;
+}
+
+.Review__block--paragraph {
+  font-style: italic;
+  margin-top: 0.8em;
+}
+
+.Review__block--link i {
+  margin-left: 3px;
+  font-size: 1.1em;
+  font-weight: 600;
+  vertical-align: bottom;
 }
 
 a.tooltips {
