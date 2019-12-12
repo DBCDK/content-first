@@ -361,9 +361,6 @@ export class TopBar extends React.Component {
               Læsekompas
             </Title>
             <div className="logo-beta-wrap">
-              <Text className="logo-beta-sign" type="micro">
-                SNEAK PEEK
-              </Text>
               {!searchExpanded && ((isIndex && isMobileOnly) || !isMobileOnly) && (
                 <Text
                   className="logo-beta-link"
@@ -420,15 +417,7 @@ export const mapDispatchToProps = dispatch => ({
               />
             </Text>
             <Text type="body">
-              <T component="topbar" name="betaModalBody1" renderAsHtml={true} />
-              <Text
-                className="modal__sneak-peek"
-                type="body"
-                variant="color-fersken--weight-semibold--transform-uppercase"
-              >
-                <T component="topbar" name="sneakPeek" />
-              </Text>
-              <T component="topbar" name="betaModalBody2" />
+              <T component="topbar" name="betaModalBody" renderAsHtml={true} />
             </Text>
           </React.Fragment>
         ),

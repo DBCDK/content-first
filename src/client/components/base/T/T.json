@@ -194,17 +194,9 @@
         "da": "Læsekompasset gør det nemt for dig at finde en bog, der er lige dig, og låne den på biblioteket. <br/><br/>",
         "en": "Læsekompasset was created to make it easy for you to discover just the right books for you and to inspire new reading experiences."
       },
-      "betaModalBody1": {
-        "da": "Vi arbejder hele tiden på at forbedre Læsekompasset, så du kan opdage lige dén bog, du vil elske at læse. I Læsekompasset kan du finde bøger til voksne, men kun skønlitteratur—for eksempel kogebøger, skolebøger og børnebøger kan du ikke finde her. <br/><br/> Lige nu kan du få et",
+      "betaModalBody": {
+        "da": "Vi arbejder hele tiden på at forbedre Læsekompasset, så du kan opdage lige dén bog, du vil elske at læse. I Læsekompasset kan du finde bøger til voksne, men kun skønlitteratur—for eksempel kogebøger, skolebøger og børnebøger kan du ikke finde her.",
         "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut"
-      },
-      "sneakPeek": {
-        "da": " sneak peek",
-        "en": " sneak peek"
-      },
-      "betaModalBody2": {
-        "da": " på Læsekompasset. Det betyder, at du frit kan bruge webstedet, men at du måske kan opleve ting, der ikke fungerer optimalt endnu. Vi vil blive meget glade for din feedback, som du kan give os via feedback-knappen nederst på siden. Din feedback hjælper os med at gøre Læsekompasset bedre.",
-        "en": " Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
       }
     },
     "footer": {
@@ -213,8 +205,8 @@
         "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
       "sectionTwo": {
-        "da": "Siden er i øjeblikket i beta-version, hvilket betyder, at den stadig er under udvikling og at du kan opleve ting, der ikke fungerer optimalt endnu.",
-        "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        "da": " ",
+        "en": " "
       },
       "customerServiceText": {
         "da": "Problemer med teknikken?",
