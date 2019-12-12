@@ -4,7 +4,6 @@ import './Review.css';
 import Title from '../../base/Title';
 import Text from '../../base/Text';
 import T from '../../base/T';
-import ReviewItem from './ReviewItem.component';
 
 /**
  * This class displays a single full review item
