@@ -1,12 +1,9 @@
 import React from 'react';
-import {timestampToShortDate} from '../../../utils/dateTimeFormat';
 import './Review.css';
-import Title from '../../base/Title';
-import Text from '../../base/Text';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import {connect} from 'react-redux';
-import TruncateMarkup from 'react-truncate-markup';
-import Button from '../../base/Button';
+import ReviewItem from './ReviewItem.component';
+import T from '../../base/T';
 
 /**
  * This class displays a single resume review item
@@ -20,8 +17,6 @@ export class ResumeReview extends React.Component {
     const firstname = (review.reviewer && review.reviewer.firstname) || '';
     const surname = (review.reviewer && review.reviewer.surname) || '';
     const name = (firstname + ' ' + surname).trim(); // Trim the space away in case of missing first- or surname
-    const date =
-      (review.creationDate && timestampToShortDate(review.creationDate)) || '';
     if (typeof review.review === 'undefined' || review.review === null) {
       return '';
     }
@@ -31,44 +26,20 @@ export class ResumeReview extends React.Component {
         ? review.review.Vurdering
         : review.review[reviewKeys[0]]; // If Vurdering is not present, take the first review paragraph
     return (
-      <div className="Review__container mb-3">
-        <div className="Review__block--top">
-          <Title Tag="h6" type="title6" className="Review__block--title mb0">
-            Bibliotekernes vurdering
-          </Title>
-          <Text type="small" className="due-txt mb0">
-            {date}
-          </Text>
-        </div>
-        {name !== false && name.trim() !== '' && (
-          <Text type="body" className="Review__block--lector mb1">
-            Af {name}
-          </Text>
-        )}
-        <Text type="body" className="Review__block--paragraph mb0">
-          <em>
-            <TruncateMarkup lines={3} ellipsis="...">
-              <span>{reviewParagraph}</span>
-            </TruncateMarkup>
-          </em>
-        </Text>
-        <Text>
-          <Button
-            type="link"
-            size="medium"
-            className="Review__block--link mb0"
-            onClick={() => {
-              this.props.showReviewModal(
-                this.props.reviewType,
-                this.props.book,
-                this.props.review
-              );
-            }}
-          >
-            <span> Læs materialevurderingen </span>
-          </Button>
-        </Text>
-      </div>
+      <ReviewItem
+        title={T({component: 'work', name: 'lectorsReview'})}
+        date={new Date(review.creationDate)}
+        author={name}
+        reviewParagraph={reviewParagraph}
+        buttonText={T({component: 'work', name: 'readLectorReview'})}
+        onClick={() => {
+          this.props.showReviewModal(
+            this.props.reviewType,
+            this.props.book,
+            this.props.review
+          );
+        }}
+      />
     );
   }
 }

@@ -1,17 +1,13 @@
 import React from 'react';
-import {timestampToShortDate} from '../../../utils/dateTimeFormat';
 import './Review.css';
-import Title from '../../base/Title';
-import Text from '../../base/Text';
 import {connect} from 'react-redux';
-import ReviewRating from './ReviewRating.component';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import T from '../../base/T';
-import Button from '../../base/Button';
+import ReviewItem from './ReviewItem.component';
 
 /**
- * This class displays a single paper review item
- * Creator and ful review link are hidden for now.
+ * This class displays a single (news)paper review item
+ * Creator and full review links are hidden for now.
  */
 export class PaperReview extends React.Component {
   render() {
@@ -28,49 +24,39 @@ export class PaperReview extends React.Component {
     let showLink =
       typeof this.props.showLink !== 'undefined' ? this.props.showLink : true;
     let permission = true;
-
     if (infomediaData) {
       permission = infomediaData.statusCode !== 403;
       showLink = infomediaData.length > 0 || !loggedIn;
     }
-
     const creator = review.creatorOth && review.creatorOth[0];
-
-    let date =
+    const shortDate =
       (review.isPartOf &&
         review.isPartOf[0].split(',')[1] &&
         review.isPartOf[0].split(',')[1]) ||
       null;
-    date = date
-      ? timestampToShortDate(
-          new Date(
-            date.split('-')[0],
-            parseInt(date.split('-')[1], 10) - 1,
-            date.split('-')[2]
-          )
+    const date = shortDate
+      ? new Date(
+          shortDate.split('-')[0],
+          parseInt(shortDate.split('-')[1], 10) - 1,
+          shortDate.split('-')[2]
         )
-      : null;
-    date = date.split(' ')[1] !== 'undefined' ? date : review.date;
-
+      : review.date;
     const source =
       review.isPartOf &&
       review.isPartOf[0].split(',')[0] &&
       review.isPartOf[0].split(',')[0].replace('.dk online', '');
-
     const maxRating = review.abstract
       ? review.abstract[0]
           .trim()
           .replace('Vurdering:', '')
           .split('/')[1]
       : null;
-
     const rating = review.abstract
       ? review.abstract[0]
           .trim()
           .replace('Vurdering:', '')
           .split('/')[0]
       : null;
-
     const ratingShape = source === 'Politiken' ? 'favorite' : 'star';
 
     function allowAccess() {
@@ -86,60 +72,25 @@ export class PaperReview extends React.Component {
       return 'mustLogIn';
     }
 
-    let reviewLink;
+    let error = '';
+    let onClick = null;
+    let buttonText = '';
 
     if (showLink) {
       switch (allowAccess()) {
-        case 'fullAccess': {
-          reviewLink = (
-            <Text type="body" className="d-flex Review__block--lector mb-1">
-              <Button
-                type="link"
-                size="medium"
-                onClick={() => {
-                  this.props.showReviewModal(
-                    'paperReview',
-                    this.props.book,
-                    review
-                  );
-                }}
-              >
-                <span>
-                  <T component="work" name={'readReview'} />
-                </span>
-              </Button>
-            </Text>
-          );
-          break;
-        }
         case 'noInfomediaAccess': {
-          reviewLink = (
-            <Button
-              type="link"
-              size="medium"
-              link={<T component="work" name={'readReview'} />}
-              info={<T component="work" name={'noInfomediaAccess'} />}
-            />
-          );
+          error = T({component: 'work', name: 'noInfomediaAccess'});
           break;
         }
-
+        case 'fullAccess': {
+          onClick = () =>
+            this.props.showReviewModal('paperReview', this.props.book, review);
+          buttonText = T({component: 'work', name: 'readReview'});
+          break;
+        }
         case 'mustLogIn': {
-          reviewLink = (
-            <Text type="body" className="d-flex Review__block--lector mb-1">
-              <Button
-                type="link"
-                size="medium"
-                onClick={() => {
-                  this.props.requireLogin();
-                }}
-              >
-                <span>
-                  <T component="work" name={'readReview'} />
-                </span>
-              </Button>
-            </Text>
-          );
+          onClick = this.props.requireLogin;
+          buttonText = T({component: 'work', name: 'readReview'});
           break;
         }
         default: {
@@ -147,35 +98,18 @@ export class PaperReview extends React.Component {
         }
       }
     }
-
     return (
-      <div className={'Review__container mb-3'}>
-        <div className="Review__block--top">
-          <div className="Review__block--title mb-0 d-flex">
-            <Title Tag="h6" type="title6" className={'mb-0 mr-2'}>
-              {source}
-            </Title>
-            <ReviewRating
-              maxRating={maxRating}
-              rating={rating}
-              type={ratingShape}
-            />
-          </div>
-
-          {date && (
-            <Text type="small" className={'due-txt mb-0'}>
-              {date}
-            </Text>
-          )}
-        </div>
-        {creator && creator.trim() !== '' && (
-          <Text type="body" className={'Review__block--lector mb-1'}>
-            Af {creator}
-          </Text>
-        )}
-
-        {reviewLink}
-      </div>
+      <ReviewItem
+        title={source}
+        date={date}
+        author={creator}
+        buttonText={buttonText}
+        onClick={onClick}
+        error={error}
+        rating={rating}
+        maxRating={maxRating}
+        ratingType={ratingShape}
+      />
     );
   }
 }

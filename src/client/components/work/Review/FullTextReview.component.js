@@ -3,6 +3,7 @@ import {timestampToShortDate} from '../../../utils/dateTimeFormat';
 import './Review.css';
 import Title from '../../base/Title';
 import Text from '../../base/Text';
+import T from '../../base/T';
 
 /**
  * This class displays a single full review item
@@ -52,7 +53,8 @@ export default class FullTextReview extends React.Component {
       <div className="Review__container">
         <div className="Review__block--top">
           <Text type="micro" className="mb-3">
-            Bibliotekernes vurdering af {author}: {title}
+            <T component="work" name="lectorReviewOf" />
+            {author}: {title}
           </Text>
           <Text type="small" className="due-txt date-col">
             {date}
@@ -73,7 +75,7 @@ export default class FullTextReview extends React.Component {
         {review.note ? (
           <React.Fragment>
             <Title Tag="h6" type="title6" className="mb0">
-              Note
+              <T component="work" name="reviewNote" />
             </Title>
             <Text type="body">{review.note}</Text>
           </React.Fragment>
@@ -81,7 +83,8 @@ export default class FullTextReview extends React.Component {
           ''
         )}
         <Text type="body" className="mb0">
-          Lektørudtalelse
+          <T component="work" name="lectorsReview" />
+          title={T({component: 'work', name: 'lectorReview'})}
         </Text>
         {name !== false && name.trim() !== '' && (
           <Text type="body" className="mb0">

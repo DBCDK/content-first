@@ -373,6 +373,30 @@
       "listBeltTitle": {
         "da": "Lister med",
         "en": "Lists with"
+      },
+      "ofAuthor": {
+        "da": "Af",
+        "en": "By"
+      },
+      "lectorsReview": {
+        "da": "Bibliotekernes vurdering",
+        "en": "Libraries review"
+      },
+      "readLectorReview": {
+        "da": "Læs materialevurderingen",
+        "en": "Read libraries review"
+      },
+      "lectorReviewOf": {
+        "da": "Bibliotekernes vurdering af",
+        "en": "Libraries review of"
+      },
+      "reviewNote": {
+        "da": "Note",
+        "en": "Note"
+      },
+      "lectorReview": {
+        "da": "Lektørudtalelse",
+        "en": "Lectors review"
       }
     },
     "profile": {
