@@ -150,11 +150,11 @@
 }
 
 .work-preview.light-grey .work-preview__tabs-wrap.collapsed .expand_wrap {
-  background: linear-gradient(transparent 70%, var(--lys-graa) 90%);
+  background: linear-gradient(to bottom, rgba(248, 248, 248, 0) 30%, rgba(248, 248, 248, 1) 75%, rgba(248, 248, 248, 1));
 }
 
 .work-preview .work-preview__tabs-wrap.collapsed .expand_wrap {
-  background: linear-gradient(transparent 70%, var(--white) 90%);
+  background: linear-gradient(to bottom, rgba(248, 248, 248, 0) 30%, rgba(248, 248, 248, 1) 75%, rgba(248, 248, 248, 1));
 }
 
 .work-preview__tabs-wrap .Tabs__container-horizontal {
