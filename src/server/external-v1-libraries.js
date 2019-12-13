@@ -3,7 +3,11 @@
 const request = require('superagent');
 const config = require('server/config');
 const logger = require('server/logger');
+const NodeCache = require('node-cache');
 const _ = require('lodash');
+
+const cache = new NodeCache({stdTTL: 60 * 60}); // Time to live is 1 hour
+const cacheName = 'payingLibraries';
 
 module.exports = {
   getPayingLibraries,
@@ -74,8 +78,13 @@ async function getUserLibrary(openplatformToken) {
 */
 
 async function userHasAPayingLibrary(agencyId) {
-  // Get list from paying libraries (forsrights)
-  const libraryList = await getPayingLibraries();
+  let libraryList = cache.get(cacheName);
+
+  if (!libraryList) {
+    // Get list from paying libraries (forsrights)
+    libraryList = await getPayingLibraries();
+    cache.set(cacheName, libraryList);
+  }
 
   // Get loggedInUser's library (agencyId)
   // const agency = await getUserLibrary(user.openplatformToken);
