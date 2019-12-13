@@ -22,6 +22,8 @@ import BeltsRequester from '../shared/belts.requester';
 const {getUser, getUserData} = require('server/user');
 const objectStore = require('server/objectStore');
 
+const libraries = require('server/external-v1-libraries');
+
 const express = require('express');
 const router = express.Router({mergeParams: true});
 
@@ -44,6 +46,7 @@ async function initState(req) {
     type: KIOSK_RESPONSE,
     response: {...config.kiosk}
   });
+  let isPremium = false;
 
   if (req.user) {
     userState = userReducer(userState, {
@@ -83,10 +86,29 @@ async function initState(req) {
         pid: order.pid
       });
     });
+
+    // Get user library info from USER_PRIVAT info obj
+    const userLibraries = (await storageClient.find({
+      type: 'USER_PRIVAT',
+      owner: req.user.openplatformId
+    })).data;
+
+    // check if user has premium access
+    if (userLibraries.length > 0 && userLibraries[0].municipalityAgencyId) {
+      isPremium = await libraries.userHasAPayingLibrary(
+        userLibraries[0].municipalityAgencyId
+      );
+    }
+
+    // Test user premium settings
+    if (req.user.isPremium) {
+      isPremium = req.user.isPremium;
+    }
   }
 
   const roles = (await objectStore.getAllRoles()).data;
   rolesState = rolesReducer(rolesState, {type: ROLES_RESPONSE, roles});
+
   const editorBelts = await beltsRequester.fetchOwnedBelts(
     rolesState.contentFirstEditor._id
   );
@@ -96,7 +118,7 @@ async function initState(req) {
   });
 
   return {
-    userReducer: userState,
+    userReducer: {...userState, isPremium},
     listReducer: listState,
     beltsReducer: beltsState,
     interactionReducer: interactionState,

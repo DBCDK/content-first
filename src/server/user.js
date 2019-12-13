@@ -19,6 +19,8 @@ const request = require('superagent');
 module.exports = {
   putUserData,
   getUserData,
+  putPrivatUserData,
+  getPrivatUserData,
   getUser: objectStore.getUser,
   removingLoginToken,
   deleteUser,
@@ -64,7 +66,7 @@ async function createCookie(legacyId, uniqueId, openplatformToken, user) {
     openplatform_id: uniqueId,
     openplatform_token: openplatformToken,
     expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000),
-    user: user
+    user
   });
 
   if (!(await userExists(openplatformToken, uniqueId))) {
@@ -82,6 +84,7 @@ async function createCookie(legacyId, uniqueId, openplatformToken, user) {
       {openplatformId: uniqueId, openplatformToken}
     );
   }
+
   return cookie;
 }
 async function fetchCookie(cookie) {
@@ -124,6 +127,44 @@ function throwUnlessOpenplatformId({openplatformId}) {
   }
 }
 
+async function putPrivatUserData(user) {
+  const existingData = await getPrivatUserData(user);
+
+  // Add municipality and municipalityAgencyId to a privat user object
+  try {
+    await objectStore.put(
+      {
+        ...existingData,
+        _type: 'USER_PRIVAT',
+        municipality: user.municipality,
+        municipalityAgencyId: user.municipalityAgencyId
+      },
+      {openplatformId: user.uniqueId, openplatformToken: user.openplatformToken}
+    );
+  } catch (error) {
+    logger.log.error(error);
+    throw error;
+  }
+}
+
+async function getPrivatUserData(user) {
+  // Add municipality and municipalityAgencyId to a privat user object
+  try {
+    const userData = await objectStore.find(
+      {
+        type: 'USER_PRIVAT',
+        owner: user.uniqueId
+      },
+      {openplatformId: user.uniqueId, openplatformToken: user.openplatformToken}
+    );
+
+    return userData.data[0] || {};
+  } catch (error) {
+    logger.log.error(error);
+    throw error;
+  }
+}
+
 async function getUserData(openplatformId, loggedInuser) {
   try {
     throwUnlessOpenplatformId({openplatformId});
@@ -132,10 +173,12 @@ async function getUserData(openplatformId, loggedInuser) {
       {type: 'USER_PROFILE', owner: openplatformId, public: true},
       loggedInuser
     )).data[0];
+
     const shortlist = (await objectStore.find(
       {type: 'USER_SHORTLIST', owner: openplatformId},
       loggedInuser
     )).data[0];
+
     const {data: roles} = await objectStore.getRoles(loggedInuser);
 
     if (!userData) {
@@ -145,6 +188,33 @@ async function getUserData(openplatformId, loggedInuser) {
         detail: `User ${openplatformId} does not exist or is deleted`
       };
     }
+
+    // "in-comment" for testing role in permissions
+
+    // return _.omitBy(
+    //   {
+    //     ...userData,
+    //     roles: [
+    //       {
+    //         type: 'role',
+    //         name: 'role',
+    //         machineName: 'contentFirstEditor',
+    //         displayName: 'Læsekompasredaktør',
+    //         description: 'Redaktør for læsekompas',
+    //         _public: true,
+    //         _owner: 'cf-admin',
+    //         _id: 'e946704a-228f-4e06-86d4-1e845de1fc73',
+    //         _rev: '2019-09-06T10:48:01.379Z',
+    //         _client: 'bbc3c505-61c3-4cf2-98bf-21eecdd8737b',
+    //         _created: 1567766881,
+    //         _modified: 1567766881
+    //       }
+    //     ],
+    //     ...shortlist,
+    //     ...{openplatformId}
+    //   },
+    //   (v, k) => k.startsWith('_')
+    // );
 
     return _.omitBy(
       {...userData, roles, ...shortlist, ...{openplatformId}},

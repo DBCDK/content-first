@@ -222,7 +222,7 @@ export function OrderModal(props) {
 
   return (
     <Modal
-      className="add-to-list--modal"
+      className="order-modal"
       header={<T component="order" name="modalTitle" />}
       onClose={props.onClose}
       onDone={onDone}

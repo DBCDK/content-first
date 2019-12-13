@@ -86,7 +86,10 @@ const userReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {isDeleting: false});
     }
     case ADD_USER_AGENCY: {
-      return Object.assign({}, state, {agencyName: action.agencyName});
+      return Object.assign({}, state, {
+        agencyName: action.agencyName,
+        agencyId: action.agencyId
+      });
     }
     default:
       return state;
