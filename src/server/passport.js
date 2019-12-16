@@ -7,7 +7,7 @@ const request = require('superagent');
 const {get} = require('lodash');
 const logger = require('server/logger');
 const over13 = require('./utils/over13');
-const {createCookie, fetchCookie} = require('server/user');
+const {createCookie, fetchCookie, putPrivatUserData} = require('server/user');
 
 const profileStrategy = new Strategy(
   {
@@ -21,6 +21,8 @@ const profileStrategy = new Strategy(
   async function(token, tokenSecret, profile, done) {
     let uniqueId;
     let legacyId;
+    let municipality;
+    let municipalityAgencyId;
     let special = {over13: false, name: ''};
 
     try {
@@ -28,6 +30,16 @@ const profileStrategy = new Strategy(
         const userInfo = await request
           .get(config.login.url + '/userinfo')
           .set('Authorization', 'Bearer ' + token);
+
+        // Get users municipalityAgencyId
+        municipalityAgencyId = get(
+          userInfo,
+          'body.attributes.municipalityAgencyId',
+          null
+        );
+
+        // Get users municipality
+        municipality = get(userInfo, 'body.attributes.municipality', null);
 
         special.over13 = over13(userInfo.body.attributes.cpr);
         // to test result in gui when user is under 13
@@ -64,7 +76,14 @@ const profileStrategy = new Strategy(
         });
         throw e;
       }
-      done(null, {openplatformToken: token, uniqueId, legacyId, special});
+      done(null, {
+        openplatformToken: token,
+        uniqueId,
+        legacyId,
+        special,
+        municipality,
+        municipalityAgencyId
+      });
     } catch (e) {
       done(null, false);
     }
@@ -81,6 +100,9 @@ passport.serializeUser(async function(user, done) {
       user.openplatformToken,
       user.special
     );
+
+    await putPrivatUserData(user);
+
     done(null, cookie);
   } catch (e) {
     logger.log.error({

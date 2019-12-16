@@ -10,7 +10,7 @@ exports[`FullTextReview render function 1`] = `
     <p
       className="mb-3 Text Text__micro "
     >
-      Bibliotekernes vurdering af 
+      Bibliotekernes vurdering af
       Fridjof Friddo
       : 
       Den bedste indretning
@@ -35,6 +35,8 @@ exports[`FullTextReview render function 1`] = `
   <p
     className="mb0 Text Text__body "
   >
+    Bibliotekernes vurdering
+    title=
     Lektørudtalelse
   </p>
   <p
@@ -55,7 +57,7 @@ exports[`FullTextReview render function 2`] = `
     <p
       className="mb-3 Text Text__micro "
     >
-      Bibliotekernes vurdering af 
+      Bibliotekernes vurdering af
       Kastup Larsen
       : 
       Nordisk halløj
@@ -89,6 +91,8 @@ exports[`FullTextReview render function 2`] = `
   <p
     className="mb0 Text Text__body "
   >
+    Bibliotekernes vurdering
+    title=
     Lektørudtalelse
   </p>
   <p
@@ -109,7 +113,7 @@ exports[`FullTextReview render function 3`] = `
     <p
       className="mb-3 Text Text__micro "
     >
-      Bibliotekernes vurdering af 
+      Bibliotekernes vurdering af
       
       : 
       A
@@ -164,6 +168,8 @@ exports[`FullTextReview render function 3`] = `
   <p
     className="mb0 Text Text__body "
   >
+    Bibliotekernes vurdering
+    title=
     Lektørudtalelse
   </p>
   <p
@@ -184,7 +190,7 @@ exports[`FullTextReview render function 4`] = `
     <p
       className="mb-3 Text Text__micro "
     >
-      Bibliotekernes vurdering af 
+      Bibliotekernes vurdering af
       Arne Arno
       : 
       Modstanden
@@ -248,6 +254,8 @@ exports[`FullTextReview render function 4`] = `
   <p
     className="mb0 Text Text__body "
   >
+    Bibliotekernes vurdering
+    title=
     Lektørudtalelse
   </p>
   <p

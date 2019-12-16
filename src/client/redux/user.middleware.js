@@ -63,13 +63,16 @@ export const userMiddleware = store => next => action => {
             agencyIds: [user.agency],
             fields: ['agencyName']
           });
+
           store.dispatch({
             type: ADD_USER_AGENCY,
-            agencyName: libs[0].agencyName
+            agencyId: user.agency,
+            agencyName: get(libs[0], 'agencyName', '')
           });
         } catch (e) {
           store.dispatch({
             type: ADD_USER_AGENCY,
+            agencyId: '',
             agencyName: ''
           });
         }

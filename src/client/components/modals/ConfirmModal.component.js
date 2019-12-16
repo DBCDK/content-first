@@ -4,9 +4,10 @@ export default class ConfirmModal extends React.Component {
   render() {
     return (
       <Modal
+        className={this.props.context.className}
         header={this.props.context.title}
         onDone={this.props.context.onConfirm}
-        onClose={this.props.context.onCancel}
+        onClose={this.props.close}
         hideCancel={this.props.context.hideCancel}
         hideConfirm={this.props.context.hideConfirm}
         doneText={this.props.context.confirmText}

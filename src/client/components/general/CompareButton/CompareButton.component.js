@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import Icon from '../../base/Icon';
 
+import withPermissions from '../../hoc/Permissions';
+
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 
 import './CompareButton.css';
@@ -24,7 +26,7 @@ export class CompareButton extends React.PureComponent {
   }
 
   render() {
-    const {className, openModal, main, pid} = this.props;
+    const {className, openModal, main, pid, onClick = false} = this.props;
     const active =
       typeof this.props.active !== 'undefined'
         ? this.props.active
@@ -43,8 +45,13 @@ export class CompareButton extends React.PureComponent {
           // Prevent opening workpreview on bookmark click
           e.preventDefault();
           e.stopPropagation();
-          this.toggleButton();
-          openModal('compare', {main, pids: [main, pid]});
+
+          if (onClick) {
+            onClick(e);
+          } else {
+            this.toggleButton();
+            openModal('compare', {main, pids: [main, pid]});
+          }
         }}
       >
         <Icon name="compare_arrows" />
@@ -71,4 +78,11 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CompareButton);
+)(
+  withPermissions(CompareButton, {
+    name: 'CompareButton',
+    context: {
+      title: 'Sammenligning af bøger'
+    }
+  })
+);

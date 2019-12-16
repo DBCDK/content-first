@@ -68,14 +68,14 @@
   justify-content: space-around;
   pointer-events: none;
 
-  width: 200px;
-  height: 400px;
+  width: 150px;
+  height: 250px;
   background-image: none;
   background: radial-gradient(
-    rgba(255, 255, 255, 0.85) 25%,
-    rgba(255, 255, 255, 0.75) 35%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0) 65%
+    rgba(255, 255, 255, 0.9) 25%,
+    rgba(255, 255, 255, 0.8) 35%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 70%
   );
 }
 
@@ -114,6 +114,7 @@
 .swiper-pagination-show {
   display: block;
 }
+
 .swiper-pagination-hide {
   display: none;
 }
@@ -144,4 +145,12 @@
     padding-bottom: 10px;
     padding-top: 10px;
   }
+}
+
+/* if kiosk-mode enabled */
+
+.App.kioskmode .swiper-pagination,
+.App.kioskmode .swiper-button-next,
+.App.kioskmode .swiper-button-prev {
+  display: none;
 }

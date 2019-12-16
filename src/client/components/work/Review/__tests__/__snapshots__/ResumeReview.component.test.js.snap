@@ -2,47 +2,50 @@
 
 exports[`ResumeReview render function 1`] = `
 <div
-  className="Review__container mb-3"
+  className="Review__container"
 >
   <div
     className="Review__block--top"
   >
-    <h6
-      className="Review__block--title mb0 Title Title__title6 "
+    <div
+      className="Review__block--title mb-0 d-flex"
     >
-      Bibliotekernes vurdering
-    </h6>
+      <h6
+        className="Review__block--title Title Title__title6 "
+      >
+        Bibliotekernes vurdering
+      </h6>
+    </div>
     <p
-      className="due-txt mb0 Text Text__small "
+      className="due-txt Text Text__small "
     >
       2. mar 2005
     </p>
   </div>
   <p
-    className="Review__block--lector mb1 Text Text__body "
+    className="Review__block--lector Text Text__body "
   >
-    Af 
+    Af
+     
     Lone Krøgh
   </p>
   <p
-    className="Review__block--paragraph mb0 Text Text__body "
+    className="Review__block--paragraph Text Text__body "
   >
-    <em>
-      <react-truncate-markup
-        ellipsis="..."
-        lines={3}
-      >
-        <span>
-          Siden vinteren 2003 har DR1 i flere omgange sendt Hjerterum, en række meget sete programmer om boligindretning, hvor konceptet er, at to mennesker - ofte med meget forskellig smag - skal flytte sammen, og hvor en indretningsarkitekt med det bedste fra deres respektive indbo så indretter deres nye fælles hjem. Det er der kommet mange flotte, spændende og anderledes løsninger ud af, og i denne bog viser Vibeke Brinck, hvordan hun gjorde i fem konkrete tilfælde. Fælles for alle fem hjem er det personlige og individuelle frem for det meget strømlinede og arkitekttegnede. Der er dansk-svensk minimalisme, farvecollage på Nørrebro, stuelejlighed på Østerbro, taglejlighed i Århus og rækkehus på Amager. Der er inspirerende før-og-efter fotos, og der er masser af tips og ideer at hente til fornyelse eller opfriskning af de hjemlige stuer - både hvis det drejer sig om små effektfulde detaljer eller større projekter. Desuden er kapitler om farver, lys, møblering og materialer. Bogen lægger sig tæt op af udsendelserne, og er meget anvendelig til de mange lånere, der til stadighed efterspørger nyt om bogligindretning. En pendant til denne bog er Liselotte Risells bedste indretningsideer fra TV 2-succesen Helt solgt! (2003)
-        </span>
-      </react-truncate-markup>
-    </em>
+    <react-truncate-markup
+      ellipsis="..."
+      lines={3}
+    >
+      <span>
+        Siden vinteren 2003 har DR1 i flere omgange sendt Hjerterum, en række meget sete programmer om boligindretning, hvor konceptet er, at to mennesker - ofte med meget forskellig smag - skal flytte sammen, og hvor en indretningsarkitekt med det bedste fra deres respektive indbo så indretter deres nye fælles hjem. Det er der kommet mange flotte, spændende og anderledes løsninger ud af, og i denne bog viser Vibeke Brinck, hvordan hun gjorde i fem konkrete tilfælde. Fælles for alle fem hjem er det personlige og individuelle frem for det meget strømlinede og arkitekttegnede. Der er dansk-svensk minimalisme, farvecollage på Nørrebro, stuelejlighed på Østerbro, taglejlighed i Århus og rækkehus på Amager. Der er inspirerende før-og-efter fotos, og der er masser af tips og ideer at hente til fornyelse eller opfriskning af de hjemlige stuer - både hvis det drejer sig om små effektfulde detaljer eller større projekter. Desuden er kapitler om farver, lys, møblering og materialer. Bogen lægger sig tæt op af udsendelserne, og er meget anvendelig til de mange lånere, der til stadighed efterspørger nyt om bogligindretning. En pendant til denne bog er Liselotte Risells bedste indretningsideer fra TV 2-succesen Helt solgt! (2003)
+      </span>
+    </react-truncate-markup>
   </p>
   <p
     className=" Text Text__body "
   >
     <button
-      className="Review__block--link mb0
+      className="Review__block--link
       button button__medium button__link   "
       data-cy=""
       disabled={false}
@@ -50,7 +53,7 @@ exports[`ResumeReview render function 1`] = `
     >
       <span>
         <span>
-           Læs materialevurderingen 
+          Læs materialevurderingen
         </span>
       </span>
     </button>
@@ -60,47 +63,50 @@ exports[`ResumeReview render function 1`] = `
 
 exports[`ResumeReview render function 2`] = `
 <div
-  className="Review__container mb-3"
+  className="Review__container"
 >
   <div
     className="Review__block--top"
   >
-    <h6
-      className="Review__block--title mb0 Title Title__title6 "
+    <div
+      className="Review__block--title mb-0 d-flex"
     >
-      Bibliotekernes vurdering
-    </h6>
+      <h6
+        className="Review__block--title Title Title__title6 "
+      >
+        Bibliotekernes vurdering
+      </h6>
+    </div>
     <p
-      className="due-txt mb0 Text Text__small "
+      className="due-txt Text Text__small "
     >
       6. mar 2017
     </p>
   </div>
   <p
-    className="Review__block--lector mb1 Text Text__body "
+    className="Review__block--lector Text Text__body "
   >
-    Af 
+    Af
+     
     Lone Krøgh
   </p>
   <p
-    className="Review__block--paragraph mb0 Text Text__body "
+    className="Review__block--paragraph Text Text__body "
   >
-    <em>
-      <react-truncate-markup
-        ellipsis="..."
-        lines={3}
-      >
-        <span>
-          En på alle måder stor roman af Hanne Marie Svendsen. I Sydvestgrønland lå der fra 985 til 1400-tallet en vidtstrakt nordisk bebyggelse med omkring 3.000 indbyggere, eget bispesæde og et munke- og et nonnekloster. Her lader Svendsen sin veloplagte, spændende og meget underholdende roman foregå. Den unge forældreløse Unn og hendes fostersøster Ingebjørg er under oplæring i nonneklosteret. Ingebjørg indordner sig, mens den mere rastløse Unn stiller en række nærmest kætterske spørgsmål til religionen og tilværelsen. Med Unn som hovedperson ledes man gennem romanens mange handlinger, og man møder en vrimmel af bipersoner. Der er lidenskabelige opgør, magtkampe og fejder, og middelalderens splittelse mellem hedensk overtro og religiøse skikke udspiller sig i et på én gang magisk og realistisk univers. Sprogligt er Unn fra Stjernestene holdt i sin egen tone og den beskriver den grønlandske natur flot og billedskabende. Lidenskab, tro og begærlighed er gennemgående temaer i den eventyrlige roman, som vil appellere til en stor læserkreds; dels læsere af historiske romaner i almindelighed, læsere af romaner med stærke kvindelige personligheder som f.eks. Dinas bog og sikkert også læsere af Ib Michael. Dystert grå-grønt-brunligt omslag
-        </span>
-      </react-truncate-markup>
-    </em>
+    <react-truncate-markup
+      ellipsis="..."
+      lines={3}
+    >
+      <span>
+        En på alle måder stor roman af Hanne Marie Svendsen. I Sydvestgrønland lå der fra 985 til 1400-tallet en vidtstrakt nordisk bebyggelse med omkring 3.000 indbyggere, eget bispesæde og et munke- og et nonnekloster. Her lader Svendsen sin veloplagte, spændende og meget underholdende roman foregå. Den unge forældreløse Unn og hendes fostersøster Ingebjørg er under oplæring i nonneklosteret. Ingebjørg indordner sig, mens den mere rastløse Unn stiller en række nærmest kætterske spørgsmål til religionen og tilværelsen. Med Unn som hovedperson ledes man gennem romanens mange handlinger, og man møder en vrimmel af bipersoner. Der er lidenskabelige opgør, magtkampe og fejder, og middelalderens splittelse mellem hedensk overtro og religiøse skikke udspiller sig i et på én gang magisk og realistisk univers. Sprogligt er Unn fra Stjernestene holdt i sin egen tone og den beskriver den grønlandske natur flot og billedskabende. Lidenskab, tro og begærlighed er gennemgående temaer i den eventyrlige roman, som vil appellere til en stor læserkreds; dels læsere af historiske romaner i almindelighed, læsere af romaner med stærke kvindelige personligheder som f.eks. Dinas bog og sikkert også læsere af Ib Michael. Dystert grå-grønt-brunligt omslag
+      </span>
+    </react-truncate-markup>
   </p>
   <p
     className=" Text Text__body "
   >
     <button
-      className="Review__block--link mb0
+      className="Review__block--link
       button button__medium button__link   "
       data-cy=""
       disabled={false}
@@ -108,7 +114,7 @@ exports[`ResumeReview render function 2`] = `
     >
       <span>
         <span>
-           Læs materialevurderingen 
+          Læs materialevurderingen
         </span>
       </span>
     </button>
@@ -118,47 +124,50 @@ exports[`ResumeReview render function 2`] = `
 
 exports[`ResumeReview render function 3`] = `
 <div
-  className="Review__container mb-3"
+  className="Review__container"
 >
   <div
     className="Review__block--top"
   >
-    <h6
-      className="Review__block--title mb0 Title Title__title6 "
+    <div
+      className="Review__block--title mb-0 d-flex"
     >
-      Bibliotekernes vurdering
-    </h6>
+      <h6
+        className="Review__block--title Title Title__title6 "
+      >
+        Bibliotekernes vurdering
+      </h6>
+    </div>
     <p
-      className="due-txt mb0 Text Text__small "
+      className="due-txt Text Text__small "
     >
       11. aug 2017
     </p>
   </div>
   <p
-    className="Review__block--lector mb1 Text Text__body "
+    className="Review__block--lector Text Text__body "
   >
-    Af 
+    Af
+     
     Jacob Holm Krogsøe
   </p>
   <p
-    className="Review__block--paragraph mb0 Text Text__body "
+    className="Review__block--paragraph Text Text__body "
   >
-    <em>
-      <react-truncate-markup
-        ellipsis="..."
-        lines={3}
-      >
-        <span>
-          David er som hovedperson realistisk og levende. Der er ikke nogen nemme løsninger, men en hård kamp for at genfinde sig selv efter de mange år han har levet i et følelsesmæssigt vakuum. Sproget er enkelt, uden de store armbevægelser, og det passer fint til Davids udvikling, hvor det handler om at stå af ræset og trække vejret dybt ind. Michael Robak bruger sin erfaring fra journalistbranchen til at give den del af romanen en vigtig troværdighed
-        </span>
-      </react-truncate-markup>
-    </em>
+    <react-truncate-markup
+      ellipsis="..."
+      lines={3}
+    >
+      <span>
+        David er som hovedperson realistisk og levende. Der er ikke nogen nemme løsninger, men en hård kamp for at genfinde sig selv efter de mange år han har levet i et følelsesmæssigt vakuum. Sproget er enkelt, uden de store armbevægelser, og det passer fint til Davids udvikling, hvor det handler om at stå af ræset og trække vejret dybt ind. Michael Robak bruger sin erfaring fra journalistbranchen til at give den del af romanen en vigtig troværdighed
+      </span>
+    </react-truncate-markup>
   </p>
   <p
     className=" Text Text__body "
   >
     <button
-      className="Review__block--link mb0
+      className="Review__block--link
       button button__medium button__link   "
       data-cy=""
       disabled={false}
@@ -166,7 +175,7 @@ exports[`ResumeReview render function 3`] = `
     >
       <span>
         <span>
-           Læs materialevurderingen 
+          Læs materialevurderingen
         </span>
       </span>
     </button>
@@ -176,47 +185,50 @@ exports[`ResumeReview render function 3`] = `
 
 exports[`ResumeReview render function 4`] = `
 <div
-  className="Review__container mb-3"
+  className="Review__container"
 >
   <div
     className="Review__block--top"
   >
-    <h6
-      className="Review__block--title mb0 Title Title__title6 "
+    <div
+      className="Review__block--title mb-0 d-flex"
     >
-      Bibliotekernes vurdering
-    </h6>
+      <h6
+        className="Review__block--title Title Title__title6 "
+      >
+        Bibliotekernes vurdering
+      </h6>
+    </div>
     <p
-      className="due-txt mb0 Text Text__small "
+      className="due-txt Text Text__small "
     >
       6. mar 2017
     </p>
   </div>
   <p
-    className="Review__block--lector mb1 Text Text__body "
+    className="Review__block--lector Text Text__body "
   >
-    Af 
+    Af
+     
     Per Månson
   </p>
   <p
-    className="Review__block--paragraph mb0 Text Text__body "
+    className="Review__block--paragraph Text Text__body "
   >
-    <em>
-      <react-truncate-markup
-        ellipsis="..."
-        lines={3}
-      >
-        <span>
-          Rasmussens nyeste rammer lige ind i den fornyede interesse for 2. verdenskrig og den danske modstandsbevægelse. Omslaget signalerer ikke umiddelbart dette, men det sort/hvide fotografi af Sven er dog tidstypisk
-        </span>
-      </react-truncate-markup>
-    </em>
+    <react-truncate-markup
+      ellipsis="..."
+      lines={3}
+    >
+      <span>
+        Rasmussens nyeste rammer lige ind i den fornyede interesse for 2. verdenskrig og den danske modstandsbevægelse. Omslaget signalerer ikke umiddelbart dette, men det sort/hvide fotografi af Sven er dog tidstypisk
+      </span>
+    </react-truncate-markup>
   </p>
   <p
     className=" Text Text__body "
   >
     <button
-      className="Review__block--link mb0
+      className="Review__block--link
       button button__medium button__link   "
       data-cy=""
       disabled={false}
@@ -224,7 +236,7 @@ exports[`ResumeReview render function 4`] = `
     >
       <span>
         <span>
-           Læs materialevurderingen 
+          Læs materialevurderingen
         </span>
       </span>
     </button>
