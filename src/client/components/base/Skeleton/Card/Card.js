@@ -13,6 +13,7 @@ const SkeletonCard = ({className = '', cardRef = null}) => {
       data-hj-ignore-attributes
     >
       <BookCover />
+      <Text className="card__status" lines={1} />
       <Text className="card__text" />
       <div className="whiteLine" />
     </div>

@@ -6,6 +6,10 @@
   background-color: transparent;
 }
 
+.card__status {
+  margin-top: var(--05pt);
+}
+
 .card__text {
   margin-top: var(--1pt);
 }

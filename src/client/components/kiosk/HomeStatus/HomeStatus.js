@@ -3,6 +3,7 @@ import Kiosk from '../../base/Kiosk/Kiosk';
 import {withHoldings} from '../../hoc/Holding/withHoldings.hoc';
 import T from '../../base/T';
 import Text from '../../base/Text';
+import SkeletonText from '../../base/Skeleton/Text';
 
 import './HomeStatus.css';
 
@@ -32,8 +33,13 @@ const HomeStatusComponent = ({icon, color, text}) => {
 
 const HomeStatusWithHoldings = withHoldings(props => {
   const {holdings} = props;
+
   if (!holdings || holdings.isFetching) {
-    return null;
+    return (
+      <span className="home-status-indicator">
+        <SkeletonText lines={1} />
+      </span>
+    );
   }
   const {color, text} = homeStatusInfo(holdings.holdings);
   return (
