@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isMobileOnly} from 'react-device-detect';
 import Link from '../general/Link.component';
 import ShortListDropDown from '../list/shortlist/ShortListDropDown.container';
 import ListOverviewDropDown from '../list/overview/ListOverviewDropDown.container';
@@ -13,7 +12,6 @@ import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
 import {ON_USERLISTS_COLLAPSE} from '../../redux/list.reducer';
 import {ON_SHORTLIST_COLLAPSE} from '../../redux/shortlist.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
-import Title from '../base/Title/';
 import Text from '../base/Text/';
 import T from '../base/T/';
 import './Topbar.css';
@@ -21,6 +19,7 @@ import {eventPath} from '../../utils/path';
 import {ADMIN_ROLE, EDITOR_ROLE} from '../roles/Role.component';
 import Role from '../roles/Role.component';
 import Kiosk from '../base/Kiosk/Kiosk';
+import LaesekompasLogo from '../general/LaesekompasLogo.svg';
 
 let searchPage = false;
 
@@ -242,14 +241,13 @@ export class TopBar extends React.Component {
     const searchExpanded = searchPage && this.state.searchExpanded;
     const showCancelBtn = window.location.href.split('=')[1];
 
-    const {user, router, betaModal, listsModal, logout} = this.props;
+    const {user, listsModal, logout} = this.props;
 
     const cancelVisibleClass = !searchExpanded && !showCancelBtn ? 'hide' : '';
 
     const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
     const hideOnIE11 = isIE11 && searchExpanded ? 'hidden' : '';
     const collapsedClass = !searchExpanded ? 'collapsed' : '';
-    const isIndex = router.path === '/' ? true : false;
 
     return (
       <header
@@ -346,37 +344,7 @@ export class TopBar extends React.Component {
         </nav>
 
         <Link href="/" className={`topbar__logo ${hideOnIE11}`}>
-          <object
-            type="image/svg+xml"
-            data="/img/general/dibliofigur.svg"
-            aria-labelledby="logo"
-          />
-          <div>
-            <Title
-              className="topbar__logo-title"
-              Tag="h1"
-              type="title4"
-              variant="weight-semibold"
-            >
-              Læsekompas
-            </Title>
-            <div className="logo-beta-wrap">
-              {!searchExpanded && ((isIndex && isMobileOnly) || !isMobileOnly) && (
-                <Text
-                  className="logo-beta-link"
-                  type="small"
-                  variant="decoration-underline"
-                  onClick={e => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    betaModal();
-                  }}
-                >
-                  <T component="general" name="readMore" />
-                </Text>
-              )}
-            </div>
-          </div>
+          <img src={LaesekompasLogo} alt="topbar_logo" />
         </Link>
         <TopBarDropdown
           logout={logout}
@@ -401,44 +369,6 @@ export const mapDispatchToProps = dispatch => ({
   logout: () => dispatch({type: ON_LOGOUT_REQUEST}),
   onUserListsClose: () => dispatch({type: ON_USERLISTS_COLLAPSE}),
   onShortlistClose: () => dispatch({type: ON_SHORTLIST_COLLAPSE}),
-  betaModal: () => {
-    dispatch({
-      type: OPEN_MODAL,
-      modal: 'confirm',
-      context: {
-        title: <T component="topbar" name="betaModalTitle" />,
-        reason: (
-          <React.Fragment>
-            <Text type="body" variant="weight-semibold">
-              <T
-                component="topbar"
-                name="betaModalDescription"
-                renderAsHtml={true}
-              />
-            </Text>
-            <Text type="body">
-              <T component="topbar" name="betaModalBody" renderAsHtml={true} />
-            </Text>
-          </React.Fragment>
-        ),
-        confirmText: <T component="general" name="close" />,
-        hideCancel: true,
-        hideConfirm: true,
-        onConfirm: () => {
-          dispatch({
-            type: 'CLOSE_MODAL',
-            modal: 'confirm'
-          });
-        },
-        onCancel: () => {
-          dispatch({
-            type: 'CLOSE_MODAL',
-            modal: 'confirm'
-          });
-        }
-      }
-    });
-  },
   listsModal: () => {
     dispatch({
       type: OPEN_MODAL,

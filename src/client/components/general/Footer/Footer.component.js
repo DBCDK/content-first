@@ -4,7 +4,7 @@ import T from '../../base/T';
 
 import Link from '../../general/Link.component';
 
-import LaesekompasLogo from './LaesekompasLogo.svg';
+import LaesekompasLogo from '../LaesekompasLogo.svg';
 
 import './Footer.css';
 

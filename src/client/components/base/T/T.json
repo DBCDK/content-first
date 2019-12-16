@@ -186,18 +186,6 @@
       }
     },
     "topbar": {
-      "betaModalTitle": {
-        "da": "Om Læsekompas.dk",
-        "en": "About Læsekompas.dk"
-      },
-      "betaModalDescription": {
-        "da": "Læsekompasset gør det nemt for dig at finde en bog, der er lige dig, og låne den på biblioteket. <br/><br/>",
-        "en": "Læsekompasset was created to make it easy for you to discover just the right books for you and to inspire new reading experiences."
-      },
-      "betaModalBody": {
-        "da": "Vi arbejder hele tiden på at forbedre Læsekompasset, så du kan opdage lige dén bog, du vil elske at læse. I Læsekompasset kan du finde bøger til voksne, men kun skønlitteratur—for eksempel kogebøger, skolebøger og børnebøger kan du ikke finde her.",
-        "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut"
-      }
     },
     "footer": {
       "sectionOne": {
