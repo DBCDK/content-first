@@ -1,6 +1,7 @@
 import React from 'react';
 import Swiper from 'react-id-swiper';
 import {isMobile} from 'react-device-detect';
+import {SizeMe} from 'react-sizeme';
 
 import './Tabs.css';
 
@@ -32,7 +33,7 @@ const defaultSettings = {
 export class Tabs extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {index: props.initialSlide || 0};
+    this.state = {index: props.initialSlide || 0, tabs: {}};
     this.tabRefs = {};
   }
 
@@ -56,9 +57,9 @@ export class Tabs extends React.Component {
   }
 
   getCurrentHeight = () => {
-    const ref = this.tabRefs[this.swiper.realIndex];
-    if (ref) {
-      return ref.scrollHeight || 0;
+    const tab = this.state.tabs[this.swiper.realIndex];
+    if (tab) {
+      return tab.height || 0;
     }
     return 0;
   };
@@ -148,21 +149,22 @@ export class Tabs extends React.Component {
               // otherwise id-swiper won't detect height properly
               style={{
                 height:
-                  settings.autoHeight &&
-                  ((this.tabRefs[idx] && this.tabRefs[idx].scrollHeight) ||
-                    'auto')
+                  (this.state.tabs[idx] && this.state.tabs[idx].height) ||
+                  'auto'
               }}
               key={idx}
             >
-              <div
-                ref={node => {
-                  if (node) {
-                    this.tabRefs[idx] = node;
+              <SizeMe monitorHeight={true}>
+                {({size}) => {
+                  if (
+                    !this.state.tabs[idx] ||
+                    size.height !== this.state.tabs[idx].height
+                  ) {
+                    this.setState({tabs: {...this.state.tabs, [idx]: size}});
                   }
+                  return child;
                 }}
-              >
-                {child}
-              </div>
+              </SizeMe>
             </div>
           ))}
       </Swiper>
