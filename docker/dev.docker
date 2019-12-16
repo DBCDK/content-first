@@ -10,9 +10,9 @@ LOG_LEVEL=DEBUG
 PRETTY_LOG=0
 AUTH_CLIENT_ID=6589442e-0018-4230-89b3-d61ac4d52565
 AUTH_CLIENT_SECRET=d4733291acad68f02539336d2003a2d3c531534929f8ba61251c38d8f3d7878c
-JSON_FILES_URL=https://ux-is.dbc.dk/job/kompasset/job/make-reports/lastSuccessfulBuild/artifact/json-files.tar.gz
+JSON_FILES_URL=https://artifactory.dbc.dk/artifactory/fe-generic/metakompasset/json-files.tar.gz
 DMZ_HOST=http://localhost:3000
-#KIOSK_ENABLED=true
+KIOSK_ENABLED=true
 
 STORAGE_URL=http://storage:8080/v3/storage
 MINISMAUG_HOST=minismaug
