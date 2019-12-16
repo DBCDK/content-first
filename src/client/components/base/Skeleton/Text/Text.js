@@ -18,7 +18,10 @@ function createLines(n, color) {
 
 const Text = ({className, lines = 3, color = '#f8f8f8', styles}) => {
   return (
-    <div className={`Skeleton__text ${className || ''}`} style={styles}>
+    <div
+      className={`Skeleton__text Skeleton__Pulse ${className || ''}`}
+      style={styles}
+    >
       {createLines(lines, color)}
     </div>
   );

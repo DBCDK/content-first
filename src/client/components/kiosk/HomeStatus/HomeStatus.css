@@ -31,3 +31,11 @@
   font-size: 12px;
   margin-left: var(--05pt);
 }
+
+/* Skeleton view */
+.home-status-indicator .Skeleton__text {
+  max-height: 19px;
+}
+.home-status-indicator .Skeleton__text .Skeleton__text__line {
+  height: 19px;
+}

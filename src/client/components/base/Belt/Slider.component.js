@@ -85,7 +85,7 @@ class DesktopSlider extends React.Component {
       p = 'hide';
     }
     let props = this.props;
-    const params = {
+    const desktopParams = {
       pagination: {
         el:
           '.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-' +
@@ -100,6 +100,8 @@ class DesktopSlider extends React.Component {
       slidesPerGroup: 3,
       rebuildOnUpdate: false
     };
+
+    const params = {...desktopParams, freeMode: this.props.isKiosk};
 
     return (
       <Swiper
@@ -204,6 +206,7 @@ class Slider extends React.Component {
         children={this.props.children}
         onSwipe={this.props.onSwipe}
         name={this.props.name}
+        isKiosk={this.props.isKiosk}
       />
     );
   }
