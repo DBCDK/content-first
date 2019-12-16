@@ -150,7 +150,7 @@
 /* if kiosk-mode enabled */
 
 .App.kioskmode .swiper-pagination,
-.swiper-button-next,
-.swiper-button-prev {
+.App.kioskmode .swiper-pagination .swiper-button-next,
+.App.kioskmode .swiper-pagination .swiper-button-prev {
   display: none;
 }
