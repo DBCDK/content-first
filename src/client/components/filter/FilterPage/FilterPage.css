@@ -45,6 +45,7 @@ work-card.filter-page-title {
 
 .App.kioskmode .filter-page-results {
   padding-top: 40vh !important;
+  padding-bottom: 12.5vh !important;
   /* (100vh - (cards.height + cars.padding + searchbar.height + navigationbar.height)) */
   /* height: calc(100vh - (132px + 16px + 75px + 128px)); */
   /* overflow-y: auto;
