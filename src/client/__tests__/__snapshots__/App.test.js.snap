@@ -270,33 +270,10 @@ exports[`renders without crashing 1`] = `
         style={Object {}}
         target="_self"
       >
-        <object
-          aria-labelledby="logo"
-          data="/img/general/dibliofigur.svg"
-          type="image/svg+xml"
+        <img
+          alt="topbar_logo"
+          src="LaesekompasLogo.svg"
         />
-        <div>
-          <h1
-            className="topbar__logo-title Title Title__title4 Title__title4--weight-semibold"
-          >
-            Læsekompas
-          </h1>
-          <div
-            className="logo-beta-wrap"
-          >
-            <p
-              className="logo-beta-sign Text Text__micro "
-            >
-              SNEAK PEEK
-            </p>
-            <p
-              className="logo-beta-link Text Text__small Text__small--decoration-underline"
-              onClick={[Function]}
-            >
-              Læs mere
-            </p>
-          </div>
-        </div>
       </a>
       <ul
         className="topbar__dropdown dropdown--dont-close hidden"
