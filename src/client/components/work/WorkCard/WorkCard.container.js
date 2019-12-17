@@ -70,7 +70,7 @@ class WorkCard extends React.Component {
     if (this.props.enableLongpress) {
       this.buttonPressTimer = setTimeout(
         () => this.setState({showCompareButton: true}),
-        1000
+        500
       );
     }
   };

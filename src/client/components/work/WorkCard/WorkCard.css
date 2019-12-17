@@ -1,177 +1,182 @@
 .work-card {
-    position: relative;
-    display: inline-block;
-    height: 450px;
-    width: 215px;
-    min-width: 215px;
-    vertical-align: top;
-    text-align: left;
-    cursor: pointer;
+  position: relative;
+  display: inline-block;
+  height: 450px;
+  width: 215px;
+  min-width: 215px;
+  vertical-align: top;
+  text-align: left;
+  cursor: pointer;
 }
 
 .work-card .work-card__content {
-    height: 100%;
+  height: 100%;
 }
 
 .work-card .book-cover {
-    width: 100%;
-    height: 70%;
-    padding: 20px;
-    background-color: var(--lys-graa);
-    object-fit: contain;
+  width: 100%;
+  height: 70%;
+  padding: 20px;
+  background-color: var(--lys-graa);
+  object-fit: contain;
 }
 
 .work-card .book-cover img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 
-    /* prevent native image long-click handle */
-    pointer-events: none;
+  /* prevent native image long-click handle */
+  pointer-events: none;
 }
 
 .work-card .work-card__title {
-    margin: 0;
+  margin: 0;
 }
 
 .work-card .work-card__creator {
-    margin-bottom: var(--1pt);
+  margin-bottom: var(--1pt);
 }
 
 .work-card .book-cover-content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    z-index: 3;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
 }
 
 .work-card .BookmarkButton {
-    margin-bottom: var(--05pt);
+  margin-bottom: var(--05pt);
 }
 
 .work-card .compare-button {
-    transform: rotate(-25deg) scale(0);
-    transition-timing-function: ease-in;
-    transition-duration: 0.15s;
+  transform: rotate(-25deg) scale(0);
+  transition-timing-function: ease-in;
+  transition-duration: 0.15s;
 }
 
 .work-card .compare-button.active {
-    transition-timing-function: ease-out;
-    transform: rotate(0deg) scale(1);
+  transition-timing-function: ease-out;
+  transform: rotate(0deg) scale(1);
 }
 
 @media only screen and (min-width: 768px) {
-    .work-card:hover .compare-button {
-        transition-timing-function: ease-out;
-        transform: rotate(0deg) scale(1);
-    }
+  .work-card:hover .compare-button {
+    transition-timing-function: ease-out;
+    transform: rotate(0deg) scale(1);
+  }
 
-    .work-card.compare-button.active {
-        background-color: var(--korn);
-    }
+  .work-card.compare-button.active {
+    background-color: var(--korn);
+  }
 }
 
 .work-card .hover-details {
-    text-align: left;
-    opacity: 0;
-    transition: all 0.25s;
-    cursor: pointer;
-    z-index: 2;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+  text-align: left;
+  opacity: 0;
+  transition: all 0.25s;
+  cursor: pointer;
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 .work-card.highlight .hover-details {
-    opacity: 1;
+  opacity: 1;
 }
 
 .work-card:hover .hover-details {
-    opacity: 1;
+  opacity: 1;
 }
 
 /* kioskmode enabled */
 
 .App.kioskmode .work-card .hover-details,
 .App.kioskmode .hover-details-fade {
-    display: none;
+  display: none;
 }
 
 /*  */
 
 .hover-details-fade {
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 1) 30%);
-    z-index: 1;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 60%,
+    rgba(255, 255, 255, 1) 30%
+  );
+  z-index: 1;
 }
 
 .work-card.highlight .hover-details-fade {
-    opacity: 1;
+  opacity: 1;
 }
 
 .work-card:hover .hover-details-fade {
-    opacity: 1;
+  opacity: 1;
 }
 
 .work-card .expand-more-wrapper {
-    text-align: center;
-    width: 100%;
-    position: absolute;
-    bottom: -180px;
-    left: 0;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: -180px;
+  left: 0;
 }
 
 .work-card.ghost {
-    opacity: 0;
-    pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .work-card .work-card__tax-description {
-    display: block;
-    margin-top: var(--1pt);
+  display: block;
+  margin-top: var(--1pt);
 }
 
 @media only screen and (max-width: 768px) {
-    .work-card {
-        height: 350px;
-        width: 160px;
-        min-width: 160px;
-    }
+  .work-card {
+    height: 350px;
+    width: 160px;
+    min-width: 160px;
+  }
 }
 
 @media only screen and (max-width: 576px) {
-    .work-card {
-        height: 180px;
-        width: 130px;
-        min-width: 130px;
-    }
+  .work-card {
+    height: 180px;
+    width: 130px;
+    min-width: 130px;
+  }
 
-    .work-card .book-cover {
-        height: 100%;
-        padding: 10px;
-    }
+  .work-card .book-cover {
+    height: 100%;
+    padding: 10px;
+  }
 
-    .hover-details-fade,
-    .hover-details {
-        display: none;
-    }
+  .hover-details-fade,
+  .hover-details {
+    display: none;
+  }
 
-    .work-card .work-card__tax-description {
-        display: none;
-    }
+  .work-card .work-card__tax-description {
+    display: none;
+  }
 }
 
 .work-card__content .home-status-indicator .material-icons {
-    margin-left: -2px;
+  margin-left: -2px;
 }
 
 .work-card__content .home-status-indicator .Text {
-    font-weight: 600;
+  font-weight: 600;
 }
