@@ -191,7 +191,17 @@ class DesktopSlider extends React.Component {
 
 class Slider extends React.Component {
   render() {
-    if ((this.props.forceMobile || isMobile) && !this.props.isKiosk) {
+    if (this.props.isKiosk) {
+      return (
+        <MobileSlider
+          initialScrollPos={this.props.initialScrollPos}
+          children={this.props.children}
+          onSwipe={this.props.onSwipe}
+        />
+      );
+    }
+
+    if (this.props.forceMobile || isMobile) {
       return (
         <MobileSlider
           initialScrollPos={this.props.initialScrollPos}
