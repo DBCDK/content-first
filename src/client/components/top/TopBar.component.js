@@ -12,7 +12,6 @@ import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
 import {ON_USERLISTS_COLLAPSE} from '../../redux/list.reducer';
 import {ON_SHORTLIST_COLLAPSE} from '../../redux/shortlist.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
-import Text from '../base/Text/';
 import T from '../base/T/';
 import './Topbar.css';
 import {eventPath} from '../../utils/path';
