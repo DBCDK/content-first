@@ -267,16 +267,6 @@ export class ProfileModal extends React.Component {
               bruger.
             </div>
 
-            <div className="profile__rules-title2">
-              Beta-version af læsekompas.dk
-            </div>
-            <div className="profile__rules-content">
-              Læsekompas.dk er lanceret som en beta-version. Dette betyder, at
-              vi fortsat tester og justerer. Den version af læsekompas.dk, du
-              oplever er ikke helt færdigudviklet og du vil derfor opleve at
-              løsningen udvikler sig over tid.
-            </div>
-
             <div className="profile__rules-title2">Hvem står bag?</div>
             <div className="profile__rules-content">
               Læsekompas.dk er skabt og drives af de danske folkebiblioteker i

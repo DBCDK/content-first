@@ -6,10 +6,6 @@ Læsekompasset indeholder et udvalg af skønlitteratur for voksne, der er tilgæ
 
 Læsekompasset giver også brugere mulighed for at oprette og dele lister med bøger.
 
-### Betaversion af Læsekompasset
-
-Læsekompasset er lanceret som en betaversion. Dette betyder, at vi fortsat tester og justerer. Den version af Læsekompasset, du oplever er ikke helt færdigudviklet og du vil opleve at løsningen udvikler sig over tid.
-
 ### Hvem står bag?
 
 Læsekompasset er skabt i samarbejde med de danske folkebiblioteker og drives af DBC.

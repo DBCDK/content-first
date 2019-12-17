@@ -155,7 +155,7 @@
 }
 
 .topbar__navigation--icon img {
-  height: 28px;
+  height: 30px;
 }
 
 /*
@@ -186,17 +186,10 @@
   margin: 0;
 }
 
-/* Beta styles */
-
-.topbar .topbar__logo .logo-beta-wrap {
-  display: flex;
-  position: relative;
-  margin-top: -5px;
-}
-
-.topbar .topbar__logo .logo-beta-sign {
-  margin: 0 var(--1pt) 0 0;
-}
+.topbar .topbar__logo img {
+  width: 190px;
+  padding-top: 5px;
+  padding-left: 7px;}
 
 /*
   Topbar Dropdown
@@ -304,29 +297,20 @@ toggle on top of navigation bar - in the open/close animation */
     height: 60px;
   }
 
-  .topbar__logo .logo-beta-link {
-    display: none;
-  }
-
   .topbar .topbar__logo {
-    padding: 0 var(--2pt);
+    padding: 0 0 0 8px;
   }
 
-  .topbar__logo object {
-    height: var(--3pt);
-    margin: 6px 7px 0 0;
-  }
-
-  .topbar__logo-title {
+  .topbar .topbar__logo-title {
     font-size: 14px;
   }
 
-  .topbar .topbar__logo .logo-beta-text {
-    display: none;
+  .topbar .topbar__logo img {
+    width: 140px;
   }
 
   .topbar .topbar__navigation .navigation-btn {
-    min-width: 60px;
+    min-width: 50px;
     border-left: 0;
   }
 
