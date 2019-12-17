@@ -397,6 +397,10 @@
       "lectorReview": {
         "da": "Lektørudtalelse",
         "en": "Lectors review"
+      },
+      "litteratursiden": {
+        "da": "Litteratursiden",
+        "en": "Litteratursiden"
       }
     },
     "profile": {

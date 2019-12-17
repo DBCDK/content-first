@@ -115,11 +115,14 @@ export function filterReviews(work) {
           // default obj for a review
           return {
             creator:
-              (rev.creator0th && rev.creator0th[0]) ||
+              (rev.creatorOth && rev.creatorOth[0]) ||
               (rev.isPartOf && rev.isPartOf[0]) ||
               'Literatursiden.dk',
             media: (rev.isPartOf && rev.isPartOf[0]) || 'anmeldelse',
-            date: (rev.date && rev.date[0]) || '',
+            date:
+              (rev.isPartOf && rev.isPartOf[0].split(',')[1]) ||
+              (rev.date && rev.date[0]) ||
+              '',
             url: rev.identifierURI[0]
           };
         });
