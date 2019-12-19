@@ -33,12 +33,12 @@ class ReviewList extends React.Component {
   }
 
   renderReviewList() {
-    const reviews = this.props.lectorReviews;
-
     let paperReviews = [];
     let libraryReview = [];
-    if (reviews) {
-      reviews.map((reviewList, outerKey) => {
+    if (this.props.lectorReviews) {
+      // Investigate this.props.lectorReviews for "Lektørudtalelser" and "Infomedia" articles
+      this.props.lectorReviews.map((reviewList, outerKey) => {
+        // Is this a "Lektørudtalelse"?
         if (typeof reviewList.fullTextReviews !== 'undefined') {
           reviewList.fullTextReviews.map((review, innerKey) => {
             libraryReview.push(
@@ -51,20 +51,21 @@ class ReviewList extends React.Component {
             return null;
           });
         }
-        const hasRating = reviewList.abstract; // show only reviews with rating
-        paperReviews.push(
-          hasRating && (
+        // Is this a "Infomedia" article?
+        if (reviewList.infomedia && reviewList.infomedia.length > 0) {
+          paperReviews.push(
             <PaperReview
               review={reviewList}
               book={this.props.book}
               showLink={this.props.showPaperLinks}
               key={outerKey}
             />
-          )
-        );
+          );
+        }
         return null;
       });
     }
+    // Investigate this.props.reviews for "Litteratursiden" articles
     const litteratursidenReview = (
       <LitteratursidenReview
         reviews={this.props.reviews}

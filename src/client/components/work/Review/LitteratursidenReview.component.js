@@ -22,15 +22,11 @@ const LitteratursidenReview = ({reviews = []}) => (
     render={({kiosk}) => {
       if (!kiosk.enabled) {
         return reviews.map((rev, key) => {
-          const date = rev.creator.split(',')[1];
           return (
             <ReviewItem
-              title={
-                rev.creator.includes('Litteratursiden')
-                  ? 'Litteratursiden'
-                  : rev.creator
-              }
-              date={calculateTimeStamp(date)}
+              title={T({component: 'work', name: 'litteratursiden'})}
+              author={rev.creator}
+              date={calculateTimeStamp(rev.date)}
               buttonText={T({component: 'work', name: 'readReview'})}
               link={rev.url}
               key={key}
