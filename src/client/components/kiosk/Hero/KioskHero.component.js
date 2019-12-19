@@ -17,7 +17,7 @@ const RoundLabel = () => {
     <div
       className="RoundLabel waves-effect"
       onClick={() => {
-        scroll(1096);
+        scroll(0, 1096);
       }}
     >
       <div>Eller få inspiration her</div>
@@ -51,7 +51,7 @@ export class KioskHero extends React.Component {
               }}
               onFocus={() => {
                 this.setState({inputFocused: true});
-                scroll(0);
+                scroll(0, 0);
               }}
               onBlur={() => {
                 this.setState({inputFocused: false});

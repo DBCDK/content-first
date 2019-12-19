@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import Link from '../../general/Link.component';
 
+import scroll from '../../../utils/scroll';
+
 import Title from '../../base/Title';
 import Icon from '../../base/Icon';
 import T from '../../base/T/';
@@ -75,7 +77,7 @@ export class Navigation extends React.Component {
           <div className="actions actions--right">
             <Link
               href="/"
-              onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
+              onClick={() => scroll(0, 0)}
               data-cy="navActionHome"
               className={`action--btn waves-effect ${onHome}`}
             >

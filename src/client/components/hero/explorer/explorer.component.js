@@ -14,7 +14,7 @@ const Explorer = ({scrollDistanceOnClick}) => {
         className="info-callToAction d-inline-block"
         onClick={() => {
           if (scrollDistanceOnClick) {
-            scroll(scrollDistanceOnClick);
+            scroll(0, scrollDistanceOnClick);
           }
         }}
       >
