@@ -138,6 +138,7 @@ Cypress.Commands.add('setKioskMode', () => {
   cy.server();
   cy.route('GET', '/v1/initial-state', '@initialState');
   cy.route('POST', '/v1/kiosk', '@kioskConfiguration');
+  cy.visit('/kiosk?kiosk=some-key');
 });
 
 /**

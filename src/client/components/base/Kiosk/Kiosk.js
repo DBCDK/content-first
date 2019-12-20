@@ -8,14 +8,11 @@ const KIOSK_SETTINGS_PATH = '/kiosk';
 class Kiosk extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {tmpKiosk: props.kiosk};
+    this.state = {
+      tmpKiosk: props.kiosk
+    };
   }
-  update = kiosk => {
-    this.setState({tmpKiosk: {...this.state.tmpKiosk, ...kiosk}});
-  };
-  store = () => {
-    this.props.storeKiosk(this.state.tmpKiosk);
-  };
+
   start = () => {
     this.props.history(HISTORY_REPLACE, '/');
   };
@@ -23,8 +20,10 @@ class Kiosk extends React.Component {
   isConfigured = () => {
     return (
       this.props.kiosk &&
-      this.props.kiosk.clientSecret &&
-      this.props.kiosk.clientId &&
+      this.props.kiosk.kioskKey &&
+      this.props.kiosk.configuration &&
+      this.props.kiosk.configuration.agencyId &&
+      this.props.kiosk.configuration.branch &&
       !this.props.kiosk.error
     );
   };
@@ -51,7 +50,9 @@ class Kiosk extends React.Component {
       !this.props.kiosk.isLoading &&
       !this.props.kiosk.loaded
     ) {
-      this.props.loadKiosk();
+      this.props.loadKiosk({
+        kioskKey: this.props.urlParams.kiosk && this.props.urlParams.kiosk[0]
+      });
     }
     this.configureIfNeeded();
   }
@@ -68,8 +69,6 @@ class Kiosk extends React.Component {
     return render({
       kiosk: this.props.kiosk,
       tmpKiosk: this.state.tmpKiosk,
-      update: this.update,
-      store: this.store,
       configured: this.isConfigured(),
       start: this.start
     });
@@ -79,13 +78,14 @@ class Kiosk extends React.Component {
 const mapStateToProps = state => {
   return {
     kiosk: state.kiosk,
-    path: state.routerReducer && state.routerReducer.path
+    path: state.routerReducer && state.routerReducer.path,
+    urlParams: state.routerReducer.params
   };
 };
 const mapDispatchToProps = dispatch => ({
   history: (type, path) => dispatch({type, path}),
   storeKiosk: kiosk => dispatch(storeKiosk(kiosk)),
-  loadKiosk: () => dispatch(loadKiosk())
+  loadKiosk: params => dispatch(loadKiosk(params))
 });
 
 export default connect(

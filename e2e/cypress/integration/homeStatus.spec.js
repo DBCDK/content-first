@@ -33,6 +33,7 @@ describe('kiosk', function() {
     );
     cy.server();
     cy.route('GET', '/v1/initial-state', '@initialState');
+    cy.visit('/kiosk?kiosk=some-key');
   };
 
   const mockRecompas = entries => {

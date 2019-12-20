@@ -19,31 +19,9 @@ export default class KioskSetup extends React.Component {
           className="fixed-width-col-md"
         />
         <Kiosk
-          render={({kiosk, tmpKiosk, update, store, start}) => {
+          render={({kiosk, start}) => {
             return (
               <div className="KioskSetup__container col-centered">
-                <Input
-                  placeholder={T({
-                    component: 'kioskSetup',
-                    name: 'placeholderClientId'
-                  })}
-                  onChange={e => update({clientId: e.target.value})}
-                  value={tmpKiosk.clientId || ''}
-                  data-cy="input-client-id"
-                >
-                  <T component="kioskSetup" name="labelClientId" />
-                </Input>
-                <Input
-                  placeholder={T({
-                    component: 'kioskSetup',
-                    name: 'placeholderClientSecret'
-                  })}
-                  onChange={e => update({clientSecret: e.target.value})}
-                  value={tmpKiosk.clientSecret || ''}
-                  data-cy="input-client-secret"
-                >
-                  <T component="kioskSetup" name="labelClientSecret" />
-                </Input>
                 {kiosk.error && (
                   <Text
                     className="error"
@@ -54,24 +32,6 @@ export default class KioskSetup extends React.Component {
                     {kiosk.error}
                   </Text>
                 )}
-
-                <Toolbar>
-                  <Button
-                    type="quaternary"
-                    onClick={store}
-                    data-cy="kiosk-settings-submit"
-                    align="right"
-                    disabled={
-                      !tmpKiosk.clientSecret ||
-                      !tmpKiosk.clientId ||
-                      (tmpKiosk.clientSecret === kiosk.clientSecret &&
-                        tmpKiosk.clientId === kiosk.clientId)
-                    }
-                  >
-                    <T component="kioskSetup" name="submit" />
-                  </Button>
-                </Toolbar>
-
                 {kiosk.configuration && (
                   <React.Fragment>
                     {/* <Divider variant="thin" /> */}
