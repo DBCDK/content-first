@@ -50,7 +50,6 @@ export const loadKiosk = ({kioskKey}) => {
     if (getState().kiosk.isLoading) {
       return;
     }
-    console.log('loading', kioskKey);
     dispatch({
       type: KIOSK_RESPONSE,
       response: {isLoading: true, loaded: false}
