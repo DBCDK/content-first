@@ -38,8 +38,6 @@ class FilterCardList extends React.Component {
     const aFilters = Object.values(oFilters);
     const aKeys = Object.keys(oFilters);
 
-    console.log(filter.title, aFilters);
-
     return (
       <ul className={`FilterCard__list `}>
         {!expanded &&
