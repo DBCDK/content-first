@@ -4,6 +4,7 @@ import {isMobileOnly} from 'react-device-detect';
 import {SCROLL_TO_COMPONENT} from '../../../redux/scrollToComponent';
 import {UPDATE_MOUNT} from '../../../redux/mounts.reducer';
 import {HISTORY_PUSH} from '../../../redux/middleware';
+import scrollToComponent from 'react-scroll-to-component';
 
 const withChildBelt = WrappedComponent => {
   const Wrapped = class extends React.Component {
@@ -16,8 +17,9 @@ const withChildBelt = WrappedComponent => {
       this.props.updateMount({parent: null, child: null, type: null});
     };
     openSimilarBelt = (work, beltName = '', rid) => {
-      if (isMobileOnly) {
-        this.props.historyPush(work.book.pid);
+      if (this.props.is_work_page) {
+        const scrollToDiv = document.getElementsByClassName('similar-belt');
+        scrollToComponent(scrollToDiv[0]);
       } else if (
         work.book.pid === this.props.mountedData.parent &&
         this.props.mountedData.type === 'SIMILAR'
