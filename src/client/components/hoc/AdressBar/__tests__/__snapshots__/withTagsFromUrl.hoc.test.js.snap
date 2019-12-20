@@ -25,8 +25,7 @@ Array [
     "id": 5643,
     "match": 5643,
     "parents": Array [
-      "Handlingens tid",
-      "stemning",
+      "Stemning",
       "humoristisk",
     ],
     "score": 0,
@@ -138,8 +137,7 @@ Array [
     "id": 5643,
     "match": 5643,
     "parents": Array [
-      "Handlingens tid",
-      "stemning",
+      "Stemning",
       "humoristisk",
     ],
     "score": 0,
