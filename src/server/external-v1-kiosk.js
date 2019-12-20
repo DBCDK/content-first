@@ -13,10 +13,8 @@ router
     asyncMiddleware(async (req, res) => {
       try {
         const {kioskKey} = req.body;
-        console.log(kioskKey);
         const {access_token} = await fetchAnonymousToken();
         const configuration = (await fetchConfiguration(access_token)).kiosk;
-        configuration[kioskKey];
         if (!configuration[kioskKey]) {
           res.status(401).json({error: 'Invalid kioskKey', kioskKey});
           return;
