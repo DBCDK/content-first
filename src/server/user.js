@@ -47,16 +47,16 @@ async function userExists(openplatformToken, id) {
  * in order to support using minismaug with real user logins
  * It creates a token->configuration mapping in minismaug
  */
-async function createCookieDev(legacyId, uniqueId, openplatformToken, user) {
+async function createCookieDev(uniqueId, openplatformToken, user) {
   await request
     .put(
       `http://${config.test.minismaug.host}:3333/configuration?token=${openplatformToken}`
     )
     .send({user: {uniqueId}, storage: null});
-  return await createCookie(legacyId, uniqueId, openplatformToken, user);
+  return await createCookie(uniqueId, openplatformToken, user);
 }
 
-async function createCookie(legacyId, uniqueId, openplatformToken, user) {
+async function createCookie(uniqueId, openplatformToken, user) {
   const cookie = uuidv4();
   logger.log.debug(`Creating login token ${cookie}`);
 
