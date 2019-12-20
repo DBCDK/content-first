@@ -20,7 +20,6 @@ const profileStrategy = new Strategy(
 
   async function(token, tokenSecret, profile, done) {
     let uniqueId;
-    let legacyId;
     let municipality;
     let municipalityAgencyId;
     let special = {over13: false, name: ''};
@@ -58,28 +57,9 @@ const profileStrategy = new Strategy(
         throw e;
       }
 
-      try {
-        const openplatformUser = await request
-          .get(config.login.openplatformUrl + '/user')
-          .query({access_token: token});
-
-        legacyId = get(openplatformUser, 'body.data.id');
-        special.name = get(openplatformUser, 'body.data.name');
-        if (!legacyId) {
-          throw new Error('Missing legacyId');
-        }
-      } catch (e) {
-        logger.log.error({
-          token,
-          description: 'Error fetching openplatform user',
-          error: String(e)
-        });
-        throw e;
-      }
       done(null, {
         openplatformToken: token,
         uniqueId,
-        legacyId,
         special,
         municipality,
         municipalityAgencyId
@@ -95,7 +75,6 @@ passport.use('profile', profileStrategy);
 passport.serializeUser(async function(user, done) {
   try {
     const cookie = await createCookie(
-      user.legacyId,
       user.uniqueId,
       user.openplatformToken,
       user.special
