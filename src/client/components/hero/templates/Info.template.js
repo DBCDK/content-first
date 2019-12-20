@@ -51,7 +51,7 @@ export class Hero extends React.Component {
           }}
           onClick={() => {
             if (state.container.clientHeight) {
-              scroll(state.container.clientHeight || 0);
+              scroll(0, state.container.clientHeight || 0);
             }
           }}
         >

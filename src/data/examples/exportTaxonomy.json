@@ -1,6 +1,6 @@
 {
   "ramme": {
-    "Handlingens tid udtrykt i ord": [
+    "handlingens tid udtrykt i ord": [
       {
         "id": 6000,
         "title": "hej",
@@ -43,7 +43,7 @@
         "score": 0
       }
     ],
-    "fortællerstemme":[]
+    "fortællerstemme": []
   },
   "stemning": {
     "positiv": [

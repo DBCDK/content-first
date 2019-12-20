@@ -1,6 +1,6 @@
 .belt-tags {
   position: relative;
-  margin: 0;
+  margin: 0 0 var(--10pt) 0;
 }
 
 .belt-tags .belt-tags__content--wrap {
@@ -35,12 +35,18 @@
   display: inline;
 }
 
-.belt-tags__content--wrap .belt-tags__description--title {
+.belt-tags__content--wrap .belt-tags__description {
   margin: 0;
 }
 
 .belt-tags__content--wrap .belt-tags__description {
   padding: var(--1pt) 0 var(--2pt) 0;
+}
+
+/* kioskmode */
+
+.App.kioskmode .belt-tags__content--wrap .belt-tags__description--title {
+  display: none;
 }
 
 .belt-tags .belt-tags__edit-button {
