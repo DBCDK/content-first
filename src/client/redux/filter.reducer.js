@@ -16,7 +16,7 @@ export const filters = {
   ],
   Tempo: taxonomy.fortælleteknik.tempo,
   Fortællerstemme: taxonomy.fortælleteknik.fortællerstemme,
-  'Handlingens tid': taxonomy.ramme['Handlingens tid udtrykt i ord'],
+  'Handlingens tid': taxonomy.ramme['handlingens tid udtrykt i ord'],
   Univers: taxonomy.ramme.univers,
   Skrivestil: [
     leavesMap[5618],

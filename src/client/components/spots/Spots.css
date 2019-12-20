@@ -2,7 +2,7 @@
   display: flex;
   position: relative;
   justify-content: space-evenly;
-  margin: 20px 0;
+  margin: 42px 0;
 }
 
 .spots-container h1 {
@@ -34,6 +34,10 @@
 .App.kioskmode .spot-item-small-container {
   min-height: auto;
   height: 300px;
+}
+
+.App.kioskmode .spots-container {
+  margin: var(--10pt) 0;
 }
 
 /*  */

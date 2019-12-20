@@ -1,7 +1,7 @@
 .KioskHero {
   height: calc(1920px - 128px);
   /* background-image: url('/img/hero/kiosk_background.jpg'); */
-  margin-bottom: var(--5pt);
+  margin-bottom: var(--10pt);
   padding: var(--9pt);
   position: relative;
 }
