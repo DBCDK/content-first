@@ -45,7 +45,7 @@ export const storeKiosk = kiosk => {
   };
 };
 
-export const loadKiosk = () => {
+export const loadKiosk = ({kioskKey}) => {
   return async (dispatch, getState) => {
     if (getState().kiosk.isLoading) {
       return;
@@ -54,36 +54,42 @@ export const loadKiosk = () => {
       type: KIOSK_RESPONSE,
       response: {isLoading: true, loaded: false}
     });
-    const kiosk = getItem('kiosk', version, {}, 'localstorage');
-    delete kiosk.enabled;
-    delete kiosk.configured;
+
+    if (kioskKey) {
+      // kioskKey is provided as URL param, persist it in localstorage
+      setItem('kioskkey', {kioskKey}, version, 'localstorage');
+    } else {
+      // kioskKey is not provided, fetch it from localstorage
+      const kiosk = getItem('kioskkey', version, {}, 'localstorage');
+      kioskKey = kiosk && kiosk.kioskKey;
+    }
     let configuration;
-    if (kiosk.clientId && kiosk.clientSecret) {
-      try {
-        configuration = await fetchKioskConfiguration(
-          kiosk.clientId,
-          kiosk.clientSecret
-        );
-      } catch (e) {
-        dispatch({
-          type: KIOSK_RESPONSE,
-          response: {
-            ...kiosk,
-            error: 'Vi kan ikke genkende id og hemmelighed',
-            isLoading: false,
-            loaded: true
-          }
-        });
-        return;
-      }
+    try {
+      configuration = await fetchKioskConfiguration(kioskKey);
+    } catch (e) {
+      dispatch({
+        type: KIOSK_RESPONSE,
+        response: {
+          kioskKey,
+          error: 'Kiosk-nøglen kunne ikke valideres',
+          isLoading: false,
+          loaded: true
+        }
+      });
+      return;
     }
     dispatch({
       type: KIOSK_RESPONSE,
-      response: {...kiosk, ...configuration, isLoading: false, loaded: true}
+      response: {
+        ...configuration,
+        kioskKey,
+        isLoading: false,
+        loaded: true
+      }
     });
   };
 };
 
-const fetchKioskConfiguration = async (clientId, clientSecret) => {
-  return (await request.post('/v1/kiosk').send({clientId, clientSecret})).body;
+const fetchKioskConfiguration = async kioskKey => {
+  return (await request.post('/v1/kiosk').send({kioskKey})).body;
 };

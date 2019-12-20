@@ -2,7 +2,7 @@ const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const express = require('express');
 const logger = require('server/logger');
 const router = express.Router({mergeParams: true});
-const {fetchAnonymousTokenForClient, fetchConfiguration} = require('./smaug');
+const {fetchAnonymousToken, fetchConfiguration} = require('./smaug');
 
 router
   .route('/')
@@ -12,15 +12,14 @@ router
   .post(
     asyncMiddleware(async (req, res) => {
       try {
-        const {clientId, clientSecret} = req.body;
-        const result = await fetchAnonymousTokenForClient(
-          clientId,
-          clientSecret
-        );
-        result.configuration = (await fetchConfiguration(
-          result.access_token
-        )).kiosk;
-        res.status(200).json(result);
+        const {kioskKey} = req.body;
+        const {access_token} = await fetchAnonymousToken();
+        const configuration = (await fetchConfiguration(access_token)).kiosk;
+        if (!configuration[kioskKey]) {
+          res.status(401).json({error: 'Invalid kioskKey', kioskKey});
+          return;
+        }
+        res.status(200).json({configuration: configuration[kioskKey]});
       } catch (e) {
         logger.log.error({
           source: 'external-v1-kiosk',

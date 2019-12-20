@@ -28,14 +28,8 @@ describe('kiosk', function() {
       cy.fixture('kiosk/initialStateKioskEnabled.json').as('initialState');
       cy.server();
       cy.route('GET', '/v1/initial-state', '@initialState');
-      cy.visit('/kiosk');
+      cy.visit('/kiosk?kiosk=some-key');
 
-      cy.get('[data-cy="kiosk-settings-submit"]').should('be.disabled');
-      const clientId = 'some-client-id';
-      const clientSecret = 'some-client-secret';
-      cy.get('[data-cy="input-client-id"]').type(clientId);
-      cy.get('[data-cy="input-client-secret"]').type(clientSecret);
-      cy.get('[data-cy="kiosk-settings-submit"]').click();
       cy.get('[data-cy="kiosk-error-msg"]').should('be.visible');
     });
 
@@ -45,18 +39,7 @@ describe('kiosk', function() {
       cy.server();
       cy.route('GET', '/v1/initial-state', '@initialState');
       cy.route('POST', '/v1/kiosk', '@kioskConfiguration');
-      cy.visit('/kiosk');
-      const clientId = 'some-client-id';
-      const clientSecret = 'some-client-secret';
-      cy.get('[data-cy="input-client-id"]').type(clientId);
-      cy.get('[data-cy="input-client-secret"]').type(clientSecret);
-      cy.get('[data-cy="kiosk-settings-submit"]').click();
-      cy.reload();
-      cy.get('[data-cy="input-client-id"]').should('have.value', clientId);
-      cy.get('[data-cy="input-client-secret"]').should(
-        'have.value',
-        clientSecret
-      );
+      cy.visit('/kiosk?kiosk=some-key');
       cy.get('[data-cy="kiosk-error-msg"]').should('not.exist');
       cy.get('[data-cy="kiosk-start-btn"]').click();
       cy.location().should(loc => {
