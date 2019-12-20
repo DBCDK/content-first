@@ -35,7 +35,7 @@ const waitForReady = async () => {
       }
     }
   }
-  return taxonomySHA256;
+  // return taxonomySHA256;
 };
 async function doWork() {
   // const taxonomy = require('../src/data/exportTaxonomy.json');
@@ -46,7 +46,7 @@ async function doWork() {
   const pidinfo = require('../src/data/pidinfo.json');
   const tags = require('../src/data/exportTags.json');
   const librarianRecommends = require('../src/data/librarian-recommends.json');
-
+  await waitForReady();
 //   const remoteTaxonomySHA256 = await waitForReady();
 //   if (remoteTaxonomySHA256 !== taxonomySHA256) {
 //     throw `TAXONOMY MISMATCH!
