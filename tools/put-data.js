@@ -11,12 +11,10 @@ const HOWRU = (process.env.HOST || 'http://localhost') + ':' + PORT + '/howru';
 
 const waitForReady = async () => {
   let ready = false;
-  // let taxonomySHA256;
   while (!ready) {
     try {
       const response = await request.get(`${HOWRU}`);
       ready = true;
-      // taxonomySHA256 = response.body.taxonomySHA256;
     } catch (e) {
       let dbStatus;
       if (e.response && e.response.body && e.response.body.services) {
@@ -26,7 +24,6 @@ const waitForReady = async () => {
       }
       if (dbStatus) {
         ready = true;
-        // taxonomySHA256 = e.response.body.taxonomySHA256;
       } else {
         await new Promise(resolve => {
           setTimeout(() => resolve(), 500);
@@ -35,28 +32,12 @@ const waitForReady = async () => {
       }
     }
   }
-  // return taxonomySHA256;
 };
 async function doWork() {
-  // const taxonomy = require('../src/data/exportTaxonomy.json');
-  // const taxonomySHA256 = crypto
-  //   .createHash('sha256')
-  //   .update(JSON.stringify(taxonomy))
-  //   .digest('hex');
   const pidinfo = require('../src/data/pidinfo.json');
   const tags = require('../src/data/exportTags.json');
   const librarianRecommends = require('../src/data/librarian-recommends.json');
   await waitForReady();
-//   const remoteTaxonomySHA256 = await waitForReady();
-//   if (remoteTaxonomySHA256 !== taxonomySHA256) {
-//     throw `TAXONOMY MISMATCH!
-// REMOTE_SHA256=${remoteTaxonomySHA256}
-// LOCAL_SHA256=${taxonomySHA256}
-//
-// This means that the "metakompas" instance is ahead of (or behind) "${HOST}" regarding the taxonomy
-// Solve this by deploying metakompas, content-first or maybe both.. :)
-// `;
-//   }
   await request
     .put(`${HOST}/v1/books`)
     .set('Content-Type', 'application/json')
