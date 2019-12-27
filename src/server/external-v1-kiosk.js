@@ -12,14 +12,14 @@ router
   .post(
     asyncMiddleware(async (req, res) => {
       try {
-        const {kioskKey} = req.body;
+        const {branchKey} = req.body;
         const {access_token} = await fetchAnonymousToken();
         const configuration = (await fetchConfiguration(access_token)).kiosk;
-        if (!configuration[kioskKey]) {
-          res.status(401).json({error: 'Invalid kioskKey', kioskKey});
+        if (!configuration[branchKey]) {
+          res.status(401).json({error: 'Invalid branchKey', branchKey});
           return;
         }
-        res.status(200).json({configuration: configuration[kioskKey]});
+        res.status(200).json({configuration: configuration[branchKey]});
       } catch (e) {
         logger.log.error({
           source: 'external-v1-kiosk',

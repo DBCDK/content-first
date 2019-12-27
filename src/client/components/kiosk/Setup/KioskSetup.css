@@ -44,10 +44,16 @@
     font-weight: bold;
 }
 
+.KioskSetup .submit-button {
+    margin-top: var(--z1pt);
+}
+
 .BeltForm label.Input__label {
     margin-top: 1.2em;
     font-weight: bold;
 }
+
+
 
 @media (max-width: 768px) {
     .KioskSetup__container {

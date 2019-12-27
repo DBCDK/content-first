@@ -1225,15 +1225,10 @@
     },
     "kioskSetup": {
       "title": {"da": "Kiosk Opsætning", "en": "Kiosk Settings"},
-      "labelClientId": {"da": "Klient ID", "en": "Client ID"},
-      "placeholderClientId": {
-        "da": "klient ID",
-        "en": "client ID"
-      },
-      "labelClientSecret": {"da": "Klient hemmelighed", "en": "Client Secret"},
-      "placeholderClientSecret": {
-        "da": "klient hemmelighed",
-        "en": "client secret"
+      "labelBranchKey": {"da": "Filial-nøgle", "en": "Branch Key"},
+      "placeholderBranchKey": {
+        "da": "Filial-nøgle",
+        "en": "Branch Key"
       },
       "submit": {"da": "Gem", "en": "Save"},
       "startKiosk": {"da": "Start", "en": "Start"},

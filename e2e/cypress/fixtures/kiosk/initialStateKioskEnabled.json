@@ -60,6 +60,6 @@
         "_modified": 1571730030
       }
     },
-    "kiosk": {"enabled": true, "loaded": false, "kioskKey": "some-key"}
+    "kiosk": {"enabled": true, "loaded": false, "branchKey": "some-key"}
   }
 }

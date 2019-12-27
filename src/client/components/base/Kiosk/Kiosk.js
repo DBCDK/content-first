@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
-import {storeKiosk, loadKiosk} from '../../../redux/kiosk.thunk';
+import {loadKiosk} from '../../../redux/kiosk.thunk';
 
 const KIOSK_SETTINGS_PATH = '/kiosk';
 
@@ -20,7 +20,7 @@ class Kiosk extends React.Component {
   isConfigured = () => {
     return (
       this.props.kiosk &&
-      this.props.kiosk.kioskKey &&
+      this.props.kiosk.branchKey &&
       this.props.kiosk.configuration &&
       this.props.kiosk.configuration.agencyId &&
       this.props.kiosk.configuration.branch &&
@@ -51,7 +51,7 @@ class Kiosk extends React.Component {
       !this.props.kiosk.loaded
     ) {
       this.props.loadKiosk({
-        kioskKey: this.props.urlParams.kiosk && this.props.urlParams.kiosk[0]
+        branchKey: this.props.urlParams.kiosk && this.props.urlParams.kiosk[0]
       });
     }
     this.configureIfNeeded();
@@ -70,7 +70,8 @@ class Kiosk extends React.Component {
       kiosk: this.props.kiosk,
       tmpKiosk: this.state.tmpKiosk,
       configured: this.isConfigured(),
-      start: this.start
+      start: this.start,
+      loadKiosk: this.props.loadKiosk
     });
   }
 }
@@ -84,7 +85,6 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => ({
   history: (type, path) => dispatch({type, path}),
-  storeKiosk: kiosk => dispatch(storeKiosk(kiosk)),
   loadKiosk: params => dispatch(loadKiosk(params))
 });
 
