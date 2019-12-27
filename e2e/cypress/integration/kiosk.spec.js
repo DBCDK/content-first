@@ -24,15 +24,6 @@ describe('kiosk', function() {
       cy.url().should('include', '/kiosk');
     });
 
-    it(`Should show error when not configured properly`, function() {
-      cy.fixture('kiosk/initialStateKioskEnabled.json').as('initialState');
-      cy.server();
-      cy.route('GET', '/v1/initial-state', '@initialState');
-      cy.visit('/kiosk?kiosk=some-key');
-
-      cy.get('[data-cy="kiosk-error-msg"]').should('be.visible');
-    });
-
     it(`Should be able to configure and start kiosk mode`, function() {
       cy.fixture('kiosk/initialStateKioskEnabled.json').as('initialState');
       cy.fixture('kiosk/kioskConfiguration.json').as('kioskConfiguration');
