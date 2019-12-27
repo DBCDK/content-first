@@ -3,6 +3,7 @@ import T from '../../base/T';
 import Button from '../../base/Button';
 import Toolbar from '../../base/Toolbar';
 import Banner from '../../base/Banner';
+import Input from '../../base/Input';
 import Text from '../../base/Text';
 import Heading from '../../base/Heading';
 import Kiosk from '../../base/Kiosk/Kiosk';
@@ -10,6 +11,7 @@ import Kiosk from '../../base/Kiosk/Kiosk';
 import './KioskSetup.css';
 
 export default class KioskSetup extends React.Component {
+  state = {branchKey: null};
   render() {
     return (
       <div className="KioskSetup">
@@ -18,10 +20,37 @@ export default class KioskSetup extends React.Component {
           className="fixed-width-col-md"
         />
         <Kiosk
-          render={({kiosk, start}) => {
+          render={({kiosk, start, loadKiosk}) => {
             return (
               <div className="KioskSetup__container col-centered">
-                {kiosk.error && (
+                <Input
+                  placeholder={T({
+                    component: 'kioskSetup',
+                    name: 'placeholderBranchKey'
+                  })}
+                  onChange={e => this.setState({branchKey: e.target.value})}
+                  value={
+                    this.state.branchKey === null
+                      ? kiosk.branchKey || ''
+                      : this.state.branchKey
+                  }
+                  data-cy="input-client-id"
+                >
+                  <T component="kioskSetup" name="labelBranchKey" />
+                </Input>
+                <Button
+                  className="submit-button"
+                  type="quaternary"
+                  onClick={() => loadKiosk({branchKey: this.state.branchKey})}
+                  data-cy="kiosk-settings-submit"
+                  disabled={
+                    !this.state.branchKey ||
+                    this.state.branchKey === kiosk.branchKey
+                  }
+                >
+                  <T component="kioskSetup" name="submit" />
+                </Button>
+                {kiosk.error && this.state.branchKey === kiosk.branchKey && (
                   <Text
                     className="error"
                     variant="error"

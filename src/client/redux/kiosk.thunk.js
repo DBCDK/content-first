@@ -45,7 +45,7 @@ export const storeKiosk = kiosk => {
   };
 };
 
-export const loadKiosk = ({kioskKey}) => {
+export const loadKiosk = ({branchKey}) => {
   return async (dispatch, getState) => {
     if (getState().kiosk.isLoading) {
       return;
@@ -55,25 +55,26 @@ export const loadKiosk = ({kioskKey}) => {
       response: {isLoading: true, loaded: false}
     });
 
-    if (kioskKey) {
-      // kioskKey is provided as URL param, persist it in localstorage
-      setItem('kioskkey', {kioskKey}, version, 'localstorage');
+    if (branchKey) {
+      // branchKey is provided as URL param, persist it in localstorage
+      setItem('branchKey', {branchKey}, version, 'localstorage');
     } else {
-      // kioskKey is not provided, fetch it from localstorage
-      const kiosk = getItem('kioskkey', version, {}, 'localstorage');
-      kioskKey = kiosk && kiosk.kioskKey;
+      // branchKey is not provided, fetch it from localstorage
+      const kiosk = getItem('branchKey', version, {}, 'localstorage');
+      branchKey = kiosk && kiosk.branchKey;
     }
     let configuration;
     try {
-      configuration = await fetchKioskConfiguration(kioskKey);
+      configuration = await fetchKioskConfiguration(branchKey);
     } catch (e) {
       dispatch({
         type: KIOSK_RESPONSE,
         response: {
-          kioskKey,
+          branchKey,
           error: 'Kiosk-nøglen kunne ikke valideres',
           isLoading: false,
-          loaded: true
+          loaded: true,
+          configuration: null
         }
       });
       return;
@@ -82,14 +83,15 @@ export const loadKiosk = ({kioskKey}) => {
       type: KIOSK_RESPONSE,
       response: {
         ...configuration,
-        kioskKey,
+        branchKey,
         isLoading: false,
-        loaded: true
+        loaded: true,
+        error: null
       }
     });
   };
 };
 
-const fetchKioskConfiguration = async kioskKey => {
-  return (await request.post('/v1/kiosk').send({kioskKey})).body;
+const fetchKioskConfiguration = async branchKey => {
+  return (await request.post('/v1/kiosk').send({branchKey})).body;
 };

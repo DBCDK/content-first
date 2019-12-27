@@ -26,7 +26,7 @@ export class Timeout extends React.Component {
 
     if (timeoutNow !== timeoutBefore) {
       // Update timeout
-      this.timeoutInMiliseconds = this.props.kiosk.configuration.timeout;
+      this.timeoutInMiliseconds = timeoutNow;
       //  rerun initil
       this.init();
     }
