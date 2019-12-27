@@ -40,7 +40,7 @@ export class CompareButton extends React.PureComponent {
     return (
       <button
         className={`compare-button ${className} ${activeClass}`}
-        data-cy={active ? 'compare-button-active' : 'compare-button-inactive'}
+        data-cy={'compare-button'}
         onClick={e => {
           // Prevent opening workpreview on bookmark click
           e.preventDefault();
