@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {isMobile} from 'react-device-detect';
 
 import Head from './components/base/Head';
 import Modal from './components/modals/Modal.container';
@@ -71,6 +72,7 @@ class App extends Component {
       this.setState({didShowCookieModal: true});
     }
 
+    const isTouchClass = isMobile ? 'isTouch' : '';
     const isPremiumClass = this.props.isPremium ? 'premium' : '';
     const isKioskClass = this.props.isKiosk ? 'kioskmode' : '';
     const softKeyboardClass =
@@ -171,7 +173,7 @@ class App extends Component {
     return (
       <div
         id="App"
-        className={`App ${isKioskClass} ${softKeyboardClass} ${isPremiumClass}`}
+        className={`App ${isKioskClass} ${softKeyboardClass} ${isPremiumClass} ${isTouchClass}`}
         style={{backgroundColor}}
       >
         <Head />

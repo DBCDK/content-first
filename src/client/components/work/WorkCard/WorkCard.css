@@ -56,20 +56,22 @@
   transition-duration: 0.15s;
 }
 
+.App.isTouch .work-card .compare-button {
+  transition-delay: 0.75s;
+}
+
 .work-card .compare-button.active {
   transition-timing-function: ease-out;
   transform: rotate(0deg) scale(1);
 }
 
-@media only screen and (min-width: 768px) {
-  .work-card:hover .compare-button {
-    transition-timing-function: ease-out;
-    transform: rotate(0deg) scale(1);
-  }
+.work-card:hover .compare-button {
+  transition-timing-function: ease-out;
+  transform: rotate(0deg) scale(1);
+}
 
-  .work-card.compare-button.active {
-    background-color: var(--korn);
-  }
+.work-card.compare-button.active {
+  background-color: var(--korn);
 }
 
 .work-card .hover-details {

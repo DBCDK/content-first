@@ -18,7 +18,6 @@ const Slider = withWork(({work, ...props}) => (
   <WorkSlider
     {...props}
     pids={props.recommendations}
-    enableLongpress={true}
     onMoreLikeThisClick={(wrk, bName, rid) =>
       props.openSimilarBelt(wrk, `Minder om ${work.book.title}`, rid)
     }

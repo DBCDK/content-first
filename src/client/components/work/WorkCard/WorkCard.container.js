@@ -1,5 +1,4 @@
 import React from 'react';
-import {isMobile} from 'react-device-detect';
 import BookCover from '../../general/BookCover/BookCover.component';
 import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
 import CompareButton from '../../general/CompareButton/CompareButton.component';
@@ -26,20 +25,6 @@ class WorkCard extends React.Component {
     workClass: 'work'
   };
 
-  componentDidMount() {
-    if (this.props.enableLongpress) {
-      this.shouldUpdate = true;
-      document.addEventListener('touchstart', this.resetLongpress);
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.props.enableLongpress) {
-      this.shouldUpdate = false;
-      document.removeEventListener('touchstart', this.resetLongpress);
-    }
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.highlight !== this.props.highlight ||
@@ -48,38 +33,6 @@ class WorkCard extends React.Component {
       nextState.showCompareButton !== this.state.showCompareButton
     );
   }
-
-  touchEnd = () => {
-    if (isMobile) {
-      this.setState({showCompareButton: false});
-    }
-  };
-
-  resetLongpress = () => {
-    if (isMobile) {
-      setTimeout(() => {
-        if (this.shouldUpdate) {
-          this.setState({showCompareButton: false});
-        }
-      }, 200);
-    }
-    return this.resetLongpress;
-  };
-
-  handleLongPress = () => {
-    if (this.props.enableLongpress) {
-      this.buttonPressTimer = setTimeout(
-        () => this.setState({showCompareButton: true}),
-        500
-      );
-    }
-  };
-
-  handleLongRelease = () => {
-    if (this.props.enableLongpress) {
-      clearTimeout(this.buttonPressTimer);
-    }
-  };
 
   onWorkClick = () => {
     this.props.onWorkClick(this.props.work, this.props.origin, this.props.rid);
@@ -109,8 +62,6 @@ class WorkCard extends React.Component {
         />
       );
     }
-    const compareButtonIsVisible = this.state.showCompareButton;
-    const compareButtonVisibleClass = compareButtonIsVisible ? 'active' : '';
 
     const tax_description =
       work.book.taxonomy_description ||
@@ -186,12 +137,7 @@ class WorkCard extends React.Component {
                 dataCy="bookmarkBtn"
                 size="default"
               />
-              <CompareButton
-                active={compareButtonIsVisible}
-                className={`${compareButtonVisibleClass}`}
-                main={origin.parent}
-                pid={pid}
-              />
+              <CompareButton main={origin.parent} pid={pid} />
             </div>
           </BookCover>
 
