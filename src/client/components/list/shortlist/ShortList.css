@@ -72,13 +72,6 @@
   align-items: center;
 }
 
-.shortlist__item--loan .find-book-button-container {
-  align-self: flex-start;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
 .shortlist__item--loan button {
   margin: 0 0 0 var(--2pt);
 }

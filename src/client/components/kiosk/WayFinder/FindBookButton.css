@@ -14,3 +14,13 @@
 .short-list-item .home-status-indicator {
   justify-content: center;
 }
+
+.shortlist__item .find-book-button {
+  margin-left: 0;
+}
+
+.find-book-button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
