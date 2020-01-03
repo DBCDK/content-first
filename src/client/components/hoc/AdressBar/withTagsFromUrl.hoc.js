@@ -58,6 +58,15 @@ const withTagsFromUrl = WrappedComponent => {
     };
 
     toggleReq = tag => {
+      if (this.props.isPremium) {
+        let plusStrArr = formatArr(this.props.plus);
+        let minusStrArr = formatArr(this.props.minus);
+
+        let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
+        let tagArr = this.props.tags.map(t => t.match.toString());
+        this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
+      }
+
       let plusStrArr = formatArr(this.props.plus);
       let minusStrArr = formatArr(this.props.minus);
 
@@ -76,6 +85,7 @@ const withTagsFromUrl = WrappedComponent => {
         this.props.updateUrl(modified, objArrs.plusArr, objArrs.minusArr);
       }
     };
+
     addTag = tag => {
       if (!this.isSelected(tag)) {
         let plusStrArr = formatArr(this.props.plus);
@@ -86,6 +96,7 @@ const withTagsFromUrl = WrappedComponent => {
         this.props.updateUrl(modified, objArrs.plusArr, objArrs.minusArr);
       }
     };
+
     isSelected = tag => {
       return !!this.props.tagsMap[tag];
     };
@@ -129,12 +140,12 @@ const withTagsFromUrl = WrappedComponent => {
   };
   const mapStateToProps = state => {
     const {tags, tagsMap, plus, minus} = tagsFromUrlSelector(state);
-
     return {
       tags,
       plus,
       minus,
       tagsMap,
+      isPremium: state.userReducer.isPremium,
       filterCards: state.filtercardReducer,
       filters: state.filterReducer.filters
     };
@@ -228,7 +239,6 @@ const tagsFromUrlSelector = createSelector(
     expandedTags.forEach(expanded => {
       tagsMap[expanded.match] = expanded;
     });
-
     return {tags: expandedTags, plus: plus, minus: minus, tagsMap};
   }
 );

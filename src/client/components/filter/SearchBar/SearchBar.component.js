@@ -33,6 +33,7 @@ const SelectedTitles = ({selected, onRemove}) => {
     </Button>
   );
 };
+
 const SelectedTag = ({selected, onRemove, toggleReq, reqState}) => (
   <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
     <span

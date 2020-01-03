@@ -68,7 +68,7 @@ class RecompasTags {
         status,
         plus: sendPlus,
         minus: sendMinus,
-        timeout: 10000
+        timeout: 2000
       });
       return result.body;
     } catch (e) {
