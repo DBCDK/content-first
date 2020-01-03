@@ -5,6 +5,7 @@ import {isEqual} from 'lodash';
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
 import {getFullRange} from '../../../utils/taxonomy';
+
 /**
  * A HOC that enhance the wrapped component with a list of tags (pids, creators, tags)
  * based on the 'tags' query paramter from the browser address bar.
@@ -55,15 +56,56 @@ const withTagsFromUrl = WrappedComponent => {
         this.addTag(tag);
       }
     };
+
+    toggleReq = tag => {
+      // get state fo plus, minus from props (if neither exist, then add plus)
+      console.log('this.props.plus', this.props.plus);
+
+      // match tags, plusTags, MinusTags with the chosen tag
+      // if tag===plusTag => remove from PlusTags add to MinusTags
+      // if tag===MinusTag => remove from MinusTags add to tags
+      // if tag===tag => remove from tags add to PlusTags
+
+      console.log('this.props.filterCards', this.props.filterCards);
+      let arrOfUpdtedTags = [];
+      this.props.tags.map(t => {
+        if (t.match === tag) {
+          let tWReqArr = (t.id + '').split('|');
+          let justTag = tWReqArr[0];
+          let reqState = tWReqArr[1];
+          let reqStateArr = ['', 'plus', 'minus'];
+          let newTag = justTag;
+
+          arrOfUpdtedTags.push(newTag);
+        } else {
+          arrOfUpdtedTags.push(t.id);
+        }
+      });
+
+      //   this.props.updateUrl(arrOfUpdtedTags);
+      // console.log('proptag after', newArr);
+
+      // const reqStates = ['can', 'must', 'must-not'];
+      //  let newPos = currentPos + 1 > 2 ? 0 : currentPos + 1;
+
+      //  const modified = updateTag(this.props.tags, this.props.filterCards, tag);
+      // this.props.updateUrl(modified);
+      //   return newPos;
+    };
+
     removeTag = tag => {
       if (this.isSelected(tag)) {
+        console.log('this.props.tags', this.props.tags);
         const modified = removeTag(this.props.tags, tag);
+        console.log('modified', modified);
         this.props.updateUrl(modified);
       }
     };
     addTag = tag => {
       if (!this.isSelected(tag)) {
+        console.log('this.props.tags', this.props.tags);
         const modified = addTag(this.props.tags, this.props.filterCards, tag);
+        console.log('modified', modified);
         this.props.updateUrl(modified);
       }
     };
@@ -92,6 +134,7 @@ const withTagsFromUrl = WrappedComponent => {
         }
         return arr;
       }, []);
+
     render() {
       return (
         <WrappedComponent
@@ -99,6 +142,7 @@ const withTagsFromUrl = WrappedComponent => {
           toggleSelected={this.toggleSelected}
           isSelected={this.isSelected}
           removeTag={this.removeTag}
+          toggleReq={this.toggleReq}
           addTag={this.addTag}
           getMultiPids={this.getMultiPids}
           flattenedTags={this.flattenedTags}
@@ -107,29 +151,37 @@ const withTagsFromUrl = WrappedComponent => {
     }
   };
   const mapStateToProps = state => {
-    const {tags, tagsMap} = tagsFromUrlSelector(state);
+    const {tags, plus, tagsMap} = tagsFromUrlSelector(state);
+
     return {
       tags,
+      plus,
       tagsMap,
       filterCards: state.filtercardReducer,
       filters: state.filterReducer.filters
     };
   };
   const mapDispatchToProps = dispatch => ({
-    updateUrl: tags => {
+    updateUrl: (tags, plus = [], minus = []) => {
+      console.log('dipatch plus', plus);
+      let params = {};
+      if (tags.length > 0) {
+        console.log('tags', tags);
+        params.tags = tags
+          .map(t => (Array.isArray(t) ? t.join(':') : encodeURIComponent(t)))
+          .join(',');
+      }
+      console.log('plus', plus);
+      params.plus = ['1234,2345'];
+
+      if (minus.length > 0) {
+        params.minus = minus;
+      }
+      console.log('params', params);
       dispatch({
         type: HISTORY_REPLACE,
         path: '',
-        params:
-          tags.length > 0
-            ? {
-                tags: tags
-                  .map(t =>
-                    Array.isArray(t) ? t.join(':') : encodeURIComponent(t)
-                  )
-                  .join(',')
-              }
-            : {}
+        params: params
       });
     }
   });
@@ -139,17 +191,24 @@ const withTagsFromUrl = WrappedComponent => {
   )(Wrapped);
 };
 export default withTagsFromUrl;
+
 const tagsFromUrlSelector = createSelector(
-  [state => state.routerReducer.params.tags, state => state.filtercardReducer],
-  (tags, filterCards) => {
+  [
+    state => state.routerReducer.params.tags,
+    state => state.routerReducer.params.plus,
+    state => state.filtercardReducer
+  ],
+  (tags, plus, filterCards) => {
     const expandedTags = tagsFromURL(tags && tags[0], filterCards);
     const tagsMap = {};
     expandedTags.forEach(expanded => {
       tagsMap[expanded.match] = expanded;
     });
-    return {tags: expandedTags, tagsMap};
+
+    return {tags: expandedTags, plus: plus, tagsMap};
   }
 );
+
 export const tagsFromURL = (urlTags, filterCards) => {
   if (!urlTags) {
     return [];
@@ -157,7 +216,7 @@ export const tagsFromURL = (urlTags, filterCards) => {
   if (!Array.isArray(urlTags)) {
     urlTags = [urlTags];
   }
-  return urlTags
+  let retvar = urlTags
     .map(tag => {
       const decoded = decodeURIComponent(tag);
       if (isPid(decoded)) {
@@ -194,10 +253,17 @@ export const tagsFromURL = (urlTags, filterCards) => {
       };
     })
     .filter(t => t);
+  return retvar;
 };
+
 export const removeTag = (expandedTags, tag) => {
   return expandedTags.filter(t => !isEqual(t.match, tag)).map(t => t.match);
 };
+
+export const toggleReq = tag => {
+  //return expandedTags.filter(t => !isEqual(t.match, tag)).map(t => t.match);
+};
+
 export const addTag = (expandedTags, filterCards, tag) => {
   const isRangeTag = getFullRange(tag, filterCards, filtersMapAll);
   if (isRangeTag) {
