@@ -31,9 +31,9 @@ const SelectedTitles = ({selected, onRemove}) => {
     </Button>
   );
 };
-const SelectedTag = ({selected, onRemove}) => (
+const SelectedTag = ({selected, onRemove, toggleReq}) => (
   <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
-    <span>{selected.title}</span>
+    <span onClick={() => toggleReq(selected.match)}>{selected.title}</span>
     <Icon
       className={'md-small' + (isMobile ? ' increase-touch-area-xsmall' : '')}
       name="close"
@@ -57,8 +57,15 @@ const SelectedTagRange = ({selected, onRemove}) => (
     />
   </Button>
 );
+
 const SelectedQuery = ({selected, onRemove}) => (
-  <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+  <Button
+    Tag="div"
+    size="medium"
+    type="term"
+    className={`selected-filter`}
+    key={selected}
+  >
     <span>{selected.query}</span>
     <Icon
       className="md-small"
@@ -76,6 +83,7 @@ class SearchBar extends React.Component {
             key={selected.match}
             selected={selected}
             onRemove={this.props.removeTag}
+            toggleReq={this.props.toggleReq}
           />
         );
       case 'TAG_RANGE':
@@ -175,6 +183,7 @@ class SearchBar extends React.Component {
             }}
             onChange={e => this.setState({query: e.target.value})}
             onSuggestionSelected={(e, {suggestion}) => {
+              console.log('suggestion', suggestion);
               switch (suggestion.type) {
                 case 'TAG':
                   this.props.addTag(suggestion.id);
