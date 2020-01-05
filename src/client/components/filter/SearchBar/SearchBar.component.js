@@ -6,6 +6,8 @@ import Button from '../../base/Button';
 import {withTagsFromUrl} from '../../hoc/AdressBar';
 import {withWork} from '../../hoc/Work';
 import './SearchBar.css';
+import {formatArr} from '../../hoc/AdressBar/withTagsFromUrl.hoc';
+
 const SelectedWork = withWork(({selected, work, onRemove}) => {
   return (
     <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
@@ -31,9 +33,14 @@ const SelectedTitles = ({selected, onRemove}) => {
     </Button>
   );
 };
-const SelectedTag = ({selected, onRemove, toggleReq}) => (
+const SelectedTag = ({selected, onRemove, toggleReq, reqState}) => (
   <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
-    <span onClick={() => toggleReq(selected.match)}>{selected.title}</span>
+    <span
+      onClick={() => toggleReq(selected.match)}
+      style={{textDecoration: reqState}}
+    >
+      {selected.title}
+    </span>
     <Icon
       className={'md-small' + (isMobile ? ' increase-touch-area-xsmall' : '')}
       name="close"
@@ -74,12 +81,33 @@ const SelectedQuery = ({selected, onRemove}) => (
     />
   </Button>
 );
+
 class SearchBar extends React.Component {
+  constructor() {
+    super();
+    this.state = {query: '', expanded: false};
+  }
+
+  getReqState = s => {
+    let strTag = s.id.toString();
+    let plusStrArr = formatArr(this.props.plus);
+    let minusStrArr = formatArr(this.props.minus);
+
+    let res = 'none';
+    if (plusStrArr.includes(strTag)) {
+      res = 'underline';
+    } else if (minusStrArr.includes(strTag)) {
+      res = 'line-through';
+    }
+    return res;
+  };
+
   renderSelected = selected => {
     switch (selected.type) {
       case 'TAG':
         return (
           <SelectedTag
+            reqState={this.getReqState(selected)}
             key={selected.match}
             selected={selected}
             onRemove={this.props.removeTag}
@@ -124,6 +152,7 @@ class SearchBar extends React.Component {
         return null;
     }
   };
+
   handleOnKeyDown = e => {
     /* handle backspace */
     const {tags} = this.props;
@@ -132,11 +161,13 @@ class SearchBar extends React.Component {
       this.props.removeTag(tags[tags.length - 1].match);
     }
   };
+
   initFilterPosition = () => {
     if (this.filtersRef) {
       this.filtersRef.scrollLeft = 99999999;
     }
   };
+
   onFiltersMouseWheelScrool = e => {
     // e.preventDefault(); suppress run-time warning - see https://dbcjira.atlassian.net/browse/CF-1160
     let scrollSpeed = 40;
@@ -146,13 +177,11 @@ class SearchBar extends React.Component {
       : (this.filtersRef.scrollLeft -= scrollSpeed);
     /* eslint-enable no-unused-expressions */
   };
-  constructor() {
-    super();
-    this.state = {query: '', expanded: false};
-  }
+
   componentDidMount() {
     this.initFilterPosition();
   }
+
   toggleFilter(filterId) {
     this.props.toggleFilter(filterId);
   }
@@ -183,7 +212,6 @@ class SearchBar extends React.Component {
             }}
             onChange={e => this.setState({query: e.target.value})}
             onSuggestionSelected={(e, {suggestion}) => {
-              console.log('suggestion', suggestion);
               switch (suggestion.type) {
                 case 'TAG':
                   this.props.addTag(suggestion.id);
@@ -207,4 +235,5 @@ class SearchBar extends React.Component {
     );
   }
 }
+
 export default withTagsFromUrl(SearchBar);
