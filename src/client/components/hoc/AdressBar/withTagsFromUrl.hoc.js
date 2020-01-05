@@ -58,55 +58,32 @@ const withTagsFromUrl = WrappedComponent => {
     };
 
     toggleReq = tag => {
-      // get state fo plus, minus from props (if neither exist, then add plus)
-      console.log('this.props.plus', this.props.plus);
+      let plusStrArr = formatArr(this.props.plus);
+      let minusStrArr = formatArr(this.props.minus);
 
-      // match tags, plusTags, MinusTags with the chosen tag
-      // if tag===plusTag => remove from PlusTags add to MinusTags
-      // if tag===MinusTag => remove from MinusTags add to tags
-      // if tag===tag => remove from tags add to PlusTags
-
-      console.log('this.props.filterCards', this.props.filterCards);
-      let arrOfUpdtedTags = [];
-      this.props.tags.map(t => {
-        if (t.match === tag) {
-          let tWReqArr = (t.id + '').split('|');
-          let justTag = tWReqArr[0];
-          let reqState = tWReqArr[1];
-          let reqStateArr = ['', 'plus', 'minus'];
-          let newTag = justTag;
-
-          arrOfUpdtedTags.push(newTag);
-        } else {
-          arrOfUpdtedTags.push(t.id);
-        }
-      });
-
-      //   this.props.updateUrl(arrOfUpdtedTags);
-      // console.log('proptag after', newArr);
-
-      // const reqStates = ['can', 'must', 'must-not'];
-      //  let newPos = currentPos + 1 > 2 ? 0 : currentPos + 1;
-
-      //  const modified = updateTag(this.props.tags, this.props.filterCards, tag);
-      // this.props.updateUrl(modified);
-      //   return newPos;
+      let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
+      let tagArr = this.props.tags.map(t => t.match.toString());
+      this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
     };
 
     removeTag = tag => {
       if (this.isSelected(tag)) {
-        console.log('this.props.tags', this.props.tags);
+        let plusStrArr = formatArr(this.props.plus);
+        let minusStrArr = formatArr(this.props.minus);
+        let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr, true);
+
         const modified = removeTag(this.props.tags, tag);
-        console.log('modified', modified);
-        this.props.updateUrl(modified);
+        this.props.updateUrl(modified, objArrs.plusArr, objArrs.minusArr);
       }
     };
     addTag = tag => {
       if (!this.isSelected(tag)) {
-        console.log('this.props.tags', this.props.tags);
+        let plusStrArr = formatArr(this.props.plus);
+        let minusStrArr = formatArr(this.props.minus);
+        let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr, true);
+
         const modified = addTag(this.props.tags, this.props.filterCards, tag);
-        console.log('modified', modified);
-        this.props.updateUrl(modified);
+        this.props.updateUrl(modified, objArrs.plusArr, objArrs.minusArr);
       }
     };
     isSelected = tag => {
@@ -151,11 +128,12 @@ const withTagsFromUrl = WrappedComponent => {
     }
   };
   const mapStateToProps = state => {
-    const {tags, plus, tagsMap} = tagsFromUrlSelector(state);
+    const {tags, tagsMap, plus, minus} = tagsFromUrlSelector(state);
 
     return {
       tags,
       plus,
+      minus,
       tagsMap,
       filterCards: state.filtercardReducer,
       filters: state.filterReducer.filters
@@ -163,21 +141,22 @@ const withTagsFromUrl = WrappedComponent => {
   };
   const mapDispatchToProps = dispatch => ({
     updateUrl: (tags, plus = [], minus = []) => {
-      console.log('dipatch plus', plus);
       let params = {};
       if (tags.length > 0) {
-        console.log('tags', tags);
         params.tags = tags
           .map(t => (Array.isArray(t) ? t.join(':') : encodeURIComponent(t)))
           .join(',');
       }
-      console.log('plus', plus);
-      params.plus = ['1234,2345'];
-
-      if (minus.length > 0) {
-        params.minus = minus;
+      if (plus.length > 0) {
+        params.plus = plus
+          .map(p => (Array.isArray(p) ? p.join(':') : encodeURIComponent(p)))
+          .join(',');
       }
-      console.log('params', params);
+      if (minus.length > 0) {
+        params.minus = minus
+          .map(m => (Array.isArray(m) ? m.join(':') : encodeURIComponent(m)))
+          .join(',');
+      }
       dispatch({
         type: HISTORY_REPLACE,
         path: '',
@@ -192,20 +171,65 @@ const withTagsFromUrl = WrappedComponent => {
 };
 export default withTagsFromUrl;
 
+export const formatArr = allEl => {
+  let el = allEl ? allEl[0] : [];
+
+  let retArr = [];
+  if (typeof el === 'string') {
+    retArr.push(el);
+  } else {
+    retArr = el.map(p => p.toString());
+  }
+  return retArr;
+};
+
+export const getPlusMinusArrays = (
+  tag,
+  plusStrArr,
+  minusStrArr,
+  remove = false
+) => {
+  let retObj = {};
+
+  let strTag = tag.toString();
+  let isPlus = plusStrArr.includes(strTag);
+  let isMinus = minusStrArr.includes(strTag);
+  let retMinusArr = minusStrArr.filter(p => p !== strTag);
+  let retPlusArr = plusStrArr.filter(p => p !== strTag);
+
+  if (!remove) {
+    if (isPlus) {
+      retMinusArr.push(strTag);
+    }
+    if (!isPlus && !isMinus) {
+      retPlusArr.push(strTag);
+    }
+  } else {
+    retMinusArr.filter(p => p !== strTag);
+    retPlusArr.filter(p => p !== strTag);
+  }
+
+  retObj.plusArr = retPlusArr;
+  retObj.minusArr = retMinusArr;
+
+  return retObj;
+};
+
 const tagsFromUrlSelector = createSelector(
   [
     state => state.routerReducer.params.tags,
     state => state.routerReducer.params.plus,
+    state => state.routerReducer.params.minus,
     state => state.filtercardReducer
   ],
-  (tags, plus, filterCards) => {
+  (tags, plus, minus, filterCards) => {
     const expandedTags = tagsFromURL(tags && tags[0], filterCards);
     const tagsMap = {};
     expandedTags.forEach(expanded => {
       tagsMap[expanded.match] = expanded;
     });
 
-    return {tags: expandedTags, plus: plus, tagsMap};
+    return {tags: expandedTags, plus: plus, minus: minus, tagsMap};
   }
 );
 
@@ -258,10 +282,6 @@ export const tagsFromURL = (urlTags, filterCards) => {
 
 export const removeTag = (expandedTags, tag) => {
   return expandedTags.filter(t => !isEqual(t.match, tag)).map(t => t.match);
-};
-
-export const toggleReq = tag => {
-  //return expandedTags.filter(t => !isEqual(t.match, tag)).map(t => t.match);
 };
 
 export const addTag = (expandedTags, filterCards, tag) => {
