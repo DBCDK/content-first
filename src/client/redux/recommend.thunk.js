@@ -71,6 +71,15 @@ const applyClientSideFilter = (work, tags, minus) => {
   if (minusTags.length === 3) {
     return false;
   }
+  if (work.book.pages && work.book.pages !== 0) {
+    if (work.book.pages <= minPages || work.book.pages >= maxPages) {
+      return false;
+    }
+  } else if (specialcase) {
+    if (work.book.fetchRecommendations > 150 || work.book.pages < 350) {
+      return false;
+    }
+  }
 
   if (work.book.pages && work.book.pages !== 0) {
     if (work.book.pages <= minPages || work.book.pages >= maxPages) {
@@ -108,12 +117,17 @@ const applyClientSideFilter = (work, tags, minus) => {
 
 const fetchRecommendations = async action => {
   const recommender = action.tags ? 'recompasTags' : 'recompasWork';
-  const query = {recommender, agencyId: action.agencyId, branch: action.branch};
+  const query = {
+    recommender,
+    agencyId: action.agencyId,
+    branch: action.branch,
+    timeout: action.timeout
+  };
 
   let customTagsSelected = true;
   // let thresholdLevel = 0;  // Disabled until further investigated - see US1058
   if (action.tags) {
-    let {tags = [], creators = [], limit} = action;
+    const {tags = [], creators = [], limit} = action;
 
     let nonCustomTags = tags.filter(
       tag => !filtersMapAll[tag.id || tag].custom
@@ -193,6 +207,7 @@ export const fetchTagRecommendations = ({
 
   try {
     dispatch({type: RECOMMEND_REQUEST, requestKey});
+
     if (limit > 20) {
       // Respond fast
       const fastResponse = await fetchRecommendations({
@@ -200,18 +215,22 @@ export const fetchTagRecommendations = ({
         creators,
         branch,
         agencyId,
-        limit: 20
+        limit: 20,
+        timeout: 2000,
+        plusArr,
+        minusArr
       });
       dispatch({
         type: RECOMMEND_RESPONSE,
         requestKey,
         pids: fastResponse.response
-          .filter(entry => applyClientSideFilter(entry.work, tags))
+          .filter(entry => applyClientSideFilter(entry.work, tags, minusArr))
           .map(entry => entry.pid),
         rid: fastResponse.rid,
         isLoading: true
       });
     }
+
     const response = await fetchRecommendations({
       tags,
       creators,

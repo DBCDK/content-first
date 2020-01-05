@@ -43,9 +43,12 @@ router
               minus
             } = req.query;
 
+            const timeout =
+              req.query.timeout && parseInt(req.query.timeout, 10);
+
             const link = `${req.baseUrl}?tags=${req.query.tags ||
               ''}&creators=${req.query.creators ||
-              ''}&maxresults=${maxresults}`;
+              ''}&maxresults=${maxresults}&timeout=${timeout}`;
 
             if (
               (!tags || Object.keys(tags).length === 0) &&
@@ -67,6 +70,7 @@ router
                 maxresults: parseInt(maxresults, 10),
                 agencyId,
                 branch,
+                timeout,
                 plus,
                 minus
               });
@@ -109,6 +113,8 @@ router
               branch,
               expand = true
             } = req.query;
+            const timeout =
+              (req.query.timeout && parseInt(req.query.timeout, 10)) || 5000;
 
             let objToSend = {
               likes: JSON.parse(likes),
@@ -116,7 +122,8 @@ router
               limit: Number(limit),
               debug,
               agencyId,
-              branch
+              branch,
+              timeout
             };
 
             if (tag_weight) {
