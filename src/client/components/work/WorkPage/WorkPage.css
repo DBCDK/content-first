@@ -28,6 +28,10 @@
   min-width: 250px;
 }
 
+.work-page .work-preview__top {
+  display: none;
+}
+
 /*
   Media queries
   work-preview overwritten styles
