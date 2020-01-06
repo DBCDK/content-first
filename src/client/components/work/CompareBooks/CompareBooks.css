@@ -180,11 +180,6 @@
     padding: 0;
   }
 
-  .compare-books .cards .card img {
-    max-width: var(--1pt);
-    min-width: var(--1pt);
-  }
-
   .compare-books .cards .card .cards_title {
     display: none;
   }

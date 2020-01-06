@@ -4,8 +4,8 @@
     "premium": true,
     "kiosk": true,
     "role": {
-      "contentFirstAdmin": true,
-      "contentFirstEditor": true
+      "contentFirstAdmin": false,
+      "contentFirstEditor": false
     }
   },
   "EditorpageButton": {

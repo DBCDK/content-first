@@ -17,7 +17,6 @@ export class CompareBooksModal extends React.Component {
         doneText="Gem ændringer"
         hideConfirm={true}
         hideCancel={true}
-        className="reorder-list-modal-window"
       >
         <CompareBooks {...context} />
       </Modal>
