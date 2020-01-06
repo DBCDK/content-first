@@ -2,7 +2,7 @@ const moment = require('moment');
 
 const over13 = cpr => {
   if (!cpr) {
-    return true;  // Quickfix
+    return true; // Quickfix
   }
   if (cpr.length !== 10) {
     return 'misformed cpr';
