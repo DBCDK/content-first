@@ -40,7 +40,7 @@ const profileStrategy = new Strategy(
         // Get users municipality
         municipality = get(userInfo, 'body.attributes.municipality', null);
 
-        special.over13 = over13(userInfo.body.attributes.cpr);
+        special.over13 = over13(get(userInfo, 'body.attributes.cpr', null));
         // to test result in gui when user is under 13
         // special.over13 = over13('2412061212');
 
