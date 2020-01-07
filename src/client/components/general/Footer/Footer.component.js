@@ -101,7 +101,7 @@ class Footer extends React.Component {
                 <T component="footer" name="customerServiceText" />
                 <br />
                 <a
-                  href="https://kundeservice.dbc.dk"
+                  href="https://kundeservice.dbc.dk/lk"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
