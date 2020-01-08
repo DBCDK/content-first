@@ -150,7 +150,7 @@ export function OrderModal(props) {
           ...unsupportedAgency,
           cause: '',
           hideCancel: true,
-          hideConfirm: false,
+          hideConfirm: true,
           doneText: T({component: 'general', name: 'close'}),
           cancelText: T({component: 'general', name: 'cancel'}),
           onCancel: props.onClose
