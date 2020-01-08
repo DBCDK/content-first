@@ -20,13 +20,10 @@ export default class Modal extends React.Component {
       onError = false
     } = this.props;
 
-    const hasBottomActionsClass =
-      hideCancel && hideConfirm ? '' : 'hasBottomActions';
-
     return (
       <div className="modal-container">
         <div className="modal-backdrop" onClick={this.props.onClose} />
-        <div className={`modal-window ${className} ${hasBottomActionsClass}`}>
+        <div className={`modal-window ${className}`}>
           <div className="top">
             <Icon
               name="clear"
@@ -51,7 +48,7 @@ export default class Modal extends React.Component {
             {this.props.children}
           </div>
 
-          {!hideCancel && !hideConfirm && (
+          {(!hideCancel || !hideConfirm) && (
             <div className="bottom">
               {onError && (
                 <div className="modal-error--txt">

@@ -16,6 +16,7 @@ exports[`OrderModal render function renders initial request 1`] = `
       name="modalTitle"
     />
   }
+  hideCancel={false}
   onDone={[Function]}
 >
   <div

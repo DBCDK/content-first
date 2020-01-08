@@ -51,4 +51,36 @@ describe('Order ', function() {
 
     cy.get('[data-cy=modal-done-btn] > button').should('be.disabled');
   });
+
+  it('Order available books', function() {
+    cy.fixture('/order/shortlist.json').as('shortlist');
+    cy.server();
+    cy.route('GET', '/v1/shortlist', '@shortlist').as('shortlistRequest');
+    cy.visit('/huskeliste');
+    cy.get('.orderAllBtn').click();
+    cy.contains('Kan ikke bestilles til dit bibliotek');
+    cy.contains('Kan bestilles');
+    cy.get('[data-cy=modal-done-btn]').click();
+    cy.get('[data-cy=order-status]').should('have.text', '1 bog er bestilt');
+  });
+
+  it('Fails gracefully when no pickup libraries are available', function() {
+    const pid = '870970-basis:54154313';
+    cy.visit('/v%C3%A6rk/' + pid);
+    cy.get('[data-cy=order-btn]').click();
+    cy.contains('Kan ikke bestilles til dit bibliotek');
+    cy.contains('er bestilt').should('not.exist');
+  });
+
+  it('Shows notification modal when agency is unsupported', function() {
+    cy.fixture('/order/initialState_unsupportedMunicipality.json').as(
+      'initialState'
+    );
+    cy.server();
+    cy.route('GET', '/v1/initial-state', '@initialState');
+    const pid = '870970-basis:54154313';
+    cy.visit('/v%C3%A6rk/' + pid);
+    cy.get('[data-cy=order-btn]').click();
+    cy.contains('Bestilling kan ikke gennemføres');
+  });
 });

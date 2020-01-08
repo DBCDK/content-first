@@ -1,0 +1,830 @@
+{
+  "_work_{\"pids\":[\"870970-basis:53945910\"],\"fields\":[\"hasReview\",\"collection\"]}": {
+    "data": [
+      {
+        "collection": [
+          "870970-basis:29902186",
+          "870970-basis:50971457",
+          "870970-basis:53945910",
+          "870970-basis:53719082",
+          "870970-basis:53188532",
+          "870970-basis:53724213",
+          "870970-basis:50739228",
+          "870970-basis:50739201",
+          "870970-basis:51374819"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:50776204\"],\"fields\":[\"hasReview\",\"collection\"]}": {
+    "data": [
+      {
+        "hasReview": [
+          "870976-anmeld:31102952",
+          "870971-anmeld:35932135",
+          "870971-anmeld:36054921",
+          "870971-anmeld:35834559",
+          "870971-anmeld:35861335",
+          "870971-anmeld:35854835",
+          "870971-anmeld:35866965"
+        ],
+        "collection": [
+          "870970-basis:50776204",
+          "870970-basis:51724097",
+          "870970-basis:51089847",
+          "870970-basis:51666186",
+          "870970-basis:51666194",
+          "870970-basis:52829046",
+          "870970-basis:50738299",
+          "870970-basis:50738280",
+          "870970-basis:51339916"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:53945910\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog (bind 1)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:50971457\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog (bind 1)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:29902186\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog (bind 1)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:51374819\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (net)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:53188532\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Ebog (Bind 1)"
+        ],
+        "identifierURI": [
+          "https://ereolen.dk/ting/object/870970-basis:53188532"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:50739228\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (cd)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:53719082\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog (bind 2)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:50739201\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (cd-mp3)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:53724213\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Ebog (Bind 2)"
+        ],
+        "identifierURI": [
+          "https://ereolen.dk/ting/object/870970-basis:53724213"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:50738299\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (cd)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:50738280\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (cd-mp3)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:50776204\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:51666194\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog stor skrift (bind 2)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:51339916\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Lydbog (net)"
+        ],
+        "identifierURI": [
+          "https://ereolen.dk/ting/object/870970-basis:51339916"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:52829046\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Ebog"
+        ],
+        "identifierURI": [
+          "https://ereolen.dk/ting/object/870970-basis:52829046"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:51724097\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:51089847\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:51666186\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Bog stor skrift (bind 1)"
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:50776204\"],\"fields\":[\"collectionDetails\"]}": {
+    "data": [
+      {
+        "collectionDetails": [
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Ulla-Lena Lundberg"
+            ],
+            "pid": [
+              "870970-basis:50776204"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Is"
+            ],
+            "titleFull": [
+              "Is : roman"
+            ],
+            "type": [
+              "Bog"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Ulla-Lena Lundberg"
+            ],
+            "pid": [
+              "870970-basis:51724097"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Is"
+            ],
+            "titleFull": [
+              "Is : roman"
+            ],
+            "type": [
+              "Bog"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Ulla-Lena Lundberg"
+            ],
+            "pid": [
+              "870970-basis:51089847"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Is"
+            ],
+            "titleFull": [
+              "Is : roman"
+            ],
+            "type": [
+              "Bog"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Ulla-Lena Lundberg"
+            ],
+            "pid": [
+              "870970-basis:51666186"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Is"
+            ],
+            "titleFull": [
+              "Is : roman"
+            ],
+            "type": [
+              "Bog stor skrift (bind 1)"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Ulla-Lena Lundberg"
+            ],
+            "pid": [
+              "870970-basis:51666194"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Is"
+            ],
+            "titleFull": [
+              "Is : roman"
+            ],
+            "type": [
+              "Bog stor skrift (bind 2)"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "online"
+            ],
+            "creator": [
+              "Ulla-Lena Lundberg"
+            ],
+            "pid": [
+              "870970-basis:52829046"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Is"
+            ],
+            "titleFull": [
+              "Is : roman"
+            ],
+            "type": [
+              "Ebog"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Ulla-Lena Lundberg"
+            ],
+            "pid": [
+              "870970-basis:50738299"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Is"
+            ],
+            "titleFull": [
+              "Is : roman"
+            ],
+            "type": [
+              "Lydbog (cd)"
+            ],
+            "workType": [
+              "audiobook"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Ulla-Lena Lundberg"
+            ],
+            "pid": [
+              "870970-basis:50738280"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Is"
+            ],
+            "titleFull": [
+              "Is : roman"
+            ],
+            "type": [
+              "Lydbog (cd-mp3)"
+            ],
+            "workType": [
+              "audiobook"
+            ]
+          },
+          {
+            "accessType": [
+              "online"
+            ],
+            "creator": [
+              "Ulla-Lena Lundberg"
+            ],
+            "pid": [
+              "870970-basis:51339916"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Is"
+            ],
+            "titleFull": [
+              "Is : roman"
+            ],
+            "type": [
+              "Lydbog (net)"
+            ],
+            "workType": [
+              "audiobook"
+            ]
+          }
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_work_{\"pids\":[\"870970-basis:53945910\"],\"fields\":[\"collectionDetails\"]}": {
+    "data": [
+      {
+        "collectionDetails": [
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Antonio Pennacchi"
+            ],
+            "pid": [
+              "870970-basis:29902186"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Mussolini-kanalen"
+            ],
+            "titleFull": [
+              "Mussolini-kanalen : roman"
+            ],
+            "type": [
+              "Bog (Mussolini-kanalen)"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Antonio Pennacchi"
+            ],
+            "pid": [
+              "870970-basis:50971457"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Mussolini-kanalen"
+            ],
+            "titleFull": [
+              "Mussolini-kanalen : roman"
+            ],
+            "type": [
+              "Bog (bind 1)"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Antonio Pennacchi"
+            ],
+            "pid": [
+              "870970-basis:53945910"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Mussolini-kanalen"
+            ],
+            "titleFull": [
+              "Mussolini-kanalen : roman"
+            ],
+            "type": [
+              "Bog (bind 1)"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Antonio Pennacchi"
+            ],
+            "pid": [
+              "870970-basis:53719082"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Mussolini-kanalen"
+            ],
+            "titleFull": [
+              "Mussolini-kanalen : roman"
+            ],
+            "type": [
+              "Bog (bind 2)"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "online"
+            ],
+            "creator": [
+              "Antonio Pennacchi"
+            ],
+            "pid": [
+              "870970-basis:53188532"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Mussolini-kanalen"
+            ],
+            "titleFull": [
+              "Mussolini-kanalen : roman"
+            ],
+            "type": [
+              "Ebog (Bind 1)"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "online"
+            ],
+            "creator": [
+              "Antonio Pennacchi"
+            ],
+            "pid": [
+              "870970-basis:53724213"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Mussolini-kanalen"
+            ],
+            "titleFull": [
+              "Mussolini-kanalen : roman"
+            ],
+            "type": [
+              "Ebog (Bind 2)"
+            ],
+            "workType": [
+              "book"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Antonio Pennacchi"
+            ],
+            "pid": [
+              "870970-basis:50739228"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Mussolini-kanalen"
+            ],
+            "titleFull": [
+              "Mussolini-kanalen : roman"
+            ],
+            "type": [
+              "Lydbog (cd)"
+            ],
+            "workType": [
+              "audiobook"
+            ]
+          },
+          {
+            "accessType": [
+              "physical"
+            ],
+            "creator": [
+              "Antonio Pennacchi"
+            ],
+            "pid": [
+              "870970-basis:50739201"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Mussolini-kanalen"
+            ],
+            "titleFull": [
+              "Mussolini-kanalen : roman"
+            ],
+            "type": [
+              "Lydbog (cd-mp3)"
+            ],
+            "workType": [
+              "audiobook"
+            ]
+          },
+          {
+            "accessType": [
+              "online"
+            ],
+            "creator": [
+              "Antonio Pennacchi"
+            ],
+            "pid": [
+              "870970-basis:51374819"
+            ],
+            "language": [
+              "Dansk"
+            ],
+            "title": [
+              "Mussolini-kanalen"
+            ],
+            "titleFull": [
+              "Mussolini-kanalen : roman"
+            ],
+            "type": [
+              "Lydbog (net)"
+            ],
+            "workType": [
+              "audiobook"
+            ]
+          }
+        ]
+      }
+    ],
+    "timing": 0
+  },
+  "_user_{}": {
+    "data": {
+      "id": "XgY2QOGYqxGgHHYQu8DJKTKX2bbdMNBF",
+      "loans": [
+      ],
+      "orders": [],
+      "debt": [],
+      "ddbcmsapi": "https://cmscontent.dbc.dk/",
+      "agency": "790900"
+    },
+    "timing": 0
+  },
+  "_libraries_{\"agencyIds\":[\"790900\"],\"fields\":[\"agencyName\"]}": {
+    "data": [
+      {
+        "agencyName": "DBC-Testbiblioteksvæsen"
+      },
+      {
+        "agencyName": "DBC-Testbiblioteksvæsen"
+      },
+      {
+        "agencyName": "DBC-Testbiblioteksvæsen"
+      }
+    ],
+    "timing": 0
+  },
+  "_libraries_{\"agencyIds\":[\"790900\"],\"fields\":[\"branchId\",\"branchName\",\"pickupAllowed\"]}": {
+    "data": [
+      {
+        "branchId": "790900",
+        "branchName": [
+          "DBCTestBibliotek",
+          "XXX (Data from BS)"
+        ],
+        "pickupAllowed": "1"
+      },
+      {
+        "branchId": "790902",
+        "branchName": [
+          "DBCtest_2"
+        ],
+        "pickupAllowed": "1"
+      },
+      {
+        "branchId": "790903",
+        "branchName": [
+          "DBC-bibilioteksekspressen"
+        ],
+        "pickupAllowed": "0"
+      }
+    ],
+    "timing": 0
+  },
+  "_availability_{\"pids\":[\"870970-basis:50971457\",\"870970-basis:53945910\"]}": {
+    "data": [
+      {
+        "willLend": false,
+        "orderPossible": false,
+        "orderPossibleReason": "not_owned_ILL_loc"
+      },
+      {
+        "willLend": false,
+        "orderPossible": false,
+        "orderPossibleReason": "not_owned_ILL_loc"
+      }
+    ],
+    "timing": 0
+  },
+  "_availability_{\"pids\":[\"870970-basis:50776204\",\"870970-basis:51724097\",\"870970-basis:51089847\",\"870970-basis:51666186\",\"870970-basis:51666194\"]}": {
+    "data": [
+      {
+        "willLend": false,
+        "orderPossible": true,
+        "orderPossibleReason": "not_owned_ILL_loc"
+      },
+      {
+        "willLend": false,
+        "orderPossible": true,
+        "orderPossibleReason": "not_owned_ILL_loc"
+      },
+      {
+        "willLend": false,
+        "orderPossible": true,
+        "orderPossibleReason": "not_owned_no_ILL_loc"
+      },
+      {
+        "willLend": false,
+        "orderPossible": true,
+        "orderPossibleReason": "not_owned_ILL_loc"
+      },
+      {
+        "willLend": false,
+        "orderPossible": true,
+        "orderPossibleReason": "not_owned_ILL_loc"
+      }
+    ],
+    "timing": 0
+  },
+  "_order_{\"pids\":[\"870970-basis:50776204\",\"870970-basis:51724097\",\"870970-basis:51089847\",\"870970-basis:51666186\",\"870970-basis:51666194\"],\"pickUpBranch\":\"790900\"}": {
+    "data": {
+      "status": "ok",
+      "orsId": "1035900423"
+    },
+    "timing": 0
+  }
+}

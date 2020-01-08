@@ -99,7 +99,8 @@ export default withPermisisons(
       premium: {
         context: {
           title: 'Bestil bøger',
-          reason: 'Bestilling af bøger er ikke tilgængeligt for dit bibliotek'
+          reason: 'Bestilling af bøger er ikke tilgængeligt for dit bibliotek',
+          hideConfirm: true
         }
       }
     }

@@ -10,8 +10,18 @@ import {
   ORDER_START,
   ORDER_DONE
 } from '../../redux/order.reducer';
+import NotificationModal from './NotificationModal.component';
 
 import './OrderModal.css';
+
+const UNSUPPORTED_AGENCIES = {
+  911116: {
+    notificationType: 'raw',
+    title: 'Bestilling kan ikke gennemføres',
+    text:
+      'Der kan på nuværende tidspunkt desværre ikke bestilles til færøske biblioteker.'
+  }
+};
 
 export function OrderState({book}) {
   if (book.orderState === 'ordered') {
@@ -131,6 +141,23 @@ function orderInfo({orders, onStart, currentBranch, branches, branchesLoaded}) {
 }
 
 export function OrderModal(props) {
+  const unsupportedAgency = UNSUPPORTED_AGENCIES[props.municipalityAgencyId];
+  if (unsupportedAgency) {
+    return (
+      <NotificationModal
+        context={{
+          notificationType: '',
+          ...unsupportedAgency,
+          cause: '',
+          hideCancel: true,
+          hideConfirm: true,
+          doneText: T({component: 'general', name: 'close'}),
+          cancelText: T({component: 'general', name: 'cancel'}),
+          onCancel: props.onClose
+        }}
+      />
+    );
+  }
   let {
     ordering,
     orderError,
@@ -143,6 +170,7 @@ export function OrderModal(props) {
     doneDisabled
   } = orderInfo(props);
   const {branchesLoaded} = props;
+  let hideCancel = false;
 
   const bookOrBooks = count =>
     T({
@@ -152,6 +180,8 @@ export function OrderModal(props) {
   if (!reviewingOrder && !ordering) {
     doneText = 'OK';
     onDone = props.onClose;
+    doneDisabled = false;
+    hideCancel = true;
     if (orderError) {
       orderStatus = (
         <div>
@@ -179,7 +209,7 @@ export function OrderModal(props) {
           </div>
         </div>
       );
-    } else {
+    } else if (orderSuccess) {
       orderStatus = (
         <div>
           <span
@@ -228,6 +258,7 @@ export function OrderModal(props) {
       onDone={onDone}
       doneText={doneText}
       doneDisabled={doneDisabled}
+      hideCancel={hideCancel}
     >
       <div className="order-elements--wrap">
         <div className="form-group">
@@ -315,6 +346,8 @@ export function OrderModal(props) {
 
 export function mapStateToProps(state) {
   return {
+    municipalityAgencyId:
+      state.userReducer && state.userReducer.municipalityAgencyId,
     orders: Object.values(state.orderReducer.orders).filter(
       book => book.ordering
     ),
