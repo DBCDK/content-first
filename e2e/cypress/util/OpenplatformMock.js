@@ -54,10 +54,14 @@ export default class OPMock {
           return {
             request: arg,
             response: recorded.data,
+            throws: recorded.throws,
             timing: recorded.timing
           };
         }
       });
+      if (recorded.throws) {
+        throw new Error('Mock throws');
+      }
       return recorded.data;
     }
     const t0 = performance.now();

@@ -1,0 +1,13 @@
+{
+  "data": [
+    {
+      "pid": "870970-basis:53945910",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    },
+    {
+      "pid": "870970-basis:50776204",
+      "origin": {"type": "searchTags", "tags": [5634]}
+    }
+  ],
+  "links": {"self": "/v1/shortlist"}
+}

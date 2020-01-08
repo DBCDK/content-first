@@ -47,6 +47,7 @@ async function initState(req) {
     response: {...config.kiosk}
   });
   let isPremium = false;
+  let municipalityAgencyId = null;
 
   if (req.user) {
     userState = userReducer(userState, {
@@ -94,7 +95,9 @@ async function initState(req) {
     })).data;
 
     // check if user has premium access
+
     if (userLibraries.length > 0 && userLibraries[0].municipalityAgencyId) {
+      municipalityAgencyId = userLibraries[0].municipalityAgencyId;
       isPremium = await libraries.userHasAPayingLibrary(
         userLibraries[0].municipalityAgencyId
       );
@@ -118,7 +121,7 @@ async function initState(req) {
   });
 
   return {
-    userReducer: {...userState, isPremium},
+    userReducer: {...userState, isPremium, municipalityAgencyId},
     listReducer: listState,
     beltsReducer: beltsState,
     interactionReducer: interactionState,

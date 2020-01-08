@@ -51,7 +51,7 @@ export default class Modal extends React.Component {
             {this.props.children}
           </div>
 
-          {!hideCancel && !hideConfirm && (
+          {(!hideCancel || !hideConfirm) && (
             <div className="bottom">
               {onError && (
                 <div className="modal-error--txt">
