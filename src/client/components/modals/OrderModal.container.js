@@ -15,7 +15,7 @@ import NotificationModal from './NotificationModal.component';
 import './OrderModal.css';
 
 const UNSUPPORTED_AGENCIES = {
-  '911116': {
+  911116: {
     notificationType: 'raw',
     title: 'Bestilling kan ikke gennemføres',
     text:
