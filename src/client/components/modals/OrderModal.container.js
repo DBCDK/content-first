@@ -346,7 +346,8 @@ export function OrderModal(props) {
 
 export function mapStateToProps(state) {
   return {
-    municipalityAgencyId: state.userReducer.municipalityAgencyId,
+    municipalityAgencyId:
+      state.userReducer && state.userReducer.municipalityAgencyId,
     orders: Object.values(state.orderReducer.orders).filter(
       book => book.ordering
     ),
