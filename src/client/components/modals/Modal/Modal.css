@@ -82,14 +82,9 @@
 .modal-window .content {
   max-height: calc(70vh - 120px);
   height: auto;
-  padding: var(--4pt) var(--10pt);
+  padding: var(--4pt) var(--10pt) calc(var(--4pt) + 61px) var(--10pt);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-}
-
-.modal-window.hasBottomActions .content {
-  /* *61px is modal bottombar/actionbar total height */
-  padding: var(--4pt) var(--10pt) calc(var(--4pt) + 61px) var(--10pt);
 }
 
 .modal-window .bottom {
