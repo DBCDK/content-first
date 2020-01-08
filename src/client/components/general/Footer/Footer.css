@@ -35,6 +35,11 @@
   margin: var(--2pt) 0 0;
 }
 
+.footer__element .Text a,
+.footer__element .Text a:hover {
+  text-decoration: underline;
+}
+
 .footer__logo--wrap {
   width: 100%;
   margin: 0 0 var(--1pt) 0;
