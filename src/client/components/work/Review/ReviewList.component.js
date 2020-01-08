@@ -32,12 +32,19 @@ class ReviewList extends React.Component {
     }
   }
 
+  containsDate = isPartOf =>
+    (isPartOf &&
+      isPartOf[0] &&
+      isPartOf[0].split(',')[1] &&
+      isPartOf[0].split(',')[1].match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g)) ||
+    false;
+
   renderReviewList() {
     let paperReviews = [];
     let libraryReview = [];
     if (this.props.lectorReviews) {
       // Investigate this.props.lectorReviews for "Lektørudtalelser" and "Infomedia" articles
-      this.props.lectorReviews.map((reviewList, outerKey) => {
+      this.props.lectorReviews.forEach((reviewList, outerKey) => {
         // Is this a "Lektørudtalelse"?
         if (typeof reviewList.fullTextReviews !== 'undefined') {
           reviewList.fullTextReviews.map((review, innerKey) => {
@@ -48,11 +55,13 @@ class ReviewList extends React.Component {
                 key={outerKey + '-' + innerKey}
               />
             );
-            return null;
           });
         }
         // Is this a "Infomedia" article?
-        if (reviewList.infomedia && reviewList.infomedia.length > 0) {
+        else if (
+          !reviewList.identifierURI &&
+          this.containsDate(reviewList.isPartOf)
+        ) {
           paperReviews.push(
             <PaperReview
               review={reviewList}
@@ -62,7 +71,6 @@ class ReviewList extends React.Component {
             />
           );
         }
-        return null;
       });
     }
     // Investigate this.props.reviews for "Litteratursiden" articles

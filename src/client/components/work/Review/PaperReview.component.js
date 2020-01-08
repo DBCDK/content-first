@@ -31,6 +31,7 @@ export class PaperReview extends React.Component {
     const creator = review.creatorOth && review.creatorOth[0];
     const shortDate =
       (review.isPartOf &&
+        review.isPartOf[0] &&
         review.isPartOf[0].split(',')[1] &&
         review.isPartOf[0].split(',')[1]) ||
       null;
