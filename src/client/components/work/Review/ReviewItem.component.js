@@ -75,15 +75,17 @@ const ReviewItem = ({
           </TruncateMarkup>
         </Text>
       )}
-      <Text>
-        {error && <span>{error}</span>}
-        {!error && (
-          <Button {...buttonProps}>
-            <span>{buttonText}</span>
-            {link && <i className="material-icons">launch</i>}
-          </Button>
-        )}
-      </Text>
+      {(buttonText || error) && (
+        <Text>
+          {error && <span>{error}</span>}
+          {!error && (
+            <Button {...buttonProps}>
+              <span>{buttonText}</span>
+              {link && <i className="material-icons">launch</i>}
+            </Button>
+          )}
+        </Text>
+      )}
     </div>
   );
 };
