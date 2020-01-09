@@ -2,14 +2,27 @@ import React from 'react';
 import Button from '../../base/Button';
 import T from '../../base/T';
 
-const PrintButton = ({style, className, _id = 'huskeliste'}) => {
+import withPermissions from '../../hoc/Permissions';
+
+const PrintButton = ({
+  style,
+  onClick = false,
+  className,
+  _id = 'huskeliste'
+}) => {
   return (
     <Button
       size="large"
       type="link2"
       iconLeft="print"
       className={'pr-0 ' + className}
-      href={'/print/' + _id}
+      onClick={e => {
+        if (onClick) {
+          onClick(e);
+        } else {
+          window.open(`/print/${_id}`, '_blank');
+        }
+      }}
       style={{backgroundColor: 'unset', marginLeft: '10px', ...style}}
     >
       <T component="list" name="printList" />
@@ -17,4 +30,9 @@ const PrintButton = ({style, className, _id = 'huskeliste'}) => {
   );
 };
 
-export default PrintButton;
+export default withPermissions(PrintButton, {
+  name: 'PrintButton',
+  context: {
+    title: 'Udskriv liste'
+  }
+});
