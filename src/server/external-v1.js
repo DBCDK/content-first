@@ -19,8 +19,6 @@ router.use('/image', require('server/external-v1-image'));
 router.use('/log', require('server/external-v1-log'));
 router.use('/object', require('server/external-v1-object'));
 router.use('/openplatform', require('server/external-v1-openplatform'));
-router.use('/recommendations', require('server/external-v1-recommendations'));
-router.use('/search', require('server/external-v1-search'));
 router.use('/shortlist', require('server/external-v1-shortlist'));
 router.use('/tags', require('server/external-v1-tags'));
 router.use('/taxonomy', require('server/external-v1-taxonomy'));
