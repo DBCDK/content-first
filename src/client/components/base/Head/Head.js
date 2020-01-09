@@ -1,5 +1,33 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {Helmet} from 'react-helmet';
+import {get} from 'lodash';
+
+/**
+ *
+ * Hotjar tracking
+ *
+ **/
+// Hotjar tracking-code for web (normal laesekompas.dk, ...)
+const hotjar_web = `(function(h, o, t, j, a, r) {
+h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments);};
+h._hjSettings = {hjid: 1361823, hjsv: 6};
+a = o.getElementsByTagName('head')[0];
+r = o.createElement('script');
+r.async = 1;
+r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+a.appendChild(r);
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');`;
+
+// Hotjar tracking-code for kiosk
+const hotjar_kiosk = `(function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1636409,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`;
 
 function buildOGMeta(obj) {
   return Object.keys(obj).map((k, i) => {
@@ -37,7 +65,6 @@ function buildOGMeta(obj) {
       }
     }}
   />
-
 */
 
 const Head = ({
@@ -56,6 +83,12 @@ const Head = ({
     book: {}
   }
 }) => {
+  // isKiosk
+  const isKiosk = useSelector(state => get(state, 'kiosk.enabled', false));
+
+  // hotjar tracking code
+  const hotjarTrackingType = isKiosk ? hotjar_kiosk : hotjar_web;
+
   return (
     <Helmet>
       <title>{title === 'Læsekompas' ? title : `${title} | Læsekompas`}</title>
@@ -67,6 +100,7 @@ const Head = ({
       {(og && buildOGMeta(og)) || null}
       {(og && og.image && buildOGMeta(og.image)) || null}
       {(og && og.book && buildOGMeta(og.book)) || null}
+      <script>{hotjarTrackingType}</script>
     </Helmet>
   );
 };
