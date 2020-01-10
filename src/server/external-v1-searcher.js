@@ -8,7 +8,7 @@ const searcher = require('server/searcher');
 router
   .route('')
   //
-  // GET /v1/search
+  // GET /v1/searcher
   //
   .get(
     asyncMiddleware(async (req, res) => {
