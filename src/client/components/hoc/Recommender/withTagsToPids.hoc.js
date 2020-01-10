@@ -97,6 +97,7 @@ export default WrappedComponent => props => {
     <WrappedComponent
       {...props}
       recommendations={recommendations.pids}
+      isLoading={recommendations.isLoading}
       plainSelectedTagIds={plainSelectedTagIds}
       rid={recommendations.rid}
     />

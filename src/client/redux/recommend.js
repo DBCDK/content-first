@@ -25,7 +25,7 @@ const recommendReducer = (state = defaultState, action) => {
         recommendations: {
           ...state.recommendations,
           [action.requestKey]: {
-            isLoading: false,
+            isLoading: !!action.isLoading,
             pids: action.pids || [],
             details: [],
             rid: action.rid,
