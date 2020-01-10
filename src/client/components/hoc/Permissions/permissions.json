@@ -26,6 +26,15 @@
       "contentFirstEditor": false
     }
   },
+  "PrintButton": {
+    "free": false,
+    "premium": true,
+    "kiosk": false,
+    "role": {
+      "contentFirstAdmin": false,
+      "contentFirstEditor": false
+    }
+  },
   "Navigation": {
     "free": false,
     "premium": false,

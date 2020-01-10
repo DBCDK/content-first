@@ -183,7 +183,8 @@ export default (WrappedComponent, ComponentOptions) => props => {
                 ...defaultPremiumContext,
                 ...premiumContext,
                 className: 'premium-modal',
-                hideCancel: true
+                hideCancel: true,
+                hideConfirm: true
               }
             });
           }}
