@@ -10,6 +10,7 @@ exports[`renders without crashing 1`] = `
     }
   }
 >
+  Head
   <div>
     <header
       className="topbar collapsed"
@@ -315,6 +316,7 @@ exports[`renders without crashing 1`] = `
     <div
       className="frontpage"
     >
+      Head
       <Hero />
       <react-visibility-sensor
         offset={
