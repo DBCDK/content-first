@@ -128,14 +128,14 @@ export const fetchTagRecommendations = ({
 }) => async dispatch => {
   try {
     dispatch({type: RECOMMEND_REQUEST, requestKey});
-    if (limit > 12) {
+    if (limit > 20) {
       // Respond fast
       const fastResponse = await fetchRecommendations({
         tags,
         creators,
         branch,
         agencyId,
-        limit: 12
+        limit: 20
       });
       dispatch({
         type: RECOMMEND_RESPONSE,

@@ -42,8 +42,6 @@ const Row = withIsVisible(
   )
 );
 
-const SkeletonRow = () => {};
-
 class MultiRowContainer extends React.Component {
   constructor() {
     super();
