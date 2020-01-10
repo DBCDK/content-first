@@ -42,6 +42,8 @@ jest.mock(
   }
 );
 
+jest.mock('./client/components/base/Head', () => jest.fn(() => 'Head'));
+
 jest.mock(
   './client/components/general/BookCover/BookCover.component',
   () => 'bookcover'

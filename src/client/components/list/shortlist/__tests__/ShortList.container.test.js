@@ -15,6 +15,11 @@ jest.mock(
 jest.mock('../../../general/Link.component', () =>
   jest.fn(props => <mocked-link>{props.children}</mocked-link>)
 );
+
+jest.mock('../../../base/Head', () =>
+  jest.fn(props => <mocked-head>{props.children}</mocked-head>)
+);
+
 const Link = require('../../../general/Link.component');
 
 // Mock OrderButton
