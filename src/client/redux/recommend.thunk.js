@@ -67,7 +67,7 @@ const fetchRecommendations = async action => {
   let customTagsSelected = true;
   // let thresholdLevel = 0;  // Disabled until further investigated - see US1058
   if (action.tags) {
-    const {tags = [], creators = [], limit} = action;
+    let {tags = [], creators = [], limit} = action;
 
     let nonCustomTags = tags.filter(
       tag => !filtersMapAll[tag.id || tag].custom
@@ -128,6 +128,25 @@ export const fetchTagRecommendations = ({
 }) => async dispatch => {
   try {
     dispatch({type: RECOMMEND_REQUEST, requestKey});
+    if (limit > 12) {
+      // Respond fast
+      const fastResponse = await fetchRecommendations({
+        tags,
+        creators,
+        branch,
+        agencyId,
+        limit: 12
+      });
+      dispatch({
+        type: RECOMMEND_RESPONSE,
+        requestKey,
+        pids: fastResponse.response
+          .filter(entry => applyClientSideFilter(entry.work, tags))
+          .map(entry => entry.pid),
+        rid: fastResponse.rid,
+        isLoading: true
+      });
+    }
     const response = await fetchRecommendations({
       tags,
       creators,

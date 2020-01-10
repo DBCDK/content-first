@@ -16,13 +16,14 @@ const Row = withIsVisible(
       selected,
       rid,
       origin,
-      isVisible
+      isVisible,
+      isLoading
     }) => (
       <div data-cy={'container-row'} className="container--row">
         {pids.map((pid, idx) => (
           <WorkCard
             cardRef={cardRef}
-            className={pid ? '' : 'invisible'}
+            className={pid || isLoading ? '' : 'invisible'}
             enableHover={true}
             enableLongpress={true}
             highlight={pid === selected}
@@ -41,6 +42,8 @@ const Row = withIsVisible(
   )
 );
 
+const SkeletonRow = () => {};
+
 class MultiRowContainer extends React.Component {
   constructor() {
     super();
@@ -53,8 +56,9 @@ class MultiRowContainer extends React.Component {
   }
   componentDidUpdate(prevProps) {
     if (
-      prevProps.recommendations.length === 0 &&
-      this.props.recommendations.length > 0
+      (prevProps.recommendations.length === 0 &&
+        this.props.recommendations.length > 0) ||
+      prevProps.isLoading !== this.props.isLoading
     ) {
       this.handleResize();
     }
@@ -70,6 +74,25 @@ class MultiRowContainer extends React.Component {
         (get(this.refs, 'workCard.clientWidth', 1) + 30)
     );
     this.setState({resultsPerRow: Math.max(resultsPerRow, 1)});
+  };
+
+  createSkeletonRow = () => {
+    const resultsPerRow = this.state.resultsPerRow;
+    return (
+      <div data-cy={'container-row'} className="container--row">
+        {Array(resultsPerRow)
+          .fill(0)
+          .map((val, idx) => (
+            <WorkCard
+              cardRef={workCard => {
+                this.refs = {...this.refs, workCard};
+              }}
+              key={`skeleton-${idx}`}
+              isVisible={false}
+            />
+          ))}
+      </div>
+    );
   };
 
   pidsToRows = (pids, resultsPerRow) => {
@@ -92,9 +115,7 @@ class MultiRowContainer extends React.Component {
   };
   render() {
     const pids = this.props.recommendations || [];
-    if (pids.length === 0) {
-      return null;
-    }
+    const isLoading = this.props.isLoading;
     const rows = this.pidsToRows(pids, this.state.resultsPerRow);
     return (
       <div className={`multirow--container ${this.props.className}`}>
@@ -107,8 +128,10 @@ class MultiRowContainer extends React.Component {
               rid={this.props.rid}
               pids={pidList}
               cardRef={workCard => (this.refs = {...this.refs, workCard})}
+              isLoading={isLoading}
             />
           ))}
+          {isLoading && this.createSkeletonRow()}
         </div>
       </div>
     );
