@@ -62,7 +62,12 @@ const applyClientSideFilter = (work, tags) => {
 
 const fetchRecommendations = async action => {
   const recommender = action.tags ? 'recompasTags' : 'recompasWork';
-  const query = {recommender, agencyId: action.agencyId, branch: action.branch};
+  const query = {
+    recommender,
+    agencyId: action.agencyId,
+    branch: action.branch,
+    timeout: action.timeout
+  };
 
   let customTagsSelected = true;
   // let thresholdLevel = 0;  // Disabled until further investigated - see US1058
@@ -135,7 +140,8 @@ export const fetchTagRecommendations = ({
         creators,
         branch,
         agencyId,
-        limit: 20
+        limit: 20,
+        timeout: 2000
       });
       dispatch({
         type: RECOMMEND_RESPONSE,
@@ -152,7 +158,8 @@ export const fetchTagRecommendations = ({
       creators,
       branch,
       agencyId,
-      limit
+      limit,
+      timeout: 10000
     });
 
     dispatch({
