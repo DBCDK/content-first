@@ -42,6 +42,8 @@ router
               plus,
               minus
             } = req.query;
+            const timeout =
+              req.query.timeout && parseInt(req.query.timeout, 10);
 
             const timeout =
               req.query.timeout && parseInt(req.query.timeout, 10);

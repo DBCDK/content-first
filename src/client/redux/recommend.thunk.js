@@ -240,9 +240,9 @@ export const fetchTagRecommendations = ({
         branch,
         agencyId,
         limit: 20,
-        // timeout: 2000,
         plusArr,
-        minusArr
+        minusArr,
+        timeout: 2000
       });
       dispatch({
         type: RECOMMEND_RESPONSE,
@@ -264,7 +264,8 @@ export const fetchTagRecommendations = ({
       agencyId,
       limit,
       plusArr,
-      minusArr
+      minusArr,
+      timeout: 10000
     });
 
     dispatch({
