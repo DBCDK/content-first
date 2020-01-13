@@ -188,47 +188,13 @@ exports[`ShortList.container Clearing list 1`] = `
     <div
       className="shortlist__tools--top"
     >
-      <Button
+      <mockConstructor
         className="printListBtn"
-        disabled={false}
-        href="print/huskeliste"
-        iconLeft="print"
-        size="medium"
-        type="quaternary"
       >
-        <button
-          className="printListBtn
-      button button__medium button__quaternary  button__icon--left "
-          data-cy=""
-          disabled={false}
-          onClick={[Function]}
-        >
-          <Icon
-            className="icon--left"
-            name="print"
-          >
-            <i
-              className="material-icons material-icons-print icon--left "
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&#xE8AD;",
-                }
-              }
-              data-unicoded="true"
-              onClick={[Function]}
-            />
-          </Icon>
-          <span>
-            <T
-              component="list"
-              name="printList"
-            >
-              Print listen
-            </T>
-          </span>
-        </button>
-      </Button>
+        PrintButton
+      </mockConstructor>
       <Button
+        className="clearList"
         disabled={false}
         iconLeft="delete"
         onClick={[Function]}
@@ -236,7 +202,7 @@ exports[`ShortList.container Clearing list 1`] = `
         type="quaternary"
       >
         <button
-          className="
+          className="clearList
       button button__medium button__quaternary  button__icon--left "
           data-cy=""
           disabled={false}
@@ -1599,47 +1565,13 @@ exports[`ShortList.container Order all books 1`] = `
     <div
       className="shortlist__tools--top"
     >
-      <Button
+      <mockConstructor
         className="printListBtn"
-        disabled={false}
-        href="print/huskeliste"
-        iconLeft="print"
-        size="medium"
-        type="quaternary"
       >
-        <button
-          className="printListBtn
-      button button__medium button__quaternary  button__icon--left "
-          data-cy=""
-          disabled={false}
-          onClick={[Function]}
-        >
-          <Icon
-            className="icon--left"
-            name="print"
-          >
-            <i
-              className="material-icons material-icons-print icon--left "
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&#xE8AD;",
-                }
-              }
-              data-unicoded="true"
-              onClick={[Function]}
-            />
-          </Icon>
-          <span>
-            <T
-              component="list"
-              name="printList"
-            >
-              Print listen
-            </T>
-          </span>
-        </button>
-      </Button>
+        PrintButton
+      </mockConstructor>
       <Button
+        className="clearList"
         disabled={false}
         iconLeft="delete"
         onClick={[Function]}
@@ -1647,7 +1579,7 @@ exports[`ShortList.container Order all books 1`] = `
         type="quaternary"
       >
         <button
-          className="
+          className="clearList
       button button__medium button__quaternary  button__icon--left "
           data-cy=""
           disabled={false}
@@ -2958,47 +2890,13 @@ exports[`ShortList.container Order book 1`] = `
     <div
       className="shortlist__tools--top"
     >
-      <Button
+      <mockConstructor
         className="printListBtn"
-        disabled={false}
-        href="print/huskeliste"
-        iconLeft="print"
-        size="medium"
-        type="quaternary"
       >
-        <button
-          className="printListBtn
-      button button__medium button__quaternary  button__icon--left "
-          data-cy=""
-          disabled={false}
-          onClick={[Function]}
-        >
-          <Icon
-            className="icon--left"
-            name="print"
-          >
-            <i
-              className="material-icons material-icons-print icon--left "
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&#xE8AD;",
-                }
-              }
-              data-unicoded="true"
-              onClick={[Function]}
-            />
-          </Icon>
-          <span>
-            <T
-              component="list"
-              name="printList"
-            >
-              Print listen
-            </T>
-          </span>
-        </button>
-      </Button>
+        PrintButton
+      </mockConstructor>
       <Button
+        className="clearList"
         disabled={false}
         iconLeft="delete"
         onClick={[Function]}
@@ -3006,7 +2904,7 @@ exports[`ShortList.container Order book 1`] = `
         type="quaternary"
       >
         <button
-          className="
+          className="clearList
       button button__medium button__quaternary  button__icon--left "
           data-cy=""
           disabled={false}
@@ -4317,47 +4215,13 @@ exports[`ShortList.container Order ebook 1`] = `
     <div
       className="shortlist__tools--top"
     >
-      <Button
+      <mockConstructor
         className="printListBtn"
-        disabled={false}
-        href="print/huskeliste"
-        iconLeft="print"
-        size="medium"
-        type="quaternary"
       >
-        <button
-          className="printListBtn
-      button button__medium button__quaternary  button__icon--left "
-          data-cy=""
-          disabled={false}
-          onClick={[Function]}
-        >
-          <Icon
-            className="icon--left"
-            name="print"
-          >
-            <i
-              className="material-icons material-icons-print icon--left "
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&#xE8AD;",
-                }
-              }
-              data-unicoded="true"
-              onClick={[Function]}
-            />
-          </Icon>
-          <span>
-            <T
-              component="list"
-              name="printList"
-            >
-              Print listen
-            </T>
-          </span>
-        </button>
-      </Button>
+        PrintButton
+      </mockConstructor>
       <Button
+        className="clearList"
         disabled={false}
         iconLeft="delete"
         onClick={[Function]}
@@ -4365,7 +4229,7 @@ exports[`ShortList.container Order ebook 1`] = `
         type="quaternary"
       >
         <button
-          className="
+          className="clearList
       button button__medium button__quaternary  button__icon--left "
           data-cy=""
           disabled={false}
@@ -5676,47 +5540,13 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
     <div
       className="shortlist__tools--top"
     >
-      <Button
+      <mockConstructor
         className="printListBtn"
-        disabled={false}
-        href="print/huskeliste"
-        iconLeft="print"
-        size="medium"
-        type="quaternary"
       >
-        <button
-          className="printListBtn
-      button button__medium button__quaternary  button__icon--left "
-          data-cy=""
-          disabled={false}
-          onClick={[Function]}
-        >
-          <Icon
-            className="icon--left"
-            name="print"
-          >
-            <i
-              className="material-icons material-icons-print icon--left "
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&#xE8AD;",
-                }
-              }
-              data-unicoded="true"
-              onClick={[Function]}
-            />
-          </Icon>
-          <span>
-            <T
-              component="list"
-              name="printList"
-            >
-              Print listen
-            </T>
-          </span>
-        </button>
-      </Button>
+        PrintButton
+      </mockConstructor>
       <Button
+        className="clearList"
         disabled={false}
         iconLeft="delete"
         onClick={[Function]}
@@ -5724,7 +5554,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
         type="quaternary"
       >
         <button
-          className="
+          className="clearList
       button button__medium button__quaternary  button__icon--left "
           data-cy=""
           disabled={false}
@@ -7050,47 +6880,13 @@ exports[`ShortList.container Remove element 1`] = `
     <div
       className="shortlist__tools--top"
     >
-      <Button
+      <mockConstructor
         className="printListBtn"
-        disabled={false}
-        href="print/huskeliste"
-        iconLeft="print"
-        size="medium"
-        type="quaternary"
       >
-        <button
-          className="printListBtn
-      button button__medium button__quaternary  button__icon--left "
-          data-cy=""
-          disabled={false}
-          onClick={[Function]}
-        >
-          <Icon
-            className="icon--left"
-            name="print"
-          >
-            <i
-              className="material-icons material-icons-print icon--left "
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&#xE8AD;",
-                }
-              }
-              data-unicoded="true"
-              onClick={[Function]}
-            />
-          </Icon>
-          <span>
-            <T
-              component="list"
-              name="printList"
-            >
-              Print listen
-            </T>
-          </span>
-        </button>
-      </Button>
+        PrintButton
+      </mockConstructor>
       <Button
+        className="clearList"
         disabled={false}
         iconLeft="delete"
         onClick={[Function]}
@@ -7098,7 +6894,7 @@ exports[`ShortList.container Remove element 1`] = `
         type="quaternary"
       >
         <button
-          className="
+          className="clearList
       button button__medium button__quaternary  button__icon--left "
           data-cy=""
           disabled={false}
@@ -8409,47 +8205,13 @@ exports[`ShortList.container Short list contains elements 1`] = `
     <div
       className="shortlist__tools--top"
     >
-      <Button
+      <mockConstructor
         className="printListBtn"
-        disabled={false}
-        href="print/huskeliste"
-        iconLeft="print"
-        size="medium"
-        type="quaternary"
       >
-        <button
-          className="printListBtn
-      button button__medium button__quaternary  button__icon--left "
-          data-cy=""
-          disabled={false}
-          onClick={[Function]}
-        >
-          <Icon
-            className="icon--left"
-            name="print"
-          >
-            <i
-              className="material-icons material-icons-print icon--left "
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&#xE8AD;",
-                }
-              }
-              data-unicoded="true"
-              onClick={[Function]}
-            />
-          </Icon>
-          <span>
-            <T
-              component="list"
-              name="printList"
-            >
-              Print listen
-            </T>
-          </span>
-        </button>
-      </Button>
+        PrintButton
+      </mockConstructor>
       <Button
+        className="clearList"
         disabled={false}
         iconLeft="delete"
         onClick={[Function]}
@@ -8457,7 +8219,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
         type="quaternary"
       >
         <button
-          className="
+          className="clearList
       button button__medium button__quaternary  button__icon--left "
           data-cy=""
           disabled={false}
@@ -9661,47 +9423,13 @@ exports[`ShortList.container Short list is empty 1`] = `
     <div
       className="shortlist__tools--top"
     >
-      <Button
+      <mockConstructor
         className="printListBtn"
-        disabled={true}
-        href="print/huskeliste"
-        iconLeft="print"
-        size="medium"
-        type="quaternary"
       >
-        <button
-          className="printListBtn
-      button button__medium button__quaternary  button__icon--left "
-          data-cy=""
-          disabled={true}
-          onClick={[Function]}
-        >
-          <Icon
-            className="icon--left"
-            name="print"
-          >
-            <i
-              className="material-icons material-icons-print icon--left "
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&#xE8AD;",
-                }
-              }
-              data-unicoded="true"
-              onClick={[Function]}
-            />
-          </Icon>
-          <span>
-            <T
-              component="list"
-              name="printList"
-            >
-              Print listen
-            </T>
-          </span>
-        </button>
-      </Button>
+        PrintButton
+      </mockConstructor>
       <Button
+        className="clearList"
         disabled={true}
         iconLeft="delete"
         onClick={[Function]}
@@ -9709,7 +9437,7 @@ exports[`ShortList.container Short list is empty 1`] = `
         type="quaternary"
       >
         <button
-          className="
+          className="clearList
       button button__medium button__quaternary  button__icon--left "
           data-cy=""
           disabled={true}
