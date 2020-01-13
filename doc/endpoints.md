@@ -79,14 +79,6 @@ The path must one that has been returned by a `/v1/book` or `/v1/books` request.
 
 The result is an image file.
 
-## Recommendations
-
-### `GET /v1/recommendations?tag=`_metatag_`&`...`&tag=`_metatag_
-
-Each metatag must be a number defined by [Metakompasset](https://github.com/DBCDK/metakompasset). The client must provide at least one metatag.
-
-The result is a list of books such that each book include all the specified tags.
-
 ## Tags
 
 ### `GET /v1/tags/`_pid_
