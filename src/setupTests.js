@@ -42,6 +42,10 @@ jest.mock(
   }
 );
 
+jest.mock('./client/components/list/button/PrintButton', () =>
+  jest.fn(() => 'PrintButton')
+);
+
 jest.mock('./client/components/base/Head', () => jest.fn(() => 'Head'));
 
 jest.mock(
