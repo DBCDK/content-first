@@ -2,9 +2,6 @@ import React from 'react';
 import Text from '../../base/Text';
 import T from '../../base/T';
 
-import Link from '../../general/Link.component';
-
-import LaesekompasLogo from '../LaesekompasLogo.svg';
 import facebook from './facebook.svg';
 
 import './Footer.css';
@@ -76,12 +73,8 @@ class Footer extends React.Component {
           ref={e => (this.footerContainer = e)}
         >
           <div className="footer__container--elements">
-           
-   
-            
             <div className="footer__element ">
-              <Text type="body" className="footer_span_container "> 
-
+              <Text type="body" className="footer_span_container ">
                 <a
                   href="https://kundeservice.dbc.dk/lk"
                   target="_blank"
@@ -98,7 +91,6 @@ class Footer extends React.Component {
                   <T component="footer" name="about" />
                 </a>
 
-
                 <a
                   href="/vilkaar-og-betingelser"
                   target="_blank"
@@ -109,44 +101,34 @@ class Footer extends React.Component {
               </Text>
             </div>
 
-
-
             <div className="footer__element">
               <Text type="body" className="footer_span_container">
                 <span>
-                <T component="footer" name="addressCompany" />
+                  <T component="footer" name="addressCompany" />
                 </span>
 
                 <span>
-
-                <T component="footer" name="addressStreet" />
+                  <T component="footer" name="addressStreet" />
                 </span>
 
                 <span>
-
-                <T component="footer" name="addressCity" />
+                  <T component="footer" name="addressCity" />
                 </span>
-
               </Text>
             </div>
-            <div className="footer__element " >
-           <a className="facebook_footer_container"
+            <div className="footer__element ">
+              <a
+                className="facebook_footer_container"
                 href="https://www.facebook.com/laesekompas"
                 target="_blank"
                 rel="noopener noreferrer"
-           >
+              >
+                <img src={facebook} width="25" height="auto" alt="" />
 
-
-           <img src={facebook} width="25" height="auto" alt="" />
-
-<Text type="body" className="footer_facebook_text" >
-
-  <T component="footer" name="facebook"   />
-
-</Text>
-
-</a>
-
+                <Text type="body" className="footer_facebook_text">
+                  <T component="footer" name="facebook" />
+                </Text>
+              </a>
             </div>
           </div>
         </div>
