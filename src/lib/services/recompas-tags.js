@@ -43,6 +43,7 @@ class RecompasTags {
     maxresults,
     agencyId,
     branch,
+    timeout,
     plus,
     minus
   }) {
@@ -68,7 +69,7 @@ class RecompasTags {
         status,
         plus: sendPlus,
         minus: sendMinus,
-        timeout: 2000
+        timeout
       });
       return result.body;
     } catch (e) {

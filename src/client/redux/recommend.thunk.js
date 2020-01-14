@@ -91,6 +91,16 @@ const applyClientSideFilter = (work, tags, minus) => {
     }
   }
 
+  if (work.book.pages && work.book.pages !== 0) {
+    if (work.book.pages <= minPages || work.book.pages >= maxPages) {
+      return false;
+    }
+  } else if (specialcase) {
+    if (work.book.fetchRecommendations > 150 || work.book.pages < 350) {
+      return false;
+    }
+  }
+
   if (tags.includes(100003)) {
     // availability
     if (minus.includes(100003)) {
