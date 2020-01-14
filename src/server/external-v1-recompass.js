@@ -31,13 +31,16 @@ router
             //
             // Recompas recommend based on tags
             //
+
             const {
               tags = {},
               creators = {},
               maxresults = 10,
               agencyId,
               branch,
-              expand = true
+              expand = true,
+              plus,
+              minus
             } = req.query;
 
             const link = `${req.baseUrl}?tags=${req.query.tags ||
@@ -63,7 +66,9 @@ router
                 creators: creators,
                 maxresults: parseInt(maxresults, 10),
                 agencyId,
-                branch
+                branch,
+                plus,
+                minus
               });
 
               result.rid = uuidGenerator.v1();
@@ -80,7 +85,6 @@ router
                   }))
                 );
               }
-
               cache.set(req.originalUrl, result);
               logger.log.debug('recompasTags', {
                 originalUrl: req.originalUrl,
@@ -95,7 +99,6 @@ router
             //
             // Recompas recommend based on pids
             //
-
             const {
               likes = [],
               dislikes = [],
@@ -135,7 +138,6 @@ router
 
             try {
               const result = await recompasWork.getRecommendations(objToSend);
-
               result.rid = uuidGenerator.v1();
               matomo.trackDataEvent(
                 'recommend',
