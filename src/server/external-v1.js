@@ -26,6 +26,7 @@ router.use('/searcher', require('server/external-v1-searcher'));
 router.use('/initial-state', require('server/external-v1-initial-state'));
 router.use('/kiosk', require('server/external-v1-kiosk'));
 router.use('/holdings', require('server/external-v1-holdings'));
+router.use('/logout', require('server/external-v1-logout'));
 if (config.server.environment !== 'production') {
   router.use('/test', require('server/internal-v1-test'));
 }
