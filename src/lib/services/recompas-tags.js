@@ -43,7 +43,9 @@ class RecompasTags {
     maxresults,
     agencyId,
     branch,
-    timeout
+    timeout,
+    plus,
+    minus
   }) {
     try {
       let branchid;
@@ -52,9 +54,24 @@ class RecompasTags {
         branchid = `${agencyId}|${branch}`;
         status = 'onShelf';
       }
-      const result = await request
-        .post(this.config.recompass.url.tags)
-        .send({tags, creators, maxresults, branchid, status, timeout});
+      let sendPlus = (plus && Array.isArray(plus) ? plus : [plus]).filter(
+        t => Math.trunc(t) < 99999
+      );
+      let sendMinus = (minus && Array.isArray(minus) ? minus : [minus]).filter(
+        t => Math.trunc(t) < 99999
+      );
+
+      const result = await request.post(this.config.recompass.url.tags).send({
+        tags,
+        creators,
+        maxresults,
+        branchid,
+        status,
+        plus: sendPlus,
+        minus: sendMinus,
+        timeout
+      });
+
       return result.body;
     } catch (e) {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';

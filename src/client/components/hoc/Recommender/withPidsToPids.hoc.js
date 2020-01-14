@@ -25,7 +25,7 @@ import {fetchWorkRecommendations} from '../../../redux/recommend.thunk';
  * <GreatRecommendations likes={['870970-basis:123456']} isVisible={false}/>
  */
 export default WrappedComponent => props => {
-  const {likes, dislikes, tag_weight, limit, excluded} = props;
+  const {likes, dislikes, tag_weight, limit, excluded, plus, minus} = props;
   const kiosk = useSelector(store => store.kiosk);
   const agencyId = get(kiosk, 'configuration.agencyId');
   const branch = get(kiosk, 'configuration.branch');
@@ -36,7 +36,9 @@ export default WrappedComponent => props => {
     limit,
     excluded,
     agencyId,
-    branch
+    branch,
+    plus,
+    minus
   });
   const recommendations = useSelector(
     store =>

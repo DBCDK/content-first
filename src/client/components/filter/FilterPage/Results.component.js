@@ -95,6 +95,44 @@ const StoreBeltPin = withStoreBelt(props => {
 });
 
 class Results extends React.Component {
+  formatTitle = tag => {
+    let title = tag.title;
+    let id = tag.id;
+    let minus = [];
+    let plus = [];
+
+    if (this.props.minus) {
+      minus =
+        typeof this.props.minus[0] === 'string'
+          ? [Math.trunc(this.props.minus)]
+          : this.props.minus[0].map(n => Math.trunc(n));
+    }
+    if (this.props.plus) {
+      plus =
+        typeof this.props.plus[0] === 'string'
+          ? [Math.trunc(this.props.plus)]
+          : this.props.plus[0].map(n => Math.trunc(n));
+    }
+
+    if (plus.includes(id)) {
+      return (
+        <div key={id} className="must-include">
+          {title}
+        </div>
+      );
+    }
+
+    if (minus.includes(id)) {
+      return (
+        <div key={id} className="must-not-include">
+          {title}
+        </div>
+      );
+    }
+
+    return <div>{title}</div>;
+  };
+
   render() {
     const singlePid = this.props.tags
       .filter(t => t.type === 'TITLE')
@@ -110,7 +148,12 @@ class Results extends React.Component {
       <div id="filter-page-results" className="filter-page-results pt-5">
         {allPids.length > 0 && (
           <div>
-            <MultiRowContainer recommendations={allPids} origin="Fra søgning" />
+            <MultiRowContainer
+              recommendations={allPids}
+              origin="Fra søgning"
+              plus={this.props.plus}
+              minus={this.props.minus}
+            />
           </div>
         )}
         {creators.map(creator => {
@@ -124,16 +167,31 @@ class Results extends React.Component {
                 Tag="h1"
                 type="title4"
                 variant="transform-uppercase"
-                className="mr-4"
+                className="mr-4 recommended-words"
               >
                 <strong>Forslag til</strong>
                 {tags.map((tag, idx) => {
                   if (idx === 0) {
-                    return ' ' + tag.title;
+                    return (
+                      <React.Fragment key={idx}>
+                        &nbsp;
+                        {this.formatTitle(tag)}
+                      </React.Fragment>
+                    );
                   } else if (idx === tags.length - 1) {
-                    return ' og ' + tag.title;
+                    return (
+                      <React.Fragment key={idx}>
+                        &nbsp;og&nbsp;
+                        {this.formatTitle(tag)}
+                      </React.Fragment>
+                    );
                   }
-                  return ', ' + tag.title;
+                  return (
+                    <React.Fragment key={idx}>
+                      ,&nbsp;
+                      {this.formatTitle(tag)}
+                    </React.Fragment>
+                  );
                 })}
               </Title>
               <Kiosk
@@ -154,6 +212,8 @@ class Results extends React.Component {
               limit={200}
               tags={tags.map(tag => tag.id)}
               origin={{type: 'searchTags', tags: tags.map(t => t.id)}}
+              plus={this.props.plus}
+              minus={this.props.minus}
             />
           </div>
         )}
