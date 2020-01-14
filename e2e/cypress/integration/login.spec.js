@@ -45,7 +45,7 @@ describe('Login test', function() {
     cy.get('[data-cy=user-form-name]').should('have.value', userName);
   });
 
-  it.skip('Can login through Adgangsplatformen', function() {
+  it('Can login through Adgangsplatformen', function() {
     cy.visit('/v1/auth/login');
 
     cy.get('[data-cy=libraryname-input]:visible').type('Ishø');
@@ -57,6 +57,6 @@ describe('Login test', function() {
     cy.get('[data-cy=userid-input]:visible').type('7183532906');
     cy.get('[data-cy=pin-input]:visible').type('2635');
     cy.get('[data-cy=borchk-submit]:visible').click();
-    cy.url().should('include', 'localhost');
+    cy.get('[data-cy=topbar-logged-in-btn]');
   });
 });
