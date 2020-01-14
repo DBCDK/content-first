@@ -70,7 +70,6 @@ class RecompasTags {
         minus: sendMinus,
         timeout: 10000
       });
-      console.log('result*******++-', result.body);
       return result.body;
     } catch (e) {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
