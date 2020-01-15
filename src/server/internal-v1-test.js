@@ -73,19 +73,20 @@ router
   //
   .get(
     asyncMiddleware(async (req, res) => {
+      const editor = req.query.editor
+        ? req.query.editor.toLowerCase() === 'true'
+        : false;
+      const premium = req.query.premium
+        ? req.query.premium.toLowerCase() === 'true'
+        : false;
       try {
-        const loginToken = await createUser(
-          req,
-          true,
-          req.query.editor,
-          req.query.premium
-        );
+        const loginToken = await createUser(req, true, editor, premium);
 
         const user = {
           openplatformId: req.params.id,
           openplatformToken: req.params.id,
           expires: Math.ceil((Date.now() + ms_OneMonth) / 1000),
-          isPremium: JSON.parse(req.query.premium),
+          isPremium: premium,
           special: {
             over13: true,
             name: req.params.id

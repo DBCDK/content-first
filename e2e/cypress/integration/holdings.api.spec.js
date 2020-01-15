@@ -277,8 +277,6 @@ describe('holdings API', function() {
     holdingsRequest(
       '/v1/holdings?pid=870970-basis:21812765&branch=Hovedbiblioteket&agencyId=710100',
       response => {
-        console.log('===', response.body);
-        console.log('===', response.body['870970-basis:21812765']);
         expect(response.status).to.equal(200);
         const holding = response.body['870970-basis:21812765'];
         expect(holding.length).to.equal(2);
