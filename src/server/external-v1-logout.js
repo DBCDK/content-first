@@ -20,7 +20,7 @@ router
     if (req.cookies && req.cookies['test-user-data']) {
       res.clearCookie('test-user-data').clearCookie('login-token');
     }
-    res.status(200).json({status: 200});
+    res.status(200).json({statusCode: 200});
   });
 
 module.exports = router;
