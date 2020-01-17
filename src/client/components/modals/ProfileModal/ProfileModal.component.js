@@ -45,7 +45,7 @@ export class ProfileModal extends React.Component {
   showAgeLimitWindow = () => {
     return (
       <div
-        className="modal-window profile__ageLimit-window"
+        className="modal-window profile__ageLimit-window profile__modal-window"
         data-cy="user-form-under13"
       >
         <div className="profile__accept-margins">
