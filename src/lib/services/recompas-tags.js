@@ -37,14 +37,7 @@ class RecompasTags {
     return this.errorLog;
   }
 
-  async getRecommendations({
-    tags,
-    creators,
-    maxresults,
-    agencyId,
-    branch,
-    timeout
-  }) {
+  async getRecommendations({tags, creators, maxresults, agencyId, branch}) {
     try {
       let branchid;
       let status;
@@ -54,7 +47,7 @@ class RecompasTags {
       }
       const result = await request
         .post(this.config.recompass.url.tags)
-        .send({tags, creators, maxresults, branchid, status, timeout});
+        .send({tags, creators, maxresults, branchid, status});
       return result.body;
     } catch (e) {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
