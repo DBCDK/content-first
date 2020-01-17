@@ -1,4 +1,4 @@
-const pid = '870970-basis:54072813';
+const pid = '870970-basis:53975542';
 
 const holdingsRequest = (path, callback) => {
   cy.request({
@@ -38,12 +38,12 @@ const createHoldingsSolrDoc = (bibliographicRecordId, status) => {
     'holdingsitem.status': [status],
     'holdingsitem_dv.status': [status],
     'holdingsitem.issueId': '',
-    'holdingsitem.agencyId': 710100,
+    'holdingsitem.agencyId': 875210,
     'holdingsitem.location': 'some-location',
     'holdingsitem.issueText': '',
     'holdingsitem.department': 'Voksen',
     'holdingsitem.subLocation': 'Skønlitteratur',
-    'holdingsitem.collectionId': '710100-54072813',
+    'holdingsitem.collectionId': '870970-53975542',
     'holdingsitem.readyForLoan': [0],
     'rec.bibliographicRecordId': bibliographicRecordId,
     'holdingsitem.accessionDate': '2019-03-07T00:00:00Z',
@@ -52,7 +52,7 @@ const createHoldingsSolrDoc = (bibliographicRecordId, status) => {
     'holdingsitem.expectedDelivery': '2019-11-19T23:00:00Z',
     'holdingsitem.bibliographicRecordId': bibliographicRecordId,
     'holdingsitem.role': ['bibdk', 'danbib'],
-    id: '54072813/32!870970-basis-54072813@710100-54072813#8',
+    id: '53975542/32!870970-basis-53975542@710100-53975542#8',
     _version_: 1650716686324596700
   };
 };
@@ -180,14 +180,14 @@ describe('holdings API', function() {
       );
     });
 
-    holdingsRequest('/v1/holdings?pid=870970-basis:54072813', response => {
+    holdingsRequest('/v1/holdings?pid=870970-basis:53975542', response => {
       expect(response.status).to.equal(400);
       expect(response.body.errors[0].detail).to.contain(
         'Insufficient identification of the material'
       );
     });
     holdingsRequest(
-      '/v1/holdings?pid=870970-basis:54072813&branch=Hovedbiblioteket',
+      '/v1/holdings?pid=870970-basis:53975542&branch=Hovedbiblioteket',
       response => {
         expect(response.status).to.equal(400);
         expect(response.body.errors[0].detail).to.contain(
@@ -199,12 +199,12 @@ describe('holdings API', function() {
 
   it(`should give valid onShelf response`, function() {
     mockIdMapper({
-      [pid]: ['875210-katalog:54072813']
+      [pid]: ['870970-basis:53975542']
     });
-    mockSolrDocs([{bibliographicRecordId: '54072813', status: 'OnShelf'}]);
+    mockSolrDocs([{bibliographicRecordId: '53975542', status: 'OnShelf'}]);
 
     holdingsRequest(
-      '/v1/holdings?pid=870970-basis:54072813&branch=Hovedbiblioteket&agencyId=710100',
+      '/v1/holdings?pid=870970-basis:53975542&branch=Hovedbiblioteket&agencyId=710100',
       response => {
         expect(response.status).to.equal(200);
         expect(response.body[pid][0].onShelf).to.be.true;
@@ -215,29 +215,29 @@ describe('holdings API', function() {
 
   it(`should give valid response when not onShelf`, function() {
     mockIdMapper({
-      [pid]: ['875210-katalog:54072813']
+      [pid]: ['870970-basis:53975542']
     });
-    mockSolrDocs([{bibliographicRecordId: '54072813', status: 'OnLoan'}]);
+    mockSolrDocs([{bibliographicRecordId: '53975542', status: 'OnLoan'}]);
     holdingsRequest(
-      '/v1/holdings?pid=870970-basis:54072813&branch=Hovedbiblioteket&agencyId=710100',
+      '/v1/holdings?pid=870970-basis:53975542&branch=Hovedbiblioteket&agencyId=710100',
       response => {
         expect(response.body[pid][0].onShelf).to.be.false;
       }
     );
   });
+
   it(`should retrieve holdings for all pids in work`, function() {
     mockIdMapper({
       [pid]: [pid, '875210-basis:12345678']
     });
     mockSolrDocs([
-      {bibliographicRecordId: '54072813', status: 'OnLoan'},
+      {bibliographicRecordId: '53975542', status: 'OnLoan'},
       {bibliographicRecordId: '12345678', status: 'OnShelf'}
     ]);
     holdingsRequest(
-      '/v1/holdings?pid=870970-basis:54072813&branch=Hovedbiblioteket&agencyId=710100',
+      '/v1/holdings?pid=870970-basis:53975542&branch=Hovedbiblioteket&agencyId=710100',
       response => {
         expect(response.body[pid][0].onShelf).to.be.false;
-        expect(response.body[pid][1].onShelf).to.be.true;
         expect(response.body[pid][1].onShelf).to.be.true;
         expect(response.body[pid][1].bibliographicRecordId).to.equal(
           '12345678'
@@ -253,11 +253,11 @@ describe('holdings API', function() {
       [anotherPid]: [anotherPid]
     });
     mockSolrDocs([
-      {bibliographicRecordId: '54072813', status: 'OnShelf'},
+      {bibliographicRecordId: '53975542', status: 'OnShelf'},
       {bibliographicRecordId: '23456789', status: 'OnLoan'}
     ]);
     holdingsRequest(
-      '/v1/holdings?pid=870970-basis:54072813&pid=870970-basis:23456789&branch=Hovedbiblioteket&agencyId=710100',
+      '/v1/holdings?pid=870970-basis:53975542&pid=870970-basis:23456789&branch=Hovedbiblioteket&agencyId=710100',
       response => {
         expect(response.body[pid][0].onShelf).to.be.true;
         expect(response.body[anotherPid][0].onShelf).to.be.false;
