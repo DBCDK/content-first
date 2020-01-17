@@ -11,7 +11,6 @@ const applyClientSideFilter = (work, tags, minus) => {
   if (!work) {
     return false;
   }
-
   let minusTags = minus.filter(m => m > 99999 && m < 100003);
   let posTags = tags
     .filter(n => n > 99999 && n < 100003)
@@ -71,7 +70,6 @@ const applyClientSideFilter = (work, tags, minus) => {
   if (minusTags.length === 3) {
     return false;
   }
-
   if (work.book.pages && work.book.pages !== 0) {
     if (work.book.pages <= minPages || work.book.pages >= maxPages) {
       return false;
@@ -118,7 +116,7 @@ const fetchRecommendations = async action => {
   let customTagsSelected = true;
   // let thresholdLevel = 0;  // Disabled until further investigated - see US1058
   if (action.tags) {
-    let {tags = [], creators = [], limit} = action;
+    const {tags = [], creators = [], limit} = action;
 
     let nonCustomTags = tags.filter(
       tag => !filtersMapAll[tag.id || tag].custom
@@ -198,6 +196,7 @@ export const fetchTagRecommendations = ({
 
   try {
     dispatch({type: RECOMMEND_REQUEST, requestKey});
+
     if (limit > 20) {
       // Respond fast
       const fastResponse = await fetchRecommendations({
@@ -206,18 +205,21 @@ export const fetchTagRecommendations = ({
         branch,
         agencyId,
         limit: 20,
-        timeout: 2000
+        timeout: 2000,
+        plusArr,
+        minusArr
       });
       dispatch({
         type: RECOMMEND_RESPONSE,
         requestKey,
         pids: fastResponse.response
-          .filter(entry => applyClientSideFilter(entry.work, tags))
+          .filter(entry => applyClientSideFilter(entry.work, tags, minusArr))
           .map(entry => entry.pid),
         rid: fastResponse.rid,
         isLoading: true
       });
     }
+
     const response = await fetchRecommendations({
       tags,
       creators,

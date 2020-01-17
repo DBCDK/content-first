@@ -58,12 +58,14 @@ const withTagsFromUrl = WrappedComponent => {
     };
 
     toggleReq = tag => {
-      let plusStrArr = formatArr(this.props.plus);
-      let minusStrArr = formatArr(this.props.minus);
+      if (this.props.isPremium) {
+        let plusStrArr = formatArr(this.props.plus);
+        let minusStrArr = formatArr(this.props.minus);
 
-      let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
-      let tagArr = this.props.tags.map(t => t.match.toString());
-      this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
+        let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
+        let tagArr = this.props.tags.map(t => t.match.toString());
+        this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
+      }
     };
 
     removeTag = tag => {
@@ -129,12 +131,12 @@ const withTagsFromUrl = WrappedComponent => {
   };
   const mapStateToProps = state => {
     const {tags, tagsMap, plus, minus} = tagsFromUrlSelector(state);
-
     return {
       tags,
       plus,
       minus,
       tagsMap,
+      isPremium: state.userReducer.isPremium,
       filterCards: state.filtercardReducer,
       filters: state.filterReducer.filters
     };
