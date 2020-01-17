@@ -11,6 +11,7 @@ const applyClientSideFilter = (work, tags, minus) => {
   if (!work) {
     return false;
   }
+
   let minusTags = minus.filter(m => m > 99999 && m < 100003);
   let posTags = tags
     .filter(n => n > 99999 && n < 100003)
@@ -70,6 +71,16 @@ const applyClientSideFilter = (work, tags, minus) => {
   if (minusTags.length === 3) {
     return false;
   }
+  if (work.book.pages && work.book.pages !== 0) {
+    if (work.book.pages <= minPages || work.book.pages >= maxPages) {
+      return false;
+    }
+  } else if (specialcase) {
+    if (work.book.fetchRecommendations > 150 || work.book.pages < 350) {
+      return false;
+    }
+  }
+
   if (work.book.pages && work.book.pages !== 0) {
     if (work.book.pages <= minPages || work.book.pages >= maxPages) {
       return false;

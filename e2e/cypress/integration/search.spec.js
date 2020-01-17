@@ -22,7 +22,9 @@ describe('Search test', function() {
     const searchWord1 = 'lang';
 
     cy.visit('/');
+
     cy.createUser(null, null, true);
+
     cy.get('[data-cy=topbar-search-btn]').click();
     cy.get('[data-cy=search-bar-input]')
       .first()
@@ -47,17 +49,22 @@ describe('Search test', function() {
         if (value === '') {
           return;
         }
+
         expect(value).to.be.greaterThan(350);
       });
   });
   it('creates 4 tags, clicks them to get an assorted selection', function() {
     const searchWord2 = 'kort';
+
     const searchWord3 = 'krævende sprog';
     const searchWord4 = 'humor';
     const searchWord5 = 'familien';
     //kort minus
     cy.visit('/');
     cy.createUser(null, null, true);
+
+    //kort minus
+    cy.visit('/');
     cy.get('[data-cy=topbar-search-btn]').click();
     cy.get('[data-cy=search-bar-input]')
       .first()
@@ -90,7 +97,6 @@ describe('Search test', function() {
       .click()
       .click();
 
-    //slang
     cy.get('[data-cy=search-bar-input]')
       .first()
       .type(searchWord4);
@@ -105,7 +111,6 @@ describe('Search test', function() {
       '.topbar__search-bar--wrap > #selected-filters-wrap > #selectedFilters > :nth-child(3) > :nth-child(1) > span'
     ).click();
 
-    //familien
     cy.get('[data-cy=search-bar-input]')
       .first()
       .type(searchWord5);
@@ -118,11 +123,14 @@ describe('Search test', function() {
       .click();
     cy.get(
       '.topbar__search-bar--wrap > #selected-filters-wrap > #selectedFilters > :nth-child(4) > :nth-child(1) > span'
-    ).click();
+    )
+      .click()
+      .click();
 
     cy.get(
       ':nth-child(1) > [data-cy=workcard-0] > .work-card__content > [data-cy=book-cover-loaded] > .hover-details-fade'
     ).click();
+
     cy.get('.work-preview__title > [data-cy]')
       .invoke('text')
       .then(value => {

@@ -66,6 +66,13 @@ const withTagsFromUrl = WrappedComponent => {
         let tagArr = this.props.tags.map(t => t.match.toString());
         this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
       }
+
+      let plusStrArr = formatArr(this.props.plus);
+      let minusStrArr = formatArr(this.props.minus);
+
+      let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
+      let tagArr = this.props.tags.map(t => t.match.toString());
+      this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
     };
 
     removeTag = tag => {
