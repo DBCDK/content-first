@@ -155,7 +155,7 @@
 }
 
 .topbar__navigation--icon img {
-  height: 30px;
+  height: 28px;
 }
 
 /*
@@ -188,8 +188,9 @@
 
 .topbar .topbar__logo img {
   max-width: 190px;
-  padding-top: 5px;
-  padding-left: 7px;}
+  margin-left: 7px;
+  margin-top: 15px;
+}
 
 /*
   Topbar Dropdown

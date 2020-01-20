@@ -24,14 +24,6 @@
   padding: var(--5pt);
 }
 
-.footer__element {
-  width: 25%;
-  padding: 0 var(--2pt) 0 0;
-}
-.footer__element:last-child {
-  padding: 0;
-}
-
 .footer__element p {
   margin: var(--2pt) 0 0;
 }

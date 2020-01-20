@@ -83,11 +83,7 @@ class Footer extends React.Component {
                   <T component="footer" name="feedback" />
                 </a>
 
-                <a
-                  href="https://laesekompas.dk/om"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="/om" target="_blank" rel="noopener noreferrer">
                   <T component="footer" name="about" />
                 </a>
 
