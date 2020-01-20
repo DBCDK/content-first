@@ -6,7 +6,7 @@ import Button from '../../base/Button';
 import {withTagsFromUrl} from '../../hoc/AdressBar';
 import {withWork} from '../../hoc/Work';
 import './SearchBar.css';
-import {formatArr} from '../../hoc/AdressBar/withTagsFromUrl.hoc';
+import {getReqState} from '../../hoc/AdressBar/withTagsFromUrl.hoc';
 
 const SelectedWork = withWork(({selected, work, onRemove}) => {
   return (
@@ -89,26 +89,12 @@ class SearchBar extends React.Component {
     this.state = {query: '', expanded: false};
   }
 
-  getReqState = s => {
-    let strTag = s.id.toString();
-    let plusStrArr = formatArr(this.props.plus);
-    let minusStrArr = formatArr(this.props.minus);
-
-    let res = 'none';
-    if (plusStrArr.includes(strTag)) {
-      res = 'underline';
-    } else if (minusStrArr.includes(strTag)) {
-      res = 'line-through';
-    }
-    return res;
-  };
-
   renderSelected = selected => {
     switch (selected.type) {
       case 'TAG':
         return (
           <SelectedTag
-            reqState={this.getReqState(selected)}
+            reqState={getReqState(selected, this.props.plus, this.props.minus)}
             key={selected.match}
             selected={selected}
             onRemove={this.props.removeTag}

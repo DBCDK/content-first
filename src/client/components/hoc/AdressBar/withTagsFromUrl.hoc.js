@@ -75,6 +75,20 @@ const withTagsFromUrl = WrappedComponent => {
       this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
     };
 
+    getReqState = s => {
+      let strTag = s.id.toString();
+      let plusStrArr = formatArr(this.props.plus);
+      let minusStrArr = formatArr(this.props.minus);
+
+      let res = 'none';
+      if (plusStrArr.includes(strTag)) {
+        res = 'underline';
+      } else if (minusStrArr.includes(strTag)) {
+        res = 'line-through';
+      }
+      return res;
+    };
+
     removeTag = tag => {
       if (this.isSelected(tag)) {
         let plusStrArr = formatArr(this.props.plus);
@@ -182,7 +196,7 @@ const withTagsFromUrl = WrappedComponent => {
 };
 export default withTagsFromUrl;
 
-export const formatArr = allEl => {
+const formatArr = allEl => {
   let el = allEl ? allEl[0] : [];
 
   let retArr = [];
@@ -192,6 +206,20 @@ export const formatArr = allEl => {
     retArr = el.map(p => p.toString());
   }
   return retArr;
+};
+
+export const getReqState = (s, plus, minus) => {
+  let strTag = s.id.toString();
+  let plusStrArr = formatArr(plus);
+  let minusStrArr = formatArr(minus);
+
+  let res = 'none';
+  if (plusStrArr.includes(strTag)) {
+    res = 'underline';
+  } else if (minusStrArr.includes(strTag)) {
+    res = 'line-through';
+  }
+  return res;
 };
 
 export const getPlusMinusArrays = (

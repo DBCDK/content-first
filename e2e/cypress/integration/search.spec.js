@@ -18,7 +18,7 @@ describe('Search test', function() {
       .should('have.text', 'Min kamp');
   });
 
-  it('creates a tag, clicks it to make it a must-have tag', function() {
+  it('creates a tag with id >99999 *lang* , then chooses the first book in the list and confirms that it is a long book', function() {
     const searchWord1 = 'lang';
 
     cy.visit('/');
