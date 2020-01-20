@@ -265,7 +265,7 @@ toggle on top of navigation bar - in the open/close animation */
 
  */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .topbar .navigation-btn.navigation-btn__shortlist--btn,
   .topbar .navigation-btn.navigation-btn__search--btn,
   .topbar .navigation-btn.navigation-btn__menu--burger {
