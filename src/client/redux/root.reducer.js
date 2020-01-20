@@ -26,6 +26,7 @@ import mountsReducer from './mounts.reducer';
 import rolesReducer from './roles.reducer';
 import kioskReducer from './kiosk.reducer';
 import holdingsReducer from './holdings.reducer';
+export const ON_INIT_REDUCER_RESPONSE = 'ON_INIT_REDUCER_RESPONSE';
 
 const combined = combineReducers({
   beltsReducer,
@@ -60,6 +61,10 @@ const combined = combineReducers({
 const rootReducer = (state = {}, action) => {
   const newState = combined(state, action);
   // setLocalStorage(newState);
+  if (action.type === ON_INIT_REDUCER_RESPONSE) {
+    delete action.state.beltsReducer.belts.skeletonBelt;
+    return {...newState, ...action.state};
+  }
   return newState;
 };
 

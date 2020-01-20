@@ -17,7 +17,7 @@ import Icon from '../Icon';
 import T from '../T';
 import Button from '../Button';
 import './TagsBelt.css';
-
+import BeltSkeleton from './BeltSkeleton.component';
 const EditBelt = props => {
   return (
     <React.Fragment>
@@ -54,7 +54,6 @@ export class TagsBelt extends React.Component {
     super();
     this.state = {editing: false, name: '', subtext: ''};
   }
-
   render() {
     const {
       _owner,
@@ -68,7 +67,6 @@ export class TagsBelt extends React.Component {
       openWorkPreview,
       recommendations
     } = this.props;
-
     const isOwner = _owner && _owner === get(this.props, 'user.openplatformId');
     const tags = plainSelectedTagIds;
     const editing = this.state.editing;
@@ -82,6 +80,14 @@ export class TagsBelt extends React.Component {
         return get(tag, 'id');
       })
     };
+    if (this.props.id === 'skeletonBelt') {
+      return (
+        <BeltSkeleton
+          recommendations={recommendations}
+          isLoading={this.props.isLoading}
+        />
+      );
+    }
 
     return (
       <div

@@ -1,0 +1,28 @@
+
+
+
+.beltskeleton--container {
+    width: 100%;
+  }
+  
+  .beltskeleton--container .container--row {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--5pt);
+  }
+  
+  @media only screen and (max-width: 576px) {
+    .beltskeleton--container .container--row {
+      padding: var(--2pt) var(--5pt);
+
+    }
+  }
+  
+  @media only screen and (max-width: 320px) {
+    .beltskeleton--container .container--row {
+      justify-content: space-around;
+      padding: var(--2pt) var(--1pt);
+
+    }
+  }
+  
