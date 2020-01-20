@@ -17,40 +17,7 @@ describe('Search test', function() {
       .first()
       .should('have.text', 'Min kamp');
   });
-
-  it('creates a tag with id >99999 *lang* , then chooses the first book in the list and confirms that it is a long book', function() {
-    const searchWord1 = 'lang';
-
-    cy.visit('/');
-    cy.createUser(null, null, true);
-    cy.get('[data-cy=topbar-search-btn]').click();
-    cy.get('[data-cy=search-bar-input]')
-      .first()
-      .type(searchWord1);
-
-    cy.wait(1000);
-
-    cy.get('[data-cy=suggestion-element]')
-      .contains('Lang')
-      .first()
-      .click();
-    cy.get(
-      '.topbar__search-bar--wrap > #selected-filters-wrap > #selectedFilters > [data-cy] > :nth-child(1) > span'
-    ).click();
-    cy.wait(500);
-    cy.get(
-      ':nth-child(1) > [data-cy=workcard-1] > .work-card__content > [data-cy=book-cover-loaded] > .hover-details-fade'
-    ).click();
-    cy.get('[data-cy=pages-count]')
-      .invoke('text')
-      .then(value => {
-        if (value === '') {
-          return;
-        }
-        expect(value).to.be.greaterThan(350);
-      });
-  });
-  it('creates 4 tags, clicks them to get an assorted selection', function() {
+  it('creates 4 tags, clicks them to get an assorted selection and checks they are formatted correctly', function() {
     const searchWord2 = 'kort';
     const searchWord3 = 'krævende sprog';
     const searchWord4 = 'humor';
@@ -69,6 +36,7 @@ describe('Search test', function() {
       .contains('Kort')
       .first()
       .click();
+
     cy.get(
       '.topbar__search-bar--wrap > #selected-filters-wrap > #selectedFilters > [data-cy] > :nth-child(1) > span'
     );
@@ -88,9 +56,11 @@ describe('Search test', function() {
       '.topbar__search-bar--wrap > #selected-filters-wrap > #selectedFilters > :nth-child(2) > :nth-child(1) > span'
     )
       .click()
-      .click();
+      .click()
+      .invoke('attr', 'style')
+      .should('contain', 'text-decoration: line-through');
 
-    //slang
+    //humor
     cy.get('[data-cy=search-bar-input]')
       .first()
       .type(searchWord4);
@@ -103,7 +73,10 @@ describe('Search test', function() {
       .click();
     cy.get(
       '.topbar__search-bar--wrap > #selected-filters-wrap > #selectedFilters > :nth-child(3) > :nth-child(1) > span'
-    ).click();
+    )
+      .click()
+      .invoke('attr', 'style')
+      .should('contain', 'text-decoration: underline');
 
     //familien
     cy.get('[data-cy=search-bar-input]')
@@ -118,15 +91,54 @@ describe('Search test', function() {
       .click();
     cy.get(
       '.topbar__search-bar--wrap > #selected-filters-wrap > #selectedFilters > :nth-child(4) > :nth-child(1) > span'
-    ).click();
+    )
+      .click()
+      .invoke('attr', 'style')
+      .should('contain', 'text-decoration: underline');
 
     cy.get(
       ':nth-child(1) > [data-cy=workcard-0] > .work-card__content > [data-cy=book-cover-loaded] > .hover-details-fade'
     ).click();
+
     cy.get('.work-preview__title > [data-cy]')
       .invoke('text')
       .then(value => {
         assert.isNotNull(value, 'is not null');
+      });
+  });
+  it('creates a tag *lang* , then chooses the first book in the list and confirms that it is a long book', function() {
+    const searchWord1 = 'lang';
+
+    cy.visit('/');
+    cy.createUser(null, null, true);
+    cy.get('[data-cy=topbar-search-btn]').click();
+    cy.get('[data-cy=search-bar-input]')
+      .first()
+      .type(searchWord1);
+
+    cy.wait(1000);
+
+    cy.get('[data-cy=suggestion-element]')
+      .contains('Lang')
+      .first()
+      .click();
+    cy.get(
+      '.topbar__search-bar--wrap > #selected-filters-wrap > #selectedFilters > [data-cy] > :nth-child(1) > span'
+    )
+      .click()
+      .invoke('attr', 'style')
+      .should('contain', 'text-decoration: underline');
+    cy.wait(500);
+    cy.get(
+      ':nth-child(1) > [data-cy=workcard-1] > .work-card__content > [data-cy=book-cover-loaded] > .hover-details-fade'
+    ).click();
+    cy.get('[data-cy=pages-count]')
+      .invoke('text')
+      .then(value => {
+        if (value === '') {
+          return;
+        }
+        expect(value).to.be.greaterThan(350);
       });
   });
 });
