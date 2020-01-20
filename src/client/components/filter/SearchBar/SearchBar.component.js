@@ -6,6 +6,8 @@ import Button from '../../base/Button';
 import {withTagsFromUrl} from '../../hoc/AdressBar';
 import {withWork} from '../../hoc/Work';
 import './SearchBar.css';
+import {getReqState} from '../../hoc/AdressBar/withTagsFromUrl.hoc';
+
 const SelectedWork = withWork(({selected, work, onRemove}) => {
   return (
     <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
@@ -31,9 +33,15 @@ const SelectedTitles = ({selected, onRemove}) => {
     </Button>
   );
 };
-const SelectedTag = ({selected, onRemove}) => (
+
+const SelectedTag = ({selected, onRemove, toggleReq, reqState}) => (
   <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
-    <span>{selected.title}</span>
+    <span
+      onClick={() => toggleReq(selected.match)}
+      style={{textDecoration: reqState}}
+    >
+      {selected.title}
+    </span>
     <Icon
       className={'md-small' + (isMobile ? ' increase-touch-area-xsmall' : '')}
       name="close"
@@ -57,8 +65,15 @@ const SelectedTagRange = ({selected, onRemove}) => (
     />
   </Button>
 );
+
 const SelectedQuery = ({selected, onRemove}) => (
-  <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+  <Button
+    Tag="div"
+    size="medium"
+    type="term"
+    className={`selected-filter`}
+    key={selected}
+  >
     <span>{selected.query}</span>
     <Icon
       className="md-small"
@@ -67,15 +82,23 @@ const SelectedQuery = ({selected, onRemove}) => (
     />
   </Button>
 );
+
 class SearchBar extends React.Component {
+  constructor() {
+    super();
+    this.state = {query: '', expanded: false};
+  }
+
   renderSelected = selected => {
     switch (selected.type) {
       case 'TAG':
         return (
           <SelectedTag
+            reqState={getReqState(selected, this.props.plus, this.props.minus)}
             key={selected.match}
             selected={selected}
             onRemove={this.props.removeTag}
+            toggleReq={this.props.toggleReq}
           />
         );
       case 'TAG_RANGE':
@@ -116,6 +139,7 @@ class SearchBar extends React.Component {
         return null;
     }
   };
+
   handleOnKeyDown = e => {
     /* handle backspace */
     const {tags} = this.props;
@@ -124,11 +148,13 @@ class SearchBar extends React.Component {
       this.props.removeTag(tags[tags.length - 1].match);
     }
   };
+
   initFilterPosition = () => {
     if (this.filtersRef) {
       this.filtersRef.scrollLeft = 99999999;
     }
   };
+
   onFiltersMouseWheelScrool = e => {
     // e.preventDefault(); suppress run-time warning - see https://dbcjira.atlassian.net/browse/CF-1160
     let scrollSpeed = 40;
@@ -138,13 +164,11 @@ class SearchBar extends React.Component {
       : (this.filtersRef.scrollLeft -= scrollSpeed);
     /* eslint-enable no-unused-expressions */
   };
-  constructor() {
-    super();
-    this.state = {query: '', expanded: false};
-  }
+
   componentDidMount() {
     this.initFilterPosition();
   }
+
   toggleFilter(filterId) {
     this.props.toggleFilter(filterId);
   }
@@ -198,4 +222,5 @@ class SearchBar extends React.Component {
     );
   }
 }
+
 export default withTagsFromUrl(SearchBar);

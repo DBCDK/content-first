@@ -50,7 +50,7 @@ const getIdsFromRange = (filterCards, tags = []) => {
  * <GreatRecommendations tags={[123, 234]} branch="Hovedbiblioteket" agencyId="710100"/>
  */
 export default WrappedComponent => props => {
-  const {tags, limit, threshold, excluded} = props;
+  const {tags, limit, threshold, excluded, plus, minus} = props;
   const kiosk = useSelector(store => store.kiosk);
   const agencyId = get(kiosk, 'configuration.agencyId');
   const branch = get(kiosk, 'configuration.branch');
@@ -60,8 +60,11 @@ export default WrappedComponent => props => {
     threshold,
     excluded,
     agencyId,
-    branch
+    branch,
+    plus,
+    minus
   });
+
   const recommendations = useSelector(
     store =>
       store.recommendReducer.recommendations[requestKey] || {
@@ -69,10 +72,9 @@ export default WrappedComponent => props => {
       }
   );
   const filterCards = useSelector(store => store.filtercardReducer);
+
   const plainSelectedTagIds = getIdsFromRange(filterCards, tags);
-
   const dispatch = useDispatch();
-
   useEffect(() => {
     // if (!isVisible) {
     //   return;
@@ -86,7 +88,9 @@ export default WrappedComponent => props => {
         tags,
         agencyId,
         branch,
-        limit
+        limit,
+        plus,
+        minus
       })
     );
 

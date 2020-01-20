@@ -31,18 +31,24 @@ router
             //
             // Recompas recommend based on tags
             //
+
             const {
               tags = {},
               creators = {},
               maxresults = 10,
               agencyId,
               branch,
-              expand = true
+              expand = true,
+              plus,
+              minus
             } = req.query;
+
+            const timeout =
+              req.query.timeout && parseInt(req.query.timeout, 10);
 
             const link = `${req.baseUrl}?tags=${req.query.tags ||
               ''}&creators=${req.query.creators ||
-              ''}&maxresults=${maxresults}`;
+              ''}&maxresults=${maxresults}&timeout=${timeout}`;
 
             if (
               (!tags || Object.keys(tags).length === 0) &&
@@ -63,7 +69,10 @@ router
                 creators: creators,
                 maxresults: parseInt(maxresults, 10),
                 agencyId,
-                branch
+                branch,
+                timeout,
+                plus,
+                minus
               });
 
               result.rid = uuidGenerator.v1();
@@ -80,7 +89,6 @@ router
                   }))
                 );
               }
-
               cache.set(req.originalUrl, result);
               logger.log.debug('recompasTags', {
                 originalUrl: req.originalUrl,
@@ -95,7 +103,6 @@ router
             //
             // Recompas recommend based on pids
             //
-
             const {
               likes = [],
               dislikes = [],
@@ -106,6 +113,8 @@ router
               branch,
               expand = true
             } = req.query;
+            const timeout =
+              (req.query.timeout && parseInt(req.query.timeout, 10)) || 5000;
 
             let objToSend = {
               likes: JSON.parse(likes),
@@ -113,7 +122,8 @@ router
               limit: Number(limit),
               debug,
               agencyId,
-              branch
+              branch,
+              timeout
             };
 
             if (tag_weight) {
@@ -135,7 +145,6 @@ router
 
             try {
               const result = await recompasWork.getRecommendations(objToSend);
-
               result.rid = uuidGenerator.v1();
               matomo.trackDataEvent(
                 'recommend',
