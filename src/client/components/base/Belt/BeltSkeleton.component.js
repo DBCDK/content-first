@@ -8,24 +8,9 @@ class BeltSkeleton extends React.Component {
   constructor() {
     super();
     this.state = {resultsPerRow: 1};
-    // this.handleResize = debounce(this.handleResize, 100, {leading: true});
   }
   componentDidMount() {
     this.handleResize();
-    window.addEventListener('resize', this.handleResize);
-  }
-  componentDidUpdate(prevProps) {
-    if (
-      (prevProps.recommendations.length === 0 &&
-        this.props.recommendations.length > 0) ||
-      prevProps.isLoading !== this.props.isLoading
-    ) {
-      this.handleResize();
-    }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
   }
 
   handleResize = () => {

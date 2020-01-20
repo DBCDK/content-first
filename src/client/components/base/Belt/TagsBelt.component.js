@@ -81,12 +81,7 @@ export class TagsBelt extends React.Component {
       })
     };
     if (this.props.id === 'skeletonBelt') {
-      return (
-        <BeltSkeleton
-          recommendations={recommendations}
-          isLoading={this.props.isLoading}
-        />
-      );
+      return <BeltSkeleton />;
     }
 
     return (
