@@ -53,6 +53,7 @@ const renderSuggestion = (suggestion, suggestionString) => {
 
 class TagsSuggester extends React.Component {
   fetchSuggestions = async ({value}) => {
+    this.currentValue = value;
     const response = await request.get('/v1/suggester').query({query: value});
     const clientSuggestions = this.getClientSideSuggestions({value});
     let suggestions = [...clientSuggestions, ...response.body];
@@ -69,7 +70,15 @@ class TagsSuggester extends React.Component {
         };
       });
     this.props.updateBooks(books);
-    this.setState({suggestions: this.getCombinedSuggestions(suggestions)});
+
+    // Handle race condition
+    // Prevents a slow outdated response from updating the state
+    if (this.currentValue === value) {
+      this.setState({
+        suggestions: this.getCombinedSuggestions(suggestions),
+        query: value
+      });
+    }
   };
 
   getCombinedSuggestions = suggs => {
@@ -127,6 +136,7 @@ class TagsSuggester extends React.Component {
     super(props);
     this.state = {
       suggestions: [],
+      query: '',
       inputVisible: false
     };
   }
@@ -242,7 +252,10 @@ class TagsSuggester extends React.Component {
           </div>
         )}
         <div
-          className={'suggestion-list tags-suggestion-list suggestion-list'}
+          className={`suggestion-list tags-suggestion-list suggestion-list query-${this.state.query.replace(
+            / /g,
+            '-'
+          )}`}
           ref="smallSearchBar"
           onClick={() => this.toggleInputvisibility(true)}
         >

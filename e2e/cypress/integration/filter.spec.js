@@ -1,3 +1,9 @@
+const waitForSuggestions = query => {
+  return cy.get(
+    `.query-${query.replace(/ /g, '-')} [data-cy=suggestion-element]`
+  );
+};
+
 describe('Filter page test', function() {
   it('Should check if logo is visible and clickable', function() {
     cy.visit('/');
@@ -145,9 +151,12 @@ describe('Filter page test', function() {
   it('Should give suggestions on author search', function() {
     const authorName = 'Haruki Murakami';
     cy.visit('/find');
+
     cy.get('[data-cy=search-bar-input]')
       .first()
       .type(authorName);
+
+    waitForSuggestions(authorName);
 
     cy.get('[data-cy=suggestion-element]')
       .its('length')
@@ -186,6 +195,8 @@ describe('Filter page test', function() {
       .first()
       .type(workTitle);
 
+    waitForSuggestions(workTitle);
+
     cy.get('[data-cy=suggestion-element]')
       .its('length')
       .should('be.gte', 1);
@@ -204,6 +215,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=search-bar-input]')
       .first()
       .type('c');
+    waitForSuggestions('c');
 
     cy.get('[data-cy=suggestion-element]')
       .first()
@@ -228,6 +240,8 @@ describe('Filter page test', function() {
     cy.get('[data-cy=search-bar-input]')
       .last()
       .type('c');
+
+    waitForSuggestions('c');
 
     cy.get('[data-cy=suggestion-element]')
       .first()
