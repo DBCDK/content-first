@@ -67,7 +67,7 @@ exports[`renders without crashing 1`] = `
                 onWheel={[Function]}
               >
                 <div
-                  className="suggestion-list tags-suggestion-list suggestion-list"
+                  className="suggestion-list tags-suggestion-list suggestion-list query-"
                   onClick={[Function]}
                 >
                   <div
