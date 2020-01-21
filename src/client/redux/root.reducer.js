@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import {merge} from 'lodash';
 import beltsReducer from './belts.reducer';
 import filterReducer from './filter.reducer';
 import routerReducer from './router.reducer';
@@ -63,7 +64,7 @@ const rootReducer = (state = {}, action) => {
   // setLocalStorage(newState);
   if (action.type === ON_INIT_REDUCER_RESPONSE) {
     delete action.state.beltsReducer.belts.skeletonBelt;
-    return {...newState, ...action.state};
+    return merge(newState, action.state);
   }
   return newState;
 };
