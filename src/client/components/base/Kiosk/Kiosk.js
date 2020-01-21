@@ -8,9 +8,6 @@ const KIOSK_SETTINGS_PATH = '/kiosk';
 class Kiosk extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      tmpKiosk: props.kiosk
-    };
   }
 
   start = () => {
@@ -30,6 +27,16 @@ class Kiosk extends React.Component {
 
   configureIfNeeded = () => {
     const {enabled, loaded} = this.props.kiosk;
+    if (
+      this.props.kiosk.enabled &&
+      !this.props.kiosk.isLoading &&
+      !this.props.kiosk.loaded
+    ) {
+      this.props.loadKiosk({
+        branchKey: this.props.urlParams.kiosk && this.props.urlParams.kiosk[0]
+      });
+    }
+
     const path = this.props.path;
     if (
       !enabled ||
@@ -45,22 +52,10 @@ class Kiosk extends React.Component {
   };
 
   componentDidMount() {
-    if (
-      this.props.kiosk.enabled &&
-      !this.props.kiosk.isLoading &&
-      !this.props.kiosk.loaded
-    ) {
-      this.props.loadKiosk({
-        branchKey: this.props.urlParams.kiosk && this.props.urlParams.kiosk[0]
-      });
-    }
     this.configureIfNeeded();
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.kiosk !== prevProps.kiosk) {
-      this.setState({tmpKiosk: this.props.kiosk});
-    }
+  componentDidUpdate() {
     this.configureIfNeeded();
   }
 
@@ -68,7 +63,6 @@ class Kiosk extends React.Component {
     const {render} = this.props;
     return render({
       kiosk: this.props.kiosk,
-      tmpKiosk: this.state.tmpKiosk,
       configured: this.isConfigured(),
       start: this.start,
       loadKiosk: this.props.loadKiosk
