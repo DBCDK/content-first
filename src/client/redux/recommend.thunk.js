@@ -226,7 +226,7 @@ export const fetchTagRecommendations = ({
         branch,
         agencyId,
         limit: 20,
-        timeout: 2000,
+        // timeout: 2000,
         plusArr,
         minusArr
       });
