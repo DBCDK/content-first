@@ -328,7 +328,16 @@ exports[`renders without crashing 1`] = `
         onChange={[Function]}
         partialVisibility={true}
       />
-      <div />
+      <div>
+        <TagsBelt
+          child={false}
+          id="skeletonBelt"
+          isLoading={true}
+          mount="frontpageundefined"
+          onFrontPage={true}
+          type="belt"
+        />
+      </div>
       <ListsBelt
         limit={50}
         matomoTitle="Nyeste brugerlister"
