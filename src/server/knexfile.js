@@ -11,8 +11,8 @@ module.exports = {
       password: process.env.DB_USER_PASSWORD
     },
     pool: {
-      min: process.env.DB_CONNECTIONS_POOL_MIN || 2,
-      max: process.env.DB_CONNECTIONS_POOL_MAX || 10
+      min: parseInt(process.env.DB_CONNECTIONS_POOL_MIN || 0, 10),
+      max: parseInt(process.env.DB_CONNECTIONS_POOL_MAX || 10, 10)
     },
     migrations: {
       directory: 'src/migrations'
@@ -31,8 +31,8 @@ module.exports = {
       password: process.env.DB_USER_PASSWORD
     },
     pool: {
-      min: process.env.DB_CONNECTIONS_POOL_MIN || 2,
-      max: process.env.DB_CONNECTIONS_POOL_MAX || 10
+      min: parseInt(process.env.DB_CONNECTIONS_POOL_MIN || 0, 10),
+      max: parseInt(process.env.DB_CONNECTIONS_POOL_MAX || 10, 10)
     },
     migrations: {
       directory: 'src/migrations'
@@ -51,8 +51,8 @@ module.exports = {
       password: process.env.DB_USER_PASSWORD
     },
     pool: {
-      min: process.env.DB_CONNECTIONS_POOL_MIN || 2,
-      max: process.env.DB_CONNECTIONS_POOL_MAX || 10
+      min: parseInt(process.env.DB_CONNECTIONS_POOL_MIN || 0, 10),
+      max: parseInt(process.env.DB_CONNECTIONS_POOL_MAX || 10, 10)
     },
     migrations: {
       directory: 'src/migrations'

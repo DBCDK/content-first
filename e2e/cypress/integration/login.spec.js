@@ -57,6 +57,7 @@ describe('Login test', function() {
     cy.get('[data-cy=userid-input]:visible').type('7183532906');
     cy.get('[data-cy=pin-input]:visible').type('2635');
     cy.get('[data-cy=borchk-submit]:visible').click();
+
     cy.get('[data-cy=topbar-logged-in-btn]');
   });
 });
