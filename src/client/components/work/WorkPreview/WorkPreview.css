@@ -28,7 +28,7 @@
 }
 
 .work-preview__work {
-  max-width: 60%;
+  width: 60%;
   display: flex;
 
   /* Allow items to have heights according to content */
@@ -36,6 +36,7 @@
 }
 
 .work-preview__information {
+  flex-grow: 1;
   /* margin is used to make share button respect the relative div - padding is ignored */
   margin: 0 var(--5pt);
 
