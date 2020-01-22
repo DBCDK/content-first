@@ -29,7 +29,7 @@ const logout = async (req, res) => {
         .redirect('/');
     } else {
       res.redirect(
-        `${config.login.url}/logout/?access_token=${openplatformToken}&redirect_uri=${config.server.dmzHost}`
+        `${config.login.url}/logout/?singlelogout=true&access_token=${openplatformToken}&redirect_uri=${config.server.dmzHost}`
       );
     }
   } else {

@@ -428,7 +428,7 @@ export const deleteObject = object => {
 export const logout = dispatch => {
   dispatch({type: ON_LOGOUT_RESPONSE});
   document.body.innerHTML +=
-    '<form id="logoutform" action="/v1/auth/logout?singlelogout=true" method="post"></form>';
+    '<form id="logoutform" action="/v1/auth/logout" method="post"></form>';
   document.getElementById('logoutform').submit();
 };
 
