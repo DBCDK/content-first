@@ -1,4 +1,5 @@
 import {ON_INIT_REDUCER_RESPONSE} from '../redux/root.reducer';
+import {ON_USER_DETAILS_REQUEST} from '../redux/user.reducer';
 import {OPEN_MODAL} from '../redux/modal.reducer';
 import request from 'superagent';
 
@@ -10,6 +11,7 @@ export default async store => {
       type: ON_INIT_REDUCER_RESPONSE,
       state: serverInitialState
     });
+    store.dispatch({type: ON_USER_DETAILS_REQUEST});
   } catch (e) {
     store.dispatch({
       type: OPEN_MODAL,
