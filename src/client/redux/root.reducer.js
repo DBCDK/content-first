@@ -63,14 +63,14 @@ const rootReducer = (state = {}, action) => {
   const newState = combined(state, action);
   // setLocalStorage(newState);
   if (action.type === ON_INIT_REDUCER_RESPONSE) {
-    if (has(action, 'state.beltsReducer.belts.skeletonBelt')) {
-      delete action.state.beltsReducer.belts.skeletonBelt;
-    }
-
     // we cloneDeep to prevent all sorts of nasty bugs
     // (components not being rerendered properly).
     // The merge function mutate objects (redux requires an immutable update pattern)
-    return cloneDeep(merge(newState, action.state));
+    const res = cloneDeep(merge(newState, action.state));
+    if (has(res, 'beltsReducer.belts.skeletonBelt')) {
+      delete res.beltsReducer.belts.skeletonBelt;
+    }
+    return res;
   }
   return newState;
 };
