@@ -22,6 +22,8 @@ if (env.NODE_ENV === 'development') {
   config.MATOMO_SITE_ID = get(config, 'matomo.siteId');
   config.MATOMO_DATA_SITE_ID = get(config, 'matomo.dataSiteId');
   config.MATOMO_AID = get(config, 'matomo.aid');
+
+  config.KIOSK_ENABLED = get(config, 'kiosk.enabled');
 }
 
 export default config;

@@ -50,7 +50,8 @@ if (fs.existsSync(buildPath)) {
 indexHtmlWithConfig = indexHtmlWithConfig.replace(
   '</head>',
   `<script>CONFIG = ${JSON.stringify({
-    matomo: config.matomo
+    matomo: config.matomo,
+    kiosk: config.kiosk
   })};</script></head>`
 );
 
