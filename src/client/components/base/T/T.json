@@ -223,6 +223,23 @@
       "addressCity": {
         "da": "2750 Ballerup",
         "en": "2750 Ballerup"
+      },
+      "feedback":{ 
+        "da": "Fejl, ris, ros og gode ideer",
+        "en": ""
+      },
+      "about":{
+        "da": "Om Læsekompasset",
+        "en": "About"
+      },
+      "policy": {
+        "da": "Vilkår og betingelser",
+        "en": "Terms and conditions"
+      },
+      "facebook":{
+        "da": "Facebook",
+        "en": "Facebook"
+
       }
     },
     "work": {

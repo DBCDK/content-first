@@ -1,26 +1,27 @@
-### Læsekompasset er dit online inspirationsværktøj til at finde ny læsning
+### Hvad er Læsekompasset?
 
-Læsekompasset er bibliotekernes inspirationsværktøj til voksne læsere af skønlitteratur. Alle kan anvende Læsekompasset, men det kræver biblioteks-login, hvis du vil låne bøger igennem websitet.
+Læsekompasset er bibliotekernes inspirationsværktøj til voksne læsere af skønlitteratur. På Læsekompasset finder du inspiration, der tager udgangspunkt i al skønlitteratur på dansk for voksne. Læsekompasset er udviklet til bibliotekerne og deres brugere. Læsekompasset giver inspiration til skønlitteratur på baggrund af særlige metadata, der beskriver læseoplevelsen: stemning, fortælleteknik, tempo, længde etc. 
+&nbsp;  
 
-Læsekompasset indeholder et udvalg af skønlitteratur for voksne, der er tilgængeligt til hjemlån eller som e-lån fra folkebiblioteker. Mængden af værker øges over tid og Læsekompasset sigter mod at tilbyde en bred vifte af litteratur. Alle værker indekseres med oplevelsesorienterede metadata for at gøre det muligt for brugere at navigere i litteratur på en ny måde. Der er mulighed for at fremfinde værker og bestille dem direkte i Læsekompasset.
-
-Læsekompasset giver også brugere mulighed for at oprette og dele lister med bøger.
+Når du logger på med bibliotekslogin, kan du låne og bestille bøger til dit eget bibliotek, hvis biblioteket har abonnement, og Læsekompasset giver dig personaliserede forslag på baggrund af dine tidligere lån eller interaktion med sitet. 
 
 ### Hvem står bag?
 
-Læsekompasset er skabt i samarbejde med de danske folkebiblioteker og drives af DBC.
+Læsekompasset udbydes, udvikles og drives af DBC a/s.   
+&nbsp;  
+Den indledende udvikling er sket i samarbejde med en række folkebiblioteker. 
 
-### Brugergenereret indhold
 
-Følgende regler gælder for indlæg eller indhold, som du og andre brugere selv lægger på websitet, i det omfang vi åbner mulighed for dette. Du er ansvarlig for, at dine indlæg er i overensstemmelse med den til enhver tid gældende lovgivning, herunder at dine indlæg ikke krænker tredjemands rettigheder, eksempelvis ophavsret til tekst og billeder. Du giver DBC og Læsekompasset ret til at mangfoldiggøre egne fotos, som du uploader til Læsekompasset, at gøre dem tilgængelige for tredjemand og at lave afledte værker.
-
-For alle informationer og alt materiale, du leverer til websitet gælder, at du leverer det vederlagsfrit og til fri brug.
-
-Læsekompasset kan ikke kontrollere og er ikke ansvarlig for indhold, som brugerne leverer, og for at du som bruger kan risikere at blive udsat for indhold, som du finder anstødeligt, fejlagtigt eller på anden måde kritisabelt. Du anerkender, at vi som udbyder ikke forhåndsgodkender brugernes indhold, men at vi har retten til uden nærmere begrundelse at fjerne enhver form for indhold, som offentliggøres via Læsekompasset, hvis det er i modstrid med gældende lovgivning eller ordlyden af de her nævnte betingelser.
-
-### Kontakt Læsekompasset:
+### Kontakt Læsekompasset
 
 DBC as  
 Tempovej 7-11  
 2750 Ballerup  
-dbc@dbc.dk
+#### Presse:  
+Marianne Hermansen   
+mah@dbc.dk  
++45 40 18 76 79  
+&nbsp;  
+Camilla Bødker Thomsen  
+cbt@dbc.dk  
++45 24 65 78 94  

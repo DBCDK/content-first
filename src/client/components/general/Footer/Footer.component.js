@@ -2,9 +2,7 @@ import React from 'react';
 import Text from '../../base/Text';
 import T from '../../base/T';
 
-import Link from '../../general/Link.component';
-
-import LaesekompasLogo from '../LaesekompasLogo.svg';
+import facebook from './facebook.svg';
 
 import './Footer.css';
 
@@ -75,48 +73,58 @@ class Footer extends React.Component {
           ref={e => (this.footerContainer = e)}
         >
           <div className="footer__container--elements">
-            <div className="footer__logo--wrap">
-              <img
-                src={LaesekompasLogo}
-                className="footer__logo"
-                alt="footer"
-              />
-            </div>
-            <div className="footer__element">
-              <Text type="body">
-                <T component="footer" name="sectionOne" />
-                <br />
-                <Link href="/om">
-                  <T component="general" name="readMore" />
-                </Link>
-              </Text>
-            </div>
-            <div className="footer__element">
-              <Text type="body">
-                <T component="footer" name="sectionTwo" />
-              </Text>
-            </div>
-            <div className="footer__element">
-              <Text type="body">
-                <T component="footer" name="customerServiceText" />
-                <br />
+            <div className="footer__element ">
+              <Text type="body" className="footer_span_container ">
                 <a
                   href="https://kundeservice.dbc.dk/lk"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <T component="footer" name="customerServiceLinkText" />
+                  <T component="footer" name="feedback" />
+                </a>
+
+                <a href="/om" target="_blank" rel="noopener noreferrer">
+                  <T component="footer" name="about" />
+                </a>
+
+                <a
+                  href="/vilkaar-og-betingelser"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <T component="footer" name="policy" />
                 </a>
               </Text>
             </div>
+
             <div className="footer__element">
-              <Text type="body">
-                <T component="footer" name="addressCompany" />
-                <br />
-                <T component="footer" name="addressStreet" />
-                <br />
-                <T component="footer" name="addressCity" />
+              <Text type="body" className="footer_span_container">
+                <span>
+                  <T component="footer" name="addressCompany" />
+                </span>
+
+                <span>
+                  <T component="footer" name="addressStreet" />
+                </span>
+
+                <span>
+                  <T component="footer" name="addressCity" />
+                </span>
               </Text>
+            </div>
+            <div className="footer__element ">
+              <a
+                className="facebook_footer_container"
+                href="https://www.facebook.com/laesekompas"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={facebook} width="25" height="auto" alt="" />
+
+                <Text type="body" className="footer_facebook_text">
+                  <T component="footer" name="facebook" />
+                </Text>
+              </a>
             </div>
           </div>
         </div>
