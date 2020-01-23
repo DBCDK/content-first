@@ -6,6 +6,7 @@ import './Card.css';
 import '../skeleton.css';
 
 const SkeletonCard = ({className = '', cardRef = null}) => {
+  const isSmallScreen = window.innerWidth < 768;
   return (
     <div
       ref={cardRef}
@@ -14,7 +15,7 @@ const SkeletonCard = ({className = '', cardRef = null}) => {
     >
       <BookCover />
       <Text className="card__status" lines={1} />
-      <Text className="card__text" />
+      {!isSmallScreen && <Text className="card__text" />}
       <div className="whiteLine" />
     </div>
   );

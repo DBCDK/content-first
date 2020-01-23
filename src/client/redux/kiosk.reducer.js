@@ -1,5 +1,7 @@
+import config from '../utils/config.js';
+
 const defaultState = {
-  enabled: false,
+  enabled: config.KIOSK_ENABLED,
   loaded: false
 };
 

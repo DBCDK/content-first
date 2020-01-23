@@ -1,3 +1,9 @@
+const waitForSuggestions = query => {
+  return cy.get(
+    `.query-${query.replace(/ /g, '-')} [data-cy=suggestion-element]`
+  );
+};
+
 describe('Search test', function() {
   it('Shows one suggestion when search word matches several titles', function() {
     const searchWord = 'Min kamp';
@@ -7,7 +13,7 @@ describe('Search test', function() {
       .first()
       .type(searchWord);
 
-    cy.wait(1000);
+    waitForSuggestions(searchWord);
 
     cy.get('[data-cy=suggestion-element]').contains(searchWord);
     cy.get('[data-cy=cat-name]')
@@ -30,7 +36,7 @@ describe('Search test', function() {
       .first()
       .type(searchWord2);
 
-    cy.wait(1000);
+    waitForSuggestions(searchWord2);
 
     cy.get('[data-cy=suggestion-element]')
       .contains('Kort')
@@ -46,7 +52,7 @@ describe('Search test', function() {
       .first()
       .type(searchWord3);
 
-    cy.wait(1000);
+    waitForSuggestions(searchWord3);
 
     cy.get('[data-cy=suggestion-element]')
       .contains(searchWord3)
@@ -65,7 +71,7 @@ describe('Search test', function() {
       .first()
       .type(searchWord4);
 
-    cy.wait(1000);
+    waitForSuggestions(searchWord4);
 
     cy.get('[data-cy=suggestion-element]')
       .contains(searchWord4)
@@ -83,7 +89,7 @@ describe('Search test', function() {
       .first()
       .type(searchWord5);
 
-    cy.wait(1000);
+    waitForSuggestions(searchWord5);
 
     cy.get('[data-cy=suggestion-element]')
       .contains(searchWord5)
@@ -116,7 +122,7 @@ describe('Search test', function() {
       .first()
       .type(searchWord1);
 
-    cy.wait(1000);
+    waitForSuggestions(searchWord1);
 
     cy.get('[data-cy=suggestion-element]')
       .contains('Lang')

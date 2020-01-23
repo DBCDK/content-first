@@ -26,66 +26,56 @@ import {beltsMiddleware} from './client/redux/belts.middleware';
 import {statsMiddleware} from './client/redux/stats.middleware';
 import {matomoMiddleware} from './client/redux/matomo.middleware';
 import {hotjarMiddleware} from './client/redux/hotjar.middleware';
+import loadInitialState from './client/utils/loadInitialState';
 import openplatform from 'openplatform';
-import request from 'superagent';
 
 import StorageClient from './shared/client-side-storage.client';
 import ListRequester from './shared/list.requester';
 
 // Lib imports
 import './client/lib/waves-effect.js';
-
 const storageClient = new StorageClient();
 const listRequester = new ListRequester({storageClient});
-
 // for window.scroll() back compatibility
 smoothscroll.polyfill();
-(async () => {
-  let initialState = {};
-  try {
-    initialState = (await request.get('/v1/initial-state')).body.data;
-  } catch (e) {
-    console.error('could not fetch initial state', e);
-  }
 
-  const store = createStore(
-    [
-      // Used for performance debugging
-      // s => next => action => {
-      //   var t0 = performance.now();
-      //   let result = next(action);
-      //   var t1 = performance.now();
-      //   console.log(`${action.type}`, action, t1 - t0);
-      //   return result;
-      // },
-      thunk.withExtraArgument({storageClient, listRequester}),
-      userMiddleware,
-      usersMiddleware,
-      requestMiddleware,
-      shortListMiddleware,
-      listMiddleware,
-      logMiddleware,
-      orderMiddleware,
-      commentMiddleware,
-      replayMiddleware,
-      interactionMiddleware,
-      beltsMiddleware,
-      statsMiddleware,
-      matomoMiddleware,
-      hotjarMiddleware
-    ],
-    initialState
-  );
+const store = createStore(
+  [
+    // Used for performance debugging
+    // s => next => action => {
+    //   var t0 = performance.now();
+    //   let result = next(action);
+    //   var t1 = performance.now();
+    //   console.log(`${action.type}`, action, t1 - t0);
+    //   return result;
+    // },
+    thunk.withExtraArgument({storageClient, listRequester}),
+    userMiddleware,
+    usersMiddleware,
+    requestMiddleware,
+    shortListMiddleware,
+    listMiddleware,
+    logMiddleware,
+    orderMiddleware,
+    commentMiddleware,
+    replayMiddleware,
+    interactionMiddleware,
+    beltsMiddleware,
+    statsMiddleware,
+    matomoMiddleware,
+    hotjarMiddleware
+  ],
+  {}
+);
 
-  // TODO hent initialstate ud af et endpoint, fordi det gør det nemmere i forhold til CRA
-  ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById('root')
-  );
-})();
+loadInitialState(store);
 
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
 // registerServiceWorker();
 
 // Overwrite specific openplatform methods, to make stubbing possible for testing purposes

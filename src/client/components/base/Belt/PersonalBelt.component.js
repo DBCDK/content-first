@@ -58,7 +58,10 @@ const Slider = withWork(
  */
 export class PersonalBelt extends React.Component {
   componentDidMount() {
-    if (!this.props.mountedData.pid) {
+    this.selectDidReadPid();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.loggedInUser !== this.props.loggedInUser) {
       this.selectDidReadPid();
     }
   }
@@ -69,6 +72,9 @@ export class PersonalBelt extends React.Component {
    * already been selected by another personal belt
    */
   selectDidReadPid() {
+    if (this.props.mountedData.pid || !this.props.loggedInUser) {
+      return;
+    }
     const customLists = this.props.getCustomLists();
     const systemLists = this.props.getSystemLists();
     const shortlist = systemLists.shortlist
