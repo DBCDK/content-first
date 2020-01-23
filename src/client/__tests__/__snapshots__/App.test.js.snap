@@ -273,7 +273,7 @@ exports[`renders without crashing 1`] = `
       >
         <img
           alt="topbar_logo"
-          src="LaesekompasLogo.svg"
+          src="LaesekompasLogoPayoff.svg"
         />
       </a>
       <ul
