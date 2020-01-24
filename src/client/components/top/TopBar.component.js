@@ -18,7 +18,7 @@ import {eventPath} from '../../utils/path';
 import {ADMIN_ROLE, EDITOR_ROLE} from '../roles/Role.component';
 import Role from '../roles/Role.component';
 import Kiosk from '../base/Kiosk/Kiosk';
-import LaesekompasLogo from '../general/LaesekompasLogo.svg';
+import LaesekompasLogo from '../general/LaesekompasLogoPayoff.svg';
 
 let searchPage = false;
 

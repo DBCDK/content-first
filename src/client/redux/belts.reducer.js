@@ -241,8 +241,19 @@ export const REMOVE_CHILD_BELT = 'REMOVE_CHILD_BELT';
 export const BELT_SCROLL = 'BELT_SCROLL';
 export const REORGANIZE_FILTERPAGE_BELTS = 'REORGANIZE_FILTERPAGE_BELTS';
 
+const initialState = {
+  belts: {
+    skeletonBelt: {
+      key: 'skeletonBelt',
+      onFrontPage: true,
+      isLoading: true,
+      type: 'belt',
+      child: false
+    }
+  }
+};
 /* eslint-disable complexity */
-const beltsReducer = (state = {}, action) => {
+const beltsReducer = (state = initialState, action) => {
   switch (action.type) {
     case BELTS_LOAD_REQUEST: {
       return Object.assign({}, state, {

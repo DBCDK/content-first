@@ -41,6 +41,17 @@ jest.mock(
     virtual: true
   }
 );
+jest.mock(
+  '!raw-loader!../components/article/pages/policy.md',
+  () => 'policy.md',
+  {
+    virtual: true
+  }
+);
+
+jest.mock('./client/components/list/button/PrintButton', () =>
+  jest.fn(() => 'PrintButton')
+);
 
 jest.mock('./client/components/base/Head', () => jest.fn(() => 'Head'));
 

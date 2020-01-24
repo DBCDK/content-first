@@ -15,6 +15,17 @@ work-card.filter-page-title {
   display: none;
 }
 
+.filter-page-results .must-include{
+  text-decoration: underline;
+}
+.filter-page-results .must-not-include{
+  text-decoration: line-through;
+}
+
+.filter-page-results .recommended-words{
+  display:inline-flex;
+}
+
 /* Kiosk-mode enabled */
 
 .App.kioskmode .filter-page-top {
@@ -162,6 +173,7 @@ work-card.filter-page-title {
 .filter-page .filter-group hr {
   border: 1px var(--lys-graa) solid;
 }
+
 .filter-page .filter-group h4 {
   font-size: 16px;
   font-weight: 600;

@@ -8,6 +8,7 @@ import {
 } from '../../../redux/shortlist.reducer';
 import {ORDER} from '../../../redux/order.reducer';
 import BookCover from '../../general/BookCover/BookCover.component';
+import PrintButton from '../button/PrintButton';
 import OrderButton from '../../order/OrderButton.component';
 import Link from '../../general/Link.component';
 import Head from '../../base/Head';
@@ -215,19 +216,9 @@ export class ShortList extends React.Component {
 
         <div className="shortlist--wrap">
           <div className="shortlist__tools--top">
-            {!isKiosk && (
-              <Button
-                disabled={isEmpty}
-                size="medium"
-                type="quaternary"
-                iconLeft="print"
-                className="printListBtn"
-                href="print/huskeliste"
-              >
-                <T component="list" name="printList" />
-              </Button>
-            )}
+            {!isKiosk && <PrintButton className="printListBtn" />}
             <Button
+              className="clearList"
               disabled={isEmpty}
               size="medium"
               type="quaternary"

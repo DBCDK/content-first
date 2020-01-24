@@ -16,19 +16,12 @@
 
 .footer__container--elements {
   max-width: 1201px;
+  width:100%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   margin: auto;
   padding: var(--5pt);
-}
-
-.footer__element {
-  width: 25%;
-  padding: 0 var(--2pt) 0 0;
-}
-.footer__element:last-child {
-  padding: 0;
 }
 
 .footer__element p {
@@ -48,7 +41,23 @@
 .footer__logo {
   width: 189px;
 }
+.facebook_footer_container {
+  margin-left: 2px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: var(--2pt) 0 0;
 
+
+}
+.footer_facebook_text{
+  margin: 0 0 0 4px !important; 
+}
+.footer_span_container span,
+.footer_span_container a{
+margin: 5px 0px;
+display: block;
+}
 @media (max-width: 1200px) {
   .footer__container--elements {
     max-width: auto;
@@ -60,6 +69,9 @@
   .footer__element {
     /* Media rule when footer folds to 2 rows with 2 elements in each */
     flex-basis: 50%;
+  }
+  .footer__container--elements{
+    justify-content: start;
   }
 }
 

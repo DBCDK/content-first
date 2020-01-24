@@ -11,7 +11,6 @@ import FilterPage from './components/filter/FilterPage/FilterPage.container';
 import WorkPage from './components/work/WorkPage/WorkPage.container';
 import EditProfilePage from './components/profile/EditProfilePage';
 import TopBar from './components/top/TopBar.component';
-import {ON_USER_DETAILS_REQUEST} from './redux/user.reducer';
 import ListPage from './components/list/ListPage';
 import ShortList from './components/list/shortlist/ShortList.container';
 import Spinner from './components/general/Spinner/Spinner.component';
@@ -47,7 +46,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.userDetailsRequest();
     this.screenHeight = window.innerHeight;
     this.offset = this.screenHeight / 6;
 
@@ -262,7 +260,6 @@ const mapStateToProps = state => {
 };
 
 export const mapDispatchToProps = dispatch => ({
-  userDetailsRequest: () => dispatch({type: ON_USER_DETAILS_REQUEST}),
   cookieModal: () => {
     dispatch({
       type: OPEN_MODAL,

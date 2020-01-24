@@ -5,6 +5,7 @@ import {isEqual} from 'lodash';
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
 import {getFullRange} from '../../../utils/taxonomy';
+
 /**
  * A HOC that enhance the wrapped component with a list of tags (pids, creators, tags)
  * based on the 'tags' query paramter from the browser address bar.
@@ -55,18 +56,61 @@ const withTagsFromUrl = WrappedComponent => {
         this.addTag(tag);
       }
     };
+
+    toggleReq = tag => {
+      if (this.props.isPremium) {
+        let plusStrArr = formatArr(this.props.plus);
+        let minusStrArr = formatArr(this.props.minus);
+
+        let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
+        let tagArr = this.props.tags.map(t => t.match.toString());
+        this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
+      }
+
+      let plusStrArr = formatArr(this.props.plus);
+      let minusStrArr = formatArr(this.props.minus);
+
+      let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
+      let tagArr = this.props.tags.map(t => t.match.toString());
+      this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
+    };
+
+    getReqState = s => {
+      let strTag = s.id.toString();
+      let plusStrArr = formatArr(this.props.plus);
+      let minusStrArr = formatArr(this.props.minus);
+
+      let res = 'none';
+      if (plusStrArr.includes(strTag)) {
+        res = 'underline';
+      } else if (minusStrArr.includes(strTag)) {
+        res = 'line-through';
+      }
+      return res;
+    };
+
     removeTag = tag => {
       if (this.isSelected(tag)) {
+        let plusStrArr = formatArr(this.props.plus);
+        let minusStrArr = formatArr(this.props.minus);
+        let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr, true);
+
         const modified = removeTag(this.props.tags, tag);
-        this.props.updateUrl(modified);
+        this.props.updateUrl(modified, objArrs.plusArr, objArrs.minusArr);
       }
     };
+
     addTag = tag => {
       if (!this.isSelected(tag)) {
+        let plusStrArr = formatArr(this.props.plus);
+        let minusStrArr = formatArr(this.props.minus);
+        let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr, true);
+
         const modified = addTag(this.props.tags, this.props.filterCards, tag);
-        this.props.updateUrl(modified);
+        this.props.updateUrl(modified, objArrs.plusArr, objArrs.minusArr);
       }
     };
+
     isSelected = tag => {
       return !!this.props.tagsMap[tag];
     };
@@ -92,6 +136,7 @@ const withTagsFromUrl = WrappedComponent => {
         }
         return arr;
       }, []);
+
     render() {
       return (
         <WrappedComponent
@@ -99,6 +144,7 @@ const withTagsFromUrl = WrappedComponent => {
           toggleSelected={this.toggleSelected}
           isSelected={this.isSelected}
           removeTag={this.removeTag}
+          toggleReq={this.toggleReq}
           addTag={this.addTag}
           getMultiPids={this.getMultiPids}
           flattenedTags={this.flattenedTags}
@@ -107,29 +153,39 @@ const withTagsFromUrl = WrappedComponent => {
     }
   };
   const mapStateToProps = state => {
-    const {tags, tagsMap} = tagsFromUrlSelector(state);
+    const {tags, tagsMap, plus, minus} = tagsFromUrlSelector(state);
     return {
       tags,
+      plus,
+      minus,
       tagsMap,
+      isPremium: state.userReducer.isPremium,
       filterCards: state.filtercardReducer,
       filters: state.filterReducer.filters
     };
   };
   const mapDispatchToProps = dispatch => ({
-    updateUrl: tags => {
+    updateUrl: (tags, plus = [], minus = []) => {
+      let params = {};
+      if (tags.length > 0) {
+        params.tags = tags
+          .map(t => (Array.isArray(t) ? t.join(':') : encodeURIComponent(t)))
+          .join(',');
+      }
+      if (plus.length > 0) {
+        params.plus = plus
+          .map(p => (Array.isArray(p) ? p.join(':') : encodeURIComponent(p)))
+          .join(',');
+      }
+      if (minus.length > 0) {
+        params.minus = minus
+          .map(m => (Array.isArray(m) ? m.join(':') : encodeURIComponent(m)))
+          .join(',');
+      }
       dispatch({
         type: HISTORY_REPLACE,
         path: '',
-        params:
-          tags.length > 0
-            ? {
-                tags: tags
-                  .map(t =>
-                    Array.isArray(t) ? t.join(':') : encodeURIComponent(t)
-                  )
-                  .join(',')
-              }
-            : {}
+        params: params
       });
     }
   });
@@ -139,17 +195,82 @@ const withTagsFromUrl = WrappedComponent => {
   )(Wrapped);
 };
 export default withTagsFromUrl;
+
+const formatArr = allEl => {
+  let el = allEl ? allEl[0] : [];
+
+  let retArr = [];
+  if (typeof el === 'string') {
+    retArr.push(el);
+  } else {
+    retArr = el.map(p => p.toString());
+  }
+  return retArr;
+};
+
+export const getReqState = (s, plus, minus) => {
+  let strTag = s.id.toString();
+  let plusStrArr = formatArr(plus);
+  let minusStrArr = formatArr(minus);
+
+  let res = 'none';
+  if (plusStrArr.includes(strTag)) {
+    res = 'underline';
+  } else if (minusStrArr.includes(strTag)) {
+    res = 'line-through';
+  }
+  return res;
+};
+
+export const getPlusMinusArrays = (
+  tag,
+  plusStrArr,
+  minusStrArr,
+  remove = false
+) => {
+  let retObj = {};
+
+  let strTag = tag.toString();
+  let isPlus = plusStrArr.includes(strTag);
+  let isMinus = minusStrArr.includes(strTag);
+  let retMinusArr = minusStrArr.filter(p => p !== strTag);
+  let retPlusArr = plusStrArr.filter(p => p !== strTag);
+
+  if (!remove) {
+    if (isPlus) {
+      retMinusArr.push(strTag);
+    }
+    if (!isPlus && !isMinus) {
+      retPlusArr.push(strTag);
+    }
+  } else {
+    retMinusArr.filter(p => p !== strTag);
+    retPlusArr.filter(p => p !== strTag);
+  }
+
+  retObj.plusArr = retPlusArr;
+  retObj.minusArr = retMinusArr;
+
+  return retObj;
+};
+
 const tagsFromUrlSelector = createSelector(
-  [state => state.routerReducer.params.tags, state => state.filtercardReducer],
-  (tags, filterCards) => {
+  [
+    state => state.routerReducer.params.tags,
+    state => state.routerReducer.params.plus,
+    state => state.routerReducer.params.minus,
+    state => state.filtercardReducer
+  ],
+  (tags, plus, minus, filterCards) => {
     const expandedTags = tagsFromURL(tags && tags[0], filterCards);
     const tagsMap = {};
     expandedTags.forEach(expanded => {
       tagsMap[expanded.match] = expanded;
     });
-    return {tags: expandedTags, tagsMap};
+    return {tags: expandedTags, plus: plus, minus: minus, tagsMap};
   }
 );
+
 export const tagsFromURL = (urlTags, filterCards) => {
   if (!urlTags) {
     return [];
@@ -157,7 +278,7 @@ export const tagsFromURL = (urlTags, filterCards) => {
   if (!Array.isArray(urlTags)) {
     urlTags = [urlTags];
   }
-  return urlTags
+  let retvar = urlTags
     .map(tag => {
       const decoded = decodeURIComponent(tag);
       if (isPid(decoded)) {
@@ -194,10 +315,13 @@ export const tagsFromURL = (urlTags, filterCards) => {
       };
     })
     .filter(t => t);
+  return retvar;
 };
+
 export const removeTag = (expandedTags, tag) => {
   return expandedTags.filter(t => !isEqual(t.match, tag)).map(t => t.match);
 };
+
 export const addTag = (expandedTags, filterCards, tag) => {
   const isRangeTag = getFullRange(tag, filterCards, filtersMapAll);
   if (isRangeTag) {

@@ -157,7 +157,7 @@ describe('ShortList.container', () => {
       />
     );
     tree
-      .find('.shortlist--wrap .shortlist__tools--top .button')
+      .find('.shortlist--wrap .shortlist__tools--top .clearList')
       .at(1)
       .simulate('click');
     expect(Link).toHaveBeenCalledTimes(3);

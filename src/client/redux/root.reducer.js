@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import {merge, has, cloneDeep} from 'lodash';
 import beltsReducer from './belts.reducer';
 import filterReducer from './filter.reducer';
 import routerReducer from './router.reducer';
@@ -26,6 +27,7 @@ import mountsReducer from './mounts.reducer';
 import rolesReducer from './roles.reducer';
 import kioskReducer from './kiosk.reducer';
 import holdingsReducer from './holdings.reducer';
+export const ON_INIT_REDUCER_RESPONSE = 'ON_INIT_REDUCER_RESPONSE';
 
 const combined = combineReducers({
   beltsReducer,
@@ -60,6 +62,16 @@ const combined = combineReducers({
 const rootReducer = (state = {}, action) => {
   const newState = combined(state, action);
   // setLocalStorage(newState);
+  if (action.type === ON_INIT_REDUCER_RESPONSE) {
+    // we cloneDeep to prevent all sorts of nasty bugs
+    // (components not being rerendered properly).
+    // The merge function mutate objects (redux requires an immutable update pattern)
+    const res = cloneDeep(merge(newState, action.state));
+    if (has(res, 'beltsReducer.belts.skeletonBelt')) {
+      delete res.beltsReducer.belts.skeletonBelt;
+    }
+    return res;
+  }
   return newState;
 };
 
