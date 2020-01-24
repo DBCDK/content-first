@@ -46,6 +46,8 @@ async function initState(req) {
     type: KIOSK_RESPONSE,
     response: {...config.kiosk}
   });
+
+  let lookupUrl = null;
   let isPremium = false;
   let municipalityAgencyId = null;
 
@@ -103,6 +105,13 @@ async function initState(req) {
       );
     }
 
+    if (municipalityAgencyId) {
+      lookupUrl = await libraries.getLibraryLookupUrl(
+        municipalityAgencyId,
+        req.user.openplatformToken
+      );
+    }
+
     // Test user premium settings
     if (req.user.isPremium) {
       isPremium = req.user.isPremium;
@@ -121,7 +130,7 @@ async function initState(req) {
   });
 
   return {
-    userReducer: {...userState, isPremium, municipalityAgencyId},
+    userReducer: {...userState, isPremium, municipalityAgencyId, lookupUrl},
     listReducer: listState,
     beltsReducer: beltsState,
     interactionReducer: interactionState,

@@ -1,4 +1,6 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
+import {get} from 'lodash';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
 import T from '../base/T';
@@ -10,9 +12,26 @@ import Kiosk from '../base/Kiosk/Kiosk';
 import './orderButton.css';
 import FindBookButton from '../kiosk/WayFinder/FindBookButton';
 
-export function OrderButton(props) {
-  // OrderButton default state:
+const faroeAgencyId = '911116';
 
+export function OrderButton(props) {
+  // Premium
+  const isPremium = useSelector(state =>
+    get(state, 'userReducer.isPremium', false)
+  );
+
+  // Check if user is from Faroe island
+  const isFaroeUser = useSelector(
+    state =>
+      get(state, 'userReducer.municipalityAgencyId', false) === faroeAgencyId
+  );
+
+  // Check if lookupUrl exist
+  const lookupUrl = useSelector(state =>
+    get(state, 'userReducer.lookupUrl', false)
+  );
+
+  // OrderButton default state:
   const orderState = (state => {
     switch (state) {
       // Ordered button state
@@ -73,7 +92,11 @@ export function OrderButton(props) {
             size={props.size}
             iconLeft={props.iconLeft}
             iconRight={props.iconRight}
-            onClick={props.onClick || props.order}
+            onClick={
+              isPremium && isFaroeUser && lookupUrl
+                ? () => window.open(`${lookupUrl}${props.pid}`, '_blank')
+                : props.onClick || props.order
+            }
             dataCy="order-btn"
           >
             {orderState.label}
