@@ -22,8 +22,11 @@ router
       const pid = req.params.pid;
       const host = req.get('host');
 
-      const book = await request.get('http://' + host + '/v1/book/' + pid);
-      const bookData = book.body.data;
+      const response = await request
+        .get('http://' + host + '/v1/books/')
+        .query({pids: pid});
+
+      const bookData = response.body.data[0].book;
 
       const bookCover = 'https://metakompasset.dk/api/cover/' + pid;
 
