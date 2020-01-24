@@ -12,6 +12,7 @@ import MultiRowContainer from '../../base/Belt/MultiRowContainer';
 import {withStoreBelt} from '../../hoc/Belt';
 import Role from '../../roles/Role.component';
 import Kiosk from '../../base/Kiosk/Kiosk.js';
+import ResultsFilter from './ResultsFilter.component';
 
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
 
@@ -131,8 +132,13 @@ class Results extends React.Component {
       .filter(t => t.type === 'QUERY')
       .map(q => q.query);
 
+    let params = [...multiPids, ...allPids, ...tags, ...creators];
+
     return (
       <div id="filter-page-results" className="filter-page-results pt-5">
+        {(creators.length > 0 || allPids.length > 0 || tags.length > 0) && (
+          <ResultsFilter params={params} />
+        )}
         {allPids.length > 0 && (
           <div>
             <MultiRowContainer

@@ -28,6 +28,35 @@ work-card.filter-page-title {
   display:inline-block;
 }
 
+.results-filter{
+  width: 100%;
+  height: 57px;
+  background: var(--concrete);
+  border-radius: 0px;
+  text-align: center;
+
+}
+
+.results-filter .filter-button-container{
+  display: inline-flex;
+  margin-top:18px;
+  height: 18px;
+  font-size: 14px;
+  color: var(--petroelum);
+}
+
+.results-filter .filter-button-container .results-filter-button{
+  width: 140px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.results-filter .filter-button-container .filter-selected{
+  font-weight: bold;
+}
+
+
+
 /* Kiosk-mode enabled */
 
 .App.kioskmode .filter-page-top {
