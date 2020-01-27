@@ -116,21 +116,21 @@ class Results extends React.Component {
 
     if (plus.includes(id)) {
       return (
-        <div key={id} className="must-include">
+        <span key={id} className="must-include">
           {title}
-        </div>
+        </span>
       );
     }
 
     if (minus.includes(id)) {
       return (
-        <div key={id} className="must-not-include">
+        <span key={id} className="must-not-include">
           {title}
-        </div>
+        </span>
       );
     }
 
-    return <div>{title}</div>;
+    return <span key={id}>{title}</span>;
   };
 
   render() {
@@ -144,6 +144,7 @@ class Results extends React.Component {
     const creators = this.props.tags
       .filter(t => t.type === 'QUERY')
       .map(q => q.query);
+
     return (
       <div id="filter-page-results" className="filter-page-results pt-5">
         {allPids.length > 0 && (
@@ -169,28 +170,27 @@ class Results extends React.Component {
                 variant="transform-uppercase"
                 className="mr-4 recommended-words"
               >
-                <strong>Forslag til</strong>
+                <strong className="tag-title">Forslag til</strong>
                 {tags.map((tag, idx) => {
-                  if (idx === 0) {
+                  let len = tags.length;
+
+                  if ((idx === 0 && len === 1) || idx === len - 2) {
                     return (
-                      <React.Fragment key={idx}>
-                        &nbsp;
-                        {this.formatTitle(tag)}
-                      </React.Fragment>
+                      <span key={idx} className="tag-title">
+                        &nbsp;{this.formatTitle(tag)}
+                      </span>
                     );
-                  } else if (idx === tags.length - 1) {
+                  } else if (idx < len - 2) {
                     return (
-                      <React.Fragment key={idx}>
-                        &nbsp;og&nbsp;
-                        {this.formatTitle(tag)}
-                      </React.Fragment>
+                      <span key={idx} className="tag-title">
+                        &nbsp;{this.formatTitle(tag)},
+                      </span>
                     );
                   }
                   return (
-                    <React.Fragment key={idx}>
-                      ,&nbsp;
-                      {this.formatTitle(tag)}
-                    </React.Fragment>
+                    <span key={idx} className="tag-title">
+                      &nbsp;og&nbsp; {this.formatTitle(tag)}
+                    </span>
                   );
                 })}
               </Title>

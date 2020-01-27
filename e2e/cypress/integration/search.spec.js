@@ -147,4 +147,34 @@ describe('Search test', function() {
         expect(value).to.be.greaterThan(350);
       });
   });
+  it('chooses a range and another tag. clicking other tag does not effect the range', function() {
+    const searchWord2 = 'lang';
+
+    cy.visit('/');
+    cy.createUser(null, null, true);
+
+    //choose range
+    cy.visit('/find?tags=5631:5633');
+
+    // choose lang tag
+    cy.get('[data-cy=search-bar-input]')
+      .first()
+      .type(searchWord2);
+    waitForSuggestions(searchWord2);
+    cy.get('[data-cy=suggestion-element]')
+      .contains('Lang')
+      .first()
+      .click();
+    cy.get(
+      '.topbar__search-bar--wrap > #selected-filters-wrap > #selectedFilters > :nth-child(2) > :nth-child(1) > span'
+    )
+      .click()
+      .click();
+
+    cy.get(
+      '.topbar__search-bar--wrap > #selected-filters-wrap > #selectedFilters > :nth-child(1) > :nth-child(1) > span'
+    )
+      .invoke('text')
+      .should('contain', 'fremadskridende - hæsblæsende');
+  });
 });
