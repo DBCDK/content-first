@@ -23,9 +23,8 @@ describe('Login test', function() {
     const userNameEdited = userName + 'edited';
     cy.createUser(userName);
     cy.visit('/profil/rediger');
-    cy.get('[data-cy=user-form-name]')
-      .clear()
-      .type(userNameEdited);
+    cy.get('[data-cy=user-form-name]').clear();
+    cy.get('[data-cy=user-form-name]').type(userNameEdited);
     cy.get('[data-cy=user-form-submit]').click();
     cy.wait(1000);
     cy.visit('/profil/rediger');
