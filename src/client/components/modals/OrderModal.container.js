@@ -10,7 +10,6 @@ import {
   ORDER_START,
   ORDER_DONE
 } from '../../redux/order.reducer';
-import NotificationModal from './NotificationModal.component';
 
 import './OrderModal.css';
 
