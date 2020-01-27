@@ -11,7 +11,6 @@ describe('Order ', function() {
       cy
     });
     cy.clearClientStorage();
-    cy.createUser(null, null, true);
   });
 
   afterEach(function() {
@@ -19,6 +18,7 @@ describe('Order ', function() {
   });
 
   it('Can order a work', function() {
+    cy.createUser(null, null, true);
     const pid = '870970-basis:54154313';
     cy.visit('/v%C3%A6rk/' + pid);
 
@@ -28,7 +28,31 @@ describe('Order ', function() {
     cy.get('[data-cy=order-status]').should('have.text', '1 bog er bestilt');
   });
 
+  it('Can order a work as Faeroe user', function() {
+    const user = 'faeroe-user' + Math.floor(Math.random() * 1000);
+    cy.createUser(user, null, true);
+    const pid = '870970-basis:54154313';
+
+    cy.visit(`/v%C3%A6rk/${pid}`, {
+      onBeforeLoad(win) {
+        cy.stub(win, 'open').as('windowOpen');
+      }
+    });
+
+    cy.get('[data-cy=order-btn]').click();
+
+    cy.window()
+      .its('open')
+      .should('be.called');
+
+    cy.get('@windowOpen').should(
+      'be.calledWith',
+      'https://www.bbs.fo/fo/search/ting/' + pid
+    );
+  });
+
   it('Order button disabled while loading user', function() {
+    cy.createUser(null, null, true);
     const pid = '870970-basis:54154313';
     cy.visit('/v%C3%A6rk/' + pid);
     cy.get('[data-cy=order-btn]').click();
@@ -40,6 +64,7 @@ describe('Order ', function() {
   });
 
   it('Order button disabled while loading availability', function() {
+    cy.createUser(null, null, true);
     const pid = '870970-basis:54154313';
     cy.visit('/v%C3%A6rk/' + pid);
     cy.get('[data-cy=order-btn]').click();
@@ -53,6 +78,7 @@ describe('Order ', function() {
   });
 
   it('Order available books', function() {
+    cy.createUser(null, null, true);
     cy.fixture('/order/shortlist.json').as('shortlist');
     cy.server();
     cy.route('GET', '/v1/shortlist', '@shortlist').as('shortlistRequest');
@@ -65,6 +91,7 @@ describe('Order ', function() {
   });
 
   it('Fails gracefully when no pickup libraries are available', function() {
+    cy.createUser(null, null, true);
     const pid = '870970-basis:54154313';
     cy.visit('/v%C3%A6rk/' + pid);
     cy.get('[data-cy=order-btn]').click();
@@ -73,6 +100,7 @@ describe('Order ', function() {
   });
 
   it('Shows notification modal when agency is unsupported', function() {
+    cy.createUser(null, null, true);
     cy.fixture('/order/initialState_unsupportedMunicipality.json').as(
       'initialState'
     );

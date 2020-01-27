@@ -112,10 +112,19 @@ async function initState(req) {
       );
     }
 
-    // Test user premium settings
+    // Test cases ----------
     if (req.user.isPremium) {
       isPremium = req.user.isPremium;
     }
+
+    if (req.user.municipalityAgencyId) {
+      municipalityAgencyId = req.user.municipalityAgencyId;
+    }
+
+    if (req.user.lookupUrl) {
+      lookupUrl = req.user.lookupUrl;
+    }
+    // ---------- ------------
   }
 
   const roles = (await objectStore.getAllRoles()).data;

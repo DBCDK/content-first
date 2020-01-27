@@ -79,6 +79,15 @@ router
       const premium = req.query.premium
         ? req.query.premium.toLowerCase() === 'true'
         : false;
+
+      let faerorSpecificParams = {};
+      if (req.params.id.includes('faeroe-user')) {
+        faerorSpecificParams = {
+          lookupUrl: 'https://www.bbs.fo/fo/search/ting/',
+          municipalityAgencyId: '911116'
+        };
+      }
+
       try {
         const loginToken = await createUser(req, true, editor, premium);
 
@@ -90,7 +99,8 @@ router
           special: {
             over13: true,
             name: req.params.id
-          }
+          },
+          ...faerorSpecificParams
         };
 
         return res
