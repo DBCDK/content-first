@@ -1296,6 +1296,7 @@ exports[`ShortList.container Clearing list 1`] = `
       />
       <Button
         className="orderAllBtn"
+        dataCy="orderAllButton"
         iconLeft="chrome_reader_mode"
         onClick={[Function]}
         size="large"
@@ -1304,7 +1305,7 @@ exports[`ShortList.container Clearing list 1`] = `
         <button
           className="orderAllBtn
       button button__large button__quaternary  button__icon--left "
-          data-cy=""
+          data-cy="orderAllButton"
           disabled={false}
           onClick={[Function]}
         >
@@ -2673,6 +2674,7 @@ exports[`ShortList.container Order all books 1`] = `
       />
       <Button
         className="orderAllBtn"
+        dataCy="orderAllButton"
         iconLeft="chrome_reader_mode"
         onClick={[Function]}
         size="large"
@@ -2681,7 +2683,7 @@ exports[`ShortList.container Order all books 1`] = `
         <button
           className="orderAllBtn
       button button__large button__quaternary  button__icon--left "
-          data-cy=""
+          data-cy="orderAllButton"
           disabled={false}
           onClick={[Function]}
         >
@@ -3998,6 +4000,7 @@ exports[`ShortList.container Order book 1`] = `
       />
       <Button
         className="orderAllBtn"
+        dataCy="orderAllButton"
         iconLeft="chrome_reader_mode"
         onClick={[Function]}
         size="large"
@@ -4006,7 +4009,7 @@ exports[`ShortList.container Order book 1`] = `
         <button
           className="orderAllBtn
       button button__large button__quaternary  button__icon--left "
-          data-cy=""
+          data-cy="orderAllButton"
           disabled={false}
           onClick={[Function]}
         >
@@ -5323,6 +5326,7 @@ exports[`ShortList.container Order ebook 1`] = `
       />
       <Button
         className="orderAllBtn"
+        dataCy="orderAllButton"
         iconLeft="chrome_reader_mode"
         onClick={[Function]}
         size="large"
@@ -5331,7 +5335,7 @@ exports[`ShortList.container Order ebook 1`] = `
         <button
           className="orderAllBtn
       button button__large button__quaternary  button__icon--left "
-          data-cy=""
+          data-cy="orderAllButton"
           disabled={false}
           onClick={[Function]}
         >
@@ -6648,6 +6652,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
       />
       <Button
         className="orderAllBtn"
+        dataCy="orderAllButton"
         iconLeft="chrome_reader_mode"
         onClick={[Function]}
         size="large"
@@ -6656,7 +6661,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
         <button
           className="orderAllBtn
       button button__large button__quaternary  button__icon--left "
-          data-cy=""
+          data-cy="orderAllButton"
           disabled={false}
           onClick={[Function]}
         >
@@ -7988,6 +7993,7 @@ exports[`ShortList.container Remove element 1`] = `
       />
       <Button
         className="orderAllBtn"
+        dataCy="orderAllButton"
         iconLeft="chrome_reader_mode"
         onClick={[Function]}
         size="large"
@@ -7996,7 +8002,7 @@ exports[`ShortList.container Remove element 1`] = `
         <button
           className="orderAllBtn
       button button__large button__quaternary  button__icon--left "
-          data-cy=""
+          data-cy="orderAllButton"
           disabled={false}
           onClick={[Function]}
         >
@@ -9313,6 +9319,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
       />
       <Button
         className="orderAllBtn"
+        dataCy="orderAllButton"
         iconLeft="chrome_reader_mode"
         onClick={[Function]}
         size="large"
@@ -9321,7 +9328,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
         <button
           className="orderAllBtn
       button button__large button__quaternary  button__icon--left "
-          data-cy=""
+          data-cy="orderAllButton"
           disabled={false}
           onClick={[Function]}
         >

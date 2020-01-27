@@ -1,4 +1,6 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
+import {get} from 'lodash';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
 import T from '../base/T';
@@ -11,8 +13,17 @@ import './orderButton.css';
 import FindBookButton from '../kiosk/WayFinder/FindBookButton';
 
 export function OrderButton(props) {
-  // OrderButton default state:
+  // Check if loan button should use lookupUrl
+  const shouldUseLookupUrl = useSelector(state =>
+    get(state, 'userReducer.shouldUseLookupUrl', false)
+  );
 
+  // lookupUrl
+  const lookupUrl = useSelector(state =>
+    get(state, 'userReducer.lookupUrl', false)
+  );
+
+  // OrderButton default state:
   const orderState = (state => {
     switch (state) {
       // Ordered button state
@@ -73,7 +84,11 @@ export function OrderButton(props) {
             size={props.size}
             iconLeft={props.iconLeft}
             iconRight={props.iconRight}
-            onClick={props.onClick || props.order}
+            onClick={
+              shouldUseLookupUrl
+                ? () => window.open(`${lookupUrl}${props.pid}`, '_blank')
+                : props.onClick || props.order
+            }
             dataCy="order-btn"
           >
             {orderState.label}

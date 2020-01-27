@@ -6,13 +6,17 @@ const logger = require('server/logger');
 const NodeCache = require('node-cache');
 const _ = require('lodash');
 
-const cache = new NodeCache({stdTTL: 60 * 60}); // Time to live is 1 hour
-const cacheName = 'payingLibraries';
+const oneHourCache = new NodeCache({stdTTL: 60 * 60}); // Time to live is 1 hour
+const oneDayCache = new NodeCache({stdTTL: 60 * 60 * 24}); // Time to live is 1 day
+
+const cache_payingLibraries = 'payingLibraries';
+const cache_lookupUrl = 'lookupUrl';
 
 module.exports = {
   getPayingLibraries,
   getUserLibrary,
-  userHasAPayingLibrary
+  userHasAPayingLibrary,
+  getLibraryLookupUrl
 };
 
 // Fetch list with paying libraries form Forsrights
@@ -72,22 +76,52 @@ async function getUserLibrary(openplatformToken) {
 }
 
 /**
+ *
+ * Get library lookupUrl
+ *
+ */
 
-  Check if loggedIn user has a paying library
+async function getLibraryLookupUrl(agency, openplatformToken) {
+  const openplatformUrl = config.login.openplatformUrl;
+  let lookupUrl = oneDayCache.get(cache_lookupUrl);
 
-*/
+  // If cached, just return
+  if (lookupUrl) {
+    return lookupUrl;
+  }
+
+  try {
+    const response = await request.get(openplatformUrl + '/libraries').send({
+      agencyIds: [agency],
+      fields: ['lookupUrl'],
+      access_token: openplatformToken
+    });
+
+    lookupUrl = _.get(response, 'body.data[0].lookupUrl', null);
+
+    oneDayCache.set(cache_lookupUrl, lookupUrl);
+
+    return lookupUrl;
+  } catch (error) {
+    logger.log.error(error);
+    throw error;
+  }
+}
+
+/**
+ *
+ * Check if loggedIn user has a paying library
+ *
+ */
 
 async function userHasAPayingLibrary(agencyId) {
-  let libraryList = cache.get(cacheName);
+  let libraryList = oneHourCache.get(cache_payingLibraries);
 
   if (!libraryList) {
     // Get list from paying libraries (forsrights)
     libraryList = await getPayingLibraries();
-    cache.set(cacheName, libraryList);
+    oneHourCache.set(cache_payingLibraries, libraryList);
   }
-
-  // Get loggedInUser's library (agencyId)
-  // const agency = await getUserLibrary(user.openplatformToken);
 
   // check user permissions (premium functionality)
   return !!libraryList.includes(agencyId);
