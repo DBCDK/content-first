@@ -184,7 +184,8 @@ export class ShortList extends React.Component {
       shortListState,
       clearList,
       remove,
-      originUpdate
+      originUpdate,
+      shouldUseLookupUrl
     } = this.props;
     const {elements, hasLoaded} = shortListState;
     if (!hasLoaded) {
@@ -262,18 +263,21 @@ export class ShortList extends React.Component {
                 multiple={true}
                 data-cy="add-all-to-list"
               />
-              <Button
-                iconLeft="chrome_reader_mode"
-                size="large"
-                type="quaternary"
-                className="orderAllBtn"
-                onClick={
-                  orderList.length > 0 &&
-                  (() => orderAll(orderList.map(e => e.book)))
-                }
-              >
-                <T component="shortlist" name="shortlistOrder" />
-              </Button>
+              {!shouldUseLookupUrl && (
+                <Button
+                  iconLeft="chrome_reader_mode"
+                  size="large"
+                  type="quaternary"
+                  className="orderAllBtn"
+                  dataCy="orderAllButton"
+                  onClick={
+                    orderList.length > 0 &&
+                    (() => orderAll(orderList.map(e => e.book)))
+                  }
+                >
+                  <T component="shortlist" name="shortlistOrder" />
+                </Button>
+              )}
             </div>
           )}
         </div>
@@ -291,6 +295,7 @@ const mapStateToProps = state => {
     })
     .slice(0, 10);
   return {
+    shouldUseLookupUrl: state.userReducer.shouldUseLookupUrl,
     shortListState: state.shortListReducer,
     isLoggedIn: state.userReducer.isLoggedIn,
     isKiosk: state.kiosk.enabled,

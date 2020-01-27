@@ -19,6 +19,8 @@ import StorageClient from '../shared/server-side-storage.client';
 import ListRequester from '../shared/list.requester';
 import BeltsRequester from '../shared/belts.requester';
 
+import UNSUPPORTED_AGENCIES from './utils/unsupportedAgencies.json';
+
 const {getUser, getUserData} = require('server/user');
 const objectStore = require('server/objectStore');
 
@@ -48,6 +50,8 @@ async function initState(req) {
   });
 
   let lookupUrl = null;
+  let shouldUseLookupUrl = false;
+
   let isPremium = false;
   let municipalityAgencyId = null;
 
@@ -110,6 +114,12 @@ async function initState(req) {
         municipalityAgencyId,
         req.user.openplatformToken
       );
+
+      const isSupported = UNSUPPORTED_AGENCIES[municipalityAgencyId];
+
+      // Update shouldUseLookupUrl
+      shouldUseLookupUrl =
+        lookupUrl && isPremium && isSupported && isSupported.lookupUrl;
     }
 
     // Test cases ----------
@@ -123,6 +133,12 @@ async function initState(req) {
 
     if (req.user.lookupUrl) {
       lookupUrl = req.user.lookupUrl;
+
+      const isSupported = UNSUPPORTED_AGENCIES[municipalityAgencyId];
+
+      // Update shouldUseLookupUrl
+      shouldUseLookupUrl =
+        lookupUrl && isPremium && isSupported && isSupported.lookupUrl;
     }
     // ---------- ------------
   }
@@ -133,13 +149,20 @@ async function initState(req) {
   const editorBelts = await beltsRequester.fetchOwnedBelts(
     rolesState.contentFirstEditor._id
   );
+
   beltsState = beltsReducer(beltsState, {
     type: BELTS_LOAD_RESPONSE,
     belts: editorBelts
   });
 
   return {
-    userReducer: {...userState, isPremium, municipalityAgencyId, lookupUrl},
+    userReducer: {
+      ...userState,
+      isPremium,
+      municipalityAgencyId,
+      lookupUrl,
+      shouldUseLookupUrl
+    },
     listReducer: listState,
     beltsReducer: beltsState,
     interactionReducer: interactionState,

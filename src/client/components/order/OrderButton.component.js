@@ -12,21 +12,13 @@ import Kiosk from '../base/Kiosk/Kiosk';
 import './orderButton.css';
 import FindBookButton from '../kiosk/WayFinder/FindBookButton';
 
-const faroeAgencyId = '911116';
-
 export function OrderButton(props) {
-  // Premium
-  const isPremium = useSelector(state =>
-    get(state, 'userReducer.isPremium', false)
+  // Check if loan button should use lookupUrl
+  const shouldUseLookupUrl = useSelector(state =>
+    get(state, 'userReducer.shouldUseLookupUrl', false)
   );
 
-  // Check if user is from Faroe island
-  const isFaroeUser = useSelector(
-    state =>
-      get(state, 'userReducer.municipalityAgencyId', false) === faroeAgencyId
-  );
-
-  // Check if lookupUrl exist
+  // lookupUrl
   const lookupUrl = useSelector(state =>
     get(state, 'userReducer.lookupUrl', false)
   );
@@ -93,7 +85,7 @@ export function OrderButton(props) {
             iconLeft={props.iconLeft}
             iconRight={props.iconRight}
             onClick={
-              isPremium && isFaroeUser && lookupUrl
+              shouldUseLookupUrl
                 ? () => window.open(`${lookupUrl}${props.pid}`, '_blank')
                 : props.onClick || props.order
             }

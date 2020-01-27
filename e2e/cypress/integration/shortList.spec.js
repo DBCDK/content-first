@@ -33,4 +33,20 @@ describe('Test shortlist', function() {
           });
       });
   });
+
+  it('Order-all button is hidden for faeror users', function() {
+    const user = 'faeroe-user' + Math.floor(Math.random() * 1000);
+    cy.createUser(user, null, true);
+
+    cy.visit('/');
+    cy.get('[data-cy=workcard]')
+      .first()
+      .within(() => {
+        cy.get('[data-cy=bookmarkBtn]').click();
+      });
+
+    cy.visit('/huskeliste');
+
+    cy.get('[data-cy=orderAllButton]').should('not.be.visible');
+  });
 });

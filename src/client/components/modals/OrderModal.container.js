@@ -14,15 +14,6 @@ import NotificationModal from './NotificationModal.component';
 
 import './OrderModal.css';
 
-const UNSUPPORTED_AGENCIES = {
-  911116: {
-    notificationType: 'raw',
-    title: 'Bestilling kan ikke gennemføres',
-    text:
-      'Der kan på nuværende tidspunkt desværre ikke bestilles til færøske biblioteker.'
-  }
-};
-
 export function OrderState({book}) {
   if (book.orderState === 'ordered') {
     return (
@@ -141,23 +132,6 @@ function orderInfo({orders, onStart, currentBranch, branches, branchesLoaded}) {
 }
 
 export function OrderModal(props) {
-  const unsupportedAgency = UNSUPPORTED_AGENCIES[props.municipalityAgencyId];
-  if (unsupportedAgency) {
-    return (
-      <NotificationModal
-        context={{
-          notificationType: '',
-          ...unsupportedAgency,
-          cause: '',
-          hideCancel: true,
-          hideConfirm: true,
-          doneText: T({component: 'general', name: 'close'}),
-          cancelText: T({component: 'general', name: 'cancel'}),
-          onCancel: props.onClose
-        }}
-      />
-    );
-  }
   let {
     ordering,
     orderError,
