@@ -98,17 +98,4 @@ describe('Order ', function() {
     cy.contains('Kan ikke bestilles til dit bibliotek');
     cy.contains('er bestilt').should('not.exist');
   });
-
-  it('Shows notification modal when agency is unsupported', function() {
-    cy.createUser(null, null, true);
-    cy.fixture('/order/initialState_unsupportedMunicipality.json').as(
-      'initialState'
-    );
-    cy.server();
-    cy.route('GET', '/v1/initial-state', '@initialState');
-    const pid = '870970-basis:54154313';
-    cy.visit('/v%C3%A6rk/' + pid);
-    cy.get('[data-cy=order-btn]').click();
-    cy.contains('Bestilling kan ikke gennemføres');
-  });
 });
