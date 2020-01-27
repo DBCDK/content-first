@@ -64,7 +64,7 @@ Cypress.Commands.add('createUser', (userName, role, premium = false) => {
   } else {
     cy.visit('/v1/test/create/' + userName + '?premium=' + premium);
   }
-  cy.get('[data-cy=topbar-profile-img]');
+  cy.get('.profile-top > [data-cy=topbar-profile-img]');
 });
 
 /**
@@ -72,7 +72,7 @@ Cypress.Commands.add('createUser', (userName, role, premium = false) => {
  */
 Cypress.Commands.add('login', userName => {
   cy.visit('/v1/test/login/' + userName);
-  cy.get('[data-cy=topbar-profile-img]');
+  cy.get('.profile-top > [data-cy=topbar-profile-img]');
 });
 
 /**
@@ -81,7 +81,7 @@ Cypress.Commands.add('login', userName => {
 Cypress.Commands.add('cprlogin', (userName, overBool) => {
   if (!userName) userName = 'user' + Math.floor(Math.random() * 1000);
   cy.visit('/v1/test/cprlogin/' + userName + '/' + overBool);
-  cy.get('[data-cy=topbar-profile-img]');
+  cy.get('.profile-top > [data-cy=topbar-profile-img]');
 });
 
 /**
