@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {
-  FOLLOW_LOAD_REQUEST,
-  FOLLOW_LOAD_RESPONSE,
+  FOLLOWS_LOAD_REQUEST,
+  FOLLOWS_LOAD_RESPONSE,
   FOLLOW_ERROR
 } from '../../../redux/follow.reducer';
 import {fetchObjects} from '../../../utils/requester';
@@ -11,6 +11,9 @@ import {fetchObjects} from '../../../utils/requester';
 const withFollow = WrappedComponent => {
   const Wrapper = class extends React.Component {
     componentDidMount() {
+      this.getFollows();
+    }
+    componentDidUpdate() {
       this.getFollows();
     }
 
@@ -23,10 +26,11 @@ const withFollow = WrappedComponent => {
         onRequest,
         onResponse,
         onError,
-        openplatformId
+        openplatformId,
+        user
       } = this.props;
 
-      if (followState.loaded) {
+      if (followState.loaded || followState.loading || !user.isLoggedIn) {
         return;
       }
 
@@ -54,6 +58,7 @@ const withFollow = WrappedComponent => {
     );
 
     return {
+      user: state.userReducer,
       followedLists,
       followState: state.followReducer,
       openplatformId: state.userReducer.openplatformId
@@ -61,10 +66,10 @@ const withFollow = WrappedComponent => {
   };
 
   const mapDispatchToProps = dispatch => ({
-    onRequest: () => dispatch({type: FOLLOW_LOAD_REQUEST}),
+    onRequest: () => dispatch({type: FOLLOWS_LOAD_REQUEST}),
     onResponse: data =>
       dispatch({
-        type: FOLLOW_LOAD_RESPONSE,
+        type: FOLLOWS_LOAD_RESPONSE,
         data
       }),
     onError: data =>
