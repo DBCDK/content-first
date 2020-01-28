@@ -17,13 +17,15 @@ work-card.filter-page-title {
 
 .filter-page-results .must-include{
   text-decoration: underline;
+
 }
 .filter-page-results .must-not-include{
   text-decoration: line-through;
-}
 
-.filter-page-results .recommended-words{
-  display:inline-flex;
+}
+.tag-title{
+  white-space: nowrap;
+  display:inline-block;
 }
 
 /* Kiosk-mode enabled */

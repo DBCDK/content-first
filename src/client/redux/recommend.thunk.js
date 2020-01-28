@@ -3,7 +3,7 @@ import {filtersMapAll} from './filter.reducer';
 import {RECOMMEND_REQUEST, RECOMMEND_RESPONSE} from './recommend';
 import {BOOKS_PARTIAL_UPDATE} from './books.reducer';
 
-const applyClientSideFilter = (work, tags, minus) => {
+const applyClientSideFilter = (work, tags, minus, plus) => {
   let minPages = 0;
   let maxPages = 500000;
   let specialcase = false;
@@ -13,6 +13,8 @@ const applyClientSideFilter = (work, tags, minus) => {
   }
 
   let minusTags = minus.filter(m => m > 99999 && m < 100003);
+  let plusTags = plus.filter(m => m > 99999 && m < 100003);
+
   let posTags = tags
     .filter(n => n > 99999 && n < 100003)
     .filter(t => !minusTags.includes(t));
@@ -68,35 +70,45 @@ const applyClientSideFilter = (work, tags, minus) => {
       maxPages = 150;
     }
   }
+  if (plusTags.length === 1) {
+    if (plusTags.includes(100000)) {
+      minPages = 0;
+      maxPages = 150;
+    }
+    if (plusTags.includes(100001)) {
+      minPages = 150;
+      maxPages = 350;
+    }
+
+    if (plusTags.includes(100002)) {
+      minPages = 350;
+      maxPages = 500000;
+    }
+  }
+
+  if (plusTags.length === 2) {
+    if (plusTags.includes(100000) && plusTags.includes(100001)) {
+      minPages = 0;
+      maxPages = 350;
+    }
+    if (plusTags.includes(100000) && plusTags.includes(100002)) {
+      specialcase = true;
+    }
+    if (plusTags.includes(100001) && plusTags.includes(100002)) {
+      minPages = 150;
+      maxPages = 50000;
+    }
+  }
+
   if (minusTags.length === 3) {
     return false;
   }
   if (work.book.pages && work.book.pages !== 0) {
-    if (work.book.pages <= minPages || work.book.pages >= maxPages) {
-      return false;
-    }
-  } else if (specialcase) {
-    if (work.book.fetchRecommendations > 150 || work.book.pages < 350) {
-      return false;
-    }
-  }
-
-  if (work.book.pages && work.book.pages !== 0) {
-    if (work.book.pages <= minPages || work.book.pages >= maxPages) {
-      return false;
-    }
-  } else if (specialcase) {
-    if (work.book.fetchRecommendations > 150 || work.book.pages < 350) {
-      return false;
-    }
-  }
-
-  if (work.book.pages && work.book.pages !== 0) {
-    if (work.book.pages <= minPages || work.book.pages >= maxPages) {
-      return false;
-    }
-  } else if (specialcase) {
-    if (work.book.fetchRecommendations > 150 || work.book.pages < 350) {
+    if (specialcase) {
+      if (work.book.pages > 150 && work.book.pages < 350) {
+        return false;
+      }
+    } else if (work.book.pages <= minPages || work.book.pages >= maxPages) {
       return false;
     }
   }
@@ -234,7 +246,9 @@ export const fetchTagRecommendations = ({
         type: RECOMMEND_RESPONSE,
         requestKey,
         pids: fastResponse.response
-          .filter(entry => applyClientSideFilter(entry.work, tags, minusArr))
+          .filter(entry =>
+            applyClientSideFilter(entry.work, tags, minusArr, plusArr)
+          )
           .map(entry => entry.pid),
         rid: fastResponse.rid,
         isLoading: true
@@ -255,7 +269,9 @@ export const fetchTagRecommendations = ({
       type: RECOMMEND_RESPONSE,
       requestKey,
       pids: response.response
-        .filter(entry => applyClientSideFilter(entry.work, tags, minusArr))
+        .filter(entry =>
+          applyClientSideFilter(entry.work, tags, minusArr, plusArr)
+        )
         .map(entry => entry.pid),
       rid: response.rid
     });

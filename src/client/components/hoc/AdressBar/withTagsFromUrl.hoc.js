@@ -63,30 +63,14 @@ const withTagsFromUrl = WrappedComponent => {
         let minusStrArr = formatArr(this.props.minus);
 
         let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
-        let tagArr = this.props.tags.map(t => t.match.toString());
+        let tagArr = this.props.tags.map(t => {
+          if (typeof t.match === 'object') {
+            return t.match.toString().replace(',', ':');
+          }
+          return t.match.toString();
+        });
         this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
       }
-
-      let plusStrArr = formatArr(this.props.plus);
-      let minusStrArr = formatArr(this.props.minus);
-
-      let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
-      let tagArr = this.props.tags.map(t => t.match.toString());
-      this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
-    };
-
-    getReqState = s => {
-      let strTag = s.id.toString();
-      let plusStrArr = formatArr(this.props.plus);
-      let minusStrArr = formatArr(this.props.minus);
-
-      let res = 'none';
-      if (plusStrArr.includes(strTag)) {
-        res = 'underline';
-      } else if (minusStrArr.includes(strTag)) {
-        res = 'line-through';
-      }
-      return res;
     };
 
     removeTag = tag => {
@@ -105,7 +89,6 @@ const withTagsFromUrl = WrappedComponent => {
         let plusStrArr = formatArr(this.props.plus);
         let minusStrArr = formatArr(this.props.minus);
         let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr, true);
-
         const modified = addTag(this.props.tags, this.props.filterCards, tag);
         this.props.updateUrl(modified, objArrs.plusArr, objArrs.minusArr);
       }
