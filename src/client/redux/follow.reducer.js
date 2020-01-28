@@ -2,14 +2,30 @@ const defaultState = {};
 
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
+export const FOLLOWS_LOAD_REQUEST = 'FOLLOW_LOAD_REQUEST';
+export const FOLLOWS_LOAD_RESPONSE = 'FOLLOW_LOAD_RESPONSE';
 export const FOLLOW_LOAD_REQUEST = 'FOLLOW_LOAD_REQUEST';
 export const FOLLOW_LOAD_RESPONSE = 'FOLLOW_LOAD_RESPONSE';
 export const FOLLOW_ERROR = 'FOLLOW_ERROR';
 
 const followReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case FOLLOW_LOAD_REQUEST: {
+    case FOLLOWS_LOAD_REQUEST: {
       return Object.assign({}, state, {loaded: false, loading: true});
+    }
+    case FOLLOWS_LOAD_RESPONSE: {
+      let obj = {};
+      action.data.forEach(el => {
+        obj[el.id] = el;
+      });
+      return Object.assign({}, state, obj, {loaded: true, loading: false});
+    }
+    case FOLLOW_LOAD_REQUEST: {
+      let newState = {...state};
+      if (action._id) {
+        newState[action._id] = {loading: true, loaded: false};
+      }
+      return newState;
     }
 
     case FOLLOW_LOAD_RESPONSE: {
@@ -17,7 +33,7 @@ const followReducer = (state = defaultState, action) => {
       action.data.forEach(el => {
         obj[el.id] = el;
       });
-      return Object.assign({}, state, {...obj, loaded: true, loading: false});
+      return Object.assign({}, state, obj);
     }
 
     case FOLLOW_ERROR: {

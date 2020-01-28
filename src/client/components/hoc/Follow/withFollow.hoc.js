@@ -15,6 +15,9 @@ const withFollow = WrappedComponent => {
     componentDidMount() {
       this.getFollow();
     }
+    componentDidUpdate() {
+      this.getFollow();
+    }
 
     /**
      * Check if a specific list is followed
@@ -26,16 +29,17 @@ const withFollow = WrappedComponent => {
         onRequest,
         onResponse,
         onError,
-        openplatformId
+        openplatformId,
+        user
       } = this.props;
 
-      // Reducer Request action - FOLLOW_LOAD_REQUEST
-      onRequest();
-
       // If list is already followed (in state) - dont fetch it again.
-      if (isFollowing) {
+      if (isFollowing || !user.isLoggedIn) {
         return;
       }
+
+      // Reducer Request action - FOLLOW_LOAD_REQUEST
+      onRequest(_id);
 
       // Fetch follow data
       try {
@@ -99,6 +103,7 @@ const withFollow = WrappedComponent => {
 
   const mapStateToProps = (state, ownProps) => {
     return {
+      user: state.userReducer,
       followedList: state.followReducer[ownProps._id],
       isFollowing: !!state.followReducer[ownProps._id],
       openplatformId: state.userReducer.openplatformId
@@ -106,7 +111,7 @@ const withFollow = WrappedComponent => {
   };
 
   const mapDispatchToProps = (dispatch, ownProps) => ({
-    onRequest: () => dispatch({type: FOLLOW_LOAD_REQUEST}),
+    onRequest: _id => dispatch({type: FOLLOW_LOAD_REQUEST, _id}),
     onResponse: data =>
       dispatch({
         type: FOLLOW_LOAD_RESPONSE,
