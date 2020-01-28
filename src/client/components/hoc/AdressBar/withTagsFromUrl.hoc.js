@@ -58,19 +58,17 @@ const withTagsFromUrl = WrappedComponent => {
     };
 
     toggleReq = tag => {
-      if (this.props.isPremium) {
-        let plusStrArr = formatArr(this.props.plus);
-        let minusStrArr = formatArr(this.props.minus);
+      let plusStrArr = formatArr(this.props.plus);
+      let minusStrArr = formatArr(this.props.minus);
 
-        let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
-        let tagArr = this.props.tags.map(t => {
-          if (typeof t.match === 'object') {
-            return t.match.toString().replace(',', ':');
-          }
-          return t.match.toString();
-        });
-        this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
-      }
+      let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
+      let tagArr = this.props.tags.map(t => {
+        if (typeof t.match === 'object') {
+          return t.match.toString().replace(',', ':');
+        }
+        return t.match.toString();
+      });
+      this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
     };
 
     removeTag = tag => {

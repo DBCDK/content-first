@@ -43,5 +43,14 @@
       "contentFirstAdmin": false,
       "contentFirstEditor": false
     }
+  },
+  "SelectedTag": {
+    "free": false,
+    "premium": true,
+    "kiosk": true,
+    "role": {
+      "contentFirstAdmin": false,
+      "contentFirstEditor": true
+    }
   }
 }
