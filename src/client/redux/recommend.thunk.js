@@ -2,6 +2,7 @@ import request from 'superagent';
 import {filtersMapAll} from './filter.reducer';
 import {RECOMMEND_REQUEST, RECOMMEND_RESPONSE} from './recommend';
 import {BOOKS_PARTIAL_UPDATE} from './books.reducer';
+import {flatten, difference} from 'lodash';
 
 const applyClientSideFilter = (work, tags, minus, plus) => {
   let minPages = 0;
@@ -189,9 +190,16 @@ const fetchRecommendations = async action => {
     .body;
 
   if (action.tags) {
+    // tags that are not minus filters
+    const nonMinusFilters = difference(
+      action.tags.map(tag => tag.id || tag),
+      Array.isArray(query.minus) ? query.minus : []
+    );
     let pids = recompassResponse.response.filter(entry => {
       // if custom tags selected move values less than 1
-      if (customTagsSelected) {
+      // but only if there are tags that are not used as
+      // minus filters
+      if (customTagsSelected && nonMinusFilters.length > 0) {
         return entry.value;
       }
       return true;
@@ -215,16 +223,10 @@ export const fetchTagRecommendations = ({
   let minusArr = [];
   let plusArr = [];
   if (minus) {
-    minusArr =
-      typeof minus[0] === 'string'
-        ? [Math.trunc(minus)]
-        : minus[0].map(n => Math.trunc(n));
+    minusArr = flatten(minus).map(el => Math.trunc(el));
   }
   if (plus) {
-    plusArr =
-      typeof plus[0] === 'string'
-        ? [Math.trunc(plus)]
-        : plus[0].map(n => Math.trunc(n));
+    plusArr = flatten(plus).map(el => Math.trunc(el));
   }
 
   try {

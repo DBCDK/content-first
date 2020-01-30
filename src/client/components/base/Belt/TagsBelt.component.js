@@ -18,6 +18,7 @@ import T from '../T';
 import Button from '../Button';
 import './TagsBelt.css';
 import BeltSkeleton from './BeltSkeleton.component';
+import {getReqState} from '../../hoc/AdressBar/withTagsFromUrl.hoc';
 const EditBelt = props => {
   return (
     <React.Fragment>
@@ -65,7 +66,9 @@ export class TagsBelt extends React.Component {
       updateMount,
       openSimilarBelt,
       openWorkPreview,
-      recommendations
+      recommendations,
+      plus = [],
+      minus = []
     } = this.props;
     const isOwner = _owner && _owner === get(this.props, 'user.openplatformId');
     const tags = plainSelectedTagIds;
@@ -78,7 +81,9 @@ export class TagsBelt extends React.Component {
       tags: tags.map(t => {
         const tag = filtersMapAll[t.id ? t.id : t];
         return get(tag, 'id');
-      })
+      }),
+      plus,
+      minus
     };
     if (this.props.id === 'skeletonBelt') {
       return <BeltSkeleton />;
@@ -97,7 +102,9 @@ export class TagsBelt extends React.Component {
                 className="belt-tags__title--link"
                 href="/find"
                 params={{
-                  tags: tags.map(t => (t.id ? t.id : t)).join(',')
+                  tags: tags.map(t => (t.id ? t.id : t)).join(','),
+                  plus: plus,
+                  minus: minus
                 }}
                 onClick={() => {
                   if (updateMount) {
@@ -110,7 +117,9 @@ export class TagsBelt extends React.Component {
                   type="title4"
                   variant="transform-uppercase"
                   className="belt-tags__title"
-                  style={{lineHeight: 'inherit'}}
+                  style={{
+                    lineHeight: 'inherit'
+                  }}
                 >
                   {name.split(' ').map((word, idx) => {
                     if (idx === 0) {
@@ -140,12 +149,17 @@ export class TagsBelt extends React.Component {
             <div className="belt-tags__tags--container">
               {tags.map(t => {
                 const tag = filtersMapAll[t.id ? t.id : t];
+
                 return (
                   <Link
                     className="belt-tags__tag--link"
                     key={tag.id}
                     href="/find"
-                    params={{tags: tag.id}}
+                    params={{
+                      tags: tag.id,
+                      plus: plus.includes(tag.id) ? [tag.id] : [],
+                      minus: minus.includes(tag.id) ? [tag.id] : []
+                    }}
                     onClick={() => {
                       if (updateMount) {
                         updateMount({
@@ -156,7 +170,12 @@ export class TagsBelt extends React.Component {
                     }}
                     data-cy={`tag-${tag.title}`}
                   >
-                    <Term size="medium">{tag.title}</Term>
+                    <Term
+                      size="medium"
+                      style={{textDecoration: getReqState(t, plus, minus)}}
+                    >
+                      {tag.title}
+                    </Term>
                   </Link>
                 );
               })}

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
-import {isEqual} from 'lodash';
+import {isEqual, flatten} from 'lodash';
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
 import {getFullRange} from '../../../utils/taxonomy';
@@ -58,19 +58,17 @@ const withTagsFromUrl = WrappedComponent => {
     };
 
     toggleReq = tag => {
-      if (this.props.isPremium) {
-        let plusStrArr = formatArr(this.props.plus);
-        let minusStrArr = formatArr(this.props.minus);
+      let plusStrArr = formatArr(this.props.plus);
+      let minusStrArr = formatArr(this.props.minus);
 
-        let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
-        let tagArr = this.props.tags.map(t => {
-          if (typeof t.match === 'object') {
-            return t.match.toString().replace(',', ':');
-          }
-          return t.match.toString();
-        });
-        this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
-      }
+      let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr);
+      let tagArr = this.props.tags.map(t => {
+        if (typeof t.match === 'object') {
+          return t.match.toString().replace(',', ':');
+        }
+        return t.match.toString();
+      });
+      this.props.updateUrl(tagArr, objArrs.plusArr, objArrs.minusArr);
     };
 
     removeTag = tag => {
@@ -180,26 +178,14 @@ const withTagsFromUrl = WrappedComponent => {
 export default withTagsFromUrl;
 
 const formatArr = allEl => {
-  let el = allEl ? allEl[0] : [];
-
-  let retArr = [];
-  if (typeof el === 'string') {
-    retArr.push(el);
-  } else {
-    retArr = el.map(p => p.toString());
-  }
-  return retArr;
+  return flatten(allEl).map(el => el.toString());
 };
 
 export const getReqState = (s, plus, minus) => {
-  let strTag = s.id.toString();
-  let plusStrArr = formatArr(plus);
-  let minusStrArr = formatArr(minus);
-
   let res = 'none';
-  if (plusStrArr.includes(strTag)) {
+  if (plus.includes(s.id)) {
     res = 'underline';
-  } else if (minusStrArr.includes(strTag)) {
+  } else if (minus.includes(s.id)) {
     res = 'line-through';
   }
   return res;
@@ -246,6 +232,11 @@ const tagsFromUrlSelector = createSelector(
   ],
   (tags, plus, minus, filterCards) => {
     const expandedTags = tagsFromURL(tags && tags[0], filterCards);
+    plus = Array.isArray(plus) ? flatten(plus).map(el => parseInt(el, 10)) : [];
+    minus = Array.isArray(minus)
+      ? flatten(minus).map(el => parseInt(el, 10))
+      : [];
+
     const tagsMap = {};
     expandedTags.forEach(expanded => {
       tagsMap[expanded.match] = expanded;

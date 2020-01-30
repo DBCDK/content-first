@@ -4,6 +4,7 @@ import TagsSuggester from './TagsSuggester.component';
 import Icon from '../../base/Icon';
 import Button from '../../base/Button';
 import {withTagsFromUrl} from '../../hoc/AdressBar';
+import withPermissions from '../../hoc/Permissions';
 import {withWork} from '../../hoc/Work';
 import './SearchBar.css';
 import {getReqState} from '../../hoc/AdressBar/withTagsFromUrl.hoc';
@@ -34,20 +35,47 @@ const SelectedTitles = ({selected, onRemove}) => {
   );
 };
 
-const SelectedTag = ({selected, onRemove, toggleReq, reqState}) => (
-  <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
-    <span
-      onClick={() => toggleReq(selected.match)}
-      style={{textDecoration: reqState}}
+const SelectedTag = withPermissions(
+  ({selected, onRemove, toggleReq, reqState, onClick}) => (
+    <Button
+      Tag="div"
+      size="medium"
+      type="term"
+      className={`selected-filter`}
+      data-cy={`selected-filter-${selected.title}`}
     >
-      {selected.title}
-    </span>
-    <Icon
-      className={'md-small' + (isMobile ? ' increase-touch-area-xsmall' : '')}
-      name="close"
-      onClick={() => onRemove(selected.match)}
-    />
-  </Button>
+      <span
+        onClick={e => (onClick ? onClick(e) : toggleReq(selected.match))}
+        style={{textDecoration: reqState}}
+      >
+        {selected.title}
+      </span>
+      <Icon
+        className={'md-small' + (isMobile ? ' increase-touch-area-xsmall' : '')}
+        name="close"
+        onClick={() => onRemove(selected.match)}
+      />
+    </Button>
+  ),
+  {
+    name: 'SelectedTag',
+    modals: {
+      login: {
+        context: {
+          title: 'Avanceret filtrering',
+          reason:
+            'Log ind for at finde ud af om dit bibliotek abonnerer på Læsekompas.dk - og dermed giver mulighed for avanceret filtrering'
+        }
+      },
+      premium: {
+        context: {
+          title: 'Avanceret filtrering',
+          reason:
+            'Dit bibliotek abonnerer desværre ikke på Læsekompas.dk og du har derfor ikke adgang til avenceret filtrering'
+        }
+      }
+    }
+  }
 );
 const SelectedTagRange = ({selected, onRemove}) => (
   <Button Tag="div" size="medium" type="term" className={`selected-filter`}>

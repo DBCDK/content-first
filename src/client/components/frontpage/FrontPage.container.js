@@ -37,7 +37,14 @@ class FrontPage extends React.Component {
           .map(belt => {
             return (
               <TagsBelt
-                mount={'frontpage' + JSON.stringify(belt.tags)}
+                mount={
+                  'frontpage' +
+                  JSON.stringify({
+                    tags: belt.tags,
+                    plus: belt.plus,
+                    minus: belt.minus
+                  })
+                }
                 id={belt.key}
                 {...belt}
               />

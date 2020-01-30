@@ -36,7 +36,7 @@ export default class WorkSlider extends React.Component {
       mountedData,
       updateMount,
       origin,
-      recommendationsLoaded
+      hasLoaded
     } = this.props;
 
     const worksPerSlide = this.getWorksPerSlide();
@@ -47,7 +47,7 @@ export default class WorkSlider extends React.Component {
         className={`work-slider ${className}`}
         ref={container => (this.refs = {...this.refs, container})}
       >
-        {recommendationsLoaded && pids.length === 0 && (
+        {hasLoaded && pids.length === 0 && (
           <Title
             tag="h1"
             type="title4"
