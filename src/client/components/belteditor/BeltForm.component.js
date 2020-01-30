@@ -75,7 +75,17 @@ class BeltForm extends React.Component {
     return accumulatedTags;
   }
 
-  beltObject = (title, description, enabled, tags, id, index, createdBy) => ({
+  beltObject = (
+    title,
+    description,
+    enabled,
+    tags,
+    plus,
+    minus,
+    id,
+    index,
+    createdBy
+  ) => ({
     _public: true,
     _type: 'belt',
     _id: id,
@@ -83,6 +93,8 @@ class BeltForm extends React.Component {
     name: title,
     subtext: description,
     tags: this.extractTags(tags).map(item => ({id: item.id, weight: 1})),
+    plus: Array.isArray(plus) ? plus.filter(el => Number.isInteger(el)) : [],
+    minus: Array.isArray(minus) ? minus.filter(el => Number.isInteger(el)) : [],
     onFrontPage: enabled,
     index: index,
     createdBy: createdBy
@@ -97,6 +109,8 @@ class BeltForm extends React.Component {
       this.state.description,
       this.state.enabled,
       this.props.tags,
+      this.props.plus,
+      this.props.minus,
       this.state.id,
       this.state.index,
       this.state.createdBy
@@ -136,6 +150,8 @@ class BeltForm extends React.Component {
           this.state.description,
           this.state.enabled,
           this.props.tags,
+          this.props.plus,
+          this.props.minus,
           this.state.id,
           this.state.index
         )
@@ -263,6 +279,8 @@ class BeltForm extends React.Component {
           name={this.state.title}
           subtext={this.state.description}
           tags={tags}
+          plus={this.props.plus}
+          minus={this.props.minus}
         />
         <Toolbar>
           <Button

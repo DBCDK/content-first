@@ -181,6 +181,20 @@ describe('Start Belt Form test', function() {
     verifyTags(['realistisk', 'vaccination']);
   });
 
+  it('Test create new belt page - plus and minus filters should be saved properly', function() {
+    mockStorage();
+    cy.visit(
+      '/redaktionen/opret?tags=5640,5641,5634&plus=5640&minus=5634,5641'
+    );
+    enterTitle('plus-minus');
+    enterDescription('med filtre');
+    cy.get('[data-cy=belt-form-ok-button]').click();
+    cy.wait('@postBelt').then(xhr => {
+      expect(xhr.request.body.plus).to.deep.equal([5640]);
+      expect(xhr.request.body.minus).to.deep.equal([5634, 5641]);
+    });
+  });
+
   // ======================================================================================
 
   it('Test create new belt page - test succesful save', function() {

@@ -98,21 +98,7 @@ class Results extends React.Component {
   formatTitle = tag => {
     let title = tag.title;
     let id = tag.id;
-    let minus = [];
-    let plus = [];
-
-    if (this.props.minus) {
-      minus =
-        typeof this.props.minus[0] === 'string'
-          ? [Math.trunc(this.props.minus)]
-          : this.props.minus[0].map(n => Math.trunc(n));
-    }
-    if (this.props.plus) {
-      plus =
-        typeof this.props.plus[0] === 'string'
-          ? [Math.trunc(this.props.plus)]
-          : this.props.plus[0].map(n => Math.trunc(n));
-    }
+    let {plus = [], minus = []} = this.props;
 
     if (plus.includes(id)) {
       return (

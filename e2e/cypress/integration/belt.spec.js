@@ -19,4 +19,42 @@ describe('belt', function() {
     cy.get('.topbar__logo').click();
     cy.get('[data-cy="did-read-belt"]').should('not.exist');
   });
+
+  it(`Should show plus minus tags on tags belt`, function() {
+    cy.fixture('belt/initialState_plus_minus.json').as('initialState');
+    cy.server();
+    cy.route('GET', '/v1/initial-state', '@initialState').as(
+      'initialStateRequest'
+    );
+    cy.visit('/');
+    cy.get('[data-cy="tag-poetisk sprog"] button')
+      .should('have.css', 'text-decoration') // yields 'sans-serif'
+      .and('match', /underline/);
+
+    cy.get('[data-cy="tag-eksperimenterende sprog"] button')
+      .should('have.css', 'text-decoration') // yields 'sans-serif'
+      .and('match', /line-through/);
+  });
+
+  it(`Should redirect to find page with a plus tag`, function() {
+    cy.fixture('belt/initialState_plus_minus.json').as('initialState');
+    cy.server();
+    cy.route('GET', '/v1/initial-state', '@initialState').as(
+      'initialStateRequest'
+    );
+    cy.visit('/');
+    cy.get('[data-cy="tag-poetisk sprog"] button').click();
+    cy.url().should('include', 'find?tags=5615&plus=5615');
+  });
+
+  it(`Should redirect to find page with plus and minus tags when clicking on title`, function() {
+    cy.fixture('belt/initialState_plus_minus.json').as('initialState');
+    cy.server();
+    cy.route('GET', '/v1/initial-state', '@initialState').as(
+      'initialStateRequest'
+    );
+    cy.visit('/');
+    cy.get('.belt-tags__title').click();
+    cy.url().should('include', 'find?tags=5615,5614&plus=5615&minus=5614');
+  });
 });

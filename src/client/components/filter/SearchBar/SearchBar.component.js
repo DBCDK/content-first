@@ -37,7 +37,13 @@ const SelectedTitles = ({selected, onRemove}) => {
 
 const SelectedTag = withPermissions(
   ({selected, onRemove, toggleReq, reqState, onClick}) => (
-    <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+    <Button
+      Tag="div"
+      size="medium"
+      type="term"
+      className={`selected-filter`}
+      data-cy={`selected-filter-${selected.title}`}
+    >
       <span
         onClick={e => (onClick ? onClick(e) : toggleReq(selected.match))}
         style={{textDecoration: reqState}}
@@ -56,14 +62,16 @@ const SelectedTag = withPermissions(
     modals: {
       login: {
         context: {
-          title: 'Filtre',
-          reason: 'Prøv at logge ind'
+          title: 'Avanceret filtrering',
+          reason:
+            'Log ind for at finde ud af om dit bibliotek abonnerer på Læsekompas.dk - og dermed giver mulighed for avanceret filtrering'
         }
       },
       premium: {
         context: {
-          title: 'Filtre',
-          reason: 'ikke adgang'
+          title: 'Avanceret filtrering',
+          reason:
+            'Dit bibliotek abonnerer desværre ikke på Læsekompas.dk og du har derfor ikke adgang til avenceret filtrering'
         }
       }
     }
