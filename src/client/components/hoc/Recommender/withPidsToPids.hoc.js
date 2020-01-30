@@ -74,6 +74,8 @@ export default WrappedComponent => props => {
   return (
     <WrappedComponent
       {...props}
+      isLoading={recommendations.isLoading}
+      hasLoaded={recommendations.hasLoaded}
       recommendations={recommendations.pids}
       rid={recommendations.rid}
     />

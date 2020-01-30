@@ -57,4 +57,18 @@ describe('belt', function() {
     cy.get('.belt-tags__title').click();
     cy.url().should('include', 'find?tags=5615,5614&plus=5615&minus=5614');
   });
+
+  it(`Should show message when recompass response is empty`, function() {
+    cy.fixture('belt/initialState_plus_minus.json').as('initialState');
+    cy.server();
+    cy.route('GET', '/v1/initial-state', '@initialState').as(
+      'initialStateRequest'
+    );
+    cy.route('GET', '/v1/recompass*', {
+      response: [],
+      rid: 'some-rid'
+    });
+    cy.visit('/');
+    cy.contains('Der er endnu ikke nok data');
+  });
 });
