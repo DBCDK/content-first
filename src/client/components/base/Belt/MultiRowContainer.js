@@ -67,11 +67,15 @@ class MultiRowContainer extends React.Component {
   }
 
   handleResize = () => {
-    const resultsPerRow = Math.floor(
-      get(this.refs, 'container.clientWidth', 1) /
-        (get(this.refs, 'workCard.clientWidth', 1) + 30)
-    );
-    this.setState({resultsPerRow: Math.max(resultsPerRow, 1)});
+    const containerWidth = get(this.refs, 'container.clientWidth');
+    const workCardWidth = get(this.refs, 'workCard.clientWidth');
+    if (!containerWidth || !workCardWidth) {
+      return;
+    }
+    const resultsPerRow = Math.floor(containerWidth / (workCardWidth + 30));
+    if (this.state.resultsPerRow !== resultsPerRow) {
+      this.setState({resultsPerRow: Math.max(resultsPerRow, 1)});
+    }
   };
 
   createSkeletonRow = () => {
@@ -117,7 +121,11 @@ class MultiRowContainer extends React.Component {
     const rows = this.pidsToRows(pids, this.state.resultsPerRow);
     return (
       <div className={`multirow--container ${this.props.className}`}>
-        <div ref={container => (this.refs = {...this.refs, container})}>
+        <div
+          ref={container => {
+            this.refs = {...this.refs, container};
+          }}
+        >
           {rows.map(pidList => (
             <Row
               key={JSON.stringify(pidList)}
@@ -125,7 +133,9 @@ class MultiRowContainer extends React.Component {
               origin={this.props.origin}
               rid={this.props.rid}
               pids={pidList}
-              cardRef={workCard => (this.refs = {...this.refs, workCard})}
+              cardRef={workCard => {
+                this.refs = {...this.refs, workCard};
+              }}
               isLoading={isLoading}
             />
           ))}
