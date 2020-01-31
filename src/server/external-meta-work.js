@@ -27,18 +27,15 @@ router
         .query({pids: pid});
 
       const bookData = response.body.data[0].book;
-
-      const bookCover = 'https://metakompasset.dk/api/cover/' + pid;
       const description =
         bookData.taxonomy_description ||
         bookData.taxonomy_description_subjects ||
         bookData.description ||
         '';
-      // const message = 'hello';
       const html = template.constructHtml(
         bookData.title + ' af ' + bookData.creator,
         description.replace('\n', ', '),
-        bookCover,
+        bookData.coverUrl,
         hostUrl + req.originalUrl,
         {width: 300, height: 600},
         'book'
