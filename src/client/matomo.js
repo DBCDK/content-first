@@ -15,12 +15,14 @@ let initialize;
 let setUserStatus;
 let trackEvent;
 let trackDataEvent;
+let setBranchKey;
 
 if (window.Cypress && window.__stubbed_matomo__) {
   initialize = window.__stubbed_matomo__.initialize;
   setUserStatus = window.__stubbed_matomo__.setUserStatus;
   trackEvent = window.__stubbed_matomo__.trackEvent;
   trackDataEvent = window.__stubbed_matomo__.trackDataEvent;
+  setBranchKey = window.__stubbed_matomo__.setBranchKey;
 } else {
   /*
    * Initializes Matomo
@@ -64,6 +66,17 @@ if (window.Cypress && window.__stubbed_matomo__) {
         1,
         'userStatus',
         authenticated ? 'AUTHENTICATED' : 'ANONYMOUS',
+        'visit'
+      ]);
+    }
+  };
+  setBranchKey = branchKey => {
+    if (matomoEnabled) {
+      window._paq.push([
+        'setCustomVariable',
+        1,
+        'branchKey',
+        branchKey,
         'visit'
       ]);
     }
@@ -153,4 +166,4 @@ if (window.Cypress && window.__stubbed_matomo__) {
   };
 }
 
-export {initialize, setUserStatus, trackEvent, trackDataEvent};
+export {initialize, setUserStatus, setBranchKey, trackEvent, trackDataEvent};

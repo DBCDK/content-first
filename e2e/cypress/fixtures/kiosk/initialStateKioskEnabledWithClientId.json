@@ -62,7 +62,7 @@
     },
     "kiosk": {
       "enabled": true,
-      "loaded": true,
+      "loaded": false,
       "branchKey": "some-key",
       "configuration": {"agencyId": "710100", "branch": "Hovedbiblioteket"}
     }

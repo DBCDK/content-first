@@ -4,6 +4,7 @@ const PID_REGEX_2 = /^\d+-\w+:\d+/;
 const createMatomoMock = endpoint => {
   let tracked = {};
   let trackedData = {};
+  let kiosk = {};
   cy.visitWithMatomoMocks(endpoint, {
     trackEvent: (category, action, name) => {
       tracked.category = category;
@@ -13,9 +14,12 @@ const createMatomoMock = endpoint => {
     trackDataEvent: (action, data) => {
       trackedData.action = action;
       trackedData.data = data;
+    },
+    setBranchKey: branchKey => {
+      kiosk.branchKey = branchKey;
     }
   });
-  return {tracked, trackedData};
+  return {tracked, trackedData, kiosk};
 };
 
 describe('Matomo test', function() {
@@ -139,6 +143,14 @@ describe('Matomo test', function() {
       '[data-cy="workcard"]',
       'belt:Fordi du har læst Skyggen'
     );
+  });
+
+  it('Sets a custom variable to distinguish branches, when running in kiosk mode', function() {
+    cy.setKioskMode();
+    const {kiosk} = createMatomoMock('/');
+    cy.wait('@initialStateRequest').then(() => {
+      expect(kiosk.branchKey).to.equal('some-key');
+    });
   });
 
   it('Can track list ', function() {
