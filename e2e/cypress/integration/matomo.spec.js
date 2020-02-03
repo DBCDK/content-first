@@ -150,6 +150,7 @@ describe('Matomo test', function() {
     const {kiosk} = createMatomoMock('/');
 
     cy.wait('@kioskConfigurationRequest').then(() => {
+      cy.wait(2000);
       expect(kiosk.branchKey).to.equal('some-key');
     });
   });
