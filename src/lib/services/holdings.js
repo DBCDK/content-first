@@ -62,7 +62,9 @@ class Holdings {
   }
 
   createQuery(agencyId, branch, recordIds) {
-    return `holdingsitem.agencyId:${agencyId} AND holdingsitem.branch:"${branch}" AND (${recordIds
+    return `holdingsitem.agencyId:${agencyId} AND holdingsitem.branch:${
+      branch.match(/^".*"$/) ? branch : `"${branch}"`
+    } AND (${recordIds
       .map(recordId => `holdingsitem.bibliographicRecordId:${recordId}`)
       .join(' OR ')})`;
   }

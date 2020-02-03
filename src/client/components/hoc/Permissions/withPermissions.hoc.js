@@ -130,7 +130,7 @@ export default (WrappedComponent, ComponentOptions) => props => {
 
     // Get kiosk configuration if not loaded
     if (!kioskState.loaded) {
-      dispatch(loadKiosk());
+      dispatch(loadKiosk({}));
     }
 
     // Return

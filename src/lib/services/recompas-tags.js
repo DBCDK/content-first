@@ -51,7 +51,9 @@ class RecompasTags {
       let branchid;
       let status;
       if (agencyId && branch) {
-        branchid = `${agencyId}|"${branch}"`;
+        branchid = `${agencyId}|${
+          branch.match(/^".*"$/) ? branch : `"${branch}"`
+        }`;
         status = 'onShelf';
       }
       let sendPlus = (plus && Array.isArray(plus) ? plus : [plus]).filter(
