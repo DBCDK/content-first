@@ -21,14 +21,16 @@ export const interactionMiddleware = store => next => action => {
   switch (action.type) {
     case INTERACTION: {
       try {
-        request
-          .post('/v1/object/')
-          .send({
-            _type: INTERACTION,
-            interaction: action.interaction,
-            pid: action.pid
-          })
-          .end();
+        if (get(store.getState(), 'userReducer.isLoggedIn')) {
+          request
+            .post('/v1/object/')
+            .send({
+              _type: INTERACTION,
+              interaction: action.interaction,
+              pid: action.pid
+            })
+            .end();
+        }
       } catch (e) {
         request
           .post('/v1/log')
