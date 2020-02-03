@@ -367,7 +367,6 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
-    cy.wait('@kioskConfigurationRequest');
     clickFirstBook();
     assertHomeStatus('non-kiosk');
     assertNoFindBookButton();
