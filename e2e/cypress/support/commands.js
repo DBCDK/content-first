@@ -149,6 +149,7 @@ Cypress.Commands.add('setKioskMode', () => {
     'kioskConfigurationRequest'
   );
   cy.visit('/kiosk?kiosk=some-key');
+  cy.wait('@kioskConfigurationRequest');
 });
 
 /**
