@@ -123,7 +123,10 @@ Cypress.Commands.add('visitWithMatomoMocks', (url, matomo) => {
         initialize: matomo.initialize ? matomo.initialize : () => {},
         setUserStatus: matomo.setUserStatus ? matomo.setUserStatus : () => {},
         trackEvent: matomo.trackEvent ? matomo.trackEvent : () => {},
-        trackDataEvent: matomo.trackDataEvent ? matomo.trackDataEvent : () => {}
+        trackDataEvent: matomo.trackDataEvent
+          ? matomo.trackDataEvent
+          : () => {},
+        setBranchKey: matomo.setBranchKey ? matomo.setBranchKey : () => {}
       };
     }
   });
@@ -139,9 +142,14 @@ Cypress.Commands.add('setKioskMode', () => {
   );
   cy.fixture('kiosk/kioskConfiguration.json').as('kioskConfiguration');
   cy.server();
-  cy.route('GET', '/v1/initial-state', '@initialState');
-  cy.route('POST', '/v1/kiosk', '@kioskConfiguration');
+  cy.route('GET', '/v1/initial-state', '@initialState').as(
+    'initialStateRequest'
+  );
+  cy.route('POST', '/v1/kiosk', '@kioskConfiguration').as(
+    'kioskConfigurationRequest'
+  );
   cy.visit('/kiosk?kiosk=some-key');
+  cy.wait('@kioskConfigurationRequest');
 });
 
 /**

@@ -1,5 +1,10 @@
 /* eslint-disable complexity */
-import {trackEvent, trackDataEvent, setUserStatus} from '../matomo';
+import {
+  trackEvent,
+  trackDataEvent,
+  setUserStatus,
+  setBranchKey
+} from '../matomo';
 import {setItem, getItem} from '../utils/localstorage';
 import {get} from 'lodash';
 import {UPDATE_MOUNT} from './mounts.reducer';
@@ -19,6 +24,7 @@ import {
   ON_USER_DETAILS_ERROR,
   SAVE_USER_PROFILE_SUCCESS
 } from './user.reducer';
+import {KIOSK_RESPONSE} from './kiosk.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 
 export const matomoMiddleware = store => next => action => {
@@ -212,6 +218,14 @@ export const matomoMiddleware = store => next => action => {
       if (action.modal === 'list' && action.createListAttempt) {
         trackEvent('list', 'createListAttempt', 0);
       }
+      return next(action);
+    }
+    case KIOSK_RESPONSE: {
+      const branchKey = get(action, 'response.branchKey');
+      if (branchKey) {
+        setBranchKey(branchKey);
+      }
+
       return next(action);
     }
 
