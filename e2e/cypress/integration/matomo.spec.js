@@ -148,7 +148,8 @@ describe('Matomo test', function() {
   it('Sets a custom variable to distinguish branches, when running in kiosk mode', function() {
     cy.setKioskMode();
     const {kiosk} = createMatomoMock('/');
-    cy.wait('@initialStateRequest').then(() => {
+
+    cy.wait('@kioskConfigurationRequest').then(() => {
       expect(kiosk.branchKey).to.equal('some-key');
     });
   });

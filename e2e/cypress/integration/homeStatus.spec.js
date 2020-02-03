@@ -144,6 +144,7 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     assertHomeStatusOnWorkCard('onShelf');
   });
 
@@ -152,6 +153,7 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {notForLoan: true});
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     assertHomeStatusOnWorkCard('notForLoan');
   });
 
@@ -160,6 +162,7 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onLoan: true});
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     assertHomeStatusOnWorkCard('onLoan');
   });
 
@@ -168,6 +171,7 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {});
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     assertHomeStatusOnWorkCard('notAvailable');
   });
 
@@ -180,6 +184,7 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     clickFirstBooksBookmark();
     clickShortListButtonInKioskMode();
     assertHomeStatus('onShelf');
@@ -195,6 +200,7 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     clickFirstBook();
     assertHomeStatus('onShelf');
     assertFindBookButton(true);
@@ -205,6 +211,7 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {notForLoan: true});
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     clickFirstBook();
     assertHomeStatus('notForLoan');
     assertFindBookButton(true);
@@ -215,6 +222,7 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onLoan: true});
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     clickFirstBook();
     assertHomeStatus('onLoan');
     assertFindBookButton(false);
@@ -225,6 +233,7 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {});
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     clickFirstBook();
     assertHomeStatus('notAvailable');
     assertFindBookButton(false);
@@ -244,6 +253,7 @@ describe('kiosk', function() {
       subLocation: 'Sublocation'
     });
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     clickFirstBook();
     clickFindBookButton();
     assertFindBookModal('Department > Location > Sublocation');
@@ -259,6 +269,7 @@ describe('kiosk', function() {
       subLocation: 'Sublocation'
     });
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     clickFirstBook();
     clickFindBookButton();
     assertFindBookModal('Department > Location > Sublocation');
@@ -288,6 +299,7 @@ describe('kiosk', function() {
       }
     ]);
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     clickFirstBook();
     clickFindBookButton();
     assertFindBookModal([
@@ -319,6 +331,7 @@ describe('kiosk', function() {
       }
     ]);
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     clickFirstBook();
     clickFindBookButton();
     assertFindBookModal('Department 2 > Location 2 > Sublocation 2');
@@ -333,6 +346,7 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     assertHomeStatusOnWorkCard('non-kiosk');
   });
 
@@ -341,6 +355,7 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     clickFirstBooksBookmark();
     clickShortListButtonInNonKioskMode();
     assertHomeStatus('non-kiosk');
@@ -352,6 +367,7 @@ describe('kiosk', function() {
     mockRecompas([{pid, value: 3, work}]);
     mockHoldings(pid, {onShelf: true});
     cy.visit('/');
+    cy.wait('@kioskConfigurationRequest');
     clickFirstBook();
     assertHomeStatus('non-kiosk');
     assertNoFindBookButton();
