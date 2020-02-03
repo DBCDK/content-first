@@ -42,7 +42,7 @@ class RecompasWork {
       if (query.agencyId && query.branch) {
         query = {
           ...query,
-          branchid: `${query.agencyId}|${query.branch}`,
+          branchid: `${query.agencyId}|"${query.branch}"`,
           status: 'onShelf'
         };
         delete query.agencyId;
