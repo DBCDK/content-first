@@ -61,51 +61,42 @@ const ListElement = props => {
   };
 
   return (
-    <div
-      data-cy={`list-overview-element-${props.list.title}`}
-      className={`top-bar-dropdown-list-element${
-        props.modalView ? '--modal' : ''
-      }`}
+    <Link
+      onClick={() => {
+        if (props.closeModal) {
+          props.closeModal();
+        }
+      }}
+      href={url}
+      data-cy={`list-link-${props.list.title}`}
     >
-      <div className="top-bar-dropdown-list-element--cover-image">
-        <Link
-          onClick={() => {
-            if (props.closeModal) {
-              props.closeModal();
-            }
-          }}
-          href={url}
-        >
+      <div
+        data-cy={`list-overview-element-${props.list.title}`}
+        className={`top-bar-dropdown-list-element${
+          props.modalView ? '--modal' : ''
+        }`}
+      >
+        <div className="top-bar-dropdown-list-element--cover-image">
           {renderListsCover(props.list)}
-        </Link>
-      </div>
-      <div className="top-bar-dropdown-list-element--text">
-        <div className="top-bar-dropdown-list-element--header">
-          <Link
-            onClick={() => {
-              if (props.closeModal) {
-                props.closeModal();
-              }
-            }}
-            href={url}
-            data-cy={`list-link-${props.list.title}`}
-          >
+        </div>
+        <div className="top-bar-dropdown-list-element--text">
+          <div className="top-bar-dropdown-list-element--header">
             {props.list.title}
-          </Link>
-        </div>
-        <div className="top-bar-dropdown-list-element--taxonomy-description">
-          {props.list.description}
-        </div>
-        <div className="top-bar-dropdown-list-element--origin">
-          {!props.isListOwner && (
-            <span>
-              {T({component: 'general', name: 'by'})}
-              <OwnerName id={props.list._owner} className="ml-1" />
-            </span>
-          )}
+          </div>
+          <div className="top-bar-dropdown-list-element--taxonomy-description">
+            {props.list.description}
+          </div>
+          <div className="top-bar-dropdown-list-element--origin">
+            {!props.isListOwner && (
+              <span>
+                {T({component: 'general', name: 'by'})}
+                <OwnerName id={props.list._owner} className="ml-1" />
+              </span>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
