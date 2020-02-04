@@ -81,7 +81,7 @@
 .top-bar-dropdown-list-element:last-child {
   border-bottom: 0;
 }
-.top-bar-dropdown-list-element--header a {
+.top-bar-dropdown-list-element--header {
   font-family: var(--primary-font);
   color: var(--petroleum);
   font-weight: 600;
