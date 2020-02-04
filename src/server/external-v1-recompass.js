@@ -45,9 +45,6 @@ router
             const timeout =
               req.query.timeout && parseInt(req.query.timeout, 10);
 
-            const timeout =
-              req.query.timeout && parseInt(req.query.timeout, 10);
-
             const link = `${req.baseUrl}?tags=${req.query.tags ||
               ''}&creators=${req.query.creators ||
               ''}&maxresults=${maxresults}&timeout=${timeout}`;
