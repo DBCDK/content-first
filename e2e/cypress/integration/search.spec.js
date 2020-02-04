@@ -24,7 +24,7 @@ describe('Search test', function() {
       .should('have.text', 'Min kamp');
   });
   it('creates 4 tags, clicks them to get an assorted selection and checks they are formatted correctly', function() {
-    const searchWord2 = 'kort';
+    const searchWord2 = 'positiv';
     const searchWord3 = 'krævende sprog';
     const searchWord4 = 'humor';
     const searchWord5 = 'familien';
@@ -39,7 +39,7 @@ describe('Search test', function() {
     waitForSuggestions(searchWord2);
 
     cy.get('[data-cy=suggestion-element]')
-      .contains('Kort')
+      .contains('positiv')
       .first()
       .click();
 
