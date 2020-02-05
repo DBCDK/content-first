@@ -158,7 +158,7 @@ describe('ShortList.container', () => {
     );
     tree
       .find('.shortlist--wrap .shortlist__tools--top .clearList')
-      .at(1)
+      .at(0)
       .simulate('click');
     expect(Link).toHaveBeenCalledTimes(3);
     expect(OrderButton).toHaveBeenCalledTimes(3);
@@ -255,32 +255,6 @@ describe('ShortList.container', () => {
     expect(OrderButton).toHaveBeenCalledTimes(3);
     expect(global.open).toHaveBeenCalledTimes(1);
     expect(global.open).toHaveBeenCalledWith('https://this/url/lydbog');
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('Order all books', () => {
-    jest.clearAllMocks();
-    const mockOrderAll = jest.fn();
-    const testElements = createTestElements(3);
-    const tree = mount(
-      <ShortList
-        shortListState={{elements: testElements, hasLoaded: true}}
-        orderList={testElements}
-        orderAll={mockOrderAll}
-      />
-    );
-    tree
-      .find('.shortlist--wrap .shortlist__tools--bottom button')
-      .at(0)
-      .simulate('click');
-    expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(3);
-    expect(mockOrderAll).toHaveBeenCalledTimes(1);
-    var argument = mockOrderAll.mock.calls[0][0]; // First argument in first call
-    expect(argument.length).toBe(3);
-    expect(argument[0].pid).toBe('pid - 0');
-    expect(argument[1].pid).toBe('pid - 1');
-    expect(argument[2].pid).toBe('pid - 2');
     expect(tree).toMatchSnapshot();
   });
 });
