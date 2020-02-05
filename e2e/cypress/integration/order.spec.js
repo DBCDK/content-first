@@ -83,7 +83,7 @@ describe('Order ', function() {
     cy.server();
     cy.route('GET', '/v1/shortlist', '@shortlist').as('shortlistRequest');
     cy.visit('/huskeliste');
-    cy.get('.orderAllBtn').click();
+    cy.get('[data-cy=orderAllButton]').click();
     cy.contains('Kan ikke bestilles til dit bibliotek');
     cy.contains('Kan bestilles');
     cy.get('[data-cy=modal-done-btn]').click();
