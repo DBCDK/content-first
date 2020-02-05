@@ -192,19 +192,8 @@ Array [
           </span>
         </button>
       </div>
-      <div
-        onClick={[Function]}
-      >
-        <button
-          className="
-      button button__medium button__tertiary   "
-          data-cy=""
-          disabled={false}
-        >
-          <span>
-            Lån alle bøger
-          </span>
-        </button>
+      <div>
+        OrderAllButton
       </div>
     </div>
   </div>,
@@ -527,19 +516,8 @@ Array [
           </span>
         </button>
       </div>
-      <div
-        onClick={[Function]}
-      >
-        <button
-          className="
-      button button__medium button__tertiary   "
-          data-cy=""
-          disabled={false}
-        >
-          <span>
-            Lån alle bøger
-          </span>
-        </button>
+      <div>
+        OrderAllButton
       </div>
     </div>
   </div>,
@@ -676,19 +654,8 @@ Array [
           </span>
         </button>
       </div>
-      <div
-        onClick={[Function]}
-      >
-        <button
-          className="
-      button button__medium button__tertiary   "
-          data-cy=""
-          disabled={false}
-        >
-          <span>
-            Lån alle bøger
-          </span>
-        </button>
+      <div>
+        OrderAllButton
       </div>
     </div>
   </div>,
@@ -750,19 +717,8 @@ Array [
           </span>
         </button>
       </div>
-      <div
-        onClick={[Function]}
-      >
-        <button
-          className="
-      button button__medium button__tertiary   "
-          data-cy=""
-          disabled={true}
-        >
-          <span>
-            Lån alle bøger
-          </span>
-        </button>
+      <div>
+        OrderAllButton
       </div>
     </div>
   </div>,

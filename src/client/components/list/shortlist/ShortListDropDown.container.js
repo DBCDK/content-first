@@ -17,6 +17,7 @@ import T from '../../base/T';
 import Link from '../../general/Link.component';
 import '../overview/dropdownList.css';
 import Origin from '../../base/Origin';
+import OrderAllButton from '../../order/OrderAllButton.component';
 
 const ShortListElement = props => {
   const url = `/værk/${props.element.book.pid}`;
@@ -113,12 +114,17 @@ const ShortListContent = props => {
             <T component="shortlist" name="shortlistGo" />
           </Button>
         </div>
-        <div
-          onClick={() => props.elements.length > 0 && props - props.orderAll()}
-        >
-          <Button size="medium" type="tertiary" disabled={emptyList}>
-            <T component="shortlist" name="shortlistOrder" />
-          </Button>
+
+        <div>
+          <OrderAllButton
+            onClick={() =>
+              props.elements.length > 0 && props - props.orderAll()
+            }
+            disabled={emptyList}
+            size="medium"
+            type="tertiary"
+            data-cy="shortlist-dropdown-order-all"
+          />
         </div>
       </div>
     </div>

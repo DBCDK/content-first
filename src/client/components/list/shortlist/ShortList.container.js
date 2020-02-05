@@ -21,6 +21,7 @@ import Button from '../../base/Button';
 import Banner from '../../base/Banner';
 import {withWork} from '../../hoc/Work';
 import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
+import OrderAllButton from '../../order/OrderAllButton.component';
 import Origin from '../../base/Origin';
 import SkeletonText from '../../base/Skeleton/Text';
 
@@ -264,19 +265,14 @@ export class ShortList extends React.Component {
                 data-cy="add-all-to-list"
               />
               {!shouldUseLookupUrl && (
-                <Button
+                <OrderAllButton
                   iconLeft="chrome_reader_mode"
                   size="large"
-                  type="quaternary"
-                  className="orderAllBtn"
-                  dataCy="orderAllButton"
                   onClick={
                     orderList.length > 0 &&
                     (() => orderAll(orderList.map(e => e.book)))
                   }
-                >
-                  <T component="shortlist" name="shortlistOrder" />
-                </Button>
+                />
               )}
             </div>
           )}

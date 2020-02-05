@@ -83,11 +83,34 @@ describe('Order ', function() {
     cy.server();
     cy.route('GET', '/v1/shortlist', '@shortlist').as('shortlistRequest');
     cy.visit('/huskeliste');
-    cy.get('.orderAllBtn').click();
+    cy.get('[data-cy=orderAllButton]').click();
     cy.contains('Kan ikke bestilles til dit bibliotek');
     cy.contains('Kan bestilles');
     cy.get('[data-cy=modal-done-btn]').click();
     cy.get('[data-cy=order-status]').should('have.text', '1 bog er bestilt');
+  });
+
+  it('fails to "order all" from shortlist page for non-premium user', function() {
+    cy.createUser(null, null, false);
+    cy.fixture('/order/shortlist.json').as('shortlist');
+    cy.server();
+    cy.route('GET', '/v1/shortlist', '@shortlist').as('shortlistRequest');
+    cy.visit('/huskeliste');
+    cy.wait('@shortlistRequest');
+    cy.get('[data-cy=orderAllButton]').click();
+    cy.contains('ikke tilgængeligt for dit bibliotek');
+  });
+
+  it('fails to "order all" from shortlist dropdown for non-premium user', function() {
+    cy.createUser(null, null, false);
+    cy.fixture('/order/shortlist.json').as('shortlist');
+    cy.server();
+    cy.route('GET', '/v1/shortlist', '@shortlist').as('shortlistRequest');
+    cy.visit('/huskeliste');
+    cy.wait('@shortlistRequest');
+    cy.get('[data-cy=topbar-shortlist]').click();
+    cy.get('[data-cy=shortlist-dropdown-order-all').click();
+    cy.contains('ikke tilgængeligt for dit bibliotek');
   });
 
   it('Fails gracefully when no pickup libraries are available', function() {

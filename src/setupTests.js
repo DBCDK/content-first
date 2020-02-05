@@ -59,6 +59,9 @@ jest.mock(
   './client/components/general/BookCover/BookCover.component',
   () => 'bookcover'
 );
+jest.mock('./client/components/order/OrderAllButton.component', () =>
+  jest.fn(() => 'OrderAllButton')
+);
 jest.mock('tween', () => 'tween', {
   virtual: true
 });
