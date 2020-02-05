@@ -6,7 +6,7 @@ import Icon from '../base/Icon';
 import T from '../base/T';
 import Spinner from '../general/Spinner/Spinner.component';
 import {withWork} from '../hoc/Work';
-import withPermisisons from '../hoc/Permissions';
+import withPermisisons, {ORDER_CONTEXT} from '../hoc/Permissions';
 import Kiosk from '../base/Kiosk/Kiosk';
 
 import './orderButton.css';
@@ -103,21 +103,5 @@ export default withPermisisons(
   withWork(OrderButton, {
     includeCollection: true
   }),
-  {
-    name: 'OrderButton',
-    modals: {
-      login: {
-        context: {
-          title: 'Bestil bøger'
-        }
-      },
-      premium: {
-        context: {
-          title: 'Bestil bøger',
-          reason: 'Bestilling af bøger er ikke tilgængeligt for dit bibliotek',
-          hideConfirm: true
-        }
-      }
-    }
-  }
+  ORDER_CONTEXT
 );
