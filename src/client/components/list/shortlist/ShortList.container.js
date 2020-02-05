@@ -20,7 +20,6 @@ import Divider from '../../base/Divider';
 import Button from '../../base/Button';
 import Banner from '../../base/Banner';
 import {withWork} from '../../hoc/Work';
-import withPermissions, {ORDER_CONTEXT} from '../../hoc/Permissions';
 import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
 import OrderAllButton from '../../order/OrderAllButton.component';
 import Origin from '../../base/Origin';
