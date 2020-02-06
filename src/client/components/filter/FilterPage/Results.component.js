@@ -96,6 +96,11 @@ const StoreBeltPin = withStoreBelt(props => {
 });
 
 class Results extends React.Component {
+  constructor() {
+    super();
+    this.state = {type: 'Bog'};
+  }
+
   formatTitle = tag => {
     let title = tag.title;
     let id = tag.id;
@@ -108,7 +113,6 @@ class Results extends React.Component {
         </span>
       );
     }
-
     if (minus.includes(id)) {
       return (
         <span key={id} className="must-not-include">
@@ -116,7 +120,6 @@ class Results extends React.Component {
         </span>
       );
     }
-
     return <span key={id}>{title}</span>;
   };
 
@@ -132,21 +135,18 @@ class Results extends React.Component {
       .filter(t => t.type === 'QUERY')
       .map(q => q.query);
 
-    let params = [...multiPids, ...allPids, ...tags, ...creators];
+    const changeType = t => {
+      this.setState({type: t});
+    };
 
     return (
       <div id="filter-page-results" className="filter-page-results pt-5">
         {(creators.length > 0 || allPids.length > 0 || tags.length > 0) && (
-          <ResultsFilter params={params} />
+          <ResultsFilter changeType={changeType} type={this.state.type} />
         )}
         {allPids.length > 0 && (
           <div>
-            <MultiRowContainer
-              recommendations={allPids}
-              origin="Fra søgning"
-              plus={this.props.plus}
-              minus={this.props.minus}
-            />
+            <MultiRowContainer recommendations={allPids} origin="Fra søgning" />
           </div>
         )}
         {creators.map(creator => {
@@ -206,6 +206,7 @@ class Results extends React.Component {
               origin={{type: 'searchTags', tags: tags.map(t => t.id)}}
               plus={this.props.plus}
               minus={this.props.minus}
+              types={this.state.type}
             />
           </div>
         )}

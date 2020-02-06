@@ -31,7 +31,6 @@ router
             //
             // Recompas recommend based on tags
             //
-
             const {
               tags = {},
               creators = {},
@@ -40,7 +39,8 @@ router
               branch,
               expand = true,
               plus,
-              minus
+              minus,
+              types
             } = req.query;
             const timeout =
               req.query.timeout && parseInt(req.query.timeout, 10);
@@ -62,17 +62,25 @@ router
               });
             }
 
+            let sendObj = {
+              tags: tags,
+              creators: creators,
+              maxresults: parseInt(maxresults, 10),
+              agencyId,
+              branch,
+              timeout,
+              plus,
+              minus
+            };
+            if (types) {
+              sendObj.types = [types];
+            }
+            console.log(
+              '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get recommend',
+              sendObj
+            );
             try {
-              const result = await recompasTags.getRecommendations({
-                tags: tags,
-                creators: creators,
-                maxresults: parseInt(maxresults, 10),
-                agencyId,
-                branch,
-                timeout,
-                plus,
-                minus
-              });
+              const result = await recompasTags.getRecommendations(sendObj);
 
               result.rid = uuidGenerator.v1();
               matomo.trackDataEvent(

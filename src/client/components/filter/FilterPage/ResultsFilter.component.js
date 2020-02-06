@@ -1,70 +1,55 @@
-import React from 'react';
+import React, {useReducer} from 'react';
 
-class ResultsFilter extends React.Component {
-  constructor(props) {
-    super(props);
+const ALLBOOKS = 'Bog';
+const EBOOKS = 'Ebog';
+const AUDIOBOOKS = 'Lydbog (net)';
 
-    this.state = {
-      selected: 'alle'
-    };
-  }
+function changeBtn(state, action) {
+  const {type, changeType} = action;
+  changeType(type);
+  return {selected: type};
+}
 
-  handleClick = e => {
-    let chosen = e.target.id;
-    /*   for (let prop in e.target) {
-      console.log(prop, 'e', e.target[prop]);
-    }*/
-
-    switch (chosen) {
-      case 'alle':
-        this.setState({selected: 'alle'});
-        break;
-      case 'e':
-        this.setState({selected: 'e'});
-        break;
-      case 'lyd':
-        this.setState({selected: 'lyd'});
-        break;
-      default:
-        return;
-    }
-  };
-  getSelected = btn => {
-    if (this.state.selected === btn) {
+function ResultsFilter(props) {
+  const {changeType, type} = props;
+  const [state, dispatch] = useReducer(changeBtn, {
+    type,
+    changeType
+  });
+  const getSelected = btn => {
+    const selected = state.selected ? state.selected : ALLBOOKS;
+    if (selected === btn) {
       return 'filter-selected';
     }
   };
 
-  render() {
-    console.log('props', this.props);
-    return (
-      <div className="results-filter">
-        <div className="filter-button-container">
-          <span
-            className={'results-filter-button ' + this.getSelected('alle')}
-            id="alle"
-            onClick={this.handleClick}
-          >
-            ALLE
-          </span>
-          <span
-            className={'results-filter-button ' + this.getSelected('e')}
-            id="e"
-            onClick={this.handleClick}
-          >
-            E-BØGER
-          </span>
-          <span
-            className={'results-filter-button ' + this.getSelected('lyd')}
-            id="lyd"
-            onClick={this.handleClick}
-          >
-            LYDBØGER
-          </span>
-        </div>
+  return (
+    <div className="results-filter">
+      <div className="filter-button-container">
+        <span
+          className={'results-filter-button ' + getSelected(ALLBOOKS)}
+          id={ALLBOOKS}
+          onClick={() => dispatch({type: ALLBOOKS, changeType})}
+        >
+          ALLE
+        </span>
+        <span
+          className={'results-filter-button ' + getSelected(EBOOKS)}
+          id={EBOOKS}
+          onClick={() => dispatch({type: EBOOKS, changeType})}
+        >
+          E-BØGER
+        </span>
+        <span
+          className={'results-filter-button ' + getSelected(AUDIOBOOKS)}
+          id={AUDIOBOOKS}
+          onClick={() => dispatch({type: AUDIOBOOKS, changeType})}
+        >
+          LYDBØGER
+        </span>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default ResultsFilter;
