@@ -57,10 +57,10 @@ class RecompasTags {
         status = 'onShelf';
       }
       let sendPlus = (plus && Array.isArray(plus) ? plus : [plus]).filter(
-        t => Math.trunc(t) < 99999
+        t => !!t
       );
       let sendMinus = (minus && Array.isArray(minus) ? minus : [minus]).filter(
-        t => Math.trunc(t) < 99999
+        t => !!t
       );
 
       const result = await request.post(this.config.recompass.url.tags).send({

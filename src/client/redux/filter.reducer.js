@@ -4,11 +4,7 @@ const leavesMap = getLeavesMap();
 
 export const filters = {
   Stemning: taxonomy.stemning,
-  Længde: [
-    {id: 100000, title: 'Kort', custom: true},
-    {id: 100001, title: 'Medium længde', custom: true},
-    {id: 100002, title: 'Lang', custom: true}
-  ],
+  Længde: [leavesMap[100000], leavesMap[100001], leavesMap[100002]],
   'På biblioteket': [
     {id: 100003, title: 'Er på mange biblioteker', custom: true},
     {id: 100005, title: 'Udlånes meget', custom: true},

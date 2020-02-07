@@ -55,8 +55,7 @@ class TagsSuggester extends React.Component {
   fetchSuggestions = async ({value}) => {
     this.currentValue = value;
     const response = await request.get('/v1/suggester').query({query: value});
-    const clientSuggestions = this.getClientSideSuggestions({value});
-    let suggestions = [...clientSuggestions, ...response.body];
+    let suggestions = response.body;
     /* performance optimization, updating the redux books state */
     const books = suggestions
       .filter(s => s.type === 'TITLE')
@@ -176,20 +175,6 @@ class TagsSuggester extends React.Component {
     ) {
       this.searchBar.input.blur();
     }
-  }
-
-  getClientSideSuggestions({value}) {
-    const filters = this.props.filters;
-    return filters.Længde.filter(l =>
-      l.title.toLowerCase().includes(value)
-    ).map(l => {
-      return {
-        id: l.id,
-        type: 'TAG',
-        matchedTerm: l.title,
-        parents: ['', 'Længde']
-      };
-    });
   }
 
   setFocus = () => {
