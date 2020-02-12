@@ -1,4 +1,4 @@
-ARG NODE_BASEIMAGE=docker.dbc.dk/node10:latest
+ARG NODE_BASEIMAGE=docker.dbc.dk/dbc-node:latest
 # ---- Base Node ----
 FROM  $NODE_BASEIMAGE AS build
 # set working directory
@@ -9,7 +9,6 @@ COPY . .
 # install node packages
 RUN npm set progress=false && npm config set depth 0 && \
     npm install --only=production && \
-    npm run postinstall && \
     mkdir prod_build && \
     cp -R --preserve=links node_modules prod_build/node_modules && \
     npm install

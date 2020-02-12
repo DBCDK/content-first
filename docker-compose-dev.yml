@@ -25,11 +25,11 @@ services:
     depends_on:
       - database
       - storage
-    image: docker.dbc.dk/node10:latest
+    image: docker.dbc.dk/dbc-node:latest
     volumes:
       - .:/home/node/app
     working_dir: /home/node/app
-    command: bash -c 'npm install && npm run postinstall && npm run start'
+    command: bash -c 'npm install && npm run start'
     ports:
       - 3000:3000
       - 3001:3001
