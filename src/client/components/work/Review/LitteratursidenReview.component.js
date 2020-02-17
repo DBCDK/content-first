@@ -1,6 +1,7 @@
 import React from 'react';
 import T from '../../base/T';
-import Kiosk from '../../base/Kiosk/Kiosk';
+import {useSelector} from 'react-redux';
+import {get} from 'lodash';
 import './Review.css';
 import ReviewItem from './ReviewItem.component';
 
@@ -17,26 +18,20 @@ const calculateTimeStamp = date =>
         date.split('-')[2]
       );
 
-const LitteratursidenReview = ({reviews = []}) => (
-  <Kiosk
-    render={({kiosk}) => {
-      if (!kiosk.enabled) {
-        return reviews.map((rev, key) => {
-          return (
-            <ReviewItem
-              title={T({component: 'work', name: 'litteratursiden'})}
-              author={rev.creator}
-              date={calculateTimeStamp(rev.date)}
-              buttonText={T({component: 'work', name: 'readReview'})}
-              link={rev.url}
-              key={key}
-            />
-          );
-        });
-      }
-      return [];
-    }}
-  />
-);
+const LitteratursidenReview = ({review}) => {
+  const isKiosk = useSelector(state => get(state, 'kiosk.enabled', false));
+  if (isKiosk || !review) {
+    return null;
+  }
+  return (
+    <ReviewItem
+      title={T({component: 'work', name: 'litteratursiden'})}
+      author={review.creator}
+      date={calculateTimeStamp(review.date)}
+      buttonText={T({component: 'work', name: 'readReview'})}
+      link={review.url}
+    />
+  );
+};
 
 export default LitteratursidenReview;

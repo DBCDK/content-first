@@ -42,6 +42,11 @@ class ReviewList extends React.Component {
   renderReviewList() {
     let paperReviews = [];
     let libraryReview = [];
+    let litteratureSidenReviews = Array.isArray(this.props.reviews)
+      ? this.props.reviews.map(review => (
+          <LitteratursidenReview review={review} key="litteratursiden-key" />
+        ))
+      : [];
     if (this.props.lectorReviews) {
       // Investigate this.props.lectorReviews for "Lektørudtalelser" and "Infomedia" articles
       this.props.lectorReviews.forEach((reviewList, outerKey) => {
@@ -73,14 +78,7 @@ class ReviewList extends React.Component {
         }
       });
     }
-    // Investigate this.props.reviews for "Litteratursiden" articles
-    const litteratursidenReview = (
-      <LitteratursidenReview
-        reviews={this.props.reviews}
-        key="litteratursiden-key"
-      />
-    );
-    return [...libraryReview, litteratursidenReview, ...paperReviews];
+    return [...libraryReview, ...litteratureSidenReviews, ...paperReviews];
   }
 
   render() {
@@ -108,7 +106,7 @@ class ReviewList extends React.Component {
 
     let reviewList = this.renderReviewList();
 
-    if (work.reviewsHasLoaded && reviewList[0].length === 0) {
+    if (work.reviewsHasLoaded && reviewList.length === 0) {
       reviewList = <T component="work" name="noReviews" />;
     }
     return (
