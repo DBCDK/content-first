@@ -44,7 +44,7 @@ describe('Work Page', function() {
     );
   });
 
-  it.only(`Should show no review message`, function() {
+  it(`Should show no review message`, function() {
     const pid = '870970-basis:47346177';
     cy.visit('/v%C3%A6rk/' + pid);
     cy.get('[data-cy=Anmeldelser]').click();
