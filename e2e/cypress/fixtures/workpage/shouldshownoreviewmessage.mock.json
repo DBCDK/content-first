@@ -1,0 +1,22 @@
+{
+  "_work_{\"pids\":[\"870970-basis:47346177\"],\"fields\":[\"hasReview\",\"collection\"]}": {
+    "data": [
+      {
+        "collection": [
+          "870970-basis:47346177"
+        ]
+      }
+    ],
+    "timing": 644
+  },
+  "_work_{\"pids\":[\"870970-basis:47346177\"],\"fields\":[\"type\",\"identifierURI\"]}": {
+    "data": [
+      {
+        "type": [
+          "Tegneserie"
+        ]
+      }
+    ],
+    "timing": 82
+  }
+}

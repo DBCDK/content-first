@@ -44,6 +44,13 @@ describe('Work Page', function() {
     );
   });
 
+  it(`Should show no review message`, function() {
+    const pid = '870970-basis:47346177';
+    cy.visit('/v%C3%A6rk/' + pid);
+    cy.get('[data-cy=Anmeldelser]').click();
+    cy.contains('Vi har ikke nogen anmeldelser af bogen');
+  });
+
   it(`Should test 'Se hele Læseoplevelsen' button`, function() {
     const pid = '870970-basis:53410405';
     cy.visit('/v%C3%A6rk/' + pid);
