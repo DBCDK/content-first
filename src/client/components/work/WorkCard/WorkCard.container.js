@@ -30,7 +30,8 @@ class WorkCard extends React.Component {
       nextProps.highlight !== this.props.highlight ||
       nextProps.work !== this.props.work ||
       nextProps.isVisible !== this.props.isVisible ||
-      nextState.showCompareButton !== this.state.showCompareButton
+      nextState.showCompareButton !== this.state.showCompareButton ||
+      nextState.className !== this.props.className
     );
   }
 
