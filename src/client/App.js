@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {isMobile} from 'react-device-detect';
+import {isMobile, isIE} from 'react-device-detect';
 
 import Head from './components/base/Head';
 import Modal from './components/modals/Modal.container';
@@ -50,6 +50,9 @@ class App extends Component {
     this.offset = this.screenHeight / 6;
 
     window.addEventListener('resize', this.handleResize);
+    if (isIE) {
+      this.props.browserNotSupportedModal();
+    }
   }
 
   componentWillUnmount() {
@@ -283,6 +286,18 @@ export const mapDispatchToProps = dispatch => ({
             modal: 'confirm'
           });
         }
+      }
+    });
+  },
+  browserNotSupportedModal: () => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'confirm',
+      context: {
+        title: 'Browseren understøttes ikke',
+        reason: 'Laesekompas.dk understøtter ikke Internet Explorer.',
+        confirmText: 'Ok',
+        hideCancel: true
       }
     });
   }
