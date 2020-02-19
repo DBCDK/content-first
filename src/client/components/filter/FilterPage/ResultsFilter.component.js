@@ -1,4 +1,5 @@
 import React, {useReducer} from 'react';
+import T from '../../base/T';
 
 const ALLBOOKS = 'Bog';
 const EBOOKS = 'Ebog';
@@ -6,19 +7,61 @@ const AUDIOBOOKS = 'Lydbog (net)';
 
 function changeBtn(state, action) {
   const {type, changeType} = action;
-  changeType(type);
-  return {selected: type};
+  let retType;
+  switch (state.selected) {
+    case EBOOKS:
+      if (type === EBOOKS) {
+        retType = ALLBOOKS;
+      } else if (type === AUDIOBOOKS) {
+        retType = EBOOKS + ',' + AUDIOBOOKS;
+      } else {
+        retType = ALLBOOKS;
+      }
+      break;
+    case AUDIOBOOKS:
+      if (type === AUDIOBOOKS) {
+        retType = ALLBOOKS;
+      } else if (type === EBOOKS) {
+        retType = EBOOKS + ',' + AUDIOBOOKS;
+      } else {
+        retType = ALLBOOKS;
+      }
+      break;
+    case EBOOKS + ',' + AUDIOBOOKS:
+      if (type === AUDIOBOOKS) {
+        retType = EBOOKS;
+      } else if (type === EBOOKS) {
+        retType = AUDIOBOOKS;
+      } else {
+        retType = 'Bog';
+      }
+      break;
+    case ALLBOOKS:
+      retType = type;
+      break;
+    default:
+      retType = type;
+      break;
+  }
+  changeType(retType);
+  return {selected: retType};
 }
 
 function ResultsFilter(props) {
-  const {changeType, type} = props;
-  const [state, dispatch] = useReducer(changeBtn, {
-    type,
-    changeType
-  });
+  const {changeType, type, init} = props;
+
+  const [state, dispatch] = useReducer(
+    changeBtn,
+    {
+      type,
+      changeType
+    },
+    init
+  );
   const getSelected = btn => {
     const selected = state.selected ? state.selected : ALLBOOKS;
-    if (selected === btn) {
+    let multiSelected = selected.split(',');
+    if (btn === multiSelected[0] || btn === multiSelected[1]) {
       return 'filter-selected';
     }
   };
@@ -31,21 +74,21 @@ function ResultsFilter(props) {
           id={ALLBOOKS}
           onClick={() => dispatch({type: ALLBOOKS, changeType})}
         >
-          ALLE
+          <T component="filter" name="allbooks" />
         </span>
         <span
           className={'results-filter-button ' + getSelected(EBOOKS)}
           id={EBOOKS}
           onClick={() => dispatch({type: EBOOKS, changeType})}
         >
-          E-BØGER
+          <T component="filter" name="ebooks" />
         </span>
         <span
           className={'results-filter-button ' + getSelected(AUDIOBOOKS)}
           id={AUDIOBOOKS}
           onClick={() => dispatch({type: AUDIOBOOKS, changeType})}
         >
-          LYDBØGER
+          <T component="filter" name="audiobooks" />
         </span>
       </div>
     </div>

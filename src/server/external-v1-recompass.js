@@ -73,15 +73,11 @@ router
               minus
             };
             if (types) {
-              sendObj.types = [types];
+              let multiTypes = types.split(',');
+              sendObj.types = multiTypes.length < 1 ? [types] : multiTypes;
             }
-            console.log(
-              '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get recommend',
-              sendObj
-            );
             try {
               const result = await recompasTags.getRecommendations(sendObj);
-
               result.rid = uuidGenerator.v1();
               matomo.trackDataEvent(
                 'recommend',

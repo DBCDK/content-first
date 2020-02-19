@@ -101,6 +101,23 @@ class Results extends React.Component {
     this.state = {type: 'Bog'};
   }
 
+  componentDidMount() {
+    this.setState(
+      {type: this.props.types ? this.props.types : this.state.type},
+      this.props.updateType(this.state.type)
+    );
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.type !== prevState.type) {
+      this.props.updateType(this.state.type);
+    }
+  }
+
+  initBtns = () => {
+    return {selected: this.props.types ? this.props.types : 'Bog'};
+  };
+
   formatTitle = tag => {
     let title = tag.title;
     let id = tag.id;
@@ -141,9 +158,6 @@ class Results extends React.Component {
 
     return (
       <div id="filter-page-results" className="filter-page-results pt-5">
-        {(creators.length > 0 || allPids.length > 0 || tags.length > 0) && (
-          <ResultsFilter changeType={changeType} type={this.state.type} />
-        )}
         {allPids.length > 0 && (
           <div>
             <MultiRowContainer recommendations={allPids} origin="Fra søgning" />
@@ -155,6 +169,11 @@ class Results extends React.Component {
         })}
         {tags.length > 0 && (
           <div>
+            <ResultsFilter
+              changeType={changeType}
+              type={this.state.type}
+              init={this.initBtns}
+            />
             <div className="d-flex flex-row justify-content-between px-2 px-sm-3 px-lg-5 pt-5">
               <Title
                 Tag="h1"
