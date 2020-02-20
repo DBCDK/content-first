@@ -56,6 +56,7 @@
     "knex": "^0.19.5",
     "lodash": "^4.17.15",
     "lodash.intersection": "^4.4.0",
+    "module-alias": "^2.2.2",
     "moment": "^2.24.0",
     "nock": "^9.6.1",
     "node-cache": "^4.2.0",
@@ -113,7 +114,6 @@
     "dbase": "docker-compose -f docker-compose-cypress.yml run --service-ports database",
     "lint-js": "eslint src",
     "lint:checkstyle": "eslint src -o report.xml -f checkstyle",
-    "postinstall": "./tools/setup-node-env.sh",
     "start": "run-p start-backend start-frontend fetch-inject-metakompas",
     "start-backend": "nodemon --exec node --no-stdin src/server/main.js --watch src/",
     "start-frontend": "react-scripts start",
@@ -124,10 +124,16 @@
     "test-full": "run-s test test-no-elvis",
     "test-no-db": "mocha --exit src/acceptance/*_no-db.js",
     "test-no-elvis": "run-s test-no-db test-acceptance test-frontend",
-    "test-units": "mocha --exit src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js",
+    "test-units": "mocha --exit tools/setup-symlinks.js src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js",
     "cy:run": "npx cypress run --project ./e2e",
     "cy:open": "npx cypress@latest open --project ./e2e",
     "version": "auto-changelog --package --commit-limit 0 && git add CHANGELOG.md"
+  },
+  "_moduleAliases": {
+    "__": "./src/lib",
+    "server": "./src/server",
+    "client": "./src/client",
+    "fixtures": "./src/fixtures"
   },
   "jest": {
     "snapshotSerializers": [

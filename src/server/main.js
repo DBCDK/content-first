@@ -1,6 +1,7 @@
 'use strict';
 require('@babel/polyfill');
 require('@babel/register')({presets: ['@babel/preset-env']});
+require('module-alias/register');
 
 // Sharp needs to be required early, in order to prevent a conflict @see https://github.com/lovell/sharp/issues/843
 require('sharp');

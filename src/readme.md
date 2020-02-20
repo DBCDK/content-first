@@ -55,23 +55,14 @@ If upgrade fails during development, then you can start from scratch by
     $ docker-compose up -d
     $ npm run db-migrate
 
-## Node setup
+## Symbolic links
 
-The [node setup](../tools/setup-node-env.sh) creates symbolic links
-
-    node_modules/__ -> ../src/lib
-    node_modules/server -> ../src/server
-    node_modules/client -> ../src/client
-    node_modules/fixtures -> ../src/fixtures
-
-inside `node_modules` such that [custom libraries](lib/) and [test fixtures](fixtures/) can used anywhere in the code likes this:
+The [module-alias](https://www.npmjs.com/package/module-alias) package is used to create symbolic links such that [custom libraries](lib/) and [test fixtures](fixtures/) can used anywhere in the code likes this:
 
     const tcp = require('__/tcp-utils');
     const config = require('server/config');
     const database = require('__/database')(config.db);
     const input = require('fixtures/book.json')
-
-The node setup runs automatically after every `npm install`
 
 ## Coverage
 
@@ -79,6 +70,5 @@ Use `npm run coverage --silent` (after starting the database and community servi
 
 ## Caveats
 
-- After adding new packages with `npm install --save newpackage`, you have to `npm run postinstall` to re-establish the symbolic links in `node_modules`.
 - In development mode, the `PORT` of the backend service needs to agree with the `proxy` setting in [`package.json`](package.json).
 - It seems you need to install *babel-eslint* globally: `npm install -g babel-eslint`.  And while you're at it, install the nifty *nsrun* globally, and use it like `nsrun test-frontend`.
