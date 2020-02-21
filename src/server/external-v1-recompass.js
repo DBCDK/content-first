@@ -76,6 +76,7 @@ router
               let multiTypes = types.split(',');
               sendObj.types = multiTypes.length < 1 ? [types] : multiTypes;
             }
+
             try {
               const result = await recompasTags.getRecommendations(sendObj);
               result.rid = uuidGenerator.v1();
