@@ -92,7 +92,7 @@ describe('Search test', function() {
     waitForSuggestions(searchWord5);
 
     cy.get('[data-cy=suggestion-element]')
-      .contains(searchWord5)
+      .contains('familien')
       .first()
       .click();
     cy.get(
@@ -144,7 +144,8 @@ describe('Search test', function() {
         if (value === '') {
           return;
         }
-        expect(value).to.be.greaterThan(350);
+
+        expect(Number(value)).to.be.greaterThan(350);
       });
   });
   it('chooses a range and another tag. clicking other tag does not effect the range', function() {
@@ -176,5 +177,45 @@ describe('Search test', function() {
     )
       .invoke('text')
       .should('contain', 'fremadskridende - hæsblæsende');
+  });
+
+  it('Should show and select ebog and lydbog filters, and return the books that have ebooks and audio books', function() {
+    const searchWord1 = 'positiv';
+
+    cy.visit('/');
+    cy.createUser(null, null, true);
+    cy.get('[data-cy=topbar-search-btn]').click();
+    cy.get('[data-cy=search-bar-input]')
+      .first()
+      .type(searchWord1);
+
+    waitForSuggestions(searchWord1);
+
+    cy.get('[data-cy=suggestion-element]')
+      .contains(searchWord1)
+      .first()
+      .click();
+    cy.get('#Ebog').click();
+    cy.wait(500);
+    cy.get(
+      ':nth-child(1) > [data-cy=workcard-0] > .work-card__content > [data-cy=book-cover-loaded] > .hover-details-fade'
+    ).click();
+    cy.get('.work-preview__actions > .link > [data-cy] > span')
+      .invoke('text')
+      .should('contain', 'Ebog');
+
+    cy.get('#Ebog').click();
+    cy.get('#Lydbog\\ \\(net\\)').click();
+    cy.wait(500);
+    cy.get(
+      ':nth-child(1) > [data-cy=workcard-0] > .work-card__content > [data-cy=book-cover-loaded] > .hover-details-fade'
+    ).click();
+    cy.get('.work-preview__actions > .link > [data-cy] > span')
+      .invoke('text')
+      .should('contain', 'Lydbog');
+
+    cy.get('#Ebog').click();
+    cy.get('#Ebog').should('have.class', 'filter-selected');
+    cy.get('#Lydbog\\ \\(net\\)').should('have.class', 'filter-selected');
   });
 });
