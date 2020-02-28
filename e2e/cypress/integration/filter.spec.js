@@ -118,7 +118,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tag-slang]').should('have.text', 'slang');
   });
 
-  it.only('Should test "Skrivestil" filter', function() {
+  it('Should test "Skrivestil" filter', function() {
     cy.visit('/find');
     cy.get('[data-cy=skrivestil]').click();
     cy.get('[data-cy=bevidsthedsstrøm]').click();
