@@ -158,6 +158,15 @@ class Results extends React.Component {
 
     return (
       <div id="filter-page-results" className="filter-page-results pt-5">
+        {(tags.length > 0 || allPids.length > 0 || creators.length > 0) && (
+          <ResultsFilter
+            changeType={changeType}
+            type={this.state.type}
+            init={this.initBtns}
+            disabled={allPids.length > 0 || creators.length > 0}
+          />
+        )}
+
         {allPids.length > 0 && (
           <div>
             <MultiRowContainer recommendations={allPids} origin="Fra søgning" />
@@ -169,11 +178,6 @@ class Results extends React.Component {
         })}
         {tags.length > 0 && (
           <div>
-            <ResultsFilter
-              changeType={changeType}
-              type={this.state.type}
-              init={this.initBtns}
-            />
             <div className="d-flex flex-row justify-content-between px-2 px-sm-3 px-lg-5 pt-5">
               <Title
                 Tag="h1"

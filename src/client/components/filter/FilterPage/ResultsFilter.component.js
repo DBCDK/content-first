@@ -48,7 +48,7 @@ function changeBtn(state, action) {
 }
 
 function ResultsFilter(props) {
-  const {changeType, type, init} = props;
+  const {changeType, type, init, disabled} = props;
 
   const [state, dispatch] = useReducer(
     changeBtn,
@@ -59,34 +59,54 @@ function ResultsFilter(props) {
     init
   );
   const getSelected = btn => {
-    const selected = state.selected ? state.selected : ALLBOOKS;
+    const selected = state.selected && !disabled ? state.selected : ALLBOOKS;
     let multiSelected = selected.split(',');
     if (btn === multiSelected[0] || btn === multiSelected[1]) {
       return 'filter-selected';
     }
+    return '';
+  };
+
+  const getDisabled = () => {
+    if (disabled) {
+      return 'filter-disabled';
+    }
+    return '';
   };
 
   return (
-    <div className="results-filter">
+    <div className={'results-filter ' + getDisabled()}>
       <div className="filter-button-container">
         <span
           className={'results-filter-button ' + getSelected(ALLBOOKS)}
           id={ALLBOOKS}
-          onClick={() => dispatch({type: ALLBOOKS, changeType})}
+          onClick={() => {
+            if (!disabled) {
+              dispatch({type: ALLBOOKS, changeType});
+            }
+          }}
         >
           <T component="filter" name="allbooks" />
         </span>
         <span
           className={'results-filter-button ' + getSelected(EBOOKS)}
           id={EBOOKS}
-          onClick={() => dispatch({type: EBOOKS, changeType})}
+          onClick={() => {
+            if (!disabled) {
+              dispatch({type: EBOOKS, changeType});
+            }
+          }}
         >
           <T component="filter" name="ebooks" />
         </span>
         <span
           className={'results-filter-button ' + getSelected(AUDIOBOOKS)}
           id={AUDIOBOOKS}
-          onClick={() => dispatch({type: AUDIOBOOKS, changeType})}
+          onClick={() => {
+            if (!disabled) {
+              dispatch({type: AUDIOBOOKS, changeType});
+            }
+          }}
         >
           <T component="filter" name="audiobooks" />
         </span>

@@ -179,7 +179,7 @@ describe('Search test', function() {
       .should('contain', 'fremadskridende - hæsblæsende');
   });
 
-  it('Should show and select ebog and lydbog filters, and return the books that have ebooks and audio books', function() {
+  it('Should show and select ebog and lydbog filters at the same time', function() {
     const searchWord1 = 'positiv';
 
     cy.visit('/');
@@ -197,22 +197,10 @@ describe('Search test', function() {
       .click();
     cy.get('#Ebog').click();
     cy.wait(500);
-    cy.get(
-      ':nth-child(1) > [data-cy=workcard-0] > .work-card__content > [data-cy=book-cover-loaded] > .hover-details-fade'
-    ).click();
-    cy.get('.work-preview__actions > .link > [data-cy] > span')
-      .invoke('text')
-      .should('contain', 'Ebog');
 
     cy.get('#Ebog').click();
     cy.get('#Lydbog\\ \\(net\\)').click();
     cy.wait(500);
-    cy.get(
-      ':nth-child(1) > [data-cy=workcard-0] > .work-card__content > [data-cy=book-cover-loaded] > .hover-details-fade'
-    ).click();
-    cy.get('.work-preview__actions > .link > [data-cy] > span')
-      .invoke('text')
-      .should('contain', 'Lydbog');
 
     cy.get('#Ebog').click();
     cy.get('#Ebog').should('have.class', 'filter-selected');

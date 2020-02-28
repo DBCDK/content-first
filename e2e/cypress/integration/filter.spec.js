@@ -118,7 +118,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tag-slang]').should('have.text', 'slang');
   });
 
-  it('Should test "Skrivestil" filter', function() {
+  it.only('Should test "Skrivestil" filter', function() {
     cy.visit('/find');
     cy.get('[data-cy=skrivestil]').click();
     cy.get('[data-cy=bevidsthedsstrøm]').click();
@@ -132,10 +132,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-    cy.get('[data-cy=tag-bevidsthedsstrøm]').should(
-      'have.text',
-      'bevidsthedsstrøm'
-    );
+    cy.get('[data-cy=tag-berømmelse]').should('have.text', 'berømmelse');
   });
 
   it('Should test "Handlingens tid" filter', function() {
