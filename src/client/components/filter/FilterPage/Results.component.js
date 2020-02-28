@@ -212,6 +212,8 @@ class Results extends React.Component {
                       <StoreBeltPin
                         id={tags.map(tag => tag.id).join(',')}
                         tags={tags}
+                        plus={this.props.plus}
+                        minus={this.props.minus}
                       />
                     );
                   }

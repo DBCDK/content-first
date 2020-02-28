@@ -64,7 +64,7 @@ describe('Filter page test', function() {
 
     cy.get('[data-cy=pages-count]').then(elem => {
       let pageCount = elem[0].getAttribute('data-value');
-      expect(pageCount).lessThan(151);
+      expect(Number(pageCount)).lessThan(151);
     });
   });
   it('Should test "Univers" filter', function() {

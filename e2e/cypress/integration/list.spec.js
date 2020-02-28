@@ -187,9 +187,7 @@ describe('List test', function() {
     waitForListsLoaded();
     cy.wait(1000);
     cy.request('/v1/initial-state').then(resp => {
-      expect(Object.values(resp.body.data.listReducer.lists)).to.have.length.of(
-        2
-      );
+      expect(Object.values(resp.body.data.listReducer.lists)).to.have.length(2);
     });
     cy.get('[data-cy=add-to-list-btn]').click();
     cy.get('[data-cy=add-to-new-list]').click();
@@ -197,11 +195,13 @@ describe('List test', function() {
     cy.server()
       .route('POST', '/v1/object/')
       .as('postList');
+
     cy.get('[data-cy=modal-done-btn]').click();
     const waitForListPost = () => {
       cy.wait('@postList').then(xhr => {
         if (xhr.request.body._type !== 'list') {
           // this was not a posted list object, wait again
+
           waitForListPost();
         }
       });
@@ -209,9 +209,7 @@ describe('List test', function() {
     waitForListPost();
     cy.wait(3000);
     cy.request('/v1/initial-state').then(resp => {
-      expect(Object.values(resp.body.data.listReducer.lists)).to.have.length.of(
-        3
-      );
+      expect(Object.values(resp.body.data.listReducer.lists)).to.have.length(3);
     });
   });
 
@@ -232,7 +230,7 @@ describe('List test', function() {
         initState.body.data.listReducer.lists
       ).filter(l => l.title === 'Har læst')[0];
 
-      expect(didRead.list).to.have.length.of(20);
+      expect(didRead.list).to.have.length(20);
     });
   });
 
@@ -380,7 +378,7 @@ describe('List test', function() {
         cy.request('/v1/initial-state').then(initState => {
           expect(
             Object.values(initState.body.data.listReducer.lists)
-          ).to.have.length.of(3);
+          ).to.have.length(3);
           expect(initState.body.data.listReducer.lists[customListId]).to.not.be
             .null;
 

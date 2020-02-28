@@ -68,6 +68,7 @@ const withTagsFromUrl = WrappedComponent => {
         }
         return t.match.toString();
       });
+
       this.props.updateUrl(
         tagArr,
         objArrs.plusArr,
@@ -98,6 +99,7 @@ const withTagsFromUrl = WrappedComponent => {
         let minusStrArr = formatArr(this.props.minus);
         let objArrs = getPlusMinusArrays(tag, plusStrArr, minusStrArr, true);
         const modified = addTag(this.props.tags, this.props.filterCards, tag);
+
         this.props.updateUrl(
           modified,
           objArrs.plusArr,
@@ -109,11 +111,14 @@ const withTagsFromUrl = WrappedComponent => {
 
     updateType = type => {
       const {tags, plus = '', minus = ''} = this.getUrlVars();
-      let sendTags = tags === '' ? [] : [decodeURIComponent(tags)];
-      let sendPlus = plus === '' ? [] : [decodeURIComponent(plus)];
-      let sendMinus = minus === '' ? [] : [decodeURIComponent(minus)];
+
+      let sendTags = tags === '' ? [] : decodeURIComponent(tags).split(',');
+      let sendPlus = plus === '' ? [] : decodeURIComponent(plus).split(',');
+      let sendMinus = minus === '' ? [] : decodeURIComponent(minus).split(',');
+      let sendType = type === '' ? [] : decodeURIComponent(type);
+
       if (tags) {
-        this.props.updateUrl(sendTags, sendPlus, sendMinus, type);
+        this.props.updateUrl(sendTags, sendPlus, sendMinus, sendType);
       }
     };
     getUrlVars = () => {
@@ -172,6 +177,7 @@ const withTagsFromUrl = WrappedComponent => {
   };
   const mapStateToProps = state => {
     const {tags, tagsMap, plus, minus, types} = tagsFromUrlSelector(state);
+
     return {
       tags,
       plus,
@@ -193,12 +199,12 @@ const withTagsFromUrl = WrappedComponent => {
       }
       if (plus.length > 0) {
         params.plus = plus
-          .map(p => (Array.isArray(p) ? p.join(':') : encodeURIComponent(p)))
+          .map(p => (Array.isArray(p) ? p.join(':') : p))
           .join(',');
       }
       if (minus.length > 0) {
         params.minus = minus
-          .map(m => (Array.isArray(m) ? m.join(':') : encodeURIComponent(m)))
+          .map(m => (Array.isArray(m) ? m.join(':') : m))
           .join(',');
       }
       if (tags.length > 0 && types) {
@@ -220,10 +226,7 @@ const withTagsFromUrl = WrappedComponent => {
       });
     }
   });
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Wrapped);
+  return connect(mapStateToProps, mapDispatchToProps)(Wrapped);
 };
 export default withTagsFromUrl;
 
@@ -233,9 +236,9 @@ const formatArr = allEl => {
 
 export const getReqState = (s, plus, minus) => {
   let res = 'none';
-  if (plus.includes(s.id)) {
+  if (plus.includes(Number(s.id))) {
     res = 'underline';
-  } else if (minus.includes(s.id)) {
+  } else if (minus.includes(Number(s.id))) {
     res = 'line-through';
   }
   return res;
@@ -248,7 +251,6 @@ export const getPlusMinusArrays = (
   remove = false
 ) => {
   let retObj = {};
-
   let strTag = tag.toString();
   let isPlus = plusStrArr.includes(strTag);
   let isMinus = minusStrArr.includes(strTag);
@@ -341,7 +343,7 @@ export const tagsFromURL = (urlTags, filterCards) => {
       const parsedAsInt = parseInt(decoded, 10);
       const tagObj = filtersMapAll[parseInt(decoded, 10)];
       if (tagObj) {
-        return {...tagObj, type: 'TAG', match: parsedAsInt};
+        return {...tagObj, type: 'TAG', match: parsedAsInt, id: parsedAsInt};
       }
       return {
         type: 'QUERY',
