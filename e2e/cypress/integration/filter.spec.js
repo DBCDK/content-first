@@ -132,7 +132,10 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
-    cy.get('[data-cy=tag-berømmelse]').should('have.text', 'berømmelse');
+    cy.get('[data-cy=tag-bevidsthedsstrøm]').should(
+      'have.text',
+      'bevidsthedsstrøm'
+    );
   });
 
   it('Should test "Handlingens tid" filter', function() {
