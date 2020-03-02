@@ -19,7 +19,7 @@ describe('Login test', function() {
   });
 
   it('Can edit a profile', function() {
-    const userName = 'testUser' + Math.floor(Math.random() * 1000);
+    const userName = 'testUser626'; // + Math.floor(Math.random() * 1000);
     const userNameEdited = userName + 'edited';
     cy.createUser(userName);
     cy.visit('/profil/rediger');
@@ -27,7 +27,6 @@ describe('Login test', function() {
     cy.get('[data-cy=user-form-name]').type(userNameEdited);
     cy.get('[data-cy=user-form-submit]').click();
     cy.wait(1000);
-    cy.visit('/profil/rediger');
     cy.get('[data-cy=user-form-name]').should('have.value', userNameEdited);
   });
 
