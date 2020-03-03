@@ -58,7 +58,7 @@ work-card.filter-page-title {
     font-weight: bold;
 }
 
-.results-filter .filter-disabled {
+.results-filter.filter-disabled {
     color: var(--silver-chalice);
 }
 

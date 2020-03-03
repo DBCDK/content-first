@@ -1,118 +1,100 @@
-import React, {useReducer} from 'react';
+import React from 'react';
 import T from '../../base/T';
 
 const ALLBOOKS = 'Bog';
 const EBOOKS = 'Ebog';
 const AUDIOBOOKS = 'Lydbog (net)';
 
-function changeBtn(state, action) {
-  const {type, changeType} = action;
-  let retType;
-  switch (state.selected) {
-    case EBOOKS:
-      if (type === EBOOKS) {
-        retType = ALLBOOKS;
-      } else if (type === AUDIOBOOKS) {
-        retType = EBOOKS + ',' + AUDIOBOOKS;
-      } else {
-        retType = ALLBOOKS;
-      }
-      break;
-    case AUDIOBOOKS:
-      if (type === AUDIOBOOKS) {
-        retType = ALLBOOKS;
-      } else if (type === EBOOKS) {
-        retType = EBOOKS + ',' + AUDIOBOOKS;
-      } else {
-        retType = ALLBOOKS;
-      }
-      break;
-    case EBOOKS + ',' + AUDIOBOOKS:
-      if (type === AUDIOBOOKS) {
-        retType = EBOOKS;
-      } else if (type === EBOOKS) {
-        retType = AUDIOBOOKS;
-      } else {
-        retType = 'Bog';
-      }
-      break;
-    case ALLBOOKS:
-      retType = type;
-      break;
-    default:
-      retType = type;
-      break;
+export default class ResultsFilter extends React.Component {
+  constructor() {
+    super();
+    this.state = {selected: [1, 0, 0]};
   }
-  changeType(retType);
-  return {selected: retType};
-}
 
-function ResultsFilter(props) {
-  const {changeType, type, init, disabled} = props;
+  render() {
+    const {changeType, disabled} = this.props;
 
-  const [state, dispatch] = useReducer(
-    changeBtn,
-    {
-      type,
-      changeType
-    },
-    init
-  );
-  const getSelected = btn => {
-    const selected = state.selected && !disabled ? state.selected : ALLBOOKS;
-    let multiSelected = selected.split(',');
-    if (btn === multiSelected[0] || btn === multiSelected[1]) {
-      return 'filter-selected';
-    }
-    return '';
-  };
+    const changeBtn = type => {
+      let tempArr = this.state.selected;
+      if (type === 0) {
+        tempArr = [1, 0, 0];
+      } else {
+        tempArr[0] = 0;
+        tempArr[type] = (tempArr[type] + 1) % 2;
+        if (tempArr[1] === 0 && tempArr[2] === 0) {
+          tempArr = [1, 0, 0];
+        }
+      }
+      let nameArr = [ALLBOOKS, EBOOKS, AUDIOBOOKS];
+      let retStr = '';
+      let c = 0;
+      tempArr.map((n, count) => {
+        if (n === 1) {
+          if (c > 0) {
+            retStr += ',';
+          }
+          c++;
+          retStr += nameArr[count];
+        }
+      });
+      changeType(retStr);
+      this.setState({selected: tempArr});
+    };
 
-  const getDisabled = () => {
-    if (disabled) {
-      return 'filter-disabled';
-    }
-    return '';
-  };
+    const getSelected = btn => {
+      const selected =
+        this.state.selected && !disabled ? this.state.selected : [1, 0, 0];
+      if (selected[btn]) {
+        return 'filter-selected';
+      }
+      return '';
+    };
 
-  return (
-    <div className={'results-filter ' + getDisabled()}>
-      <div className="filter-button-container">
-        <span
-          className={'results-filter-button ' + getSelected(ALLBOOKS)}
-          id={ALLBOOKS}
-          onClick={() => {
-            if (!disabled) {
-              dispatch({type: ALLBOOKS, changeType});
-            }
-          }}
-        >
-          <T component="filter" name="allbooks" />
-        </span>
-        <span
-          className={'results-filter-button ' + getSelected(EBOOKS)}
-          id={EBOOKS}
-          onClick={() => {
-            if (!disabled) {
-              dispatch({type: EBOOKS, changeType});
-            }
-          }}
-        >
-          <T component="filter" name="ebooks" />
-        </span>
-        <span
-          className={'results-filter-button ' + getSelected(AUDIOBOOKS)}
-          id={AUDIOBOOKS}
-          onClick={() => {
-            if (!disabled) {
-              dispatch({type: AUDIOBOOKS, changeType});
-            }
-          }}
-        >
-          <T component="filter" name="audiobooks" />
-        </span>
+    const getDisabled = () => {
+      if (disabled) {
+        return 'filter-disabled';
+      }
+      return '';
+    };
+
+    return (
+      <div className={'results-filter ' + getDisabled()}>
+        <div className="filter-button-container">
+          <span
+            className={'results-filter-button ' + getSelected(0)}
+            id={ALLBOOKS}
+            onClick={() => {
+              if (!disabled) {
+                changeBtn(0);
+              }
+            }}
+          >
+            <T component="filter" name="allbooks" />
+          </span>
+          <span
+            className={'results-filter-button ' + getSelected(1)}
+            id={EBOOKS}
+            onClick={() => {
+              if (!disabled) {
+                changeBtn(1);
+              }
+            }}
+          >
+            <T component="filter" name="ebooks" />
+          </span>
+          <span
+            className={'results-filter-button ' + getSelected(2)}
+            id={AUDIOBOOKS}
+            onClick={() => {
+              if (!disabled) {
+                changeBtn(2);
+              }
+            }}
+          >
+            <T component="filter" name="audiobooks" />
+          </span>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
-
-export default ResultsFilter;

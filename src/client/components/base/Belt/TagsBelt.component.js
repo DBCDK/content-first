@@ -149,7 +149,6 @@ export class TagsBelt extends React.Component {
             <div className="belt-tags__tags--container">
               {tags.map(t => {
                 const tag = filtersMapAll[t.id ? t.id : t];
-                console.log('t', tag.id, plus);
                 return (
                   <Link
                     className="belt-tags__tag--link"

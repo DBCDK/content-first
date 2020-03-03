@@ -176,7 +176,8 @@ const fetchRecommendations = async action => {
     query.minus = action.minusArr;
     query.maxresults = limit;
     query.creators = creators;
-    if (action.types && query.types !== ['Bog']) {
+
+    if (action.types) {
       query.types = action.types;
     }
   } else {
