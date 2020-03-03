@@ -13,7 +13,6 @@ export default class ResultsFilter extends React.Component {
 
   render() {
     const {changeType, disabled} = this.props;
-
     const changeBtn = type => {
       let tempArr = this.state.selected;
       if (type === 0) {
