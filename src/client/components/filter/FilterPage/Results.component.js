@@ -153,7 +153,36 @@ class Results extends React.Component {
       .map(q => q.query);
 
     const changeType = t => {
-      this.setState({type: t});
+      let retStr = convertType(t, 'toStr');
+      this.setState({type: retStr});
+    };
+
+    const convertType = (t, dir) => {
+      let nameArr = ['Bog', 'Ebog', 'Lydbog (net)'];
+      if (dir === 'toStr') {
+        let retStr = '';
+        let c = 0;
+        for (let i = 0; i < t.length; i++) {
+          if (t[i] === 1) {
+            if (c > 0) {
+              retStr += ',';
+            }
+            c++;
+            retStr += nameArr[i];
+          }
+        }
+        return retStr;
+      }
+      if (dir === 'toArr') {
+        let retArr = [0, 0, 0];
+        let typeArr = t.split(',');
+        for (let i = 0; i < nameArr.length; i++) {
+          if (typeArr.indexOf(nameArr[i]) > -1) {
+            retArr[i] = 1;
+          }
+        }
+        return retArr;
+      }
     };
 
     return (
@@ -161,7 +190,7 @@ class Results extends React.Component {
         {(tags.length > 0 || allPids.length > 0 || creators.length > 0) && (
           <ResultsFilter
             changeType={changeType}
-            type={this.state.type}
+            type={convertType(this.state.type, 'toArr')}
             init={this.initBtns}
             disabled={allPids.length > 0 || creators.length > 0}
           />

@@ -11,9 +11,15 @@ export default class ResultsFilter extends React.Component {
     this.state = {selected: [1, 0, 0]};
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selected !== prevProps.type) {
+      this.setState({selected: prevProps.type});
+    }
+  }
+
   render() {
     const {changeType, disabled} = this.props;
-    
+
     const changeBtn = type => {
       let tempArr = this.state.selected;
       if (type === 0) {
@@ -25,19 +31,8 @@ export default class ResultsFilter extends React.Component {
           tempArr = [1, 0, 0];
         }
       }
-      let nameArr = [ALLBOOKS, EBOOKS, AUDIOBOOKS];
-      let retStr = '';
-      let c = 0;
-      tempArr.map((n, count) => {
-        if (n === 1) {
-          if (c > 0) {
-            retStr += ',';
-          }
-          c++;
-          retStr += nameArr[count];
-        }
-      });
-      changeType(retStr);
+
+      changeType(tempArr);
       this.setState({selected: tempArr});
     };
 
