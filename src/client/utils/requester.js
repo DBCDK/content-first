@@ -250,15 +250,17 @@ export const fetchCollection = (pids, store) => {
     booksToBeFetched.map(async ref => {
       try {
         const pidsInCollection = ref.book.collection.data;
-        const collectionRes = (await Promise.all(
-          pidsInCollection.map(async pid => {
-            return openplatform.work({
-              pids: [pid],
-              fields: ['type', 'identifierURI'],
-              access_token: await fetchAnonymousToken()
-            });
-          })
-        )).map(r => r[0]);
+        const collectionRes = (
+          await Promise.all(
+            pidsInCollection.map(async pid => {
+              return openplatform.work({
+                pids: [pid],
+                fields: ['type', 'identifierURI'],
+                access_token: await fetchAnonymousToken()
+              });
+            })
+          )
+        ).map(r => r[0]);
         return {
           book: {
             pid: ref.book.pid,
@@ -526,8 +528,10 @@ export const fetchAnonymousToken = async () => {
  */
 
 export const loadListAggragation = async (type, sort, limit, pid) => {
-  const lists = (await request
-    .get(`/v1/object/aggregation`)
-    .query({type: 'list', sort, pid, limit})).body.data;
+  const lists = (
+    await request
+      .get(`/v1/object/aggregation`)
+      .query({type: 'list', sort, pid, limit})
+  ).body.data;
   return lists;
 };

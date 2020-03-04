@@ -83,7 +83,4 @@ class CookieWarning extends React.Component {
 export const mapDispatchToProps = dispatch => ({
   goToPolicyPage: () => dispatch({type: HISTORY_REPLACE, path: '/om'})
 });
-export default connect(
-  null,
-  mapDispatchToProps
-)(CookieWarning);
+export default connect(null, mapDispatchToProps)(CookieWarning);

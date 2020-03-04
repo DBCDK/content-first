@@ -105,27 +105,29 @@ const fetchWork = async pid => {
     spatialDBCF,
     temporalDBCP,
     coverUrlFull
-  } = (await request.post(config.login.openplatformUrl + '/work').send({
-    pids: [pid],
-    fields: [
-      'dcTitle',
-      'creator',
-      'creatorAut',
-      'contributor',
-      'abstract',
-      'extent',
-      'dcLanguage',
-      'date',
-      'identifierISBN',
-      'subjectDBCS',
-      'subjectDBCF',
-      'spatialDBCS',
-      'spatialDBCF',
-      'temporalDBCP',
-      'coverUrlFull'
-    ],
-    access_token: (await fetchAnonymousToken()).access_token
-  })).body.data[0];
+  } = (
+    await request.post(config.login.openplatformUrl + '/work').send({
+      pids: [pid],
+      fields: [
+        'dcTitle',
+        'creator',
+        'creatorAut',
+        'contributor',
+        'abstract',
+        'extent',
+        'dcLanguage',
+        'date',
+        'identifierISBN',
+        'subjectDBCS',
+        'subjectDBCF',
+        'spatialDBCS',
+        'spatialDBCF',
+        'temporalDBCP',
+        'coverUrlFull'
+      ],
+      access_token: (await fetchAnonymousToken()).access_token
+    })
+  ).body.data[0];
 
   /* map result */
   work = getWork(
@@ -165,7 +167,10 @@ const fetchWorks = async pids => {
     work =>
       !work.book.title.startsWith('Error: unknown/missing/inaccessible record')
   );
-  const failed = _.difference(pids, works.map(b => b.book.pid));
+  const failed = _.difference(
+    pids,
+    works.map(b => b.book.pid)
+  );
 
   return {data: works, failed};
 };

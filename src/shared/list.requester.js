@@ -15,11 +15,13 @@ export default class ListRequester {
   }
 
   async fetchOwnedLists(owner) {
-    let lists = (await this.storageClient.find({
-      type: 'list',
-      owner,
-      limit: 1000
-    })).data;
+    let lists = (
+      await this.storageClient.find({
+        type: 'list',
+        owner,
+        limit: 1000
+      })
+    ).data;
     lists.sort((l1, l2) => l1._created - l2._created);
     let didRead = lists.filter(
       list => list.type === 'SYSTEM_LIST' && list.title === 'Har læst'
@@ -57,12 +59,14 @@ export default class ListRequester {
   }
 
   async fetchEntries(list) {
-    return (await this.storageClient.find({
-      type: 'list-entry',
-      key: list._id,
-      limit: 1000,
-      owner: list._public ? undefined : list._owner // eslint-disable-line no-undefined
-    })).data;
+    return (
+      await this.storageClient.find({
+        type: 'list-entry',
+        key: list._id,
+        limit: 1000,
+        owner: list._public ? undefined : list._owner // eslint-disable-line no-undefined
+      })
+    ).data;
   }
 
   async saveList(list, loggedInUserId) {

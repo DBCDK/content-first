@@ -96,7 +96,4 @@ export const mapDispatchToProps = dispatch => ({
     });
   }
 });
-export default connect(
-  null,
-  mapDispatchToProps
-)(ListInfo);
+export default connect(null, mapDispatchToProps)(ListInfo);

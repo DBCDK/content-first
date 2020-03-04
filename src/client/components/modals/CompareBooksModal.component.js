@@ -28,7 +28,4 @@ const mapDispatchToProps = dispatch => ({
   close: () => dispatch({type: CLOSE_MODAL, modal: 'compare'})
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CompareBooksModal);
+export default connect(mapStateToProps, mapDispatchToProps)(CompareBooksModal);

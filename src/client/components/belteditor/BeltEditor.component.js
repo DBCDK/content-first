@@ -433,7 +433,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  () => {},
-  mapDispatchToProps
-)(withObjects(BeltEditor));
+export default connect(() => {}, mapDispatchToProps)(withObjects(BeltEditor));

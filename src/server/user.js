@@ -31,14 +31,16 @@ module.exports = {
 
 async function userExists(openplatformToken, id) {
   return (
-    (await objectStore.find(
-      {
-        type: 'USER_PROFILE',
-        owner: id,
-        limit: 1
-      },
-      {openplatformToken}
-    )).data.length !== 0
+    (
+      await objectStore.find(
+        {
+          type: 'USER_PROFILE',
+          owner: id,
+          limit: 1
+        },
+        {openplatformToken}
+      )
+    ).data.length !== 0
   );
 }
 
@@ -88,14 +90,16 @@ async function createCookie(uniqueId, openplatformToken, user) {
   return cookie;
 }
 async function fetchCookie(cookie) {
-  const res = (await knex(cookieTable)
-    .select([
-      'openplatform_id',
-      'openplatform_token',
-      'expires_epoch_s',
-      'user'
-    ])
-    .where('cookie', cookie))[0];
+  const res = (
+    await knex(cookieTable)
+      .select([
+        'openplatform_id',
+        'openplatform_token',
+        'expires_epoch_s',
+        'user'
+      ])
+      .where('cookie', cookie)
+  )[0];
 
   if (!res || res.expires_epoch_s < Date.now() / 1000) {
     throw {
@@ -169,15 +173,19 @@ async function getUserData(openplatformId, loggedInuser) {
   try {
     throwUnlessOpenplatformId({openplatformId});
 
-    const userData = (await objectStore.find(
-      {type: 'USER_PROFILE', owner: openplatformId, public: true},
-      loggedInuser
-    )).data[0];
+    const userData = (
+      await objectStore.find(
+        {type: 'USER_PROFILE', owner: openplatformId, public: true},
+        loggedInuser
+      )
+    ).data[0];
 
-    const shortlist = (await objectStore.find(
-      {type: 'USER_SHORTLIST', owner: openplatformId},
-      loggedInuser
-    )).data[0];
+    const shortlist = (
+      await objectStore.find(
+        {type: 'USER_SHORTLIST', owner: openplatformId},
+        loggedInuser
+      )
+    ).data[0];
 
     const {data: roles} = await objectStore.getRoles(loggedInuser);
 
@@ -230,14 +238,18 @@ async function putUserData(newUserData, user) {
     const openplatformId = user.openplatformId;
     throwUnlessOpenplatformId({openplatformId});
 
-    let userData = (await objectStore.find(
-      {type: 'USER_PROFILE', owner: openplatformId},
-      user
-    )).data[0];
-    let shortlist = (await objectStore.find(
-      {type: 'USER_SHORTLIST', owner: openplatformId},
-      user
-    )).data[0];
+    let userData = (
+      await objectStore.find(
+        {type: 'USER_PROFILE', owner: openplatformId},
+        user
+      )
+    ).data[0];
+    let shortlist = (
+      await objectStore.find(
+        {type: 'USER_SHORTLIST', owner: openplatformId},
+        user
+      )
+    ).data[0];
 
     await objectStore.put(
       _.omit(

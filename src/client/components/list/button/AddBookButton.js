@@ -57,7 +57,4 @@ export const mapDispatchToProps = dispatch => ({
     });
   }
 });
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddBookButton);
+export default connect(mapStateToProps, mapDispatchToProps)(AddBookButton);

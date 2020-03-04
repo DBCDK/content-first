@@ -72,21 +72,25 @@ async function initState(req) {
     const belts = await beltsRequester.fetchOwnedBelts(req.user.openplatformId);
     beltsState = beltsReducer(beltsState, {type: BELTS_LOAD_RESPONSE, belts});
 
-    const interactions = (await storageClient.find({
-      type: 'INTERACTION',
-      owner: req.user.openplatformId,
-      limit: 20
-    })).data;
+    const interactions = (
+      await storageClient.find({
+        type: 'INTERACTION',
+        owner: req.user.openplatformId,
+        limit: 20
+      })
+    ).data;
     interactionState = interactionReducer(interactionState, {
       type: FETCH_INTERACTIONS_SUCCESS,
       interactions
     });
 
-    const orders = (await storageClient.find({
-      type: 'ORDER',
-      owner: req.user.openplatformId,
-      limit: 20
-    })).data;
+    const orders = (
+      await storageClient.find({
+        type: 'ORDER',
+        owner: req.user.openplatformId,
+        limit: 20
+      })
+    ).data;
     orders.forEach(order => {
       orderState = orderReducer(orderState, {
         type: PREVIOUSLY_ORDERED,
@@ -95,10 +99,12 @@ async function initState(req) {
     });
 
     // Get user library info from USER_PRIVAT info obj
-    const userLibraries = (await storageClient.find({
-      type: 'USER_PRIVAT',
-      owner: req.user.openplatformId
-    })).data;
+    const userLibraries = (
+      await storageClient.find({
+        type: 'USER_PRIVAT',
+        owner: req.user.openplatformId
+      })
+    ).data;
 
     // check if user has premium access
 

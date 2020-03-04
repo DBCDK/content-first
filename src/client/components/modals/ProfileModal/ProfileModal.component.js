@@ -358,7 +358,4 @@ export const mapDispatchToProps = dispatch => {
     deleteUser: path => dispatch({type: DELETE_USER_PROFILE, path: path})
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProfileModal);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileModal);

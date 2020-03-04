@@ -109,7 +109,4 @@ const mapDispatchToProps = () => {
   return {};
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Hero);
+export default connect(mapStateToProps, mapDispatchToProps)(Hero);
