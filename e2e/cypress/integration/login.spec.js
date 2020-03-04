@@ -19,7 +19,7 @@ describe('Login test', function() {
   });
 
   it('Can edit a profile', function() {
-    const userName = 'testUser626'; // + Math.floor(Math.random() * 1000);
+    const userName = 'testUser' + Math.floor(Math.random() * 1000);
     const userNameEdited = userName + 'edited';
     cy.createUser(userName);
     cy.visit('/profil/rediger');
