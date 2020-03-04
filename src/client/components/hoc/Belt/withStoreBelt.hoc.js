@@ -18,7 +18,9 @@ const withBeltStore = WrappedComponent => {
       dispatch(
         storeBelt({
           ...belt,
-          key: ownProps.id
+          key: ownProps.id,
+          plus: ownProps.plus,
+          minus: ownProps.minus
         })
       ),
     updateBelt: belt =>

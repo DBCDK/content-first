@@ -12,6 +12,7 @@ import MultiRowContainer from '../../base/Belt/MultiRowContainer';
 import {withStoreBelt} from '../../hoc/Belt';
 import Role from '../../roles/Role.component';
 import Kiosk from '../../base/Kiosk/Kiosk.js';
+import ResultsFilter from './ResultsFilter.component';
 
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
 
@@ -95,6 +96,28 @@ const StoreBeltPin = withStoreBelt(props => {
 });
 
 class Results extends React.Component {
+  constructor() {
+    super();
+    this.state = {type: 'Bog'};
+  }
+
+  componentDidMount() {
+    this.setState(
+      {type: this.props.types ? this.props.types : this.state.type},
+      this.props.updateType(this.state.type)
+    );
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.type !== prevState.type) {
+      this.props.updateType(this.state.type);
+    }
+  }
+
+  initBtns = () => {
+    return {selected: this.props.types ? this.props.types : 'Bog'};
+  };
+
   formatTitle = tag => {
     let title = tag.title;
     let id = tag.id;
@@ -107,7 +130,6 @@ class Results extends React.Component {
         </span>
       );
     }
-
     if (minus.includes(id)) {
       return (
         <span key={id} className="must-not-include">
@@ -115,7 +137,6 @@ class Results extends React.Component {
         </span>
       );
     }
-
     return <span key={id}>{title}</span>;
   };
 
@@ -131,16 +152,53 @@ class Results extends React.Component {
       .filter(t => t.type === 'QUERY')
       .map(q => q.query);
 
+    const changeType = t => {
+      let retStr = convertType(t, 'toStr');
+      this.setState({type: retStr});
+    };
+
+    const convertType = (t, dir) => {
+      let nameArr = ['Bog', 'Ebog', 'Lydbog (net)'];
+      if (dir === 'toStr') {
+        let retStr = '';
+        let c = 0;
+        for (let i = 0; i < t.length; i++) {
+          if (t[i] === 1) {
+            if (c > 0) {
+              retStr += ',';
+            }
+            c++;
+            retStr += nameArr[i];
+          }
+        }
+        return retStr;
+      }
+      if (dir === 'toArr') {
+        let retArr = [0, 0, 0];
+        let typeArr = t.split(',');
+        for (let i = 0; i < nameArr.length; i++) {
+          if (typeArr.indexOf(nameArr[i]) > -1) {
+            retArr[i] = 1;
+          }
+        }
+        return retArr;
+      }
+    };
+
     return (
       <div id="filter-page-results" className="filter-page-results pt-5">
+        {(tags.length > 0 || allPids.length > 0 || creators.length > 0) && (
+          <ResultsFilter
+            changeType={changeType}
+            type={convertType(this.state.type, 'toArr')}
+            init={this.initBtns}
+            disabled={allPids.length > 0 || creators.length > 0}
+          />
+        )}
+
         {allPids.length > 0 && (
           <div>
-            <MultiRowContainer
-              recommendations={allPids}
-              origin="Fra søgning"
-              plus={this.props.plus}
-              minus={this.props.minus}
-            />
+            <MultiRowContainer recommendations={allPids} origin="Fra søgning" />
           </div>
         )}
         {creators.map(creator => {
@@ -187,6 +245,8 @@ class Results extends React.Component {
                       <StoreBeltPin
                         id={tags.map(tag => tag.id).join(',')}
                         tags={tags}
+                        plus={this.props.plus}
+                        minus={this.props.minus}
                       />
                     );
                   }
@@ -200,6 +260,7 @@ class Results extends React.Component {
               origin={{type: 'searchTags', tags: tags.map(t => t.id)}}
               plus={this.props.plus}
               minus={this.props.minus}
+              types={this.state.type}
             />
           </div>
         )}

@@ -149,7 +149,6 @@ export class TagsBelt extends React.Component {
             <div className="belt-tags__tags--container">
               {tags.map(t => {
                 const tag = filtersMapAll[t.id ? t.id : t];
-
                 return (
                   <Link
                     className="belt-tags__tag--link"
@@ -157,8 +156,12 @@ export class TagsBelt extends React.Component {
                     href="/find"
                     params={{
                       tags: tag.id,
-                      plus: plus.includes(tag.id) ? [tag.id] : [],
-                      minus: minus.includes(tag.id) ? [tag.id] : []
+                      plus: plus.includes(Number(tag.id))
+                        ? [Number(tag.id)]
+                        : [],
+                      minus: minus.includes(Number(tag.id))
+                        ? [Number(tag.id)]
+                        : []
                     }}
                     onClick={() => {
                       if (updateMount) {
@@ -172,7 +175,7 @@ export class TagsBelt extends React.Component {
                   >
                     <Term
                       size="medium"
-                      style={{textDecoration: getReqState(t, plus, minus)}}
+                      style={{textDecoration: getReqState(tag, plus, minus)}}
                     >
                       {tag.title}
                     </Term>

@@ -171,12 +171,15 @@ const fetchRecommendations = async action => {
     }, {});
 
     // thresholdLevel = Math.floor(Math.sqrt(Object.keys(tagsMap).length));  // Disabled until further investigated - see US1058
-
     query.tags = tagsMap;
     query.plus = action.plusArr;
     query.minus = action.minusArr;
     query.maxresults = limit;
     query.creators = creators;
+
+    if (action.types) {
+      query.types = action.types;
+    }
   } else {
     const {likes = [], dislikes = [], limit, tag_weight} = action;
 
@@ -185,6 +188,7 @@ const fetchRecommendations = async action => {
     query.limit = limit;
     query.tag_weight = tag_weight;
   }
+
   // recompas backend call
   const recompassResponse = (await request.get('/v1/recompass').query(query))
     .body;
@@ -204,7 +208,6 @@ const fetchRecommendations = async action => {
       }
       return true;
     });
-
     recompassResponse.response = pids;
   }
   return recompassResponse;
@@ -218,7 +221,8 @@ export const fetchTagRecommendations = ({
   limit = 20,
   requestKey,
   plus,
-  minus
+  minus,
+  types
 }) => async dispatch => {
   let minusArr = [];
   let plusArr = [];
@@ -242,7 +246,8 @@ export const fetchTagRecommendations = ({
         limit: 20,
         plusArr,
         minusArr,
-        timeout: 2000
+        timeout: 2000,
+        types
       });
       dispatch({
         type: RECOMMEND_RESPONSE,
@@ -256,7 +261,6 @@ export const fetchTagRecommendations = ({
         isLoading: true
       });
     }
-
     const response = await fetchRecommendations({
       tags,
       creators,
@@ -265,7 +269,8 @@ export const fetchTagRecommendations = ({
       limit,
       plusArr,
       minusArr,
-      timeout: 10000
+      timeout: 10000,
+      types
     });
 
     dispatch({
@@ -278,7 +283,6 @@ export const fetchTagRecommendations = ({
         .map(entry => entry.pid),
       rid: response.rid
     });
-
     dispatch({
       type: BOOKS_PARTIAL_UPDATE,
       books: response.response.map(entry => ({

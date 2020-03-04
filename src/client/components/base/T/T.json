@@ -928,6 +928,18 @@
       "createAsNewBelt": {
         "da": "Opret som nyt bånd",
         "en": "Create as a new belt"
+      },
+      "allbooks": {
+        "da": "Alle",
+        "en": "All books"
+      },
+      "ebooks": {
+        "da": "E-Bøger",
+        "en": "E-Books"
+      },
+      "audiobooks": {
+        "da": "Lydbøger",
+        "en": "Audio books"
       }
     },
     "post": {
