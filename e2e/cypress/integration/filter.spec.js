@@ -35,7 +35,7 @@ describe('Filter page test', function() {
       .should('have.text', 'mystisk');
   });
 
-  it('Should test "Tempo" filter', function() {
+  it.skip('Should test "Tempo" filter', function() {
     cy.visit('/find?tags=5633,5634');
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
