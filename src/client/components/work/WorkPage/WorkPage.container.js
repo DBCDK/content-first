@@ -24,9 +24,18 @@ class WorkPage extends React.Component {
       return null;
     }
 
-    let tag_weight;
-    if (document.location.href.split('?tag_weight')[1]) {
-      tag_weight = document.location.href.split('?tag_weight')[1].split('=')[1];
+    let a_tag_weight;
+    if (document.location.href.split(/[\?|&]a_tag_weight/)[1]) {
+      a_tag_weight = parseFloat(
+        document.location.href.split(/[\?|&]a_tag_weight/)[1].split('=')[1]
+      );
+    }
+
+    let c_tag_weight;
+    if (document.location.href.split(/[\?|&]c_tag_weight/)[1]) {
+      c_tag_weight = parseFloat(
+        document.location.href.split(/[\?|&]c_tag_weight/)[1].split('=')[1]
+      );
     }
 
     // Taxonomy description for <Head> component
@@ -95,7 +104,8 @@ class WorkPage extends React.Component {
           key={'workpage' + book.pid}
           mount={'workpage' + book.pid}
           likes={[book.pid]}
-          tag_weight={tag_weight}
+          a_tag_weight={a_tag_weight}
+          c_tag_weight={c_tag_weight}
         />
 
         <ListsBelt

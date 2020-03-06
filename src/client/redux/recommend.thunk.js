@@ -181,12 +181,19 @@ const fetchRecommendations = async action => {
       query.types = action.types;
     }
   } else {
-    const {likes = [], dislikes = [], limit, tag_weight} = action;
+    const {
+      likes = [],
+      dislikes = [],
+      limit,
+      a_tag_weight,
+      c_tag_weight
+    } = action;
 
     query.likes = JSON.stringify(likes);
     query.dislikes = JSON.stringify(dislikes);
     query.limit = limit;
-    query.tag_weight = tag_weight;
+    query.a_tag_weight = a_tag_weight;
+    query.c_tag_weight = c_tag_weight;
   }
 
   // recompas backend call
@@ -303,7 +310,8 @@ export const fetchTagRecommendations = ({
 export const fetchWorkRecommendations = ({
   likes = [],
   dislikes = [],
-  tag_weight,
+  a_tag_weight,
+  c_tag_weight,
   branch,
   agencyId,
   limit = 20,
@@ -314,7 +322,8 @@ export const fetchWorkRecommendations = ({
     const response = await fetchRecommendations({
       likes,
       dislikes,
-      tag_weight,
+      a_tag_weight,
+      c_tag_weight,
       branch,
       agencyId,
       limit
