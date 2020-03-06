@@ -25,16 +25,16 @@ class WorkPage extends React.Component {
     }
 
     let a_tag_weight;
-    if (document.location.href.split(/[\?|&]a_tag_weight/)[1]) {
+    if (document.location.href.split(/[?|&]a_tag_weight/)[1]) {
       a_tag_weight = parseFloat(
-        document.location.href.split(/[\?|&]a_tag_weight/)[1].split('=')[1]
+        document.location.href.split(/[?|&]a_tag_weight/)[1].split('=')[1]
       );
     }
 
     let c_tag_weight;
-    if (document.location.href.split(/[\?|&]c_tag_weight/)[1]) {
+    if (document.location.href.split(/[?|&]c_tag_weight/)[1]) {
       c_tag_weight = parseFloat(
-        document.location.href.split(/[\?|&]c_tag_weight/)[1].split('=')[1]
+        document.location.href.split(/[?|&]c_tag_weight/)[1].split('=')[1]
       );
     }
 
