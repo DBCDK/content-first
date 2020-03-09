@@ -94,6 +94,13 @@ class Footer extends React.Component {
                 >
                   <T component="footer" name="policy" />
                 </a>
+                <a
+                  href="/privatlivspolitik"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <T component="footer" name="privatlivspolitik" />
+                </a>
               </Text>
             </div>
 
