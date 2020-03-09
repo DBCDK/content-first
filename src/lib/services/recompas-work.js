@@ -25,6 +25,7 @@ class RecompasWork {
     this.ok = true;
     this.currentError = null;
   }
+
   isOk() {
     return this.ok;
   }
@@ -56,13 +57,14 @@ class RecompasWork {
       return result.body;
     } catch (e) {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
-      this.logger.log.error({
+      this.logger.log.error('getRecommendations - error', {
         source: 'recommender',
         error: msg
       });
       throw new Error(msg);
     }
   }
+
   async testingConnection() {
     try {
       const result = await request.get(

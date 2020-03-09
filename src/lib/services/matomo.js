@@ -33,15 +33,14 @@ class MatomoClient {
     });
 
     if (!siteId || !matomoUrl) {
-      logger.log.info({
-        source: 'matomo',
-        msg: 'Matomo tracking is disabled since it is not configured'
+      logger.log.info('Matomo tracking is disabled since it is not configured', {
+        source: 'matomo'
       });
-      this.trackDataEvent = () => {};
+      this.trackDataEvent = () => {
+      };
     } else {
-      logger.log.info({
+      logger.log.info('Matomo tracking is enabled', {
         source: 'matomo',
-        msg: `Matomo tracking is enabled`,
         matomoUrl,
         siteId
       });
@@ -73,7 +72,7 @@ class MatomoClient {
         requests: events
       });
     } catch (error) {
-      this.logger.log.error({
+      this.logger.log.error('POST matomo error', {
         source: 'matomo',
         error,
         events
@@ -81,4 +80,5 @@ class MatomoClient {
     }
   }
 }
+
 module.exports = MatomoClient;
