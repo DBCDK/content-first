@@ -45,7 +45,7 @@ class IDMapper {
       return result.body;
     } catch (e) {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
-      this.logger.log.error({
+      this.logger.log.error('pidToWorkPids - error', {
         source: 'idmapper',
         errorMessage: msg,
         stack: e.stack
