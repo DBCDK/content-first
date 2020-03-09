@@ -112,7 +112,8 @@ router
               dislikes = [],
               limit = 50,
               debug = true,
-              tag_weight,
+              a_tag_weight,
+              c_tag_weight,
               agencyId,
               branch,
               expand = true
@@ -130,8 +131,11 @@ router
               timeout
             };
 
-            if (tag_weight) {
-              objToSend.tag_weight = Number(tag_weight);
+            if (a_tag_weight) {
+              objToSend.a_tag_weight = Number(a_tag_weight);
+            }
+            if (c_tag_weight) {
+              objToSend.c_tag_weight = Number(c_tag_weight);
             }
 
             const link = `${req.baseUrl}?likes=${likes ||
