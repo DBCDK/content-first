@@ -39,7 +39,7 @@ class Suggester {
       return result.body;
     } catch (e) {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
-      this.logger.log.error({
+      this.logger.log.error('get suggestions - error', {
         source: 'suggester',
         error: msg
       });

@@ -95,7 +95,7 @@ class Holdings {
       return pidToHoldingMap;
     } catch (e) {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
-      this.logger.log.error({
+      this.logger.log.error('holdings error', {
         source: 'holdings',
         error: msg
       });
