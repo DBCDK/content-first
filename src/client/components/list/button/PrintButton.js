@@ -32,7 +32,22 @@ const PrintButton = ({
 
 export default withPermissions(PrintButton, {
   name: 'PrintButton',
-  context: {
-    title: 'Udskriv liste'
+  modals: {
+    login: {
+      context: {
+        title: 'UDSKRIVNING AF LISTER',
+        reason:
+          'Log ind for at finde ud af, om dit bibliotek abonnerer på Læsekompas.dk – og dermed giver mulighed for at udskrive lister.'
+      }
+    },
+    premium: {
+      context: {
+        title: 'UDSKRIVNING AF LISTER',
+        reason:
+          'Dit bibliotek abonnerer ikke på Læsekompas.dk, og du har derfor ikke adgang til udskrivning af lister',
+        hideConfirm: false,
+        hideCancel: true
+      }
+    }
   }
 });

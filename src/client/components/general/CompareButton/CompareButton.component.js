@@ -81,8 +81,23 @@ export default connect(
 )(
   withPermissions(CompareButton, {
     name: 'CompareButton',
-    context: {
-      title: 'Sammenligning af bøger'
+    modals: {
+      login: {
+        context: {
+          title: 'Sammenligning af bøger',
+          reason:
+            'Log ind for at finde ud af, om dit bibliotek abonnerer på Læsekompas.dk – og dermed giver mulighed for at sammenligne bøger.'
+        }
+      },
+      premium: {
+        context: {
+          title: 'Sammenligning af bøger',
+          reason:
+            'Dit bibliotek abonnerer ikke på Læsekompas.dk, og du har derfor ikke adgang til sammenligning af bøger.',
+          hideConfirm: false,
+          hideCancel: true
+        }
+      }
     }
   })
 );

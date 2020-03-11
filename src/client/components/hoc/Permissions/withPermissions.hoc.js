@@ -5,9 +5,12 @@ import {get} from 'lodash';
 import Kiosk from '../../base/Kiosk/Kiosk';
 
 import {loadKiosk} from '../../../redux/kiosk.thunk';
-import {OPEN_MODAL} from '../../../redux/modal.reducer';
+import {OPEN_MODAL, CLOSE_MODAL} from '../../../redux/modal.reducer';
 
 import permissions from './permissions.json';
+
+import T from '../../base/T';
+import Button from '../../base/Button';
 
 function getUserRoles(roles) {
   return roles.map(role => role.machineName);
@@ -20,7 +23,8 @@ const defaultPremiumContext = {
 
 const defaultLoginContext = {
   title: 'Login',
-  reason: 'Login for at se om dit bibliotek har adgang til dette indhold'
+  reason:
+    'Log ind for at finde ud af, om dit bibliotek abonnerer på Læsekompas.dk – og dermed giver mulighed for at bestille bøger til biblioteket.'
 };
 
 /**
@@ -169,7 +173,52 @@ export default (WrappedComponent, ComponentOptions) => props => {
 
     // If component has premium options set
     if (premiumContext) {
-      // Promt the user with a premium-only modal
+      // Promt the user with a premium-only order book modal
+      if (ComponentOptions.name === 'OrderButton') {
+        return (
+          <WrappedComponent
+            {...props}
+            onClick={e => {
+              e.preventDefault();
+              e.stopPropagation();
+              dispatch({
+                type: OPEN_MODAL,
+                modal: 'confirm',
+                context: {
+                  ...defaultPremiumContext,
+                  ...premiumContext,
+                  className: 'premium-modal',
+                  hideCancel: true,
+                  hideConfirm: false,
+                  onConfirm: () => {
+                    dispatch({
+                      type: CLOSE_MODAL,
+                      modal: 'confirm'
+                    });
+                  },
+                  reason: (
+                    <React.Fragment>
+                      <p>{premiumContext.reason}</p>
+                      <Button
+                        type="link"
+                        size="medium"
+                        href="https://bibliotek.dk/"
+                        style={{paddingLeft: '0'}}
+                      >
+                        <T component="order" name="findOnBibliotekDK" />
+                      </Button>
+                      <p style={{marginTop: '1rem'}}>
+                        <T component="order" name="orderButtonModalText" />
+                      </p>
+                    </React.Fragment>
+                  )
+                }
+              });
+            }}
+          />
+        );
+      }
+      // Promt the user with a premium-only modal (for non-order buttons)
       return (
         <WrappedComponent
           {...props}
@@ -177,14 +226,14 @@ export default (WrappedComponent, ComponentOptions) => props => {
             e.preventDefault();
             e.stopPropagation();
             dispatch({
+              hideCancel: true,
+              hideConfirm: true,
               type: OPEN_MODAL,
               modal: 'confirm',
               context: {
                 ...defaultPremiumContext,
                 ...premiumContext,
-                className: 'premium-modal',
-                hideCancel: true,
-                hideConfirm: true
+                className: 'premium-modal'
               }
             });
           }}
