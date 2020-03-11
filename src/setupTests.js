@@ -48,6 +48,13 @@ jest.mock(
     virtual: true
   }
 );
+jest.mock(
+  '!raw-loader!../components/article/pages/privatlivspolitik.md',
+  () => 'privatlivspolitik.md',
+  {
+    virtual: true
+  }
+);
 
 jest.mock('./client/components/list/button/PrintButton', () =>
   jest.fn(() => 'PrintButton')

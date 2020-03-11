@@ -56,7 +56,7 @@ class CookieWarning extends React.Component {
                 <span
                   onClick={e => {
                     e.preventDefault();
-                    this.props.goToPolicyPage();
+                    this.props.goToPrivacyPage();
                   }}
                 >
                   vores privatlivspolitik.
@@ -81,7 +81,7 @@ class CookieWarning extends React.Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  goToPolicyPage: () => dispatch({type: HISTORY_REPLACE, path: '/om'})
+  goToPrivacyPage: () => dispatch({type: HISTORY_REPLACE, path: '/privatlivspolitik'})
 });
 export default connect(
   null,
