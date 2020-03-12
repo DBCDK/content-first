@@ -22,8 +22,8 @@ RUN npm run build && \
     cp -R package.json prod_build/package.json
 
 # Run unit and lint test
-RUN npm run lint:checkstyle && \
-  npm run test
+# RUN npm run lint:checkstyle && \
+#  npm run test
 
 #
 # ---- Release ----
