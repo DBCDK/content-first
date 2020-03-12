@@ -72,7 +72,7 @@ class RecompasTags {
         plus: sendPlus,
         minus: sendMinus,
         timeout,
-        types:["Lydbog (net)", "Ebog"]
+        types: ['Lydbog (net)', 'Ebog']
       });
       return result.body;
     } catch (e) {
