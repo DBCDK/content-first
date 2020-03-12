@@ -16,6 +16,7 @@ const OrderAllButton = props => {
   >
     <T component="shortlist" name="shortlistOrder" />
   </Button>
-  )*/};
+  )*/
+};
 
 export default withPermisisons(OrderAllButton, ORDER_CONTEXT);
