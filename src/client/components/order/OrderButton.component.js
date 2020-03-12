@@ -70,7 +70,7 @@ export function OrderButton(props) {
   if (!props.collectionContainsBook()) {
     return null;
   }
-
+  return '';
   return (
     <Kiosk
       render={({kiosk}) => {
