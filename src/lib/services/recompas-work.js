@@ -50,6 +50,7 @@ class RecompasWork {
         delete query.agencyId;
         delete query.branch;
       }
+      query.types= ["Lydbog (net)", "Ebog"];
       const result = await request
         .post(this.config.recompass.url.work)
         .send(query);

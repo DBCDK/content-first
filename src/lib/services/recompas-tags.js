@@ -71,7 +71,8 @@ class RecompasTags {
         status,
         plus: sendPlus,
         minus: sendMinus,
-        timeout
+        timeout,
+        types:["Lydbog (net)", "Ebog"]
       });
       return result.body;
     } catch (e) {
