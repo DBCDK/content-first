@@ -3,13 +3,17 @@ export const ORDER_CONTEXT = {
   modals: {
     login: {
       context: {
-        title: 'Bestil bøger'
+        title: 'Bestil bøger',
+        reason:
+          'Bestilling af bøger er på nuværende tidspunkt ikke tilgængeligt',
+        hideConfirm: true
       }
     },
     premium: {
       context: {
         title: 'Bestil bøger',
-        reason: 'Bestilling af bøger er ikke tilgængeligt for dit bibliotek',
+        reason:
+          'Bestilling af bøger er på nuværende tidspunkt ikke tilgængeligt',
         hideConfirm: true
       }
     }

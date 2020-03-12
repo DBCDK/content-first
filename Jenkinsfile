@@ -32,7 +32,7 @@ pipeline {
             } }
         }
 
-        stage('Integration test') {
+        /*stage('Integration test') {
             steps {
                 script {
                     ansiColor("xterm") {
@@ -42,17 +42,16 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
         stage('Push to Artifactory') {
            when {
-               branch "master"
+               branch "hotfix-remove-order-button"
            }
             steps {
                 script {
                     if (currentBuild.resultIsBetterOrEqualTo('SUCCESS')) {
                         docker.withRegistry('https://docker-ux.dbc.dk', 'docker') {
                             app.push()
-                            app.push("latest")
                         }
                     }
                 } }

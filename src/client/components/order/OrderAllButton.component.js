@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import Button from '../base/Button';
 import T from '../base/T';
