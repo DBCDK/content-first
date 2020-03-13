@@ -1,7 +1,7 @@
-import React from "react";
-import {getItem, setItem} from "../../utils/localstorage";
-import {useDispatch} from "react-redux";
-import {OPEN_MODAL} from "../../redux/modal.reducer";
+import React from 'react';
+import {getItem, setItem} from '../../utils/localstorage';
+import {useDispatch} from 'react-redux';
+import {OPEN_MODAL} from '../../redux/modal.reducer';
 
 const Reason = () => (
   <span>
@@ -13,25 +13,25 @@ const Reason = () => (
 );
 export default () => {
   const dispatch = useDispatch();
-  const haveReadCoronaNotice = getItem("haveReadCoronaNotice", 1, false);
+  const haveReadCoronaNotice = getItem('haveReadCoronaNotice', 1, false);
   if (!haveReadCoronaNotice) {
     dispatch({
       type: OPEN_MODAL,
-      modal: "confirm",
+      modal: 'confirm',
       context: {
-        title: "Vi fokuserer på e-bøger og lydbøger",
+        title: 'Vi fokuserer på e-bøger og lydbøger',
         reason: <Reason />,
-        confirmText: "OK",
+        confirmText: 'OK',
         hideCancel: true,
         onConfirm: () => {
-          setItem("haveReadCoronaNotice", true, 1);
+          setItem('haveReadCoronaNotice', true, 1);
           dispatch({
-            type: "CLOSE_MODAL",
-            modal: "confirm"
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
           });
         }
       }
     });
   }
-  return "";
+  return '';
 };
