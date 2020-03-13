@@ -11,6 +11,7 @@ import SpotsContainer from '../spots/Spots.container';
 import {HISTORY_REPLACE} from '../../redux/middleware';
 import PersonalBelt from '../base/Belt/PersonalBelt.component';
 import Kiosk from '../base/Kiosk/Kiosk';
+import Notice from '../notice/Notice.component';
 
 class FrontPage extends React.Component {
   componentDidMount() {
@@ -83,7 +84,7 @@ class FrontPage extends React.Component {
             return <Hero />;
           }}
         />
-
+        <Notice />
         <PersonalBelt mount={'frontpage-because-you-read-belt-1'} />
         {this.renderBelts(belts.slice(0, 2))}
         <Kiosk
