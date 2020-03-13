@@ -23,6 +23,7 @@ import CookieWarning from './components/general/CookieWarning/CookieWarning';
 import BeltEditor from './components/belteditor/BeltEditor.component';
 import BeltForm from './components/belteditor/BeltForm.component';
 import PrintLayout from './components/list/printLayout/PrintLayout';
+import Notice from './components/notice/Notice.component';
 
 // kiosk
 import KioskSetup from './components/kiosk/Setup/KioskSetup.component';
@@ -178,7 +179,7 @@ class App extends Component {
         style={{backgroundColor}}
       >
         <Head />
-
+        <Notice />
         {this.props.isKiosk && <Timeout />}
 
         {this.props.isKiosk && <Logo />}
