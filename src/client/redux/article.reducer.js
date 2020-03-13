@@ -1,7 +1,7 @@
 /* eslint import/no-webpack-loader-syntax: off */
 import About from '!raw-loader!../components/article/pages/about.md';
 import Policy from '!raw-loader!../components/article/pages/policy.md';
-
+import Privatlivspolitik from '!raw-loader!../components/article/pages/privatlivspolitik.md';
 import NotFound from '!raw-loader!../components/article/pages/404.md';
 import LoginError from '!raw-loader!../components/article/pages/loginError.md';
 
@@ -38,6 +38,20 @@ const defaultState = {
         }
       },
       src: Policy
+    },
+    '/privatlivspolitik': {
+      id: 1,
+      name: 'privatlivspolitik',
+      title: 'Privatlivspolitik',
+      meta: {
+        title: 'Privatlivspolitik',
+        canonical: '/privatlivspolitik',
+        og: {
+          url: 'https://laesekompas.dk/privatlivspolitik',
+          type: 'website'
+        }
+      },
+      src: Privatlivspolitik
     },
     '/loginfejl': {
       id: 2,
