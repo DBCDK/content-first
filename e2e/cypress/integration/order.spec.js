@@ -98,7 +98,7 @@ describe('Order ', function() {
     cy.visit('/huskeliste');
     cy.wait('@shortlistRequest');
     cy.get('[data-cy=orderAllButton]').click();
-    cy.contains('ikke tilgængeligt for dit bibliotek');
+    cy.contains('Dit bibliotek abonnerer ikke på Læsekompas.dk');
   });
 
   it('fails to "order all" from shortlist dropdown for non-premium user', function() {
@@ -110,7 +110,7 @@ describe('Order ', function() {
     cy.wait('@shortlistRequest');
     cy.get('[data-cy=topbar-shortlist]').click();
     cy.get('[data-cy=shortlist-dropdown-order-all').click();
-    cy.contains('ikke tilgængeligt for dit bibliotek');
+    cy.contains('Dit bibliotek abonnerer ikke på Læsekompas.dk');
   });
 
   it('Fails gracefully when no pickup libraries are available', function() {
