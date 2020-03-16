@@ -23,7 +23,8 @@ router
       } catch (e) {
         logger.log.error('POST kiosk router - error', {
           source: 'external-v1-kiosk',
-          error: String(e)
+          errorMessage: e.message,
+          stack: e.stack
         });
         res.status(500).end(String(e));
       }

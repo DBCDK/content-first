@@ -51,7 +51,8 @@ const profileStrategy = new Strategy(
       } catch (e) {
         logger.log.error('Error fetching userinfo', {
           token,
-          error: String(e)
+          errorMessage: e.message,
+          stack: e.stack
         });
         throw e;
       }
@@ -83,7 +84,8 @@ passport.serializeUser(async function (user, done) {
     done(null, cookie);
   } catch (e) {
     logger.log.error('Error serializing user', {
-      error: String(e)
+      errorMessage: e.message,
+      stack: e.stack
     });
     done(null, false);
   }
@@ -95,7 +97,8 @@ passport.deserializeUser(async function (cookie, done) {
     done(null, user);
   } catch (e) {
     logger.log.error('Error deserializing user', {
-      error: String(e)
+      errorMessage: e.message,
+      stack: e.stack
     });
     done(null, false);
   }

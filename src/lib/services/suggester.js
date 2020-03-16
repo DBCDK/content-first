@@ -21,6 +21,7 @@ class Suggester {
     this.ok = true;
     this.currentError = null;
   }
+
   isOk() {
     return this.ok;
   }
@@ -41,11 +42,14 @@ class Suggester {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
       this.logger.log.error('get suggestions - error', {
         source: 'suggester',
-        error: msg
+        errorMessage: msg,
+        stack: e.stack
+
       });
       throw new Error(msg);
     }
   }
+
   async testingConnection() {
     try {
       const result = await request.get(this.config.suggester.status);

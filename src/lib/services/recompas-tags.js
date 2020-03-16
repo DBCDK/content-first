@@ -25,6 +25,7 @@ class RecompasTags {
     this.ok = true;
     this.currentError = null;
   }
+
   isOk() {
     return this.ok;
   }
@@ -86,11 +87,13 @@ class RecompasTags {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
       this.logger.log.error('getRecommendations - error', {
         source: 'recommender',
-        error: msg
+        errorMessage: msg,
+        stack: e.stack
       });
-      throw new Error('special getRecommendations - error', {error: msg});
+      throw new Error(msg);
     }
   }
+
   async testingConnection() {
     try {
       const result = await request.get(
