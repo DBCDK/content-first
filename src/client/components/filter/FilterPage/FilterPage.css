@@ -18,12 +18,10 @@ work-card.filter-page-title {
 
 .filter-page-results .must-include {
     text-decoration: underline;
-
 }
 
 .filter-page-results .must-not-include {
     text-decoration: line-through;
-
 }
 
 .tag-title {
@@ -37,7 +35,6 @@ work-card.filter-page-title {
     background: var(--concrete);
     border-radius: 0px;
     text-align: center;
-
 }
 
 .results-filter .filter-button-container {
@@ -281,12 +278,9 @@ work-card.filter-page-title {
         min-height: calc(100vh - 350px);
     }
 
-
     .results-filter .filter-button-container .results-filter-button {
         width: 85px;
         margin-right: 20px;
         margin-left: -10px;
-
-
     }
 }
