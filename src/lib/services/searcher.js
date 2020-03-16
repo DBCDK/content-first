@@ -21,6 +21,7 @@ class Searcher {
     this.ok = true;
     this.currentError = null;
   }
+
   isOk() {
     return this.ok;
   }
@@ -41,11 +42,13 @@ class Searcher {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
       this.logger.log.error('get search results - error', {
         source: 'searcher',
-        error: msg
+        errorMessage: msg,
+        stack: e.stack
       });
       throw new Error(msg);
     }
   }
+
   async testingConnection() {
     try {
       const result = await request.get(this.config.searcher.status);

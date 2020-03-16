@@ -74,7 +74,8 @@ class MatomoClient {
     } catch (error) {
       this.logger.log.error('POST matomo error', {
         source: 'matomo',
-        error,
+        errorMessage: error.message,
+        stack: error.stack,
         events
       });
     }

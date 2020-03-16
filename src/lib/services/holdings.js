@@ -97,7 +97,8 @@ class Holdings {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
       this.logger.log.error('holdings error', {
         source: 'holdings',
-        error: msg
+        errorMessage: msg,
+        stack: e.stack
       });
       throw new Error(msg);
     }

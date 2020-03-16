@@ -59,7 +59,8 @@ class RecompasWork {
       const msg = _.get(e, 'response.body.value') || 'Internal server error';
       this.logger.log.error('getRecommendations - error', {
         source: 'recommender',
-        error: msg
+        errorMessage: msg,
+        stack: e.stack
       });
       throw new Error(msg);
     }
