@@ -90,7 +90,7 @@ class RecompasTags {
         errorMessage: msg,
         stack: e.stack
       });
-      throw new Error('special getRecommendations - error', {error: msg});
+      throw new Error(msg);
     }
   }
 
