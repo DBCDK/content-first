@@ -62,6 +62,9 @@ work-card.filter-page-title {
     color: var(--silver-chalice);
 }
 
+.filter-disabled .filter-button-container .results-filter-button {
+    cursor: default;
+}
 
 /* Kiosk-mode enabled */
 
