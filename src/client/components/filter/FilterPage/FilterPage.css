@@ -49,9 +49,12 @@ work-card.filter-page-title {
 }
 
 .results-filter .filter-button-container .results-filter-button {
-    width: 140px;
+    width: 100px;
+    margin-right: 20px;
+    margin-left: 20px;
     text-transform: uppercase;
     cursor: pointer;
+    text-align: center;
 }
 
 .results-filter .filter-button-container .filter-selected {
@@ -276,5 +279,14 @@ work-card.filter-page-title {
 
     .filter-page-results {
         min-height: calc(100vh - 350px);
+    }
+
+
+    .results-filter .filter-button-container .results-filter-button {
+        width: 85px;
+        margin-right: 20px;
+        margin-left: -10px;
+
+
     }
 }
