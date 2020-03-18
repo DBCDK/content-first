@@ -1084,6 +1084,14 @@
       "loginModalText": {
         "da": "Du skal logge ind for at bestille bøger.",
         "en": "You need to be signed in to order books"
+      },
+      "orderButtonModalText":{
+        "da": "På bibliotek.dk kan du søge efter den ønskede bog og bestille den hjem til dit bibliotek.",
+        "en": "Find and order this book on bibliotek.dk"
+      },
+      "findOnBibliotekDK":{
+        "da": "FIND BOGEN PÅ BIBLIOTEK.DK",
+        "en": "FIND BOOK ON BIBLIOTEK.DK"
       }
     },
     "share": {

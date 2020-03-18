@@ -62,16 +62,18 @@ const SelectedTag = withPermissions(
     modals: {
       login: {
         context: {
-          title: 'Avanceret filtrering',
+          title: 'AVANCERET FILTRERING',
           reason:
-            'Log ind for at finde ud af om dit bibliotek abonnerer på Læsekompas.dk - og dermed giver mulighed for avanceret filtrering'
+            'Log ind for at finde ud af om dit bibliotek abonnerer på Læsekompas.dk - og dermed giver mulighed for avanceret filtrering.'
         }
       },
       premium: {
         context: {
-          title: 'Avanceret filtrering',
+          title: 'AVANCERET FILTRERING',
           reason:
-            'Dit bibliotek abonnerer desværre ikke på Læsekompas.dk og du har derfor ikke adgang til avenceret filtrering'
+            'Dit bibliotek abonnerer ikke på Læsekompas.dk, og du har derfor ikke adgang til avanceret filtrering.',
+          hideConfirm: false,
+          hideCancel: true
         }
       }
     }

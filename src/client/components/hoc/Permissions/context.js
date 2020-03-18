@@ -3,13 +3,14 @@ export const ORDER_CONTEXT = {
   modals: {
     login: {
       context: {
-        title: 'Bestil bøger'
+        title: 'BESTILLING AF BØGER'
       }
     },
     premium: {
       context: {
-        title: 'Bestil bøger',
-        reason: 'Bestilling af bøger er ikke tilgængeligt for dit bibliotek',
+        title: 'BESTILLING AF BØGER',
+        reason:
+          'Dit bibliotek abonnerer ikke på Læsekompas.dk, og du har derfor ikke adgang til bestilling af bøger til biblioteket.',
         hideConfirm: true
       }
     }
