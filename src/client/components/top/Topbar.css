@@ -266,7 +266,13 @@ toggle on top of navigation bar - in the open/close animation */
 
  */
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
+  .topbar .topbar__navigation .topbar__search-bar--wrap input {
+    min-width: 200px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
   .topbar .navigation-btn.navigation-btn__shortlist--btn,
   .topbar .navigation-btn.navigation-btn__search--btn,
   .topbar .navigation-btn.navigation-btn__menu--burger {
@@ -291,9 +297,7 @@ toggle on top of navigation bar - in the open/close animation */
   .topbar__navigation--icon {
     display: none;
   }
-}
 
-@media only screen and (max-width: 576px) {
   .topbar {
     height: 60px;
   }
