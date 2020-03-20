@@ -60,7 +60,7 @@
   }
   .modal-container,
   .modal-backdrop {
-    padding-top: 0px !important;
+    /*padding-top: 0px !important;*/
   }
 }
 
