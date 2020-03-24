@@ -6,6 +6,9 @@ const config = require('server/config');
 const knex = require('knex')(config.db);
 const constants = require('server/constants')();
 const tagTable = constants.tags.table;
+const logger = require('server/logger');
+const IDMapper = require('__/services/idmapper');
+const idmapper = new IDMapper(config, logger);
 
 let usedTags = null;
 
@@ -70,9 +73,10 @@ router
     const pid = req.params.pid;
     const location = `${req.baseUrl}/${pid}`;
     let tags;
+    const workPids = (await idmapper.pidToWorkPids([pid]))[pid];
     try {
       tags = await knex(tagTable)
-        .where({pid})
+        .whereIn('pid', workPids)
         .select(['tag as id', 'score']);
     } catch (error) {
       return next({
