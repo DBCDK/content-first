@@ -248,10 +248,7 @@ const withWork = (
       }
     };
   };
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Wrapped);
+  return connect(mapStateToProps, mapDispatchToProps)(Wrapped);
 };
 
 export default withWork;

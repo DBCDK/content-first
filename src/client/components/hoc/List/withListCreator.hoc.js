@@ -90,8 +90,5 @@ export const withListCreator = WrappedComponent => {
     };
   };
 
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Wrapper);
+  return connect(mapStateToProps, mapDispatchToProps)(Wrapper);
 };

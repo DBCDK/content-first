@@ -51,10 +51,12 @@ describe.only('Endpoint /v1/object', () => {
     for (const [cookie, obj] of objects) {
       objectResults.push({
         cookie,
-        _id: (await webapp
-          .post('/v1/object')
-          .set('cookie', cookie)
-          .send(obj)).body.data._id
+        _id: (
+          await webapp
+            .post('/v1/object')
+            .set('cookie', cookie)
+            .send(obj)
+        ).body.data._id
       });
     }
   });
@@ -67,9 +69,9 @@ describe.only('Endpoint /v1/object', () => {
     describe('GET /v1/object/:pid', () => {
       it('should retrieve object', async () => {
         const id = objectResults[0]._id;
-        const result = (await webapp
-          .get(`/v1/object/${id}`)
-          .set('cookie', cookie1)).body;
+        const result = (
+          await webapp.get(`/v1/object/${id}`).set('cookie', cookie1)
+        ).body;
         const object = _.omit(result.data, ['_created', '_modified', '_rev']);
         expect(object).to.deep.equal({
           text: 'object0',
@@ -107,58 +109,72 @@ describe.only('Endpoint /v1/object', () => {
     });
     describe('GET /v1/object/find', () => {
       it('find objects all public objects of given type', async () => {
-        const result = (await webapp
-          .get(`/v1/object/find?type=test`)
-          .set('cookie', cookie2)).body;
+        const result = (
+          await webapp.get(`/v1/object/find?type=test`).set('cookie', cookie2)
+        ).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(4);
       });
       it('find objects all own objects of given type', async () => {
-        const result = (await webapp
-          .get(`/v1/object/find?type=test&owner=${user2.id}`)
-          .set('cookie', cookie2)).body;
+        const result = (
+          await webapp
+            .get(`/v1/object/find?type=test&owner=${user2.id}`)
+            .set('cookie', cookie2)
+        ).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(2);
       });
       it('find all public objects of given type+user+key', async () => {
-        const result = (await webapp
-          .get(`/v1/object/find?type=test&owner=${user2.id}&key=hi`)
-          .set('cookie', cookie1)).body;
+        const result = (
+          await webapp
+            .get(`/v1/object/find?type=test&owner=${user2.id}&key=hi`)
+            .set('cookie', cookie1)
+        ).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(1);
       });
       it('find objects all public objects of given type+owner', async () => {
-        const result = (await webapp
-          .get(`/v1/object/find?type=test&owner=${user1.id}`)
-          .set('cookie', cookie2)).body;
+        const result = (
+          await webapp
+            .get(`/v1/object/find?type=test&owner=${user1.id}`)
+            .set('cookie', cookie2)
+        ).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(3);
       });
       it('find objects all public objects of given type+key', async () => {
-        const result = (await webapp
-          .get(`/v1/object/find?type=test&key=hi`)
-          .set('cookie', cookie2)).body;
+        const result = (
+          await webapp
+            .get(`/v1/object/find?type=test&key=hi`)
+            .set('cookie', cookie2)
+        ).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(3);
       });
       it('find public objects with limit', async () => {
-        const result = (await webapp
-          .get(`/v1/object/find?type=test&key=hi&limit=1`)
-          .set('cookie', cookie2)).body;
+        const result = (
+          await webapp
+            .get(`/v1/object/find?type=test&key=hi&limit=1`)
+            .set('cookie', cookie2)
+        ).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(1);
       });
       it('find private objects with limit', async () => {
-        const result = (await webapp
-          .get(`/v1/object/find?type=test&key=hi&owner=${user1.id}&limit=1`)
-          .set('cookie', cookie2)).body;
+        const result = (
+          await webapp
+            .get(`/v1/object/find?type=test&key=hi&owner=${user1.id}&limit=1`)
+            .set('cookie', cookie2)
+        ).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(1);
       });
       it('find no objects', async () => {
-        const result = (await webapp
-          .get(`/v1/object/find?type=test&key=nonexistant`)
-          .set('cookie', cookie2)).body;
+        const result = (
+          await webapp
+            .get(`/v1/object/find?type=test&key=nonexistant`)
+            .set('cookie', cookie2)
+        ).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(0);
       });
@@ -200,16 +216,20 @@ describe.only('Endpoint /v1/object', () => {
     });
     describe('POST /v1/object', () => {
       it('create new object', async () => {
-        const result = (await webapp
-          .post('/v1/object')
-          .set('cookie', cookie1)
-          .send({_type: 'test', _key: '123', hello: 'world'})).body;
+        const result = (
+          await webapp
+            .post('/v1/object')
+            .set('cookie', cookie1)
+            .send({_type: 'test', _key: '123', hello: 'world'})
+        ).body;
         expect(Object.keys(result.data)).to.deep.equal(['_id', '_rev']);
         expect(result.errors).to.be.an('undefined');
 
-        let obj = (await webapp
-          .get(`/v1/object/${result.data._id}`)
-          .set('cookie', cookie1)).body.data;
+        let obj = (
+          await webapp
+            .get(`/v1/object/${result.data._id}`)
+            .set('cookie', cookie1)
+        ).body.data;
         expect(obj.hello).to.equal('world');
       });
       it('change an object', async () => {
@@ -227,9 +247,9 @@ describe.only('Endpoint /v1/object', () => {
         expect(result.body.data._id).to.equal(obj._id);
         expect(result.body.data._rev).to.be.a('string');
 
-        let newObj = (await webapp
-          .get(`/v1/object/${id}`)
-          .set('cookie', cookie1)).body.data;
+        let newObj = (
+          await webapp.get(`/v1/object/${id}`).set('cookie', cookie1)
+        ).body.data;
         expect(newObj.changed).to.equal(true);
         expect(newObj._rev).to.equal(result.body.data._rev);
         expect(newObj._modified).to.be.above(newObj._created);
@@ -239,10 +259,12 @@ describe.only('Endpoint /v1/object', () => {
     describe('PUT /v1/object/:pid', () => {
       it('overwrite object', async () => {
         const id = objectResults[0]._id;
-        const result = (await webapp
-          .put(`/v1/object/${id}`)
-          .set('cookie', cookie1)
-          .send({_type: 'test', _key: '123', hi: 'world', _public: true})).body;
+        const result = (
+          await webapp
+            .put(`/v1/object/${id}`)
+            .set('cookie', cookie1)
+            .send({_type: 'test', _key: '123', hi: 'world', _public: true})
+        ).body;
         const getResult = (await webapp.get(`/v1/object/${id}`)).body;
         const object = _.omit(getResult.data, [
           '_created',

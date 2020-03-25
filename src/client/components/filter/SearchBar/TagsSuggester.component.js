@@ -296,7 +296,4 @@ export const mapDispatchToProps = dispatch => ({
   updateBooks: books => dispatch({type: BOOKS_PARTIAL_UPDATE, books}),
   historyPush: (type, path) => dispatch({type, path})
 });
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TagsSuggester);
+export default connect(mapStateToProps, mapDispatchToProps)(TagsSuggester);

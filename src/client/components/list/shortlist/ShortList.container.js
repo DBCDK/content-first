@@ -318,7 +318,4 @@ export const mapDispatchToProps = dispatch => ({
     })
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShortList);
+export default connect(mapStateToProps, mapDispatchToProps)(ShortList);

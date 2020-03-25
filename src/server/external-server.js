@@ -232,7 +232,7 @@ external.use((err, req, res, next) => {
   let returnedError = {
     status: err.status,
     code: err.code || err.status.toString(),
-    title: err.title || (err.message || 'Unknown error'),
+    title: err.title || err.message || 'Unknown error',
     detail: err.detail || toLoggableString(err)
   };
   if (err.meta) {
