@@ -105,7 +105,7 @@ exports.kiosk = {
 };
 
 exports.fors = {
-  url: process.env.FORSRIGHTS_URL || 'http://forsrights.addi.dk/1.2/'
+  url: process.env.FORSRIGHTS_URL || 'http://forsrights.addi.dk/2.0/'
 };
 
 exports.test = {
