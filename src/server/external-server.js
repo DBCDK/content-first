@@ -128,7 +128,7 @@ external.get('/ready', async (req, res) => {
   });
   if (!status.ok) {
     res.status(503);
-    logger.log.error('GET admin data for test - error', {errorMessage: status});
+    logger.log.error('GET admin data for test - error', {errorMessage: JSON.stringify(status)});
   }
   res.json(status);
 });
@@ -169,7 +169,7 @@ external.get('/howru', async (req, res) => {
   }
   if (!status.ok) {
     res.status(503);
-    logger.log.error('no permissions - error', {errorMessage: status});
+    logger.log.error('no permissions - error', {errorMessage: JSON.stringify(status)});
   }
   res.json(status);
 });
