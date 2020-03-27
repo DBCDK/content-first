@@ -247,7 +247,7 @@ external.use((err, req, res, next) => {
     }
   }
   if (returnedError.status >= 500 && config.server.logServiceErrors === '1') {
-    logger.log.error('unhandledRejection', {errorMessage: returnedError.message, stack: returnedError.stack});
+    logger.log.error('unhandledRejection', {errorMessage: returnedError.detail, stack: returnedError.stack});
   }
   res.json({errors: [returnedError]});
 });
