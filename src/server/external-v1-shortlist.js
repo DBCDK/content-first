@@ -49,8 +49,9 @@ router
           data: userData.shortlist,
           links: {self: location}
         });
+
       } catch (error) {
-        logger.log.error(error);
+        logger.log.error('PUT shortlist - error', {errorMessage: error.message, stack: error.stack});
 
         const returnedError = {meta: {resource: location}};
         Object.assign(returnedError, error);

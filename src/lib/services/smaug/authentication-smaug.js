@@ -135,11 +135,14 @@ class Authenticator {
     }
     this.errorLog.push(new Date().toISOString() + ': ' + logEntry);
     if (typeof error === 'string') {
-      return this.logger.log.error(
-        `Getting authentication token failed: ${error}`
+      return this.logger.log.error('Getting authentication token failed',
+        {errorMessage: error}
       );
     }
-    return this.logger.log.error('Getting authentication token failed', error);
+    return this.logger.log.error('Getting authentication token failed', {
+      errorMessage: error.message,
+      stack: error.stack
+    });
   }
 
   tokenWillSoonExpire() {
