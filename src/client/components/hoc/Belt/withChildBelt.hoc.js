@@ -14,11 +14,11 @@ const withChildBelt = WrappedComponent => {
       }
     }
 
-    clearDuplicates = (m) => {
+    clearDuplicates = m => {
       let allmounts = this.props.mounts;
-      Object.keys(allmounts).forEach((key) => {
+      Object.keys(allmounts).forEach(key => {
         if (allmounts[key].parent === m.parent) {
-          if (allmounts[key].type === "SIMILAR") {
+          if (allmounts[key].type === 'SIMILAR') {
             this.props.removeMount(key);
           }
         }
