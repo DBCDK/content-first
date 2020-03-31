@@ -1,30 +1,28 @@
 const defaultState = {};
 
 export const UPDATE_MOUNT = 'UPDATE_MOUNT';
+export const REMOVE_MOUNT = 'REMOVE_MOUNT';
 
 const mountsReducer = (state = defaultState, action) => {
-    switch (action.type) {
-      case UPDATE_MOUNT: {
-        const mounts = {...state};
-        mounts[action.mount] = {
-          ...(mounts[action.mount] || {}),
-          ...action.data
-        };
-        let parent;
-        Object.keys(mounts).forEach((key)=> {
-          if (mounts[key].type === 'SIMILAR') {
-            if (mounts[key].parent === parent) {
-              delete mounts[key];
-            } else {
-              parent = mounts[key].parent;
-            }
-          }
-        });
-        return mounts;
-      }
-      default:
-        return state;
+  switch (action.type) {
+    case UPDATE_MOUNT: {
+      const mounts = {...state};
+      mounts[action.mount] = {
+        ...(mounts[action.mount] || {}),
+        ...action.data
+      };
+      return mounts;
     }
-  };
+
+    case REMOVE_MOUNT: {
+      const mounts = {...state};
+      delete mounts[action.mount];
+      return mounts;
+    }
+
+    default:
+      return state;
+  }
+};
 
 export default mountsReducer;
