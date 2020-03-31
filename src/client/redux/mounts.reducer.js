@@ -4,6 +4,7 @@ export const UPDATE_MOUNT = 'UPDATE_MOUNT';
 export const REMOVE_MOUNT = 'REMOVE_MOUNT';
 
 const mountsReducer = (state = defaultState, action) => {
+
   switch (action.type) {
     case UPDATE_MOUNT: {
       const mounts = {...state};
@@ -19,7 +20,6 @@ const mountsReducer = (state = defaultState, action) => {
       delete mounts[action.mount];
       return mounts;
     }
-
     default:
       return state;
   }
