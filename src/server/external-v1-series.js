@@ -22,7 +22,7 @@ const getPartFromTitleSeries = titleSeriesArr => {
   for (let i = 0; i < titleSeriesArr.length; i++) {
     const split = titleSeriesArr[i].split(';');
     if (split.length > 1) {
-      return parseInt(split[1].replace(/\D/g, ''));
+      return parseInt(split[1].replace(/\D/g, ''), 10);
     }
   }
   return '?';
@@ -59,7 +59,7 @@ const fetchInitial = async pid => {
         pid: volume.pid[0],
         title: volume.title[0],
         type: volume.type[0],
-        part: bindIdMatch && bindIdMatch[1] && parseInt(bindIdMatch[1])
+        part: bindIdMatch && bindIdMatch[1] && parseInt(bindIdMatch[1], 10)
       };
     })
     .filter(volume => !!volume.part);
