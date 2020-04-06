@@ -13,6 +13,7 @@ describe('belt', function() {
     cy.route('GET', '/v1/object/find**', '@publiclist_element').as(
       'listElementRequest'
     );
+    cy.createUser('someotheruser');
     cy.visit('/lister/some-list-id');
     cy.wait('@listRequest');
     cy.wait('@listElementRequest');

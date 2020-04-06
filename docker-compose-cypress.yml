@@ -50,3 +50,8 @@ services:
     environment:
       - CYPRESS_baseUrl=http://web:3000
     command: bash -c 'until $$(curl --output /dev/null --silent --head --fail http://web:3000/ready); do printf '.'; sleep 5; done; npm run cy'
+networks:
+  default:
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1400

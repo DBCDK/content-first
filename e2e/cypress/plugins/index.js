@@ -15,8 +15,8 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 
-  on('before:browser:launch', (browser = {}, args) => {
-    //   console.log(browser, args); // see what all is in here!
+  on('before:browser:launch', (browser = {}, launchOptions = {}) => {
+    console.log(browser, launchOptions); // see what all is in here!
 
     // browser will look something like this
     // {
@@ -27,15 +27,16 @@ module.exports = (on, config) => {
     //   majorVersion: '63'
     // }
 
-    // args are different based on the browser
+    // launchOptions.args are different based on the browser
     // sometimes an array, sometimes an object
 
     if (browser.name === 'chrome') {
-      args.push('--disable-site-isolation-trials');
-
-      // whatever you return here becomes the new args
-      return args;
+      if (!launchOptions.args.includes()) {
+        launchOptions.args.push('--disable-site-isolation-trials');
+      }
     }
+
+    return launchOptions;
   });
 
   on('task', {

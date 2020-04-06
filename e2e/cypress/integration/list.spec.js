@@ -1,5 +1,6 @@
 describe('List test', function() {
   beforeEach(function() {
+    cy.request('/v1/test/delete/listowner');
     cy.clearClientStorage();
     cy.clearCookies();
 
@@ -9,7 +10,7 @@ describe('List test', function() {
 
   const gotoListByName = listName => {
     cy.get('[data-cy=topbar-lists]').click();
-    cy.get(`[data-cy="list-link-${listName}"]`).click({force: true});
+    cy.get(`[data-cy="list-overview-element-${listName}"]`).click();
     cy.get('[data-cy=topbar-lists]').click();
   };
 
@@ -20,7 +21,7 @@ describe('List test', function() {
   };
 
   it('Can create a new list', function() {
-    const listName = 'New Awesome List';
+    const listName = 'superduperlist-' + Math.floor(Math.random() * 1000);
     const listDescription = 'List description';
     cy.wait(1000);
     cy.get('[data-cy=topbar-lists]').click();
@@ -134,14 +135,19 @@ describe('List test', function() {
       cy.createUser('otheruser');
       cy.get('[data-cy=follow-btn]').contains('Følg liste');
       cy.get('[data-cy=follow-btn]').click();
+      cy.wait(500);
       cy.get('[data-cy=follow-btn]').contains('Følger liste');
       cy.get('[data-cy=follow-btn]').click();
+      cy.wait(500);
       cy.get('[data-cy=follow-btn]').contains('Følg liste');
       cy.get('[data-cy=follow-btn]').click();
+      cy.wait(500);
       cy.get('[data-cy=follow-btn]').contains('Følger liste');
       cy.get('[data-cy=follow-btn]').click();
+      cy.wait(500);
       cy.get('[data-cy=follow-btn]').contains('Følg liste');
       cy.get('[data-cy=follow-btn]').click();
+      cy.wait(500);
       cy.get('[data-cy=follow-btn]').contains('Følger liste');
       cy.reload();
       cy.get('[data-cy=follow-btn]').contains('Følger liste');
