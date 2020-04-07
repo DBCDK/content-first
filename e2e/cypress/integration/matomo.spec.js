@@ -49,6 +49,7 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
+        cy.wait(1000);
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltExpandWork');
         expect(tracked.name).to.match(PID_REGEX);
@@ -63,6 +64,7 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
+        cy.wait(1000);
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltMoreLikeThis');
         expect(tracked.name).to.match(PID_REGEX);
@@ -72,6 +74,7 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
+        cy.wait(1000);
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltSwipe');
         expect(tracked.name).to.equal('position');
@@ -128,20 +131,28 @@ describe('Matomo test', function() {
   });
 
   it('Can track did read belt events', function() {
-    cy.createUser('someuser');
+    // cy.visit('/');
+    //
+    // cy.scrollTo('bottom', {duration: 1000});
+
+    cy.request('/v1/test/delete/a-user');
+    cy.createUser('a-user');
     // make interaction such that personal recommendations belt appears
-    cy.visit('/v%C3%A6rk/870970-basis:27206344');
+    cy.visit('/v%C3%A6rk/870970-basis:25775481');
+
     cy.get('[data-cy="add-to-list-btn"]').click();
     cy.get('[data-cy="add-to-list-btn"]')
       .contains('Har læst')
       .click();
     cy.visit('/');
+    cy.wait(1000);
+    cy.scrollTo('bottom', {duration: 1000});
 
     testBelt(
       '/',
       '[data-cy="did-read-belt"]',
       '[data-cy="workcard"]',
-      'belt:Fordi du har læst Skyggen'
+      'belt:Fordi du har læst Doppler'
     );
   });
 

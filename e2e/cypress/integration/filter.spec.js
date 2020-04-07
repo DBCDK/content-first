@@ -23,7 +23,7 @@ describe('Filter page test', function() {
     cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
-    cy.get('[data-cy=workpreviewCard]')
+    cy.get('.work-preview [data-cy=book-cover-loaded]')
       .first()
       .click();
     cy.get('[data-cy=tags-collaps-toggle]')
@@ -35,11 +35,11 @@ describe('Filter page test', function() {
       .should('have.text', 'mystisk');
   });
 
-  it.skip('Should test "Tempo" filter', function() {
-    cy.visit('/find?tags=5633,5634');
+  it('Should test "Tempo" filter', function() {
+    cy.visit('/find?tags=5633%3A5633');
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
-    cy.get('[data-cy=workpreviewCard]')
+    cy.get('.work-preview [data-cy=book-cover-loaded]')
       .first()
       .click();
 
@@ -58,7 +58,7 @@ describe('Filter page test', function() {
     cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
-    cy.get('[data-cy=workpreviewCard]')
+    cy.get('.work-preview [data-cy=book-cover-loaded]')
       .first()
       .click();
 
@@ -67,6 +67,7 @@ describe('Filter page test', function() {
       expect(Number(pageCount)).lessThan(151);
     });
   });
+
   it('Should test "Univers" filter', function() {
     cy.visit('/find');
     cy.get('[data-cy=univers]').click();
@@ -75,7 +76,7 @@ describe('Filter page test', function() {
     cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
-    cy.get('[data-cy=workpreviewCard]')
+    cy.get('.work-preview [data-cy=book-cover-loaded]')
       .first()
       .click();
     cy.get('[data-cy=tags-collaps-toggle]')
@@ -91,8 +92,8 @@ describe('Filter page test', function() {
     cy.get('[data-cy=filterDimmer]').click();
     cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
-    cy.get('[data-cy=workpreviewCard]')
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-0]').click('top');
+    cy.get('.work-preview [data-cy=book-cover-loaded]')
       .first()
       .click();
     cy.get('[data-cy=tags-collaps-toggle]')
@@ -109,7 +110,7 @@ describe('Filter page test', function() {
     cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
-    cy.get('[data-cy=workpreviewCard]')
+    cy.get('.work-preview [data-cy=book-cover-loaded]')
       .first()
       .click();
     cy.get('[data-cy=tags-collaps-toggle]')
@@ -125,8 +126,8 @@ describe('Filter page test', function() {
     cy.get('[data-cy=filterDimmer]').click();
     cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
-    cy.get('[data-cy=workpreviewCard]')
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-0]').click('top');
+    cy.get('.work-preview [data-cy=book-cover-loaded]')
       .first()
       .click();
     cy.get('[data-cy=tags-collaps-toggle]')

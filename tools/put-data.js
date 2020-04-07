@@ -72,7 +72,10 @@ async function doWork() {
     }
 
     // make sure we have no duplicate tags for this pid
-    uniqueTags[t.pid].selected = uniqBy(uniqueTags[t.pid].selected, 'id');
+    uniqueTags[t.pid].selected = uniqBy(
+      uniqueTags[t.pid].selected.map(t => ({...t, id: parseInt(t.id)})),
+      'id'
+    );
   });
   await request
     .put(`${HOST}/v1/tags`)
