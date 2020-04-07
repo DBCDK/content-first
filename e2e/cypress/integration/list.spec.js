@@ -327,7 +327,13 @@ describe('List test', function() {
       cy.createUser('otheruser');
       waitForListsLoaded();
       cy.get('[data-cy=follow-btn]').click();
+
+      cy.wait(1000);
+
       cy.login('listowner');
+
+      cy.wait(1000);
+
       cy.request('POST', '/v1/object', {...list, _id: id, _public: false}).then(
         response => {
           cy.login('otheruser');
