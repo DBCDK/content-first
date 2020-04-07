@@ -49,7 +49,7 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
-        cy.wait(500);
+        cy.wait(1000);
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltExpandWork');
         expect(tracked.name).to.match(PID_REGEX);
@@ -64,7 +64,7 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
-        cy.wait(500);
+        cy.wait(1000);
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltMoreLikeThis');
         expect(tracked.name).to.match(PID_REGEX);
@@ -74,7 +74,7 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
-        cy.wait(500);
+        cy.wait(1000);
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltSwipe');
         expect(tracked.name).to.equal('position');
