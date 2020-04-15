@@ -21,9 +21,10 @@ router
         }
         res.status(200).json({configuration: configuration[branchKey]});
       } catch (e) {
-        logger.log.error({
+        logger.log.error('POST kiosk router - error', {
           source: 'external-v1-kiosk',
-          error: String(e)
+          errorMessage: e.message,
+          stack: e.stack
         });
         res.status(500).end(String(e));
       }

@@ -12,7 +12,7 @@ describe('Login test', function() {
   });
 
   it('Shows login when UNDER 13 year old', function() {
-    const userName = 'testUser' + Math.floor(Math.random() * 1000);
+    const userName = 'youngTestUser' + Math.floor(Math.random() * 1000);
     cy.cprlogin(userName, '0');
     cy.visit('/');
     cy.get('[data-cy=user-form-under13]');
@@ -23,6 +23,7 @@ describe('Login test', function() {
     const userNameEdited = userName + 'edited';
     cy.createUser(userName);
     cy.visit('/profil/rediger');
+    cy.wait(1000); // wait for input to get existing value - before clearing it.
     cy.get('[data-cy=user-form-name]').clear();
     cy.get('[data-cy=user-form-name]').type(userNameEdited);
     cy.get('[data-cy=user-form-submit]').click();

@@ -11,6 +11,7 @@ const router = express.Router();
 
 router.use('/book', require('server/external-v1-book'));
 router.use('/books', require('server/external-v1-books').router);
+router.use('/series', require('server/external-v1-series'));
 router.use('/image', require('server/external-v1-image'));
 router.use('/log', require('server/external-v1-log'));
 router.use('/object', require('server/external-v1-object'));

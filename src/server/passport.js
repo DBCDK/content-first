@@ -18,7 +18,7 @@ const profileStrategy = new Strategy(
     callbackURL: config.server.dmzHost + '/v1/auth/callback'
   },
 
-  async function(token, tokenSecret, profile, done) {
+  async function (token, tokenSecret, profile, done) {
     let uniqueId;
     let municipality;
     let municipalityAgencyId;
@@ -49,10 +49,10 @@ const profileStrategy = new Strategy(
           throw new Error('Missing uniqueId');
         }
       } catch (e) {
-        logger.log.error({
+        logger.log.error('Error fetching userinfo', {
           token,
-          description: 'Error fetching userinfo',
-          error: String(e)
+          errorMessage: e.message,
+          stack: e.stack
         });
         throw e;
       }
@@ -72,7 +72,7 @@ const profileStrategy = new Strategy(
 
 passport.use('profile', profileStrategy);
 
-passport.serializeUser(async function(user, done) {
+passport.serializeUser(async function (user, done) {
   try {
     const cookie = await createCookie(
       user.uniqueId,
@@ -81,25 +81,24 @@ passport.serializeUser(async function(user, done) {
     );
 
     await putPrivatUserData(user);
-
     done(null, cookie);
   } catch (e) {
-    logger.log.error({
-      description: 'Error serializing user',
-      error: String(e)
+    logger.log.error('Error serializing user', {
+      errorMessage: e.message,
+      stack: e.stack
     });
     done(null, false);
   }
 });
 
-passport.deserializeUser(async function(cookie, done) {
+passport.deserializeUser(async function (cookie, done) {
   try {
     const user = await fetchCookie(cookie);
     done(null, user);
   } catch (e) {
-    logger.log.error({
-      description: 'Error deserializing user',
-      error: String(e)
+    logger.log.error('Error deserializing user', {
+      errorMessage: e.message,
+      stack: e.stack
     });
     done(null, false);
   }

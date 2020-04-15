@@ -92,6 +92,7 @@ describe('Search test', function() {
     cy.get(
       ':nth-child(1) > [data-cy=workcard-1] > .work-card__content > [data-cy=book-cover-loaded] > .hover-details-fade'
     ).click();
+    cy.wait(500);
     cy.get('[data-cy=pages-count]')
       .invoke('text')
       .then(value => {

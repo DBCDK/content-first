@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {isMobileOnly} from 'react-device-detect';
 import {SCROLL_TO_COMPONENT} from '../../../redux/scrollToComponent';
-import {UPDATE_MOUNT} from '../../../redux/mounts.reducer';
+import {UPDATE_MOUNT, REMOVE_MOUNT} from '../../../redux/mounts.reducer';
 import {HISTORY_PUSH} from '../../../redux/middleware';
 import scrollToComponent from 'react-scroll-to-component';
 
@@ -13,10 +13,23 @@ const withChildBelt = WrappedComponent => {
         // this.closeChild();
       }
     }
+
+    clearDuplicates = m => {
+      let allmounts = this.props.mounts;
+      Object.keys(allmounts).forEach(key => {
+        if (allmounts[key].parent === m.parent) {
+          if (allmounts[key].type === 'SIMILAR') {
+            this.props.removeMount(key);
+          }
+        }
+      });
+    };
+
     closeChild = () => {
       this.props.updateMount({parent: null, child: null, type: null});
     };
     openSimilarBelt = (work, beltName = '', rid) => {
+      this.clearDuplicates(this.props.mountedData);
       if (this.props.is_work_page) {
         const scrollToDiv = document.getElementsByClassName('similar-belt');
         scrollToComponent(scrollToDiv[0]);
@@ -103,6 +116,7 @@ const withChildBelt = WrappedComponent => {
 
   const defaultData = {};
   const mapStateToProps = (state, ownProps) => ({
+    mounts: state.mounts,
     mountedData: state.mounts[ownProps.mount] || defaultData,
     kiosk: state.kiosk
   });
@@ -113,6 +127,12 @@ const withChildBelt = WrappedComponent => {
         data,
         mount: ownProps.mount,
         ctx: ownProps.belt
+      });
+    },
+    removeMount: mount => {
+      dispatch({
+        type: REMOVE_MOUNT,
+        mount: mount
       });
     },
     scrollToComponent: id =>

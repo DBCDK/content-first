@@ -8,7 +8,7 @@ router
   // POST /v1/openplatform/log
   //
   .post((req, res) => {
-    logger.log.info('client', {cookie: req.headers.cookie, action: req.body});
+    logger.log.info('POST client - openplatform', {cookie: req.headers.cookie, action: req.body});
     res.end();
   });
 
