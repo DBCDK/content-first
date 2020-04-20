@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
   ON_SHORTLIST_REMOVE_ELEMENT,
   SHORTLIST_UPDATE_ORIGIN,
-  SHORTLIST_CLEAR
+  SHORTLIST_CLEAR,
 } from '../../../redux/shortlist.reducer';
 import {ORDER} from '../../../redux/order.reducer';
 import BookCover from '../../general/BookCover/BookCover.component';
@@ -31,7 +31,7 @@ export class ShortListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: props.origin
+      description: props.origin,
     };
   }
 
@@ -45,7 +45,8 @@ export class ShortListItem extends React.Component {
       className = '',
       hasValidCollection,
       filterCollection,
-      newRelease
+      newRelease,
+      getPhysical,
     } = this.props;
     if (!work) {
       return null;
@@ -65,12 +66,13 @@ export class ShortListItem extends React.Component {
         <T component="general" name="book" />
       </OrderButton>
     );
+    const physical = getPhysical();
 
     const orderElectronicBookButtons =
       hasValidCollection() &&
       collection
-        .filter(col => col.count === 1)
-        .map(col => {
+        .filter((col) => col.count === 1)
+        .map((col) => {
           return (
             <Button
               size="medium"
@@ -94,7 +96,12 @@ export class ShortListItem extends React.Component {
           </Link>
           <div className="shortlist__item--details">
             <Title Tag="h1" type="title5">
-              {work.book.title}
+              {work.book.title}{' '}
+              {physical && physical.volumeId && (
+                <small data-cy="title-bind-info">
+                  bind {physical.volumeId} af {physical.extent}
+                </small>
+              )}
             </Title>
 
             <Text type="body">{work.book.creator}</Text>
@@ -173,7 +180,8 @@ export class ShortListItem extends React.Component {
 const ShortListItemWithWork = withWork(ShortListItem, {
   includeReviews: false,
   includeCollection: true,
-  includeCover: true
+  includeCover: true,
+  includeSeries: true,
 });
 
 export class ShortList extends React.Component {
@@ -186,7 +194,7 @@ export class ShortList extends React.Component {
       clearList,
       remove,
       originUpdate,
-      shouldUseLookupUrl
+      shouldUseLookupUrl,
     } = this.props;
     const {elements, hasLoaded} = shortListState;
     if (!hasLoaded) {
@@ -203,7 +211,7 @@ export class ShortList extends React.Component {
           description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
           canonical="/huskeliste"
           og={{
-            'og:url': 'https://laesekompas.dk/huskeliste'
+            'og:url': 'https://laesekompas.dk/huskeliste',
           }}
         />
 
@@ -238,14 +246,14 @@ export class ShortList extends React.Component {
               transitionEnter={false}
               transitionLeaveTimeout={200}
             >
-              {elements.map(e => (
+              {elements.map((e) => (
                 <ShortListItemWithWork
                   key={e.book.pid}
                   origin={e.origin}
                   pid={e.book.pid}
                   isKiosk={isKiosk}
                   onRemove={() => remove(e.book.pid)}
-                  onOriginUpdate={origin => originUpdate(origin, e.book.pid)}
+                  onOriginUpdate={(origin) => originUpdate(origin, e.book.pid)}
                 />
               ))}
             </ReactCSSTransitionGroup>
@@ -270,7 +278,7 @@ export class ShortList extends React.Component {
                   size="large"
                   onClick={
                     orderList.length > 0 &&
-                    (() => orderAll(orderList.map(e => e.book)))
+                    (() => orderAll(orderList.map((e) => e.book)))
                   }
                 />
               )}
@@ -282,10 +290,10 @@ export class ShortList extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const {elements} = state.shortListReducer;
   const orderList = (elements || [])
-    .filter(o => {
+    .filter((o) => {
       const order = state.orderReducer.orders[o.book.pid] || {};
       return order.orderState !== 'ordered';
     })
@@ -295,27 +303,27 @@ const mapStateToProps = state => {
     shortListState: state.shortListReducer,
     isLoggedIn: state.userReducer.isLoggedIn,
     isKiosk: state.kiosk.enabled,
-    orderList
+    orderList,
   };
 };
 
-export const mapDispatchToProps = dispatch => ({
-  orderAll: books => books.forEach(book => dispatch({type: ORDER, book})),
-  remove: pid =>
+export const mapDispatchToProps = (dispatch) => ({
+  orderAll: (books) => books.forEach((book) => dispatch({type: ORDER, book})),
+  remove: (pid) =>
     dispatch({
       type: ON_SHORTLIST_REMOVE_ELEMENT,
-      pid
+      pid,
     }),
   originUpdate: (origin, pid) =>
     dispatch({
       type: SHORTLIST_UPDATE_ORIGIN,
       pid,
-      origin
+      origin,
     }),
   clearList: () =>
     dispatch({
-      type: SHORTLIST_CLEAR
-    })
+      type: SHORTLIST_CLEAR,
+    }),
 });
 
 export default connect(
