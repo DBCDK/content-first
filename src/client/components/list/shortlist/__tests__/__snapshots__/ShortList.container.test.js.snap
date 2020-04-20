@@ -406,6 +406,7 @@ exports[`ShortList.container Clearing list 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 0
+                             
                           </h1>
                         </Title>
                         <Text
@@ -419,6 +420,33 @@ exports[`ShortList.container Clearing list 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 0"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 0",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 0",
+                                    "type": "typepid - 0",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 0",
+                              "creator": "creatorpid - 0",
+                              "description": "descriptionpid - 0",
+                              "first_edition_year": "first edition yearpid - 0",
+                              "language": "languagepid - 0",
+                              "pages": "pages - pid - 0",
+                              "pid": "pid - 0",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
+                              "title": "title - pid - 0",
+                            }
+                          }
                         >
                           origin - 0
                         </Origin>
@@ -729,6 +757,7 @@ exports[`ShortList.container Clearing list 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 1
+                             
                           </h1>
                         </Title>
                         <Text
@@ -742,6 +771,33 @@ exports[`ShortList.container Clearing list 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 1"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 1",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 1",
+                                    "type": "typepid - 1",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 1",
+                              "creator": "creatorpid - 1",
+                              "description": "descriptionpid - 1",
+                              "first_edition_year": "first edition yearpid - 1",
+                              "language": "languagepid - 1",
+                              "pages": "pages - pid - 1",
+                              "pid": "pid - 1",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
+                              "title": "title - pid - 1",
+                            }
+                          }
                         >
                           origin - 1
                         </Origin>
@@ -1052,6 +1108,7 @@ exports[`ShortList.container Clearing list 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 2
+                             
                           </h1>
                         </Title>
                         <Text
@@ -1065,6 +1122,33 @@ exports[`ShortList.container Clearing list 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 2"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 2",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 2",
+                                    "type": "typepid - 2",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 2",
+                              "creator": "creatorpid - 2",
+                              "description": "descriptionpid - 2",
+                              "first_edition_year": "first edition yearpid - 2",
+                              "language": "languagepid - 2",
+                              "pages": "pages - pid - 2",
+                              "pid": "pid - 2",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
+                              "title": "title - pid - 2",
+                            }
+                          }
                         >
                           origin - 2
                         </Origin>
@@ -1699,6 +1783,7 @@ exports[`ShortList.container Order book 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 0
+                             
                           </h1>
                         </Title>
                         <Text
@@ -1712,6 +1797,33 @@ exports[`ShortList.container Order book 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 0"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 0",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 0",
+                                    "type": "typepid - 0",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 0",
+                              "creator": "creatorpid - 0",
+                              "description": "descriptionpid - 0",
+                              "first_edition_year": "first edition yearpid - 0",
+                              "language": "languagepid - 0",
+                              "pages": "pages - pid - 0",
+                              "pid": "pid - 0",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
+                              "title": "title - pid - 0",
+                            }
+                          }
                         >
                           origin - 0
                         </Origin>
@@ -2022,6 +2134,7 @@ exports[`ShortList.container Order book 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 1
+                             
                           </h1>
                         </Title>
                         <Text
@@ -2035,6 +2148,33 @@ exports[`ShortList.container Order book 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 1"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 1",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 1",
+                                    "type": "typepid - 1",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 1",
+                              "creator": "creatorpid - 1",
+                              "description": "descriptionpid - 1",
+                              "first_edition_year": "first edition yearpid - 1",
+                              "language": "languagepid - 1",
+                              "pages": "pages - pid - 1",
+                              "pid": "pid - 1",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
+                              "title": "title - pid - 1",
+                            }
+                          }
                         >
                           origin - 1
                         </Origin>
@@ -2345,6 +2485,7 @@ exports[`ShortList.container Order book 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 2
+                             
                           </h1>
                         </Title>
                         <Text
@@ -2358,6 +2499,33 @@ exports[`ShortList.container Order book 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 2"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 2",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 2",
+                                    "type": "typepid - 2",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 2",
+                              "creator": "creatorpid - 2",
+                              "description": "descriptionpid - 2",
+                              "first_edition_year": "first edition yearpid - 2",
+                              "language": "languagepid - 2",
+                              "pages": "pages - pid - 2",
+                              "pid": "pid - 2",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
+                              "title": "title - pid - 2",
+                            }
+                          }
                         >
                           origin - 2
                         </Origin>
@@ -2992,6 +3160,7 @@ exports[`ShortList.container Order ebook 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 0
+                             
                           </h1>
                         </Title>
                         <Text
@@ -3005,6 +3174,33 @@ exports[`ShortList.container Order ebook 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 0"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 0",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 0",
+                                    "type": "typepid - 0",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 0",
+                              "creator": "creatorpid - 0",
+                              "description": "descriptionpid - 0",
+                              "first_edition_year": "first edition yearpid - 0",
+                              "language": "languagepid - 0",
+                              "pages": "pages - pid - 0",
+                              "pid": "pid - 0",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
+                              "title": "title - pid - 0",
+                            }
+                          }
                         >
                           origin - 0
                         </Origin>
@@ -3315,6 +3511,7 @@ exports[`ShortList.container Order ebook 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 1
+                             
                           </h1>
                         </Title>
                         <Text
@@ -3328,6 +3525,33 @@ exports[`ShortList.container Order ebook 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 1"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 1",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 1",
+                                    "type": "typepid - 1",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 1",
+                              "creator": "creatorpid - 1",
+                              "description": "descriptionpid - 1",
+                              "first_edition_year": "first edition yearpid - 1",
+                              "language": "languagepid - 1",
+                              "pages": "pages - pid - 1",
+                              "pid": "pid - 1",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
+                              "title": "title - pid - 1",
+                            }
+                          }
                         >
                           origin - 1
                         </Origin>
@@ -3638,6 +3862,7 @@ exports[`ShortList.container Order ebook 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 2
+                             
                           </h1>
                         </Title>
                         <Text
@@ -3651,6 +3876,33 @@ exports[`ShortList.container Order ebook 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 2"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 2",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 2",
+                                    "type": "typepid - 2",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 2",
+                              "creator": "creatorpid - 2",
+                              "description": "descriptionpid - 2",
+                              "first_edition_year": "first edition yearpid - 2",
+                              "language": "languagepid - 2",
+                              "pages": "pages - pid - 2",
+                              "pid": "pid - 2",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
+                              "title": "title - pid - 2",
+                            }
+                          }
                         >
                           origin - 2
                         </Origin>
@@ -4285,6 +4537,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 0
+                             
                           </h1>
                         </Title>
                         <Text
@@ -4298,6 +4551,33 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 0"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 0",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 0",
+                                    "type": "typepid - 0",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 0",
+                              "creator": "creatorpid - 0",
+                              "description": "descriptionpid - 0",
+                              "first_edition_year": "first edition yearpid - 0",
+                              "language": "languagepid - 0",
+                              "pages": "pages - pid - 0",
+                              "pid": "pid - 0",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
+                              "title": "title - pid - 0",
+                            }
+                          }
                         >
                           origin - 0
                         </Origin>
@@ -4608,6 +4888,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 1
+                             
                           </h1>
                         </Title>
                         <Text
@@ -4621,6 +4902,33 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 1"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 1",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 1",
+                                    "type": "typepid - 1",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 1",
+                              "creator": "creatorpid - 1",
+                              "description": "descriptionpid - 1",
+                              "first_edition_year": "first edition yearpid - 1",
+                              "language": "languagepid - 1",
+                              "pages": "pages - pid - 1",
+                              "pid": "pid - 1",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
+                              "title": "title - pid - 1",
+                            }
+                          }
                         >
                           origin - 1
                         </Origin>
@@ -4931,6 +5239,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 2
+                             
                           </h1>
                         </Title>
                         <Text
@@ -4944,6 +5253,33 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 2"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 2",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 2",
+                                    "type": "typepid - 2",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 2",
+                              "creator": "creatorpid - 2",
+                              "description": "descriptionpid - 2",
+                              "first_edition_year": "first edition yearpid - 2",
+                              "language": "languagepid - 2",
+                              "pages": "pages - pid - 2",
+                              "pid": "pid - 2",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
+                              "title": "title - pid - 2",
+                            }
+                          }
                         >
                           origin - 2
                         </Origin>
@@ -5593,6 +5929,7 @@ exports[`ShortList.container Remove element 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 0
+                             
                           </h1>
                         </Title>
                         <Text
@@ -5606,6 +5943,33 @@ exports[`ShortList.container Remove element 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 0"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 0",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 0",
+                                    "type": "typepid - 0",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 0",
+                              "creator": "creatorpid - 0",
+                              "description": "descriptionpid - 0",
+                              "first_edition_year": "first edition yearpid - 0",
+                              "language": "languagepid - 0",
+                              "pages": "pages - pid - 0",
+                              "pid": "pid - 0",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
+                              "title": "title - pid - 0",
+                            }
+                          }
                         >
                           origin - 0
                         </Origin>
@@ -5916,6 +6280,7 @@ exports[`ShortList.container Remove element 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 1
+                             
                           </h1>
                         </Title>
                         <Text
@@ -5929,6 +6294,33 @@ exports[`ShortList.container Remove element 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 1"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 1",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 1",
+                                    "type": "typepid - 1",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 1",
+                              "creator": "creatorpid - 1",
+                              "description": "descriptionpid - 1",
+                              "first_edition_year": "first edition yearpid - 1",
+                              "language": "languagepid - 1",
+                              "pages": "pages - pid - 1",
+                              "pid": "pid - 1",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
+                              "title": "title - pid - 1",
+                            }
+                          }
                         >
                           origin - 1
                         </Origin>
@@ -6239,6 +6631,7 @@ exports[`ShortList.container Remove element 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 2
+                             
                           </h1>
                         </Title>
                         <Text
@@ -6252,6 +6645,33 @@ exports[`ShortList.container Remove element 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 2"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 2",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 2",
+                                    "type": "typepid - 2",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 2",
+                              "creator": "creatorpid - 2",
+                              "description": "descriptionpid - 2",
+                              "first_edition_year": "first edition yearpid - 2",
+                              "language": "languagepid - 2",
+                              "pages": "pages - pid - 2",
+                              "pid": "pid - 2",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
+                              "title": "title - pid - 2",
+                            }
+                          }
                         >
                           origin - 2
                         </Origin>
@@ -6886,6 +7306,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 0
+                             
                           </h1>
                         </Title>
                         <Text
@@ -6899,6 +7320,33 @@ exports[`ShortList.container Short list contains elements 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 0"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 0",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 0",
+                                    "type": "typepid - 0",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 0",
+                              "creator": "creatorpid - 0",
+                              "description": "descriptionpid - 0",
+                              "first_edition_year": "first edition yearpid - 0",
+                              "language": "languagepid - 0",
+                              "pages": "pages - pid - 0",
+                              "pid": "pid - 0",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
+                              "title": "title - pid - 0",
+                            }
+                          }
                         >
                           origin - 0
                         </Origin>
@@ -7209,6 +7657,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 1
+                             
                           </h1>
                         </Title>
                         <Text
@@ -7222,6 +7671,33 @@ exports[`ShortList.container Short list contains elements 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 1"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 1",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 1",
+                                    "type": "typepid - 1",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 1",
+                              "creator": "creatorpid - 1",
+                              "description": "descriptionpid - 1",
+                              "first_edition_year": "first edition yearpid - 1",
+                              "language": "languagepid - 1",
+                              "pages": "pages - pid - 1",
+                              "pid": "pid - 1",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
+                              "title": "title - pid - 1",
+                            }
+                          }
                         >
                           origin - 1
                         </Origin>
@@ -7532,6 +8008,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                             className=" Title Title__title5 "
                           >
                             title - pid - 2
+                             
                           </h1>
                         </Title>
                         <Text
@@ -7545,6 +8022,33 @@ exports[`ShortList.container Short list contains elements 1`] = `
                         </Text>
                         <Origin
                           componentData="origin - 2"
+                          work={
+                            Object {
+                              "collection": Object {
+                                "data": Array [
+                                  Object {
+                                    "type": "bogpid - 2",
+                                  },
+                                  Object {
+                                    "identifierURI": "https://identifier/uri/pid - 2",
+                                    "type": "typepid - 2",
+                                  },
+                                ],
+                                "isLoading": false,
+                              },
+                              "coverUrl": "https://cover/url/pid - 2",
+                              "creator": "creatorpid - 2",
+                              "description": "descriptionpid - 2",
+                              "first_edition_year": "first edition yearpid - 2",
+                              "language": "languagepid - 2",
+                              "pages": "pages - pid - 2",
+                              "pid": "pid - 2",
+                              "reviews": Array [],
+                              "tags": Array [],
+                              "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
+                              "title": "title - pid - 2",
+                            }
+                          }
                         >
                           origin - 2
                         </Origin>

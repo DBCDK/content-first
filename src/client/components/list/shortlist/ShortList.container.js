@@ -66,7 +66,7 @@ export class ShortListItem extends React.Component {
         <T component="general" name="book" />
       </OrderButton>
     );
-    const physical = getPhysical();
+    const physical = getPhysical && getPhysical();
 
     const orderElectronicBookButtons =
       hasValidCollection() &&
