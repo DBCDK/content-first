@@ -70,7 +70,9 @@ async function createCookie(uniqueId, openplatformToken, user) {
   });
 
   if (!(await userExists(openplatformToken, uniqueId))) {
-    logger.log.info('userInfo', {message: `Creating user with uniqueId=${uniqueId}`});
+    logger.log.info('userInfo', {
+      message: `Creating user with uniqueId=${uniqueId}`
+    });
     await putUserData(
       {
         name: '',
@@ -143,7 +145,10 @@ async function putPrivatUserData(user) {
       {openplatformId: user.uniqueId, openplatformToken: user.openplatformToken}
     );
   } catch (error) {
-    logger.log.error('PUT private user - Error', {errorMessage: error.message, stack: error.stack});
+    logger.log.error('PUT private user - Error', {
+      errorMessage: error.message,
+      stack: error.stack
+    });
     throw error;
   }
 }
@@ -161,7 +166,10 @@ async function getPrivatUserData(user) {
 
     return userData.data[0] || {};
   } catch (error) {
-    logger.log.error('GET private user - error', {errorMessage: error.message, stack: error.stack});
+    logger.log.error('GET private user - error', {
+      errorMessage: error.message,
+      stack: error.stack
+    });
     throw error;
   }
 }
@@ -222,7 +230,10 @@ async function getUserData(openplatformId, loggedInuser) {
       (v, k) => k.startsWith('_')
     );
   } catch (error) {
-    logger.log.error('GET user - error', {errorMessage: error.message, stack: error.stack});
+    logger.log.error('GET user - error', {
+      errorMessage: error.message,
+      stack: error.stack
+    });
     throw error;
   }
 }
@@ -263,7 +274,10 @@ async function putUserData(newUserData, user) {
       user
     );
   } catch (error) {
-    logger.log.error('PUT user - error', {errorMessage: error.message, stack: error.stack});
+    logger.log.error('PUT user - error', {
+      errorMessage: error.message,
+      stack: error.stack
+    });
     throw error;
   }
 }

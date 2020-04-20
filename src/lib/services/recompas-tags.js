@@ -39,16 +39,16 @@ class RecompasTags {
   }
 
   async getRecommendations({
-                             tags,
-                             creators,
-                             maxresults,
-                             agencyId,
-                             branch,
-                             timeout,
-                             plus,
-                             minus,
-                             types
-                           }) {
+    tags,
+    creators,
+    maxresults,
+    agencyId,
+    branch,
+    timeout,
+    plus,
+    minus,
+    types
+  }) {
     try {
       let branchid;
       let status;

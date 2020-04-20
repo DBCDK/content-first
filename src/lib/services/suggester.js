@@ -44,7 +44,6 @@ class Suggester {
         source: 'suggester',
         errorMessage: msg,
         stack: e.stack
-
       });
       throw new Error(msg);
     }

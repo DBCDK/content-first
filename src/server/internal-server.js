@@ -97,7 +97,10 @@ internal.use((err, req, res, next) => {
     }
   }
   if (returnedError.status >= 500 && config.server.logServiceErrors === '1') {
-    logger.log.error('internal server - unhandled rejection', {errorMessage: returnedError.message, stack: returnedError.stack});
+    logger.log.error('internal server - unhandled rejection', {
+      errorMessage: returnedError.message,
+      stack: returnedError.stack
+    });
   }
   res.json({errors: [returnedError]});
 });

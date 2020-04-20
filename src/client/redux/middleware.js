@@ -11,7 +11,7 @@ import {
   fetchSeries,
   saveShortList,
   loadShortList,
-  addImage,
+  addImage
 } from '../utils/requester';
 import {ON_LOGOUT_RESPONSE} from './user.reducer';
 import {
@@ -22,7 +22,7 @@ import {
   SHORTLIST_LOAD_REQUEST,
   SHORTLIST_LOAD_RESPONSE,
   SHORTLIST_APPROVE_MERGE,
-  SHORTLIST_CLEAR,
+  SHORTLIST_CLEAR
 } from './shortlist.reducer';
 import {
   LIST_LOAD_RESPONSE,
@@ -32,7 +32,7 @@ import {
   ADD_LIST_IMAGE_SUCCESS,
   ADD_LIST_IMAGE_ERROR,
   ADD_ELEMENT_TO_LIST,
-  LISTS_EXPAND,
+  LISTS_EXPAND
 } from './list.reducer';
 import ListRequester from '../../shared/list.requester';
 import StorageClient from '../../shared/client-side-storage.client';
@@ -43,11 +43,11 @@ export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
 export const HISTORY_REPLACE = 'HISTORY_REPLACE';
 export const HISTORY_NEW_TAB = 'HISTORY_NEW_TAB';
 
-const paramsToString = (params) => {
+const paramsToString = params => {
   let res = '';
-  Object.keys(params).forEach((key) => {
+  Object.keys(params).forEach(key => {
     if (Array.isArray(params[key])) {
-      params[key].forEach((value) => {
+      params[key].forEach(value => {
         const separator = res === '' ? '?' : '&';
         res += `${separator}${key}=${value}`;
       });
@@ -59,7 +59,7 @@ const paramsToString = (params) => {
   return res;
 };
 
-export const historyMiddleware = (history) => (store) => (next) => (action) => {
+export const historyMiddleware = history => store => next => action => {
   switch (action.type) {
     case HISTORY_PUSH:
       if (store.getState().routerReducer.path !== action.path) {
@@ -69,14 +69,14 @@ export const historyMiddleware = (history) => (store) => (next) => (action) => {
             pos:
               window.history.state && window.history.state.state
                 ? window.history.state.state.pos + 1
-                : 2,
+                : 2
           });
         } else {
           history.push(action.path + paramsString, {
             pos:
               window.history.state && window.history.state.state
                 ? window.history.state.state.pos + 1
-                : 2,
+                : 2
           });
           window.scrollTo(0, 0);
         }
@@ -95,14 +95,14 @@ export const historyMiddleware = (history) => (store) => (next) => (action) => {
           pos:
             window.history.state && window.history.state.state
               ? window.history.state.state.pos
-              : 1,
+              : 1
         });
       } else {
         history.replace(action.path + paramsString, {
           pos:
             window.history.state && window.history.state.state
               ? window.history.state.state.pos
-              : 1,
+              : 1
         });
         window.scrollTo(0, 0);
       }
@@ -117,7 +117,7 @@ const partialUpdateRequest = async (name, pids, requestFunction, store) => {
   pids = unique(pids);
   const books = store.getState().booksReducer.books;
   const pidsToFetch = pids.filter(
-    (pid) =>
+    pid =>
       !get(books[pid], `${name}HasLoaded`) &&
       !get(books[pid], `${name}IsLoading`)
   );
@@ -126,29 +126,29 @@ const partialUpdateRequest = async (name, pids, requestFunction, store) => {
   }
   store.dispatch({
     type: BOOKS_PARTIAL_UPDATE,
-    books: pidsToFetch.map((pid) => {
+    books: pidsToFetch.map(pid => {
       return {
         book: {pid},
         [`${name}IsLoading`]: true,
-        [`${name}HasLoaded`]: false,
+        [`${name}HasLoaded`]: false
       };
-    }),
+    })
   });
   const response = await requestFunction(pidsToFetch, store);
 
   store.dispatch({
     type: BOOKS_PARTIAL_UPDATE,
-    books: response.map((work) => ({
+    books: response.map(work => ({
       ...work,
       [`${name}IsLoading`]: false,
-      [`${name}HasLoaded`]: true,
-    })),
+      [`${name}HasLoaded`]: true
+    }))
   });
   return pidsToFetch;
 };
 const createDebouncedFunction = (name, requestFunction) => {
   let pidQueue = [];
-  let debounced = throttle((store) => {
+  let debounced = throttle(store => {
     const pidQueueCopy = [...pidQueue];
     partialUpdateRequest(name, pidQueueCopy, requestFunction, store);
     pidQueue = difference(pidQueue, pidQueueCopy);
@@ -161,10 +161,10 @@ const createDebouncedFunction = (name, requestFunction) => {
 const debouncedFunctions = {
   details: createDebouncedFunction('details', fetchBooks),
   tags: createDebouncedFunction('tags', fetchBooksTags),
-  series: createDebouncedFunction('series', fetchSeries),
+  series: createDebouncedFunction('series', fetchSeries)
 };
 
-export const requestMiddleware = (store) => (next) => (action) => {
+export const requestMiddleware = store => next => action => {
   switch (action.type) {
     case BOOKS_REQUEST:
       (async () => {
@@ -172,7 +172,7 @@ export const requestMiddleware = (store) => (next) => (action) => {
           includeTags,
           includeReviews,
           includeCollection,
-          includeSeries,
+          includeSeries
         } = action;
 
         debouncedFunctions.details(action.pids, store);
@@ -214,7 +214,7 @@ export const requestMiddleware = (store) => (next) => (action) => {
   }
 };
 
-export const shortListMiddleware = (store) => (next) => async (action) => {
+export const shortListMiddleware = store => next => async action => {
   switch (action.type) {
     case SHORTLIST_CLEAR:
     case SHORTLIST_APPROVE_MERGE:
@@ -234,19 +234,19 @@ export const shortListMiddleware = (store) => (next) => async (action) => {
       const {isLoggedIn} = store.getState().userReducer;
       const {localStorageElements, databaseElements} = await loadShortList({
         isLoggedIn,
-        dispatch: store.dispatch,
+        dispatch: store.dispatch
       });
       store.dispatch({
         type: SHORTLIST_LOAD_RESPONSE,
         localStorageElements,
-        databaseElements,
+        databaseElements
       });
       if (store.getState().shortListReducer.pendingMerge) {
         store.dispatch({type: SHORTLIST_APPROVE_MERGE});
       }
       store.dispatch({
         type: BOOKS_REQUEST,
-        pids: store.getState().shortListReducer.elements.map((e) => e.pid),
+        pids: store.getState().shortListReducer.elements.map(e => e.pid)
       });
       return res;
     }
@@ -255,7 +255,7 @@ export const shortListMiddleware = (store) => (next) => async (action) => {
   }
 };
 
-export const listMiddleware = (store) => (next) => async (action) => {
+export const listMiddleware = store => next => async action => {
   switch (action.type) {
     case LIST_TOGGLE_ELEMENT:
     case ADD_ELEMENT_TO_LIST: {
@@ -272,7 +272,7 @@ export const listMiddleware = (store) => (next) => async (action) => {
       } catch (error) {
         store.dispatch({
           type: LIST_LOAD_RESPONSE,
-          list: {_id: action._id || 'unknown', error},
+          list: {_id: action._id || 'unknown', error}
         });
       }
       return res;
@@ -285,7 +285,7 @@ export const listMiddleware = (store) => (next) => async (action) => {
           store.dispatch({
             type: ADD_LIST_IMAGE_SUCCESS,
             image,
-            _id: action._id,
+            _id: action._id
           });
         } catch (error) {
           store.dispatch({type: ADD_LIST_IMAGE_ERROR, error, _id: action._id});
@@ -301,20 +301,20 @@ const logged = {
   ON_SHORTLIST_TOGGLE_ELEMENT: ({type, element, origin}) => ({
     type,
     pid: element.book.pid,
-    origin,
+    origin
   }),
   LIST_TOGGLE_ELEMENT: ({type, element, _id}) => ({
     type,
     pid: element.book.pid,
-    _id,
+    _id
   }),
   ORDER: ({type, book}) => ({type, pid: book.pid}),
-  ORDER_SUCCESS: (o) => o,
-  ORDER_FAILURE: (o) => o,
-  LOG_ERROR: (o) => o,
-  LOG: (o) => o,
+  ORDER_SUCCESS: o => o,
+  ORDER_FAILURE: o => o,
+  LOG_ERROR: o => o,
+  LOG: o => o
 };
-export const logMiddleware = (store) => (next) => (action) => {
+export const logMiddleware = store => next => action => {
   if (logged[action.type]) {
     try {
       request

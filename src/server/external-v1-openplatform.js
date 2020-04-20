@@ -12,7 +12,6 @@ router
   .get(
     asyncMiddleware(async (req, res) => {
       try {
-
         const result = await fetchAnonymousToken();
         res.status(200).json(result);
       } catch (e) {

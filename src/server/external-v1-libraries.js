@@ -41,7 +41,10 @@ async function getPayingLibraries() {
     // Return libraries as list ['lib', 'lib',  ...]
     return list.map(l => l.$);
   } catch (error) {
-    logger.log.error('Fetch library service - error', {errorMessage: error.message, stack: error.stack});
+    logger.log.error('Fetch library service - error', {
+      errorMessage: error.message,
+      stack: error.stack
+    });
     throw error;
   }
 }
@@ -70,7 +73,10 @@ async function getUserLibrary(openplatformToken) {
       agencyName: _.get(librariesResponse, 'body.data[0].agencyName', '')
     };
   } catch (error) {
-    logger.log.error('GET user library openplatform - error', {errorMessage: error.message, stack: error.stack});
+    logger.log.error('GET user library openplatform - error', {
+      errorMessage: error.message,
+      stack: error.stack
+    });
     throw error;
   }
 }
@@ -103,7 +109,10 @@ async function getLibraryLookupUrl(agency, openplatformToken) {
 
     return lookupUrl;
   } catch (error) {
-    logger.log.error('GET Library lookup - error', {errorMessage: error.message, stack: error.stack});
+    logger.log.error('GET Library lookup - error', {
+      errorMessage: error.message,
+      stack: error.stack
+    });
     throw error;
   }
 }

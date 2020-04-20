@@ -18,7 +18,7 @@ const profileStrategy = new Strategy(
     callbackURL: config.server.dmzHost + '/v1/auth/callback'
   },
 
-  async function (token, tokenSecret, profile, done) {
+  async function(token, tokenSecret, profile, done) {
     let uniqueId;
     let municipality;
     let municipalityAgencyId;
@@ -72,7 +72,7 @@ const profileStrategy = new Strategy(
 
 passport.use('profile', profileStrategy);
 
-passport.serializeUser(async function (user, done) {
+passport.serializeUser(async function(user, done) {
   try {
     const cookie = await createCookie(
       user.uniqueId,
@@ -91,7 +91,7 @@ passport.serializeUser(async function (user, done) {
   }
 });
 
-passport.deserializeUser(async function (cookie, done) {
+passport.deserializeUser(async function(cookie, done) {
   try {
     const user = await fetchCookie(cookie);
     done(null, user);

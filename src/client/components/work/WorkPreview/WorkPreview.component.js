@@ -45,12 +45,12 @@ const PrioTag = ({id, title}) => {
 const RenderPrioTags = ({tags, onClick}) => {
   return (
     <div className="work-preview__prio-tags">
-      {tags.map((group) => (
+      {tags.map(group => (
         <React.Fragment key={group.title}>
           <Text type="body" className="prio-tags-title">
             {group.title}
           </Text>
-          {group.data.map((t) => (
+          {group.data.map(t => (
             <PrioTag key={t.title} id={t.id} title={t.title} />
           ))}
         </React.Fragment>
@@ -118,7 +118,7 @@ const RenderCollectionButtons = ({
   }
 
   return collection.map(
-    (col) =>
+    col =>
       col.count === 1 &&
       collectionIsValid && (
         <CollectionButton
@@ -161,7 +161,7 @@ class WorkPreview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabsCollapsed: true,
+      tabsCollapsed: true
     };
   }
 
@@ -197,7 +197,7 @@ class WorkPreview extends React.Component {
       sortTagsByAppeal,
       enableLightbox = false,
       is_work_page,
-      getPhysical,
+      getPhysical
     } = this.props;
     // handle collapsible tag container
     const tabsCollapsed = this.state.tabsCollapsed;
@@ -217,7 +217,7 @@ class WorkPreview extends React.Component {
 
     const appeals = sortTagsByAppeal();
 
-    const priorityTagsArr = book.tags.filter((e) => e.score > 1);
+    const priorityTagsArr = book.tags.filter(e => e.score > 1);
 
     const collectionIsValid = hasValidCollection();
 
@@ -226,22 +226,22 @@ class WorkPreview extends React.Component {
         ? book.reviews.data
         : false;
 
-    const stemningTags = tags.filter((e) => e.title === 'stemning')[0];
+    const stemningTags = tags.filter(e => e.title === 'stemning')[0];
 
     const prioTags = [];
     if (priorityTagsArr.length > 0) {
       prioTags.unshift({
         title: T({component: 'work', name: 'readerExpTitle'}),
-        data: priorityTagsArr,
+        data: priorityTagsArr
       });
     } else if (stemningTags) {
       prioTags.unshift({
         title: T({component: 'work', name: 'readerExpTitle'}),
-        data: stemningTags.data.slice(0, 6),
+        data: stemningTags.data.slice(0, 6)
       });
     }
 
-    const isWorkPreview = (props) =>
+    const isWorkPreview = props =>
       props.className.split(' ').includes('preview');
 
     const {isSeries, part, titleSeries} = work.book;
@@ -262,7 +262,7 @@ class WorkPreview extends React.Component {
           </div>
           <div
             className={`work-preview ${className}`}
-            ref={(preview) => (this.refs = {...this.refs, preview})}
+            ref={preview => (this.refs = {...this.refs, preview})}
           >
             <div className="work-preview__work">
               <Link
@@ -279,7 +279,7 @@ class WorkPreview extends React.Component {
                     className="icon-large"
                     origin={T({
                       component: 'work',
-                      name: 'bookmarkButtonOrigin',
+                      name: 'bookmarkButtonOrigin'
                     })}
                     work={work}
                     rid={this.props.rid}
@@ -292,7 +292,7 @@ class WorkPreview extends React.Component {
 
               <div
                 className="work-preview__information"
-                ref={(e) => (this.info = e)}
+                ref={e => (this.info = e)}
               >
                 <div className="work-preview__title-bar">
                   <Title Tag="h1" type="title3" className="work-preview__title">
@@ -427,7 +427,7 @@ class WorkPreview extends React.Component {
                         trackEvent('tags', 'seeAllTags', book.title);
                         this.swiper.slideTo(1, 400);
                         this.setState({
-                          tabsCollapsed: false,
+                          tabsCollapsed: false
                         });
                       }}
                     />
@@ -446,14 +446,14 @@ class WorkPreview extends React.Component {
                   title={T({component: 'general', name: 'showMore'})}
                   onClick={() =>
                     this.setState({
-                      tabsCollapsed: false,
+                      tabsCollapsed: false
                     })
                   }
                 />
               )}
               <Tabs
                 pages={['Anmeldelser', 'Læseoplevelse']}
-                swiper={(swiper) => (this.swiper = swiper)}
+                swiper={swiper => (this.swiper = swiper)}
                 onUpdate={({height}) =>
                   this.setState({currentTabHeight: height})
                 }
@@ -500,7 +500,7 @@ export default withChildBelt(
       includeTags: true,
       includeReviews: true,
       includeCollection: true,
-      includeSeries: true,
+      includeSeries: true
     })
   )
 );
