@@ -8,21 +8,73 @@ const request = require('superagent');
 const NodeCache = require('node-cache');
 const cache = new NodeCache({stdTTL: 60 * 60 * 24}); // Time to live is 24 hours
 const {fetchAnonymousToken} = require('./smaug');
-const {get, orderBy, uniqBy} = require('lodash');
+const {orderBy, uniqBy} = require('lodash');
+
+const bindIdRegex = /bind (\d+)/i;
+
+const hasEreolenLink = identifierURI => {
+  if (Array.isArray(identifierURI)) {
+    for (let i = 0; i < identifierURI.length; i++) {
+      if (identifierURI[i].includes('ereolen.dk')) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
+const parseTitleSeries = titleSeries => {
+  if (titleSeries && titleSeries.length) {
+    for (let i = 0; i < titleSeries.length; i++) {
+      const split = titleSeries[i].split(';');
+      if (split.length > 1) {
+        return {
+          isSeries: true,
+          titleSeries: split[0].trim(),
+          part: parseInt(split[1].replace(/\D/g, ''), 10)
+        };
+      }
+    }
+  }
+  return {isSeries: false};
+};
+
+const parseCollectionDetails = collectionDetails => {
+  if (!collectionDetails) {
+    return [];
+  }
+  let multiVolume = collectionDetails
+    .map(volume => {
+      return {
+        pid: volume.pid[0],
+        title: volume.title[0],
+        type: volume.type[0],
+        part: getPartFromType(volume.type)
+      };
+    })
+    .filter(
+      volume =>
+        !!volume.part &&
+        volume.pid.startsWith('870970-basis') &&
+        volume.part !== '?'
+    );
+  multiVolume = uniqBy(multiVolume, 'part');
+  multiVolume = orderBy(multiVolume, 'part', 'asc');
+  return multiVolume;
+};
 
 /**
  * Returns part number
  * @param {Array<string>} titleSeriesArr
  * @returns {Number}
  */
-const getPartFromTitleSeries = titleSeriesArr => {
-  if (!titleSeriesArr || !titleSeriesArr.length) {
+const getPartFromType = typeArr => {
+  if (!typeArr || !typeArr.length) {
     return '?';
   }
-  for (let i = 0; i < titleSeriesArr.length; i++) {
-    const split = titleSeriesArr[i].split(';');
-    if (split.length > 1) {
-      return parseInt(split[1].replace(/\D/g, ''), 10);
+  for (let i = 0; i < typeArr.length; i++) {
+    const bindIdMatch = bindIdRegex.exec(typeArr[i]);
+    if (bindIdMatch && bindIdMatch[1]) {
+      return parseInt(bindIdMatch[1], 10);
     }
   }
   return '?';
@@ -34,42 +86,25 @@ const getPartFromTitleSeries = titleSeriesArr => {
  * @param pid
  * @returns {Promise}
  */
-const fetchInitial = async pid => {
+const fetchInitial = async (pid, debugObj) => {
   let res = cache.get(pid);
-  if (res) {
+  if (res && !debugObj) {
     return res;
   }
   const response = (await request
     .post(config.login.openplatformUrl + '/work')
     .send({
       pids: [pid],
-      fields: ['titleSeries', 'collectionDetails'],
+      fields: ['titleSeries', 'collectionDetails', 'type'],
       access_token: (await fetchAnonymousToken()).access_token
     })).body.data[0];
+  if (debugObj) {
+    debugObj.workResponse = response;
+  }
 
-  const titleSeries = get(response, 'titleSeries[0]', '')
-    .split(';')[0]
-    .trim();
+  let multiVolume = parseCollectionDetails(response.collectionDetails);
 
-  const bindIdRegex = /bind (\d+)/i;
-  let multiVolume = response.collectionDetails
-    .map(volume => {
-      const bindIdMatch = bindIdRegex.exec(volume.type[0]);
-      return {
-        pid: volume.pid[0],
-        title: volume.title[0],
-        type: volume.type[0],
-        part: bindIdMatch && bindIdMatch[1] && parseInt(bindIdMatch[1], 10)
-      };
-    })
-    .filter(volume => !!volume.part);
-  multiVolume = uniqBy(multiVolume, 'part');
-  multiVolume = orderBy(multiVolume, 'part', 'asc');
-
-  res = {
-    titleSeries,
-    multiVolume
-  };
+  res = {...parseTitleSeries(response.titleSeries), multiVolume};
 
   cache.set(pid, res);
   return res;
@@ -80,30 +115,53 @@ const fetchInitial = async pid => {
  * @param {string} titleSeries
  * @returns {Promise}
  */
-const fetchSeriesData = async titleSeries => {
+const fetchSeriesData = async (titleSeries, debugObj) => {
   let res = cache.get(titleSeries);
-  if (res) {
+  if (res && !debugObj) {
     return res;
   }
   let response = (await request
     .post(config.login.openplatformUrl + '/search')
     .send({
-      fields: ['pid', 'title', 'type', 'date', 'titleSeries'],
+      fields: [
+        'pid',
+        'title',
+        'type',
+        'date',
+        'titleSeries',
+        'language',
+        'identifierURI',
+        'collectionDetails'
+      ],
       q: `phrase.titleSeries="${titleSeries}"`,
       limit: 50,
       sort: 'solr_numberInSeries_ascending',
       access_token: (await fetchAnonymousToken()).access_token
-    })).body.data
+    })).body.data;
+  if (debugObj) {
+    debugObj.seriesResponse = response;
+  }
+
+  response = response
     .map(entry => ({
       pid: entry.pid[0],
       title: entry.title[0],
       type: entry.type[0],
       date: entry.date[0],
       titleSeries: entry.titleSeries,
-      part: getPartFromTitleSeries(entry.titleSeries)
+      language: entry.language,
+      part: parseTitleSeries(entry.titleSeries).part,
+      identifierURI: entry.identifierURI,
+      collectionDetails: entry.collectionDetails
     }))
-    .filter(entry => entry.pid.startsWith('870970-basis'));
-  response = orderBy(response, ['date', 'part'], ['asc', 'asc']);
+    .filter(
+      entry =>
+        entry.pid.startsWith('870970-basis') &&
+        (!entry.language || entry.language.includes('Dansk')) &&
+        (entry.type.toLowerCase().includes('bog') ||
+          hasEreolenLink(entry.identifierURI))
+    );
+  response = orderBy(response, ['part', 'date'], ['asc', 'asc']);
 
   cache.set(titleSeries, response);
   return response;
@@ -120,37 +178,75 @@ const fetchSeriesData = async titleSeries => {
  * @param pid
  * @returns {Promise}
  */
-const fetchSeries = async pid => {
-  const {titleSeries, multiVolume} = await fetchInitial(pid);
+const fetchSeries = async (pid, debug) => {
+  const debugObj = debug ? {} : null;
+  const {isSeries, titleSeries, multiVolume} = await fetchInitial(
+    pid,
+    debugObj
+  );
 
-  if (titleSeries) {
-    const series = await fetchSeriesData(titleSeries);
+  if (isSeries) {
+    let series = await fetchSeriesData(titleSeries, debugObj);
 
     if (series.length > 1) {
-      series.forEach(entry => cache.set(entry.pid, {titleSeries}));
+      series.forEach(entry =>
+        cache.set(entry.pid, {isSeries, titleSeries, multiVolume})
+      );
+
+      const expandedSeries = [];
+
+      series = series.forEach(parent => {
+        const multi = parseCollectionDetails(parent.collectionDetails);
+        delete parent.collectionDetails;
+        if (multi.length > 1) {
+          let extent = 0;
+          multi.forEach(volume => {
+            if (volume.part > extent) {
+              extent = volume.part;
+            }
+          });
+          multi.forEach(volume => {
+            expandedSeries.push({
+              ...parent,
+              ...volume,
+              volumeExtent: extent,
+              volumeId: volume.part,
+              part: parent.part
+            });
+          });
+        } else {
+          expandedSeries.push(parent);
+        }
+      });
 
       return {
         isSeries: true,
         isMultiVolumeSeries: false,
         titleSeries,
-        data: series
+        data: expandedSeries,
+        debug: debug && debugObj
+      };
+    }
+    if (multiVolume.length > 1) {
+      multiVolume.forEach(entry =>
+        cache.set(entry.pid, {isSeries, titleSeries, multiVolume})
+      );
+      return {
+        isSeries: true,
+        isMultiVolumeSeries: true,
+        titleSeries,
+        data: multiVolume,
+        debug: debug && debugObj
       };
     }
   }
 
-  if (multiVolume.length > 1) {
-    multiVolume.forEach(entry =>
-      cache.set(entry.pid, {titleSeries, multiVolume})
-    );
-    return {
-      isSeries: false,
-      isMultiVolumeSeries: true,
-      titleSeries,
-      data: multiVolume
-    };
-  }
-
-  return {isSeries: false, isMultiVolumeSeries: false, data: []};
+  return {
+    isSeries: false,
+    isMultiVolumeSeries: false,
+    data: [],
+    debug: debug && debugObj
+  };
 };
 
 router
@@ -160,8 +256,8 @@ router
   //
   .get(
     asyncMiddleware(async (req, res) => {
-      res.status(200).json(await fetchSeries(req.params.pid));
+      res.status(200).json(await fetchSeries(req.params.pid, req.query.debug));
     })
   );
 
-module.exports = router;
+module.exports = {router, parseTitleSeries};

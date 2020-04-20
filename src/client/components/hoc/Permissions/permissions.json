@@ -4,8 +4,8 @@
     "premium": true,
     "kiosk": true,
     "role": {
-      "contentFirstAdmin": false,
-      "contentFirstEditor": false
+      "contentFirstAdmin": true,
+      "contentFirstEditor": true
     }
   },
   "EditorpageButton": {
@@ -22,8 +22,8 @@
     "premium": true,
     "kiosk": false,
     "role": {
-      "contentFirstAdmin": false,
-      "contentFirstEditor": false
+      "contentFirstAdmin": true,
+      "contentFirstEditor": true
     }
   },
   "PrintButton": {

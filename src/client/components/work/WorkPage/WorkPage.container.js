@@ -3,6 +3,7 @@ import {get} from 'lodash';
 import Head from '../../base/Head';
 import T from '../../base/T';
 import SimilarBelt from '../../base/Belt/SimilarBelt.component';
+import SeriesBelt from '../../base/Belt/SeriesBelt.component';
 import {withWork} from '../../hoc/Work';
 import ListsBelt from '../../base/Belt/ListsBelt.container';
 import WorkPreview from '../WorkPreview/WorkPreview.component.js';
@@ -98,6 +99,12 @@ class WorkPage extends React.Component {
             }}
           />
         </div>
+
+        <SeriesBelt
+          key={'workpage-series' + book.pid}
+          mount={'workpage-series' + book.pid}
+          pid={book.pid}
+        />
 
         <SimilarBelt
           beltRef={e => (this.booksBeltPosition = e)}

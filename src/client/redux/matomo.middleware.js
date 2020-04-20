@@ -43,6 +43,8 @@ export const matomoMiddleware = store => next => action => {
           action,
           'data.beltName.minderLink[1]'
         )}`;
+      } else if (get(action, 'data.beltName.type') === 'series') {
+        parentBeltName = 'Bøger i samme serie';
       } else if (get(action, 'data.beltName', 'unknown')) {
         parentBeltName = get(action, 'data.beltName');
       } else {
@@ -73,11 +75,12 @@ export const matomoMiddleware = store => next => action => {
         const a = 'beltMoreLikeThis';
         const name = `pid:${pid}`;
         trackEvent(category, a, name);
-      } else if (scrollPos) {
+      } else if (Number.isInteger(scrollPos)) {
         let category = `belt:${parentBeltName}`;
         const a = 'beltSwipe';
         const name = 'position';
         const val = scrollPos;
+
         trackEvent(category, a, name, val);
       } else if (titleClick) {
         const category = `belt:${parentBeltName}`;

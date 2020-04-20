@@ -1,4 +1,7 @@
 import T from '../base/T';
+import {orderBy} from 'lodash';
+
+const bindIdRegex = /bind (\d+)/i;
 
 export function collectionHasValidContent(work) {
   if (!work.collectionHasLoaded) {
@@ -8,6 +11,36 @@ export function collectionHasValidContent(work) {
   return !!(collectionContainsBook(work) || !!filterCollection(work).length);
 }
 
+export function isPhysical(type) {
+  if (type && type[0]) {
+    return (
+      type[0].includes('Bog') ||
+      type[0].includes('Graphic novel') ||
+      type[0].includes('Tegneserie')
+    );
+  }
+  return false;
+}
+
+/**
+ * Returns part number
+ * @param {Array<string>} type
+ * @returns {Number | undefined}
+ */
+export function getVolumeFromType(type) {
+  if (!type || !type.length) {
+    return;
+  }
+  for (let i = 0; i < type.length; i++) {
+    const bindIdMatch = bindIdRegex.exec(type[i]);
+    if (bindIdMatch && bindIdMatch[1]) {
+      return parseInt(bindIdMatch[1], 10);
+    }
+  }
+}
+
+// export function getMultiVolume
+
 export function collectionContainsBook(work) {
   if (!work.book.collection) {
     return false;
@@ -15,12 +48,7 @@ export function collectionContainsBook(work) {
 
   // Type could be "Bog" and "Bog (bind x)" but NOT "Ebog"
   const res =
-    work.book.collection.data.filter(
-      col =>
-        (col.type && col.type[0].includes('Bog')) ||
-        (col.type && col.type[0].includes('Graphic novel')) ||
-        (col.type && col.type[0].includes('Tegneserie'))
-    ).length > 0;
+    work.book.collection.data.filter(col => isPhysical(col.type)).length > 0;
 
   return res;
 }
@@ -62,10 +90,22 @@ export function filterCollection(work) {
         }
         return false;
       });
+      const volumeId = getVolumeFromType(work.book.type);
+
       // if collection contains references
       if (collection.length > 0) {
         let count1 = 0;
         let count2 = 0;
+
+        // We prefer volume with same id as the parent
+        collection = orderBy(
+          collection.map(col => ({
+            ...col,
+            sameVolume: volumeId === getVolumeFromType(col.type)
+          })),
+          'sameVolume',
+          'desc'
+        );
         collection = collection.map(col => {
           // default obj for Lydbog
           if (col.type[0].includes('Lydbog (net)')) {

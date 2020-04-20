@@ -36,7 +36,8 @@ export default class WorkSlider extends React.Component {
       mountedData,
       updateMount,
       origin,
-      hasLoaded
+      hasLoaded,
+      series
     } = this.props;
 
     const worksPerSlide = this.getWorksPerSlide();
@@ -99,6 +100,14 @@ export default class WorkSlider extends React.Component {
                       this.props.kiosk && this.props.kiosk.enabled
                         ? `workcard-${pid}-${idx}`
                         : 'workcard'
+                    }
+                    description={
+                      series &&
+                      `${series[idx].part}. del - ${series[idx].title}${
+                        series[idx].volumeId
+                          ? ` (bind ${series[idx].volumeId} af ${series[idx].volumeExtent})`
+                          : ''
+                      }`
                     }
                   />
                 );

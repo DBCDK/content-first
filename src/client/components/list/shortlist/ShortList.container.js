@@ -99,7 +99,7 @@ export class ShortListItem extends React.Component {
 
             <Text type="body">{work.book.creator}</Text>
 
-            {!isKiosk && <Origin componentData={origin} />}
+            {!isKiosk && <Origin componentData={origin} work={work.book} />}
 
             <div className="shortlist__item--actions">
               {!isKiosk && <AddToListButton work={work} />}

@@ -130,6 +130,38 @@ export const fetchBooksTags = async (pids = []) => {
 };
 
 /**
+ * fetchSeries
+ * @param pids
+ * @returns {Promise}
+ */
+export const fetchSeries = async (pids = []) => {
+  pids = unique(pids);
+
+  const allRes = await Promise.all(
+    pids.map(async pid => {
+      try {
+        const res = await request.get(`/v1/series/${pid}`);
+        return res.body;
+      } catch (e) {
+        // ignore errors/missing on fetching covers
+        return;
+      }
+    })
+  );
+
+  let books = pids.map((pid, idx) => {
+    return {
+      book: {
+        pid: pid,
+        series: allRes[idx]
+      }
+    };
+  });
+
+  return books;
+};
+
+/**
  * fetchStats
  * @returns {Promise<*>}
  */
@@ -254,7 +286,7 @@ export const fetchCollection = (pids, store) => {
           pidsInCollection.map(async pid => {
             return openplatform.work({
               pids: [pid],
-              fields: ['type', 'identifierURI'],
+              fields: ['type', 'identifierURI', 'pid'],
               access_token: await fetchAnonymousToken()
             });
           })
