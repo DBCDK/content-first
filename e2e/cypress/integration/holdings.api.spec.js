@@ -227,21 +227,20 @@ describe('holdings API', function() {
   });
 
   it(`should retrieve holdings for all pids in work`, function() {
+    const otherPid = '870970-basis:12345679';
     mockIdMapper({
-      [pid]: [pid, '875210-basis:12345678']
+      [otherPid]: [otherPid, '875210-basis:12345678']
     });
     mockSolrDocs([
-      {bibliographicRecordId: '53975542', status: 'OnLoan'},
+      {bibliographicRecordId: '12345679', status: 'OnLoan'},
       {bibliographicRecordId: '12345678', status: 'OnShelf'}
     ]);
-    // is it a timing issue here?
-    cy.wait(1000);
     holdingsRequest(
-      '/v1/holdings?pid=870970-basis:53975542&branch=Hovedbiblioteket&agencyId=710100',
+      '/v1/holdings?pid=870970-basis:12345679&branch=Hovedbiblioteket&agencyId=710100',
       response => {
-        expect(response.body[pid][0].onShelf).to.be.false;
-        expect(response.body[pid][1].onShelf).to.be.true;
-        expect(response.body[pid][1].bibliographicRecordId).to.equal(
+        expect(response.body[otherPid][0].onShelf).to.be.false;
+        expect(response.body[otherPid][1].onShelf).to.be.true;
+        expect(response.body[otherPid][1].bibliographicRecordId).to.equal(
           '12345678'
         );
       }
