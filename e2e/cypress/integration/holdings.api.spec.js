@@ -234,6 +234,8 @@ describe('holdings API', function() {
       {bibliographicRecordId: '53975542', status: 'OnLoan'},
       {bibliographicRecordId: '12345678', status: 'OnShelf'}
     ]);
+    // is it a timing issue here?
+    cy.wait(1000);
     holdingsRequest(
       '/v1/holdings?pid=870970-basis:53975542&branch=Hovedbiblioteket&agencyId=710100',
       response => {
