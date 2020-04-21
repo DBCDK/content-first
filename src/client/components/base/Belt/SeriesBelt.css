@@ -1,0 +1,26 @@
+.series-belt {
+  margin-top: var(--4pt);
+ /* margin: 0; */
+}
+.series-belt > h1 {
+  margin: 0;
+  padding: 0 var(--5pt);
+}
+
+.series-belt > h1 strong {
+  margin: 0 var(--1pt) 0 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .series-belt > h1 {
+    padding: 0 var(--5pt) var(--3pt) var(--5pt);
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .series-belt > h1 {
+    padding: 0 var(--2pt) var(--2pt) var(--2pt);
+  }
+}
+
+

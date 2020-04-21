@@ -13,7 +13,9 @@ import {
   collectionContainsAudioBook,
   filterCollection,
   filterReviews,
-  sortTags
+  sortTags,
+  isPhysical,
+  getVolumeFromType
 } from '../../work/workFunctions';
 
 /**
@@ -39,7 +41,12 @@ import {
 
 const withWork = (
   WrappedComponent,
-  {includeTags = false, includeReviews = false, includeCollection = false} = {}
+  {
+    includeTags = false,
+    includeReviews = false,
+    includeCollection = false,
+    includeSeries = false
+  } = {}
 ) => {
   const Wrapped = class extends React.Component {
     componentDidMount() {
@@ -49,6 +56,54 @@ const withWork = (
     componentDidUpdate() {
       this.fetch();
     }
+
+    /**
+     * Returns info about the physical book that
+     * represents this work. Useful when an ebook-pid is used
+     * to look up the work.
+     * @returns {Object}
+     */
+    getPhysical = () => {
+      const collection = get(this.props, 'work.book.collection');
+      const series = get(this.props, 'work.book.series');
+      let extent = 0;
+      let volumeId = 0;
+      if (!collection || !series) {
+        return false;
+      }
+
+      // find the highest volumeId
+      collection.data.forEach(entry => {
+        extent = Math.max(extent, getVolumeFromType(entry.type) || 0);
+      });
+      let physical;
+      if (isPhysical(this.props.work.book.type)) {
+        volumeId = getVolumeFromType(this.props.work.book.type);
+        physical = {volumeId, extent, pid: this.props.work.book.pid};
+      } else {
+        // find physical book with smallest volumeId
+        collection.data.forEach(entry => {
+          const currentVolumeId = getVolumeFromType(entry.type);
+          if (
+            currentVolumeId &&
+            (!physical || physical.volumeId > currentVolumeId)
+          ) {
+            volumeId = currentVolumeId;
+            physical = {volumeId: currentVolumeId, extent, pid: entry.pid[0]};
+          }
+        });
+      }
+
+      if (series.isMultiVolumeSeries && physical) {
+        // this work is a multi volume, yes...
+        // But it's converted to a series,
+        // hence we delete volumeId and extent
+        delete physical.extent;
+        delete physical.volumeId;
+      }
+
+      return physical;
+    };
 
     /**
      * Check if a work is a newly release
@@ -205,6 +260,7 @@ const withWork = (
           sortTags={this.sortTags}
           sortTagsByAppeal={this.sortTagsByAppeal}
           intersectTags={this.intersectTags}
+          getPhysical={this.getPhysical}
           {...this.props}
         />
       );
@@ -241,7 +297,8 @@ const withWork = (
           pids,
           includeTags,
           includeReviews,
-          includeCollection
+          includeCollection,
+          includeSeries
         }),
       dispatchOrder: work => {
         dispatch({type: ORDER, book: work.book});

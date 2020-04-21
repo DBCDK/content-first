@@ -402,6 +402,10 @@
       "litteratursiden": {
         "da": "Litteratursiden",
         "en": "Litteratursiden"
+      },
+      "series": {
+        "da": "%s. del af serien %s",
+        "en": "%s. part of the series %s"
       }
     },
     "profile": {
@@ -622,6 +626,10 @@
       "originLink": {
         "da": "Fundet via denne søgning",
         "en": "Found via this search"
+      },
+      "seriesLabel": {
+        "da": "%s. del i serien %s",
+        "en": "%s. part of the series %s"
       }
     },
     "bookcase": {

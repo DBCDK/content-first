@@ -43,7 +43,10 @@ const ShortListElement = props => {
           {props.element.book.taxonomy_description}
         </div>
         <div className="top-bar-dropdown-list-element--origin">
-          <Origin componentData={props.element.origin} />
+          <Origin
+            componentData={props.element.origin}
+            work={props.element.book}
+          />
         </div>
       </div>
       {

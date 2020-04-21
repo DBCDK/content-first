@@ -196,7 +196,8 @@ class WorkPreview extends React.Component {
       sortTags,
       sortTagsByAppeal,
       enableLightbox = false,
-      is_work_page
+      is_work_page,
+      getPhysical
     } = this.props;
     // handle collapsible tag container
     const tabsCollapsed = this.state.tabsCollapsed;
@@ -242,6 +243,9 @@ class WorkPreview extends React.Component {
 
     const isWorkPreview = props =>
       props.className.split(' ').includes('preview');
+
+    const {isSeries, part, titleSeries} = work.book;
+    const physical = getPhysical();
 
     return (
       <React.Fragment>
@@ -292,7 +296,14 @@ class WorkPreview extends React.Component {
               >
                 <div className="work-preview__title-bar">
                   <Title Tag="h1" type="title3" className="work-preview__title">
-                    <Link href={'/værk/' + book.pid}>{book.title}</Link>
+                    <Link href={'/værk/' + book.pid}>
+                      {book.title}{' '}
+                      {physical && physical.volumeId && (
+                        <small data-cy="title-bind-info">
+                          bind {physical.volumeId} af {physical.extent}
+                        </small>
+                      )}
+                    </Link>
                   </Title>
                   <Share
                     href={'https://laesekompas.dk/værk/' + book.pid}
@@ -325,6 +336,18 @@ class WorkPreview extends React.Component {
                 >
                   {book.description}
                 </Text>
+
+                {isSeries && (
+                  <div className="work-preview__information-details">
+                    <Text type="body">
+                      <T
+                        component="work"
+                        name="series"
+                        vars={[part, titleSeries]}
+                      />
+                    </Text>
+                  </div>
+                )}
 
                 <div className="work-preview__information-details">
                   <span className="detail-element">
@@ -376,7 +399,7 @@ class WorkPreview extends React.Component {
                     </Text>
                   )}
                   <LoanButton
-                    pid={book.pid}
+                    pid={physical ? physical.pid : book.pid}
                     isLoading={!work.collectionHasLoaded}
                     collectionIsValid={collectionIsValid}
                   />
@@ -476,7 +499,8 @@ export default withChildBelt(
     withWork(WorkPreview, {
       includeTags: true,
       includeReviews: true,
-      includeCollection: true
+      includeCollection: true,
+      includeSeries: true
     })
   )
 );

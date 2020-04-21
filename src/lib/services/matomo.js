@@ -33,11 +33,13 @@ class MatomoClient {
     });
 
     if (!siteId || !matomoUrl) {
-      logger.log.info('Matomo tracking is disabled since it is not configured', {
-        source: 'matomo'
-      });
-      this.trackDataEvent = () => {
-      };
+      logger.log.info(
+        'Matomo tracking is disabled since it is not configured',
+        {
+          source: 'matomo'
+        }
+      );
+      this.trackDataEvent = () => {};
     } else {
       logger.log.info('Matomo tracking is enabled', {
         source: 'matomo',

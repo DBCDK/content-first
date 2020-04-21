@@ -52,7 +52,8 @@ class WorkCard extends React.Component {
       enableHover,
       skeleton,
       hideMoreLikeThis = false,
-      onMoreLikeThisClick
+      onMoreLikeThisClick,
+      description
     } = this.props;
     if (!work || !work.detailsHasLoaded || !isVisible) {
       return (
@@ -144,7 +145,9 @@ class WorkCard extends React.Component {
 
           <HomeStatus pid={pid} />
           <Text className="work-card__tax-description">
-            <TaxDescription text={tax_description} />
+            <TaxDescription
+              text={description ? description : tax_description}
+            />
           </Text>
         </div>
         <div className="whiteLine" />

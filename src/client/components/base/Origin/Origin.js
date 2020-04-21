@@ -2,7 +2,7 @@ import React from 'react';
 import Link from '../../general/Link.component';
 import T from '../../base/T';
 
-const Origin = ({componentData}) => {
+const Origin = ({componentData, work = {}}) => {
   switch (componentData.type) {
     case 'searchTags':
       return (
@@ -37,6 +37,16 @@ const Origin = ({componentData}) => {
           <T component="shortlist" name="fromListLink" />
           {componentData.listLink[1]}
         </Link>
+      );
+    case 'series':
+      return (
+        <span>
+          <T
+            component="shortlist"
+            name="seriesLabel"
+            vars={[work.part, componentData.titleSeries]}
+          />
+        </span>
       );
     default:
       return <React.Fragment>{componentData}</React.Fragment>;

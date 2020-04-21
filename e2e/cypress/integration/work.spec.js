@@ -82,4 +82,65 @@ describe('Work Page', function() {
     cy.visit('/v%C3%A6rk/' + pid);
     cy.get('[data-cy=close-work-preview-button]').should('not.exist');
   });
+
+  describe('Series', function() {
+    it(`Simple series`, function() {
+      cy.visit('/værk/870970-basis:28249799');
+
+      // check belt is there
+      cy.contains('i samme serie');
+
+      // simple series should not have bind info
+      cy.get('[data-cy=title-bind-info]').should('not.exist');
+
+      cy.get('[data-cy=seriesBelt] .work-card__tax-description')
+        .children()
+        .eq(0)
+        .should('have.text', '1. del - Graffitimordene');
+    });
+
+    it(`Simple multivolume is converted to a series`, function() {
+      // pid is an ebook
+      cy.visit('/v%C3%A6rk/870970-basis:28329490');
+
+      // check belt is there
+      cy.contains('i samme serie');
+
+      // When multivolume is converted to a series
+      // we do not show 'bind' in the title
+      cy.get('[data-cy=title-bind-info]').should('not.exist');
+
+      // the first part should not be described as
+      // 1. del - Min kamp (bind 1 af 6) but just
+      // 1. del - Min kamp
+      cy.get('[data-cy=seriesBelt] .work-card__tax-description')
+        .children()
+        .eq(0)
+        .should('have.text', '1. del - Min kamp');
+    });
+
+    it(`Series where some parts are multivolumes`, function() {
+      // pid is an ebook
+      cy.visit('/v%C3%A6rk/870970-basis:52021731');
+
+      // check series description is there
+      cy.contains('1. del af serien');
+
+      // check belt is there
+      cy.contains('i samme serie');
+
+      // the ebook is not a speficic volume,
+      // but we use volume 1 as the physical volume to represent
+      cy.get('[data-cy=title-bind-info]').should('exist');
+      cy.get('.work-preview__title').contains('bind 1 af 2');
+
+      // the series belt need to display both volumes of the first part
+      cy.get('[data-cy=seriesBelt]').contains(
+        '1. del - Vejen til Swann (bind 1 af 2)'
+      );
+      cy.get('[data-cy=seriesBelt]').contains(
+        '1. del - Vejen til Swann (bind 2 af 2)'
+      );
+    });
+  });
 });

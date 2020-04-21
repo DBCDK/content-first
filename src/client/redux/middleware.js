@@ -8,6 +8,7 @@ import {
   fetchBooksTags,
   fetchReviews,
   fetchCollection,
+  fetchSeries,
   saveShortList,
   loadShortList,
   addImage
@@ -159,18 +160,27 @@ const createDebouncedFunction = (name, requestFunction) => {
 };
 const debouncedFunctions = {
   details: createDebouncedFunction('details', fetchBooks),
-  tags: createDebouncedFunction('tags', fetchBooksTags)
+  tags: createDebouncedFunction('tags', fetchBooksTags),
+  series: createDebouncedFunction('series', fetchSeries)
 };
 
 export const requestMiddleware = store => next => action => {
   switch (action.type) {
     case BOOKS_REQUEST:
       (async () => {
-        const {includeTags, includeReviews, includeCollection} = action;
+        const {
+          includeTags,
+          includeReviews,
+          includeCollection,
+          includeSeries
+        } = action;
 
         debouncedFunctions.details(action.pids, store);
         if (includeTags) {
           debouncedFunctions.tags(action.pids, store);
+        }
+        if (includeSeries) {
+          debouncedFunctions.series(action.pids, store);
         }
 
         if (includeReviews || includeCollection) {

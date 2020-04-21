@@ -14,12 +14,13 @@ const NodeCache = require('node-cache');
 const cache = new NodeCache({stdTTL: 60 * 60 * 4}); // Time to live is 4 hours
 const {
   subjectsToTaxonomyDescription,
-  fromTitle
+  fromTitle,
 } = require('../client/utils/booksTaxonomy');
 const {fetchAnonymousToken} = require('./smaug');
 const logger = require('server/logger');
 const IDMapper = require('__/services/idmapper');
 const idmapper = new IDMapper(config, logger);
+const {parseTitleSeries} = require('./external-v1-series');
 
 /* eslint-disable complexity */
 
@@ -39,7 +40,9 @@ const getWork = (
   spatialDBCS,
   spatialDBCF,
   temporalDBCP,
-  coverUrlFull
+  coverUrlFull,
+  titleSeries,
+  type
 ) => {
   // Tags merged and mapped with categories (parents/subjects)
   const tags =
@@ -48,11 +51,11 @@ const getWork = (
       ...(subjectDBCF || []),
       ...(spatialDBCS || []),
       ...(spatialDBCF || []),
-      ...(temporalDBCP || [])
+      ...(temporalDBCP || []),
     ]
       .filter((v, i, a) => a.indexOf(v) === i)
-      .map(title => fromTitle(title))
-      .filter(t => t) || [];
+      .map((title) => fromTitle(title))
+      .filter((t) => t) || [];
 
   return {
     book: {
@@ -73,8 +76,10 @@ const getWork = (
       taxonomy_description_subjects:
         subjectsToTaxonomyDescription(subjectDBCS) || '',
       tags,
-      coverUrl: (coverUrlFull && coverUrlFull[0]) || null
-    }
+      coverUrl: (coverUrlFull && coverUrlFull[0]) || null,
+      ...parseTitleSeries(titleSeries),
+      type,
+    },
   };
 };
 
@@ -86,7 +91,7 @@ const getWork = (
  * @param {string} pid
  * @returns {object}
  */
-const fetchWork = async pid => {
+const fetchWork = async (pid) => {
   let work = cache.get(pid);
   if (work) {
     return work;
@@ -111,16 +116,18 @@ const fetchWork = async pid => {
         'spatialDBCS',
         'spatialDBCF',
         'temporalDBCP',
-        'coverUrlFull'
+        'coverUrlFull',
+        'titleSeries',
+        'type',
       ],
-      access_token: (await fetchAnonymousToken()).access_token
+      access_token: (await fetchAnonymousToken()).access_token,
     });
 
   const pidToPidsRequest = idmapper.pidToWorkPids([pid]);
 
   const [openplatformResponse, pidToPidsResponse] = await Promise.all([
     openplatformRequest,
-    pidToPidsRequest
+    pidToPidsRequest,
   ]);
 
   const {
@@ -138,7 +145,9 @@ const fetchWork = async pid => {
     spatialDBCS,
     spatialDBCF,
     temporalDBCP,
-    coverUrlFull
+    coverUrlFull,
+    titleSeries,
+    type,
   } = openplatformResponse.body.data[0];
 
   /* map result */
@@ -158,7 +167,9 @@ const fetchWork = async pid => {
     spatialDBCS,
     spatialDBCF,
     temporalDBCP,
-    coverUrlFull
+    coverUrlFull,
+    titleSeries,
+    type
   );
 
   /* include taxonomy_description */
@@ -175,15 +186,12 @@ const fetchWork = async pid => {
   return work;
 };
 
-const fetchWorks = async pids => {
-  const works = (await Promise.all(pids.map(pid => fetchWork(pid)))).filter(
-    work =>
+const fetchWorks = async (pids) => {
+  const works = (await Promise.all(pids.map((pid) => fetchWork(pid)))).filter(
+    (work) =>
       !work.book.title.startsWith('Error: unknown/missing/inaccessible record')
   );
-  const failed = _.difference(
-    pids,
-    works.map(b => b.book.pid)
-  );
+  const failed = _.difference(pids, works.map((b) => b.book.pid));
 
   return {data: works, failed};
 };
@@ -193,7 +201,7 @@ const fetchWorks = async pids => {
  * @param contributors
  * @returns {*}
  */
-const joinContributors = contributors => {
+const joinContributors = (contributors) => {
   const mfl = contributors.length > 2 ? ' mfl.' : '';
   return contributors.slice(0, 2).join(', ') + mfl;
 };
@@ -211,7 +219,7 @@ router
         return next({
           status: 400,
           title: 'PIDs expected',
-          detail: 'You must supply at least one PID.'
+          detail: 'You must supply at least one PID.',
         });
       }
       res.status(200).json(await fetchWorks(pids));
@@ -225,7 +233,7 @@ router
         return next({
           status: 400,
           title: 'PIDs expected',
-          detail: 'You must supply at least one PID.'
+          detail: 'You must supply at least one PID.',
         });
       }
       res.status(200).json(await fetchWorks(pids));

@@ -45,7 +45,8 @@ export class ShortListItem extends React.Component {
       className = '',
       hasValidCollection,
       filterCollection,
-      newRelease
+      newRelease,
+      getPhysical
     } = this.props;
     if (!work) {
       return null;
@@ -65,6 +66,7 @@ export class ShortListItem extends React.Component {
         <T component="general" name="book" />
       </OrderButton>
     );
+    const physical = getPhysical && getPhysical();
 
     const orderElectronicBookButtons =
       hasValidCollection() &&
@@ -94,12 +96,17 @@ export class ShortListItem extends React.Component {
           </Link>
           <div className="shortlist__item--details">
             <Title Tag="h1" type="title5">
-              {work.book.title}
+              {work.book.title}{' '}
+              {physical && physical.volumeId && (
+                <small data-cy="title-bind-info">
+                  bind {physical.volumeId} af {physical.extent}
+                </small>
+              )}
             </Title>
 
             <Text type="body">{work.book.creator}</Text>
 
-            {!isKiosk && <Origin componentData={origin} />}
+            {!isKiosk && <Origin componentData={origin} work={work.book} />}
 
             <div className="shortlist__item--actions">
               {!isKiosk && <AddToListButton work={work} />}
@@ -173,7 +180,8 @@ export class ShortListItem extends React.Component {
 const ShortListItemWithWork = withWork(ShortListItem, {
   includeReviews: false,
   includeCollection: true,
-  includeCover: true
+  includeCover: true,
+  includeSeries: true
 });
 
 export class ShortList extends React.Component {
