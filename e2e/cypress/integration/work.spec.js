@@ -93,6 +93,10 @@ describe('Work Page', function() {
       // simple series should not have bind info
       cy.get('[data-cy=title-bind-info]').should('not.exist');
 
+      // wait for belt to be loaded
+      cy.contains('1. del - Graffitimordene');
+
+      // check the order
       cy.get('[data-cy=seriesBelt] .work-card__tax-description')
         .children()
         .eq(0)
@@ -109,6 +113,9 @@ describe('Work Page', function() {
       // When multivolume is converted to a series
       // we do not show 'bind' in the title
       cy.get('[data-cy=title-bind-info]').should('not.exist');
+
+      // wait for belt to be loaded
+      cy.contains('1. del - Min kamp');
 
       // the first part should not be described as
       // 1. del - Min kamp (bind 1 af 6) but just
