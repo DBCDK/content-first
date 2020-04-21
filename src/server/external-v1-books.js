@@ -17,6 +17,9 @@ const {
   fromTitle
 } = require('../client/utils/booksTaxonomy');
 const {fetchAnonymousToken} = require('./smaug');
+const logger = require('server/logger');
+const IDMapper = require('__/services/idmapper');
+const idmapper = new IDMapper(config, logger);
 
 /* eslint-disable complexity */
 
@@ -89,6 +92,37 @@ const fetchWork = async pid => {
     return work;
   }
 
+  const openplatformRequest = request
+    .post(config.login.openplatformUrl + '/work')
+    .send({
+      pids: [pid],
+      fields: [
+        'dcTitle',
+        'creator',
+        'creatorAut',
+        'contributor',
+        'abstract',
+        'extent',
+        'dcLanguage',
+        'date',
+        'identifierISBN',
+        'subjectDBCS',
+        'subjectDBCF',
+        'spatialDBCS',
+        'spatialDBCF',
+        'temporalDBCP',
+        'coverUrlFull'
+      ],
+      access_token: (await fetchAnonymousToken()).access_token
+    });
+
+  const pidToPidsRequest = idmapper.pidToWorkPids([pid]);
+
+  const [openplatformResponse, pidToPidsResponse] = await Promise.all([
+    openplatformRequest,
+    pidToPidsRequest
+  ]);
+
   const {
     dcTitle,
     creator,
@@ -105,27 +139,7 @@ const fetchWork = async pid => {
     spatialDBCF,
     temporalDBCP,
     coverUrlFull
-  } = (await request.post(config.login.openplatformUrl + '/work').send({
-    pids: [pid],
-    fields: [
-      'dcTitle',
-      'creator',
-      'creatorAut',
-      'contributor',
-      'abstract',
-      'extent',
-      'dcLanguage',
-      'date',
-      'identifierISBN',
-      'subjectDBCS',
-      'subjectDBCF',
-      'spatialDBCS',
-      'spatialDBCF',
-      'temporalDBCP',
-      'coverUrlFull'
-    ],
-    access_token: (await fetchAnonymousToken()).access_token
-  })).body.data[0];
+  } = openplatformResponse.body.data[0];
 
   /* map result */
   work = getWork(
@@ -149,8 +163,9 @@ const fetchWork = async pid => {
 
   /* include taxonomy_description */
   const workWithTaxonomyDescription = await knex(bookTable)
-    .where('pid', pid)
+    .whereIn('pid', pidToPidsResponse[pid])
     .select();
+
   if (workWithTaxonomyDescription.length > 0) {
     work.book.taxonomy_description =
       workWithTaxonomyDescription[0].taxonomy_description;
@@ -165,7 +180,10 @@ const fetchWorks = async pids => {
     work =>
       !work.book.title.startsWith('Error: unknown/missing/inaccessible record')
   );
-  const failed = _.difference(pids, works.map(b => b.book.pid));
+  const failed = _.difference(
+    pids,
+    works.map(b => b.book.pid)
+  );
 
   return {data: works, failed};
 };
