@@ -6,7 +6,7 @@ import Text from '../../base/Text';
 import Title from '../../base/Title';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
 import {connect} from 'react-redux';
-import T from "../../base/T";
+import T from '../../base/T';
 
 class CookieWarning extends React.Component {
   constructor(props) {
@@ -22,8 +22,8 @@ class CookieWarning extends React.Component {
   }
 
   componentDidMount() {
-    if (!Cookies.get("did-accept-cookies")) {
-      Cookies.set("did-accept-cookies", "unknown");
+    if (!Cookies.get('did-accept-cookies')) {
+      Cookies.set('did-accept-cookies', 'unknown');
     }
     this.setState({isClient: true});
   }
@@ -63,20 +63,22 @@ class CookieWarning extends React.Component {
               </Title>
               <Text type="body" className="cookie-warning-body">
                 <T component="general" name="cookieText1" />
-                <br /><T component="general" name="cookieText2" />
-                <br /><T component="general" name="cookieText3" />
+                <br />
+                <T component="general" name="cookieText2" />
+                <br />
+                <T component="general" name="cookieText3" />
               </Text>
             </div>
 
             <div className="cookie-warning-button-link-container">
-               <span
-                 onClick={e => {
-                   e.preventDefault();
-                   this.props.goToPrivacyPage();
-                 }}
-               >
-                  Læs mere om vores brug af cookies.
-                </span>
+              <span
+                onClick={e => {
+                  e.preventDefault();
+                  this.props.goToPrivacyPage();
+                }}
+              >
+                Læs mere om vores brug af cookies.
+              </span>
               <div className="cookie-warning-button-container">
                 <Button
                   variant="bgcolor-petroleum--color-white"
@@ -105,7 +107,8 @@ class CookieWarning extends React.Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  goToPrivacyPage: () => dispatch({type: HISTORY_REPLACE, path: '/privatlivspolitik'})
+  goToPrivacyPage: () =>
+    dispatch({type: HISTORY_REPLACE, path: '/privatlivspolitik'})
 });
 export default connect(
   null,

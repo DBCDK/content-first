@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {Helmet} from 'react-helmet';
 import {get} from 'lodash';
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
 function buildOGMeta(obj) {
   return Object.keys(obj).map((k, i) => {
@@ -43,21 +43,21 @@ function buildOGMeta(obj) {
  */
 
 const Head = ({
-                title = 'Læsekompas',
-                canonical = '',
-                description = 'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.',
-                robots = 'all',
-                og = {
-                  'og:url': 'https://laesekompas.dk',
-                  'og:type': 'website',
-                  image: {
-                    'og:image': 'https://laesekompas.dk/img/open-graph/hero-01.jpg',
-                    'og:image:width': '1200',
-                    'og:image:height': '675'
-                  },
-                  book: {}
-                }
-              }) => {
+  title = 'Læsekompas',
+  canonical = '',
+  description = 'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.',
+  robots = 'all',
+  og = {
+    'og:url': 'https://laesekompas.dk',
+    'og:type': 'website',
+    image: {
+      'og:image': 'https://laesekompas.dk/img/open-graph/hero-01.jpg',
+      'og:image:width': '1200',
+      'og:image:height': '675'
+    },
+    book: {}
+  }
+}) => {
   // isKiosk
   const isKiosk = useSelector(state => get(state, 'kiosk.enabled', false));
 
@@ -65,7 +65,7 @@ const Head = ({
   const hotjar_id = isKiosk ? 1636409 : 1361823;
 
   // show hotjar only if user has accepted cookies
-  const trackingApproved = Cookies.get("did-accept-cookies") === "accepted";
+  const trackingApproved = Cookies.get('did-accept-cookies') === 'accepted';
 
   return (
     <Helmet>
@@ -80,7 +80,8 @@ const Head = ({
       {(og && og.book && buildOGMeta(og.book)) || null}
 
       <script>
-        {trackingApproved && `(function(h,o,t,j,a,r){
+        {trackingApproved &&
+          `(function(h,o,t,j,a,r){
               h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
               h._hjSettings={hjid:${hotjar_id},hjsv:6};
               a=o.getElementsByTagName('head')[0];

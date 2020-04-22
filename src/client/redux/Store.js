@@ -4,10 +4,10 @@ import {initialize} from '../matomo';
 import reducer from './root.reducer';
 import {historyMiddleware} from './middleware';
 import {ON_LOCATION_CHANGE} from './router.reducer';
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
 export default (middleware, initialState) => {
-  const trackingApproved = Cookies.get('did-accept-cookies')==='accepted';
+  const trackingApproved = Cookies.get('did-accept-cookies') === 'accepted';
   const history = createBrowserHistory();
   const providedMiddleware = middleware ? middleware : [];
   middleware = [...providedMiddleware, historyMiddleware(history)];
