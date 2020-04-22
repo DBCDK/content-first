@@ -1,5 +1,3 @@
-import Cookies from 'js-cookie';
-
 const PID_REGEX = /^pid:\d+-\w+:\d+/;
 const PID_REGEX_2 = /^\d+-\w+:\d+/;
 
