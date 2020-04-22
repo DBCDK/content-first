@@ -1,61 +1,75 @@
-.cookie-warning-container{
+.cookie-warning-container {
     position: fixed;
     bottom: 0;
-    height: 120px;
     width: 100vw;
     background: var(--korn);
     z-index: 10;
     margin: 0;
     max-width: unset;
+    padding-bottom:20px;
 }
-.cookie-warning-button-container{
-    display: flex;
-    align-items: flex-start;
-    margin-top: 5px;
-}
-.cookie-warning-content-container{
-    display: flex;
+
+.cookie-warning-content-container {
     margin: auto;
     justify-content: space-evenly;
-    padding: 15px;
-
+    padding: 25px;
 }
-.cookie-warning-text-container{
+
+.cookie-warning-text-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     max-width: 50rem;
 }
 
-.cookie-warning-text-container .cookie-warning-body{
-    max-width: 90%;
+.cookie-warning-button-link-container {
+    display: flex;
+    text-decoration: underline;
 }
-.cookie-warning-body span{
-cursor: pointer;
-text-decoration: underline;
+
+.cookie-warning-button-link-container span {
+    align-self: flex-end;
+    width: 100%;
+    cursor: pointer;
+}
+
+.cookie-warning-button-container {
+    align-items: flex-start;
+    text-align: right;
+    width: 100%;
+}
+
+.cookie-warning-button-container .button {
+    margin-left: 20px;
+}
+
+.cookie-warning-body span {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .off {
     animation: slideOut .7s ease-in-out both;
-  }
-  @keyframes slideOut {
-    0%   { bottom: 0; }
-    100% { bottom: -100%; }
-  }
+}
 
-  @media (max-width: 768px) {
-  
-    .cookie-warning-content-container{
+@keyframes slideOut {
+    0% {
+        bottom: 0;
+    }
+    100% {
+        bottom: -100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .cookie-warning-content-container {
         flex-direction: column;
-    
-    
     }
-    
+    .cookie-warning-container {
+        height: 250px;
+        padding-bottom:300px;
     }
-    @media (max-width: 768px) {
-        .cookie-warning-container{
-            height: 160px;
-    
-        }
+    .cookie-warning-button-container .button {
+        margin-top: 5px;
     }
-    
+}

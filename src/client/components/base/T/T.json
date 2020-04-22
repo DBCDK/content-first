@@ -149,6 +149,34 @@
       "home": {
         "da": "Hjem",
         "en": "Home"
+      },
+      "cookieTitleText": {
+        "da": "Vi bruger cookies til at indsamle statistik over brugen af hjemmesiden",
+        "en": "We use cookies to collect usage statistics on this webpage"
+      },
+      "cookieText1": {
+        "da": " Hvis du klikker på knappen ‘Accepter’, godkender du, at vi sætter cookies til brug af statistik.",
+        "en": "If you click on the Accept button, you are allowing us to use cookies with respect to statistics."
+      },
+      "cookieText2": {
+        "da": "Klikker på knappen ‘Afvis’, så sætter vi ikke cookies til statistik.",
+        "en": "Click on the reject button, and we won't set cookies for statistic collection"
+      },
+      "cookieText3": {
+        "da": "Vi benytter dog en cookie for at huske dit valg.",
+        "en": "We will be using a cookie to remember your choice."
+      },
+      "cookieLink": {
+        "da": "Læs mere om vores brug af cookies.",
+        "en": "Read more about our use of cookies"
+      },
+      "cookieAcceptBtn": {
+        "da": "ACCEPTER",
+        "en": "ACCEPT"
+      },
+      "cookieRejectBtn": {
+        "da": "AFVIS",
+        "en": "REJECT"
       }
     },
     "login": {
@@ -402,10 +430,6 @@
       "litteratursiden": {
         "da": "Litteratursiden",
         "en": "Litteratursiden"
-      },
-      "series": {
-        "da": "%s. del af serien %s",
-        "en": "%s. part of the series %s"
       }
     },
     "profile": {
@@ -626,10 +650,6 @@
       "originLink": {
         "da": "Fundet via denne søgning",
         "en": "Found via this search"
-      },
-      "seriesLabel": {
-        "da": "%s. del i serien %s",
-        "en": "%s. part of the series %s"
       }
     },
     "bookcase": {

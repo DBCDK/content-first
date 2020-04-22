@@ -1,11 +1,18 @@
+import Cookies from "js-cookie";
+
 const PID_REGEX = /^pid:\d+-\w+:\d+/;
 const PID_REGEX_2 = /^\d+-\w+:\d+/;
 
-const createMatomoMock = endpoint => {
+const createMatomoMock = (endpoint) => {
+  let initialized = {};
   let tracked = {};
   let trackedData = {};
   let kiosk = {};
   cy.visitWithMatomoMocks(endpoint, {
+    initialize: (history, trackingApproved) => {
+      initialized.history = history;
+      initialized.trackingApproved = trackingApproved;
+    },
     trackEvent: (category, action, name) => {
       tracked.category = category;
       tracked.action = action;
@@ -19,11 +26,11 @@ const createMatomoMock = endpoint => {
       kiosk.branchKey = branchKey;
     }
   });
-  return {tracked, trackedData, kiosk};
+  return {initialized, tracked, trackedData, kiosk};
 };
 
-describe('Matomo test', function() {
-  beforeEach(function() {
+describe('Matomo test', function () {
+  beforeEach(function () {
     cy.clearClientStorage();
     cy.clearCookies();
   });
@@ -49,7 +56,6 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
-        cy.wait(1000);
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltExpandWork');
         expect(tracked.name).to.match(PID_REGEX);
@@ -64,7 +70,6 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
-        cy.wait(1000);
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltMoreLikeThis');
         expect(tracked.name).to.match(PID_REGEX);
@@ -74,7 +79,6 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
-        cy.wait(1000);
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltSwipe');
         expect(tracked.name).to.equal('position');
@@ -82,7 +86,40 @@ describe('Matomo test', function() {
     return tracked;
   };
 
-  it('Can track tags belt events', function() {
+  const checkApproval = (cookieVal, trackingAppVal) => {
+    const {initialized} = createMatomoMock('/')
+    cy.getCookie('did-accept-cookies')
+      .should('have.property', 'value', cookieVal)
+      .then(() => {
+        expect(initialized.trackingApproved).to.equal(trackingAppVal);
+      });
+  };
+
+  it('Can reject cookies ', function () {
+    mockInitialState();
+    cy.setCookie("did-accept-cookies", "unknown");
+    checkApproval('unknown', false);
+    cy.get('[data-cy=cookie-reject-button]')
+      .first()
+      .click()
+      .then(() => {
+        checkApproval('rejected', false);
+      });
+  });
+
+  it('Can accept cookies', function () {
+    mockInitialState();
+    cy.setCookie("did-accept-cookies", "unknown");
+    checkApproval('unknown', false);
+    cy.get('[data-cy=cookie-accept-button]')
+      .first()
+      .click()
+      .then(() => {
+        checkApproval('accepted', true);
+      });
+  });
+
+  it('Can track tags belt events', function () {
     mockInitialState();
     const tracked = testBelt(
       '/',
@@ -111,7 +148,7 @@ describe('Matomo test', function() {
       });
   });
 
-  it('Can track remindsOf belt events', function() {
+  it('Can track remindsOf belt events', function () {
     testBelt(
       '/værk/870970-basis:27206344',
       '[data-cy="similarBelt"]',
@@ -120,7 +157,7 @@ describe('Matomo test', function() {
     );
   });
 
-  it('Can track creator belt events', function() {
+  it('Can track creator belt events', function () {
     testBelt(
       '/find?tags=Stephen King (f. 1947)',
       '[data-cy="creator-belt"]',
@@ -130,33 +167,25 @@ describe('Matomo test', function() {
     );
   });
 
-  it('Can track did read belt events', function() {
-    // cy.visit('/');
-    //
-    // cy.scrollTo('bottom', {duration: 1000});
-
-    cy.request('/v1/test/delete/a-user');
-    cy.createUser('a-user');
+  it('Can track did read belt events', function () {
+    cy.createUser('someuser');
     // make interaction such that personal recommendations belt appears
-    cy.visit('/v%C3%A6rk/870970-basis:25775481');
-
+    cy.visit('/v%C3%A6rk/870970-basis:27206344');
     cy.get('[data-cy="add-to-list-btn"]').click();
     cy.get('[data-cy="add-to-list-btn"]')
       .contains('Har læst')
       .click();
     cy.visit('/');
-    cy.wait(1000);
-    cy.scrollTo('bottom', {duration: 1000});
 
     testBelt(
       '/',
       '[data-cy="did-read-belt"]',
       '[data-cy="workcard"]',
-      'belt:Fordi du har læst Doppler'
+      'belt:Fordi du har læst Skyggen'
     );
   });
 
-  it('Sets a custom variable to distinguish branches, when running in kiosk mode', function() {
+  it('Sets a custom variable to distinguish branches, when running in kiosk mode', function () {
     cy.setKioskMode();
     const {kiosk} = createMatomoMock('/');
 
@@ -166,7 +195,7 @@ describe('Matomo test', function() {
     });
   });
 
-  it('Can track list ', function() {
+  it('Can track list ', function () {
     cy.fixture('listaggregation/recentlists.json').as('recentLists');
     cy.server();
     cy.route('GET', '/v1/object/aggregation**', '@recentLists');
