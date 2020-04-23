@@ -46,7 +46,6 @@ class WorkPage extends React.Component {
     // ISBN number for <Head> component
     const isbn =
       book.identifierISBN || (book.identifierISBN && book.identifierISBN[0]);
-
     return (
       <React.Fragment>
         <div className="work-page">
@@ -101,11 +100,11 @@ class WorkPage extends React.Component {
         </div>
 
         <SeriesBelt
+          id="series"
           key={'workpage-series' + book.pid}
           mount={'workpage-series' + book.pid}
           pid={book.pid}
         />
-
         <SimilarBelt
           beltRef={e => (this.booksBeltPosition = e)}
           key={'workpage' + book.pid}
@@ -114,7 +113,6 @@ class WorkPage extends React.Component {
           a_tag_weight={a_tag_weight}
           c_tag_weight={c_tag_weight}
         />
-
         <ListsBelt
           pid={book.pid}
           mount={'aggregation-lists-' + book.pid}
