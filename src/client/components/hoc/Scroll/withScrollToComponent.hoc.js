@@ -10,19 +10,15 @@ const withScrollToComponent = WrappedComponent => {
       this.handleScroll();
     }
 
-    componentDidUpdate() {
-      this.handleScroll();
+    componentDidUpdate(prevProps) {
+      this.handleScroll(prevProps);
     }
 
-    shouldComponentUpdate(nextProps) {
-      return (
-        (nextProps.router !== this.props.router && nextProps.hashMatch) ||
-        nextProps.doScroll !== this.props.doScroll
-      );
-    }
-
-    handleScroll() {
-      if (this.props.doScroll) {
+    handleScroll(prevProps = {}) {
+      if (
+        (prevProps.router !== this.props.router && this.props.hashMatch) ||
+        this.props.doScroll
+      ) {
         scrollToComponent(this.componentRef, {
           align: 'middle',
           ease: 'inOutCube'
@@ -50,7 +46,7 @@ const withScrollToComponent = WrappedComponent => {
     return {
       router: state.routerReducer,
       hashMatch,
-      doScroll: hashMatch || !!state.scrollToComponent[ownProps.mount]
+      doScroll: !!state.scrollToComponent[ownProps.mount]
     };
   };
   const mapDispatchToProps = (dispatch, ownProps) => ({
