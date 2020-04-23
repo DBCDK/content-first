@@ -10,6 +10,10 @@
   background-color: var(--white);
 }
 
+.work-preview__series-link {
+  text-decoration: underline !important;
+}
+
 .work-preview.preview.light-grey,
 .work-preview__top.preview.light-grey {
   background-color: var(--lys-graa);

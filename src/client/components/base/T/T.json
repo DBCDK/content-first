@@ -404,8 +404,8 @@
         "en": "Litteratursiden"
       },
       "series": {
-        "da": "%s. del af serien %s",
-        "en": "%s. part of the series %s"
+        "da": "%s. del af serien",
+        "en": "%s. part of the series"
       }
     },
     "profile": {

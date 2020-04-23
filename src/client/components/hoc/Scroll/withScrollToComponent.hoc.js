@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
 import {SCROLL_TO_COMPONENT_COMPLETE} from '../../../redux/scrollToComponent';
+import {get} from 'lodash';
 
 const withScrollToComponent = WrappedComponent => {
   const Wrapped = class extends React.Component {
@@ -11,6 +12,13 @@ const withScrollToComponent = WrappedComponent => {
 
     componentDidUpdate() {
       this.handleScroll();
+    }
+
+    shouldComponentUpdate(nextProps) {
+      return (
+        (nextProps.router !== this.props.router && nextProps.hashMatch) ||
+        nextProps.doScroll !== this.props.doScroll
+      );
     }
 
     handleScroll() {
@@ -36,8 +44,13 @@ const withScrollToComponent = WrappedComponent => {
   };
 
   const mapStateToProps = (state, ownProps) => {
+    const hashMatch =
+      ownProps.id && get(state, 'routerReducer.hash', '') === `#${ownProps.id}`;
+
     return {
-      doScroll: !!state.scrollToComponent[ownProps.mount]
+      router: state.routerReducer,
+      hashMatch,
+      doScroll: hashMatch || !!state.scrollToComponent[ownProps.mount]
     };
   };
   const mapDispatchToProps = (dispatch, ownProps) => ({
