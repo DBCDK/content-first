@@ -28,15 +28,17 @@ if (window.Cypress && window.__stubbed_matomo__) {
    * Initializes Matomo
    */
 
-  initialize = history => {
+  initialize = (history, trackingApproved) => {
     if (server && siteId && typeof window !== 'undefined') {
       /* eslint-disable-next-line no-console */
-      console.log('Matomo enabled');
       matomoEnabled = true;
       const _paq = window._paq || [];
       currentUrl = decodeURIComponent(window.location.href);
       window._paq = _paq;
       /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      if (!trackingApproved) {
+        _paq.push(['disableCookies']);
+      }
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
       _paq.push(['setTrackerUrl', server + 'piwik.php']);

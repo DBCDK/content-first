@@ -2,10 +2,15 @@ const PID_REGEX = /^pid:\d+-\w+:\d+/;
 const PID_REGEX_2 = /^\d+-\w+:\d+/;
 
 const createMatomoMock = endpoint => {
+  let initialized = {};
   let tracked = {};
   let trackedData = {};
   let kiosk = {};
   cy.visitWithMatomoMocks(endpoint, {
+    initialize: (history, trackingApproved) => {
+      initialized.history = history;
+      initialized.trackingApproved = trackingApproved;
+    },
     trackEvent: (category, action, name) => {
       tracked.category = category;
       tracked.action = action;
@@ -19,7 +24,7 @@ const createMatomoMock = endpoint => {
       kiosk.branchKey = branchKey;
     }
   });
-  return {tracked, trackedData, kiosk};
+  return {initialized, tracked, trackedData, kiosk};
 };
 
 describe('Matomo test', function() {
@@ -49,7 +54,6 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
-        cy.wait(1000);
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltExpandWork');
         expect(tracked.name).to.match(PID_REGEX);
@@ -64,7 +68,6 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
-        cy.wait(1000);
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltMoreLikeThis');
         expect(tracked.name).to.match(PID_REGEX);
@@ -74,13 +77,45 @@ describe('Matomo test', function() {
       .first()
       .click()
       .then(() => {
-        cy.wait(1000);
         expect(tracked.category).to.equal(expectedName);
         expect(tracked.action).to.equal('beltSwipe');
         expect(tracked.name).to.equal('position');
       });
     return tracked;
   };
+
+  const checkApproval = (cookieVal, trackingAppVal) => {
+    const {initialized} = createMatomoMock('/');
+    cy.getCookie('did-accept-cookies')
+      .should('have.property', 'value', cookieVal)
+      .then(() => {
+        expect(initialized.trackingApproved).to.equal(trackingAppVal);
+      });
+  };
+
+  it('Can reject cookies ', function() {
+    mockInitialState();
+    cy.setCookie('did-accept-cookies', 'unknown');
+    checkApproval('unknown', false);
+    cy.get('[data-cy=cookie-reject-button]')
+      .first()
+      .click()
+      .then(() => {
+        checkApproval('rejected', false);
+      });
+  });
+
+  it('Can accept cookies', function() {
+    mockInitialState();
+    cy.setCookie('did-accept-cookies', 'unknown');
+    checkApproval('unknown', false);
+    cy.get('[data-cy=cookie-accept-button]')
+      .first()
+      .click()
+      .then(() => {
+        checkApproval('accepted', true);
+      });
+  });
 
   it('Can track tags belt events', function() {
     mockInitialState();
@@ -131,28 +166,20 @@ describe('Matomo test', function() {
   });
 
   it('Can track did read belt events', function() {
-    // cy.visit('/');
-    //
-    // cy.scrollTo('bottom', {duration: 1000});
-
-    cy.request('/v1/test/delete/a-user');
-    cy.createUser('a-user');
+    cy.createUser('someuser');
     // make interaction such that personal recommendations belt appears
-    cy.visit('/v%C3%A6rk/870970-basis:25775481');
-
+    cy.visit('/v%C3%A6rk/870970-basis:27206344');
     cy.get('[data-cy="add-to-list-btn"]').click();
     cy.get('[data-cy="add-to-list-btn"]')
       .contains('Har læst')
       .click();
     cy.visit('/');
-    cy.wait(1000);
-    cy.scrollTo('bottom', {duration: 1000});
 
     testBelt(
       '/',
       '[data-cy="did-read-belt"]',
       '[data-cy="workcard"]',
-      'belt:Fordi du har læst Doppler'
+      'belt:Fordi du har læst Skyggen'
     );
   });
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {Helmet} from 'react-helmet';
 import {get} from 'lodash';
+import Cookies from 'js-cookie';
 
 function buildOGMeta(obj) {
   return Object.keys(obj).map((k, i) => {
@@ -16,14 +17,14 @@ function buildOGMeta(obj) {
 
 /**
 
-  Example template
+ Example template
 
-  <Head
-    title='...'
-    description='...'
-    canonical='/subpage'
-    robots = 'all',
-    og={{
+ <Head
+ title='...'
+ description='...'
+ canonical='/subpage'
+ robots = 'all',
+ og={{
       'og:url': 'https://laesekompas.dk/værk/...',
       'og:type': 'book',
       image: {
@@ -38,8 +39,8 @@ function buildOGMeta(obj) {
         'book:tag:': '..., ..., ...'
       }
     }}
-  />
-*/
+ />
+ */
 
 const Head = ({
   title = 'Læsekompas',
@@ -63,6 +64,9 @@ const Head = ({
   // hotjar tracking code
   const hotjar_id = isKiosk ? 1636409 : 1361823;
 
+  // show hotjar only if user has accepted cookies
+  const trackingApproved = Cookies.get('did-accept-cookies') === 'accepted';
+
   return (
     <Helmet>
       <title>{title === 'Læsekompas' ? title : `${title} | Læsekompas`}</title>
@@ -74,9 +78,9 @@ const Head = ({
       {(og && buildOGMeta(og)) || null}
       {(og && og.image && buildOGMeta(og.image)) || null}
       {(og && og.book && buildOGMeta(og.book)) || null}
-
-      <script>
-        {`(function(h,o,t,j,a,r){
+      {trackingApproved && (
+        <script>
+          {`(function(h,o,t,j,a,r){
               h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
               h._hjSettings={hjid:${hotjar_id},hjsv:6};
               a=o.getElementsByTagName('head')[0];
@@ -84,7 +88,8 @@ const Head = ({
               r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
               a.appendChild(r);
           })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`}
-      </script>
+        </script>
+      )}
     </Helmet>
   );
 };
