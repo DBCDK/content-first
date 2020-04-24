@@ -430,6 +430,10 @@
       "litteratursiden": {
         "da": "Litteratursiden",
         "en": "Litteratursiden"
+      },
+      "series": {
+        "da": "%s. del af serien",
+        "en": "%s. part of the series"
       }
     },
     "profile": {
