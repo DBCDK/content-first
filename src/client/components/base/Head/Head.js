@@ -43,21 +43,21 @@ function buildOGMeta(obj) {
  */
 
 const Head = ({
-                title = 'Læsekompas',
-                canonical = '',
-                description = 'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.',
-                robots = 'all',
-                og = {
-                  'og:url': 'https://laesekompas.dk',
-                  'og:type': 'website',
-                  image: {
-                    'og:image': 'https://laesekompas.dk/img/open-graph/hero-01.jpg',
-                    'og:image:width': '1200',
-                    'og:image:height': '675'
-                  },
-                  book: {}
-                }
-              }) => {
+  title = 'Læsekompas',
+  canonical = '',
+  description = 'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.',
+  robots = 'all',
+  og = {
+    'og:url': 'https://laesekompas.dk',
+    'og:type': 'website',
+    image: {
+      'og:image': 'https://laesekompas.dk/img/open-graph/hero-01.jpg',
+      'og:image:width': '1200',
+      'og:image:height': '675'
+    },
+    book: {}
+  }
+}) => {
   // isKiosk
   const isKiosk = useSelector(state => get(state, 'kiosk.enabled', false));
 
@@ -78,9 +78,9 @@ const Head = ({
       {(og && buildOGMeta(og)) || null}
       {(og && og.image && buildOGMeta(og.image)) || null}
       {(og && og.book && buildOGMeta(og.book)) || null}
-      {trackingApproved &&
-      <script>
-        {`(function(h,o,t,j,a,r){
+      {trackingApproved && (
+        <script>
+          {`(function(h,o,t,j,a,r){
               h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
               h._hjSettings={hjid:${hotjar_id},hjsv:6};
               a=o.getElementsByTagName('head')[0];
@@ -88,8 +88,8 @@ const Head = ({
               r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
               a.appendChild(r);
           })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`}
-      </script>
-      }
+        </script>
+      )}
     </Helmet>
   );
 };
