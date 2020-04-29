@@ -65,7 +65,4 @@ export const mapDispatchToProps = dispatch => ({
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 
-export default connect(
-  makeMapStateToProps,
-  mapDispatchToProps
-)(CommentCounter);
+export default connect(makeMapStateToProps, mapDispatchToProps)(CommentCounter);

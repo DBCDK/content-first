@@ -82,7 +82,4 @@ const mapDispatchToProps = dispatch => ({
   loadKiosk: params => dispatch(loadKiosk(params))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Kiosk);
+export default connect(mapStateToProps, mapDispatchToProps)(Kiosk);

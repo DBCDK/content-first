@@ -334,8 +334,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   submit: ownProps.submit || (() => dispatch(storeList(ownProps.list._id)))
 });
 export default withWork(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ListElement)
+  connect(mapStateToProps, mapDispatchToProps)(ListElement)
 );

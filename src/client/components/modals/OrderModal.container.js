@@ -350,7 +350,4 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(OrderModal);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderModal);

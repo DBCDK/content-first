@@ -80,7 +80,7 @@ internal.use((err, req, res, next) => {
   let returnedError = {
     status: err.status,
     code: err.code || err.status.toString(),
-    title: err.title || (err.message || 'Unknown error')
+    title: err.title || err.message || 'Unknown error'
   };
   if (err.detail) {
     returnedError.detail = err.detail;

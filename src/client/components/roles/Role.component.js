@@ -35,7 +35,4 @@ const mapStateToProps = state => {
 
 export const mapDispatchToProps = () => ({});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Role);
+export default connect(mapStateToProps, mapDispatchToProps)(Role);
