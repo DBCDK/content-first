@@ -56,10 +56,7 @@ const withScrollToComponent = WrappedComponent => {
         id: ownProps.mount
       })
   });
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Wrapped);
+  return connect(mapStateToProps, mapDispatchToProps)(Wrapped);
 };
 
 export default withScrollToComponent;

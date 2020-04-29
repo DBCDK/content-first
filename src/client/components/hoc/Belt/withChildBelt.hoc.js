@@ -145,10 +145,7 @@ const withChildBelt = WrappedComponent => {
     }
   });
 
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Wrapped);
+  return connect(mapStateToProps, mapDispatchToProps)(Wrapped);
 };
 
 export default withChildBelt;

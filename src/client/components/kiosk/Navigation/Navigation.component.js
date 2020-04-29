@@ -139,7 +139,4 @@ export const mapDispatchToProps = () => {
   return {};
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navigation);
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

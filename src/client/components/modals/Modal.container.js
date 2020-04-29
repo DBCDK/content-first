@@ -129,7 +129,4 @@ const mapDispatchToProps = dispatch => ({
   close: modal => () => dispatch({type: CLOSE_MODAL, modal})
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Modal);
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

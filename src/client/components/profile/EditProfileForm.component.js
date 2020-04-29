@@ -47,7 +47,7 @@ export default class EditProfileForm extends React.Component {
       <form onSubmit={this.onSubmit}>
         <div
           className={`input-group mb2 ${(name.length > 3 && 'valid-feedback') ||
-            ((name.length === 0 && ' ') || 'invalid-feedback')} has-feedback`}
+            (name.length === 0 && ' ') || 'invalid-feedback'} has-feedback`}
         >
           <div className="profile__edit-username-zone">
             <div className="profile__edit-inputNameTitle">
@@ -57,7 +57,7 @@ export default class EditProfileForm extends React.Component {
               <input
                 className={`profile__mobileinputfield ${(name.length > 3 &&
                   'is-valid') ||
-                  ((name.length === 0 && ' ') || 'is-invalid')} has-feedback`}
+                  (name.length === 0 && ' ') || 'is-invalid'} has-feedback`}
                 type="text"
                 name="name"
                 placeholder={T({

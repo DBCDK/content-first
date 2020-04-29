@@ -4,10 +4,12 @@ export default class BeltsRequester {
   }
 
   async fetchOwnedBelts(owner) {
-    const belts = (await this.storageClient.find({
-      type: 'belt',
-      owner
-    })).data;
+    const belts = (
+      await this.storageClient.find({
+        type: 'belt',
+        owner
+      })
+    ).data;
 
     return belts;
   }

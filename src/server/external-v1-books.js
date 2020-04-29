@@ -191,7 +191,10 @@ const fetchWorks = async pids => {
     work =>
       !work.book.title.startsWith('Error: unknown/missing/inaccessible record')
   );
-  const failed = _.difference(pids, works.map(b => b.book.pid));
+  const failed = _.difference(
+    pids,
+    works.map(b => b.book.pid)
+  );
 
   return {data: works, failed};
 };

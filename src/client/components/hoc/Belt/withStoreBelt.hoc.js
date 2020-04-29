@@ -33,10 +33,7 @@ const withBeltStore = WrappedComponent => {
     removeBelt: () =>
       dispatch(removeBelt({_id: ownProps._id, key: ownProps.id}))
   });
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Wrapped);
+  return connect(mapStateToProps, mapDispatchToProps)(Wrapped);
 };
 
 export default withBeltStore;
