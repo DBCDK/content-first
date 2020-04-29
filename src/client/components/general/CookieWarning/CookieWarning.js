@@ -24,7 +24,9 @@ class CookieWarning extends React.Component {
   componentDidMount() {
     if (!Cookies.get('did-accept-cookies')) {
       Cookies.set('did-accept-cookies', 'unknown');
+      this.setState({displayWarning: true});
     }
+
     this.setState({isClient: true});
   }
 
@@ -110,7 +112,4 @@ export const mapDispatchToProps = dispatch => ({
   goToPrivacyPage: () =>
     dispatch({type: HISTORY_REPLACE, path: '/privatlivspolitik'})
 });
-export default connect(
-  null,
-  mapDispatchToProps
-)(CookieWarning);
+export default connect(null, mapDispatchToProps)(CookieWarning);
