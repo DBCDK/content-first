@@ -368,6 +368,67 @@ exports[`renders without crashing 1`] = `
   </div>
   <span />
   <div
+    className=" cookie-warning-container row "
+  >
+    <div
+      className="cookie-warning-content-container"
+    >
+      <div
+        className="cookie-warning-text-container"
+      >
+        <h5
+          className=" Title Title__title5 "
+        >
+          Vi bruger cookies til at indsamle statistik over brugen af hjemmesiden
+        </h5>
+        <p
+          className="cookie-warning-body Text Text__body "
+        >
+           Hvis du klikker på knappen ‘Accepter’, godkender du, at vi sætter cookies til brug af statistik.
+          <br />
+          Klikker på knappen ‘Afvis’, så sætter vi ikke cookies til statistik.
+          <br />
+          Vi benytter dog en cookie for at huske dit valg.
+        </p>
+      </div>
+      <div
+        className="cookie-warning-button-link-container"
+      >
+        <span
+          onClick={[Function]}
+        >
+          Læs mere om vores brug af cookies.
+        </span>
+        <div
+          className="cookie-warning-button-container"
+        >
+          <button
+            className="
+      button button__medium button__primary button__primary--bgcolor-petroleum--color-white  "
+            data-cy="cookie-reject-button"
+            disabled={false}
+            onClick={[Function]}
+          >
+            <span>
+              AFVIS
+            </span>
+          </button>
+          <button
+            className="
+      button button__medium button__primary button__primary--bgcolor-petroleum--color-white  "
+            data-cy="cookie-accept-button"
+            disabled={false}
+            onClick={[Function]}
+          >
+            <span>
+              ACCEPTER
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
     className="Toastify"
   />
   <div
