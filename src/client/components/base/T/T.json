@@ -155,11 +155,11 @@
         "en": "We use cookies to collect usage statistics on this webpage"
       },
       "cookieText1": {
-        "da": " Hvis du klikker på knappen ‘Accepter’, godkender du, at vi sætter cookies til brug af statistik.",
+        "da": "Hvis du klikker på knappen ‘Accepter’, godkender du, at vi sætter cookies til brug for statistik.",
         "en": "If you click on the Accept button, you are allowing us to use cookies with respect to statistics."
       },
       "cookieText2": {
-        "da": "Klikker på knappen ‘Afvis’, så sætter vi ikke cookies til statistik.",
+        "da": "Hvis du klikker på knappen ‘Afvis’, sætter vi ikke cookies til statistik.",
         "en": "Click on the reject button, and we won't set cookies for statistic collection"
       },
       "cookieText3": {
@@ -252,7 +252,7 @@
         "da": "2750 Ballerup",
         "en": "2750 Ballerup"
       },
-      "feedback":{ 
+      "feedback":{
         "da": "Fejl, ris, ros og gode ideer",
         "en": ""
       },
