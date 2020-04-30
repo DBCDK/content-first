@@ -384,9 +384,9 @@ exports[`renders without crashing 1`] = `
         <p
           className="cookie-warning-body Text Text__body "
         >
-           Hvis du klikker på knappen ‘Accepter’, godkender du, at vi sætter cookies til brug af statistik.
+          Hvis du klikker på knappen ‘Accepter’, godkender du, at vi sætter cookies til brug for statistik.
           <br />
-          Klikker på knappen ‘Afvis’, så sætter vi ikke cookies til statistik.
+          Hvis du klikker på knappen ‘Afvis’, sætter vi ikke cookies til statistik.
           <br />
           Vi benytter dog en cookie for at huske dit valg.
         </p>
