@@ -48,7 +48,4 @@ const mapDispatchToProps = dispatch => ({
   stopAnimation: name => dispatch(stopAnimate(name))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Animation);
+export default connect(mapStateToProps, mapDispatchToProps)(Animation);

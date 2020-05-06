@@ -91,13 +91,13 @@ const fetchInitial = async (pid, debugObj) => {
   if (res && !debugObj) {
     return res;
   }
-  const response = (await request
-    .post(config.login.openplatformUrl + '/work')
-    .send({
+  const response = (
+    await request.post(config.login.openplatformUrl + '/work').send({
       pids: [pid],
       fields: ['titleSeries', 'collectionDetails', 'type'],
       access_token: (await fetchAnonymousToken()).access_token
-    })).body.data[0];
+    })
+  ).body.data[0];
   if (debugObj) {
     debugObj.workResponse = response;
   }
@@ -120,9 +120,8 @@ const fetchSeriesData = async (titleSeries, debugObj) => {
   if (res && !debugObj) {
     return res;
   }
-  let response = (await request
-    .post(config.login.openplatformUrl + '/search')
-    .send({
+  let response = (
+    await request.post(config.login.openplatformUrl + '/search').send({
       fields: [
         'pid',
         'title',
@@ -137,7 +136,8 @@ const fetchSeriesData = async (titleSeries, debugObj) => {
       limit: 50,
       sort: 'solr_numberInSeries_ascending',
       access_token: (await fetchAnonymousToken()).access_token
-    })).body.data;
+    })
+  ).body.data;
   if (debugObj) {
     debugObj.seriesResponse = response;
   }

@@ -110,7 +110,4 @@ export const mapDispatchToProps = dispatch => ({
   goToPrivacyPage: () =>
     dispatch({type: HISTORY_REPLACE, path: '/privatlivspolitik'})
 });
-export default connect(
-  null,
-  mapDispatchToProps
-)(CookieWarning);
+export default connect(null, mapDispatchToProps)(CookieWarning);

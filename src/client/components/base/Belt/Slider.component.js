@@ -226,7 +226,4 @@ const mapStateToProps = state => ({
   isKiosk: state.kiosk.enabled
 });
 
-export default connect(
-  mapStateToProps,
-  {}
-)(Slider);
+export default connect(mapStateToProps, {})(Slider);

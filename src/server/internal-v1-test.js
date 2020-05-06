@@ -210,22 +210,26 @@ router.route('/cprlogin/:id/:over13').get(
 
 async function fetchAllRoles() {
   return Promise.all(
-    (await request.post(config.storage.url).send({
-      access_token: admin.token,
-      find: {
-        _type: rootType,
-        _owner: admin.id,
-        name: 'role'
-      }
-    })).body.data.map(
+    (
+      await request.post(config.storage.url).send({
+        access_token: admin.token,
+        find: {
+          _type: rootType,
+          _owner: admin.id,
+          name: 'role'
+        }
+      })
+    ).body.data.map(
       async _id =>
-        (await request.post(config.storage.url).send({
-          access_token: admin.token,
-          get: {
-            _type: rootType,
-            _id
-          }
-        })).body.data
+        (
+          await request.post(config.storage.url).send({
+            access_token: admin.token,
+            get: {
+              _type: rootType,
+              _id
+            }
+          })
+        ).body.data
     )
   );
 }
@@ -253,11 +257,13 @@ async function createUser(req, doCreateUser, isEditor, premium = false) {
     .put(`http://${config.test.minismaug.host}:3333/configuration?token=${id}`)
     .send({user: {uniqueId: id}, storage: null});
   if (
-    (await objectStore.find({
-      type: 'USER_PROFILE',
-      owner: id,
-      limit: 1
-    })).data.length === 0
+    (
+      await objectStore.find({
+        type: 'USER_PROFILE',
+        owner: id,
+        limit: 1
+      })
+    ).data.length === 0
   ) {
     if (isEditor) {
       const editorRole = (await fetchAllRoles()).filter(
@@ -344,56 +350,60 @@ router.route('/initStorage').get(
       )
     );
 
-    const roleId = (await request.post(config.storage.url).send({
-      access_token: admin.token,
-      put: {
-        _type: rootType,
-        type: 'role',
-        name: 'role',
-        machineName: 'contentFirstEditor',
-        displayName: 'Læsekompasredaktør',
-        description: 'Redaktør for læsekompas',
-        public: true
-      }
-    })).body.data._id;
+    const roleId = (
+      await request.post(config.storage.url).send({
+        access_token: admin.token,
+        put: {
+          _type: rootType,
+          type: 'role',
+          name: 'role',
+          machineName: 'contentFirstEditor',
+          displayName: 'Læsekompasredaktør',
+          description: 'Redaktør for læsekompas',
+          public: true
+        }
+      })
+    ).body.data._id;
 
-    typeId = (await request.post(config.storage.url).send({
-      access_token: admin.token,
-      put: {
-        _type: rootType,
-        name: 'content-first-objects',
-        description: 'Type used during integration test',
-        type: 'json',
-        permissions: {read: 'if object.public'},
-        indexes: [
-          {value: '_id', keys: ['cf_type', 'cf_key', '_created']},
-          {value: '_id', keys: ['cf_type', '_created']},
-          {
-            value: '_id',
-            keys: ['_owner', 'cf_type', 'cf_key', '_created'],
-            private: true
-          },
-          {
-            value: '_id',
-            keys: ['_owner', 'cf_type', 'cf_key', '_created']
-          },
-          {
-            value: '_id',
-            keys: ['_owner', 'cf_type', '_created'],
-            private: true
-          },
-          {
-            value: '_id',
-            keys: ['_owner', 'cf_type', '_created']
-          },
-          {
-            value: '_id',
-            keys: ['cf_type', 'cf_key', '_created'],
-            admin: true
-          }
-        ]
-      }
-    })).body.data._id;
+    typeId = (
+      await request.post(config.storage.url).send({
+        access_token: admin.token,
+        put: {
+          _type: rootType,
+          name: 'content-first-objects',
+          description: 'Type used during integration test',
+          type: 'json',
+          permissions: {read: 'if object.public'},
+          indexes: [
+            {value: '_id', keys: ['cf_type', 'cf_key', '_created']},
+            {value: '_id', keys: ['cf_type', '_created']},
+            {
+              value: '_id',
+              keys: ['_owner', 'cf_type', 'cf_key', '_created'],
+              private: true
+            },
+            {
+              value: '_id',
+              keys: ['_owner', 'cf_type', 'cf_key', '_created']
+            },
+            {
+              value: '_id',
+              keys: ['_owner', 'cf_type', '_created'],
+              private: true
+            },
+            {
+              value: '_id',
+              keys: ['_owner', 'cf_type', '_created']
+            },
+            {
+              value: '_id',
+              keys: ['cf_type', 'cf_key', '_created'],
+              admin: true
+            }
+          ]
+        }
+      })
+    ).body.data._id;
     await objectStore.setupObjectStore({
       typeId,
       url: config.storage.url

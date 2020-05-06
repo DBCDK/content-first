@@ -40,10 +40,7 @@ const withUser = WrappedComponent => {
     };
   };
 
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Wrapper);
+  return connect(mapStateToProps, mapDispatchToProps)(Wrapper);
 };
 
 export default withUser;

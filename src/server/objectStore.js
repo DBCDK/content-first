@@ -54,9 +54,9 @@ async function initDevStore() {
         storageUrl: config.storage.url
       });
     } catch (readError) {
-      cfTypeId = (await request.get(
-        'http://localhost:3000/v1/test/initStorage'
-      )).text;
+      cfTypeId = (
+        await request.get('http://localhost:3000/v1/test/initStorage')
+      ).text;
       fs.writeFileSync(file, cfTypeId);
       logger.log.info('Initializing dev storage: Creating new cf-type', {
         cfTypeId
@@ -99,9 +99,9 @@ async function validateObjectStore() {
   }
   try {
     const access_token = (await fetchAnonymousToken()).access_token;
-    const data = (await request
-      .post(storageUrl)
-      .send({access_token, get: {_id: typeId}})).body.data;
+    const data = (
+      await request.post(storageUrl).send({access_token, get: {_id: typeId}})
+    ).body.data;
     logger.log.info('Object storage validated', {
       typeId,
       data
@@ -248,9 +248,9 @@ async function find(query, user = {}, role) {
   }
   requestObject.scan.index.push('_created');
   try {
-    const objects = (await request
-      .post(storageUrl)
-      .send(requestObject)).body.data.map(res =>
+    const objects = (
+      await request.post(storageUrl).send(requestObject)
+    ).body.data.map(res =>
       _.omit(fromStorageObject(res), ['_version', '_client'])
     );
     return {data: objects};
@@ -266,17 +266,20 @@ async function find(query, user = {}, role) {
 async function deleteUser({openplatformToken, openplatformId, role}) {
   try {
     // all object ids owned by user
-    const ids = (await request.post(storageUrl).send({
-      access_token: openplatformToken,
-      find: {_type: '*', _owner: openplatformId}
-    })).body.data;
+    const ids = (
+      await request.post(storageUrl).send({
+        access_token: openplatformToken,
+        find: {_type: '*', _owner: openplatformId}
+      })
+    ).body.data;
 
     // Delete only those that are content-first objects
     for (let i = 0; i < ids.length; i++) {
-      const data = (await request
-        .post(storageUrl)
-        .send({access_token: openplatformToken, get: {_id: ids[i]}, role})).body
-        .data;
+      const data = (
+        await request
+          .post(storageUrl)
+          .send({access_token: openplatformToken, get: {_id: ids[i]}, role})
+      ).body.data;
       if (data._type === typeId) {
         await request.post(storageUrl).send({
           access_token: openplatformToken,
@@ -371,9 +374,9 @@ async function getRoles(user) {
   };
 
   try {
-    const res = (await request
-      .post(storageUrl)
-      .send(requestObject)).body.data.map(role => fromStorageObject(role));
+    const res = (
+      await request.post(storageUrl).send(requestObject)
+    ).body.data.map(role => fromStorageObject(role));
     return {
       data: res
     };
@@ -395,9 +398,9 @@ async function getAllRoles() {
   };
 
   try {
-    const res = (await request
-      .post(storageUrl)
-      .send(requestObject)).body.data.map(role => fromStorageObject(role));
+    const res = (
+      await request.post(storageUrl).send(requestObject)
+    ).body.data.map(role => fromStorageObject(role));
     return {
       data: res
     };

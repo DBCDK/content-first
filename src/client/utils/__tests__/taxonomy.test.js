@@ -8,7 +8,10 @@ const taxonomy = {
       {id: 3, title: 'leaf3', score: 0}
     ]
   },
-  b: [{id: 4, title: 'leaf4', score: 0}, {id: 5, title: 'leaf5', score: 0}],
+  b: [
+    {id: 4, title: 'leaf4', score: 0},
+    {id: 5, title: 'leaf5', score: 0}
+  ],
   c: {
     cc: {
       ccc: [
