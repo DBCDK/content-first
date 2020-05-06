@@ -379,26 +379,26 @@ exports[`renders without crashing 1`] = `
         <h5
           className=" Title Title__title5 "
         >
-          Vi bruger cookies til at indsamle statistik over brugen af hjemmesiden
+          Cookies på Læsekompas
         </h5>
         <p
           className="cookie-warning-body Text Text__body "
         >
-          Hvis du klikker på knappen ‘Accepter’, godkender du, at vi sætter cookies til brug for statistik.
-          <br />
-          Hvis du klikker på knappen ‘Afvis’, sætter vi ikke cookies til statistik.
-          <br />
-          Vi benytter dog en cookie for at huske dit valg.
+          Vi bruger cookies til at indsamle statistik om brugen af siden og til visse nødvendige funktioner, så du fx kan bruge huskelisten. Vælg her om du vil acceptere cookies til statistik.
         </p>
       </div>
       <div
         className="cookie-warning-button-link-container"
       >
-        <span
-          onClick={[Function]}
+        <div
+          className="cookie-warning-link-container"
         >
-          Læs mere om vores brug af cookies.
-        </span>
+          <span
+            onClick={[Function]}
+          >
+            Læs mere i vores privatlivspolitik.
+          </span>
+        </div>
         <div
           className="cookie-warning-button-container"
         >
@@ -410,7 +410,7 @@ exports[`renders without crashing 1`] = `
             onClick={[Function]}
           >
             <span>
-              AFVIS
+              Kun nødvendige
             </span>
           </button>
           <button
@@ -421,7 +421,7 @@ exports[`renders without crashing 1`] = `
             onClick={[Function]}
           >
             <span>
-              ACCEPTER
+              Acceptér cookies
             </span>
           </button>
         </div>
