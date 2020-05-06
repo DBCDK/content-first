@@ -151,32 +151,25 @@
         "en": "Home"
       },
       "cookieTitleText": {
-        "da": "Vi bruger cookies til at indsamle statistik over brugen af hjemmesiden",
-        "en": "We use cookies to collect usage statistics on this webpage"
+        "da": "Cookies på Læsekompas",
+        "en": "Cookies on Læsekompas"
       },
       "cookieText1": {
-        "da": "Hvis du klikker på knappen ‘Accepter’, godkender du, at vi sætter cookies til brug for statistik.",
-        "en": "If you click on the Accept button, you are allowing us to use cookies with respect to statistics."
+        "da": "Vi bruger cookies til at indsamle statistik om brugen af siden og til visse nødvendige funktioner, så du fx kan bruge huskelisten. Vælg her om du vil acceptere cookies til statistik.",
+        "en": "We use cookies to collect data..."
       },
-      "cookieText2": {
-        "da": "Hvis du klikker på knappen ‘Afvis’, sætter vi ikke cookies til statistik.",
-        "en": "Click on the reject button, and we won't set cookies for statistic collection"
-      },
-      "cookieText3": {
-        "da": "Vi benytter dog en cookie for at huske dit valg.",
-        "en": "We will be using a cookie to remember your choice."
-      },
+
       "cookieLink": {
-        "da": "Læs mere om vores brug af cookies.",
-        "en": "Read more about our use of cookies"
+        "da": "Læs mere i vores privatlivspolitik.",
+        "en": "Read more in our private life politics"
       },
       "cookieAcceptBtn": {
-        "da": "ACCEPTER",
-        "en": "ACCEPT"
+        "da": "Acceptér cookies",
+        "en": "Accept cookies"
       },
       "cookieRejectBtn": {
-        "da": "AFVIS",
-        "en": "REJECT"
+        "da": "Kun nødvendige",
+        "en": "Only necessary"
       }
     },
     "login": {

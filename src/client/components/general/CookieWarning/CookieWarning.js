@@ -65,22 +65,20 @@ class CookieWarning extends React.Component {
               </Title>
               <Text type="body" className="cookie-warning-body">
                 <T component="general" name="cookieText1" />
-                <br />
-                <T component="general" name="cookieText2" />
-                <br />
-                <T component="general" name="cookieText3" />
               </Text>
             </div>
 
             <div className="cookie-warning-button-link-container">
-              <span
-                onClick={e => {
-                  e.preventDefault();
-                  this.props.goToPrivacyPage();
-                }}
-              >
-                Læs mere om vores brug af cookies.
-              </span>
+              <div className="cookie-warning-link-container">
+                <span
+                  onClick={e => {
+                    e.preventDefault();
+                    this.props.goToPrivacyPage();
+                  }}
+                >
+                  <T component="general" name="cookieLink" />
+                </span>
+              </div>
               <div className="cookie-warning-button-container">
                 <Button
                   variant="bgcolor-petroleum--color-white"
@@ -112,4 +110,7 @@ export const mapDispatchToProps = dispatch => ({
   goToPrivacyPage: () =>
     dispatch({type: HISTORY_REPLACE, path: '/privatlivspolitik'})
 });
-export default connect(null, mapDispatchToProps)(CookieWarning);
+export default connect(
+  null,
+  mapDispatchToProps
+)(CookieWarning);
