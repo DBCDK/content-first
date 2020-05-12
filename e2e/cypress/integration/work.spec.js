@@ -149,7 +149,7 @@ describe('Work Page', function() {
         '1. del - Vejen til Swann (bind 2 af 2)'
       );
     });
-    it.only(`Should not show Mangaprint for series`, function() {
+    it(`Should not show Mangaprint for series`, function() {
       // pid is part of a series containing mangaprint
       cy.visit('/v%C3%A6rk/870970-basis:53628125');
 
@@ -170,6 +170,21 @@ describe('Work Page', function() {
         .eq(2)
         .contains('3. del - Den tredje søster')
         .should('not.contain', 'bind');
+    });
+    it(`Should add part of series to shortlist`, function() {
+      // pid is part of a series containing mangaprint
+      cy.visit('/v%C3%A6rk/870970-basis:53628125');
+
+      // Add book from seriesBelt to shortlist
+      cy.get('[data-cy=seriesBelt] [data-cy=workcard]')
+        .eq(0)
+        .find('[data-cy=bookmarkBtn]')
+        .click();
+
+      cy.get('[data-cy=topbar-shortlist]').click();
+      cy.get('.top-bar-dropdown-list-element').contains(
+        '1. del af serien Trilogien om Ilka'
+      );
     });
     it(`Series where some parts are multivolumes`, function() {
       // pid is an ebook
