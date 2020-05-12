@@ -278,7 +278,13 @@ describe('Endpoint /v1/tags', () => {
         return hidden
           .put(location)
           .type('application/json')
-          .send({pid, selected: [{id: '1', score: 1}, {id: '2', score: 1}]})
+          .send({
+            pid,
+            selected: [
+              {id: '1', score: 1},
+              {id: '2', score: 1}
+            ]
+          })
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/tags-links-out.json');
@@ -286,7 +292,10 @@ describe('Endpoint /v1/tags', () => {
               expectValidate(data, 'schemas/tags-data-out.json');
               expect(data).to.deep.equal({
                 pid,
-                tags: [{id: 1, score: 1}, {id: 2, score: 1}]
+                tags: [
+                  {id: 1, score: 1},
+                  {id: 2, score: 1}
+                ]
               });
             });
           })
@@ -367,7 +376,13 @@ describe('Endpoint /v1/tags', () => {
         return hidden
           .post('/v1/tags')
           .type('application/json')
-          .send({pid, selected: [{id: 1, score: 1}, {id: '2', score: 1}]})
+          .send({
+            pid,
+            selected: [
+              {id: 1, score: 1},
+              {id: '2', score: 1}
+            ]
+          })
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/tags-links-out.json');

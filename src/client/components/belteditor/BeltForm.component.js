@@ -374,7 +374,6 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  () => {},
-  mapDispatchToProps
-)(withObjects(withHistory(withTagsFromUrl(BeltForm))));
+export default connect(() => {}, mapDispatchToProps)(
+  withObjects(withHistory(withTagsFromUrl(BeltForm)))
+);

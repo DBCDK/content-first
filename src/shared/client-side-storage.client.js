@@ -5,10 +5,12 @@ export default class StorageClient {
     return (await request.get(`/v1/object/${params.id}`).query({role})).body;
   }
   async put(object, role) {
-    return (await request
-      .post('/v1/object/')
-      .query({role})
-      .send(object)).body;
+    return (
+      await request
+        .post('/v1/object/')
+        .query({role})
+        .send(object)
+    ).body;
   }
   async find(query, role) {
     return (await request.get('/v1/object/find').query({...query, role})).body;

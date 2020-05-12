@@ -27,11 +27,13 @@ async function openplatformLogin(state) {
 
 async function getCollectionPids(pid) {
   const access_token = await fetchAnonymousToken();
-  const collections = (await openplatform.work({
-    pids: [pid],
-    access_token,
-    fields: ['collectionDetails']
-  }))[0].collectionDetails;
+  const collections = (
+    await openplatform.work({
+      pids: [pid],
+      access_token,
+      fields: ['collectionDetails']
+    })
+  )[0].collectionDetails;
 
   let pidType = 'Bog';
   collections.forEach(o => {

@@ -9,10 +9,12 @@ const fetchAnonymousTokenForClient = async (clientId, clientSecret) => {
   const key = `anonymous_token${clientId}${clientSecret}`;
   let anonymous_token = cache.get(key);
   if (!anonymous_token) {
-    anonymous_token = (await request
-      .post(config.auth.url + '/oauth/token')
-      .auth(clientId, clientSecret)
-      .send('grant_type=password&username=@&password=@')).body;
+    anonymous_token = (
+      await request
+        .post(config.auth.url + '/oauth/token')
+        .auth(clientId, clientSecret)
+        .send('grant_type=password&username=@&password=@')
+    ).body;
     cache.set(key, anonymous_token);
   }
   return anonymous_token;
@@ -27,9 +29,11 @@ const fetchAnonymousToken = async () => {
 };
 
 const fetchConfiguration = async token => {
-  const configuration = (await request
-    .get(config.auth.configurationUrl + '/configuration')
-    .query({token})).body;
+  const configuration = (
+    await request
+      .get(config.auth.configurationUrl + '/configuration')
+      .query({token})
+  ).body;
   return configuration;
 };
 

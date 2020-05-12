@@ -136,8 +136,5 @@ export const mapDispatchToProps = dispatch => ({
   }
 });
 export default withList(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(AddToList)
+  connect(mapStateToProps, mapDispatchToProps)(AddToList)
 );

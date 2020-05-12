@@ -62,16 +62,13 @@ router
               return {};
             }
 
-            const types = (await request
-              .post(config.login.openplatformUrl + '/work')
-              .send({
+            const types = (
+              await request.post(config.login.openplatformUrl + '/work').send({
                 pids: pidsWithHolding,
                 fields: ['type'],
                 access_token: (await fetchAnonymousToken()).access_token
-              })).body.data.map(
-              entry => entry && entry.type && entry.type[0],
-              ''
-            );
+              })
+            ).body.data.map(entry => entry && entry.type && entry.type[0], '');
 
             let combined = {};
             pidsWithHolding.forEach((pid, idx) => {

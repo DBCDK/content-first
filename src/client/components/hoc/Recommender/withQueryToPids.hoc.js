@@ -52,22 +52,26 @@ const withQueryToPids = WrappedComponent => {
           this.fetchedBranch = this.props.branch;
           this.fetchedAgencyId = this.props.agencyId;
           this.setState({isFetching: true, pids: []});
-          const resultAll = (await request.get('/v1/searcher').query({
-            query: `"${this.props.query}"`,
-            rows: 200,
-            field: 'author',
-            exact: true,
-            merge_workid: true
-          })).body.map(entry => entry.pid);
+          const resultAll = (
+            await request.get('/v1/searcher').query({
+              query: `"${this.props.query}"`,
+              rows: 200,
+              field: 'author',
+              exact: true,
+              merge_workid: true
+            })
+          ).body.map(entry => entry.pid);
 
           if (this.fetchedBranch && this.fetchedAgencyId) {
             // Fetch books available at specific branch
             // and make sure they occur first in the list
-            const holdings = (await request.get('/v1/holdings').query({
-              pid: resultAll,
-              branch: this.fetchedBranch,
-              agencyId: this.fetchedAgencyId
-            })).body;
+            const holdings = (
+              await request.get('/v1/holdings').query({
+                pid: resultAll,
+                branch: this.fetchedBranch,
+                agencyId: this.fetchedAgencyId
+              })
+            ).body;
 
             const resultInBranch = resultAll.filter(
               pid =>
