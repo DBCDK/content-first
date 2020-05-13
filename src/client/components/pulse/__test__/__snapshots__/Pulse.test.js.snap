@@ -7,10 +7,8 @@ exports[`Pulse renders initial component 1`] = `
   onMouseDown={[Function]}
   onMouseUp={[Function]}
   onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "touchAction": "none",
       "transform": "translate(26px,46px)",
     }
   }
