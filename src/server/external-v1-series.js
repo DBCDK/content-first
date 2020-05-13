@@ -73,7 +73,7 @@ const getPartFromType = typeArr => {
   }
   for (let i = 0; i < typeArr.length; i++) {
     const bindIdMatch = bindIdRegex.exec(typeArr[i]);
-    if (bindIdMatch && bindIdMatch[1]) {
+    if (!typeArr[i].includes('stor skrift') && bindIdMatch && bindIdMatch[1]) {
       return parseInt(bindIdMatch[1], 10);
     }
   }

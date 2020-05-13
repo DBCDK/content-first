@@ -187,6 +187,9 @@ const fetchWork = async pid => {
 };
 
 const fetchWorks = async pids => {
+  pids = pids.filter(
+    pid => pid !== null && pid !== 'null'
+  );
   const works = (await Promise.all(pids.map(pid => fetchWork(pid)))).filter(
     work =>
       !work.book.title.startsWith('Error: unknown/missing/inaccessible record')
