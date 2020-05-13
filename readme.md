@@ -5,7 +5,7 @@ The system currently runs on [`http://laesekompas.dk`](http://content-first.demo
 For development of the system, see [`src`](src/readme.md).
 
 ## Development
-    $ docker-compose -f docker-compose-dev.yml run contentfirst
+    $ docker-compose -f docker-compose-dev.yml up
 
 ### Users for development and Cypress testing
 Create normal user
