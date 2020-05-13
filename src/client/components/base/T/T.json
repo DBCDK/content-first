@@ -158,7 +158,6 @@
         "da": "Vi bruger cookies til at indsamle statistik om brugen af siden og til visse nødvendige funktioner, så du fx kan bruge huskelisten. Vælg her om du vil acceptere cookies til statistik.",
         "en": "We use cookies to collect data..."
       },
-
       "cookieLink": {
         "da": "Læs mere i vores privatlivspolitik.",
         "en": "Read more in our private life politics"
@@ -206,8 +205,7 @@
         "en": "You have to log in"
       }
     },
-    "topbar": {
-    },
+    "topbar": {},
     "footer": {
       "sectionOne": {
         "da": "Læsekompasset hjælper dig med at opdage bøger, der passer dig, og inspirerer dig til nye læseoplevelser.",
@@ -245,11 +243,11 @@
         "da": "2750 Ballerup",
         "en": "2750 Ballerup"
       },
-      "feedback":{
+      "feedback": {
         "da": "Fejl, ris, ros og gode ideer",
         "en": ""
       },
-      "about":{
+      "about": {
         "da": "Om Læsekompasset",
         "en": "About"
       },
@@ -261,10 +259,9 @@
         "da": "Privatlivspolitik",
         "en": "Privacy politics"
       },
-      "facebook":{
+      "facebook": {
         "da": "Facebook",
         "en": "Facebook"
-
       }
     },
     "work": {
@@ -647,6 +644,10 @@
       "originLink": {
         "da": "Fundet via denne søgning",
         "en": "Found via this search"
+      },
+      "seriesLabel": {
+        "da": "%s. del af serien %s",
+        "en": "part %s of %s"
       }
     },
     "bookcase": {
@@ -1110,11 +1111,11 @@
         "da": "Du skal logge ind for at bestille bøger.",
         "en": "You need to be signed in to order books"
       },
-      "orderButtonModalText":{
+      "orderButtonModalText": {
         "da": "På bibliotek.dk kan du søge efter den ønskede bog og bestille den hjem til dit bibliotek.",
         "en": "Find and order this book on bibliotek.dk"
       },
-      "findOnBibliotekDK":{
+      "findOnBibliotekDK": {
         "da": "FIND BOGEN PÅ BIBLIOTEK.DK",
         "en": "FIND BOOK ON BIBLIOTEK.DK"
       }
@@ -1290,27 +1291,48 @@
       }
     },
     "kioskSetup": {
-      "title": {"da": "Kiosk Opsætning", "en": "Kiosk Settings"},
-      "labelBranchKey": {"da": "Filial-nøgle", "en": "Branch Key"},
+      "title": {
+        "da": "Kiosk Opsætning",
+        "en": "Kiosk Settings"
+      },
+      "labelBranchKey": {
+        "da": "Filial-nøgle",
+        "en": "Branch Key"
+      },
       "placeholderBranchKey": {
         "da": "Filial-nøgle",
         "en": "Branch Key"
       },
-      "submit": {"da": "Gem", "en": "Save"},
-      "startKiosk": {"da": "Start", "en": "Start"},
+      "submit": {
+        "da": "Gem",
+        "en": "Save"
+      },
+      "startKiosk": {
+        "da": "Start",
+        "en": "Start"
+      },
       "readyHeader": {
         "da": "Kiosken er klar til brug",
         "en": "The kiosk is ready"
       }
     },
     "kioskHero": {
-      "title": {"da": "Find din næste roman", "en": "Find your next book"},
-      "subtitle": {"da": "Se bøger, der minder om", "en": "See similar books"},
+      "title": {
+        "da": "Find din næste roman",
+        "en": "Find your next book"
+      },
+      "subtitle": {
+        "da": "Se bøger, der minder om",
+        "en": "See similar books"
+      },
       "placeholder": {
         "da": "... en god bog, du har læst",
         "en": "Title of a good book"
       },
-      "searchBtn": {"da": "Vis", "en": "Show"},
+      "searchBtn": {
+        "da": "Vis",
+        "en": "Show"
+      },
       "inspirationBtn": {
         "da": "Eller få inspiration her",
         "en": "Or get inspired here"

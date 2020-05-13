@@ -149,5 +149,65 @@ describe('Work Page', function() {
         '1. del - Vejen til Swann (bind 2 af 2)'
       );
     });
+    it(`Should not show Mangaprint for series`, function() {
+      // pid is part of a series containing mangaprint
+      cy.visit('/v%C3%A6rk/870970-basis:53628125');
+
+      // the series belt should only display the non magnaprint editions.
+      cy.get('[data-cy=seriesBelt] [data-cy=workcard]').should(
+        'have.length',
+        3
+      );
+      cy.get('[data-cy=seriesBelt] [data-cy=workcard]')
+        .eq(0)
+        .should('contain', '1. del - Bedemandens datter')
+        .should('not.contain', 'bind');
+      cy.get('[data-cy=seriesBelt] [data-cy=workcard]')
+        .eq(1)
+        .contains('2. del - Ilkas arv')
+        .should('not.contain', 'bind');
+      cy.get('[data-cy=seriesBelt] [data-cy=workcard]')
+        .eq(2)
+        .contains('3. del - Den tredje søster')
+        .should('not.contain', 'bind');
+    });
+    it(`Should add part of series to shortlist`, function() {
+      // pid is part of a series containing mangaprint
+      cy.visit('/v%C3%A6rk/870970-basis:53628125');
+
+      // Add book from seriesBelt to shortlist
+      cy.get('[data-cy=seriesBelt] [data-cy=workcard]')
+        .eq(0)
+        .find('[data-cy=bookmarkBtn]')
+        .click();
+
+      cy.get('[data-cy=topbar-shortlist]').click();
+      cy.get('.top-bar-dropdown-list-element').contains(
+        '1. del af serien Trilogien om Ilka'
+      );
+    });
+    it(`Series where some parts are multivolumes`, function() {
+      // pid is an ebook
+      cy.visit('/v%C3%A6rk/870970-basis:52021731');
+
+      // check series description is there
+      cy.contains('1. del af serien');
+
+      // check belt is there
+      cy.contains('i samme serie');
+
+      // the ebook is not a speficic volume,
+      // but we use volume 1 as the physical volume to represent
+      cy.get('[data-cy=title-bind-info]').should('exist');
+      cy.get('.work-preview__title').contains('bind 1 af 2');
+
+      // the series belt need to display both volumes of the first part
+      cy.get('[data-cy=seriesBelt]').contains(
+        '1. del - Vejen til Swann (bind 1 af 2)'
+      );
+      cy.get('[data-cy=seriesBelt]').contains(
+        '1. del - Vejen til Swann (bind 2 af 2)'
+      );
+    });
   });
 });
