@@ -20,6 +20,7 @@ pipeline {
         // Limit concurrent builds to one pr. branch.
         disableConcurrentBuilds()
         lock resource: 'content_first_lock'
+        timeout(time: 90, unit: 'MINUTES')
     }
     stages {
 
