@@ -1,9 +1,4 @@
 describe('belt', function() {
-  beforeEach(function() {
-    cy.clearClientStorage();
-    cy.clearCookies();
-  });
-
   it(`Should not use public list from other user as basis for personal belt`, function() {
     cy.createUser('someuser');
     cy.fixture('lists/publiclist.json').as('publiclist');

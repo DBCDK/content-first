@@ -1,9 +1,4 @@
 describe('Start Belt Form test', function() {
-  beforeEach(function() {
-    cy.clearClientStorage();
-    cy.clearCookies();
-  });
-
   const mockStorage = () => {
     cy.fixture('beltEditor/initialState.json').as('initialState');
     cy.fixture('beltEditor/defaultBelts.json').as('defaultBelts');

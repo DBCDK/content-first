@@ -10,7 +10,6 @@ describe('Order ', function() {
       record,
       cy
     });
-    cy.clearClientStorage();
   });
 
   afterEach(function() {

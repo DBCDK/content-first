@@ -38,7 +38,7 @@ Cypress.Commands.add('dispatch', action => {
 /**
  * Clears session- and localestorage
  */
-Cypress.Commands.add('clearClientStorage', () => {
+Cypress.Commands.add('initClientStorage', () => {
   cy.window().then(win => {
     win.sessionStorage.clear();
   });
@@ -52,7 +52,7 @@ Cypress.Commands.add('clearClientStorage', () => {
  */
 Cypress.Commands.add('createUser', (userName, role, premium = false) => {
   if (!userName) userName = 'user' + Math.floor(Math.random() * 1000);
-  cy.request('/v1/test/delete/' + userName, {failOnStatusCode: false});
+  cy.request({url: '/v1/test/delete/', failOnStatusCode: false});
   if (role) {
     cy.visit(
       '/v1/test/create/' +

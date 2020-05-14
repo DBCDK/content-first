@@ -1,10 +1,4 @@
 describe('Test shortlist', function() {
-  beforeEach(function() {
-    cy.clearClientStorage();
-    cy.clearCookies();
-    cy.wait(1000);
-  });
-
   const mockInitialState = () => {
     cy.fixture('beltEditor/initialState.json').as('initialState');
     cy.server();

@@ -10,7 +10,6 @@ describe('Permissions ', function() {
       record,
       cy
     });
-    cy.clearClientStorage();
   });
 
   afterEach(function() {
