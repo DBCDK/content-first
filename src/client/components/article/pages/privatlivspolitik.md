@@ -20,6 +20,3 @@ Oplysningerne slettes igen – hos Dansk BiblioteksCenter slettes de senest 4 m�
 Ved dit første besøg på Læsekompas.dk beder vi dig om lov til automatisk at registrere nogle informationer om dit besøg ved at sætte cookies. Nogle cookies er nødvendige og nogle kan du fravælge. En cookie er en lille tekstfil, som gemmes i din browser. En cookie er ikke et program eller en virus, og den kan derfor ikke udføre selvstændige operationer på din computer.
 
 På Læsekompas.dk er der nødvendige tekniske cookies, som sørger for, at siden fungerer som den skal. Læsekompas.dk bruger desuden cookies fra tredjepartsleverandører i form af ”Matomo” og ”Hotjar” til at føre statistik på læsekompas.dk samt til at analysere på brugen af sitet. Disse cookies bruges kun til at spore dit besøg på læsekompas.dk og indeholder kun anonyme data, der ikke er personhenførbare. Statistik-cookies kan fravælges første gang, du besøger siden.
-
-### Cookies fra tredjepartsleverandører
-Læsekompas.dk bruger desuden vi cookies fra tredjepartsleverandører i form af ”Matomo” og ”Hotjar” til at måle antallet af besøgende på laesekompas.dk samt til at analysere på brugen af sitet.
