@@ -10,7 +10,7 @@ describe('Notice', function() {
       );
   });
 
-  it.only(`Should only show notice once`, function() {
+  it(`Should only show notice once`, function() {
     cy.setSessionStorage({key: 'haveReadNotice', value: 0, version: 1});
     cy.visit('/');
 

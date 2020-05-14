@@ -18,7 +18,3 @@ import './commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-
-beforeEach(() => {
-  cy.setSessionStorage({key: 'haveReadNotice', value: 1, version: 1});
-});

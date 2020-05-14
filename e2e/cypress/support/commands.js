@@ -43,6 +43,8 @@ Cypress.Commands.add('clearClientStorage', () => {
     win.sessionStorage.clear();
   });
   cy.clearLocalStorage();
+  // While we show notice on frontpage, we should remove it from tests
+  cy.setSessionStorage({key: 'haveReadNotice', value: 1, version: 1});
 });
 
 /**
