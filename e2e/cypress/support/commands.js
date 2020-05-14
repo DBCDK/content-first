@@ -160,3 +160,14 @@ Cypress.Commands.add('mockRecompass', () => {
   cy.fixture('recompass/simple.json').as('recompassResponse');
   cy.route('GET', '/v1/recompass*', '@recompassResponse');
 });
+
+/**
+ * Mocks recompass response
+ */
+Cypress.Commands.add('setSessionStorage', ({key, value, version}) => {
+  const entry = {
+    version,
+    value
+  };
+  sessionStorage.setItem(key, JSON.stringify(entry));
+});

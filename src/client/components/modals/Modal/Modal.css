@@ -34,8 +34,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
+  padding: 16px !important;
 
   display: flex;
   justify-content: center;
@@ -52,7 +53,7 @@
 }
 
 .modal-window {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.97);
   width: var(--md);
   height: auto;
   max-height: 70vh;
@@ -125,7 +126,7 @@
 
 /*  */
 
-@media (max-width: 768px), (max-height: 768px) {
+@media (max-width: 700px) {
   .modal-window {
     width: 100%;
     height: 100%;
