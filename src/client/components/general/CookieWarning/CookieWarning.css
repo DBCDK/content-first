@@ -28,12 +28,12 @@
     display: flex;
     text-decoration: underline;
     text-align: left;
-    cursor: pointer;
 }
 
 .cookie-warning-link-container {
     align-items: flex-start;
     margin-top:5px;
+    cursor: pointer;
 }
 
 .cookie-warning-button-container {
