@@ -102,7 +102,6 @@ router
           },
           ...faerorSpecificParams
         };
-
         return res
           .status(303)
           .location('/replay')
@@ -110,9 +109,9 @@ router
             httpOnly: true
           })
           .cookie('test-user-data', JSON.stringify(user))
-          .clearCookie('session')
           .send();
       } catch (error) {
+        console.error('Could not create testuser', error);
         let errorMsg = JSON.stringify(error);
         if (errorMsg === '{}') {
           errorMsg = error.toString();
