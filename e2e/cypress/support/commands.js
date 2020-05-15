@@ -53,19 +53,17 @@ Cypress.Commands.add('initClientStorage', () => {
 Cypress.Commands.add('createUser', (userName, role, premium = false) => {
   if (!userName) userName = 'user' + Math.floor(Math.random() * 1000);
   cy.request({url: '/v1/test/delete/', failOnStatusCode: false});
-  if (role) {
-    cy.visit(
+  const url =
+    (role &&
       '/v1/test/create/' +
         userName +
         '?' +
         role +
         '=true' +
         '&premium=' +
-        premium
-    );
-  } else {
-    cy.visit('/v1/test/create/' + userName + '?premium=' + premium);
-  }
+        premium) ||
+    '/v1/test/create/' + userName + '?premium=' + premium;
+  cy.visit({url, retryOnStatusCodeFailure: true});
   cy.get('.profile-top > [data-cy=topbar-profile-img]');
 });
 
