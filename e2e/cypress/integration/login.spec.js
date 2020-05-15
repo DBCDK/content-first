@@ -1,8 +1,5 @@
 describe('Login test', function() {
-  beforeEach(function() {
-    cy.clearClientStorage();
-    cy.clearCookies();
-  });
+  beforeEach(function() {});
 
   it('Can log in with name from CPR data and knows you are OVER 13 year old', function() {
     const userName = 'testUser' + Math.floor(Math.random() * 1000);

@@ -58,10 +58,6 @@
   .order-list-element .w-75 {
     width: 100% !important;
   }
-  .modal-container,
-  .modal-backdrop {
-    padding-top: 0px !important;
-  }
 }
 
 .drag-indicator {

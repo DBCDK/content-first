@@ -38,11 +38,13 @@ Cypress.Commands.add('dispatch', action => {
 /**
  * Clears session- and localestorage
  */
-Cypress.Commands.add('clearClientStorage', () => {
+Cypress.Commands.add('initClientStorage', () => {
   cy.window().then(win => {
     win.sessionStorage.clear();
   });
   cy.clearLocalStorage();
+  // While we show notice on frontpage, we should remove it from tests
+  cy.setSessionStorage({key: 'haveReadNotice', value: 1, version: 1});
 });
 
 /**
@@ -50,7 +52,7 @@ Cypress.Commands.add('clearClientStorage', () => {
  */
 Cypress.Commands.add('createUser', (userName, role, premium = false) => {
   if (!userName) userName = 'user' + Math.floor(Math.random() * 1000);
-  cy.request('/v1/test/delete/' + userName, {failOnStatusCode: false});
+  cy.request({url: '/v1/test/delete/', failOnStatusCode: false});
   if (role) {
     cy.visit(
       '/v1/test/create/' +
@@ -159,4 +161,15 @@ Cypress.Commands.add('mockRecompass', () => {
   cy.server();
   cy.fixture('recompass/simple.json').as('recompassResponse');
   cy.route('GET', '/v1/recompass*', '@recompassResponse');
+});
+
+/**
+ * Mocks recompass response
+ */
+Cypress.Commands.add('setSessionStorage', ({key, value, version}) => {
+  const entry = {
+    version,
+    value
+  };
+  sessionStorage.setItem(key, JSON.stringify(entry));
 });

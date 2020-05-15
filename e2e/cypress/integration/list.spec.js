@@ -1,8 +1,6 @@
 describe('List test', function() {
   beforeEach(function() {
     cy.request('/v1/test/delete/listowner');
-    cy.clearClientStorage();
-    cy.clearCookies();
 
     cy.createUser('listowner');
     cy.wait(1000);

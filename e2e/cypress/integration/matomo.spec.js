@@ -28,11 +28,6 @@ const createMatomoMock = endpoint => {
 };
 
 describe('Matomo test', function() {
-  beforeEach(function() {
-    cy.clearClientStorage();
-    cy.clearCookies();
-  });
-
   const mockInitialState = () => {
     cy.fixture('beltEditor/initialState.json').as('initialState');
     cy.server();
