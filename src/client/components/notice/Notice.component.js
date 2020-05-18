@@ -6,7 +6,7 @@ import {OPEN_MODAL} from '../../redux/modal.reducer';
 const Reason = () => (
   <span>
     De fleste biblioteker har igen åbent for lån af bøger, og Læsekompasset
-    giver derfor igen inspiration til al dansk skønlitteratur for voksne, som
+    giver derfor igen inspiration til al skønlitteratur på dansk for voksne, som
     kan findes på bibliotekerne – både fysiske bøger, samt e-bøger og lydbøger
     på eReolen. Når du logger på med dit bibliotekslogin kan du bestille bøger
     til dit bibliotek, hvis biblioteket har abonnement.
