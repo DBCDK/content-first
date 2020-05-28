@@ -103,8 +103,8 @@ class Results extends React.Component {
 
   componentDidMount() {
     this.setState(
-      {type: this.props.types ? this.props.types : this.state.type},
-      this.props.updateType(this.state.type)
+      {type: this.props.types ? this.props.types : this.state.type}
+      // this.props.updateType(this.state.type)
     );
   }
 
