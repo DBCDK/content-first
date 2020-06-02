@@ -5,7 +5,7 @@ import T from '../../base/T';
 import {ProfileInput} from '../../profile/ProfileInput.component';
 import ProfileUploadImage from '../../general/ProfileUploadImage.component';
 import ProfileUpdateUser from '../../profile/ProfileUpdateUser.component';
-
+import Checkbox from '../../base/Checkbox';
 import {
   ADD_PROFILE_IMAGE,
   DELETE_USER_PROFILE,
@@ -17,11 +17,34 @@ import {CLOSE_MODAL} from '../../../redux/modal.reducer';
 import './ProfileModal.css';
 
 export class ProfileModal extends React.Component {
-  onHandleChange = val => {
-    this.setState({username: val, showNameInfo: val.length < 4});
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 'accept',
+      username: '',
+      showNameInfo: false,
+      over13Checked: this.props.over13 === true
+    };
+  }
+
+  onUsernameChange = val => {
+    this.setState({
+      username: val,
+      showNameInfo: val.length < 4 || !this.state.over13Checked
+    });
+  };
+  onAcceptAgeChange = () => {
+    const {over13Checked} = this.state;
+
+    this.setState({
+      over13Checked: !over13Checked,
+      showNameInfo: this.state.username.length < 4 || over13Checked
+    });
   };
   updateProfile = (e, obj) => {
     // submit
+    console.log('updateProfile.obj', obj);
+    console.log('updateprofile.state.', this.state);
     e.preventDefault();
     this.props.saveUser(obj);
     this.props.onClose();
@@ -161,7 +184,7 @@ export class ProfileModal extends React.Component {
                         <div className="input-group mb2 has-feedback">
                           <ProfileInput
                             username={this.state.username}
-                            onInputChange={this.onHandleChange}
+                            onInputChange={this.onUsernameChange}
                           />
                           <div
                             className={'profile__name-info' + getInfoClass()}
@@ -172,6 +195,14 @@ export class ProfileModal extends React.Component {
                             />
                           </div>
                         </div>
+                        {this.props.over13 === 'unknown' && (
+                          <Checkbox
+                            checked={this.state.over13Checked}
+                            onChange={this.onAcceptAgeChange}
+                          >
+                            <T component="profile" name="ageCheckboxText" />
+                          </Checkbox>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -219,7 +250,7 @@ export class ProfileModal extends React.Component {
               <ProfileUpdateUser
                 imageId={this.props.profileImageId}
                 name={this.state.username}
-                acceptedAge={this.props.over13}
+                acceptedAge={this.state.over13Checked}
                 acceptedTerms={this.props.acceptedTerms}
                 cancelLogin={this.cancelLogin}
                 updateProfile={this.updateProfile}
@@ -308,24 +339,19 @@ export class ProfileModal extends React.Component {
     );
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      page: 'accept',
-      username: '',
-      showNameInfo: false
-    };
-  }
-
   componentDidMount() {
-    this.setState({username: !this.props.username ? '' : this.props.username});
+    const username = !this.props.username ? '' : this.props.username;
+    this.setState({
+      username,
+      showNameInfo: this.state.username.length < 4 || !this.state.over13Checked
+    });
   }
 
   render() {
     return (
       <div className="profile__modal-container">
         {this.state.page === 'accept' &&
-          this.props.over13 &&
+          (this.props.over13 || this.props.over13 === 'unknown') &&
           this.showAcceptWindow(this.state.username)}
         {this.state.page === 'rules' &&
           this.props.over13 &&
