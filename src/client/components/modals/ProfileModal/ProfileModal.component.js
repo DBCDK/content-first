@@ -126,6 +126,7 @@ export class ProfileModal extends React.Component {
       }
       return '';
     };
+    const showAgeCheckbox = this.props.over13 === 'unknown';
     let baseImage;
     if (!this.props.profileImageId && !this.props.tempImageId) {
       baseImage = '/img/general/user-placeholder-thumbnail.svg';
@@ -193,7 +194,7 @@ export class ProfileModal extends React.Component {
                             />
                           </div>
                         </div>
-                        {this.props.over13 === 'unknown' && (
+                        {showAgeCheckbox && (
                           <Checkbox
                             checked={this.state.over13Checked}
                             onChange={this.onAcceptAgeChange}
@@ -206,7 +207,14 @@ export class ProfileModal extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <div className="profile_accept-box-container">
+                  <div
+                    className={
+                      'profile_accept-box-container ' +
+                      (showAgeCheckbox
+                        ? ' profile_accept-box-container-margin'
+                        : '')
+                    }
+                  >
                     <div className="profile__accept-boxTriangle" />
 
                     <div className="profile__accept-box">
