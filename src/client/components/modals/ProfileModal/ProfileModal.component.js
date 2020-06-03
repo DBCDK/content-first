@@ -200,47 +200,53 @@ export class ProfileModal extends React.Component {
                             checked={this.state.over13Checked}
                             onChange={this.onAcceptAgeChange}
                           >
-                            <T component="profile" name="ageCheckboxText" />
+                            <div className="profile__accept-inputNameTitle">
+                              <T component="profile" name="ageCheckboxText" />
+                            </div>
                           </Checkbox>
                         )}
                       </div>
                     </div>
                   </div>
+                  <div className="profile_accept-box-container">
+                    <div className="profile__accept-boxTriangle" />
 
-                  <div className="profile__accept-boxTriangle" />
+                    <div className="profile__accept-box">
+                      <div className="profile__accept-boxTitle">
+                        <T
+                          component="profile"
+                          name="profileInstructionsTitle"
+                        />
+                      </div>
 
-                  <div className="profile__accept-box">
-                    <div className="profile__accept-boxTitle">
-                      <T component="profile" name="profileInstructionsTitle" />
-                    </div>
-
-                    <div className="profile__accept-boxText">
-                      <ul>
-                        <li>
-                          <T
-                            component="profile"
-                            name="profileInstructionsLine1"
-                          />
-                        </li>
-                        <li>
-                          <T
-                            component="profile"
-                            name="profileInstructionsLine2"
-                          />
-                        </li>
-                        <li>
-                          <T
-                            component="profile"
-                            name="profileInstructionsLine3"
-                          />
-                        </li>
-                        <li>
-                          <T
-                            component="profile"
-                            name="profileInstructionsLine4"
-                          />
-                        </li>
-                      </ul>
+                      <div className="profile__accept-boxText">
+                        <ul>
+                          <li>
+                            <T
+                              component="profile"
+                              name="profileInstructionsLine1"
+                            />
+                          </li>
+                          <li>
+                            <T
+                              component="profile"
+                              name="profileInstructionsLine2"
+                            />
+                          </li>
+                          <li>
+                            <T
+                              component="profile"
+                              name="profileInstructionsLine3"
+                            />
+                          </li>
+                          <li>
+                            <T
+                              component="profile"
+                              name="profileInstructionsLine4"
+                            />
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
