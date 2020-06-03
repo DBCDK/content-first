@@ -43,8 +43,6 @@ export class ProfileModal extends React.Component {
   };
   updateProfile = (e, obj) => {
     // submit
-    console.log('updateProfile.obj', obj);
-    console.log('updateprofile.state.', this.state);
     e.preventDefault();
     this.props.saveUser(obj);
     this.props.onClose();
@@ -349,7 +347,7 @@ export class ProfileModal extends React.Component {
     const username = !this.props.username ? '' : this.props.username;
     this.setState({
       username,
-      showNameInfo: this.state.username.length < 4 || !this.state.over13Checked
+      showNameInfo: username.length < 4 || !this.state.over13Checked
     });
   }
 
