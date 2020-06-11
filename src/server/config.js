@@ -127,7 +127,7 @@ exports.test = {
 exports.holdings = {
   url:
     process.env.HOLDINGS_URL ||
-    'http://cisterne-solr.dbc.dk:8986/solr/cisterne-laesekompas-holdings-lookup/select'
+    'http://cisterne.solr.dbc.dk:8983/solr/cisterne-laesekompas-holdings-lookup/select'
 };
 
 exports.idmapper = {
