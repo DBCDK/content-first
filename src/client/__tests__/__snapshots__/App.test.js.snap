@@ -11,7 +11,6 @@ exports[`renders without crashing 1`] = `
   }
 >
   Head
-  
   <div>
     <header
       className="topbar collapsed"
@@ -367,87 +366,7 @@ exports[`renders without crashing 1`] = `
       />
     </div>
   </div>
-  <span>
-    <div
-      className="modal-container"
-    >
-      <div
-        className="modal-backdrop"
-        onClick={[Function]}
-      />
-      <div
-        className="modal-window "
-      >
-        <div
-          className="top"
-        >
-          <i
-            className="material-icons material-icons-clear close-modal--X "
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "&#xE14C;",
-              }
-            }
-            data-unicoded="true"
-            onClick={[Function]}
-          />
-          <span
-            className="close-modal--back"
-            onClick={[Function]}
-          >
-            <i
-              className="material-icons material-icons-chevron_left  "
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&#xE5CB;",
-                }
-              }
-              data-unicoded="true"
-              onClick={[Function]}
-            />
-            <span>
-              Tilbage
-            </span>
-          </span>
-        </div>
-        <div
-          className="content"
-          data-cy="modal-content"
-        >
-          <h1
-            className=" Title Title__title4 Title__title4--transform-uppercase--weight-bold"
-          >
-            Bibliotekerne åbner for udlån
-          </h1>
-          <span>
-            De fleste biblioteker har igen åbent for lån af bøger, og Læsekompasset giver derfor igen inspiration til al skønlitteratur på dansk for voksne, som kan findes på bibliotekerne – både fysiske bøger, samt e-bøger og lydbøger på eReolen. Når du logger på med dit bibliotekslogin kan du bestille bøger til dit bibliotek, hvis biblioteket har abonnement.
-          </span>
-        </div>
-        <div
-          className="bottom"
-        >
-          <a
-            data-cy="modal-done-btn"
-            href={null}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <button
-              className="modal-done--btn
-      button button__medium button__quaternary   "
-              data-cy=""
-              disabled={false}
-              onClick={[Function]}
-            >
-              <span>
-                OK
-              </span>
-            </button>
-          </a>
-        </div>
-      </div>
-    </div>
-  </span>
+  <span />
   <div
     className=" cookie-warning-container row "
   >
