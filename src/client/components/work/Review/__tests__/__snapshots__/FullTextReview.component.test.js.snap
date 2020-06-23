@@ -11,7 +11,7 @@ exports[`FullTextReview render function 1`] = `
       className="mb-3 Text Text__micro "
     >
       Bibliotekernes vurdering af
-      Fridjof Friddo
+       Fridjof Friddo
       : 
       Den bedste indretning
     </p>
@@ -35,14 +35,8 @@ exports[`FullTextReview render function 1`] = `
   <p
     className="mb0 Text Text__body "
   >
-    Bibliotekernes vurdering
-    title=
-    Lektørudtalelse
-  </p>
-  <p
-    className="mb0 Text Text__body "
-  >
-    Lone Krøgh
+    Bibliotekernes vurdering af
+     Lone Krøgh
   </p>
 </div>
 `;
@@ -58,7 +52,7 @@ exports[`FullTextReview render function 2`] = `
       className="mb-3 Text Text__micro "
     >
       Bibliotekernes vurdering af
-      Kastup Larsen
+       Kastup Larsen
       : 
       Nordisk halløj
     </p>
@@ -91,14 +85,8 @@ exports[`FullTextReview render function 2`] = `
   <p
     className="mb0 Text Text__body "
   >
-    Bibliotekernes vurdering
-    title=
-    Lektørudtalelse
-  </p>
-  <p
-    className="mb0 Text Text__body "
-  >
-    Lone Krøgh
+    Bibliotekernes vurdering af
+     Lone Krøgh
   </p>
 </div>
 `;
@@ -114,7 +102,7 @@ exports[`FullTextReview render function 3`] = `
       className="mb-3 Text Text__micro "
     >
       Bibliotekernes vurdering af
-      
+       
       : 
       A
     </p>
@@ -168,14 +156,8 @@ exports[`FullTextReview render function 3`] = `
   <p
     className="mb0 Text Text__body "
   >
-    Bibliotekernes vurdering
-    title=
-    Lektørudtalelse
-  </p>
-  <p
-    className="mb0 Text Text__body "
-  >
-    Jacob Holm Krogsøe
+    Bibliotekernes vurdering af
+     Jacob Holm Krogsøe
   </p>
 </div>
 `;
@@ -191,7 +173,7 @@ exports[`FullTextReview render function 4`] = `
       className="mb-3 Text Text__micro "
     >
       Bibliotekernes vurdering af
-      Arne Arno
+       Arne Arno
       : 
       Modstanden
     </p>
@@ -254,14 +236,8 @@ exports[`FullTextReview render function 4`] = `
   <p
     className="mb0 Text Text__body "
   >
-    Bibliotekernes vurdering
-    title=
-    Lektørudtalelse
-  </p>
-  <p
-    className="mb0 Text Text__body "
-  >
-    Per Månson
+    Bibliotekernes vurdering af
+     Per Månson
   </p>
 </div>
 `;
