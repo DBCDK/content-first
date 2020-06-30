@@ -9,17 +9,23 @@ import T from '../../base/T';
  * This class displays a single full review item
  */
 export default class FullTextReview extends React.Component {
+  formatInfomedia(htmlInput) {
+    return htmlInput
+      .replace('Anm: ', '')
+      .replace('Anm:', '')
+      .replace('infomedia_logo.gif', '/infomedia_logo.gif');
+  }
   showFullPaperReview = rev => {
     if (rev.infomedia[0]) {
       let origtext = rev.infomedia[0].html;
-      const text = origtext.replace(
-        'infomedia_logo.gif',
-        '/infomedia_logo.gif'
-      );
+      const text = this.formatInfomedia(origtext);
       return (
         <div className="Review__scroll-container">
           <div className="Review__inner-scroll">
             <div className="Review__container">
+              <Text type="micro" className="mb-3">
+                <T component="work" name="reviewTitle" />
+              </Text>
               <div dangerouslySetInnerHTML={{__html: text}} />
             </div>
           </div>
@@ -54,7 +60,7 @@ export default class FullTextReview extends React.Component {
         <div className="Review__block--top">
           <Text type="micro" className="mb-3">
             <T component="work" name="lectorReviewOf" />
-            {author}: {title}
+            {' ' + author}: {title}
           </Text>
           <Text type="small" className="due-txt date-col">
             {date}
@@ -83,14 +89,9 @@ export default class FullTextReview extends React.Component {
           ''
         )}
         <Text type="body" className="mb0">
-          <T component="work" name="lectorsReview" />
-          title={T({component: 'work', name: 'lectorReview'})}
+          <T component="work" name="lectorReviewOf" />
+          {name !== false && name.trim() !== '' ? ' ' + name : ''}
         </Text>
-        {name !== false && name.trim() !== '' && (
-          <Text type="body" className="mb0">
-            {name}
-          </Text>
-        )}
       </div>
     );
   }

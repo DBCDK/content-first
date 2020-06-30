@@ -3,13 +3,7 @@
 }
 
 .infomedia_HeadLine {
-  font-size: 0.78rem;
-  line-height: 1.14rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--fersken);
-  margin-top: 20px;
-  margin-bottom: 20px;
+  display: none;
 }
 
 .infomedia_SubHeadLine {
@@ -26,12 +20,16 @@
   font-size: 14px;
   color: var(--malibu);
   text-align: right;
+ position: relative;
+ top: -40px;
 }
 
 .infomedia_paper {
   font-size: 14px;
   color: var(--malibu);
   text-align: right;
+  position: relative;
+  top: -40px;
 }
 
 .infomedia_hedline {
@@ -183,15 +181,13 @@ a:hover.tooltips span {
   overflow: hidden;
 }
 
-/* @media (max-width: 575.98px) {
-  .Review__container {
-    margin-right: 0 !important;
+@media (max-width: 1024px){
+  .infomedia_DateLine {
+    text-align: left;
+    position: inherit;
   }
-
-  .Review__inner-scroll {
-    overflow: auto;
-    max-height: 85vh;
-    margin-left: 4%;
-    margin-right: 4%;
+  .infomedia_paper {
+    text-align: left;
+    position: inherit;
   }
-} */
+}
