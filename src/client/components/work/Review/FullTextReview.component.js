@@ -13,7 +13,8 @@ export default class FullTextReview extends React.Component {
     return htmlInput
       .replace('Anm: ', '')
       .replace('Anm:', '')
-      .replace('infomedia_logo.gif', '/infomedia_logo.gif');
+      .replace('infomedia_logo.gif', '/infomedia_logo.gif')
+      .replace('"infomedia_ByLine">,', '"infomedia_ByLine">');
   }
   showFullPaperReview = rev => {
     if (rev.infomedia[0]) {
