@@ -410,8 +410,12 @@
         "en": "Read libraries review"
       },
       "lectorReviewOf": {
-        "da": "Bibliotekernes vurdering af",
-        "en": "Libraries review of"
+        "da": "Skrevet af",
+        "en": "Written by"
+      },
+      "librariesReview": {
+        "da": "Bibliotekernes vurdering",
+        "en": "Libraries review"
       },
       "reviewNote": {
         "da": "Note",

@@ -6,25 +6,20 @@
   display: none;
 }
 
-.infomedia_SubHeadLine {
+.infomedia_SubHeadLine,
+.Review__SubHeadLine {
   font-size: 1.6rem;
   font-weight: 600;
   line-height: 2rem;
 }
 
-.infomedia_ByLine {
+.infomedia_ByLine,
+.Review__ByLine {
   font-size: 14px;
 }
 
-.infomedia_DateLine {
-  font-size: 14px;
-  color: var(--malibu);
-  text-align: right;
- position: relative;
- top: -40px;
-}
-
-.infomedia_paper {
+.infomedia_DateLine,
+.Review__DateLine {
   font-size: 14px;
   color: var(--malibu);
   text-align: right;
@@ -32,7 +27,17 @@
   top: -40px;
 }
 
-.infomedia_hedline {
+.infomedia_paper,
+.Review__paper {
+  font-size: 14px;
+  color: var(--malibu);
+  text-align: right;
+  position: relative;
+  top: -40px;
+}
+
+.infomedia_hedline,
+.Review__hedline {
   margin-top: 16px;
   font-size: 14px;
   font-weight: 600;
@@ -60,6 +65,10 @@
 
 .noInfomediaAccess {
   color: var(--alto) !important;
+}
+
+.Review__sroll-container {
+  padding-top: var(--4pt);
 }
 
 .Review__container {
