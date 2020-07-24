@@ -94,13 +94,15 @@ export const ListInfo = ({
           style={{right: 0, top: 0}}
         >
           <ProfileImage id={list._owner} size={'40'} namePosition="right" />
-          <Share
-            className="align-self-center"
-            href={'https://laesekompas.dk/lister/' + list._id}
-            title={T({component: 'share', name: 'shareOnFacebook'})}
-          >
-            Del
-          </Share>
+          {list._public && (
+            <Share
+              className="align-self-center"
+              href={'https://laesekompas.dk/lister/' + list._id}
+              title={T({component: 'share', name: 'shareOnFacebook'})}
+            >
+              {T({component: 'share', name: 'share'})}
+            </Share>
+          )}
         </div>
 
         {list.description.length > 0 ? (

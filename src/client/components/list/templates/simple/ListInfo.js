@@ -25,13 +25,15 @@ export const ListInfo = ({list, isListOwner}) => {
       <div className="list-info pl-3 pr-3">
         <div className="list-owner d-flex justify-content-between align-items-start">
           <ProfileImage id={list._owner} size={'40'} namePosition="right" />
-          <Share
-            className="align-self-center"
-            href={'https://laesekompas.dk/lister/' + list._id}
-            title={T({component: 'share', name: 'shareOnFacebook'})}
-          >
-            Del
-          </Share>
+          {list._public && (
+            <Share
+              className="align-self-center"
+              href={'https://laesekompas.dk/lister/' + list._id}
+              title={T({component: 'share', name: 'shareOnFacebook'})}
+            >
+              {T({component: 'share', name: 'share'})}
+            </Share>
+          )}
         </div>
 
         {list.description.length > 0 ? (
