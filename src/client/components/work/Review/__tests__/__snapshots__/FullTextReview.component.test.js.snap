@@ -10,17 +10,30 @@ exports[`FullTextReview render function 1`] = `
     <p
       className="mb-3 Text Text__micro "
     >
-      Bibliotekernes vurdering af
-       Fridjof Friddo
-      : 
-      Den bedste indretning
-    </p>
-    <p
-      className="due-txt date-col Text Text__small "
-    >
-      2. mar 2005
+      Bibliotekernes vurdering
     </p>
   </div>
+  <div
+    className="Review__SubHeadLine"
+  >
+    Den bedste indretning
+  </div>
+  <div
+    className="Review__ByLine"
+  >
+    Fridjof Friddo
+  </div>
+  <div
+    className="Review__DateLine"
+  >
+    2. mar 2005
+  </div>
+  <div
+    className="Review__paper"
+  />
+  <div
+    className="Review__hedline"
+  />
   <h6
     className="mb0 Title Title__title6 "
   >
@@ -35,7 +48,7 @@ exports[`FullTextReview render function 1`] = `
   <p
     className="mb0 Text Text__body "
   >
-    Bibliotekernes vurdering af
+    Skrevet af
      Lone Krøgh
   </p>
 </div>
@@ -51,17 +64,30 @@ exports[`FullTextReview render function 2`] = `
     <p
       className="mb-3 Text Text__micro "
     >
-      Bibliotekernes vurdering af
-       Kastup Larsen
-      : 
-      Nordisk halløj
-    </p>
-    <p
-      className="due-txt date-col Text Text__small "
-    >
-      6. mar 2017
+      Bibliotekernes vurdering
     </p>
   </div>
+  <div
+    className="Review__SubHeadLine"
+  >
+    Nordisk halløj
+  </div>
+  <div
+    className="Review__ByLine"
+  >
+    Kastup Larsen
+  </div>
+  <div
+    className="Review__DateLine"
+  >
+    6. mar 2017
+  </div>
+  <div
+    className="Review__paper"
+  />
+  <div
+    className="Review__hedline"
+  />
   <h6
     className="mb0 Title Title__title6 "
   >
@@ -85,7 +111,7 @@ exports[`FullTextReview render function 2`] = `
   <p
     className="mb0 Text Text__body "
   >
-    Bibliotekernes vurdering af
+    Skrevet af
      Lone Krøgh
   </p>
 </div>
@@ -101,17 +127,30 @@ exports[`FullTextReview render function 3`] = `
     <p
       className="mb-3 Text Text__micro "
     >
-      Bibliotekernes vurdering af
-       
-      : 
-      A
-    </p>
-    <p
-      className="due-txt date-col Text Text__small "
-    >
-      11. aug 2017
+      Bibliotekernes vurdering
     </p>
   </div>
+  <div
+    className="Review__SubHeadLine"
+  >
+    A
+  </div>
+  <div
+    className="Review__ByLine"
+  >
+    
+  </div>
+  <div
+    className="Review__DateLine"
+  >
+    11. aug 2017
+  </div>
+  <div
+    className="Review__paper"
+  />
+  <div
+    className="Review__hedline"
+  />
   <h6
     className="mb0 Title Title__title6 "
   >
@@ -156,7 +195,7 @@ exports[`FullTextReview render function 3`] = `
   <p
     className="mb0 Text Text__body "
   >
-    Bibliotekernes vurdering af
+    Skrevet af
      Jacob Holm Krogsøe
   </p>
 </div>
@@ -172,17 +211,30 @@ exports[`FullTextReview render function 4`] = `
     <p
       className="mb-3 Text Text__micro "
     >
-      Bibliotekernes vurdering af
-       Arne Arno
-      : 
-      Modstanden
-    </p>
-    <p
-      className="due-txt date-col Text Text__small "
-    >
-      6. mar 2017
+      Bibliotekernes vurdering
     </p>
   </div>
+  <div
+    className="Review__SubHeadLine"
+  >
+    Modstanden
+  </div>
+  <div
+    className="Review__ByLine"
+  >
+    Arne Arno
+  </div>
+  <div
+    className="Review__DateLine"
+  >
+    6. mar 2017
+  </div>
+  <div
+    className="Review__paper"
+  />
+  <div
+    className="Review__hedline"
+  />
   <h6
     className="mb0 Title Title__title6 "
   >
@@ -236,7 +288,7 @@ exports[`FullTextReview render function 4`] = `
   <p
     className="mb0 Text Text__body "
   >
-    Bibliotekernes vurdering af
+    Skrevet af
      Per Månson
   </p>
 </div>

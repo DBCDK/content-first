@@ -10,11 +10,18 @@ import T from '../../base/T';
  */
 export default class FullTextReview extends React.Component {
   formatInfomedia(htmlInput) {
+    const formatMonth = month => month.toLowerCase().substr(0, 3);
+    const replacer = (match, div, day, month, year, divEnd) =>
+      div + day + formatMonth(month) + year + divEnd;
     return htmlInput
       .replace('Anm: ', '')
       .replace('Anm:', '')
       .replace('infomedia_logo.gif', '/infomedia_logo.gif')
-      .replace('"infomedia_ByLine">,', '"infomedia_ByLine">');
+      .replace('"infomedia_ByLine">,', '"infomedia_ByLine">')
+      .replace(
+        /(<div class="infomedia_DateLine">)(\d+\. )(\w+)( \d+)(<\/div>)/,
+        replacer
+      );
   }
   showFullPaperReview = rev => {
     if (rev.infomedia[0]) {
@@ -60,13 +67,14 @@ export default class FullTextReview extends React.Component {
       <div className="Review__container">
         <div className="Review__block--top">
           <Text type="micro" className="mb-3">
-            <T component="work" name="lectorReviewOf" />
-            {' ' + author}: {title}
-          </Text>
-          <Text type="small" className="due-txt date-col">
-            {date}
+            <T component="work" name="librariesReview" />
           </Text>
         </div>
+        <div className="Review__SubHeadLine">{title}</div>
+        <div className="Review__ByLine">{author}</div>
+        <div className="Review__DateLine">{date}</div>
+        <div className="Review__paper"></div>
+        <div className="Review__hedline"></div>
         {reviewKeys.map(key => {
           return (
             <React.Fragment key={key}>
