@@ -1,4 +1,5 @@
 import {setItem, getItem} from '../utils/localstorage';
+import {get} from 'lodash';
 
 const REPLAY_BEGIN = 'REPLAY_BEGIN';
 const REPLAY_END = 'REPLAY_END';
@@ -13,6 +14,14 @@ const IGNORED_PATHS = {'/replay': true, '/profil/opret': true};
 // Put actions here, which should be listened for
 // and put in replay queue
 const replayableActions = {
+  UPDATE_MOUNT: action => {
+    if (get(action, 'data.child.props.pid')) {
+      return {
+        type: 'HISTORY_REPLACE',
+        path: '/værk/' + action.data.child.props.pid
+      };
+    }
+  },
   ORDER: action => action,
   ON_LOCATION_CHANGE: action => {
     // Add to history if not included in the ignored paths
