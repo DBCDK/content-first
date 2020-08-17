@@ -203,28 +203,27 @@ class ListOverviewDropDown extends React.Component {
             {this.props.children}
           </div>
         )}
-        {expanded && (
-          <UserListsContent
-            expanded={expanded}
-            modalView={modalView}
-            onClose={() => this.props.onUserListsClose()}
-            onEditLists={() => this.props.onEditLists()}
-            onCreateNewList={() => this.props.onCreateNewList()}
-          >
-            {!hasFetched && (
-              <div className="text-center">
-                <Spinner size="30px" className="mt-5" />
-              </div>
-            )}
-            {hasFetched && (
-              <React.Fragment>
-                {systemLists && this.renderLists(systemLists)}
-                {customLists && this.renderLists(customLists)}
-                {followedLists && this.renderLists(followedLists)}
-              </React.Fragment>
-            )}
-          </UserListsContent>
-        )}
+
+        <UserListsContent
+          expanded={expanded}
+          modalView={modalView}
+          onClose={() => this.props.onUserListsClose()}
+          onEditLists={() => this.props.onEditLists()}
+          onCreateNewList={() => this.props.onCreateNewList()}
+        >
+          {!hasFetched && (
+            <div className="text-center">
+              <Spinner size="30px" className="mt-5" />
+            </div>
+          )}
+          {hasFetched && (
+            <React.Fragment>
+              {systemLists && this.renderLists(systemLists)}
+              {customLists && this.renderLists(customLists)}
+              {followedLists && this.renderLists(followedLists)}
+            </React.Fragment>
+          )}
+        </UserListsContent>
       </React.Fragment>
     );
   }
