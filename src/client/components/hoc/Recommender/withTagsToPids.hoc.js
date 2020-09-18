@@ -50,7 +50,9 @@ const getIdsFromRange = (filterCards, tags = []) => {
  * <GreatRecommendations tags={[123, 234]} branch="Hovedbiblioteket" agencyId="710100"/>
  */
 export default WrappedComponent => props => {
-  const {tags, limit, threshold, excluded, plus, minus, types} = props;
+  const tags =
+    props.tags && props.tags.filter(t => filtersMapAll[t.id ? t.id : t]);
+  const {limit, threshold, excluded, plus, minus, types} = props;
   const kiosk = useSelector(store => store.kiosk);
   const agencyId = get(kiosk, 'configuration.agencyId');
   const branch = get(kiosk, 'configuration.branch');

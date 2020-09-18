@@ -6,6 +6,11 @@
   text-transform: uppercase;
 }
 
+.BeltEditor .has-error {
+  color: red;
+  margin-right: 8px
+}
+
 .flex-container {
   display: flex;
   flex-flow: row nowrap;

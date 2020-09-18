@@ -1193,6 +1193,10 @@
         "da": "Redaktion af startside",
         "en": "Edit startpage"
       },
+      "beltHasError": {
+        "da": "Indeholder fejl",
+        "en": "Has error"
+      },
       "belt": {
         "da": "Bånd",
         "en": "Belt"

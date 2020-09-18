@@ -67,4 +67,16 @@ describe('belt', function() {
     cy.visit('/');
     cy.contains('Der er endnu ikke nok data');
   });
+
+  it(`Should not show tag when it has been removed from taxonomy`, function() {
+    cy.fixture('belt/initialState_deleted_tag.json').as('initialState');
+    cy.server();
+    cy.route('GET', '/v1/initial-state', '@initialState').as(
+      'initialStateRequest'
+    );
+    cy.visit('/');
+
+    // only the working tag should be shown
+    cy.get('.belt-tags__tags--container a').should('have.length', 1);
+  });
 });
