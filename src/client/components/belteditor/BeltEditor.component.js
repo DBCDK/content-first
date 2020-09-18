@@ -17,6 +17,7 @@ import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {ERROR} from '../general/Notification/Notification.component';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {withUser} from '../hoc/User';
+import {filtersMapAll} from '../../redux/filter.reducer';
 
 const EditorRole = 'contentFirstEditor';
 
@@ -187,7 +188,8 @@ export class BeltEditor extends React.Component {
     upIcon,
     downIcon,
     removeIcon,
-    className = ''
+    className = '',
+    hasError
   ) => (
     <div
       className={
@@ -221,6 +223,11 @@ export class BeltEditor extends React.Component {
           variant="weight-semibold"
           onClick={() => this.editBelt(index)}
         >
+          {hasError && (
+            <span className="has-error">
+              {T({component: 'editStartPage', name: 'beltHasError'})}
+            </span>
+          )}
           {title}
         </Text>
         <Text
@@ -295,7 +302,7 @@ export class BeltEditor extends React.Component {
       'list-title-row'
     );
 
-  listContentRow = (index, enabled, title, createdBy) =>
+  listContentRow = (index, enabled, title, createdBy, hasError) =>
     this.listRow(
       index,
       'drag_indicator',
@@ -305,16 +312,24 @@ export class BeltEditor extends React.Component {
       'keyboard_arrow_up',
       'keyboard_arrow_down',
       'delete',
-      'list-content-row'
+      'list-content-row',
+      hasError
     );
 
-  listComponent = value =>
-    this.listContentRow(
+  listComponent = value => {
+    const nonExistingTags =
+      (value.children.tags &&
+        value.children.tags.filter(t => !filtersMapAll[t.id ? t.id : t])) ||
+      [];
+
+    return this.listContentRow(
       value.children.index,
       value.children.onFrontPage,
       value.children.name,
-      value.children.createdBy
+      value.children.createdBy,
+      nonExistingTags.length > 0
     );
+  };
 
   render() {
     if (this.props.objects.error) {
