@@ -82,6 +82,8 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+    // do we have a timing problem
+    cy.wait(3000);
     cy.get('[data-cy=tag-realistisk]').should('have.text', 'realistisk');
   });
 
