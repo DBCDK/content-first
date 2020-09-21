@@ -261,7 +261,7 @@ export class TopBar extends React.Component {
               <img
                 type="image/svg+xml"
                 src="/img/general/dibliofigur.svg"
-                alt="Læsekompas logo"
+                alt="Læsekompas forside"
               />
             </div>
           </Link>
