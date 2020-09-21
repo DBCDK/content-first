@@ -487,7 +487,7 @@ class WorkPreview extends React.Component {
                 className="work-preview__arrow"
                 onClick={this.props.closeChild}
               >
-                <Icon name="expand_more" alt="Udvide" className=" md-large" />
+                <Icon name="expand_more" alt="Udvid" className=" md-large" />
               </div>
             </div>
           )}
