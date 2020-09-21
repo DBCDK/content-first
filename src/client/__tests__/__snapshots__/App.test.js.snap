@@ -31,7 +31,7 @@ exports[`renders without crashing 1`] = `
             className="topbar__navigation--icon "
           >
             <img
-              alt="Læsekompas logo"
+              alt="Læsekompas forside"
               src="/img/general/dibliofigur.svg"
               type="image/svg+xml"
             />
