@@ -71,6 +71,7 @@ class ProfileImage extends React.Component {
           ) : (
             <Icon
               name="face"
+              alt="Profil"
               style={{
                 width: size + 'px',
                 height: size + 'px',

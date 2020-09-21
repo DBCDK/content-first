@@ -161,6 +161,7 @@ class DesktopSlider extends React.Component {
           <div className="swiper-button-next">
             <Icon
               name="chevron_right"
+              alt="Til højre"
               className="swiper-button-next-icon material-icons"
               onClick={() => {
                 if (this.swiper) {
@@ -175,6 +176,7 @@ class DesktopSlider extends React.Component {
           <div className="swiper-button-prev">
             <Icon
               name="chevron_left"
+              alt="Til venstre"
               className="swiper-button-prev-icon material-icons"
               onClick={() => {
                 if (this.swiper) {

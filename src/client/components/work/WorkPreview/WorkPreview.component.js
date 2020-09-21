@@ -102,7 +102,7 @@ const RenderCollectionButtons = ({
           type="tertiary"
           size="medium"
         >
-          <Icon name={'language'} />
+          <Icon name={'language'} alt="E-bog" />
           <T component="general" name="ebook" />
         </SkeletonButton>
         <SkeletonButton
@@ -110,7 +110,7 @@ const RenderCollectionButtons = ({
           type="tertiary"
           size="medium"
         >
-          <Icon name={'voicemail'} />
+          <Icon name={'voicemail'} alt="Lydbog" />
           <T component="general" name="audiobook" />
         </SkeletonButton>
       </React.Fragment>
@@ -147,7 +147,7 @@ const LoanButton = ({pid, isLoading, collectionIsValid}) => {
       type="tertiary"
       size="medium"
     >
-      <Icon name={'local_library'} />
+      <Icon name={'local_library'} alt="Bog" />
       <T component="general" name="book" />
     </SkeletonButton>
   );
@@ -254,6 +254,7 @@ class WorkPreview extends React.Component {
             {isWorkPreview(this.props) && (
               <Icon
                 name="clear"
+                alt="Luk"
                 className="close-work-preview--X"
                 data-cy="close-work-preview-button"
                 onClick={this.props.close}
@@ -486,7 +487,7 @@ class WorkPreview extends React.Component {
                 className="work-preview__arrow"
                 onClick={this.props.closeChild}
               >
-                <Icon name="expand_more" className=" md-large" />
+                <Icon name="expand_more" alt="Udvide" className=" md-large" />
               </div>
             </div>
           )}

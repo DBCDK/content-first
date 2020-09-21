@@ -20,6 +20,12 @@
 .button__icon--right {
 }
 
+i.icon--left-sm {
+  margin-right: var(--1pt);
+  color: var(--new-de-york) !important;
+  font-size: 8px !important;
+}
+
 .button.button__icon--left i.icon--left {
   margin-right: var(--1pt);
 }
@@ -73,22 +79,28 @@
   .button__term:hover {
     background-color: var(--pistache);
   }
+
   .button__quinary:hover {
     background-color: var(--french-pass);
   }
+
   .button__tertiary:hover {
     background-color: var(--pistache);
   }
+
   .button__secondary:hover {
     background-color: var(--due);
   }
+
   .button__primary:hover {
     background-color: var(--lys-fersken);
   }
 }
+
 .button__term i {
-  color: var(--fersken) !important;
+  color: var(--pomegranate) !important;
 }
+
 .button__term::first-letter {
   text-transform: uppercase;
 }
@@ -191,6 +203,7 @@
   padding-right: 15px;
 }
 
+.button__feedback:focus,
 .button__feedback:hover {
   background-color: var(--sea-mist);
 }

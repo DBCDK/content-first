@@ -38,3 +38,7 @@
 .RemindsOf p {
   padding-top: 1px;
 }
+
+.RemindsOf .diblio-logo div {
+  background-color: var(--petroleum);
+}

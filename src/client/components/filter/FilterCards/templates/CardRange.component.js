@@ -100,7 +100,7 @@ class CardRange extends React.Component {
         )}
 
         <div className="FilterCard__rangeIconWrap text-right">
-          <Icon name={filter.icon} className="md-small korn-txt" />
+          <Icon name={filter.icon} className="md-small elm-txt" />
         </div>
 
         <Range

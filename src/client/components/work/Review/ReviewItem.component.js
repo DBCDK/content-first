@@ -81,7 +81,11 @@ const ReviewItem = ({
           {!error && (
             <Button {...buttonProps}>
               <span>{buttonText}</span>
-              {link && <i className="material-icons">launch</i>}
+              {link && (
+                <i className="material-icons" alt="Start">
+                  launch
+                </i>
+              )}
             </Button>
           )}
         </Text>

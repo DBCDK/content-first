@@ -14,10 +14,12 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .multiple-works-button-container .AddToListButton {
   width: auto;
   width: fit-content;
 }
+
 .AddToListButton:hover {
   background-color: var(--grey-nurse) !important;
   color: var(--petroleum) !important;
@@ -29,7 +31,7 @@
 
 .AddToListButton__Container .AddToListButton.AddToListButton__Active {
   background-color: var(--de-york);
-  color: white;
+  color: var(--petroleum);
 }
 
 .AddToListButton span {
@@ -77,12 +79,15 @@
 .AddToListButton__Lists::-webkit-scrollbar {
   width: 8px;
 }
+
 .AddToListButton__Lists::-webkit-scrollbar-track {
   background: var(--concrete);
 }
+
 .AddToListButton__Lists::-webkit-scrollbar-thumb {
   background: var(--porcelain);
 }
+
 .AddToListButton__Lists::-webkit-scrollbar-thumb:hover {
   background: var(--alto);
 }
@@ -99,6 +104,7 @@
 .AddToListButton__Dropdown li:hover {
   background-color: var(--sea-mist);
 }
+
 .AddToListButton__Dropdown li:active {
   background-color: var(--pistache);
 }
@@ -106,9 +112,11 @@
 li.AddToListButton__SYSTEM_LIST.last {
   border-bottom: 2px solid var(--pistache);
 }
+
 .AddToListButton__Dropdown li span {
   vertical-align: middle;
 }
+
 .AddToListButton__Dropdown li i {
   margin: 0 1rem 0 1rem;
   vertical-align: middle;
@@ -144,6 +152,7 @@ li.AddToListButton__SYSTEM_LIST.last {
   .dropdown-backdrop {
     background-color: var(--lys-graa);
   }
+
   .AddToListButton__Dropdown {
     position: fixed !important;
     width: 100%;

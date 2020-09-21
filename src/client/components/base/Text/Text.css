@@ -85,8 +85,13 @@
 }
 
 .Text__body--color-white--weight-semibold {
+   font-weight: 600;
+   color: white;
+ }
+
+.Text__body--color-petroleum--weight-semibold {
   font-weight: 600;
-  color: white;
+  color: var(--petroleum);
 }
 
 .Text__body--color-white--weight-semibold--transform-uppercase {
@@ -95,15 +100,27 @@
   color: white;
 }
 
+.Text__body--color-petroleum--weight-semibold--transform-uppercase {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--petroleum);
+}
+
 .Text__body--color-fersken--weight-semibold--transform-uppercase {
   font-weight: 600;
   text-transform: uppercase;
   color: var(--fersken);
 }
+ /* HUSKELISTE title gets new text colors for accessibility */
+.Text__body--color-elm--weight-semibold--transform-uppercase {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--elm);
+}
 
 .Text__body a {
   text-decoration: underline;
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 
 .Text__body a:hover {
@@ -116,6 +133,10 @@
 
 .Text__small--color-white {
   color: white;
+}
+
+.Text__small--color-petroleum {
+  color: var(--petroleum) !important;
 }
 
 .Text__small--decoration-underline {

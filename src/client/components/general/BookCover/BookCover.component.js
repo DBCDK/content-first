@@ -96,7 +96,7 @@ class BookCover extends React.Component {
 
     return (
       <div
-        alt={book.title}
+        aria-label={book.title}
         className={`book-cover ${className}`}
         onClick={onClick}
         data-cy="book-cover-loaded"
@@ -113,7 +113,7 @@ class BookCover extends React.Component {
           />
         )}
         <img
-          alt={book.title}
+          alt=""
           src={cover}
           onLoad={onLoad}
           className={`${clickableClass}`}

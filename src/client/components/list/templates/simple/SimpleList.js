@@ -48,15 +48,15 @@ export class SimpleList extends React.Component {
           className="fixed-width-col-md position-relative"
         >
           <div className="d-flex align-items-center">
-            <Text type="body" variant="color-white--weight-semibold">
+            <Text type="body" variant="color-petroleum--weight-semibold">
               <T component="list" name="list" />
             </Text>
             <div className="d-flex ml-4">
               <Icon
-                className="align-middle md-small text-white"
+                className="align-middle md-small text-petroleum"
                 name={list._public ? 'visibility' : 'visibility_off'}
               />
-              <Text className="ml-2" type="small" variant="color-white">
+              <Text className="ml-2" type="small" variant="color-petroleum">
                 <T
                   component="general"
                   name={list._public ? 'public' : 'private'}
@@ -67,10 +67,15 @@ export class SimpleList extends React.Component {
               deleteList={deleteList}
               className="mt-3 mr-2 mr-md-0"
               _id={list._id}
-              style={{position: 'absolute', right: 0, top: 0, color: 'white'}}
+              style={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                color: 'petroleum'
+              }}
             />
           </div>
-          <Text type="small" variant="color-white">
+          <Text type="small" variant="color-petroleum">
             <T component={'general'} name="createdThe" />
             {` ${timestampToLongDate(list._created)}`}
           </Text>

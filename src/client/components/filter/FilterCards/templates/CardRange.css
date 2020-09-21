@@ -3,12 +3,12 @@
 }
 
 .FilterCard__range .rc-slider-track {
-  background-color: var(--korn);
+  background-color: var(--elm);
 }
 
 .FilterCard__range .rc-slider-handle {
-  border: 2px solid var(--korn);
-  background-color: var(--korn);
+  border: 2px solid var(--elm);
+  background-color: var(--elm);
 }
 
 .FilterCard__range .FilterCard__rangeItems span {

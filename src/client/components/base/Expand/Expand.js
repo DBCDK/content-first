@@ -13,7 +13,7 @@ const Expand = ({title = '', className = null, onClick = null}) => {
         data-cy={'expand-button'}
       >
         <Text type="large">{title}</Text>
-        <Icon name="keyboard_arrow_down" />
+        <Icon name="keyboard_arrow_down" alt="Udvide" />
       </div>
     </div>
   );

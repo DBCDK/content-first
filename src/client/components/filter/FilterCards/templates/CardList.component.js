@@ -2,6 +2,7 @@ import React from 'react';
 import {isMobile} from 'react-device-detect';
 import Heading from '../../../base/Heading';
 import {withTagsFromUrl} from '../../../hoc/AdressBar';
+import Icon from '../../../base/Icon';
 
 import './CardList.css';
 
@@ -10,7 +11,6 @@ const ListItem = withTagsFromUrl(
     const selected = isSelected(filter.id);
     const tagState = selected ? 'listItem-active' : 'listItem-inactive';
     const isTouch = isMobile ? 'isTouch' : '';
-
     return (
       <li
         type="term"
@@ -23,7 +23,14 @@ const ListItem = withTagsFromUrl(
           }
         }}
       >
-        {filter.title}
+        {' '}
+        {selected && (
+          <div>
+            <Icon name="lens" className="icon--left-sm" />
+            {filter.title}
+          </div>
+        )}
+        {!selected && filter.title}
       </li>
     );
   }

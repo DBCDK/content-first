@@ -194,6 +194,7 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
       className="d-flex align-items-center justify-content-center h-100 "
     >
       <i
+        aria-label=""
         className="material-icons material-icons-image md-xxlarge "
         dangerouslySetInnerHTML={
           Object {
@@ -202,6 +203,7 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
         }
         data-unicoded="true"
         onClick={[Function]}
+        role=""
       />
     </div>
     <div
@@ -262,6 +264,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
       className="d-flex align-items-center justify-content-center h-100 "
     >
       <i
+        aria-label=""
         className="material-icons material-icons-image md-xxlarge "
         dangerouslySetInnerHTML={
           Object {
@@ -270,6 +273,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
         }
         data-unicoded="true"
         onClick={[Function]}
+        role=""
       />
     </div>
     <div

@@ -5,6 +5,7 @@ Array [
   <div
     className="undefined top-bar-dropdown-list"
     onClick={[Function]}
+    role="button"
   >
     <span
       className="short-badge"
@@ -18,6 +19,7 @@ Array [
         "
   >
     <i
+      alt="Luk"
       className="material-icons top-bar-dropdown-list--close-btn"
       onClick={[Function]}
     >
@@ -32,7 +34,7 @@ Array [
       target="_self"
     >
       <p
-        className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
+        className="tc Text Text__body Text__body--color-elm--weight-semibold--transform-uppercase"
         style={
           Object {
             "marginBottom": "10px",
@@ -105,8 +107,10 @@ Array [
             </div>
           </div>
           <i
+            aria-label="Slet"
             className="material-icons remove-btn"
             onClick={[Function]}
+            role="button"
           >
             clear
           </i>
@@ -167,8 +171,10 @@ Array [
             </div>
           </div>
           <i
+            aria-label="Slet"
             className="material-icons remove-btn"
             onClick={[Function]}
+            role="button"
           >
             clear
           </i>
@@ -205,6 +211,7 @@ Array [
   <div
     className="undefined top-bar-dropdown-list"
     onClick={[Function]}
+    role="button"
   >
     <span
       className="short-badge"
@@ -218,6 +225,7 @@ Array [
         "
   >
     <i
+      alt="Luk"
       className="material-icons top-bar-dropdown-list--close-btn"
       onClick={[Function]}
     >
@@ -232,7 +240,7 @@ Array [
       target="_self"
     >
       <p
-        className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
+        className="tc Text Text__body Text__body--color-elm--weight-semibold--transform-uppercase"
         style={
           Object {
             "marginBottom": "10px",
@@ -305,8 +313,10 @@ Array [
             </div>
           </div>
           <i
+            aria-label="Slet"
             className="material-icons remove-btn"
             onClick={[Function]}
+            role="button"
           >
             clear
           </i>
@@ -367,8 +377,10 @@ Array [
             </div>
           </div>
           <i
+            aria-label="Slet"
             className="material-icons remove-btn"
             onClick={[Function]}
+            role="button"
           >
             clear
           </i>
@@ -429,8 +441,10 @@ Array [
             </div>
           </div>
           <i
+            aria-label="Slet"
             className="material-icons remove-btn"
             onClick={[Function]}
+            role="button"
           >
             clear
           </i>
@@ -491,8 +505,10 @@ Array [
             </div>
           </div>
           <i
+            aria-label="Slet"
             className="material-icons remove-btn"
             onClick={[Function]}
+            role="button"
           >
             clear
           </i>
@@ -529,6 +545,7 @@ Array [
   <div
     className="undefined top-bar-dropdown-list"
     onClick={[Function]}
+    role="button"
   >
     <span
       className="short-badge"
@@ -542,6 +559,7 @@ Array [
         "
   >
     <i
+      alt="Luk"
       className="material-icons top-bar-dropdown-list--close-btn"
       onClick={[Function]}
     >
@@ -556,7 +574,7 @@ Array [
       target="_self"
     >
       <p
-        className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
+        className="tc Text Text__body Text__body--color-elm--weight-semibold--transform-uppercase"
         style={
           Object {
             "marginBottom": "10px",
@@ -629,8 +647,10 @@ Array [
             </div>
           </div>
           <i
+            aria-label="Slet"
             className="material-icons remove-btn"
             onClick={[Function]}
+            role="button"
           >
             clear
           </i>
@@ -667,6 +687,7 @@ Array [
   <div
     className="undefined top-bar-dropdown-list"
     onClick={[Function]}
+    role="button"
   >
     <span
       className="short-badge"
@@ -680,13 +701,14 @@ Array [
          empty-list"
   >
     <i
+      alt="Luk"
       className="material-icons top-bar-dropdown-list--close-btn"
       onClick={[Function]}
     >
       clear
     </i>
     <p
-      className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
+      className="tc Text Text__body Text__body--color-elm--weight-semibold--transform-uppercase"
       style={
         Object {
           "marginBottom": "10px",

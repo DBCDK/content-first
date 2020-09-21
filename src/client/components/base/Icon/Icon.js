@@ -12,6 +12,8 @@ const Icon = ({
   className = '',
   disabled = false,
   onClick = null,
+  alt = '',
+  role = '',
   ...props
 }) => {
   const classDisabled = disabled ? 'md-disabled' : '';
@@ -21,12 +23,13 @@ const Icon = ({
 
   // Returns the hex version of the icon if available in the map
   const unicode = isUnicode ? `&#x${map[name]};` : name;
-
   return (
     <i
       dangerouslySetInnerHTML={{__html: isUnicode ? unicode : null}}
       className={`material-icons material-icons-${name} ${className} ${classDisabled}`}
       data-unicoded={isUnicode ? 'true' : 'false'}
+      role={role}
+      aria-label={alt}
       onClick={e => {
         if (!disabled && onClick) {
           onClick(e);

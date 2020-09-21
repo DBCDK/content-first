@@ -124,6 +124,15 @@
   height: auto !important;
 }
 
+
+.login-modal .content a {
+  text-decoration: underline;
+  color: var(--petroleum);
+}
+.login-modal .content a:hover {
+}
+
+
 /*  */
 
 @media (max-width: 700px) {

@@ -126,7 +126,7 @@ export class BookcaseList extends React.Component {
                 className="align-middle md-small text-white"
                 name={list._public ? 'visibility' : 'visibility_off'}
               />
-              <Text className="ml-2" type="small" variant="color-white">
+              <Text className="ml-2" type="small" variant="color-petroleum">
                 <T
                   component="general"
                   name={list._public ? 'public' : 'private'}
@@ -140,7 +140,7 @@ export class BookcaseList extends React.Component {
               style={{position: 'absolute', right: 0, top: 0, color: 'white'}}
             />
           </div>
-          <Text type="small" variant="color-white">
+          <Text type="small" variant="color-petroleum">
             <T component={'general'} name="createdThe" />
             {` ${timestampToLongDate(list._created)}`}
           </Text>

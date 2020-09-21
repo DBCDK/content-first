@@ -24,7 +24,7 @@ const Pin = ({
       onClick={isLoggedIn ? onClick : requireLogin}
       {...props}
     >
-      <Icon name={icon} />
+      <Icon name={icon} alt="Login status" />
       {text && (
         <Text className="m-0 ml-2 align-self-center" type="small">
           {text}

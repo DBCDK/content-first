@@ -23,7 +23,9 @@
 
 .profile__accept-title2 button.Button__link:hover span,
 .profile__accept-title2 button.Button__link:focus span {
-    color: var(--malibu);
+    color: var(--petroleum);
+    font-weight: 600 !important;
+    text-decoration:none !important;
 }
 
 @keyframes slideup {
@@ -37,7 +39,7 @@
     }
 }
 
-.profile__modal-window { 
+.profile__modal-window {
     width: 692px;
     height: 416px;
     background-color: rgba(255, 255, 255, 0.97);

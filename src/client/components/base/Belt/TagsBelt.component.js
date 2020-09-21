@@ -24,7 +24,7 @@ const EditBelt = props => {
     <React.Fragment>
       <BeltContextMenu {...props} />
       <div className="belt-tags__edit-button" onClick={props.onEditClick}>
-        <Icon className="md-small" name="edit" />
+        <Icon className="md-small" name="edit" alt="Rediger" />
         <Text type="small">
           <T component="general" name="edit" />
         </Text>

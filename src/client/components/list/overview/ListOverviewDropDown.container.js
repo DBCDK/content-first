@@ -116,13 +116,14 @@ const UserListsContent = props => {
         <React.Fragment>
           <i
             onClick={props.onClose}
+            alt="Luk"
             className="material-icons top-bar-dropdown-list--close-btn"
           >
             clear
           </i>
           <Text
             type="body"
-            variant="color-fersken--weight-semibold--transform-uppercase"
+            variant="color-elm--weight-semibold--transform-uppercase"
             className="tc"
             style={{marginBottom: '10px'}}
           >
