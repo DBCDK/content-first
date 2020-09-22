@@ -12,6 +12,13 @@
 
 .work-preview__series-link {
   text-decoration: underline !important;
+  color: var(--petroleum) !important;
+}
+
+a.link.work-preview__series-link:hover,
+a.link.work-preview__series-link:focus {
+  text-decoration: none !important;
+  color: var(--petroleum) !important;
 }
 
 .work-preview.preview.light-grey,
@@ -222,6 +229,7 @@
     padding: 0 0 0 var(--5pt);
   }
 }
+
 @media only screen and (max-width: 768px) {
   .work-page .work-preview__work {
     width: 100%;

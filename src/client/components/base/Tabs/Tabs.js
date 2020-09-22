@@ -120,7 +120,7 @@ export class Tabs extends React.Component {
       pagination: {
         ...defaultSettings.pagination,
         renderBullet: function(i, swiperClass) {
-          return `<span class="${swiperClass} mr-4" data-cy="${pages[i]}">
+          return `<span class="${swiperClass} mr-4" aria-label="${pages[i]}" data-cy="${pages[i]}">
                   <Text type="body" variant="weight-semibold">
                     ${pages[i]}
                   </Text>
@@ -141,6 +141,7 @@ export class Tabs extends React.Component {
         className={className}
         onPageChange={this.onPageChange}
         {...settings}
+        aria-label={pages[0]}
       >
         {children &&
           children.map((child, idx) => (

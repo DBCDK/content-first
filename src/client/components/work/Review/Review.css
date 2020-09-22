@@ -79,16 +79,23 @@
 
 .Review__container a {
   cursor: pointer;
-  text-decoration: underline !important;
 }
 
 .Review__container button {
   padding: 0 !important;
 }
 
-.Review__container button.button__link:hover span,
-.Review__container button.button__link:focus span {
-  color: var(--malibu);
+.Review__container button.button__link {
+  color: white;
+  font-weight: 400 !important;
+  background-color: var(--petroleum);
+  padding: 4px !important;
+  border-radius: 2px !important;
+  text-decoration: none !important;
+}
+
+.Review__container button.button__link:hover,
+.Review__container button.button__link:focus {
 }
 
 .Review__block--top {
@@ -190,11 +197,12 @@ a:hover.tooltips span {
   overflow: hidden;
 }
 
-@media (max-width: 1024px){
+@media (max-width: 1024px) {
   .infomedia_DateLine {
     text-align: left;
     position: inherit;
   }
+
   .infomedia_paper {
     text-align: left;
     position: inherit;

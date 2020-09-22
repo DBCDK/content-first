@@ -18,6 +18,14 @@
   color: var(--korn) !important;
 }
 
+.elm-txt {
+  color: var(--elm) !important;
+}
+
+.text-petroleum{
+  color: var(--petroleum) !important;
+}
+
 .kobber {
   background-color: var(--kobber) !important;
 }

@@ -7,7 +7,7 @@ const Origin = ({componentData, work = {}}) => {
     case 'searchTags':
       return (
         <Link
-          style={{color: 'var(--petroleum)'}}
+          style={{color: 'var(--petroleum)', textDecoration: 'underline'}}
           href={'/find?tags=' + componentData.tags}
           className="origin_link"
         >
@@ -30,7 +30,7 @@ const Origin = ({componentData, work = {}}) => {
     case 'personalList':
       return (
         <Link
-          style={{color: 'var(--petroleum)'}}
+          style={{color: 'var(--petroleum)', textDecoration: 'underline'}}
           href={'/lister/' + componentData.listLink[0]}
           className="origin_link"
         >

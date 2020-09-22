@@ -50,7 +50,12 @@ const ShortListElement = props => {
         </div>
       </div>
       {
-        <i onClick={props.onClose} className="material-icons remove-btn">
+        <i
+          onClick={props.onClose}
+          className="material-icons remove-btn"
+          role="button"
+          aria-label="Slet"
+        >
           clear
         </i>
       }
@@ -70,13 +75,14 @@ const ShortListContent = props => {
       <i
         onClick={props.onClose}
         className="material-icons top-bar-dropdown-list--close-btn"
+        alt="Luk"
       >
         clear
       </i>
       <Link href="/huskeliste" disable={emptyList}>
         <Text
           type="body"
-          variant="color-fersken--weight-semibold--transform-uppercase"
+          variant="color-elm--weight-semibold--transform-uppercase"
           className="tc"
           style={{marginBottom: '10px'}}
         >
@@ -153,6 +159,8 @@ class ShortListDropdown extends React.Component {
               });
             }
           }}
+          role="button"
+          aria-label={this.props.label}
           data-cy={this.props.dataCy}
         >
           {this.props.children}

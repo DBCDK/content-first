@@ -16,6 +16,8 @@ const SelectedWork = withWork(({selected, work, onRemove}) => {
       <Icon
         className="md-small"
         name="close"
+        alt="Slet"
+        role="button"
         onClick={() => onRemove(selected.match)}
       />
     </Button>
@@ -29,6 +31,8 @@ const SelectedTitles = ({selected, onRemove}) => {
       <Icon
         className="md-small"
         name="close"
+        role="button"
+        alt="Slet"
         onClick={() => onRemove(selected.match)}
       />
     </Button>
@@ -53,6 +57,8 @@ const SelectedTag = withPermissions(
       <Icon
         className={'md-small' + (isMobile ? ' increase-touch-area-xsmall' : '')}
         name="close"
+        role="button"
+        alt="Slet"
         onClick={() => onRemove(selected.match)}
       />
     </Button>
@@ -91,6 +97,7 @@ const SelectedTagRange = ({selected, onRemove}) => (
     <Icon
       className="md-small"
       name="close"
+      alt="Luk"
       onClick={() => onRemove(selected.match)}
     />
   </Button>
@@ -108,6 +115,7 @@ const SelectedQuery = ({selected, onRemove}) => (
     <Icon
       className="md-small"
       name="close"
+      alt="Luk"
       onClick={() => onRemove(selected.match)}
     />
   </Button>

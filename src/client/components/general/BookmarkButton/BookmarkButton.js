@@ -45,8 +45,9 @@ export class BookmarkButton extends React.PureComponent {
         size="medium"
         dataCy={this.props.dataCy}
         onTouchStart={() => {}}
+        aria-label={marked ? 'Fjerne fra huskeliste' : 'Føj til huskeliste'}
       >
-        <Icon name="bookmark_outline" />
+        <Icon name="bookmark_outline" alt="Huskeliste" />
         {!layout ? (
           <span className="ml-1">
             <T component="shortlist" name="buttonLabel" />

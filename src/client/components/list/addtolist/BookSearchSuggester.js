@@ -145,8 +145,9 @@ class BookSearchSuggester extends React.Component {
           className
         }
         style={style}
+        aria-label={'seee'}
       >
-        <Icon name="search" className="align-self-center pl-2 pr-2" />
+        <Icon name="search" alt="Søg" className="align-self-center pl-2 pr-2" />
         <Autosuggest
           ref={suggesterRef}
           suggestions={suggestions}

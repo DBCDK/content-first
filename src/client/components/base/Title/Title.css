@@ -78,7 +78,11 @@
 }
 
 .Title__title3--color-white {
-  color: white;
+   color: white;
+ }
+
+.Title__title3--color-petroleum {
+  color: var(--petroleum)
 }
 
 .Title__title4--color-white {

@@ -31,7 +31,7 @@ exports[`renders without crashing 1`] = `
             className="topbar__navigation--icon "
           >
             <img
-              alt="logo"
+              alt="Læsekompas forside"
               src="/img/general/dibliofigur.svg"
               type="image/svg+xml"
             />
@@ -41,6 +41,7 @@ exports[`renders without crashing 1`] = `
           className="navigation-btn navigation-btn__search--bar widthCalc"
         >
           <i
+            aria-label="Søg"
             className="material-icons material-icons-search  "
             dangerouslySetInnerHTML={
               Object {
@@ -49,6 +50,7 @@ exports[`renders without crashing 1`] = `
             }
             data-unicoded="true"
             onClick={[Function]}
+            role=""
           />
           <span
             className="topbar__search-bar--container"
@@ -102,6 +104,7 @@ exports[`renders without crashing 1`] = `
                   </div>
                 </div>
                 <i
+                  aria-label=""
                   className="material-icons material-icons-search d-md-none d-sm-inline-block "
                   dangerouslySetInnerHTML={
                     Object {
@@ -110,6 +113,7 @@ exports[`renders without crashing 1`] = `
                   }
                   data-unicoded="true"
                   onClick={[Function]}
+                  role=""
                 />
                 <div
                   className="selected-filters"
@@ -135,6 +139,7 @@ exports[`renders without crashing 1`] = `
           target="_self"
         >
           <i
+            aria-label="Søg"
             className="material-icons material-icons-search  "
             dangerouslySetInnerHTML={
               Object {
@@ -143,6 +148,7 @@ exports[`renders without crashing 1`] = `
             }
             data-unicoded="true"
             onClick={[Function]}
+            role=""
           />
         </a>
         <a
@@ -154,6 +160,7 @@ exports[`renders without crashing 1`] = `
           target="_self"
         >
           <i
+            aria-label="Huskeliste"
             className="material-icons material-icons-bookmark_border  "
             dangerouslySetInnerHTML={
               Object {
@@ -162,17 +169,21 @@ exports[`renders without crashing 1`] = `
             }
             data-unicoded="true"
             onClick={[Function]}
+            role=""
           />
           <span>
             (0)
           </span>
         </a>
         <div
+          aria-label="Vis Huskelisten"
           className="navigation-btn navigation-btn__shortlist--dropdown widthCalc  top-bar-dropdown-list"
           data-cy="topbar-shortlist"
           onClick={[Function]}
+          role="button"
         >
           <i
+            aria-label="Huskeliste"
             className="material-icons material-icons-bookmark_border  "
             dangerouslySetInnerHTML={
               Object {
@@ -181,6 +192,7 @@ exports[`renders without crashing 1`] = `
             }
             data-unicoded="true"
             onClick={[Function]}
+            role=""
           />
           <span
             className="short-badge"
@@ -194,13 +206,14 @@ exports[`renders without crashing 1`] = `
          empty-list"
         >
           <i
+            alt="Luk"
             className="material-icons top-bar-dropdown-list--close-btn"
             onClick={[Function]}
           >
             clear
           </i>
           <p
-            className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
+            className="tc Text Text__body Text__body--color-elm--weight-semibold--transform-uppercase"
             style={
               Object {
                 "marginBottom": "10px",
@@ -261,7 +274,7 @@ exports[`renders without crashing 1`] = `
         target="_self"
       >
         <img
-          alt="topbar_logo"
+          alt="Logo. Læsekompas - Lad biblioteket inspirere dig"
           src="LaesekompasLogoPayoff.svg"
         />
       </a>
@@ -443,6 +456,7 @@ exports[`renders without crashing 1`] = `
     >
       <span>
         <i
+          aria-label=""
           className="material-icons material-icons-chat_bubble_outline icon__feedback md-small "
           dangerouslySetInnerHTML={
             Object {
@@ -451,6 +465,7 @@ exports[`renders without crashing 1`] = `
           }
           data-unicoded="true"
           onClick={[Function]}
+          role=""
         />
         <span
           className="feedback-text"

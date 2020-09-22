@@ -195,14 +195,15 @@ export class TopBar extends React.Component {
           href="/huskeliste"
           className="navigation-btn navigation-btn__shortlist--btn widthCalc"
         >
-          <Icon name="bookmark_border" />
+          <Icon name="bookmark_border" alt="Huskeliste" />
           <span>{`(${listLength})`}</span>
         </Link>
         <ShortListDropDown
           className={`navigation-btn navigation-btn__shortlist--dropdown widthCalc ${expandedClass}`}
           dataCy="topbar-shortlist"
+          label="Vis Huskelisten"
         >
-          <Icon name="bookmark_border" />
+          <Icon name="bookmark_border" alt="Huskeliste" />
         </ShortListDropDown>
       </React.Fragment>
     );
@@ -217,7 +218,7 @@ export class TopBar extends React.Component {
         className={`navigation-btn navigation-btn__list--dropdown widthCalc ${expandedClass}`}
         dataCy="topbar-lists"
       >
-        <Icon name="list" />
+        <Icon name="list" alt="Overblik" />
         <span>
           <T component="list" name="listButton" />
         </span>
@@ -260,12 +261,16 @@ export class TopBar extends React.Component {
               <img
                 type="image/svg+xml"
                 src="/img/general/dibliofigur.svg"
-                alt="logo"
+                alt="Læsekompas forside"
               />
             </div>
           </Link>
           <span className="navigation-btn navigation-btn__search--bar widthCalc">
-            <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
+            <Icon
+              name="search"
+              alt="Søg"
+              onClick={() => this.toggleSearchBar('open')}
+            />
             <span className="topbar__search-bar--container">
               <span
                 className="topbar__search-bar--wrap"
@@ -282,7 +287,9 @@ export class TopBar extends React.Component {
                 this.handleIconClick(searchExpanded, showCancelBtn)
               }
             >
-              {searchExpanded && showCancelBtn && <Icon name="cancel" />}
+              {searchExpanded && showCancelBtn && (
+                <Icon name="cancel" alt="Annullere" />
+              )}
               {!searchExpanded && <T component="general" name="searchButton" />}
             </span>
           </span>
@@ -293,6 +300,7 @@ export class TopBar extends React.Component {
             >
               <Icon
                 name="search"
+                alt="Søg"
                 onClick={() => this.toggleSearchBar('open')}
               />
             </Link>
@@ -328,6 +336,8 @@ export class TopBar extends React.Component {
                 className="navigation-btn navigation-btn__menu--user widthCalc dropdown--dont-close"
                 onClick={() => this.toggleDropdown()}
                 data-cy="topbar-logged-in-btn"
+                role="button"
+                aria-label="Vis profil eller log ud"
               >
                 <ProfileImage type="top" user={user} />
               </span>
@@ -335,7 +345,7 @@ export class TopBar extends React.Component {
                 className="navigation-btn navigation-btn__menu--burger dropdown--dont-close"
                 onClick={() => this.toggleDropdown()}
               >
-                <Icon name="menu" />
+                <Icon name="menu" alt="Menu" />
               </span>
             </React.Fragment>
           )}
@@ -343,7 +353,10 @@ export class TopBar extends React.Component {
         </nav>
 
         <Link href="/" className={`topbar__logo ${hideOnIE11}`}>
-          <img src={LaesekompasLogo} alt="topbar_logo" />
+          <img
+            src={LaesekompasLogo}
+            alt="Logo. Læsekompas - Lad biblioteket inspirere dig"
+          />
         </Link>
         <TopBarDropdown
           logout={logout}
@@ -391,7 +404,7 @@ export const mapDispatchToProps = dispatch => ({
                 });
               }}
             >
-              <Icon name="list" />
+              <Icon name="list" alt="Liste" />
               <span>
                 <T component="list" name="listButton" />
               </span>

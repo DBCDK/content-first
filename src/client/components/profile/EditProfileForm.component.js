@@ -72,6 +72,8 @@ export default class EditProfileForm extends React.Component {
                   this.setState({[e.target.name]: e.target.value});
                 }}
                 data-cy="user-form-name"
+                role="textbox"
+                aria-label="Skriv brugernavn"
               />
             </div>
             {this.state.nameTooShort && (

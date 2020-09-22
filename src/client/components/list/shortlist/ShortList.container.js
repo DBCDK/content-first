@@ -90,7 +90,13 @@ export class ShortListItem extends React.Component {
     return (
       <div>
         <div className={`shortlist__item ${className}`}>
-          <Icon name="clear" className="remove-btn" onClick={onRemove} />
+          <Icon
+            name="clear"
+            className="remove-btn"
+            onClick={onRemove}
+            role="button"
+            alt="slet"
+          />
           <Link href={url}>
             <BookCover pid={work.book.pid} />
           </Link>
@@ -217,7 +223,7 @@ export class ShortList extends React.Component {
 
         <Banner
           color={!isKiosk ? '#81c793' : '#f3f3f3'}
-          textColor={!isKiosk ? 'white' : 'petroleum'}
+          textColor="petroleum"
           className="fixed-width-col-md position-relative text-uppercase"
           title={
             !isKiosk ? T({component: 'shortlist', name: 'title'}) : 'Huskeliste'

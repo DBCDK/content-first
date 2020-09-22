@@ -23,7 +23,7 @@ const RemindsOf = ({className = null, onClick = null, ...props}) => {
       <Logo />
       <Text
         type="body"
-        variant="color-white--weight-semibold--transform-uppercase"
+        variant="color-petroleum--weight-semibold--transform-uppercase"
       >
         <T component="work" name="remindsOf" />
       </Text>

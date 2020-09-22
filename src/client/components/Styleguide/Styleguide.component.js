@@ -340,7 +340,7 @@ export default class Styleguide extends React.Component {
                     toast(<ToastMessage lines={['Just a simple message']} />);
                   }}
                 >
-                  <Icon name="message" />
+                  <Icon name="message" alt="Besked" />
                 </button>
 
                 <button

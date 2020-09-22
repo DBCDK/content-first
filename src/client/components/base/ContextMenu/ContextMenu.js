@@ -97,7 +97,7 @@ export default class ContextMenu extends React.Component {
             this.showDropdown();
           }}
         >
-          <Icon name="more_vert" className="align-middle" />
+          <Icon name="more_vert" alt="Rediger" className="align-middle" />
           {title && <span className="align-middle ml-2">{title}</span>}
         </div>
         <div ref={e => (this.dropdown = e)} className="dropdown dropdown-right">

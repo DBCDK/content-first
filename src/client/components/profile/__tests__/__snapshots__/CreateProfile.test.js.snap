@@ -161,11 +161,13 @@ exports[`Image Upload render function Add image 1`] = `
                     className="profile__edit-textfield"
                   >
                     <input
+                      aria-label="Skriv brugernavn"
                       className="profile__mobileinputfield   has-feedback"
                       data-cy="user-form-name"
                       name="name"
                       onChange={[Function]}
                       placeholder="Skriv brugernavn"
+                      role="textbox"
                       type="text"
                       value=""
                     />
@@ -393,11 +395,13 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                 className="profile__edit-textfield"
               >
                 <input
+                  aria-label="Skriv brugernavn"
                   className="profile__mobileinputfield   has-feedback"
                   data-cy="user-form-name"
                   name="name"
                   onChange={[Function]}
                   placeholder="Skriv brugernavn"
+                  role="textbox"
                   type="text"
                   value=""
                 />
