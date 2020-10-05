@@ -66,7 +66,7 @@ exports[`renders without crashing 1`] = `
             >
               <div
                 className="selected-filters-wrap text-left"
-                id="selected-filters-wrap_1601886340108"
+                id="selected-filters-wrap_1601893770274"
                 onWheel={[Function]}
               >
                 <div
@@ -88,7 +88,7 @@ exports[`renders without crashing 1`] = `
                       autoComplete="off"
                       className="form-control suggestion-list__search_fromTopbar"
                       data-cy="search-bar-input"
-                      id="Searchbar__inputfield_1601886340110"
+                      id="Searchbar__inputfield_1601893770275"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
@@ -117,7 +117,7 @@ exports[`renders without crashing 1`] = `
                 />
                 <div
                   className="selected-filters"
-                  id="selectedFilters_1601886340109"
+                  id="selectedFilters_1601893770274"
                 />
               </div>
             </span>

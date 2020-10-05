@@ -21,7 +21,7 @@
 }
 
 i.icon--left-sm {
-  margin-right: var(--1pt);
+  margin-right: 2px;
   color: var(--new-de-york) !important;
   font-size: 8px !important;
 }
@@ -158,7 +158,7 @@ i.icon--left-sm {
   color: white;
 }
 
-.button__primary--bgcolor-korn--color-white,
+.button__primary-bgcolor-korn--color-white,
 .button__primary--bgcolor-korn--color-white:hover {
   background-color: var(--korn);
   color: white;
