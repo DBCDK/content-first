@@ -1,6 +1,5 @@
 import React from 'react';
 import './Checkbox.css';
-import Radio from '../Radio';
 
 const Checkbox = ({
   className = '',
