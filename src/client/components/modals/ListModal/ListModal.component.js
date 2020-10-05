@@ -135,6 +135,7 @@ class PageInfo extends React.Component {
               buttonText={<T component="general" name="changeImage" />}
               buttonPosition="inside"
               onFile={img => handleImage(img)}
+              tabindex={this.props.tabindex}
             />
           </div>
           <div className="col-6 col-md-8 pl-2">
@@ -248,6 +249,7 @@ class PageAdvanced extends React.Component {
               buttonText={<T component="list" name="uploadBookcaseImage" />}
               buttonPosition="inside"
               onFile={img => handleImage(img)}
+              tabindex={this.props.tabindex}
             />
           ) : (
             <img
@@ -435,12 +437,16 @@ export class ListModal extends React.Component {
             handleImage={image => this.handleImage(image)}
             updateListData={data => this.updateListData(data)}
             onError={this.handleError}
+            role={'button'}
+            tabindex={0}
           />
           <PageAdvanced
             list={list}
             justCreated={justCreated}
             handleImage={image => this.handleImage(image)}
             updateListData={data => this.updateListData(data)}
+            role={'button'}
+            tabindex={-1}
           />
         </Tabs>
       </Modal>

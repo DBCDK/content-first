@@ -50,12 +50,18 @@
   z-index: 3;
 }
 
+.navigation-btn:focus {
+  outline-offset: -2px;
+  outline-color: var(--elm);
+}
+
 /* exclude searchbar */
 .topbar.collapsed
-  .topbar__navigation
-  .navigation-btn.navigation-btn__search--bar {
+.topbar__navigation
+.navigation-btn.navigation-btn__search--bar {
   width: 80px;
 }
+
 .topbar .topbar__navigation .navigation-btn.navigation-btn__search--bar {
   width: auto;
   min-width: auto;
@@ -182,9 +188,16 @@
   pointer-events: none;
 }
 
+.topbar__logo:focus{
+  outline-offset: -2px;
+  outline-color: var(--elm);
+}
+
 .topbar__logo .topbar__logo-title {
   margin: 0;
 }
+
+
 
 .topbar .topbar__logo img {
   max-width: 190px;

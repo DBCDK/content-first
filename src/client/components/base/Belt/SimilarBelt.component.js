@@ -81,7 +81,6 @@ export class SimilarBelt extends React.Component {
           {this.props.close && (
             <Icon
               name="clear"
-              alt="Luk"
               className="close-similar-belt--X"
               data-cy="close-similar-belt-button"
               onClick={this.props.close}

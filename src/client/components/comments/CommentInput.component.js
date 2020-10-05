@@ -99,12 +99,16 @@ export default class CommentInput extends React.Component {
               onChange={e => this.props.onChange(e.target.value)}
               value={this.props.value}
               data-cy={this.props['data-cy'] || 'comment-input'}
+              title={this.props.placeholder}
             />
             <Icon
               id="comment-submit"
               className="comment-submit-icon align-self-end"
               name={editing ? editIcon : submitIcon}
               onClick={this.onSubmit}
+              role="button"
+              aria-label={editing ? editIcon : submitIcon}
+              tabindex={0}
             />
           </div>
           {this.props.error &&

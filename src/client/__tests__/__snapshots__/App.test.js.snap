@@ -25,6 +25,7 @@ exports[`renders without crashing 1`] = `
           href="/"
           onClick={[Function]}
           style={Object {}}
+          tabIndex={-1}
           target="_self"
         >
           <div
@@ -39,9 +40,10 @@ exports[`renders without crashing 1`] = `
         </a>
         <span
           className="navigation-btn navigation-btn__search--bar widthCalc"
+          role="button"
+          tabIndex={0}
         >
           <i
-            aria-label="Søg"
             className="material-icons material-icons-search  "
             dangerouslySetInnerHTML={
               Object {
@@ -50,7 +52,6 @@ exports[`renders without crashing 1`] = `
             }
             data-unicoded="true"
             onClick={[Function]}
-            role=""
           />
           <span
             className="topbar__search-bar--container"
@@ -65,7 +66,7 @@ exports[`renders without crashing 1`] = `
             >
               <div
                 className="selected-filters-wrap text-left"
-                id="selected-filters-wrap"
+                id="selected-filters-wrap_1601886340108"
                 onWheel={[Function]}
               >
                 <div
@@ -83,10 +84,11 @@ exports[`renders without crashing 1`] = `
                       aria-activedescendant={null}
                       aria-autocomplete="list"
                       aria-controls="react-autowhatever-1"
+                      aria-label="Søg på stemning, sted eller stil…"
                       autoComplete="off"
                       className="form-control suggestion-list__search_fromTopbar"
                       data-cy="search-bar-input"
-                      id="Searchbar__inputfield"
+                      id="Searchbar__inputfield_1601886340110"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
@@ -104,7 +106,6 @@ exports[`renders without crashing 1`] = `
                   </div>
                 </div>
                 <i
-                  aria-label=""
                   className="material-icons material-icons-search d-md-none d-sm-inline-block "
                   dangerouslySetInnerHTML={
                     Object {
@@ -113,11 +114,10 @@ exports[`renders without crashing 1`] = `
                   }
                   data-unicoded="true"
                   onClick={[Function]}
-                  role=""
                 />
                 <div
                   className="selected-filters"
-                  id="selectedFilters"
+                  id="selectedFilters_1601886340109"
                 />
               </div>
             </span>
@@ -136,10 +136,10 @@ exports[`renders without crashing 1`] = `
           href="/find"
           onClick={[Function]}
           style={Object {}}
+          tabIndex={0}
           target="_self"
         >
           <i
-            aria-label="Søg"
             className="material-icons material-icons-search  "
             dangerouslySetInnerHTML={
               Object {
@@ -148,7 +148,6 @@ exports[`renders without crashing 1`] = `
             }
             data-unicoded="true"
             onClick={[Function]}
-            role=""
           />
         </a>
         <a
@@ -156,11 +155,13 @@ exports[`renders without crashing 1`] = `
           data-cy=""
           href="/huskeliste"
           onClick={[Function]}
+          role="button"
           style={Object {}}
+          tabIndex={0}
           target="_self"
         >
           <i
-            aria-label="Huskeliste"
+            alt="Huskeliste"
             className="material-icons material-icons-bookmark_border  "
             dangerouslySetInnerHTML={
               Object {
@@ -169,7 +170,6 @@ exports[`renders without crashing 1`] = `
             }
             data-unicoded="true"
             onClick={[Function]}
-            role=""
           />
           <span>
             (0)
@@ -181,9 +181,10 @@ exports[`renders without crashing 1`] = `
           data-cy="topbar-shortlist"
           onClick={[Function]}
           role="button"
+          tabindex={0}
         >
           <i
-            aria-label="Huskeliste"
+            alt="Huskeliste"
             className="material-icons material-icons-bookmark_border  "
             dangerouslySetInnerHTML={
               Object {
@@ -192,7 +193,6 @@ exports[`renders without crashing 1`] = `
             }
             data-unicoded="true"
             onClick={[Function]}
-            role=""
           />
           <span
             className="short-badge"
@@ -206,7 +206,6 @@ exports[`renders without crashing 1`] = `
          empty-list"
         >
           <i
-            alt="Luk"
             className="material-icons top-bar-dropdown-list--close-btn"
             onClick={[Function]}
           >
@@ -238,6 +237,8 @@ exports[`renders without crashing 1`] = `
       button button__medium button__tertiary   "
                 data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={true}
+                role="button"
+                tabindex="0"
               >
                 <span>
                   Gå til huskeliste
@@ -276,6 +277,7 @@ exports[`renders without crashing 1`] = `
         <img
           alt="Logo. Læsekompas - Lad biblioteket inspirere dig"
           src="LaesekompasLogoPayoff.svg"
+          tabIndex={-1}
         />
       </a>
       <ul
@@ -288,6 +290,7 @@ exports[`renders without crashing 1`] = `
             href="/profil/rediger"
             onClick={[Function]}
             style={Object {}}
+            tabIndex={0}
             target="_self"
           >
             <span>
@@ -421,6 +424,8 @@ exports[`renders without crashing 1`] = `
             data-cy="cookie-reject-button"
             disabled={false}
             onClick={[Function]}
+            role="button"
+            tabindex="0"
           >
             <span>
               Kun nødvendige
@@ -432,6 +437,8 @@ exports[`renders without crashing 1`] = `
             data-cy="cookie-accept-button"
             disabled={false}
             onClick={[Function]}
+            role="button"
+            tabindex="0"
           >
             <span>
               Acceptér cookies
@@ -453,10 +460,11 @@ exports[`renders without crashing 1`] = `
       data-cy=""
       disabled={false}
       onClick={[Function]}
+      role="button"
+      tabindex="0"
     >
       <span>
         <i
-          aria-label=""
           className="material-icons material-icons-chat_bubble_outline icon__feedback md-small "
           dangerouslySetInnerHTML={
             Object {
@@ -465,7 +473,6 @@ exports[`renders without crashing 1`] = `
           }
           data-unicoded="true"
           onClick={[Function]}
-          role=""
         />
         <span
           className="feedback-text"

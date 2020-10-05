@@ -19,6 +19,8 @@ exports[`LoginModal renders function 1`] = `
       button button__large button__quaternary   "
       data-cy=""
       disabled={false}
+      role="button"
+      tabindex="0"
     >
       <span>
         Log ind

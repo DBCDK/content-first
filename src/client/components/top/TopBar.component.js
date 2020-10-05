@@ -44,7 +44,12 @@ class TopBarDropdown extends React.Component {
           </li>
         )}
         <li>
-          <Link href="/profil/rediger" onClick={onClick} data-cy="profile-btn">
+          <Link
+            href="/profil/rediger"
+            onClick={onClick}
+            data-cy="profile-btn"
+            tabIndex={0}
+          >
             <span>
               <T component="profile" name="profilePage" />
             </span>
@@ -194,6 +199,8 @@ export class TopBar extends React.Component {
         <Link
           href="/huskeliste"
           className="navigation-btn navigation-btn__shortlist--btn widthCalc"
+          role="button"
+          tabIndex={0}
         >
           <Icon name="bookmark_border" alt="Huskeliste" />
           <span>{`(${listLength})`}</span>
@@ -218,7 +225,7 @@ export class TopBar extends React.Component {
         className={`navigation-btn navigation-btn__list--dropdown widthCalc ${expandedClass}`}
         dataCy="topbar-lists"
       >
-        <Icon name="list" alt="Overblik" />
+        <Icon name="list" />
         <span>
           <T component="list" name="listButton" />
         </span>
@@ -256,7 +263,12 @@ export class TopBar extends React.Component {
         className={`topbar ${collapsedClass}`}
       >
         <nav className="topbar__navigation">
-          <Link data-cy="dibliofigur" href="/" className="widthCalc">
+          <Link
+            data-cy="dibliofigur"
+            href="/"
+            className="widthCalc"
+            tabIndex={-1}
+          >
             <div className="topbar__navigation--icon ">
               <img
                 type="image/svg+xml"
@@ -265,12 +277,12 @@ export class TopBar extends React.Component {
               />
             </div>
           </Link>
-          <span className="navigation-btn navigation-btn__search--bar widthCalc">
-            <Icon
-              name="search"
-              alt="Søg"
-              onClick={() => this.toggleSearchBar('open')}
-            />
+          <span
+            className="navigation-btn navigation-btn__search--bar widthCalc"
+            role="button"
+            tabIndex={0}
+          >
+            <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
             <span className="topbar__search-bar--container">
               <span
                 className="topbar__search-bar--wrap"
@@ -297,10 +309,10 @@ export class TopBar extends React.Component {
             <Link
               href="/find"
               className="navigation-btn navigation-btn__search--btn"
+              tabIndex={0}
             >
               <Icon
                 name="search"
-                alt="Søg"
                 onClick={() => this.toggleSearchBar('open')}
               />
             </Link>
@@ -338,6 +350,7 @@ export class TopBar extends React.Component {
                 data-cy="topbar-logged-in-btn"
                 role="button"
                 aria-label="Vis profil eller log ud"
+                tabindex={0}
               >
                 <ProfileImage type="top" user={user} />
               </span>
@@ -356,6 +369,7 @@ export class TopBar extends React.Component {
           <img
             src={LaesekompasLogo}
             alt="Logo. Læsekompas - Lad biblioteket inspirere dig"
+            tabIndex={-1}
           />
         </Link>
         <TopBarDropdown

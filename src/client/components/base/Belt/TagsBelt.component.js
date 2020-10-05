@@ -177,6 +177,7 @@ export class TagsBelt extends React.Component {
                       }
                     }}
                     data-cy={`tag-${tag.title}`}
+                    tabIndex={-1}
                   >
                     <Term
                       size="medium"

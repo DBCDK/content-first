@@ -41,6 +41,11 @@
   margin: 0;
 }
 
+.comment-textarea-wrap textarea:focus {
+  outline: solid 1px;
+  outline-offset: -1px;
+}
+
 @media (min-width: 768px) {
   .listElement-comments .comment-textarea-wrap,
   .simpleList-comment .comment-textarea-wrap {

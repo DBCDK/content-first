@@ -75,7 +75,6 @@ const ShortListContent = props => {
       <i
         onClick={props.onClose}
         className="material-icons top-bar-dropdown-list--close-btn"
-        alt="Luk"
       >
         clear
       </i>
@@ -162,6 +161,7 @@ class ShortListDropdown extends React.Component {
           role="button"
           aria-label={this.props.label}
           data-cy={this.props.dataCy}
+          tabindex={0}
         >
           {this.props.children}
           <span className="short-badge">{'(' + elements.length + ')'}</span>

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Checkbox.css';
+import Radio from '../Radio';
 
 const Checkbox = ({
   className = '',
@@ -17,8 +18,11 @@ const Checkbox = ({
         value={value}
         checked={checked}
         onChange={onChange}
+        tabIndex={0}
+        role="checkbox"
+        aria-checked={checked}
       />
-      <span className="Checkbox__button" />
+      <span className="Checkbox__button" tabIndex={-1} />
     </label>
   );
 };

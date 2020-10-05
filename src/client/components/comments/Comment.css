@@ -49,6 +49,10 @@
   cursor: pointer;
 }
 
+.comment-submit-icon:focus {
+ outline-offset: -2px;
+}
+
 .comment-submit-icon.material-icons-send:not(.md-disabled):hover {
   padding: 0.5rem 0.25rem 0.5rem 0.75rem;
 }

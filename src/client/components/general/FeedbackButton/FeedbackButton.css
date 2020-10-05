@@ -5,6 +5,11 @@
   z-index: 10;
 }
 
+.Button__feedback.button.button__medium:focus{
+  outline-color: var(--petroleum);
+  outline-width: 1px;
+}
+
 .icon__feedback {
   margin-bottom: -2px;
   margin-right: 5px;
@@ -26,6 +31,7 @@
     font-size: 0.8rem;
     content: 'FEEDBACK';
   }
+
   .Button__feedback {
     padding-top: 5px;
     padding-bottom: 7px;

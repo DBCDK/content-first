@@ -12,8 +12,6 @@ const Icon = ({
   className = '',
   disabled = false,
   onClick = null,
-  alt = '',
-  role = '',
   ...props
 }) => {
   const classDisabled = disabled ? 'md-disabled' : '';
@@ -28,8 +26,6 @@ const Icon = ({
       dangerouslySetInnerHTML={{__html: isUnicode ? unicode : null}}
       className={`material-icons material-icons-${name} ${className} ${classDisabled}`}
       data-unicoded={isUnicode ? 'true' : 'false'}
-      role={role}
-      aria-label={alt}
       onClick={e => {
         if (!disabled && onClick) {
           onClick(e);

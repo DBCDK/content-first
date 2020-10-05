@@ -45,6 +45,7 @@ export default ({appeals, book}) => {
                   href="/find"
                   params={{tags: t.id}}
                   type={HISTORY_REPLACE}
+                  tabIndex={-1}
                 >
                   <Button
                     key={t.title}

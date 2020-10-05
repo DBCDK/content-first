@@ -36,9 +36,11 @@ exports[`CommentContainer Delete button 1`] = `
           onClick={[Function]}
         >
           <Icon
-            alt="Rediger"
+            aria-label="Rediger"
             className="align-middle"
             name="more_vert"
+            role="button"
+            tabindex="0"
           >
             <i
               aria-label="Rediger"
@@ -50,7 +52,8 @@ exports[`CommentContainer Delete button 1`] = `
               }
               data-unicoded="true"
               onClick={[Function]}
-              role=""
+              role="button"
+              tabindex="0"
             />
           </Icon>
         </div>
@@ -72,7 +75,6 @@ exports[`CommentContainer Delete button 1`] = `
                 name="edit"
               >
                 <i
-                  aria-label=""
                   className="material-icons material-icons-edit align-middle mr-2 "
                   dangerouslySetInnerHTML={
                     Object {
@@ -81,7 +83,6 @@ exports[`CommentContainer Delete button 1`] = `
                   }
                   data-unicoded="true"
                   onClick={[Function]}
-                  role=""
                 />
               </Icon>
               <span
@@ -106,7 +107,6 @@ exports[`CommentContainer Delete button 1`] = `
                 name="delete"
               >
                 <i
-                  aria-label=""
                   className="material-icons material-icons-delete align-middle mr-2 "
                   dangerouslySetInnerHTML={
                     Object {
@@ -115,7 +115,6 @@ exports[`CommentContainer Delete button 1`] = `
                   }
                   data-unicoded="true"
                   onClick={[Function]}
-                  role=""
                 />
               </Icon>
               <span
@@ -227,9 +226,11 @@ exports[`CommentContainer Edit button 1`] = `
           onClick={[Function]}
         >
           <Icon
-            alt="Rediger"
+            aria-label="Rediger"
             className="align-middle"
             name="more_vert"
+            role="button"
+            tabindex="0"
           >
             <i
               aria-label="Rediger"
@@ -241,7 +242,8 @@ exports[`CommentContainer Edit button 1`] = `
               }
               data-unicoded="true"
               onClick={[Function]}
-              role=""
+              role="button"
+              tabindex="0"
             />
           </Icon>
         </div>
@@ -263,7 +265,6 @@ exports[`CommentContainer Edit button 1`] = `
                 name="edit"
               >
                 <i
-                  aria-label=""
                   className="material-icons material-icons-edit align-middle mr-2 "
                   dangerouslySetInnerHTML={
                     Object {
@@ -272,7 +273,6 @@ exports[`CommentContainer Edit button 1`] = `
                   }
                   data-unicoded="true"
                   onClick={[Function]}
-                  role=""
                 />
               </Icon>
               <span
@@ -297,7 +297,6 @@ exports[`CommentContainer Edit button 1`] = `
                 name="delete"
               >
                 <i
-                  aria-label=""
                   className="material-icons material-icons-delete align-middle mr-2 "
                   dangerouslySetInnerHTML={
                     Object {
@@ -306,7 +305,6 @@ exports[`CommentContainer Edit button 1`] = `
                   }
                   data-unicoded="true"
                   onClick={[Function]}
-                  role=""
                 />
               </Icon>
               <span
@@ -418,9 +416,11 @@ exports[`CommentContainer Edit button 2`] = `
           onClick={[Function]}
         >
           <Icon
-            alt="Rediger"
+            aria-label="Rediger"
             className="align-middle"
             name="more_vert"
+            role="button"
+            tabindex="0"
           >
             <i
               aria-label="Rediger"
@@ -432,7 +432,8 @@ exports[`CommentContainer Edit button 2`] = `
               }
               data-unicoded="true"
               onClick={[Function]}
-              role=""
+              role="button"
+              tabindex="0"
             />
           </Icon>
         </div>
@@ -454,7 +455,6 @@ exports[`CommentContainer Edit button 2`] = `
                 name="edit"
               >
                 <i
-                  aria-label=""
                   className="material-icons material-icons-edit align-middle mr-2 "
                   dangerouslySetInnerHTML={
                     Object {
@@ -463,7 +463,6 @@ exports[`CommentContainer Edit button 2`] = `
                   }
                   data-unicoded="true"
                   onClick={[Function]}
-                  role=""
                 />
               </Icon>
               <span
@@ -488,7 +487,6 @@ exports[`CommentContainer Edit button 2`] = `
                 name="delete"
               >
                 <i
-                  aria-label=""
                   className="material-icons material-icons-delete align-middle mr-2 "
                   dangerouslySetInnerHTML={
                     Object {
@@ -497,7 +495,6 @@ exports[`CommentContainer Edit button 2`] = `
                   }
                   data-unicoded="true"
                   onClick={[Function]}
-                  role=""
                 />
               </Icon>
               <span
@@ -577,13 +574,16 @@ exports[`CommentContainer Edit button 2`] = `
                   value="comment_test"
                 />
                 <Icon
+                  aria-label="check"
                   className="comment-submit-icon align-self-end"
                   id="comment-submit"
                   name="check"
                   onClick={[Function]}
+                  role="button"
+                  tabindex={0}
                 >
                   <i
-                    aria-label=""
+                    aria-label="check"
                     className="material-icons material-icons-check comment-submit-icon align-self-end "
                     dangerouslySetInnerHTML={
                       Object {
@@ -593,7 +593,8 @@ exports[`CommentContainer Edit button 2`] = `
                     data-unicoded="true"
                     id="comment-submit"
                     onClick={[Function]}
-                    role=""
+                    role="button"
+                    tabindex={0}
                   />
                 </Icon>
               </div>
@@ -685,7 +686,8 @@ exports[`CommentContainer Render edit form 1`] = `
         }
         data-unicoded="true"
         onClick={[Function]}
-        role=""
+        role="button"
+        tabindex="0"
       />
       
     </div>
@@ -698,7 +700,6 @@ exports[`CommentContainer Render edit form 1`] = `
         onClick={[Function]}
       >
         <i
-          aria-label=""
           className="material-icons material-icons-edit align-middle mr-2 "
           dangerouslySetInnerHTML={
             Object {
@@ -707,7 +708,6 @@ exports[`CommentContainer Render edit form 1`] = `
           }
           data-unicoded="true"
           onClick={[Function]}
-          role=""
         />
         <span
           className="align-middle"
@@ -721,7 +721,6 @@ exports[`CommentContainer Render edit form 1`] = `
         onClick={[Function]}
       >
         <i
-          aria-label=""
           className="material-icons material-icons-delete align-middle mr-2 "
           dangerouslySetInnerHTML={
             Object {
@@ -730,7 +729,6 @@ exports[`CommentContainer Render edit form 1`] = `
           }
           data-unicoded="true"
           onClick={[Function]}
-          role=""
         />
         <span
           className="align-middle"
@@ -830,7 +828,8 @@ exports[`CommentContainer Render save form 1`] = `
         }
         data-unicoded="true"
         onClick={[Function]}
-        role=""
+        role="button"
+        tabindex="0"
       />
       
     </div>
@@ -843,7 +842,6 @@ exports[`CommentContainer Render save form 1`] = `
         onClick={[Function]}
       >
         <i
-          aria-label=""
           className="material-icons material-icons-edit align-middle mr-2 "
           dangerouslySetInnerHTML={
             Object {
@@ -852,7 +850,6 @@ exports[`CommentContainer Render save form 1`] = `
           }
           data-unicoded="true"
           onClick={[Function]}
-          role=""
         />
         <span
           className="align-middle"
@@ -866,7 +863,6 @@ exports[`CommentContainer Render save form 1`] = `
         onClick={[Function]}
       >
         <i
-          aria-label=""
           className="material-icons material-icons-delete align-middle mr-2 "
           dangerouslySetInnerHTML={
             Object {
@@ -875,7 +871,6 @@ exports[`CommentContainer Render save form 1`] = `
           }
           data-unicoded="true"
           onClick={[Function]}
-          role=""
         />
         <span
           className="align-middle"
@@ -974,9 +969,11 @@ exports[`CommentContainer Save button 1`] = `
           onClick={[Function]}
         >
           <Icon
-            alt="Rediger"
+            aria-label="Rediger"
             className="align-middle"
             name="more_vert"
+            role="button"
+            tabindex="0"
           >
             <i
               aria-label="Rediger"
@@ -988,7 +985,8 @@ exports[`CommentContainer Save button 1`] = `
               }
               data-unicoded="true"
               onClick={[Function]}
-              role=""
+              role="button"
+              tabindex="0"
             />
           </Icon>
         </div>
@@ -1010,7 +1008,6 @@ exports[`CommentContainer Save button 1`] = `
                 name="edit"
               >
                 <i
-                  aria-label=""
                   className="material-icons material-icons-edit align-middle mr-2 "
                   dangerouslySetInnerHTML={
                     Object {
@@ -1019,7 +1016,6 @@ exports[`CommentContainer Save button 1`] = `
                   }
                   data-unicoded="true"
                   onClick={[Function]}
-                  role=""
                 />
               </Icon>
               <span
@@ -1044,7 +1040,6 @@ exports[`CommentContainer Save button 1`] = `
                 name="delete"
               >
                 <i
-                  aria-label=""
                   className="material-icons material-icons-delete align-middle mr-2 "
                   dangerouslySetInnerHTML={
                     Object {
@@ -1053,7 +1048,6 @@ exports[`CommentContainer Save button 1`] = `
                   }
                   data-unicoded="true"
                   onClick={[Function]}
-                  role=""
                 />
               </Icon>
               <span

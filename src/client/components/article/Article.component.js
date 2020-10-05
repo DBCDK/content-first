@@ -56,7 +56,11 @@ export class Article extends React.Component {
           }}
         />
         {article.title && (
-          <Banner className="Article__banner" title={article.title} />
+          <Banner
+            className="Article__banner"
+            title={article.title}
+            textColor="white"
+          />
         )}
         <div className="d-flex justify-content-center">
           <div className="Article mt-3 mb-3 mt-sm-5 mb-sm-5">

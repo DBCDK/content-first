@@ -9,6 +9,7 @@
   user-select: none;
 }
 
+
 /* Hide the browser's default Checkbox button */
 .Checkbox__wrap .Checkbox {
   position: absolute;
@@ -16,6 +17,16 @@
   opacity: 0;
   width: 0;
   height: 0;
+}
+
+.Checkbox__wrap .Checkbox:focus {
+  outline: solid 1px;
+  opacity: 1;
+  left: 2px;
+  top: 3px;
+  height:12px;
+  width:12px;
+
 }
 
 /* Create a custom Checkbox button */

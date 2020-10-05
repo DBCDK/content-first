@@ -20,6 +20,7 @@ const Button = ({
   href,
   hrefSelf,
   onClick,
+  tabindex = '0',
   ...props
 }) => {
   const modifier = variant ? `button__${type}--${variant}` : '';
@@ -43,6 +44,8 @@ const Button = ({
       disabled={disabled}
       data-cy={dataCy || dataCyHyphen || ''}
       {...onClickValue}
+      role={'button'}
+      tabindex={tabindex}
     >
       {iconLeft && <Icon name={iconLeft} className="icon--left" />}
       <span>{children}</span>

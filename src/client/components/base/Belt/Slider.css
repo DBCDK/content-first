@@ -107,6 +107,14 @@
   height: 14px;
 }
 
+span.swiper-pagination-bullet:focus {
+  outline-color: var(--petroleum);
+  outline-style: solid;
+  outline-width: 2px;
+  opacity:1;
+}
+
+
 .swiper-pagination-bullet-active {
   background: #00303b;
 }

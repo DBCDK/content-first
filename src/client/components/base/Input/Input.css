@@ -13,3 +13,7 @@
 .Input__label {
   margin: 0;
 }
+
+.Input__wrap input:focus{
+  border: solid 1px;
+}

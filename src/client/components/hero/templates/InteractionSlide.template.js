@@ -54,13 +54,17 @@ export class Hero extends React.Component {
         </Background>
         <div className={`box box-${hero.position}`}>
           {hero.tags.map(tag => (
-            <Link key={`single-tag-${tag}`} href={this.buildUrl([tag])}>
+            <Link
+              key={`single-tag-${tag}`}
+              href={this.buildUrl([tag])}
+              tabIndex={-1}
+            >
               <Button size="large" type="term" className="mb-2 mb-sm-3">
                 {leavesMap[tag].title}
               </Button>
             </Link>
           ))}
-          <Link href={this.buildUrl(hero.tags)}>
+          <Link href={this.buildUrl(hero.tags)} tabIndex={-1}>
             <Button
               type="primary"
               size="large"

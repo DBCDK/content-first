@@ -20,8 +20,19 @@ const Radio = ({
         type="radio"
         checked={checked}
         onChange={onChange}
+        tabIndex={-1}
+        role="checkbox"
+        aria-checked={checked}
+        title={group}
       />
-      <span className="Radio__button" />
+      <span
+        className="Radio__button"
+        role="checkbox"
+        tabIndex={0}
+        onChange={onChange}
+        checked={checked}
+        title={group + '_selector'}
+      />
     </label>
   );
 };

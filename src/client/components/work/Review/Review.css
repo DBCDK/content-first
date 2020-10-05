@@ -86,16 +86,27 @@
 }
 
 .Review__container button.button__link {
-  color: white;
-  font-weight: 400 !important;
-  background-color: var(--petroleum);
-  padding: 4px !important;
-  border-radius: 2px !important;
-  text-decoration: none !important;
+  text-decoration: underline;
 }
 
 .Review__container button.button__link:hover,
 .Review__container button.button__link:focus {
+  color: white;
+  font-weight: 400 !important;
+  background-color: var(--petroleum);
+  padding: 2px !important;
+  border-radius: 2px !important;
+  text-decoration: none !important;
+}
+
+.top-bar-dropdown-list--elements a.link:hover,
+.top-bar-dropdown-list--elements a.link:focus {
+  color: white !important;
+  font-weight: 400 !important;
+  background-color: var(--petroleum);
+  padding: 1px !important;
+  border-radius: 2px !important;
+  text-decoration: none !important;
 }
 
 .Review__block--top {

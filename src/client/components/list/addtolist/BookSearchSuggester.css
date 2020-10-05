@@ -14,6 +14,7 @@
   border: 1px solid #ccc;
   width: 100%;
 }
+
 .suggestion-list input {
   border-radius: 0;
   height: 40px;
@@ -31,6 +32,11 @@
 
 .react-autosuggest__container {
   flex-grow: 1;
+}
+
+.booksearch-suggester .react-autosuggest__container input:focus {
+  outline: solid 2px var(--elm);
+  outline-offset: -1px;
 }
 
 /* Style react-autosuggest as bootstrap form elements */

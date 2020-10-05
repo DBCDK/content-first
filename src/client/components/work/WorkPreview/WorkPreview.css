@@ -21,6 +21,12 @@ a.link.work-preview__series-link:focus {
   color: var(--petroleum) !important;
 }
 
+a.link button:focus{
+  outline:none;
+  box-shadow:0 0 0 0.2rem var(--petroleum);
+}
+
+
 .work-preview.preview.light-grey,
 .work-preview__top.preview.light-grey {
   background-color: var(--lys-graa);
