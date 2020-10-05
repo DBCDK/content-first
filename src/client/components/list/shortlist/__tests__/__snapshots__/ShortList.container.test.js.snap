@@ -378,6 +378,7 @@ exports[`ShortList.container Clearing list 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -390,6 +391,7 @@ exports[`ShortList.container Clearing list 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -737,6 +739,7 @@ exports[`ShortList.container Clearing list 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -749,6 +752,7 @@ exports[`ShortList.container Clearing list 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -1096,6 +1100,7 @@ exports[`ShortList.container Clearing list 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -1108,6 +1113,7 @@ exports[`ShortList.container Clearing list 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -1781,6 +1787,7 @@ exports[`ShortList.container Order book 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -1793,6 +1800,7 @@ exports[`ShortList.container Order book 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -2140,6 +2148,7 @@ exports[`ShortList.container Order book 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -2152,6 +2161,7 @@ exports[`ShortList.container Order book 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -2499,6 +2509,7 @@ exports[`ShortList.container Order book 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -2511,6 +2522,7 @@ exports[`ShortList.container Order book 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -3184,6 +3196,7 @@ exports[`ShortList.container Order ebook 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -3196,6 +3209,7 @@ exports[`ShortList.container Order ebook 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -3543,6 +3557,7 @@ exports[`ShortList.container Order ebook 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -3555,6 +3570,7 @@ exports[`ShortList.container Order ebook 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -3902,6 +3918,7 @@ exports[`ShortList.container Order ebook 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -3914,6 +3931,7 @@ exports[`ShortList.container Order ebook 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -4587,6 +4605,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -4599,6 +4618,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -4946,6 +4966,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -4958,6 +4979,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -5305,6 +5327,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -5317,6 +5340,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -6005,6 +6029,7 @@ exports[`ShortList.container Remove element 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -6017,6 +6042,7 @@ exports[`ShortList.container Remove element 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -6364,6 +6390,7 @@ exports[`ShortList.container Remove element 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -6376,6 +6403,7 @@ exports[`ShortList.container Remove element 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -6723,6 +6751,7 @@ exports[`ShortList.container Remove element 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -6735,6 +6764,7 @@ exports[`ShortList.container Remove element 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -7408,6 +7438,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -7420,6 +7451,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -7767,6 +7799,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -7779,6 +7812,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor
@@ -8126,6 +8160,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                         name="clear"
                         onClick={[Function]}
                         role="button"
+                        tabindex={0}
                       >
                         <i
                           alt="slet"
@@ -8138,6 +8173,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                           data-unicoded="true"
                           onClick={[Function]}
                           role="button"
+                          tabindex={0}
                         />
                       </Icon>
                       <mockConstructor

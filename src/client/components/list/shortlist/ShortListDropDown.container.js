@@ -55,6 +55,7 @@ const ShortListElement = props => {
           className="material-icons remove-btn"
           role="button"
           aria-label="Slet"
+          tabindex={0}
         >
           clear
         </i>
@@ -75,6 +76,7 @@ const ShortListContent = props => {
       <i
         onClick={props.onClose}
         className="material-icons top-bar-dropdown-list--close-btn"
+        tabindex={0}
       >
         clear
       </i>

@@ -29,6 +29,7 @@ export default class Modal extends React.Component {
               name="clear"
               className="close-modal--X"
               onClick={this.props.onClose}
+              tabindex={0}
             />
 
             <span className="close-modal--back" onClick={this.props.onClose}>

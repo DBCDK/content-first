@@ -119,6 +119,7 @@ const UserListsContent = props => {
           <i
             onClick={props.onClose}
             className="material-icons top-bar-dropdown-list--close-btn"
+            tabindex={0}
           >
             clear
           </i>
