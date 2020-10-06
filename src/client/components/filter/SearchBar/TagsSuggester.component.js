@@ -215,7 +215,7 @@ class TagsSuggester extends React.Component {
       : T({component: 'filter', name: 'suggesterPlaceholder'});
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      id: 'Searchbar__inputfield_' + Date.now(),
+      id: 'Searchbar__inputfield_1',
       type: 'text',
       placeholder: pholder,
       className: cn,
