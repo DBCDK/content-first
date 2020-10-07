@@ -423,7 +423,7 @@ class WorkPreview extends React.Component {
                   <RemindsOf
                     onClick={() => remindsOfClick(work, is_work_page)}
                     data-cy="RO-more-like-this"
-                    tabindex={0}
+                    tabindex="0"
                   />
                   {!hideAppels && appeals.length > 0 && (
                     <RenderPrioTags

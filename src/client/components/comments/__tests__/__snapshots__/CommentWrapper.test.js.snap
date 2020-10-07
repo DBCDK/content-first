@@ -580,7 +580,7 @@ exports[`CommentContainer Edit button 2`] = `
                   name="check"
                   onClick={[Function]}
                   role="button"
-                  tabindex={0}
+                  tabindex="0"
                 >
                   <i
                     aria-label="check"
@@ -594,7 +594,7 @@ exports[`CommentContainer Edit button 2`] = `
                     id="comment-submit"
                     onClick={[Function]}
                     role="button"
-                    tabindex={0}
+                    tabindex="0"
                   />
                 </Icon>
               </div>

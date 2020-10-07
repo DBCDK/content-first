@@ -438,7 +438,7 @@ export class ListModal extends React.Component {
             updateListData={data => this.updateListData(data)}
             onError={this.handleError}
             role={'button'}
-            tabindex={0}
+            tabindex="0"
           />
           <PageAdvanced
             list={list}

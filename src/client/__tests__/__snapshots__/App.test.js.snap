@@ -41,7 +41,7 @@ exports[`renders without crashing 1`] = `
         <span
           className="navigation-btn navigation-btn__search--bar widthCalc"
           role="button"
-          tabIndex={0}
+          tabindex="0"
         >
           <i
             className="material-icons material-icons-search  "
@@ -136,7 +136,7 @@ exports[`renders without crashing 1`] = `
           href="/find"
           onClick={[Function]}
           style={Object {}}
-          tabIndex={0}
+          tabindex="0"
           target="_self"
         >
           <i
@@ -157,7 +157,7 @@ exports[`renders without crashing 1`] = `
           onClick={[Function]}
           role="button"
           style={Object {}}
-          tabIndex={0}
+          tabindex="0"
           target="_self"
         >
           <i
@@ -181,7 +181,7 @@ exports[`renders without crashing 1`] = `
           data-cy="topbar-shortlist"
           onClick={[Function]}
           role="button"
-          tabindex={0}
+          tabindex="0"
         >
           <i
             alt="Huskeliste"
@@ -208,7 +208,7 @@ exports[`renders without crashing 1`] = `
           <i
             className="material-icons top-bar-dropdown-list--close-btn"
             onClick={[Function]}
-            tabindex={0}
+            tabindex="0"
           >
             clear
           </i>
@@ -291,7 +291,7 @@ exports[`renders without crashing 1`] = `
             href="/profil/rediger"
             onClick={[Function]}
             style={Object {}}
-            tabIndex={0}
+            tabindex="0"
             target="_self"
           >
             <span>

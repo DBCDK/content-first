@@ -108,7 +108,7 @@ export default class CommentInput extends React.Component {
               onClick={this.onSubmit}
               role="button"
               aria-label={editing ? editIcon : submitIcon}
-              tabindex={0}
+              tabindex="0"
             />
           </div>
           {this.props.error &&

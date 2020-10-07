@@ -73,7 +73,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
             id="comment-submit"
             onClick={[Function]}
             role="button"
-            tabindex={0}
+            tabindex="0"
           />
         </div>
       </div>
@@ -156,7 +156,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
             id="comment-submit"
             onClick={[Function]}
             role="button"
-            tabindex={0}
+            tabindex="0"
           />
         </div>
       </div>
@@ -354,7 +354,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 name="send"
                 onClick={[Function]}
                 role="button"
-                tabindex={0}
+                tabindex="0"
               >
                 <i
                   aria-label="send"
@@ -368,7 +368,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                   id="comment-submit"
                   onClick={[Function]}
                   role="button"
-                  tabindex={0}
+                  tabindex="0"
                 />
               </Icon>
             </div>
@@ -612,7 +612,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
             id="comment-submit"
             onClick={[Function]}
             role="button"
-            tabindex={0}
+            tabindex="0"
           />
         </div>
       </div>
@@ -783,7 +783,7 @@ exports[`CommentContainer Component renders error 1`] = `
                 name="send"
                 onClick={[Function]}
                 role="button"
-                tabindex={0}
+                tabindex="0"
               >
                 <i
                   aria-label="send"
@@ -797,7 +797,7 @@ exports[`CommentContainer Component renders error 1`] = `
                   id="comment-submit"
                   onClick={[Function]}
                   role="button"
-                  tabindex={0}
+                  tabindex="0"
                 />
               </Icon>
             </div>
@@ -1029,7 +1029,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                 name="send"
                 onClick={[Function]}
                 role="button"
-                tabindex={0}
+                tabindex="0"
               >
                 <i
                   aria-label="send"
@@ -1043,7 +1043,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                   id="comment-submit"
                   onClick={[Function]}
                   role="button"
-                  tabindex={0}
+                  tabindex="0"
                 />
               </Icon>
             </div>
@@ -1291,7 +1291,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
                 name="send"
                 onClick={[Function]}
                 role="button"
-                tabindex={0}
+                tabindex="0"
               >
                 <i
                   aria-label="send"
@@ -1305,7 +1305,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
                   id="comment-submit"
                   onClick={[Function]}
                   role="button"
-                  tabindex={0}
+                  tabindex="0"
                 />
               </Icon>
             </div>
@@ -1566,7 +1566,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 name="send"
                 onClick={[Function]}
                 role="button"
-                tabindex={0}
+                tabindex="0"
               >
                 <i
                   aria-label="send"
@@ -1580,7 +1580,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                   id="comment-submit"
                   onClick={[Function]}
                   role="button"
-                  tabindex={0}
+                  tabindex="0"
                 />
               </Icon>
             </div>

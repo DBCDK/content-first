@@ -6,7 +6,7 @@ Array [
     className="undefined top-bar-dropdown-list"
     onClick={[Function]}
     role="button"
-    tabindex={0}
+    tabindex="0"
   >
     <span
       className="short-badge"
@@ -22,7 +22,7 @@ Array [
     <i
       className="material-icons top-bar-dropdown-list--close-btn"
       onClick={[Function]}
-      tabindex={0}
+      tabindex="0"
     >
       clear
     </i>
@@ -112,7 +112,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
-            tabindex={0}
+            tabindex="0"
           >
             clear
           </i>
@@ -177,7 +177,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
-            tabindex={0}
+            tabindex="0"
           >
             clear
           </i>
@@ -217,7 +217,7 @@ Array [
     className="undefined top-bar-dropdown-list"
     onClick={[Function]}
     role="button"
-    tabindex={0}
+    tabindex="0"
   >
     <span
       className="short-badge"
@@ -233,7 +233,7 @@ Array [
     <i
       className="material-icons top-bar-dropdown-list--close-btn"
       onClick={[Function]}
-      tabindex={0}
+      tabindex="0"
     >
       clear
     </i>
@@ -323,7 +323,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
-            tabindex={0}
+            tabindex="0"
           >
             clear
           </i>
@@ -388,7 +388,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
-            tabindex={0}
+            tabindex="0"
           >
             clear
           </i>
@@ -453,7 +453,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
-            tabindex={0}
+            tabindex="0"
           >
             clear
           </i>
@@ -518,7 +518,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
-            tabindex={0}
+            tabindex="0"
           >
             clear
           </i>
@@ -558,7 +558,7 @@ Array [
     className="undefined top-bar-dropdown-list"
     onClick={[Function]}
     role="button"
-    tabindex={0}
+    tabindex="0"
   >
     <span
       className="short-badge"
@@ -574,7 +574,7 @@ Array [
     <i
       className="material-icons top-bar-dropdown-list--close-btn"
       onClick={[Function]}
-      tabindex={0}
+      tabindex="0"
     >
       clear
     </i>
@@ -664,7 +664,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
-            tabindex={0}
+            tabindex="0"
           >
             clear
           </i>
@@ -704,7 +704,7 @@ Array [
     className="undefined top-bar-dropdown-list"
     onClick={[Function]}
     role="button"
-    tabindex={0}
+    tabindex="0"
   >
     <span
       className="short-badge"
@@ -720,7 +720,7 @@ Array [
     <i
       className="material-icons top-bar-dropdown-list--close-btn"
       onClick={[Function]}
-      tabindex={0}
+      tabindex="0"
     >
       clear
     </i>

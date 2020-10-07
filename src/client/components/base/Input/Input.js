@@ -23,7 +23,7 @@ const Input = ({
         onChange={onChange}
         data-cy={props['data-cy'] || ''}
         aria-label={placeholder}
-        tabIndex={0}
+        tabindex="0"
       />
     </div>
   );

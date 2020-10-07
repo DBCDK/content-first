@@ -141,7 +141,7 @@ export class Tabs extends React.Component {
         onPageChange={this.onPageChange}
         {...settings}
         title={pages[0]}
-        tabindex={0}
+        tabindex="0"
       >
         {children &&
           children.map((child, idx) => (

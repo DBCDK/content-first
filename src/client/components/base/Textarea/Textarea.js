@@ -27,7 +27,7 @@ const Textarea = ({
         onBlur={onBlur}
         data-cy={props['data-cy'] || ''}
         aria-label={placeholder}
-        tabIndex={0}
+        tabindex="0"
       />
     </div>
   );

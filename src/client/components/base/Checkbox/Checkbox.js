@@ -17,7 +17,7 @@ const Checkbox = ({
         value={value}
         checked={checked}
         onChange={onChange}
-        tabIndex={0}
+        tabindex="0"
         role="checkbox"
         aria-checked={checked}
       />
