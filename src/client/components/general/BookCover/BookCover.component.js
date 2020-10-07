@@ -71,7 +71,9 @@ class BookCover extends React.Component {
       onLoad,
       dataCy = '',
       children,
-      onClick
+      onClick,
+      role = 'button',
+      tabindex = '0'
     } = this.props;
 
     if (!pid || !work || !work.detailsHasLoaded) {
@@ -113,7 +115,7 @@ class BookCover extends React.Component {
           />
         )}
         <img
-          alt=""
+          alt={book.title}
           src={cover}
           onLoad={onLoad}
           className={`${clickableClass}`}
@@ -121,6 +123,8 @@ class BookCover extends React.Component {
           onClick={() => {
             this.setState({lightboxIsOpen: enableLightbox});
           }}
+          role={role}
+          tabindex={tabindex}
         />
         {children}
       </div>

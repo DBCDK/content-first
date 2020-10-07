@@ -215,7 +215,7 @@ class TagsSuggester extends React.Component {
       : T({component: 'filter', name: 'suggesterPlaceholder'});
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      id: 'Searchbar__inputfield',
+      id: 'Searchbar__inputfield_1',
       type: 'text',
       placeholder: pholder,
       className: cn,
@@ -223,6 +223,7 @@ class TagsSuggester extends React.Component {
       onChange: this.props.onChange,
       onFocus: this.props.onFocus,
       onKeyDown: this.props.onKeyDown,
+      'aria-label': pholder,
       onBlur: () => {
         this.toggleInputvisibility(false);
       },

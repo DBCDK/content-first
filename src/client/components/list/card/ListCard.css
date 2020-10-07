@@ -64,6 +64,7 @@ a.link {
   color: var(--petrolium);
   text-decoration: none;
 }
+
 .list-card-description {
   font-family: var(--primary-font);
   line-height: 1.3rem;

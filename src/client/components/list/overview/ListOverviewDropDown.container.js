@@ -69,6 +69,8 @@ const ListElement = props => {
       }}
       href={url}
       data-cy={`list-link-${props.list.title}`}
+      role="button"
+      tabindex="0"
     >
       <div
         data-cy={`list-overview-element-${props.list.title}`}
@@ -116,8 +118,8 @@ const UserListsContent = props => {
         <React.Fragment>
           <i
             onClick={props.onClose}
-            alt="Luk"
             className="material-icons top-bar-dropdown-list--close-btn"
+            tabindex="0"
           >
             clear
           </i>
@@ -200,6 +202,8 @@ class ListOverviewDropDown extends React.Component {
               );
             }}
             data-cy={this.props.dataCy}
+            role="button"
+            tabindex="0"
           >
             {this.props.children}
           </div>

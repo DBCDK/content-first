@@ -20,6 +20,7 @@ const UploadButton = ({
         className="droppable-image-field--file-input"
         name={fieldName}
         onChange={readFiles}
+        tabindex={-1}
       />
       <div className="profile-image-text">
         <T component="profile" name="uploadProfilePicture" />

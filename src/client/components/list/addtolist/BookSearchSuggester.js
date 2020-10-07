@@ -67,6 +67,7 @@ class BookSearchSuggester extends React.Component {
       value: newValue
     });
   }
+
   focus = () => {
     this.refs.autosuggest.input.focus();
   };
@@ -108,12 +109,14 @@ class BookSearchSuggester extends React.Component {
     this.props.onSubmit(props.suggestion);
     this.setState({value: ''});
   }
+
   onBlur = () => {
     this.setState({value: ''});
     if (this.props.onBlur) {
       this.props.onBlur();
     }
   };
+
   render() {
     const {value, suggestions} = this.state;
     const {
@@ -128,13 +131,16 @@ class BookSearchSuggester extends React.Component {
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
       onFocus,
+      id: Date.now(),
       onBlur: this.onBlur,
       placeholder:
         placeholder || T({component: 'list', name: 'placeholderBookSuggester'}),
       className: 'w-100 suggestion-list__search',
       value,
       onChange: (e, change) => this.onChange(e, change),
-      'data-cy': 'listview-add-element-input'
+      'data-cy': 'listview-add-element-input',
+      tabindex: 0,
+      title: placeholder
     };
 
     // Finally, render it!
@@ -145,9 +151,13 @@ class BookSearchSuggester extends React.Component {
           className
         }
         style={style}
-        aria-label={'seee'}
+        aria-label="search"
       >
-        <Icon name="search" alt="Søg" className="align-self-center pl-2 pr-2" />
+        <Icon
+          name="search"
+          alt={placeholder}
+          className="align-self-center pl-2 pr-2"
+        />
         <Autosuggest
           ref={suggesterRef}
           suggestions={suggestions}

@@ -41,6 +41,10 @@
 .interaction-slide .box .button__term:hover {
   background-color: var(--alto);
 }
+.interaction-slide .box .button__term:focus {
+  outline-style: solid;
+  outline-color:var(--petroleum);
+}
 
 @media (max-width: 768px) {
   .interaction-slide .box.box-left {

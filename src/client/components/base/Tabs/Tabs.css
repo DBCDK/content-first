@@ -15,6 +15,12 @@
   position: relative;
   display: inline-block;
 }
+
+.Tabs__pagination-bullet:focus {
+  outline-offset: -1px;
+  outline: solid 1px;
+}
+
 .Tabs__pagination-bullet:after {
   position: absolute;
   left: 50%;
@@ -25,18 +31,22 @@
   width: 0;
   bottom: -3px;
 }
+
 .Tabs__pagination-bullet:active:after {
   width: 10%;
   left: 45%;
 }
+
 .Tabs__pagination-bullet-active:active:after {
   width: 80%;
   left: 10%;
 }
+
 .Tabs__pagination-bullet-active:after {
   width: 100%;
   left: 0px;
 }
+
 .swiper-wrapper {
   transition: all 400ms;
 }

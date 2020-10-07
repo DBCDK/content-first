@@ -20,7 +20,7 @@
   text-align: center;
   font-size: 0.75rem;
   padding: 0.5rem 0 0 0;
-  color: var(--due);
+  color: var(--elm);
 }
 
 .FilterCard__range .FilterCard__rangeItems .FilterCard__rangeItem {

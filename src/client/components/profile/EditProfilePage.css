@@ -176,6 +176,21 @@
   color: var(--petroleum);
 }
 
+.profile__edit-link a {
+  text-decoration: underline;
+}
+
+.profile__edit-link a:focus,
+.profile__edit-link a:hover{
+  color: white !important;
+  font-weight: 400 !important;
+  background-color: var(--petroleum);
+  padding: 3px !important;
+  border-radius: 2px !important;
+  text-decoration: none !important;
+  outline: none;
+}
+
 .profile__edit-bottom-position {
   border-top: 0.5px solid #979797;
   margin-top: 14px;

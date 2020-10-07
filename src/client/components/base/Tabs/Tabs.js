@@ -113,14 +113,13 @@ export class Tabs extends React.Component {
     //
     // Merge settings
     //
-
     const settings = {
       ...containerClass,
       ...defaultSettings,
       pagination: {
         ...defaultSettings.pagination,
         renderBullet: function(i, swiperClass) {
-          return `<span class="${swiperClass} mr-4" aria-label="${pages[i]}" data-cy="${pages[i]}">
+          return `<span class="${swiperClass} mr-4" title="${pages[i]}" data-cy="${pages[i]}" role="tabpanel"  aria-label="${pages[i]}" >
                   <Text type="body" variant="weight-semibold">
                     ${pages[i]}
                   </Text>
@@ -141,7 +140,8 @@ export class Tabs extends React.Component {
         className={className}
         onPageChange={this.onPageChange}
         {...settings}
-        aria-label={pages[0]}
+        title={pages[0]}
+        tabindex="0"
       >
         {children &&
           children.map((child, idx) => (

@@ -24,7 +24,6 @@ const Link = ({
   }
 
   const noHoverClass = noHover ? 'link--no-hover' : '';
-
   return (
     <a
       className={`link ${className} ${noHoverClass}`}
@@ -42,6 +41,7 @@ const Link = ({
       }}
       target={type === HISTORY_NEW_TAB ? '_blank' : '_self'}
       data-cy={props['data-cy'] || dataCy || ''}
+      {...props}
     >
       {children}
     </a>

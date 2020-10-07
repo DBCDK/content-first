@@ -62,7 +62,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
             value=""
           />
           <i
-            aria-label=""
+            aria-label="send"
             className="material-icons material-icons-send comment-submit-icon align-self-end "
             dangerouslySetInnerHTML={
               Object {
@@ -72,7 +72,8 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
             data-unicoded="true"
             id="comment-submit"
             onClick={[Function]}
-            role=""
+            role="button"
+            tabindex="0"
           />
         </div>
       </div>
@@ -144,7 +145,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
             value=""
           />
           <i
-            aria-label=""
+            aria-label="send"
             className="material-icons material-icons-send comment-submit-icon align-self-end "
             dangerouslySetInnerHTML={
               Object {
@@ -154,7 +155,8 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
             data-unicoded="true"
             id="comment-submit"
             onClick={[Function]}
-            role=""
+            role="button"
+            tabindex="0"
           />
         </div>
       </div>
@@ -346,13 +348,16 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 value=""
               />
               <Icon
+                aria-label="send"
                 className="comment-submit-icon align-self-end"
                 id="comment-submit"
                 name="send"
                 onClick={[Function]}
+                role="button"
+                tabindex="0"
               >
                 <i
-                  aria-label=""
+                  aria-label="send"
                   className="material-icons material-icons-send comment-submit-icon align-self-end "
                   dangerouslySetInnerHTML={
                     Object {
@@ -362,7 +367,8 @@ exports[`CommentContainer Component renders all comments 1`] = `
                   data-unicoded="true"
                   id="comment-submit"
                   onClick={[Function]}
-                  role=""
+                  role="button"
+                  tabindex="0"
                 />
               </Icon>
             </div>
@@ -595,7 +601,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
             value=""
           />
           <i
-            aria-label=""
+            aria-label="send"
             className="material-icons material-icons-send comment-submit-icon align-self-end "
             dangerouslySetInnerHTML={
               Object {
@@ -605,7 +611,8 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
             data-unicoded="true"
             id="comment-submit"
             onClick={[Function]}
-            role=""
+            role="button"
+            tabindex="0"
           />
         </div>
       </div>
@@ -770,13 +777,16 @@ exports[`CommentContainer Component renders error 1`] = `
                 value="comment3"
               />
               <Icon
+                aria-label="send"
                 className="comment-submit-icon align-self-end"
                 id="comment-submit"
                 name="send"
                 onClick={[Function]}
+                role="button"
+                tabindex="0"
               >
                 <i
-                  aria-label=""
+                  aria-label="send"
                   className="material-icons material-icons-send comment-submit-icon align-self-end "
                   dangerouslySetInnerHTML={
                     Object {
@@ -786,7 +796,8 @@ exports[`CommentContainer Component renders error 1`] = `
                   data-unicoded="true"
                   id="comment-submit"
                   onClick={[Function]}
-                  role=""
+                  role="button"
+                  tabindex="0"
                 />
               </Icon>
             </div>
@@ -1012,13 +1023,16 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                 value=""
               />
               <Icon
+                aria-label="send"
                 className="comment-submit-icon align-self-end"
                 id="comment-submit"
                 name="send"
                 onClick={[Function]}
+                role="button"
+                tabindex="0"
               >
                 <i
-                  aria-label=""
+                  aria-label="send"
                   className="material-icons material-icons-send comment-submit-icon align-self-end "
                   dangerouslySetInnerHTML={
                     Object {
@@ -1028,7 +1042,8 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                   data-unicoded="true"
                   id="comment-submit"
                   onClick={[Function]}
-                  role=""
+                  role="button"
+                  tabindex="0"
                 />
               </Icon>
             </div>
@@ -1270,13 +1285,16 @@ exports[`CommentContainer Toggle all comments 1`] = `
                 value=""
               />
               <Icon
+                aria-label="send"
                 className="comment-submit-icon align-self-end"
                 id="comment-submit"
                 name="send"
                 onClick={[Function]}
+                role="button"
+                tabindex="0"
               >
                 <i
-                  aria-label=""
+                  aria-label="send"
                   className="material-icons material-icons-send comment-submit-icon align-self-end "
                   dangerouslySetInnerHTML={
                     Object {
@@ -1286,7 +1304,8 @@ exports[`CommentContainer Toggle all comments 1`] = `
                   data-unicoded="true"
                   id="comment-submit"
                   onClick={[Function]}
-                  role=""
+                  role="button"
+                  tabindex="0"
                 />
               </Icon>
             </div>
@@ -1541,13 +1560,16 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 value=""
               />
               <Icon
+                aria-label="send"
                 className="comment-submit-icon align-self-end"
                 id="comment-submit"
                 name="send"
                 onClick={[Function]}
+                role="button"
+                tabindex="0"
               >
                 <i
-                  aria-label=""
+                  aria-label="send"
                   className="material-icons material-icons-send comment-submit-icon align-self-end "
                   dangerouslySetInnerHTML={
                     Object {
@@ -1557,7 +1579,8 @@ exports[`CommentContainer Toggle all comments 2`] = `
                   data-unicoded="true"
                   id="comment-submit"
                   onClick={[Function]}
-                  role=""
+                  role="button"
+                  tabindex="0"
                 />
               </Icon>
             </div>

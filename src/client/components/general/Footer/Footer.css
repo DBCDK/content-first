@@ -28,9 +28,18 @@
   margin: var(--2pt) 0 0;
 }
 
-.footer__element .Text a,
-.footer__element .Text a:hover {
+.footer__element .Text a{
   text-decoration: underline;
+}
+
+.footer__element .Text a:hover,
+.footer__element .Text a:focus{
+  color: white !important;
+  font-weight: 400 !important;
+  background-color: var(--petroleum);
+  border-radius: 2px !important;
+  text-decoration: none !important;
+  outline:none;
 }
 
 .footer__logo--wrap {
@@ -51,7 +60,7 @@
 
 }
 .footer_facebook_text{
-  margin: 0 0 0 4px !important; 
+  margin: 0 0 0 4px !important;
 }
 .footer_span_container span,
 .footer_span_container a{

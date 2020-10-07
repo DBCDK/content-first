@@ -6,6 +6,7 @@ Array [
     className="undefined top-bar-dropdown-list"
     onClick={[Function]}
     role="button"
+    tabindex="0"
   >
     <span
       className="short-badge"
@@ -19,9 +20,9 @@ Array [
         "
   >
     <i
-      alt="Luk"
       className="material-icons top-bar-dropdown-list--close-btn"
       onClick={[Function]}
+      tabindex="0"
     >
       clear
     </i>
@@ -111,6 +112,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
+            tabindex="0"
           >
             clear
           </i>
@@ -175,6 +177,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
+            tabindex="0"
           >
             clear
           </i>
@@ -192,6 +195,8 @@ Array [
       button button__medium button__tertiary   "
           data-cy="shortlist-dropdown-visit-shortlist"
           disabled={false}
+          role="button"
+          tabindex="0"
         >
           <span>
             Gå til huskeliste
@@ -212,6 +217,7 @@ Array [
     className="undefined top-bar-dropdown-list"
     onClick={[Function]}
     role="button"
+    tabindex="0"
   >
     <span
       className="short-badge"
@@ -225,9 +231,9 @@ Array [
         "
   >
     <i
-      alt="Luk"
       className="material-icons top-bar-dropdown-list--close-btn"
       onClick={[Function]}
+      tabindex="0"
     >
       clear
     </i>
@@ -317,6 +323,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
+            tabindex="0"
           >
             clear
           </i>
@@ -381,6 +388,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
+            tabindex="0"
           >
             clear
           </i>
@@ -445,6 +453,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
+            tabindex="0"
           >
             clear
           </i>
@@ -509,6 +518,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
+            tabindex="0"
           >
             clear
           </i>
@@ -526,6 +536,8 @@ Array [
       button button__medium button__tertiary   "
           data-cy="shortlist-dropdown-visit-shortlist"
           disabled={false}
+          role="button"
+          tabindex="0"
         >
           <span>
             Gå til huskeliste
@@ -546,6 +558,7 @@ Array [
     className="undefined top-bar-dropdown-list"
     onClick={[Function]}
     role="button"
+    tabindex="0"
   >
     <span
       className="short-badge"
@@ -559,9 +572,9 @@ Array [
         "
   >
     <i
-      alt="Luk"
       className="material-icons top-bar-dropdown-list--close-btn"
       onClick={[Function]}
+      tabindex="0"
     >
       clear
     </i>
@@ -651,6 +664,7 @@ Array [
             className="material-icons remove-btn"
             onClick={[Function]}
             role="button"
+            tabindex="0"
           >
             clear
           </i>
@@ -668,6 +682,8 @@ Array [
       button button__medium button__tertiary   "
           data-cy="shortlist-dropdown-visit-shortlist"
           disabled={false}
+          role="button"
+          tabindex="0"
         >
           <span>
             Gå til huskeliste
@@ -688,6 +704,7 @@ Array [
     className="undefined top-bar-dropdown-list"
     onClick={[Function]}
     role="button"
+    tabindex="0"
   >
     <span
       className="short-badge"
@@ -701,9 +718,9 @@ Array [
          empty-list"
   >
     <i
-      alt="Luk"
       className="material-icons top-bar-dropdown-list--close-btn"
       onClick={[Function]}
+      tabindex="0"
     >
       clear
     </i>
@@ -733,6 +750,8 @@ Array [
       button button__medium button__tertiary   "
           data-cy="shortlist-dropdown-visit-shortlist"
           disabled={true}
+          role="button"
+          tabindex="0"
         >
           <span>
             Gå til huskeliste

@@ -21,6 +21,10 @@
   object-fit: contain;
 }
 
+.work-card .book-cover:focus {
+  outline: solid 2px;
+}
+
 .work-card .book-cover img {
   width: 100%;
   height: auto;
@@ -91,6 +95,7 @@
   opacity: 1;
 }
 
+.work-card:focus .hover-details,
 .work-card:hover .hover-details {
   opacity: 1;
 }

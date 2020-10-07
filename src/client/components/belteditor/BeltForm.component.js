@@ -195,6 +195,7 @@ class BeltForm extends React.Component {
             onChange={this.handleTitleChange}
             value={this.state.title}
             data-cy="belt-form-title-input"
+            aria-label="Opret ny liste"
           >
             <T component="editStartPage" name="beltTitle" />
           </Input>
@@ -208,6 +209,7 @@ class BeltForm extends React.Component {
             onChange={this.handleDescriptionChange}
             value={this.state.description}
             data-cy="belt-form-description-input"
+            aria-label="Redigere startside"
           >
             <T component="editStartPage" name="description" />
           </Input>

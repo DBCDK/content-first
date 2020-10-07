@@ -28,7 +28,7 @@ import './WorkPreview.css';
 
 const PrioTag = ({id, title}) => {
   return (
-    <Link href="/find" params={{tags: id}}>
+    <Link href="/find" params={{tags: id}} tabIndex={-1}>
       <Button
         key={title}
         type="tertiary"
@@ -75,6 +75,7 @@ const CollectionButton = ({pid, url, type, icon}) => {
       href={url}
       type={HISTORY_NEW_TAB}
       meta={{materialType: type, pid}}
+      tabIndex={-1}
     >
       <Button
         className="work-preview__collection-button"
@@ -254,7 +255,6 @@ class WorkPreview extends React.Component {
             {isWorkPreview(this.props) && (
               <Icon
                 name="clear"
-                alt="Luk"
                 className="close-work-preview--X"
                 data-cy="close-work-preview-button"
                 onClick={this.props.close}
@@ -275,6 +275,7 @@ class WorkPreview extends React.Component {
                   className="work-preview__cover"
                   enableLightbox={enableLightbox}
                   dataCy={dataCy}
+                  tabindex={-1}
                 >
                   <BookmarkButton
                     className="icon-large"
@@ -422,6 +423,7 @@ class WorkPreview extends React.Component {
                   <RemindsOf
                     onClick={() => remindsOfClick(work, is_work_page)}
                     data-cy="RO-more-like-this"
+                    tabindex="0"
                   />
                   {!hideAppels && appeals.length > 0 && (
                     <RenderPrioTags

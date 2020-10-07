@@ -21,7 +21,7 @@
 }
 
 i.icon--left-sm {
-  margin-right: var(--1pt);
+  margin-right: 2px;
   color: var(--new-de-york) !important;
   font-size: 8px !important;
 }
@@ -112,6 +112,7 @@ i.icon--left-sm {
   font-weight: 400;
   text-decoration: underline;
 }
+
 .button__link:hover {
   text-decoration: underline;
 }
@@ -157,7 +158,7 @@ i.icon--left-sm {
   color: white;
 }
 
-.button__primary--bgcolor-korn--color-white,
+.button__primary-bgcolor-korn--color-white,
 .button__primary--bgcolor-korn--color-white:hover {
   background-color: var(--korn);
   color: white;
@@ -187,6 +188,11 @@ i.icon--left-sm {
   color: var(--petroleum);
 }
 
+.button__primary--bgcolor-korn--color-petroleum:focus {
+  outline-style: solid;
+  outline-color: var(--petroleum);
+}
+
 .button__quaternary--bgcolor-porcelain--color-petroleum,
 .button__quaternary--bgcolor-porcelain--color-petroleum:hover {
   background-color: var(--porcelain);
@@ -203,7 +209,7 @@ i.icon--left-sm {
   padding-right: 15px;
 }
 
-.button__feedback:focus,
+
 .button__feedback:hover {
   background-color: var(--sea-mist);
 }

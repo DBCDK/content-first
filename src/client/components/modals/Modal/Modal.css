@@ -129,7 +129,15 @@
   text-decoration: underline;
   color: var(--petroleum);
 }
-.login-modal .content a:hover {
+.login-modal .content a:hover,
+.login-modal .content a:focus {
+
+  color: white !important;
+  font-weight: 400 !important;
+  background-color: var(--petroleum);
+  border-radius: 2px !important;
+  text-decoration: none;
+  outline:none;
 }
 
 
