@@ -216,7 +216,7 @@ class SearchBar extends React.Component {
       <React.Fragment>
         <div
           className="selected-filters-wrap text-left"
-          id={'selected-filters-wrap_2'}
+          id={'selected-filters-wrap'}
           ref={r => {
             this.filtersRef = r;
           }}
@@ -252,7 +252,7 @@ class SearchBar extends React.Component {
               }
             }}
           />
-          <div id={'selectedFilters_3'} className="selected-filters">
+          <div id={'selectedFilters'} className="selected-filters">
             {this.props.tags.map(filter => this.renderSelected(filter))}
           </div>
         </div>

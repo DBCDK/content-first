@@ -66,7 +66,7 @@ exports[`renders without crashing 1`] = `
             >
               <div
                 className="selected-filters-wrap text-left"
-                id="selected-filters-wrap_2"
+                id="selected-filters-wrap"
                 onWheel={[Function]}
               >
                 <div
@@ -117,7 +117,7 @@ exports[`renders without crashing 1`] = `
                 />
                 <div
                   className="selected-filters"
-                  id="selectedFilters_3"
+                  id="selectedFilters"
                 />
               </div>
             </span>
