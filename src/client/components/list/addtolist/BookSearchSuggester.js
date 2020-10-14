@@ -139,7 +139,7 @@ class BookSearchSuggester extends React.Component {
       value,
       onChange: (e, change) => this.onChange(e, change),
       'data-cy': 'listview-add-element-input',
-      tabindex: 0,
+      tabIndex: 0,
       title: placeholder
     };
 

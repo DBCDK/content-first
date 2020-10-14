@@ -45,7 +45,7 @@ const SkeletonCover = ({className}) => {
     encodeURIComponent(generateSvg('transparent', '', ''));
   return (
     <div className={`book-cover ${className}`}>
-      <img src={svg} alt="bookcover" />
+      <img src={svg} alt="" />
     </div>
   );
 };
@@ -115,7 +115,7 @@ class BookCover extends React.Component {
           />
         )}
         <img
-          alt={book.title}
+          alt=""
           src={cover}
           onLoad={onLoad}
           className={`${clickableClass}`}
@@ -124,7 +124,7 @@ class BookCover extends React.Component {
             this.setState({lightboxIsOpen: enableLightbox});
           }}
           role={role}
-          tabindex={tabindex}
+          tabIndex={tabindex}
         />
         {children}
       </div>

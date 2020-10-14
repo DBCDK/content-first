@@ -51,7 +51,7 @@ exports[`ResumeReview render function 1`] = `
       disabled={false}
       onClick={[Function]}
       role="button"
-      tabindex="0"
+      tabIndex="0"
     >
       <span>
         <span>
@@ -114,7 +114,7 @@ exports[`ResumeReview render function 2`] = `
       disabled={false}
       onClick={[Function]}
       role="button"
-      tabindex="0"
+      tabIndex="0"
     >
       <span>
         <span>
@@ -177,7 +177,7 @@ exports[`ResumeReview render function 3`] = `
       disabled={false}
       onClick={[Function]}
       role="button"
-      tabindex="0"
+      tabIndex="0"
     >
       <span>
         <span>
@@ -240,7 +240,7 @@ exports[`ResumeReview render function 4`] = `
       disabled={false}
       onClick={[Function]}
       role="button"
-      tabindex="0"
+      tabIndex="0"
     >
       <span>
         <span>

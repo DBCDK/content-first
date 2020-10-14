@@ -275,7 +275,7 @@ class WorkPreview extends React.Component {
                   className="work-preview__cover"
                   enableLightbox={enableLightbox}
                   dataCy={dataCy}
-                  tabindex={-1}
+                  tabIndex={-1}
                 >
                   <BookmarkButton
                     className="icon-large"
@@ -423,7 +423,7 @@ class WorkPreview extends React.Component {
                   <RemindsOf
                     onClick={() => remindsOfClick(work, is_work_page)}
                     data-cy="RO-more-like-this"
-                    tabindex="0"
+                    tabIndex="0"
                   />
                   {!hideAppels && appeals.length > 0 && (
                     <RenderPrioTags
