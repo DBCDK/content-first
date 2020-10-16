@@ -20,7 +20,7 @@ exports[`LoginModal renders function 1`] = `
       data-cy=""
       disabled={false}
       role="button"
-      tabindex="0"
+      tabIndex="0"
     >
       <span>
         Log ind

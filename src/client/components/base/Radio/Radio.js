@@ -28,7 +28,7 @@ const Radio = ({
       <span
         className="Radio__button"
         role="checkbox"
-        tabindex="0"
+        tabIndex="0"
         onChange={onChange}
         checked={checked}
         title={group + '_selector'}

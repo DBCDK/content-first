@@ -170,7 +170,7 @@ class DesktopSlider extends React.Component {
               data-cy="next-btn"
               aria-label="next"
               role="button"
-              tabindex="0"
+              tabIndex="0"
             />
           </div>
         )}
@@ -186,7 +186,7 @@ class DesktopSlider extends React.Component {
               }}
               aria-label="previous"
               role="button"
-              tabindex="0"
+              tabIndex="0"
             />
           </div>
         )}

@@ -74,7 +74,7 @@ exports[`Image Upload render function Add image 1`] = `
             data-cy=""
             disabled={false}
             role="button"
-            tabindex="0"
+            tabIndex="0"
           >
             <span>
               <span
@@ -147,7 +147,7 @@ exports[`Image Upload render function Add preview image 1`] = `
       data-cy=""
       disabled={false}
       role="button"
-      tabindex="0"
+      tabIndex="0"
     >
       <span>
         <span
@@ -230,7 +230,7 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
       data-cy=""
       disabled={false}
       role="button"
-      tabindex="0"
+      tabIndex="0"
     >
       <span>
         <span
@@ -300,7 +300,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
       data-cy=""
       disabled={false}
       role="button"
-      tabindex="0"
+      tabIndex="0"
     >
       <span>
         <span

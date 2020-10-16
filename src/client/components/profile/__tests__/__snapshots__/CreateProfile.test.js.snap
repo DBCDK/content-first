@@ -105,7 +105,7 @@ exports[`Image Upload render function Add image 1`] = `
                           accept="image/png, image/jpeg"
                           className="droppable-image-field--file-input"
                           onChange={[Function]}
-                          tabindex={-1}
+                          tabIndex={-1}
                           type="file"
                         />
                         <div
@@ -266,7 +266,7 @@ exports[`Image Upload render function Add image 1`] = `
                               "backgroundColor": "var(--porcelain)",
                             }
                           }
-                          tabindex="0"
+                          tabIndex="0"
                         >
                           <span>
                             <T
@@ -291,7 +291,7 @@ exports[`Image Upload render function Add image 1`] = `
                           data-cy="user-form-submit"
                           disabled={false}
                           role="button"
-                          tabindex="0"
+                          tabIndex="0"
                         >
                           <span>
                             <T
@@ -363,7 +363,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                     accept="image/png, image/jpeg"
                     className="droppable-image-field--file-input"
                     onChange={[Function]}
-                    tabindex={-1}
+                    tabIndex={-1}
                     type="file"
                   />
                   <div
@@ -477,7 +477,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                       "backgroundColor": "var(--porcelain)",
                     }
                   }
-                  tabindex="0"
+                  tabIndex="0"
                 >
                   <span>
                     Fortryd
@@ -489,7 +489,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                   data-cy="user-form-submit"
                   disabled={true}
                   role="button"
-                  tabindex="0"
+                  tabIndex="0"
                 >
                   <span>
                     Gem ændringer

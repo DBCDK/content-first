@@ -90,7 +90,7 @@ class FilterCard extends React.Component {
             className={`FilterCard__content ${borderClass}`}
             style={{borderTopColor: borderColor}}
             onClick={e => this.props.onCardClick(e)}
-            tabindex="0"
+            tabIndex="0"
           >
             <Heading type="title" className="FilterCard__heading mb0 mt0">
               {filter.title}

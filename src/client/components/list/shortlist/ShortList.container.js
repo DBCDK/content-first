@@ -96,9 +96,9 @@ export class ShortListItem extends React.Component {
             onClick={onRemove}
             role="button"
             alt="slet"
-            tabindex="0"
+            tabIndex="0"
           />
-          <Link href={url}>
+          <Link href={url} tabIndex={-1}>
             <BookCover pid={work.book.pid} />
           </Link>
           <div className="shortlist__item--details">
