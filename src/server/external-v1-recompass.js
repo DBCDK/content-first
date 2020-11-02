@@ -7,7 +7,7 @@ const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const {recompasWork, recompasTags} = require('server/recompas');
 const {fetchWork} = require('./external-v1-books');
 const matomo = require('server/matomo');
-const logger = require('server/logger');
+/* const logger = require('server/logger'); */
 
 const NodeCache = require('node-cache');
 const cache = new NodeCache({stdTTL: 60 * 60 * 4});
@@ -94,10 +94,10 @@ router
                 );
               }
               cache.set(req.originalUrl, result);
-              logger.log.debug('recompasTags', {
+              /*  logger.log.debug('recompasTags', {
                 originalUrl: req.originalUrl,
                 result
-              });
+              });*/
               return res.status(200).json(result);
             } catch (e) {
               return res.status(500).end(e.message);
@@ -169,10 +169,10 @@ router
               }
 
               cache.set(req.originalUrl, result);
-              logger.log.debug('recompasWork', {
+              /* logger.log.debug('recompasWork', {
                 originalUrl: req.originalUrl,
                 result
-              });
+              });*/
 
               return res.status(200).json(result);
             } catch (e) {

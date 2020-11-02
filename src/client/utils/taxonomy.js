@@ -1,10 +1,7 @@
-const {difference} = require('lodash');
+import {getTaxonomy} from '../../shared/taxonomy.requester';
 
-const taxonomyJson =
-  process.env.NODE_ENV === 'ci'
-    ? require('../../data/examples/exportTaxonomy.json')
-    : require('../../data/exportTaxonomy.json');
-const taxonomy = taxonomyJson;
+const {difference} = require('lodash');
+const taxonomy = getTaxonomy();
 
 const getLeaves = (t = taxonomy, parentStack = []) => {
   if (Array.isArray(t)) {

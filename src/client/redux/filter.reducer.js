@@ -1,5 +1,7 @@
-import {taxonomy, getLeaves, getLeavesMap} from '../utils/taxonomy';
+import {getLeaves, getLeavesMap} from '../utils/taxonomy';
+import {getTaxonomy} from '../../shared/taxonomy.requester';
 
+const taxonomy = getTaxonomy();
 const leavesMap = getLeavesMap();
 
 export const filters = {
@@ -92,7 +94,6 @@ const filterReducer = (state = defaultState, action) => {
           filterId
         ];
       }
-
       return Object.assign({}, state, {beltFilters});
     }
     case ON_EXPAND_FILTERS_TOGGLE: {

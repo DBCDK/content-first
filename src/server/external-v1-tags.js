@@ -1,5 +1,7 @@
 'use strict';
 
+import {getTaxonomy} from '../shared/taxonomy.requester';
+
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const config = require('server/config');
@@ -12,12 +14,12 @@ const idmapper = new IDMapper(config, logger);
 
 let usedTags = null;
 
-async function getTaxonomy() {
+async function getTagsFromTaxonomy() {
   if (usedTags) {
     return usedTags;
   }
 
-  const taxonomy = require('../data/exportTaxonomyMap');
+  const taxonomy = getTaxonomy();
   const result = await knex(tagTable)
     .where('tag', '>', 0)
     .select(knex.raw('array_agg(distinct tag) as tags'));
@@ -29,7 +31,7 @@ async function getTaxonomy() {
 }
 
 async function suggest(q) {
-  const tags = await getTaxonomy();
+  const tags = getTagsFromTaxonomy();
   if (!q) {
     return tags;
   }
