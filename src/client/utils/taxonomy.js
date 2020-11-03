@@ -3,7 +3,8 @@ import {getTaxonomy} from '../../shared/taxonomy.requester';
 const {difference} = require('lodash');
 const taxonomy = getTaxonomy();
 
-const getLeaves = (t = taxonomy, parentStack = []) => {
+const getLeaves = (t, parentStack = []) => {
+  t = t ? t : getTaxonomy();
   if (Array.isArray(t)) {
     return t.map(leaf => {
       return Object.assign({}, leaf, {parents: [...parentStack]});
@@ -19,7 +20,8 @@ const getLeaves = (t = taxonomy, parentStack = []) => {
   return result;
 };
 
-const getLeavesMap = (t = taxonomy) => {
+const getLeavesMap = t => {
+  t = t ? t : getTaxonomy();
   const res = {};
   getLeaves(t).forEach(leaf => {
     res[leaf.id] = leaf;
@@ -27,7 +29,8 @@ const getLeavesMap = (t = taxonomy) => {
   return res;
 };
 
-const getFromTitleMap = (t = taxonomy) => {
+const getFromTitleMap = t => {
+  t = t ? t : getTaxonomy();
   const res = {};
   getLeaves(t).forEach(leaf => {
     if (!leaf.parents.includes('Hovedperson(er)')) {
