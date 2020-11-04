@@ -316,7 +316,7 @@ export class ProfileModal extends React.Component {
               samarbejde med DBC.
               <div>
                 <br />
-                <div>DBC as</div>
+                <div>DBC DIGITAL A/S</div>
                 <div>Tempovej 7-11</div>
                 <div>2750 Ballerup</div>
                 <div>dbc@dbc.dk</div>
