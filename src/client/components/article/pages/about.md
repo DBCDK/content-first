@@ -7,14 +7,14 @@ Når du logger på med bibliotekslogin, kan du låne og bestille bøger til dit 
 
 ### Hvem står bag?
 
-Læsekompasset udbydes, udvikles og drives af DBC a/s.   
+Læsekompasset udbydes, udvikles og drives af DBC DIGITAL A/S.   
 &nbsp;  
 Den indledende udvikling er sket i samarbejde med en række folkebiblioteker. 
 
 
 ### Kontakt Læsekompasset
 
-DBC as  
+DBC DIGITAL A/S  
 Tempovej 7-11  
 2750 Ballerup  
 #### Presse:  
