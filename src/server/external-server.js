@@ -1,4 +1,5 @@
 'use strict';
+import {getTaxonomy} from '../shared/taxonomy.requester';
 
 const crypto = require('crypto');
 const fs = require('fs');
@@ -38,7 +39,13 @@ external.use((req, res, next) => {
   next();
 });
 
-// Inject config into index.html
+const injectTaxonomy = (html, taxonomy) => {
+  return html.replace(
+    '</head>',
+    `<script>TAXONOMY = ${JSON.stringify(taxonomy)};
+    </script></head>`
+  );
+};
 let indexHtmlWithConfig;
 const buildPath = path.resolve(__dirname, '..', '..', 'build', 'index.html');
 const devPath = path.resolve(__dirname, '..', '..', 'public', 'index.html');
@@ -57,8 +64,8 @@ indexHtmlWithConfig = indexHtmlWithConfig.replace(
 
 // Serve indexHtmlWithConfig on the root path.
 // Needs to be done before setting up static files
-external.get('/', (req, res) => {
-  res.send(indexHtmlWithConfig);
+external.get('/', async (req, res) => {
+  res.send(injectTaxonomy(indexHtmlWithConfig, getTaxonomy()));
 });
 
 // Static frontend content.
@@ -192,8 +199,8 @@ external.use(
 );
 
 // Let frontend React handle all other routes.
-external.get('*', (req, res) => {
-  res.send(indexHtmlWithConfig);
+external.get('*', async (req, res) => {
+  res.send(injectTaxonomy(indexHtmlWithConfig, getTaxonomy()));
 });
 
 // Error handlers.
