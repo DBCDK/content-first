@@ -134,3 +134,5 @@ exports.idmapper = {
   url:
     process.env.IDMAPPER_URL || 'http://id-mapper-1-0.mi-prod.svc.cloud.dbc.dk'
 };
+
+exports.showNotice = process.env.SHOW_NOTICE || false;
