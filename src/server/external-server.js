@@ -58,7 +58,8 @@ indexHtmlWithConfig = indexHtmlWithConfig.replace(
   '</head>',
   `<script>CONFIG = ${JSON.stringify({
     matomo: config.matomo,
-    kiosk: config.kiosk
+    kiosk: config.kiosk,
+    showNotice: config.showNotice
   })};</script></head>`
 );
 

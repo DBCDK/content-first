@@ -7,14 +7,13 @@ const env = process.env;
   uses the same environment variable names.
 */
 
-let config = {};
+let config = get(window, 'CONFIG') || {};
 if (env.NODE_ENV === 'development') {
   Object.keys(env).forEach(k => {
     let key = k.replace('REACT_APP_', '');
     return (config[key] = env[k]);
   });
 } else {
-  config = get(window, 'CONFIG') || {};
   // quick fix
   config.MATOMO_URL = get(config, 'matomo.url');
   config.MATOMO_SITE_ID = get(config, 'matomo.siteId');
