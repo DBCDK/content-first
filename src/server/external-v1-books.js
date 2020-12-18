@@ -70,7 +70,7 @@ const getWork = (
       contributor: (contributor && joinContributors(contributor)) || '',
       description: (abstract && abstract[0]) || '',
       identifierISBN: identifierISBN || '',
-      pages: (extent && extent[0] && parseInt(extent[0], 10)) || '',
+      pages: (extent && extent[0] && parseInt(extent[0].replace(/.* (\d)/, "$1"), 10)) || '',
       language: (dcLanguage && dcLanguage[0]) || '',
       first_edition_year: (date && date[0]) || '',
       taxonomy_description_subjects:
