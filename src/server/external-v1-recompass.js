@@ -87,11 +87,22 @@ router
 
               if (expand) {
                 result.response = await Promise.all(
-                  result.response.map(async entry => ({
-                    ...entry,
-                    work: await fetchWork(entry.pid)
-                  }))
+                  result.response.map(async entry => {
+                    try {
+                      return {
+                        ...entry,
+                        work: await fetchWork(entry.pid)
+                      };
+                    } catch (e) {
+                      // in some cases a pid in the recompass response has been
+                      // removed from the data well..
+                      return null;
+                    }
+                  })
                 );
+
+                // Remove all works that could not be fetched properly
+                result.response = result.response.filter(entry => !!entry);
               }
               cache.set(req.originalUrl, result);
               logger.log.debug('recompasTags', {
