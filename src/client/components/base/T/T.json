@@ -262,6 +262,10 @@
       "facebook": {
         "da": "Facebook",
         "en": "Facebook"
+      },
+      "tilgængelighedserklæring": {
+        "da": "Tilgængelighedserklæring",
+        "en": "Accessibility Statement"
       }
     },
     "work": {

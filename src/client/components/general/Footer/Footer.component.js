@@ -117,6 +117,9 @@ class Footer extends React.Component {
                 <span>
                   <T component="footer" name="addressCity" />
                 </span>
+                <a href="/was" target="_blank" rel="noopener noreferrer">
+                  <T component="footer" name="tilgængelighedserklæring" />
+                </a>
               </Text>
             </div>
             <div className="footer__element ">
