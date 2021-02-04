@@ -35,6 +35,7 @@ const getWork = (
   dcLanguage,
   date,
   identifierISBN,
+  subjectDBCO,
   subjectDBCS,
   subjectDBCF,
   spatialDBCS,
@@ -47,6 +48,7 @@ const getWork = (
   // Tags merged and mapped with categories (parents/subjects)
   const tags =
     [
+      ...(subjectDBCO || []),
       ...(subjectDBCS || []),
       ...(subjectDBCF || []),
       ...(spatialDBCS || []),
@@ -70,7 +72,11 @@ const getWork = (
       contributor: (contributor && joinContributors(contributor)) || '',
       description: (abstract && abstract[0]) || '',
       identifierISBN: identifierISBN || '',
-      pages: (extent && extent[0] && parseInt(extent[0].replace(/.* (\d)/, "$1"), 10)) || '',
+      pages:
+        (extent &&
+          extent[0] &&
+          parseInt(extent[0].replace(/.* (\d)/, '$1'), 10)) ||
+        '',
       language: (dcLanguage && dcLanguage[0]) || '',
       first_edition_year: (date && date[0]) || '',
       taxonomy_description_subjects:
@@ -111,6 +117,7 @@ const fetchWork = async pid => {
         'dcLanguage',
         'date',
         'identifierISBN',
+        'subjectDBCO',
         'subjectDBCS',
         'subjectDBCF',
         'spatialDBCS',
@@ -140,6 +147,7 @@ const fetchWork = async pid => {
     dcLanguage,
     date,
     identifierISBN,
+    subjectDBCO,
     subjectDBCS,
     subjectDBCF,
     spatialDBCS,
@@ -162,6 +170,7 @@ const fetchWork = async pid => {
     dcLanguage,
     date,
     identifierISBN,
+    subjectDBCO,
     subjectDBCS,
     subjectDBCF,
     spatialDBCS,
