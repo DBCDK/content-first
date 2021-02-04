@@ -110,6 +110,9 @@ class App extends Component {
       }
     } else if (pathSplit[1] === 'huskeliste') {
       currentPage = <ShortList />;
+    } else if (pathSplit[1] === 'was') {
+      currentPage = <FrontPage />;
+      window.location = 'https://was.digst.dk/laesekompas-dk';
     } else if (pathSplit[1] === 'find') {
       currentPage = <FilterPage />;
     } else if (pathSplit[1] === 'replay') {
