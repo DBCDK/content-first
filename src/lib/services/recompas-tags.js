@@ -54,7 +54,7 @@ class RecompasTags {
       let status;
       if (agencyId && branch) {
         branchid = `${agencyId}|${
-          branch.match(/^".*"$/) ? branch : `"${branch}"`
+          branch.match(/^".*"$/) ? branch : `'${branch}'`
         }`;
         status = 'onShelf';
       }
