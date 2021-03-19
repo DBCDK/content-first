@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {getTaxonomy} from '../../shared/taxonomy.requester';
 
 const getLeaves = (t, parentStack = []) => {
@@ -20,19 +21,21 @@ const getLeaves = (t, parentStack = []) => {
 const getFromTitleMap = t => {
   t = t ? t : getTaxonomy();
   const res = {};
+
   getLeaves(t).forEach(leaf => {
     if (!leaf.parents.includes('Hovedperson(er)')) {
-      res[leaf.title.toLowerCase()] = leaf;
+      res[leaf.title.toLowerCase() + '/' + leaf.parents[1]] = leaf;
     }
   });
   return res;
 };
 let fromTitleMap;
-const fromTitle = title => {
+const fromTitle = (title, cat) => {
   if (!fromTitleMap) {
     fromTitleMap = getFromTitleMap();
+  } else {
+    return fromTitleMap[title.toLowerCase() + '/' + cat];
   }
-  return fromTitleMap[title.toLowerCase()];
 };
 
 const upperCaseFirst = str => {

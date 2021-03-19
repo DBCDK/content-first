@@ -48,15 +48,18 @@ const getWork = (
   // Tags merged and mapped with categories (parents/subjects)
   const tags =
     [
-      ...(subjectDBCO || []),
-      ...(subjectDBCS || []),
-      ...(subjectDBCF || []),
-      ...(spatialDBCS || []),
-      ...(spatialDBCF || []),
-      ...(temporalDBCP || [])
+      ...(subjectDBCO || []).map(title => [title, 'genre']),
+      ...(subjectDBCS || []).map(title => [title, 'handler om']),
+      ...(subjectDBCF || []).map(title => [title, 'handler om']),
+      ...(spatialDBCS || []).map(title => [title, 'geografisk sted']),
+      ...(spatialDBCF || []).map(title => [title, '']),
+      ...(temporalDBCP || []).map(title => [
+        title,
+        'handlingens tid udtrykt i tal'
+      ])
     ]
       .filter((v, i, a) => a.indexOf(v) === i)
-      .map(title => fromTitle(title))
+      .map(el => fromTitle(el[0], el[1]))
       .filter(t => t) || [];
 
   return {
