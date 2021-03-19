@@ -24,32 +24,17 @@ const getFromTitleMap = t => {
 
   getLeaves(t).forEach(leaf => {
     if (!leaf.parents.includes('Hovedperson(er)')) {
-      res[leaf.id] = leaf;
+      res[leaf.title.toLowerCase() + '/' + leaf.parents[1]] = leaf;
     }
   });
   return res;
 };
-
 let fromTitleMap;
-const fromTitle = (title, cat = '') => {
+const fromTitle = (title, cat) => {
   if (!fromTitleMap) {
     fromTitleMap = getFromTitleMap();
   } else {
-    let retLeaf = {};
-
-    for (let prop in fromTitleMap) {
-      if (fromTitleMap[prop].title === title) {
-        if (fromTitleMap[prop].parents.includes(cat) || cat === '') {
-          // eslint-disable-next-line no-console
-          console.log('chosen', fromTitleMap[prop]);
-          retLeaf = fromTitleMap[prop];
-        } else {
-          // eslint-disable-next-line no-console
-          console.log('ignoring', fromTitleMap[prop]);
-        }
-      }
-    }
-    return retLeaf;
+    return fromTitleMap[title.toLowerCase() + '/' + cat];
   }
 };
 
