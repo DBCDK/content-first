@@ -102,12 +102,14 @@ export default class WorkSlider extends React.Component {
                         : 'workcard'
                     }
                     description={
-                      series &&
-                      `${series[idx].part}. del - ${series[idx].title}${
+                      series && (
+                        (series[idx].part ? `${series[idx].part}. del - ` : '') +
+                      `${series[idx].title}${
                         series[idx].volumeId
                           ? ` (bind ${series[idx].volumeId} af ${series[idx].volumeExtent})`
                           : ''
                       }`
+                      )
                     }
                   />
                 );

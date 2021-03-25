@@ -436,6 +436,10 @@
       "series": {
         "da": "%s. del af serien",
         "en": "%s. part of the series"
+      },
+      "partOfSeries": {
+        "da": "Del af serien",
+        "en": "Part of the series"
       }
     },
     "profile": {

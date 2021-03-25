@@ -188,7 +188,7 @@ const fetchSeries = async (pid, debug) => {
   if (isSeries) {
     let series = await fetchSeriesData(titleSeries, debugObj);
 
-    if (series.length > 1) {
+    if (series.length > 0) {
       series.forEach(entry =>
         cache.set(entry.pid, {isSeries, titleSeries, multiVolume})
       );
@@ -227,7 +227,7 @@ const fetchSeries = async (pid, debug) => {
         debug: debug && debugObj
       };
     }
-    if (multiVolume.length > 1) {
+    if (multiVolume.length > 0) {
       multiVolume.forEach(entry =>
         cache.set(entry.pid, {isSeries, titleSeries, multiVolume})
       );
