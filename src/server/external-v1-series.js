@@ -153,14 +153,7 @@ const fetchSeriesData = async (titleSeries, debugObj) => {
       part: parseTitleSeries(entry.titleSeries).part,
       identifierURI: entry.identifierURI,
       collectionDetails: entry.collectionDetails
-    }))
-    .filter(
-      entry =>
-        entry.pid.startsWith('870970-basis') &&
-        (!entry.language || entry.language.includes('Dansk')) &&
-        (entry.type.toLowerCase().includes('bog') ||
-          hasEreolenLink(entry.identifierURI))
-    );
+    }));
   response = orderBy(response, ['part', 'date'], ['asc', 'asc']);
 
   cache.set(titleSeries, response);
