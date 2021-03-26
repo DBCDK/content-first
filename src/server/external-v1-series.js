@@ -142,18 +142,17 @@ const fetchSeriesData = async (titleSeries, debugObj) => {
     debugObj.seriesResponse = response;
   }
 
-  response = response
-    .map(entry => ({
-      pid: entry.pid[0],
-      title: entry.title[0],
-      type: entry.type[0],
-      date: entry.date[0],
-      titleSeries: entry.titleSeries,
-      language: entry.language,
-      part: parseTitleSeries(entry.titleSeries).part,
-      identifierURI: entry.identifierURI,
-      collectionDetails: entry.collectionDetails
-    }));
+  response = response.map(entry => ({
+    pid: entry.pid[0],
+    title: entry.title[0],
+    type: entry.type[0],
+    date: entry.date[0],
+    titleSeries: entry.titleSeries,
+    language: entry.language,
+    part: parseTitleSeries(entry.titleSeries).part,
+    identifierURI: entry.identifierURI,
+    collectionDetails: entry.collectionDetails
+  }));
   response = orderBy(response, ['part', 'date'], ['asc', 'asc']);
 
   cache.set(titleSeries, response);
