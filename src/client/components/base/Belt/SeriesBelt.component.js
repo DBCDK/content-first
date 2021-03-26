@@ -52,6 +52,7 @@ export default withChildBelt(
   withScrollToComponent(
     withIsVisible(
       withWork(SeriesBelt, {includeSeries: true, includeCollection: true})
-    )
+    ),
+    {align: 'top', offset: -84}
   )
 );
