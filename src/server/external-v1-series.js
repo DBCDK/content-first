@@ -12,16 +12,6 @@ const {orderBy, uniqBy} = require('lodash');
 
 const bindIdRegex = /bind (\d+)/i;
 
-const hasEreolenLink = identifierURI => {
-  if (Array.isArray(identifierURI)) {
-    for (let i = 0; i < identifierURI.length; i++) {
-      if (identifierURI[i].includes('ereolen.dk')) {
-        return true;
-      }
-    }
-  }
-  return false;
-};
 const parseTitleSeries = titleSeries => {
   if (titleSeries && titleSeries.length) {
     for (let i = 0; i < titleSeries.length; i++) {
