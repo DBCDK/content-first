@@ -4,7 +4,7 @@ import scrollToComponent from 'react-scroll-to-component';
 import {SCROLL_TO_COMPONENT_COMPLETE} from '../../../redux/scrollToComponent';
 import {get} from 'lodash';
 
-const withScrollToComponent = WrappedComponent => {
+const withScrollToComponent = (WrappedComponent, options = {}) => {
   const Wrapped = class extends React.Component {
     componentDidMount() {
       this.handleScroll();
@@ -21,7 +21,8 @@ const withScrollToComponent = WrappedComponent => {
       ) {
         scrollToComponent(this.componentRef, {
           align: 'middle',
-          ease: 'inOutCube'
+          ease: 'inOutCube',
+          ...options
         });
         this.props.complete();
       }

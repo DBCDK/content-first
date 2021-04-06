@@ -342,7 +342,15 @@ class WorkPreview extends React.Component {
                 {isSeries && (
                   <div className="work-preview__information-details">
                     <Text type="body">
-                      <T component="work" name="series" vars={[part]} />{' '}
+                      {part ? (
+                        <T
+                          component="work"
+                          name="series"
+                          vars={[part.toString()]}
+                        />
+                      ) : (
+                        <T component="work" name="partOfSeries" />
+                      )}{' '}
                       <Link
                         className="work-preview__series-link"
                         href={'/værk/' + book.pid + '#series'}
