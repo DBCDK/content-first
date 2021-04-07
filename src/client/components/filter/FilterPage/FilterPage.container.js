@@ -27,7 +27,7 @@ class FilterPage extends React.Component {
           </div>
         </div>
         <FilterCards />
-        <Results />
+        <Results path="find" />
       </div>
     );
   }

@@ -16,7 +16,8 @@ const withScrollToComponent = (WrappedComponent, options = {}) => {
 
     handleScroll(prevProps = {}) {
       if (
-        (prevProps.router !== this.props.router && this.props.hashMatch) ||
+        (prevProps.router !== this.props.router &&
+          (this.props.hashMatch || this.props.pathMatch)) ||
         this.props.doScroll
       ) {
         scrollToComponent(this.componentRef, {
@@ -43,10 +44,14 @@ const withScrollToComponent = (WrappedComponent, options = {}) => {
   const mapStateToProps = (state, ownProps) => {
     const hashMatch =
       ownProps.id && get(state, 'routerReducer.hash', '') === `#${ownProps.id}`;
+    const pathMatch =
+      ownProps.path &&
+      get(state, 'routerReducer.path', '') === `/${ownProps.path}`;
 
     return {
       router: state.routerReducer,
       hashMatch,
+      pathMatch,
       doScroll: !!state.scrollToComponent[ownProps.mount]
     };
   };

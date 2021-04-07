@@ -13,6 +13,7 @@ import {withStoreBelt} from '../../hoc/Belt';
 import Role from '../../roles/Role.component';
 import Kiosk from '../../base/Kiosk/Kiosk.js';
 import ResultsFilter from './ResultsFilter.component';
+import {withScrollToComponent} from '../../hoc/Scroll';
 
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
 
@@ -269,4 +270,7 @@ class Results extends React.Component {
   }
 }
 
-export default withTagsFromUrl(Results);
+export default withScrollToComponent(withTagsFromUrl(Results), {
+  align: 'top',
+  offset: 100
+});
