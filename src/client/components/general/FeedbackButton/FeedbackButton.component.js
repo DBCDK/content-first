@@ -14,10 +14,7 @@ function FeedbackButton() {
         onClick={event => {
           event.stopPropagation();
           event.preventDefault();
-          window.open(
-            'https://docs.google.com/forms/d/e/1FAIpQLSed2LP_swf0juMqNxYdfn9HKepjxj3USxSwR2XfjEW8SlaiAw/viewform',
-            '_blank'
-          );
+          window.open('https://kundeservice.dbc.dk/lk', '_blank');
         }}
       >
         <Icon className="icon__feedback md-small" name="chat_bubble_outline" />
