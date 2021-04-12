@@ -114,6 +114,9 @@ class Results extends React.Component {
     if (this.state.type !== prevState.type) {
       this.props.updateType(this.state.type);
     }
+    console.log("=== hasScrolled", this.hasScrolled)
+    console.log("=== document.referrer", document.referrer)
+    console.log("=== window.location.origin", window.location.origin)
     if (
       !this.hasScrolled && // Only scroll when loading page first time
       document.referrer !== '' && // Do not scroll on internal navigation
