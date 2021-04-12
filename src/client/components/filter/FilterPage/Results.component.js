@@ -13,6 +13,7 @@ import {withStoreBelt} from '../../hoc/Belt';
 import Role from '../../roles/Role.component';
 import Kiosk from '../../base/Kiosk/Kiosk.js';
 import ResultsFilter from './ResultsFilter.component';
+import scrollToComponent from 'react-scroll-to-component';
 
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
 
@@ -98,6 +99,7 @@ const StoreBeltPin = withStoreBelt(props => {
 class Results extends React.Component {
   constructor() {
     super();
+    this.hasScrolled = false;
     this.state = {type: 'Bog'};
   }
 
@@ -111,6 +113,18 @@ class Results extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.state.type !== prevState.type) {
       this.props.updateType(this.state.type);
+    }
+    if (
+      !this.hasScrolled && // Only scroll when loading page first time
+      document.referrer !== '' && // Do not scroll on internal navigation
+      document.referrer.startsWith(window.location.origin) // Only scroll if redirected from outside
+    ) {
+      this.hasScrolled = true;
+      scrollToComponent(this.resultBlockRef, {
+        align: 'top',
+        ease: 'inOutCube',
+        offset: 100
+      });
     }
   }
 
@@ -206,7 +220,7 @@ class Results extends React.Component {
           return <CreatorBelt key={mount} mount={mount} query={creator} />;
         })}
         {tags.length > 0 && (
-          <div>
+          <div ref={ref => (this.resultBlockRef = ref)}>
             <div className="d-flex flex-row justify-content-between px-2 px-sm-3 px-lg-5 pt-5">
               <Title
                 Tag="h1"
