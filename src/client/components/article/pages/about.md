@@ -14,13 +14,13 @@ Den indledende udvikling er sket i samarbejde med en række folkebiblioteker.
 
 ### Kontakt Læsekompasset
 
-DBC DIGITAL A/S
+DBC DIGITAL A/S  
 Tempovej 7-11  
 2750 Ballerup  
 #### Presse:  
-Marianne Hermansen   
-mah@dbc.dk  
-+45 40 18 76 79  
+Ib Helles Olesen  
+ibol@dbc.dk  
++45 21 60 80 58  
 &nbsp;  
 Camilla Bødker Thomsen  
 cbt@dbc.dk  
