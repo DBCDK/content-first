@@ -126,8 +126,6 @@ class Results extends React.Component {
         offset: 100
       });
     }
-    console.log('=== document.referrer', document.referrer);
-    console.log('=== window.location.origin', window.location.origin);
   }
 
   initBtns = () => {
