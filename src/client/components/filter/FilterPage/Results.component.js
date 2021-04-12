@@ -120,7 +120,7 @@ class Results extends React.Component {
     if (
       !this.hasScrolled && // Only scroll when loading page first time
       document.referrer !== '' && // Do not scroll on internal navigation
-      document.referrer.startsWith(window.location.origin) // Only scroll if redirected from outside
+      !document.referrer.startsWith(window.location.origin) // Only scroll if redirected from outside
     ) {
       this.hasScrolled = true;
       scrollToComponent(this.resultBlockRef, {
