@@ -13,8 +13,7 @@ import {withStoreBelt} from '../../hoc/Belt';
 import Role from '../../roles/Role.component';
 import Kiosk from '../../base/Kiosk/Kiosk.js';
 import ResultsFilter from './ResultsFilter.component';
-
-var scroll = require('scroll-to');
+import scroll from 'scroll-to';
 
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
 
@@ -119,8 +118,7 @@ class Results extends React.Component {
     const isMediumScreen = window.innerWidth < 768;
     if (
       !this.hasScrolled && // Only scroll when loading page first time
-      !window.location.href.endsWith('/find') && // Do not scroll when no search tags selected
-      !document.referrer.startsWith(window.location.origin) // Only scroll if redirected from outside
+      !window.location.href.endsWith('/find') // Do not scroll when no search tags selected
     ) {
       scroll(0, isSmallScreen ? 376 : isMediumScreen ? 329 : 250);
     }
