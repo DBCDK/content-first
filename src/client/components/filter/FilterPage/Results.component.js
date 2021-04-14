@@ -13,7 +13,7 @@ import {withStoreBelt} from '../../hoc/Belt';
 import Role from '../../roles/Role.component';
 import Kiosk from '../../base/Kiosk/Kiosk.js';
 import ResultsFilter from './ResultsFilter.component';
-import scrollToComponent from 'react-scroll-to-component';
+import scroll from 'scroll-to';
 
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
 
@@ -114,18 +114,15 @@ class Results extends React.Component {
     if (this.state.type !== prevState.type) {
       this.props.updateType(this.state.type);
     }
+    const isSmallScreen = window.innerWidth <= 600;
+    const isMediumScreen = window.innerWidth < 768;
     if (
       !this.hasScrolled && // Only scroll when loading page first time
-      document.referrer !== '' && // Do not scroll on internal navigation
-      !document.referrer.startsWith(window.location.origin) // Only scroll if redirected from outside
+      !window.location.href.endsWith('/find') // Do not scroll when no search tags selected
     ) {
-      this.hasScrolled = true;
-      scrollToComponent(this.resultBlockRef, {
-        align: 'top',
-        ease: 'inOutCube',
-        offset: 100
-      });
+      scroll(0, isSmallScreen ? 376 : isMediumScreen ? 329 : 250);
     }
+    this.hasScrolled = true; // Either has scrolled or has had an opportunity to scroll, but didn't want to...
   }
 
   initBtns = () => {
@@ -220,7 +217,7 @@ class Results extends React.Component {
           return <CreatorBelt key={mount} mount={mount} query={creator} />;
         })}
         {tags.length > 0 && (
-          <div ref={ref => (this.resultBlockRef = ref)}>
+          <div>
             <div className="d-flex flex-row justify-content-between px-2 px-sm-3 px-lg-5 pt-5">
               <Title
                 Tag="h1"
