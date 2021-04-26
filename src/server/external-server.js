@@ -19,8 +19,12 @@ const {recompasTags, recompasWork} = require('server/recompas');
 const suggester = require('server/suggester');
 const searcher = require('server/searcher');
 const matomo = require('server/matomo');
+const Holdings = require('__/services/holdings');
+const IDMapper = require('__/services/idmapper');
 const generatingServiceStatus = require('__/services/service-status');
 const isProduction = config.server.isProduction;
+const holdings = new Holdings(config, logger);
+const idmapper = new IDMapper(config, logger);
 
 // Public web server.
 const express = require('express');
@@ -159,7 +163,9 @@ external.get('/howru', async (req, res) => {
     recompasTags,
     recompasWork,
     suggester,
-    searcher
+    searcher,
+    holdings,
+    idmapper
   ];
   const status = await generatingServiceStatus(services);
   Object.assign(status, {
